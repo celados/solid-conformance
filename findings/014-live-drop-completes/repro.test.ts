@@ -21,22 +21,66 @@ test("A connected live source must reconnect after a real TCP drop", async () =>
       headers: { "content-type": "text/html" },
     });
   };
-  let server = Bun.serve({ port: 0, hostname: "127.0.0.1", fetch: fetchHandler });
+  const server = Bun.serve({ port: 0, hostname: "127.0.0.1", fetch: fetchHandler });
+  const downstream = new Set<any>();
+  const proxy = Bun.listen<any>({
+    hostname: "127.0.0.1",
+    port: 0,
+    socket: {
+      open(socket) {
+        downstream.add(socket);
+        socket.data = { pending: [] as Buffer[], upstream: undefined as any };
+        Bun.connect({
+          hostname: "127.0.0.1",
+          port: server.port!,
+          socket: {
+            open(upstream) {
+              socket.data.upstream = upstream;
+              for (const bytes of socket.data.pending) upstream.write(bytes);
+              socket.data.pending.length = 0;
+            },
+            data(_upstream, bytes) {
+              socket.write(bytes);
+            },
+            close() {
+              socket.end();
+            },
+            error() {
+              socket.terminate();
+            },
+          },
+        }).catch(() => socket.terminate());
+      },
+      data(socket, bytes) {
+        if (socket.data.upstream) socket.data.upstream.write(bytes);
+        else socket.data.pending.push(Buffer.from(bytes));
+      },
+      close(socket) {
+        downstream.delete(socket);
+        socket.data.upstream?.terminate();
+      },
+      error(socket) {
+        downstream.delete(socket);
+        socket.data.upstream?.terminate();
+      },
+    },
+  });
   const browser = await chromium.launch({ channel: "chrome", headless: true });
   try {
     const page = await browser.newPage();
-    await page.goto(String(server.url), { waitUntil: "commit" });
+    await page.goto(`http://127.0.0.1:${proxy.port}`, { waitUntil: "commit" });
     await page.waitForFunction(() => (window as any).state?.values.length === 1, null, {
       timeout: 5000,
     });
     expect(ssr.stats.closed).toBe(0);
-    const port = server.port;
-    server.stop(true);
-    server = Bun.serve({ port, hostname: "127.0.0.1", fetch: fetchHandler });
+    expect(await page.evaluate(() => (window as any).state.status.at(-1))).toBe("connected");
+    for (const socket of downstream) socket.terminate();
     await page.waitForTimeout(1500);
     expect(await page.evaluate(() => (window as any).state.status)).toContain("reconnecting");
   } finally {
+    ssr.release?.();
     await browser.close();
+    proxy.stop(true);
     server.stop(true);
     await rm(dir, { recursive: true, force: true });
   }
