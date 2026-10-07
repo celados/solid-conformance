@@ -15,7 +15,8 @@ function selectExport(
 			if (selected) return selected
 		}
 }
-export async function build(outdir = '.build') {
+export type BuildMode = 'development' | 'production'
+export async function build(outdir = '.build', variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development') {
 	const packages = new Map<
 		string,
 		{ directory: string; exports: Record<string, ExportValue> }
@@ -33,7 +34,7 @@ export async function build(outdir = '.build') {
 	for (const mode of ['client', 'server'] as const) {
 		const conditions = new Set([
 			mode === 'client' ? 'browser' : 'node',
-			'development',
+			variant,
 			'import',
 			'default',
 		])
@@ -46,7 +47,8 @@ export async function build(outdir = '.build') {
 			naming: '[name].js',
 			splitting: mode === 'client',
 			target: mode === 'client' ? 'browser' : 'bun',
-			conditions: ['development'],
+			conditions: [variant],
+			define: { 'process.env.NODE_ENV': JSON.stringify(variant) },
 			tsconfig: 'tsconfig.json',
 			plugins: [
 				{
@@ -79,7 +81,7 @@ export async function build(outdir = '.build') {
 								filename: args.path,
 								generate: mode === 'client' ? 'dom' : 'ssr',
 								hydratable: true,
-								dev: true,
+								dev: variant === 'development',
 							}).code,
 							loader: 'ts',
 						}))

@@ -5,7 +5,7 @@ import { resolve } from 'node:path'
 import { openHarness } from '../../harness/browser'
 import { leaf } from '../../harness/tree'
 import { build } from '../../scripts/build'
-const fixed = process.env.EXPECT_FIXED === '1'
+const fixed = process.env.TARGET !== 'rc13'
 test('#3762: native TSRX setup declarations, DOM and SSR, projection parity', () => {
 	for (const declaration of [
 		'const a = () => 1',
