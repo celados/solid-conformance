@@ -2880,12 +2880,10 @@
   },
   {
     "id": "11-server-components:L114:4",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "tracks/frames/frames.test.ts:same call retains counter/different args nested-region stale",
-      "findings/009-frame-nested-region-stale/repro.test.ts"
-    ],
-    "reason": "server nested region stale确有红例，但旧句要求counter按argsreset与L149 mount belongs consumption site相冲突；不能把009的不同机制冒充该counter合同反例。"
+      "findings/038-frame-call-state-doc-reset/repro.test.ts"
+    ]
   },
   {
     "id": "11-server-components:L114:5",
@@ -3040,7 +3038,8 @@
     "id": "11-server-components:L149:1",
     "status": "covered",
     "coverage": [
-      "tracks/frames/router.test.ts:query preload/warm navigation/mount isolation/multi-frame single-flight"
+      "tracks/frames/router.test.ts:query preload/warm navigation/mount isolation/multi-frame single-flight",
+      "tracks/frames/frames.test.ts#argument change preserves existing counter instance"
     ]
   },
   {
