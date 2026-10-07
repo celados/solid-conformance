@@ -1,0 +1,144 @@
+[
+  {
+    "q": "repo:solidjs/solid is:issue is:open attribution fold",
+    "count": 1,
+    "issues": [
+      {
+        "number": 3754,
+        "title": "Observe: open one interaction frame per event, so listeners outside the runtime can join it",
+        "url": "https://github.com/solidjs/solid/issues/3754",
+        "state": "open"
+      }
+    ]
+  },
+  {
+    "q": "repo:solidjs/solid is:issue is:open \"history\" \"rerun\"",
+    "count": 0,
+    "issues": []
+  },
+  {
+    "q": "repo:solidjs/solid is:issue is:open \"records only\" \"costs\"",
+    "count": 0,
+    "issues": []
+  },
+  {
+    "q": "repo:solidjs/solid is:issue is:closed attribution fold",
+    "count": 4,
+    "issues": [
+      {
+        "number": 3089,
+        "title": "Projection/derived-store recomputes are lane-captured by unrelated in-flight transitions (committed rail serves torn state)",
+        "url": "https://github.com/solidjs/solid/issues/3089",
+        "state": "closed"
+      },
+      {
+        "number": 3389,
+        "title": "Perf tracker: Solid primitives vs the hand-rolled `@yak/solid` runtime",
+        "url": "https://github.com/solidjs/solid/issues/3389",
+        "state": "closed"
+      },
+      {
+        "number": 2860,
+        "title": "2.0.0-beta.16: streaming SSR — a root-level `lazy()` after a pending `<Loading>` renders HTML but never hydrates",
+        "url": "https://github.com/solidjs/solid/issues/2860",
+        "state": "closed"
+      },
+      {
+        "number": 2883,
+        "title": "Bundle size audit: pay-for-use tree-shaking for @solidjs/signals subsystems",
+        "url": "https://github.com/solidjs/solid/issues/2883",
+        "state": "closed"
+      }
+    ]
+  },
+  {
+    "q": "repo:solidjs/solid is:issue is:closed \"history\" \"rerun\"",
+    "count": 0,
+    "issues": []
+  },
+  {
+    "q": "repo:solidjs/solid is:issue is:closed \"records only\" \"costs\"",
+    "count": 2,
+    "issues": [
+      {
+        "number": 3610,
+        "title": "hydration: async entry runs `hydrate()` before the records `<script>` — empty `_$HY.r` makes a streamed `<Loading>` fall through (key miss, refetch, unclaimed fragment)",
+        "url": "https://github.com/solidjs/solid/issues/3610",
+        "state": "closed"
+      },
+      {
+        "number": 3129,
+        "title": "A `GET()` declaration outlives the function it was made about",
+        "url": "https://github.com/solidjs/solid/issues/3129",
+        "state": "closed"
+      }
+    ]
+  },
+  {
+    "q": "repo:solidjs/solid-router is:issue is:open attribution fold",
+    "count": 1,
+    "issues": [
+      {
+        "number": 643,
+        "title": "Anchor-click and form-submit navigations run outside the runtime's interaction frame (observe: NavigationEvent.interaction is undefined)",
+        "url": "https://github.com/solidjs/solid-router/issues/643",
+        "state": "open"
+      }
+    ]
+  },
+  {
+    "q": "repo:solidjs/solid-router is:issue is:open \"history\" \"rerun\"",
+    "count": 0,
+    "issues": []
+  },
+  {
+    "q": "repo:solidjs/solid-router is:issue is:open \"records only\" \"costs\"",
+    "count": 0,
+    "issues": []
+  },
+  {
+    "q": "repo:solidjs/solid-router is:issue is:closed attribution fold",
+    "count": 0,
+    "issues": []
+  },
+  {
+    "q": "repo:solidjs/solid-router is:issue is:closed \"history\" \"rerun\"",
+    "count": 0,
+    "issues": []
+  },
+  {
+    "q": "repo:solidjs/solid-router is:issue is:closed \"records only\" \"costs\"",
+    "count": 0,
+    "issues": []
+  },
+  {
+    "q": "repo:solidjs/solid-start is:issue is:open attribution fold",
+    "count": 0,
+    "issues": []
+  },
+  {
+    "q": "repo:solidjs/solid-start is:issue is:open \"history\" \"rerun\"",
+    "count": 0,
+    "issues": []
+  },
+  {
+    "q": "repo:solidjs/solid-start is:issue is:open \"records only\" \"costs\"",
+    "count": 0,
+    "issues": []
+  },
+  {
+    "q": "repo:solidjs/solid-start is:issue is:closed attribution fold",
+    "count": 0,
+    "issues": []
+  },
+  {
+    "q": "repo:solidjs/solid-start is:issue is:closed \"history\" \"rerun\"",
+    "count": 0,
+    "issues": []
+  },
+  {
+    "q": "repo:solidjs/solid-start is:issue is:closed \"records only\" \"costs\"",
+    "count": 0,
+    "issues": []
+  }
+]
