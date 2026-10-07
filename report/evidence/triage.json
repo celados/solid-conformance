@@ -1425,7 +1425,7 @@
       "upstream": [],
       "tier": "B",
       "severity": "low",
-      "impact": "A direct-call error hook is missing outside a request scope.",
+      "impact": "Direct-call errors follow request-local policy despite the ambient-only documentation.",
       "regression": "no",
       "builds": [
         "development",
