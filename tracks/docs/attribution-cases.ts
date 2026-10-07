@@ -31,6 +31,15 @@ add('records-body-facet','A bodies subscription sets the emitter second gate; un
  if(!isDev)return
  const a=OBSERVE!.records.subscribe('call',()=>{}),b=OBSERVE!.records.subscribe('call',()=>{},{bodies:true});try{equal(OBSERVE!.records.observed('call'),true);equal(OBSERVE!.records.observed('call','bodies'),true);b();b();equal(OBSERVE!.records.observed('call','bodies'),false);equal(OBSERVE!.records.observed('call'),true)}finally{a();b()}
 })
+add('records-outlive-engine','RFC 08 L801: record subscriptions survive engine disable and re-enable; throwing observers never affect computations or peer delivery.',()=>{
+ if(!isDev)return
+ const calls:number[]=[];const error=console.error;let reported=0;console.error=()=>{reported++}
+ const bad=OBSERVE!.records.subscribe('rerun',()=>{throw new Error('observer fixture')}),off=OBSERVE!.records.subscribe('rerun',r=>calls.push(r.nodeId))
+ try{
+  for(let i=0;i<2;i++){const release=attribution.enable(quiet);let dispose!:()=>void;try{const[w,m]=createRoot(d=>{dispose=d;const[r,w]=createSignal(0);const m=createMemo(()=>r()*2);return[w,m] as const});w(1);flush();equal(untrack(m),2)}finally{dispose();release()}}
+  equal(calls.length,2);equal(reported,2);equal(OBSERVE!.records.observed('rerun'),true);bad();off();equal(OBSERVE!.records.observed('rerun'),false)
+ }finally{bad();off();console.error=error;attribution.disable()}
+})
 add('diagnostic-guide-owner-path','DEV.guideUrl builds a stable URL anchored by code; ownerPath is root first and unnamed ownerPath(null) is undefined.',()=>{
  if(!isDev)return
  ok(DEV!.guideUrl('NO_OWNER_EFFECT').includes('#no_owner_effect'));root(()=>{const path=OBSERVE!.ownerPath(getOwner());equal(OBSERVE!.ownerPath(null),undefined);ok(path===undefined||Array.isArray(path))})
@@ -91,7 +100,8 @@ add('timeline-hold-navigation-interaction','RFC 08 L1121/L1123/L1162/L1184: time
   ok(nav.hold===hold);ok(interaction.holds.includes(hold));ok(interaction.navigations.includes(nav))
   ok(records.findIndex(r=>r.event===hold)<records.findIndex(r=>r.event===nav));ok(records.findIndex(r=>r.event===nav)<records.findIndex(r=>r.event===interaction))
   equal(attribution.history('hold').at(-1)===hold,true);equal(attribution.history('navigation').at(-1)===nav,true);equal(attribution.history('interaction').at(-1)===interaction,true)
-  for(const type of ['create','effect','flush','flight']){ok(records.some(r=>r.type===type),type);for(const {event} of records.filter(r=>r.type===type)){ok(Number.isFinite(event.at));ok(event.at>=0);ok(JSON.stringify(event));if('durationMs'in event)ok(event.durationMs>=0)}}
+  for(const type of ['create','effect','flush','flight']){ok(records.some(r=>r.type===type),type);for(const {event} of records.filter(r=>r.type===type)){ok(Number.isFinite(event.at));ok(event.at>=0);ok(JSON.stringify(event));if('durationMs'in event)ok(event.durationMs>=0);if(type==='flush'){ok(Number.isInteger(event.runs),JSON.stringify({type,event}));ok(Number.isInteger(event.created),JSON.stringify({type,event}));equal(typeof event.held,'boolean')}if(type==='create'){ok(Number.isInteger(event.nodeId),JSON.stringify({type,event}));ok(event.selfMs>=0,JSON.stringify({type,event}));ok(event.totalMs>=event.selfMs,JSON.stringify({type,event}));ok(event.depCount>=0,JSON.stringify({type,event}))}if(type==='effect'){ok(Number.isInteger(event.nodeId),JSON.stringify({type,event}));if('run' in event)ok(Number.isInteger(event.run),JSON.stringify({type,event}))}}}
+  ok(Math.abs(performance.timeOrigin+interaction.at-Date.now())<1000)
   ok(interaction.inputDelayMs>=0);ok(interaction.handlerMs>=0);ok(interaction.settledMs>=interaction.handlerMs)
  }finally{dispose();offs.forEach(off=>off());release()}
 })

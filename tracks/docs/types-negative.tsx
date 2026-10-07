@@ -116,3 +116,10 @@ createContext(0).Provider
 // 08-dev-diagnostics.md: a store setter is a synchronous transaction, never an async callback.
 // @ts-expect-error Store setter callbacks may return the host record or void, not a Promise.
 setStore(async draft => { draft.count = 2 })
+
+// RFC 08 record augmentation preserves known names and typed fields.
+import { OBSERVE } from 'solid-js'
+// @ts-expect-error unknown record name is not a documented record type
+OBSERVE!.records.subscribe('invented-conformance-record', () => {})
+// @ts-expect-error timing is numeric, not a string
+OBSERVE!.records.subscribe('call', e => { const timing: string = e.durationMs; void timing })

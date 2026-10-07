@@ -10,6 +10,7 @@
     "vite-plus": "1.1.0"
   },
   "dependencies": {
+    "@remix-run/cookie": "1.0.0",
     "@solidjs/compiler": "2.0.0-rc.13",
     "@solidjs/diagnostics": "2.0.0-rc.13",
     "@solidjs/h": "2.0.0-rc.13",

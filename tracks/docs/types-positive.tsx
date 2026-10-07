@@ -40,3 +40,27 @@ const same = isEqual({ n: 1 }, { n: 1 })
 const observer = getObserver()
 const rows = mapArray(() => [1, 2], (value, index) => value() + index, { keyed: false })
 void [same, observer, rows]
+
+// RFC 08 L803/L902: seven runtime and ten attribution record augmentations share one OBSERVE import.
+import { OBSERVE } from 'solid-js'
+import type {} from '@solidjs/web/server-functions'
+import type {} from '@solidjs/web/frames'
+const observe = OBSERVE!
+observe.records.subscribe('rerun', e => { const id: number = e.nodeId; void id })
+observe.records.subscribe('create', e => { const count: number = e.depCount; void count })
+observe.records.subscribe('effect', e => { const run: number | undefined = e.run; void run })
+observe.records.subscribe('flush', e => { const held: boolean = e.held; void held })
+observe.records.subscribe('flight', e => { const outcome: 'landed' | 'abandoned' = e.outcome; void outcome })
+observe.records.subscribe('fallback', e => { const duration: number = e.shownMs; void duration })
+observe.records.subscribe('interaction', e => { const duration: number | undefined = e.settledMs; void duration })
+observe.records.subscribe('hold', e => { const duration: number = e.holdMs; void duration })
+observe.records.subscribe('navigation', e => { const count: number = e.writes; void count })
+observe.records.subscribe('graph', e => { const count: number = e.owners; void count })
+observe.records.subscribe('boundary', (e,live) => { const outcome: 'settled' | 'fallback' | 'client' | 'error' = e.outcome; void [outcome,live.error] })
+observe.records.subscribe('recovery', e => { const duration: number = e.renderMs; void duration })
+observe.records.subscribe('invocation', (e,live) => { const direct: boolean = e.direct; void [direct,live.args] })
+observe.records.subscribe('render', (e,live) => { const mode: 'string' | 'stream' = e.mode; void [mode,live.trace] })
+observe.records.subscribe('call', (e,live) => { const method: 'GET' | 'POST' = e.method; void [method,live.response] },{bodies:true})
+observe.records.subscribe('request', (e,live) => { const side: 'client' = e.side; void [side,live.request] },{bodies:true})
+observe.records.subscribe('frame', e => { const count: number = e.slots; void count })
+observe.server.trace.provide(request => ({ sampled: !!request, entries: { vendor: 'trace' } }))
