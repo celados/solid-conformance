@@ -12,6 +12,7 @@ import {
   renderToString,
   createSSRResponse,
   getRequestEvent,
+  getTraceContext,
 } from "@solidjs/web";
 import { AsyncLocalStorage } from "node:async_hooks";
 import {
@@ -504,5 +505,9 @@ doc("late-head-write", "A post-flush header write loses its value and emits head
  function Late(){const value=createMemo(()=>promise);return <b>{(()=>{const v=value();getRequestEvent()!.response.headers.set("x-late","lost");return v})()}</b>}
  const result=await observed(async()=>{const stream=renderToStream(()=>createComponent(Loading,{fallback:"waiting",get children(){return createComponent(Late,{},"Late")}},"Loading"),{onError:e=>errors.push(e)});response=await createSSRResponse(stream,getRequestEvent()!);equal(response.headers.get("x-late"),null);release();await response.text()});const events=selected(result,"LATE_HEADER_WRITE");equal(events.length,OBSERVE?1:0);for(const e of events){equal(e.kind,"head");equal(e.severity,"error");equal(e.data?.method,"set");equal(e.data?.name,"x-late");equal(e.ownerPath,["<Loading>","<Late>"])}equal(response.headers.get("x-late"),null);equal(errors.length,isDev?1:0);equal(result.messages.filter(m=>m.startsWith("[LATE_HEADER_WRITE]")).length,1);if(isDev)equal((errors[0] as Error).message,events[0]!.message);
 }));
+doc("live-request-event-identity", "Invocation and render records carry the original ambient RequestEvent and trace beside serializable events.",async()=>{
+ const event=createRequestEvent(new Request("http://localhost/identity"));const result={value:17};const invocations:any[]=[],renders:any[]=[];const offI=OBSERVE?.records.subscribe("invocation",(event,live)=>invocations.push({event,live}));const offR=OBSERVE?.records.subscribe("render",(event,live)=>renders.push({event,live}));let trace:unknown,invocationEvent:any;
+ try{await scope.run(event,()=>{trace=getTraceContext();const fn=createServerReference(registerServerReference("live-event-identity",(n:number)=>{invocationEvent=getRequestEvent();equal(n,3);return result}));const html=renderToString(()=>{ok(fn(3)===result);return "rendered"});equal(html,"rendered")});equal(invocations.length,OBSERVE?1:0);equal(renders.length,OBSERVE?1:0);if(OBSERVE){const i=invocations[0];ok(i.live.event===invocationEvent,"invocation own event identity");ok(invocationEvent!==event);ok(invocationEvent.request===event.request);ok(invocationEvent.response===event.response);equal(i.live.args,[3]);ok(i.live.result===result,"invocation result identity");equal(i.live.request,undefined);equal(i.event.outcome,"ok");ok(renders[0].live.event===event,"render event identity");ok(renders[0].live.trace===trace,"render trace identity")}}finally{offI?.();offR?.()}
+});
 export const run = () =>
   scope.run(createRequestEvent(new Request("http://test/")), () => runCases(cases));

@@ -179,5 +179,13 @@
       "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
       "tracks/frames/server-hooks.test.ts#12/server-hook-throwing-hook"
     ]
+  },
+  {
+    "id": "12-ssr-http:L81:4",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-live-request-event-identity"
+    ],
+    "reason": "nested direct-call RequestEvent !==parent，request和response分别===parent；live.event===bodygetRequestEvent。"
   }
 ]

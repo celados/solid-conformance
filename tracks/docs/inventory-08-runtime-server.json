@@ -694,11 +694,12 @@
   {
     "id": "08-dev-diagnostics:C825:1",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+      "08/server-road-live-request-event-identity",
+      "tracks/records/records.test.ts"
     ],
-    "reason": "request existence、args/result/error 与 serializable exclusion 已测；RequestEvent 本体 identity 尚未找到专门断言。"
+    "reason": "live invocation.event严格等于body读到的derived RequestEvent，render.event严格等于原ambient RequestEvent；derived request/response共享身份；trace与ambient对象同身份。"
   },
   {
     "id": "08-dev-diagnostics:C835:1",
@@ -730,12 +731,12 @@
   {
     "id": "08-dev-diagnostics:C838:1",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "08/boundary-render-sync-silent",
-      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+      "08/server-road-live-request-event-identity",
+      "tracks/records/records.test.ts"
     ],
-    "reason": "无 RequestEvent 时 undefined 与 trace 存在已测；RequestEvent live 原始身份尚缺。"
+    "reason": "live invocation.event严格等于body读到的derived RequestEvent，render.event严格等于原ambient RequestEvent；derived request/response共享身份；trace与ambient对象同身份。"
   },
   {
     "id": "08-dev-diagnostics:C848:1",
@@ -958,5 +959,34 @@
     "coverage": [
       "08/server-road-late-head-write"
     ]
+  },
+  {
+    "id": "08-dev-diagnostics:L641:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-diagnostic-client-source-outside-error"
+    ],
+    "reason": "alltiers原始throw含同code，观测tier记录async/error/data.side=server；Errored正控含SSR_RENDER_ERROR_CONTAINED。"
+  },
+  {
+    "id": "08-dev-diagnostics:L641:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-diagnostic-client-source-outside-error"
+    ],
+    "reason": "alltiers原始throw含同code，观测tier记录async/error/data.side=server；Errored正控含SSR_RENDER_ERROR_CONTAINED。"
+  },
+  {
+    "id": "08-dev-diagnostics:L571:7",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-diagnostic-client-source-outside-error",
+      "08/primitive-root-async-mount",
+      "08/server-diagnostic-unrecognized-value"
+    ],
+    "reason": "同ASYNC_OUTSIDE_LOADING_BOUNDARY码clientwarn/servererror与data.side区别；plainobject/symbol同UNRECOGNIZED_INSERT_VALUE在双artifact插入并省略。"
   }
 ]
