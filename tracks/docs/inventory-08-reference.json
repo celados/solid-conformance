@@ -1,0 +1,4329 @@
+{
+  "commit": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+  "scope": "08-dev-diagnostics.md L1–800; conservative manual per-statement mapping, uncovered may include partial assertions",
+  "entries": [
+    {
+      "id": "08-dev-diagnostics:L3:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L7:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L7:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-no_owner_effect"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L7:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-no_owner_effect",
+        "08/channel-info-console"
+      ],
+      "reason": "partial: error halt 与 warning/info 渠道有测试，未断言所有 errors 持久 scheduler halt。"
+    },
+    {
+      "id": "08-dev-diagnostics:L7:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-no_owner_effect",
+        "08/server-diagnostic-write-categories"
+      ],
+      "reason": "partial: 正文概括与 SERVER_WRITE 全 tier 实现存在限定；每 code production 由用例单独验证，不能据此断言所有均 stripped。"
+    },
+    {
+      "id": "08-dev-diagnostics:L9:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/channel-capture"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L9:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L13:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L15:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L16:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/client-diagnostic-binding-address",
+        "tracks/docs/compiler-addressability.test.ts: sourceNames components and bindings / standalone transformSourceNames"
+      ],
+      "reason": "partial: 仅绑定 class 的真实 console 第二参数和 compiler 各名字变换有断言；全 owner 链/各 binding 家族与 Vite posture 未完整验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L16:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/client-diagnostic-binding-address"
+      ],
+      "reason": "partial: event.ownerPath 包含 div.class，未逐项比较完整 enclosing owner chain。"
+    },
+    {
+      "id": "08-dev-diagnostics:L16:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/compiler-addressability.test.ts: sourceNames components and bindings / standalone transformSourceNames"
+      ],
+      "reason": "partial: compiler components 开关测试，未涵盖 lazy/minified observe/Vite。"
+    },
+    {
+      "id": "08-dev-diagnostics:L16:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L17:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-binding-address"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L17:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/client-diagnostic-binding-address"
+      ],
+      "reason": "partial: 只断言 class binding，非全部绑定种类。"
+    },
+    {
+      "id": "08-dev-diagnostics:L18:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-guide-owner-path"
+      ],
+      "reason": "partial: guideUrl anchor有断言；console 首次每 code footer去重和同一 profilerInsightsURL未断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:L18:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L20:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L26:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-reactive_write_in_owned_scope"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L26:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L30:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L32:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L32:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L33:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L33:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L35:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-reactive_write_in_owned_scope"
+      ],
+      "reason": "partial: 正例覆盖一个入口，句子还列出其他 scope/target 或同步提交时序；需要进一步精确断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:L35:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L55:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L55:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+    },
+    {
+      "id": "08-dev-diagnostics:L55:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L57:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L57:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L57:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L57:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-async_store_setter"
+      ],
+      "reason": "partial: 正例覆盖一个入口，句子还列出其他 scope/target 或同步提交时序；需要进一步精确断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:L57:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-async_store_setter"
+      ],
+      "reason": "partial: 只验证 createStore setter，optimisticStore/derived setter 尚未覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L57:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L82:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L82:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L84:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-pending_async_untracked_read"
+      ],
+      "reason": "partial: 正例覆盖一个入口，句子还列出其他 scope/target 或同步提交时序；需要进一步精确断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:L84:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L101:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L101:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L103:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L105:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L105:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L105:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L107:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L107:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L125:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L127:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L127:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L131:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L131:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L133:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L135:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-loading-outside"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L135:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-loading-outside"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L135:3",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-loading-outside"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L135:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/client-diagnostic-loading-outside"
+      ],
+      "reason": "partial: 一次触发已断言，data.source 未断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:L137:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L137:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L137:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L139:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L139:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L150:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L150:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L150:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L154:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L156:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-cleanup_in_forbidden_scope"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L173:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L173:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L175:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-settled-unowned"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L175:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/client-diagnostic-settled-unowned"
+      ],
+      "reason": "partial: 无 owner 路径有测试；trackedEffect/nested onSettled 拒绝cleanup 未分别验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L175:3",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-settled-unowned"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L197:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L199:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-primitive_in_forbidden_scope"
+      ],
+      "reason": "partial: onSettled 创建 memo有测试，trackedEffect以及 signal/effect 家族未穷举。"
+    },
+    {
+      "id": "08-dev-diagnostics:L216:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L216:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L218:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-invalid-cleanup"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L218:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-invalid-cleanup"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L241:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L243:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-flush-forbidden"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L243:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L247:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L249:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L249:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L253:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L253:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L255:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-action_called_in_owned_scope"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L255:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L259:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L259:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L261:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-missing_effect_fn"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L261:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-missing_effect_fn"
+      ],
+      "reason": "partial: 错误检查覆盖；public overload由 types track单独映射。"
+    },
+    {
+      "id": "08-dev-diagnostics:L265:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L265:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L267:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-sync_node_received_async"
+      ],
+      "reason": "partial: Promise 正例，async iterable 尚未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L267:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L271:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L271:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L273:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-invalid_refresh_target"
+      ],
+      "reason": "partial: 正例覆盖一个入口，句子还列出其他 scope/target 或同步提交时序；需要进一步精确断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:L277:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L277:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L279:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-invalid_affects_target"
+      ],
+      "reason": "partial: accessor key 正例，额外key path未覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L279:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-invalid_affects_target"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L283:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L283:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L285:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L285:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L289:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L289:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L289:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L291:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L291:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L291:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L291:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L291:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L295:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L297:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L297:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L297:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L301:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L301:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L305:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L305:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+    },
+    {
+      "id": "08-dev-diagnostics:L307:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-strict_read_untracked"
+      ],
+      "reason": "partial: effect callback signal有触发；component props/store 尚未全部验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L307:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-strict_read_untracked"
+      ],
+      "reason": "partial: 警告有测试，值一次捕获与后写永不更新尚无针对断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:L328:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L330:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L330:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L334:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+    },
+    {
+      "id": "08-dev-diagnostics:L334:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L336:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-after-await"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L336:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/client-diagnostic-after-await"
+      ],
+      "reason": "partial: signal/store Chrome 正例；memo afterawait 尚无专门断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:L353:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-after-await"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L353:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/client-diagnostic-after-await"
+      ],
+      "reason": "partial: signal once/store per-source及rowwalk验证，memo/任意深度首属性命名未穷举。"
+    },
+    {
+      "id": "08-dev-diagnostics:L353:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L355:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L357:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "引擎环境说明含事实笔误：Bun 使用 JavaScriptCore，不是 V8；Chrome V8 行为已真实测试，此硬件/引擎清单不作为 runtime discrepancy。"
+    },
+    {
+      "id": "08-dev-diagnostics:L357:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L357:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "测试环境建议。"
+    },
+    {
+      "id": "08-dev-diagnostics:L359:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-after-await"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L359:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L359:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L359:4",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-after-await"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L363:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L363:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L365:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/client-diagnostic-pending-forbidden"
+      ],
+      "reason": "partial: trackedEffect pending throw测试；onSettled尚未覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L365:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L369:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L371:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-no_owner_effect"
+      ],
+      "reason": "partial: createEffect 正例；trackedEffect未独立验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L371:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L371:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L391:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L393:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-no_owner_cleanup"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L393:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L397:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L399:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-no-owner-boundary"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L403:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L403:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L405:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-run_with_disposed_owner"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L405:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L409:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L409:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L411:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/diagnostic-flush_in_effect_callback",
+        "08/client-diagnostic-flush-forbidden"
+      ],
+      "reason": "partial: warning/no throw有检查，callback writes同flush continuation 精确时序未断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:L415:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L415:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L417:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-huge_fan_out"
+      ],
+      "reason": "partial: signal write自定义低阈值检查；memo/async landing 未覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L417:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L417:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L419:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L419:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L419:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-huge_fan_out"
+      ],
+      "reason": "partial: 正例覆盖一个入口，句子还列出其他 scope/target 或同步提交时序；需要进一步精确断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:L419:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L419:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L419:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L419:7",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L419:8",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L423:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L423:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L425:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-huge_fan_in"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L425:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L425:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L427:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L427:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L431:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L431:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L431:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L433:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L433:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L433:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/graph-initial-and-visits"
+      ],
+      "reason": "partial: 有 graph record/graphSize断言，route settle各次 history未完整验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L433:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L433:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L433:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L433:7",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L435:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/graph-initial-and-visits"
+      ],
+      "reason": "partial: initial emits graph有断言；GRAPH_GROWTH history豁免未测试。"
+    },
+    {
+      "id": "08-dev-diagnostics:L435:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L435:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L437:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "graphSize/dispose相关已测试但未完整验证 weak-root GC 与 ownerless subscription reachability；不得用 nondeterminism 代替覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L437:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "内部开销/数据结构实现说明，不是 public 输出保证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L437:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "具体测量值是历史 benchmark，不是时间上限合同。"
+    },
+    {
+      "id": "08-dev-diagnostics:L437:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L437:5",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/graph-initial-and-visits"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L437:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L441:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+    },
+    {
+      "id": "08-dev-diagnostics:L441:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L443:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L443:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L443:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L444:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L444:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L445:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L445:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L445:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L447:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-hot_scope_reruns",
+        "08/attribution-warning-hot_scope_time",
+        "08/attribution-warning-wide_scope_deps"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L449:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-huge_fan_out"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L453:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L455:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-hot_scope_fanout"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L455:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-hot_scope_fanout"
+      ],
+      "reason": "partial: 触发聚合有检查，first warn以及5/10x里程碑、每cause隔离尚未精确断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:L455:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L459:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L461:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-async_waterfall",
+        "08/server-diagnostic-waterfall"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L461:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-async_waterfall"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L461:3",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-async_waterfall"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L461:4",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-async_waterfall"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L463:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L463:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L463:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L463:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L463:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L465:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L465:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L469:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L471:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-unstable_memo_output"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L471:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-unstable_memo_output"
+      ],
+      "reason": "partial: 自定义连续2run测试；default4和array形状未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L471:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L471:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L475:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L475:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L475:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L477:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-wasted_recompute"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L477:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-wasted_recompute"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L477:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L477:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L477:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L477:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L477:7",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L481:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L481:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L483:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-effect_writes_own_source"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L483:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-effect_writes_own_source"
+      ],
+      "reason": "partial: directsignal feedback有验证，多层memo/store未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L483:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L483:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L483:5",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-effect_writes_own_source"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L485:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-effect_writes_own_source"
+      ],
+      "reason": "partial: 其他signal写negative有测试，untrack仍反馈/不反馈细分未覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L489:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L491:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L492:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L494:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L494:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L494:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L494:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L496:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L497:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L498:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L498:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L502:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L502:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L504:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-immutable_update_in_store"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L504:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-immutable_update_in_store"
+      ],
+      "reason": "partial: object replacement测试，array/proxy unwrapping 未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L504:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L504:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L504:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L508:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L510:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-unstable_list_identity"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L510:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-unstable_list_identity"
+      ],
+      "reason": "partial: mapArray freshobject正例，id/key/_id/position pairing未分别验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L510:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L510:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L510:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-unstable_list_identity"
+      ],
+      "reason": "partial: 稳定输入negative；genuine turnover和small edit尚未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L514:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+    },
+    {
+      "id": "08-dev-diagnostics:L514:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L514:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L514:4",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L516:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L516:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+    },
+    {
+      "id": "08-dev-diagnostics:L520:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L522:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L523:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L525:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-silent_hold"
+      ],
+      "reason": "partial: isPending acknowledgement正负覆盖；latest/optimistic/affects/lane effect、memo不算屏幕等分别未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L525:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L525:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L525:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L527:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L527:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L527:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L527:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L527:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L527:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L531:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L531:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L531:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L533:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-long_hold"
+      ],
+      "reason": "partial: acknowledged hold触发有断言，record ack数据未断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:L533:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L533:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L535:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L535:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+    },
+    {
+      "id": "08-dev-diagnostics:L535:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L535:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+    },
+    {
+      "id": "08-dev-diagnostics:L535:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+    },
+    {
+      "id": "08-dev-diagnostics:L539:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L539:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L539:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L541:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L541:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+    },
+    {
+      "id": "08-dev-diagnostics:L541:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+    },
+    {
+      "id": "08-dev-diagnostics:L541:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+    },
+    {
+      "id": "08-dev-diagnostics:L541:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+    },
+    {
+      "id": "08-dev-diagnostics:L543:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-untracked_async_handler"
+      ],
+      "reason": "partial: handler无write和syncwrite control测试；action分支豁免未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L543:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L543:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L543:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L547:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L547:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L549:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L549:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-abandoned_flights"
+      ],
+      "reason": "partial: count2自定义positive/negative，default3/window1000未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L549:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L549:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L549:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L549:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L553:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L553:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L555:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L555:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L555:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L555:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L555:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L555:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L559:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L559:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L561:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-stacked_holds"
+      ],
+      "reason": "partial: count3多interaction正例和single negative测试，default配置值本身未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L561:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L561:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L561:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L561:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L561:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L565:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L565:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L565:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L567:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/attribution-warning-optimistic_reverted"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L567:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-optimistic_reverted"
+      ],
+      "reason": "partial: reverted正例，superseded权威更新与data.how尚未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L567:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L567:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L567:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L567:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L567:7",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L567:8",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L567:9",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L571:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L571:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L571:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L571:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L571:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L571:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L571:7",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L575:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L577:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L578:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L579:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L580:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L582:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L582:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L582:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L582:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L586:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L588:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-subtree-abandoned"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L588:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-subtree-abandoned"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L588:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L588:4",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-subtree-abandoned"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L588:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L592:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L594:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-stream-abandoned"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L594:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/server-diagnostic-stream-abandoned"
+      ],
+      "reason": "partial: consumer cancel正例；sink和signal尚未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L594:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L594:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L594:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L598:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L598:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L600:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L600:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L600:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L600:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L604:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L604:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L604:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L604:4",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L606:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-dynamic-async"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L606:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L606:3",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-dynamic-async"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L606:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L606:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L606:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/server-diagnostic-dynamic-async"
+      ],
+      "reason": "partial: async tag负对照，不是sync source写record的负对照。"
+    },
+    {
+      "id": "08-dev-diagnostics:L610:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L612:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L613:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L615:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L615:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L615:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L615:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L617:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L617:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L619:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L619:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L619:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L619:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L619:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L623:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L625:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L625:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L625:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L625:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L629:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L631:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L631:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L632:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L633:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L635:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-write-categories"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L635:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-write-categories"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L635:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/server-diagnostic-write-categories"
+      ],
+      "reason": "partial: warning有断言，但未来throw不是本版合同，inert read数据/不rerender需要正文另测。"
+    },
+    {
+      "id": "08-dev-diagnostics:L635:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L639:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L639:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L641:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L641:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L645:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L645:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L647:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-reveal-sync"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L647:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L647:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L651:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L651:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L653:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-waterfall"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L653:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L653:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L653:4",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-waterfall"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L653:5",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-waterfall"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L653:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/server-diagnostic-waterfall"
+      ],
+      "reason": "partial: passes已验证，boundary/sequentialMs metadata未逐字段断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:L653:7",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L657:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L657:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L659:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-client-masked"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L659:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-client-masked"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L659:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L659:4",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-client-masked"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L659:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L663:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L663:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L665:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L665:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L665:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L665:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L665:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L665:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L665:7",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L665:8",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L669:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L671:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L672:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L672:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L674:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-lazy-unmapped"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L674:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/server-diagnostic-lazy-unmapped"
+      ],
+      "reason": "partial: no-module-url正例，resolverthrow以及metadata未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L674:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L674:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L678:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L680:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-preload-descriptor"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L680:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/server-diagnostic-preload-descriptor"
+      ],
+      "reason": "partial: missinghref/as测试；nonobject/crossorigin/srcset/sizes全部其他字段未覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L680:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L684:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L686:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-head-invalid"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L686:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L686:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/server-diagnostic-head-invalid"
+      ],
+      "reason": "partial: non-head-tag/invalid-attribute/duplicate-title正例；其余props/group/outside/late规则未覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L686:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L690:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L690:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L692:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-unrecognized-value"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L692:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/server-diagnostic-unrecognized-value"
+      ],
+      "reason": "partial: object警告已测，symbol及实际跳过结果未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L692:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L692:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L696:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L696:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L696:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L696:4",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L698:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L700:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/server-diagnostic-unscoped-hole"
+      ],
+      "reason": "partial: server trigger和called-function/control验证；clienthydrate/onceperholesite未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L700:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-unscoped-hole"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L700:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L700:4",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-unscoped-hole"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L700:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L700:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L702:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/server-diagnostic-unscoped-hole"
+      ],
+      "reason": "partial: 无followingscopedhole control已验证；Errored0arityfallback全路径未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L702:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L702:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L702:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L702:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/server-diagnostic-unscoped-hole"
+      ],
+      "reason": "partial: calledfunction+noallocation controls，children/For/spread/Portal全部豁免未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L702:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L706:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L706:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L708:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-lowercase-event"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L708:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-lowercase-event"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L708:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/server-diagnostic-lowercase-event"
+      ],
+      "reason": "partial: camelCase negativevs lowercase warn正例，onclick文本及未click执行/on:click细分未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L708:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/server-diagnostic-lowercase-event"
+      ],
+      "reason": "partial: spread入口测试，compiledattribute/assign/hydrate未覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L708:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L708:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L708:7",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L712:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L714:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L714:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L715:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L715:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L715:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L716:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L716:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L716:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L717:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L717:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L718:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L718:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L718:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L719:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L719:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L720:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L720:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L721:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L721:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L721:3",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L722:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L722:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L723:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L723:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L724:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L724:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L725:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L725:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L727:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L727:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L727:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L727:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L727:5",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L727:6",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L727:7",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L727:8",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L727:9",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L731:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/channel-capture",
+        "08/exclude-include"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L735:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/channel-capture"
+      ],
+      "reason": "partial: channel emit/subscribe已测，live located node第二参数身份未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L735:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/channel-capture"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L748:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/channel-capture"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L761:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-guide-owner-path"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L761:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-guide-owner-path"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L761:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L761:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L765:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/client-diagnostic-binding-address",
+        "08/diagnostic-guide-owner-path"
+      ],
+      "reason": "partial: namedclass与null验证；完整 rootfirst chain以及unnamedsubject(undefined)未验证。"
+    },
+    {
+      "id": "08-dev-diagnostics:L765:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L767:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L769:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "章节引导、解释背景、诊断示例输出或修复建议；可运行触发合同另在随后的行为句盘点。"
+    },
+    {
+      "id": "08-dev-diagnostics:L771:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/channel-info-console"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L772:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-no_owner_effect"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L772:2",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "上一表行的代码示例续句。"
+    },
+    {
+      "id": "08-dev-diagnostics:L773:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L774:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/channel-info-console",
+        "08/diagnostic-reactive_write_in_owned_scope"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L775:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-no_owner_effect"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L776:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L777:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L778:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L779:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L780:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L782:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/channel-capture"
+      ],
+      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+    },
+    {
+      "id": "08-dev-diagnostics:L782:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L782:3",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L782:4",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L786:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L786:2",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+    }
+  ]
+}
