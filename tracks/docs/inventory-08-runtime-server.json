@@ -837,47 +837,72 @@
   {
     "id": "08-dev-diagnostics:C875:1",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+      "08/server-road-frame-sync-error-original",
+      "08/server-road-frame-fragment-error-boundary",
+      "tracks/frames/frame-record-unions.test.ts",
+      "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+      "tracks/docs/late-final-rpc.test.ts",
+      "tracks/records/records.test.ts"
     ],
-    "reason": "真实 server/client complete frame 精确 join id/version/chunks/fragments/slots/regions/errors 与 response；error/truncated live-error 及 optional address/shellMs 的复合句尚未全部精确测。"
+    "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
   },
   {
     "id": "08-dev-diagnostics:C876:1",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+      "08/server-road-frame-sync-error-original",
+      "08/server-road-frame-fragment-error-boundary",
+      "tracks/frames/frame-record-unions.test.ts",
+      "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+      "tracks/docs/late-final-rpc.test.ts",
+      "tracks/records/records.test.ts"
     ],
-    "reason": "真实 server/client complete frame 精确 join id/version/chunks/fragments/slots/regions/errors 与 response；error/truncated live-error 及 optional address/shellMs 的复合句尚未全部精确测。"
+    "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
   },
   {
     "id": "08-dev-diagnostics:C877:1",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+      "08/server-road-frame-sync-error-original",
+      "08/server-road-frame-fragment-error-boundary",
+      "tracks/frames/frame-record-unions.test.ts",
+      "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+      "tracks/docs/late-final-rpc.test.ts",
+      "tracks/records/records.test.ts"
     ],
-    "reason": "真实 server/client complete frame 精确 join id/version/chunks/fragments/slots/regions/errors 与 response；error/truncated live-error 及 optional address/shellMs 的复合句尚未全部精确测。"
+    "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
   },
   {
     "id": "08-dev-diagnostics:C878:1",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+      "08/server-road-frame-sync-error-original",
+      "08/server-road-frame-fragment-error-boundary",
+      "tracks/frames/frame-record-unions.test.ts",
+      "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+      "tracks/docs/late-final-rpc.test.ts",
+      "tracks/records/records.test.ts"
     ],
-    "reason": "真实 server/client complete frame 精确 join id/version/chunks/fragments/slots/regions/errors 与 response；error/truncated live-error 及 optional address/shellMs 的复合句尚未全部精确测。"
+    "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
   },
   {
     "id": "08-dev-diagnostics:C879:1",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+      "08/server-road-frame-sync-error-original",
+      "08/server-road-frame-fragment-error-boundary",
+      "tracks/frames/frame-record-unions.test.ts",
+      "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+      "tracks/docs/late-final-rpc.test.ts",
+      "tracks/records/records.test.ts"
     ],
-    "reason": "真实 server/client complete frame 精确 join id/version/chunks/fragments/slots/regions/errors 与 response；error/truncated live-error 及 optional address/shellMs 的复合句尚未全部精确测。"
+    "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
   },
   {
     "id": "08-dev-diagnostics:C891:1",
@@ -910,11 +935,11 @@
   {
     "id": "08-dev-diagnostics:L674:3",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "08/server-diagnostic-lazy-resolution-metadata"
+      "tracks/docs/lazy-evidence.test.ts#unmapped lazy assets still render and request the component late in Chrome hydration"
     ],
-    "reason": "server markup available 已断言；无 preload 与 hydration late-loading 正控尚待精确测试。"
+    "reason": "SSR有ready无modulepreload；hydration实际请求late-part.js，在release前startedtrue/completedfalse/calls1，release后ready且pageerrors空。"
   },
   {
     "id": "08-dev-diagnostics:L571:6",
@@ -1160,5 +1185,164 @@
       "08/server-road-invocation-deferred-handoff-clock"
     ],
     "reason": "公开serverreference+订阅正控：sync return前1；pendingpromise gate前0/resolve后1；iterable handoff时at1000 duration100 deferredtrue，chunk延迟5000后仍100。"
+  },
+  {
+    "id": "08-dev-diagnostics:L571:5",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "findings/027-server-write-all-builds/repro.test.ts",
+      "08/server-diagnostic-preload-descriptor",
+      "08/server-diagnostic-preload-all-fields"
+    ],
+    "reason": "SERVER_WRITE dev-only正控/production反例与全部invalidpreloaddescriptor devwarn且quiet production正控，均在publicAPI真实server构建。"
+  },
+  {
+    "id": "08-dev-diagnostics:L885:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-frame-sync-error-original",
+      "08/server-road-frame-fragment-error-boundary",
+      "tracks/frames/frame-record-unions.test.ts",
+      "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+      "tracks/docs/late-final-rpc.test.ts",
+      "tracks/records/records.test.ts"
+    ],
+    "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
+  },
+  {
+    "id": "08-dev-diagnostics:L885:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-frame-sync-error-original",
+      "08/server-road-frame-fragment-error-boundary",
+      "tracks/frames/frame-record-unions.test.ts",
+      "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+      "tracks/docs/late-final-rpc.test.ts",
+      "tracks/records/records.test.ts"
+    ],
+    "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
+  },
+  {
+    "id": "08-dev-diagnostics:L885:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-frame-sync-error-original",
+      "08/server-road-frame-fragment-error-boundary",
+      "tracks/frames/frame-record-unions.test.ts",
+      "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+      "tracks/docs/late-final-rpc.test.ts",
+      "tracks/records/records.test.ts"
+    ],
+    "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
+  },
+  {
+    "id": "08-dev-diagnostics:L885:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-frame-sync-error-original",
+      "08/server-road-frame-fragment-error-boundary",
+      "tracks/frames/frame-record-unions.test.ts",
+      "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+      "tracks/docs/late-final-rpc.test.ts",
+      "tracks/records/records.test.ts"
+    ],
+    "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
+  },
+  {
+    "id": "08-dev-diagnostics:L885:5",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-frame-sync-error-original",
+      "08/server-road-frame-fragment-error-boundary",
+      "tracks/frames/frame-record-unions.test.ts",
+      "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+      "tracks/docs/late-final-rpc.test.ts",
+      "tracks/records/records.test.ts"
+    ],
+    "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
+  },
+  {
+    "id": "08-dev-diagnostics:C910:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-trace-provider-no-request"
+    ],
+    "reason": "公有provider在requestscope外收到undefined；回答undefined不覆盖W3C traceId/parentId/sampled，scope内收到原event.request identity。"
+  },
+  {
+    "id": "08-dev-diagnostics:C911:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-trace-provider-no-request"
+    ],
+    "reason": "公有provider在requestscope外收到undefined；回答undefined不覆盖W3C traceId/parentId/sampled，scope内收到原event.request identity。"
+  },
+  {
+    "id": "08-dev-diagnostics:C913:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-trace-provider-no-request"
+    ],
+    "reason": "公有provider在requestscope外收到undefined；回答undefined不覆盖W3C traceId/parentId/sampled，scope内收到原event.request identity。"
+  },
+  {
+    "id": "08-dev-diagnostics:L974:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-contained-fallback",
+      "08/server-road-contained-client",
+      "findings/017-initial-render-error-record/repro.test.ts"
+    ],
+    "reason": "fallback/client/failed三个handling道路，严格ssr/error与originalerror；initialfailed record缺失是017红。"
+  },
+  {
+    "id": "08-dev-diagnostics:L975:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-subtree-abandoned-fields"
+    ],
+    "reason": "失败fragment丢弃pendingdescendant，ssr/warn与原error/collateralcounts严格字段正控。"
+  },
+  {
+    "id": "08-dev-diagnostics:L977:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-late-head-write",
+      "08/server-road-mutation-cookie-thrown-redirect"
+    ],
+    "reason": "head已送后写入strict head/error字段method/name，response/headerstub均无该值，dev抛原诊断其他tier loudlog。"
+  },
+  {
+    "id": "08-dev-diagnostics:L979:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-sanitize-rpc-false",
+      "08/server-road-sanitize-ssr-false",
+      "08/server-road-error-value-data"
+    ],
+    "reason": "server-function/error与ssr/info替换道路、原error===与safe/Error-as-value负控，observe记录dev未替换production无记录。"
+  },
+  {
+    "id": "08-dev-diagnostics:L980:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/binding.test.ts",
+      "findings/020-observe-frame-corruption/repro.test.ts"
+    ],
+    "reason": "真正server slotmarkup删除endmarker，client deverror slot/end正控，Observe文档red在020；productionquiet。"
   }
 ]
