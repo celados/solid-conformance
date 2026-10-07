@@ -1,0 +1,29 @@
+{
+  "target": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+  "queries": [
+    "UNTRACKED_READ_AFTER_AWAIT",
+    "read after await"
+  ],
+  "repos": [
+    "solidjs/solid",
+    "solidjs/solid-router",
+    "solidjs/solid-start"
+  ],
+  "states": "open and closed (no state filter)",
+  "exactCode": [],
+  "broadCandidates": [
+    {
+      "number": 2987,
+      "url": "https://github.com/solidjs/solid/issues/2987",
+      "state": "closed",
+      "dedupe": "async uninitialized read throws; not synchronous signal diagnostics exclusion"
+    },
+    {
+      "number": 2802,
+      "url": "https://github.com/solidjs/solid/issues/2802",
+      "state": "closed",
+      "dedupe": "dependent errors propagate; not helper diagnostic coverage"
+    }
+  ],
+  "ledger": "existing010 leaf signal,011 frame hydration,019 external attribution unrelated"
+}
