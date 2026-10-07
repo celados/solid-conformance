@@ -724,9 +724,11 @@
   {
     "id": "08-dev-diagnostics:C837:1",
     "classification": "behavioral",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "可测试的 route name/to/params render record 尚无精确 fixture。"
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-render-route-declaration"
+    ],
+    "reason": "公开 OBSERVE attribution.withOrigin(initial navigation)在当前render声明route，serializable event严格匹配 name/to/params。"
   },
   {
     "id": "08-dev-diagnostics:C838:1",

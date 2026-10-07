@@ -318,5 +318,8 @@ doc("explicit-component-labels", "Boundary records inherit compiler-compatible e
  function App(){return createComponent(Page,{},"Page")}
  const result=await records(()=>consumed(renderToStream(()=>createComponent(App,{},"App"))));equal(result.boundary.length,OBSERVE?1:0);if(OBSERVE){equal(result.boundary[0].event.ownerPath,["<App>","<Page>","<Loading>"]);equal(result.boundary[0].event.outcome,"settled")}
 });
+doc("render-route-declaration", "An initial navigation declaration lands name, destination, and params on the serializable render record.",async()=>{
+ const result=await records(()=>renderToString(()=>{OBSERVE?.attribution.withOrigin({kind:"navigation",initial:true,name:"story",to:"/story/17",params:{id:"17"}},()=>{});return "route rendered"}));if(OBSERVE)equal(result.render[0].event.route,{name:"story",to:"/story/17",params:{id:"17"}})
+});
 export const run = () => runCases(cases);
 export const evidence = snapshots;
