@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+findings/010-leaf-signal-diagnostic/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"dafad1db34626feb5f154e98e599f65be1802c6c","directory":"/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c"},"buildMode":"development","solid":"2.0.0-rc.13"}
+ 7 |  for(const name of ['solid-js','@solidjs/signals']){const path=await realpath(resolve('node_modules',name));packages.set(name,{path,exports:(await Bun.file(path+'/package.json').json()).exports})}
+ 8 |  const outdir=resolve('.build/finding010')
+ 9 |  const result=await Bun.build({entrypoints:[resolve('findings/010-leaf-signal-diagnostic/module.ts')],outdir,target:'bun',plugins:[{name:'actual-browser-development',setup(builder){builder.onResolve({filter:/^(solid-js|@solidjs\/signals)$/},args=>{const pkg=packages.get(args.path)!;const entry=pkg.exports['.'];const browser=entry.browser??entry;const dev=browser.development??browser.default;return{path:resolve(pkg.path,typeof dev==='string'?dev:dev.import??dev.default)}})}}]})
+10 |  expect(result.success).toBe(true)
+11 |  const runtime=await import(outdir+'/module.js')
+12 |  expect(await runtime.run()).toContain('PRIMITIVE_IN_FORBIDDEN_SCOPE')
+                                  ^
+error: expect(received).toContain(expected)
+
+Expected to contain: "PRIMITIVE_IN_FORBIDDEN_SCOPE"
+Received: []
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/findings/010-leaf-signal-diagnostic/repro.test.ts:12:30)
+(fail) RFC 08 says createSignal inside onSettled reports PRIMITIVE_IN_FORBIDDEN_SCOPE [14.85ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [21.00ms]

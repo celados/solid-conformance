@@ -1,0 +1,2516 @@
+{
+  "head": "dafad1db34626feb5f154e98e599f65be1802c6c",
+  "counts": {
+    "A": 16,
+    "B": 16,
+    "C": 15
+  },
+  "proposedIssues": 27,
+  "newlyFixed": [],
+  "entries": [
+    {
+      "id": "001",
+      "status": "fixed-upstream",
+      "title": "Streamed createStore with a keyed For",
+      "path": "findings/001-streamed-store-keyed/README.md",
+      "outcomes": [
+        "绿",
+        "红",
+        "绿"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3764"
+      ],
+      "tier": "A",
+      "severity": "low",
+      "impact": "Streamed keyed store content can stall hydration on rc.13.",
+      "regression": "no",
+      "builds": [],
+      "rechecks": []
+    },
+    {
+      "id": "002",
+      "status": "fixed-upstream",
+      "title": "Child with a setup async read",
+      "path": "findings/002-iterable-discovery/README.md",
+      "outcomes": [
+        "绿",
+        "红",
+        "绿"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3734"
+      ],
+      "tier": "A",
+      "severity": "low",
+      "impact": "A new async-iterable child can prevent SSR convergence on rc.13.",
+      "regression": "no",
+      "builds": [],
+      "rechecks": []
+    },
+    {
+      "id": "003",
+      "status": "fixed-upstream",
+      "title": "Native TSRX scalar setup declaration before markup",
+      "path": "findings/003-tsrx-asi/README.md",
+      "outcomes": [
+        "绿",
+        "红",
+        "绿"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3762"
+      ],
+      "tier": "A",
+      "severity": "low",
+      "impact": "Native TSX setup declarations can compile incorrectly on rc.13.",
+      "regression": "no",
+      "builds": [],
+      "rechecks": []
+    },
+    {
+      "id": "004",
+      "status": "confirmed",
+      "title": "Derived store drops a replacement request's rejection",
+      "path": "findings/004-derived-store-rejection/README.md",
+      "outcomes": [
+        "红",
+        "绿（开发／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/2997",
+        "https://github.com/solidjs/solid/issues/3769"
+      ],
+      "tier": "A",
+      "severity": "high",
+      "impact": "Replacement derived-store failures leave stale UI instead of reaching Errored.",
+      "regression": "yes",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/01-store-rejection.md",
+      "rechecks": [
+        {
+          "id": "004",
+          "path": "findings/004-derived-store-rejection/live-repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 10364.903457999999,
+          "log": "report/evidence/rechecks/004-development-live-repro.test.ts.log"
+        },
+        {
+          "id": "004",
+          "path": "findings/004-derived-store-rejection/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9443.933375,
+          "log": "report/evidence/rechecks/004-development-repro.test.ts.log"
+        },
+        {
+          "id": "004",
+          "path": "findings/004-derived-store-rejection/live-repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9407.941125000001,
+          "log": "report/evidence/rechecks/004-production-live-repro.test.ts.log"
+        },
+        {
+          "id": "004",
+          "path": "findings/004-derived-store-rejection/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 13313.484250000005,
+          "log": "report/evidence/rechecks/004-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "005",
+      "status": "duplicate",
+      "title": "Reconcile identity wording omits the subscription boundary",
+      "path": "findings/005-keyed-reconcile-identity/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/2902"
+      ],
+      "tier": "B",
+      "severity": "low",
+      "impact": "Readers may expect identity retention for nodes that were never subscribed.",
+      "regression": "no",
+      "builds": [],
+      "rechecks": []
+    },
+    {
+      "id": "006",
+      "status": "confirmed",
+      "title": "Documented storePath helper is absent from browser solid-js",
+      "path": "findings/006-storepath-export/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3092"
+      ],
+      "tier": "B",
+      "severity": "med",
+      "impact": "The documented storePath import cannot be used in a browser project.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/19-docs-04-errata.md",
+      "rechecks": [
+        {
+          "id": "006",
+          "path": "findings/006-storepath-export/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 24.037792,
+          "log": "report/evidence/rechecks/006-development-repro.test.ts.log"
+        },
+        {
+          "id": "006",
+          "path": "findings/006-storepath-export/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 20.335957999999998,
+          "log": "report/evidence/rechecks/006-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "007",
+      "status": "confirmed",
+      "title": "Loading's documented zero-argument on accessor never rearms",
+      "path": "findings/007-loading-on-accessor/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3728",
+        "https://github.com/solidjs/solid/issues/3524"
+      ],
+      "tier": "B",
+      "severity": "med",
+      "impact": "Following the zero-argument Loading on example never rearms its fallback.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/20-docs-05-errata.md",
+      "rechecks": [
+        {
+          "id": "007",
+          "path": "findings/007-loading-on-accessor/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 10310.718542,
+          "log": "report/evidence/rechecks/007-development-repro.test.ts.log"
+        },
+        {
+          "id": "007",
+          "path": "findings/007-loading-on-accessor/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9445.922750000002,
+          "log": "report/evidence/rechecks/007-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "008",
+      "status": "confirmed",
+      "title": "Production refresh returns a promise that never settles",
+      "path": "findings/008-production-refresh/README.md",
+      "outcomes": [
+        "绿",
+        "绿（开发／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3738",
+        "https://github.com/solidjs/solid/issues/3178"
+      ],
+      "tier": "A",
+      "severity": "high",
+      "impact": "Awaiting refresh can hang forever in production.",
+      "regression": "yes",
+      "builds": [
+        "production"
+      ],
+      "issue": "report/issues/02-production-refresh.md",
+      "rechecks": [
+        {
+          "id": "008",
+          "path": "findings/008-production-refresh/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 0,
+          "timedOut": false,
+          "pass": 1,
+          "fail": 0,
+          "skip": 0,
+          "ms": 9275.272458,
+          "log": "report/evidence/rechecks/008-development-repro.test.ts.log"
+        },
+        {
+          "id": "008",
+          "path": "findings/008-production-refresh/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 13720.943875000004,
+          "log": "report/evidence/rechecks/008-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "009",
+      "status": "confirmed",
+      "title": "Nested server regions stay stale after a same-arguments refetch",
+      "path": "findings/009-frame-nested-region-stale/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/2965",
+        "https://github.com/solidjs/solid/issues/2974",
+        "https://github.com/solidjs/solid/issues/2966"
+      ],
+      "tier": "A",
+      "severity": "med",
+      "impact": "Nested server regions show stale data after their parent refetches.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/08-nested-server-region.md",
+      "rechecks": [
+        {
+          "id": "009",
+          "path": "findings/009-frame-nested-region-stale/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 11734.983124999999,
+          "log": "report/evidence/rechecks/009-development-repro.test.ts.log"
+        },
+        {
+          "id": "009",
+          "path": "findings/009-frame-nested-region-stale/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 11697.840833000002,
+          "log": "report/evidence/rechecks/009-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "010",
+      "status": "confirmed",
+      "title": "onSettled 内普通 createSignal 没有文档承诺的诊断",
+      "path": "findings/010-leaf-signal-diagnostic/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "不适用：dev 检查"
+      ],
+      "upstream": [],
+      "tier": "C",
+      "severity": "low",
+      "impact": "Forbidden leaf-scope signal creation receives no documented warning.",
+      "regression": "no",
+      "builds": [
+        "development"
+      ],
+      "issue": "report/issues/27-diagnostics-observability.md",
+      "rechecks": [
+        {
+          "id": "010",
+          "path": "findings/010-leaf-signal-diagnostic/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 26.994999999995343,
+          "log": "report/evidence/rechecks/010-development-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "011",
+      "status": "confirmed",
+      "title": "共享服务端组件引用的第二个挂载无法水合",
+      "path": "findings/011-frame-multisite-hydration/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [],
+      "tier": "A",
+      "severity": "high",
+      "impact": "The second mount of one server-component factory fails hydration.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/03-multisite-hydration.md",
+      "rechecks": [
+        {
+          "id": "011",
+          "path": "findings/011-frame-multisite-hydration/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 11928.623042,
+          "log": "report/evidence/rechecks/011-development-repro.test.ts.log"
+        },
+        {
+          "id": "011",
+          "path": "findings/011-frame-multisite-hydration/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 11558.484292000001,
+          "log": "report/evidence/rechecks/011-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "012",
+      "status": "confirmed",
+      "title": "Attribution 的公开入口自动启用 folds",
+      "path": "findings/012-attribution-audience-gate/README.md",
+      "outcomes": [
+        "红；observe 正控绿",
+        "红",
+        "不适用：生产无观测"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/2883",
+        "https://github.com/solidjs/solid/issues/3754"
+      ],
+      "tier": "C",
+      "severity": "med",
+      "impact": "Development attribution allocates fold history without an audience.",
+      "regression": "no",
+      "builds": [
+        "development"
+      ],
+      "issue": "report/issues/27-diagnostics-observability.md",
+      "rechecks": [
+        {
+          "id": "012",
+          "path": "findings/012-attribution-audience-gate/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 49.694250000000466,
+          "log": "report/evidence/rechecks/012-development-repro.test.ts.log"
+        },
+        {
+          "id": "012",
+          "path": "findings/012-attribution-audience-gate/repro.test.ts",
+          "mode": "observe",
+          "explicitAllTiers": false,
+          "exitCode": 0,
+          "timedOut": false,
+          "pass": 1,
+          "fail": 0,
+          "skip": 0,
+          "ms": 44.486000000004424,
+          "log": "report/evidence/rechecks/012-observe-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "013",
+      "status": "confirmed",
+      "title": "pinned writable signal 的文档示例清标记后无法重新跟随 source",
+      "path": "findings/013-pinned-source-retake/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3612"
+      ],
+      "tier": "B",
+      "severity": "med",
+      "impact": "The documented pinned-input example keeps an override after unpinning.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/17-docs-02-errata.md",
+      "rechecks": [
+        {
+          "id": "013",
+          "path": "findings/013-pinned-source-retake/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 28.074165999991237,
+          "log": "report/evidence/rechecks/013-development-repro.test.ts.log"
+        },
+        {
+          "id": "013",
+          "path": "findings/013-pinned-source-retake/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 21.620207999993,
+          "log": "report/evidence/rechecks/013-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "014",
+      "status": "confirmed",
+      "title": "A connected live source completes after a dropped TCP connection",
+      "path": "findings/014-live-drop-completes/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3819"
+      ],
+      "tier": "A",
+      "severity": "high",
+      "impact": "A dropped live response is treated as completed and never reconnects.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/04-live-decoder-stream-lifetime.md",
+      "rechecks": [
+        {
+          "id": "014",
+          "path": "findings/014-live-drop-completes/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 12706.351332999999,
+          "log": "report/evidence/rechecks/014-development-repro.test.ts.log"
+        },
+        {
+          "id": "014",
+          "path": "findings/014-live-drop-completes/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 11833.481,
+          "log": "report/evidence/rechecks/014-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "015",
+      "status": "confirmed",
+      "title": "untrack 不能按文档所说放行 owned-scope 写入",
+      "path": "findings/015-untrack-owned-write/README.md",
+      "outcomes": [
+        "红",
+        "红；生产绿",
+        "绿"
+      ],
+      "upstream": [],
+      "tier": "B",
+      "severity": "med",
+      "impact": "The documented untrack workaround still throws an owned-write error.",
+      "regression": "no",
+      "builds": [
+        "development"
+      ],
+      "issue": "report/issues/16-docs-01-errata.md",
+      "rechecks": [
+        {
+          "id": "015",
+          "path": "findings/015-untrack-owned-write/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 27.4151669999992,
+          "log": "report/evidence/rechecks/015-development-repro.test.ts.log"
+        },
+        {
+          "id": "015",
+          "path": "findings/015-untrack-owned-write/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 0,
+          "timedOut": false,
+          "pass": 1,
+          "fail": 0,
+          "skip": 0,
+          "ms": 21.268958000000566,
+          "log": "report/evidence/rechecks/015-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "016",
+      "status": "confirmed",
+      "title": "production 的 store affects 注册在 tree shaking 中丢失",
+      "path": "findings/016-production-store-affects/README.md",
+      "outcomes": [
+        "绿",
+        "绿（开发／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/2887"
+      ],
+      "tier": "A",
+      "severity": "high",
+      "impact": "Production affects(store,key) throws after tree shaking.",
+      "regression": "yes",
+      "builds": [
+        "production"
+      ],
+      "issue": "report/issues/05-production-store-affects.md",
+      "rechecks": [
+        {
+          "id": "016",
+          "path": "findings/016-production-store-affects/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 0,
+          "timedOut": false,
+          "pass": 1,
+          "fail": 0,
+          "skip": 0,
+          "ms": 27.80250000000524,
+          "log": "report/evidence/rechecks/016-development-repro.test.ts.log"
+        },
+        {
+          "id": "016",
+          "path": "findings/016-production-store-affects/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 21.65625,
+          "log": "report/evidence/rechecks/016-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "017",
+      "status": "confirmed",
+      "title": "Initial render failure is absent from the structured diagnostics channel",
+      "path": "findings/017-initial-render-error-record/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "正控缺 hook；非同缺陷",
+        "不适用：观测记录"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3723"
+      ],
+      "tier": "C",
+      "severity": "med",
+      "impact": "Initial render failures are absent from structured diagnostics and render records.",
+      "regression": "not established",
+      "builds": [
+        "development",
+        "observe"
+      ],
+      "issue": "report/issues/27-diagnostics-observability.md",
+      "rechecks": [
+        {
+          "id": "017",
+          "path": "findings/017-initial-render-error-record/renderrecord-repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 47.75666700000875,
+          "log": "report/evidence/rechecks/017-development-renderrecord-repro.test.ts.log"
+        },
+        {
+          "id": "017",
+          "path": "findings/017-initial-render-error-record/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 52.86870900000213,
+          "log": "report/evidence/rechecks/017-development-repro.test.ts.log"
+        },
+        {
+          "id": "017",
+          "path": "findings/017-initial-render-error-record/renderrecord-repro.test.ts",
+          "mode": "observe",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 52.858500000002095,
+          "log": "report/evidence/rechecks/017-observe-renderrecord-repro.test.ts.log"
+        },
+        {
+          "id": "017",
+          "path": "findings/017-initial-render-error-record/repro.test.ts",
+          "mode": "observe",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 34.18683299999975,
+          "log": "report/evidence/rechecks/017-observe-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "018",
+      "status": "confirmed",
+      "title": "文档允许 refresh nested store，但公共类型拒绝",
+      "path": "findings/018-nested-refresh-types/README.md",
+      "outcomes": [
+        "类型红",
+        "类型红",
+        "不适用：类型"
+      ],
+      "upstream": [],
+      "tier": "B",
+      "severity": "med",
+      "impact": "Supported nested-store refresh usage is rejected by public types.",
+      "regression": "no",
+      "builds": [
+        "development"
+      ],
+      "issue": "report/issues/21-docs-06-errata.md",
+      "rechecks": [
+        {
+          "id": "018",
+          "path": "findings/018-nested-refresh-types/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 143.50987500000338,
+          "log": "report/evidence/rechecks/018-development-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "019",
+      "status": "confirmed",
+      "title": "action 在 await 后的写入标记为 external",
+      "path": "findings/019-action-await-origin/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红",
+        "不适用：dev 归因"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3754"
+      ],
+      "tier": "C",
+      "severity": "low",
+      "impact": "After-await action writes receive misleading external origin metadata.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "observe"
+      ],
+      "issue": "report/issues/27-diagnostics-observability.md",
+      "rechecks": [
+        {
+          "id": "019",
+          "path": "findings/019-action-await-origin/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 63.333582999999635,
+          "log": "report/evidence/rechecks/019-development-repro.test.ts.log"
+        },
+        {
+          "id": "019",
+          "path": "findings/019-action-await-origin/repro.test.ts",
+          "mode": "observe",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 44.5245419999992,
+          "log": "report/evidence/rechecks/019-observe-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "020",
+      "status": "confirmed",
+      "title": "Observe frames do not report a missing slot end marker",
+      "path": "findings/020-observe-frame-corruption/README.md",
+      "outcomes": [
+        "dev 绿／observe 红",
+        "dev 绿／observe 红",
+        "不适用：观测检查"
+      ],
+      "upstream": [],
+      "tier": "C",
+      "severity": "med",
+      "impact": "Observe builds miss a corrupted frame end marker.",
+      "regression": "no",
+      "builds": [
+        "observe"
+      ],
+      "issue": "report/issues/27-diagnostics-observability.md",
+      "rechecks": [
+        {
+          "id": "020",
+          "path": "findings/020-observe-frame-corruption/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 0,
+          "timedOut": false,
+          "pass": 1,
+          "fail": 0,
+          "skip": 0,
+          "ms": 11148.601666999995,
+          "log": "report/evidence/rechecks/020-development-repro.test.ts.log"
+        },
+        {
+          "id": "020",
+          "path": "findings/020-observe-frame-corruption/repro.test.ts",
+          "mode": "observe",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9731.133291000006,
+          "log": "report/evidence/rechecks/020-observe-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "021",
+      "status": "confirmed",
+      "title": "Recovery documentation names the wrong server boundary outcome",
+      "path": "findings/021-recovery-boundary-outcome/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红",
+        "不适用：观测记录"
+      ],
+      "upstream": [],
+      "tier": "C",
+      "severity": "low",
+      "impact": "The documented server recovery outcome differs from the emitted enum.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "observe"
+      ],
+      "issue": "report/issues/27-diagnostics-observability.md",
+      "rechecks": [
+        {
+          "id": "021",
+          "path": "findings/021-recovery-boundary-outcome/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9049.254124999992,
+          "log": "report/evidence/rechecks/021-development-repro.test.ts.log"
+        },
+        {
+          "id": "021",
+          "path": "findings/021-recovery-boundary-outcome/repro.test.ts",
+          "mode": "observe",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 7948.895209000009,
+          "log": "report/evidence/rechecks/021-observe-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "022",
+      "status": "confirmed",
+      "title": "action 中 refresh 返回自身 optimistic guess",
+      "path": "findings/022-refresh-optimistic-authority/README.md",
+      "outcomes": [
+        "红",
+        "绿（开发／生产）",
+        "红"
+      ],
+      "upstream": [],
+      "tier": "A",
+      "severity": "med",
+      "impact": "Refresh reports the caller optimistic guess as authoritative data.",
+      "regression": "yes",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/09-refresh-optimistic-authority.md",
+      "rechecks": [
+        {
+          "id": "022",
+          "path": "findings/022-refresh-optimistic-authority/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 35.75079100001312,
+          "log": "report/evidence/rechecks/022-development-repro.test.ts.log"
+        },
+        {
+          "id": "022",
+          "path": "findings/022-refresh-optimistic-authority/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 38.177166999987094,
+          "log": "report/evidence/rechecks/022-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "023",
+      "status": "confirmed",
+      "title": "返回 async helper 的诊断排除声明过窄",
+      "path": "findings/023-returned-helper-diagnostic/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "绿"
+      ],
+      "upstream": [],
+      "tier": "C",
+      "severity": "low",
+      "impact": "The promised after-await diagnostic exemption omits returned async helpers.",
+      "regression": "no",
+      "builds": [
+        "development"
+      ],
+      "issue": "report/issues/27-diagnostics-observability.md",
+      "rechecks": [
+        {
+          "id": "023",
+          "path": "findings/023-returned-helper-diagnostic/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 10214.608125000013,
+          "log": "report/evidence/rechecks/023-development-repro.test.ts.log"
+        },
+        {
+          "id": "023",
+          "path": "findings/023-returned-helper-diagnostic/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 0,
+          "timedOut": false,
+          "pass": 1,
+          "fail": 0,
+          "skip": 0,
+          "ms": 11228.348417000001,
+          "log": "report/evidence/rechecks/023-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "024",
+      "status": "confirmed",
+      "title": "A lone typed array does not require the documented rich-arguments opt-in",
+      "path": "findings/024-single-typed-array-encoding/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [],
+      "tier": "B",
+      "severity": "low",
+      "impact": "A lone typed-array argument works without the documented rich opt-in.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/23-docs-10-errata.md",
+      "rechecks": [
+        {
+          "id": "024",
+          "path": "findings/024-single-typed-array-encoding/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 11042.15225,
+          "log": "report/evidence/rechecks/024-development-repro.test.ts.log"
+        },
+        {
+          "id": "024",
+          "path": "findings/024-single-typed-array-encoding/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9294.864541999996,
+          "log": "report/evidence/rechecks/024-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "025",
+      "status": "confirmed",
+      "title": "async landing 的 fan-out 诊断错误标为普通写入",
+      "path": "findings/025-async-fanout-classification/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红",
+        "绿"
+      ],
+      "upstream": [],
+      "tier": "C",
+      "severity": "low",
+      "impact": "Async fan-out records misclassify the trigger as an ordinary write.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "observe"
+      ],
+      "issue": "report/issues/27-diagnostics-observability.md",
+      "rechecks": [
+        {
+          "id": "025",
+          "path": "findings/025-async-fanout-classification/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 10100.948832999988,
+          "log": "report/evidence/rechecks/025-development-repro.test.ts.log"
+        },
+        {
+          "id": "025",
+          "path": "findings/025-async-fanout-classification/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 0,
+          "timedOut": false,
+          "pass": 1,
+          "fail": 0,
+          "skip": 0,
+          "ms": 8107.560417000001,
+          "log": "report/evidence/rechecks/025-production-repro.test.ts.log"
+        },
+        {
+          "id": "025",
+          "path": "findings/025-async-fanout-classification/repro.test.ts",
+          "mode": "observe",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 7669.586958,
+          "log": "report/evidence/rechecks/025-observe-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "026",
+      "status": "confirmed",
+      "title": "Cookie parser 丢失合法的 __proto__ 名称",
+      "path": "findings/026-cookie-proto-key/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3239"
+      ],
+      "tier": "A",
+      "severity": "low",
+      "impact": "Parsing cookies loses a valid __proto__ key.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/13-cookie-proto-key.md",
+      "rechecks": [
+        {
+          "id": "026",
+          "path": "findings/026-cookie-proto-key/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 31.726917000007234,
+          "log": "report/evidence/rechecks/026-development-repro.test.ts.log"
+        },
+        {
+          "id": "026",
+          "path": "findings/026-cookie-proto-key/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 23.89383300000918,
+          "log": "report/evidence/rechecks/026-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "027",
+      "status": "confirmed",
+      "title": "Server-write warnings are development-only despite the all-builds claim",
+      "path": "findings/027-server-write-all-builds/README.md",
+      "outcomes": [
+        "dev 绿",
+        "dev 绿／生产红",
+        "红"
+      ],
+      "upstream": [],
+      "tier": "B",
+      "severity": "low",
+      "impact": "Applications relying on all-build server-write warnings receive none in production.",
+      "regression": "no",
+      "builds": [
+        "production"
+      ],
+      "issue": "report/issues/24-docs-11-errata.md",
+      "rechecks": [
+        {
+          "id": "027",
+          "path": "findings/027-server-write-all-builds/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 0,
+          "timedOut": false,
+          "pass": 1,
+          "fail": 0,
+          "skip": 0,
+          "ms": 37.8837499999936,
+          "log": "report/evidence/rechecks/027-development-repro.test.ts.log"
+        },
+        {
+          "id": "027",
+          "path": "findings/027-server-write-all-builds/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 32.99570899999526,
+          "log": "report/evidence/rechecks/027-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "028",
+      "status": "confirmed",
+      "title": "artifact 格式版本说明落后",
+      "path": "findings/028-artifact-format-version/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红",
+        "不适用：artifact"
+      ],
+      "upstream": [],
+      "tier": "C",
+      "severity": "low",
+      "impact": "Artifact consumers are told the wrong public format version.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "observe"
+      ],
+      "issue": "report/issues/27-diagnostics-observability.md",
+      "rechecks": [
+        {
+          "id": "028",
+          "path": "findings/028-artifact-format-version/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 29.309332999997423,
+          "log": "report/evidence/rechecks/028-development-repro.test.ts.log"
+        },
+        {
+          "id": "028",
+          "path": "findings/028-artifact-format-version/repro.test.ts",
+          "mode": "observe",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 26.379208999991533,
+          "log": "report/evidence/rechecks/028-observe-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "029",
+      "status": "confirmed",
+      "title": "latest 驱动的 Loading 在共享源落地后仍保留 fallback",
+      "path": "findings/029-latest-loading-convergence/README.md",
+      "outcomes": [
+        "红",
+        "绿（开发／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/2706",
+        "https://github.com/solidjs/solid/issues/2829",
+        "https://github.com/solidjs/solid/issues/3524"
+      ],
+      "tier": "A",
+      "severity": "high",
+      "impact": "Loading keeps showing fallback after every async source has settled.",
+      "regression": "yes",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/06-loading-nonconvergence.md",
+      "rechecks": [
+        {
+          "id": "029",
+          "path": "findings/029-latest-loading-convergence/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9451.428832999998,
+          "log": "report/evidence/rechecks/029-development-repro.test.ts.log"
+        },
+        {
+          "id": "029",
+          "path": "findings/029-latest-loading-convergence/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9647.029958999978,
+          "log": "report/evidence/rechecks/029-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "030",
+      "status": "confirmed",
+      "title": "文档把 effect error handler 写成第三个参数",
+      "path": "findings/030-effect-error-signature/README.md",
+      "outcomes": [
+        "类型红",
+        "类型红",
+        "不适用：类型"
+      ],
+      "upstream": [],
+      "tier": "B",
+      "severity": "med",
+      "impact": "The documented effect error-handler signature fails type checking.",
+      "regression": "no",
+      "builds": [
+        "development"
+      ],
+      "issue": "report/issues/18-docs-03-errata.md",
+      "rechecks": [
+        {
+          "id": "030",
+          "path": "findings/030-effect-error-signature/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 125.60141699999804,
+          "log": "report/evidence/rechecks/030-development-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "031",
+      "status": "confirmed",
+      "title": "Direct invocation error hook tier",
+      "path": "findings/031-direct-error-hook-tier/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [],
+      "tier": "B",
+      "severity": "low",
+      "impact": "A direct-call error hook is missing outside a request scope.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/25-docs-12-errata.md",
+      "rechecks": [
+        {
+          "id": "031",
+          "path": "findings/031-direct-error-hook-tier/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 41.88429200000246,
+          "log": "report/evidence/rechecks/031-development-repro.test.ts.log"
+        },
+        {
+          "id": "031",
+          "path": "findings/031-direct-error-hook-tier/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 35.41287499997998,
+          "log": "report/evidence/rechecks/031-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "032",
+      "status": "confirmed",
+      "title": "同步 asset resolver 异常终止 SSR",
+      "path": "findings/032-sync-lazy-resolver/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [],
+      "tier": "A",
+      "severity": "low",
+      "impact": "A synchronous lazy asset resolver error aborts otherwise renderable SSR.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/10-sync-asset-resolver.md",
+      "rechecks": [
+        {
+          "id": "032",
+          "path": "findings/032-sync-lazy-resolver/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 38.13125000000582,
+          "log": "report/evidence/rechecks/032-development-repro.test.ts.log"
+        },
+        {
+          "id": "032",
+          "path": "findings/032-sync-lazy-resolver/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 33.349500000011176,
+          "log": "report/evidence/rechecks/032-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "033",
+      "status": "confirmed",
+      "title": "Symbol 的服务端 insert 缺少 documented warning",
+      "path": "findings/033-symbol-insert-diagnostic/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "绿"
+      ],
+      "upstream": [],
+      "tier": "C",
+      "severity": "low",
+      "impact": "Invalid symbol children produce no promised server diagnostic.",
+      "regression": "no",
+      "builds": [
+        "development"
+      ],
+      "issue": "report/issues/27-diagnostics-observability.md",
+      "rechecks": [
+        {
+          "id": "033",
+          "path": "findings/033-symbol-insert-diagnostic/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 36.53358299998217,
+          "log": "report/evidence/rechecks/033-development-repro.test.ts.log"
+        },
+        {
+          "id": "033",
+          "path": "findings/033-symbol-insert-diagnostic/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 0,
+          "timedOut": false,
+          "pass": 1,
+          "fail": 0,
+          "skip": 0,
+          "ms": 30.16575000001467,
+          "log": "report/evidence/rechecks/033-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "034",
+      "status": "confirmed",
+      "title": "相邻文本使不可渲染 object 从 skip 变为 DOM 异常",
+      "path": "findings/034-mixed-insert-object/README.md",
+      "outcomes": [
+        "红",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": [],
+      "tier": "A",
+      "severity": "low",
+      "impact": "Adding adjacent text turns a skipped object child into a DOM exception.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/14-mixed-object-insert.md",
+      "rechecks": [
+        {
+          "id": "034",
+          "path": "findings/034-mixed-insert-object/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 7978.2863330000255,
+          "log": "report/evidence/rechecks/034-development-repro.test.ts.log"
+        },
+        {
+          "id": "034",
+          "path": "findings/034-mixed-insert-object/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9264.827958999987,
+          "log": "report/evidence/rechecks/034-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "035",
+      "status": "confirmed",
+      "title": "Dying response leaves an iterator pull pending",
+      "path": "findings/035-decoder-iterator-body-death/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": [],
+      "tier": "A",
+      "severity": "high",
+      "impact": "A body error or premature EOF leaves an iterator pull pending.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production",
+        "observe"
+      ],
+      "issue": "report/issues/04-live-decoder-stream-lifetime.md",
+      "rechecks": [
+        {
+          "id": "035",
+          "path": "findings/035-decoder-iterator-body-death/eof.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 344.86491699999897,
+          "log": "report/evidence/rechecks/035-development-eof.test.ts.log"
+        },
+        {
+          "id": "035",
+          "path": "findings/035-decoder-iterator-body-death/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 344.1244590000133,
+          "log": "report/evidence/rechecks/035-development-repro.test.ts.log"
+        },
+        {
+          "id": "035",
+          "path": "findings/035-decoder-iterator-body-death/eof.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 336.9845000000205,
+          "log": "report/evidence/rechecks/035-production-eof.test.ts.log"
+        },
+        {
+          "id": "035",
+          "path": "findings/035-decoder-iterator-body-death/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 337.41695799998706,
+          "log": "report/evidence/rechecks/035-production-repro.test.ts.log"
+        },
+        {
+          "id": "035",
+          "path": "findings/035-decoder-iterator-body-death/eof.test.ts",
+          "mode": "observe",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 340.3989580000052,
+          "log": "report/evidence/rechecks/035-observe-eof.test.ts.log"
+        },
+        {
+          "id": "035",
+          "path": "findings/035-decoder-iterator-body-death/repro.test.ts",
+          "mode": "observe",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 339.7277910000121,
+          "log": "report/evidence/rechecks/035-observe-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "036",
+      "status": "confirmed",
+      "title": "Conditional GET replaces cached data's format with Void",
+      "path": "findings/036-conditional-cache-format/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3101",
+        "https://github.com/solidjs/solid/issues/3134"
+      ],
+      "tier": "A",
+      "severity": "low",
+      "impact": "A conditional GET yields undefined instead of the browser cached result.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production",
+        "observe"
+      ],
+      "issue": "report/issues/11-conditional-get-format.md",
+      "rechecks": [
+        {
+          "id": "036",
+          "path": "findings/036-conditional-cache-format/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9275.713167000009,
+          "log": "report/evidence/rechecks/036-development-repro.test.ts.log"
+        },
+        {
+          "id": "036",
+          "path": "findings/036-conditional-cache-format/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9248.167832999985,
+          "log": "report/evidence/rechecks/036-production-repro.test.ts.log"
+        },
+        {
+          "id": "036",
+          "path": "findings/036-conditional-cache-format/repro.test.ts",
+          "mode": "observe",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9192.282917000004,
+          "log": "report/evidence/rechecks/036-observe-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "038",
+      "status": "confirmed",
+      "title": "Per-call reset text contradicts consumption-site mount identity",
+      "path": "findings/038-frame-call-state-doc-reset/README.md",
+      "outcomes": [
+        "红",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": [],
+      "tier": "B",
+      "severity": "low",
+      "impact": "The server-component state-reset prose disagrees with consumption-site identity.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/24-docs-11-errata.md",
+      "rechecks": [
+        {
+          "id": "038",
+          "path": "findings/038-frame-call-state-doc-reset/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9382.195332999981,
+          "log": "report/evidence/rechecks/038-development-repro.test.ts.log"
+        },
+        {
+          "id": "038",
+          "path": "findings/038-frame-call-state-doc-reset/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9293.681791999988,
+          "log": "report/evidence/rechecks/038-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "039",
+      "status": "confirmed",
+      "title": "039-missing-resource-timing-fallback",
+      "path": "findings/039-missing-resource-timing-fallback/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "dev 红／生产绿",
+        "绿"
+      ],
+      "upstream": [],
+      "tier": "C",
+      "severity": "med",
+      "impact": "The promised resource-less ServerTiming fallback produces no entry.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "observe"
+      ],
+      "issue": "report/issues/27-diagnostics-observability.md",
+      "rechecks": [
+        {
+          "id": "039",
+          "path": "findings/039-missing-resource-timing-fallback/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9095.487208000006,
+          "log": "report/evidence/rechecks/039-development-repro.test.ts.log"
+        },
+        {
+          "id": "039",
+          "path": "findings/039-missing-resource-timing-fallback/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 0,
+          "timedOut": false,
+          "pass": 1,
+          "fail": 0,
+          "skip": 0,
+          "ms": 9034.070082999999,
+          "log": "report/evidence/rechecks/039-production-repro.test.ts.log"
+        },
+        {
+          "id": "039",
+          "path": "findings/039-missing-resource-timing-fallback/repro.test.ts",
+          "mode": "observe",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9119.001208000001,
+          "log": "report/evidence/rechecks/039-observe-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "040",
+      "status": "confirmed",
+      "title": "040-initial-binding-console",
+      "path": "findings/040-initial-binding-console/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "不适用：dev console"
+      ],
+      "upstream": [],
+      "tier": "C",
+      "severity": "low",
+      "impact": "Initial binding diagnostic console arguments omit the actual element.",
+      "regression": "no",
+      "builds": [
+        "development"
+      ],
+      "issue": "report/issues/27-diagnostics-observability.md",
+      "rechecks": [
+        {
+          "id": "040",
+          "path": "findings/040-initial-binding-console/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9093.711207999993,
+          "log": "report/evidence/rechecks/040-development-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "041",
+      "status": "confirmed",
+      "title": "Async dynamic 的 source callback 仍执行一次 hydration tracking",
+      "path": "findings/041-dynamic-source-tracking/README.md",
+      "outcomes": [
+        "红",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": [],
+      "tier": "B",
+      "severity": "low",
+      "impact": "The documented async dynamic source callback still runs during hydration tracking.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/18-docs-03-errata.md",
+      "rechecks": [
+        {
+          "id": "041",
+          "path": "findings/041-dynamic-source-tracking/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9124.06270900002,
+          "log": "report/evidence/rechecks/041-development-repro.test.ts.log"
+        },
+        {
+          "id": "041",
+          "path": "findings/041-dynamic-source-tracking/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9139.962916999997,
+          "log": "report/evidence/rechecks/041-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "042",
+      "status": "confirmed",
+      "title": "非字符串 preload crossorigin 没有诊断",
+      "path": "findings/042-malformed-preload-crossorigin/README.md",
+      "outcomes": [
+        "红",
+        "dev 红／生产绿",
+        "绿"
+      ],
+      "upstream": [],
+      "tier": "C",
+      "severity": "low",
+      "impact": "Malformed preload crossorigin values lack the documented warning.",
+      "regression": "no",
+      "builds": [
+        "development"
+      ],
+      "issue": "report/issues/27-diagnostics-observability.md",
+      "rechecks": [
+        {
+          "id": "042",
+          "path": "findings/042-malformed-preload-crossorigin/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 40.929750000010245,
+          "log": "report/evidence/rechecks/042-development-repro.test.ts.log"
+        },
+        {
+          "id": "042",
+          "path": "findings/042-malformed-preload-crossorigin/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 0,
+          "timedOut": false,
+          "pass": 1,
+          "fail": 0,
+          "skip": 0,
+          "ms": 34.35858300002292,
+          "log": "report/evidence/rechecks/042-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "044",
+      "status": "confirmed",
+      "title": "literal spread children 的 hydration id 顺序不一致",
+      "path": "findings/044-literal-spread-hydration/README.md",
+      "outcomes": [
+        "红",
+        "dev 红／生产绿",
+        "绿"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3313"
+      ],
+      "tier": "A",
+      "severity": "low",
+      "impact": "Valid literal-spread children produce hydration tag mismatches.",
+      "regression": "no",
+      "builds": [
+        "development"
+      ],
+      "issue": "report/issues/15-spread-children-hydration.md",
+      "rechecks": [
+        {
+          "id": "044",
+          "path": "findings/044-literal-spread-hydration/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 8863.387458000012,
+          "log": "report/evidence/rechecks/044-development-repro.test.ts.log"
+        },
+        {
+          "id": "044",
+          "path": "findings/044-literal-spread-hydration/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 0,
+          "timedOut": false,
+          "pass": 1,
+          "fail": 0,
+          "skip": 0,
+          "ms": 8852.930166999984,
+          "log": "report/evidence/rechecks/044-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "045",
+      "status": "confirmed",
+      "title": "SERVER_WRITE 段落将 optimistic no-op 写成落地数据",
+      "path": "findings/045-server-optimistic-write-wording/README.md",
+      "outcomes": [
+        "红",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": [],
+      "tier": "B",
+      "severity": "low",
+      "impact": "The server-write example describes data writes for inert optimistic setters.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/22-docs-08-errata.md",
+      "rechecks": [
+        {
+          "id": "045",
+          "path": "findings/045-server-optimistic-write-wording/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 36.505457999999635,
+          "log": "report/evidence/rechecks/045-development-repro.test.ts.log"
+        },
+        {
+          "id": "045",
+          "path": "findings/045-server-optimistic-write-wording/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 31.24129200002062,
+          "log": "report/evidence/rechecks/045-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "046",
+      "status": "confirmed",
+      "title": "Held derived store 的外部 draft 写入读取 pending seed",
+      "path": "findings/046-held-derived-store-seed/README.md",
+      "outcomes": [
+        "红",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3612"
+      ],
+      "tier": "B",
+      "severity": "med",
+      "impact": "The hold-invariance prose ignores pending backing reads in store drafts.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/17-docs-02-errata.md",
+      "rechecks": [
+        {
+          "id": "046",
+          "path": "findings/046-held-derived-store-seed/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 32.95941700000549,
+          "log": "report/evidence/rechecks/046-development-repro.test.ts.log"
+        },
+        {
+          "id": "046",
+          "path": "findings/046-held-derived-store-seed/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 33.68120900000213,
+          "log": "report/evidence/rechecks/046-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "047",
+      "status": "confirmed",
+      "title": "Migration 代码把 derived store 当作 accessor 调用",
+      "path": "findings/047-derived-store-accessor-example/README.md",
+      "outcomes": [
+        "运行时／类型红",
+        "运行时／类型红（开发／生产）",
+        "红"
+      ],
+      "upstream": [],
+      "tier": "B",
+      "severity": "med",
+      "impact": "The migration example calls a derived store as a function.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/26-docs-migration-errata.md",
+      "rechecks": [
+        {
+          "id": "047",
+          "path": "findings/047-derived-store-accessor-example/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 2,
+          "skip": 0,
+          "ms": 151.56583300000057,
+          "log": "report/evidence/rechecks/047-development-repro.test.ts.log"
+        },
+        {
+          "id": "047",
+          "path": "findings/047-derived-store-accessor-example/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 2,
+          "skip": 0,
+          "ms": 162.8566250000149,
+          "log": "report/evidence/rechecks/047-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "048",
+      "status": "confirmed",
+      "title": "首次 Loading 读取 held plain signal 时显示旧值",
+      "path": "findings/048-first-loading-held-signal/README.md",
+      "outcomes": [
+        "红",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": [],
+      "tier": "B",
+      "severity": "med",
+      "impact": "The first held plain-signal read shows committed data rather than the claimed fallback.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/20-docs-05-errata.md",
+      "rechecks": [
+        {
+          "id": "048",
+          "path": "findings/048-first-loading-held-signal/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 9038.818708000006,
+          "log": "report/evidence/rechecks/048-development-repro.test.ts.log"
+        },
+        {
+          "id": "048",
+          "path": "findings/048-first-loading-held-signal/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 8890.806249999994,
+          "log": "report/evidence/rechecks/048-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "049",
+      "status": "confirmed",
+      "title": "Aborted document closes its live-hole channel twice",
+      "path": "findings/049-document-live-channel-abort/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红（开发／observe／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3768"
+      ],
+      "tier": "A",
+      "severity": "high",
+      "impact": "Aborting a document and finishing its live source throws a double-close error.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "observe",
+        "production"
+      ],
+      "issue": "report/issues/07-document-live-abort.md",
+      "rechecks": [
+        {
+          "id": "049",
+          "path": "findings/049-document-live-channel-abort/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": true,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 3,
+          "skip": 0,
+          "ms": 240.40637499999139,
+          "log": "report/evidence/rechecks/049-development-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "050",
+      "status": "duplicate",
+      "title": "编译出的字面量原生 handler 没有 interaction 归因",
+      "path": "findings/050-literal-handler-attribution/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红",
+        "不适用：dev 归因"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3754"
+      ],
+      "tier": "C",
+      "severity": "low",
+      "impact": "Bare native literal event handlers have no promised interaction attribution.",
+      "regression": "no",
+      "builds": [],
+      "rechecks": []
+    },
+    {
+      "id": "051",
+      "status": "confirmed",
+      "title": "未命名节点的诊断名称不回退到 owner id",
+      "path": "findings/051-unnamed-attribution-owner-id/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "不适用：dev 名称"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3063"
+      ],
+      "tier": "C",
+      "severity": "low",
+      "impact": "Unnamed attribution nodes do not receive the documented owner-id fallback.",
+      "regression": "no",
+      "builds": [
+        "development"
+      ],
+      "issue": "report/issues/27-diagnostics-observability.md",
+      "rechecks": [
+        {
+          "id": "051",
+          "path": "findings/051-unnamed-attribution-owner-id/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 8825.281707999995,
+          "log": "report/evidence/rechecks/051-development-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "052",
+      "status": "confirmed",
+      "title": "transparent 在 SSR 也会跳过 hydration 源记录与 slot",
+      "path": "findings/052-transparent-ssr-slot/README.md",
+      "outcomes": [
+        "红",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3012",
+        "https://github.com/solidjs/solid/issues/3609"
+      ],
+      "tier": "B",
+      "severity": "low",
+      "impact": "Transparent memos omit SSR hydration slots despite the ignores-option claim.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/20-docs-05-errata.md",
+      "rechecks": [
+        {
+          "id": "052",
+          "path": "findings/052-transparent-ssr-slot/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 52.97858300001826,
+          "log": "report/evidence/rechecks/052-development-repro.test.ts.log"
+        },
+        {
+          "id": "052",
+          "path": "findings/052-transparent-ssr-slot/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 37.076708000007784,
+          "log": "report/evidence/rechecks/052-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "053",
+      "status": "confirmed",
+      "title": "Live-send 示例 await 后需要先恢复 action 上下文",
+      "path": "findings/053-await-send-until-context/README.md",
+      "outcomes": [
+        "红",
+        "绿（开发／生产）",
+        "红"
+      ],
+      "upstream": [],
+      "tier": "A",
+      "severity": "med",
+      "impact": "An async action times out after a real live acknowledgement on HEAD.",
+      "regression": "yes",
+      "builds": [
+        "development",
+        "production"
+      ],
+      "issue": "report/issues/12-async-action-live-ack.md",
+      "rechecks": [
+        {
+          "id": "053",
+          "path": "findings/053-await-send-until-context/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 147.59108300000662,
+          "log": "report/evidence/rechecks/053-development-repro.test.ts.log"
+        },
+        {
+          "id": "053",
+          "path": "findings/053-await-send-until-context/repro.test.ts",
+          "mode": "production",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 140.71095800001058,
+          "log": "report/evidence/rechecks/053-production-repro.test.ts.log"
+        }
+      ]
+    },
+    {
+      "id": "054",
+      "status": "confirmed",
+      "title": "已到达的服务端拒绝仍计入恢复等待时间",
+      "path": "findings/054-prearrived-recovery-wait/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红",
+        "不适用：观测记录"
+      ],
+      "upstream": [],
+      "tier": "C",
+      "severity": "low",
+      "impact": "Recovery wait metrics include scheduling time after the error arrived.",
+      "regression": "no",
+      "builds": [
+        "development",
+        "observe"
+      ],
+      "issue": "report/issues/27-diagnostics-observability.md",
+      "rechecks": [
+        {
+          "id": "054",
+          "path": "findings/054-prearrived-recovery-wait/repro.test.ts",
+          "mode": "development",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 8632.112792,
+          "log": "report/evidence/rechecks/054-development-repro.test.ts.log"
+        },
+        {
+          "id": "054",
+          "path": "findings/054-prearrived-recovery-wait/repro.test.ts",
+          "mode": "observe",
+          "explicitAllTiers": false,
+          "exitCode": 1,
+          "timedOut": false,
+          "pass": 0,
+          "fail": 1,
+          "skip": 0,
+          "ms": 7795.130334000016,
+          "log": "report/evidence/rechecks/054-observe-repro.test.ts.log"
+        }
+      ]
+    }
+  ]
+}

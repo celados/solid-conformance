@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+findings/015-untrack-owned-write/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"dafad1db34626feb5f154e98e599f65be1802c6c","directory":"/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c"},"buildMode":"development","solid":"2.0.0-rc.13"}
+[REACTIVE_WRITE_IN_OWNED_SCOPE] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#reactive_write_in_owned_scope
+ 7 |  for(const name of ['solid-js','@solidjs/signals']){const path=await realpath(resolve('node_modules',name));packages.set(name,{path,exports:(await Bun.file(path+'/package.json').json()).exports})}
+ 8 |  const outdir=resolve('.build/finding015')
+ 9 |  const result=await Bun.build({entrypoints:[resolve('findings/015-untrack-owned-write/module.ts')],outdir,target:'bun',plugins:[{name:'actual-browser-development',setup(builder){builder.onResolve({filter:/^(solid-js|@solidjs\/signals)$/},args=>{const pkg=packages.get(args.path)!;const entry=pkg.exports['.'];const browser=entry.browser??entry;const dev=browser[process.env.BUILD_MODE??'development']??browser.default;return{path:resolve(pkg.path,typeof dev==='string'?dev:dev.import??dev.default)}})}}]})
+10 |  expect(result.success).toBe(true)
+11 |  const runtime=await import(outdir+'/module.js')
+12 |  expect(runtime.run()).toBeUndefined()
+                            ^
+error: expect(received).toBeUndefined()
+
+Received: "[REACTIVE_WRITE_IN_OWNED_SCOPE] Writing to reactive state inside an owned scope (component, computation) is not allowed. Move the write outside or set the `ownedWrite` option if this is intentional."
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/findings/015-untrack-owned-write/repro.test.ts:12:24)
+(fail) RFC 01 recommends writing in untracked blocks without ownedWrite [15.07ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [21.00ms]

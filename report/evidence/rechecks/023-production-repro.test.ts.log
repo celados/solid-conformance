@@ -1,0 +1,19 @@
+bun test v1.4.2 (744846f84)
+
+findings/023-returned-helper-diagnostic/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"dafad1db34626feb5f154e98e599f65be1802c6c","directory":"/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c"},"buildMode":"production","solid":"2.0.0-rc.13"}
+{
+  direct: {
+    value: 1,
+    warnings: 0,
+  },
+  helper: {
+    value: 1,
+    warnings: 0,
+  },
+}
+
+ 1 pass
+ 0 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [11.22s]

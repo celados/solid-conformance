@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+findings/035-decoder-iterator-body-death/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"dafad1db34626feb5f154e98e599f65be1802c6c","directory":"/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c"},"buildMode":"observe","solid":"2.0.0-rc.13"}
+ 6 |  const dir=resolve(".build","finding035-"+process.pid);
+ 7 |  try{
+ 8 |   await build(dir,(process.env.BUILD_MODE??"development") as BuildMode,{client:[],server:["findings/035-decoder-iterator-body-death/server.ts"]});
+ 9 |   const module=await import(dir+"/server.js"),result=await module.run();
+10 |   expect(result.first).toEqual({done:false,value:"first"});expect(result.transportFailed).toBe(true);
+11 |   expect(result.outcome.outcome).toBe("rejected");
+                                      ^
+error: expect(received).toBe(expected)
+
+Expected: "rejected"
+Received: "pending"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/findings/035-decoder-iterator-body-death/repro.test.ts:11:34)
+(fail) RFC10 dying body rejects an open iterator pull [323.74ms]
+
+ 0 pass
+ 1 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [332.00ms]

@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+findings/004-derived-store-rejection/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"dafad1db34626feb5f154e98e599f65be1802c6c","directory":"/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c"},"buildMode":"production","solid":"2.0.0-rc.13"}
+1 | import {test,expect} from 'bun:test'
+2 | import {openHarness} from '../../harness/browser'
+3 | import {leaf} from '../../harness/tree'
+4 | test('a rejected derived store request reaches Errored',async()=>{
+5 | 	const h=await openHarness(undefined, true)
+6 | 	try {const result=await h.run({tree:leaf(),order:[],scenario:'finding:004'},'csr');expect(result.messages).toEqual([]);expect(result.dom).toBe('<b>error</b>')}finally{await h.close()}
+                                                                                                                                               ^
+error: expect(received).toBe(expected)
+
+Expected: "<b>error</b>"
+Received: "<span>0</span>"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/findings/004-derived-store-rejection/repro.test.ts:6:140)
+(fail) a rejected derived store request reaches Errored [13155.60ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [13.30s]

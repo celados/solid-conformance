@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+findings/020-observe-frame-corruption/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"dafad1db34626feb5f154e98e599f65be1802c6c","directory":"/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c"},"buildMode":"observe","solid":"2.0.0-rc.13"}
+27 |       const page = await browser.newPage();
+28 |       await page.goto(String(server.url));
+29 |       await page.waitForFunction(() => !!(window as any).result);
+30 |       const result = await page.evaluate(() => (window as any).result);
+31 |       expect(result.observed).toBe(true);
+32 |       expect(result.errors.length).toBeGreaterThan(0);
+                                        ^
+error: expect(received).toBeGreaterThan(expected)
+
+Expected: > 0
+Received: 0
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/findings/020-observe-frame-corruption/repro.test.ts:32:36)
+(fail) Observe frames must report corrupt slot markers [9566.95ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [9.72s]

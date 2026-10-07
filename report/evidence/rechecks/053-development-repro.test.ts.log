@@ -1,0 +1,26 @@
+bun test v1.4.2 (744846f84)
+
+findings/053-await-send-until-context/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"dafad1db34626feb5f154e98e599f65be1802c6c","directory":"/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c"},"buildMode":"development","solid":"2.0.0-rc.13"}
+1 | import{test,expect}from'bun:test';import {realpath}from'node:fs/promises';import{resolve}from'node:path';test('06-actions-optimistic.md C166: await fire-and-forget send then until waits for the authoritative live echo',async()=>{const packages=new Map<string,{path:string,exports:Record<string,any>}>();for(const name of ['solid-js','@solidjs/signals']){const path=await realpath(resolve('node_modules',name));packages.set(name,{path,exports:(await Bun.file(path+'/package.json').json()).exports})}const built=await Bun.build({entrypoints:[resolve('findings/053-await-send-until-context/module.ts')],outdir:resolve('.build/finding053'),target:'bun',plugins:[{name:'actual-browser',setup(builder){builder.onResolve({filter:/^(solid-js|@solidjs\/signals)$/},args=>{const pkg=packages.get(args.path)!,entry=pkg.exports['.'],browser=entry.browser??entry,selected=browser[process.env.BUILD_MODE??'development']??browser.default;return{path:resolve(pkg.path,typeof selected==='string'?selected:selected.import??selected.default)}}
+
+error: expect(received).toEqual(expected)
+
+@@ -2,4 +2,4 @@
+    "beforeEcho": false,
+-   "confirmed": true,
+-   "error": undefined,
++   "confirmed": false,
++   "error": "TimeoutError: Timed out waiting for condition",
+  }
+
+- Expected  - 2
++ Received  + 2
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/findings/053-await-send-until-context/repro.test.ts:1:1234)
+(fail) 06-actions-optimistic.md C166: await fire-and-forget send then until waits for the authoritative live echo [134.07ms]
+
+ 0 pass
+ 1 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [140.00ms]

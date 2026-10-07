@@ -1,0 +1,11 @@
+{
+  "output": "Linked the five matching HEAD packages from /Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c\n",
+  "paths": {
+    "solid-js": "/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/solid",
+    "@solidjs/signals": "/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals",
+    "@solidjs/web": "/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/web",
+    "@solidjs/compiler": "/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/compiler",
+    "@solidjs/diagnostics": "/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/diagnostics"
+  },
+  "verified": true
+}

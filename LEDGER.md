@@ -6,7 +6,7 @@ description: 每项最小红测试、HEAD／rc.13／production 对照和上游�
 
 # Ledger
 
-本轮 Solid HEAD：`53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712`。上游操作全部只读。各 finding README 记录预期／实际、单命令、应修改文档还是运行时的判断、缩减过程及相关 issue；JSON 去重证据搜索 open 和 closed issues，涵盖 solid、solid-router、solid-start。搜索结果不是不存在重复 issue 的绝对证明。
+Wave 4a 已刷新并重建 Solid HEAD：`dafad1db34626feb5f154e98e599f65be1802c6c`。47 个 confirmed 在所列失败构建中仍复现，未新增 fixed-upstream；[报告审阅索引](report/README.md) 与 [重跑结果](report/evidence/recheck-results.json) 记录新证据。下表 rc.13 对照及 001–003 的历史状态沿用 Wave 3 证据，未声称本轮复验这三项已固定问题。上游操作全部只读。各 finding README 记录预期／实际、单命令、应修改文档还是运行时的判断、缩减过程及相关 issue；JSON 去重证据搜索 open 和 closed issues，涵盖 solid、solid-router、solid-start。搜索结果不是不存在重复 issue 的绝对证明。
 
 HEAD 列以 development 为准并额外标出 observe；最后一列独立列出 HEAD production。不适用表示该合同属于 dev 检查、观察 artifact 或类型 API，没有声称生产也有该功能。
 

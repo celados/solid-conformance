@@ -1,0 +1,101 @@
+bun test v1.4.2 (744846f84)
+
+findings/047-derived-store-accessor-example/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"dafad1db34626feb5f154e98e599f65be1802c6c","directory":"/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c"},"buildMode":"production","solid":"2.0.0-rc.13"}
+1291 |     setPendingError(e, n.values().next().value);
+1292 |   } else
+1293 |     clearStatus(e, t);
+1294 | }
+1295 | function notifyStatus(e, t, n, r) {
+1296 |     n = new StatusError(e, n);
+               ^
+error: items is not a function. (In 'items()', 'items' is an instance of ProxyObject)
+ source: {
+  id: undefined,
+  u: 0,
+  be: [Function: isEqual],
+  Ae: null,
+  U: [Object ...],
+  we: 0,
+  re: [Function],
+  Pe: undefined,
+  He: 0,
+  Ye: undefined,
+  je: [Circular],
+  _: null,
+  S: null,
+  Ue: 1,
+  t: null,
+  Ke: null,
+  _parent: [Object ...],
+  ge: [Object ...],
+  qe: [Circular],
+  Ve: null,
+  R: 64,
+  G: 2,
+  Ne: 0,
+  Re: [Object ...],
+  Je: -1,
+  _e: false,
+  m: [Object ...],
+},
+
+      at notifyStatus (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:1296:9)
+      at recompute (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:1449:19)
+      at setupComputedNode (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:1671:24)
+      at computed (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:1609:20)
+      at createProjectionInternal (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:3793:21)
+      at createStoreDerived (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:3806:48)
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:3850:35)
+      at runWithOwner (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:1945:13)
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/findings/047-derived-store-accessor-example/repro.test.ts:7:686)
+
+3846 | // findings/047-derived-store-accessor-example/module.ts
+3847 | function run(literal = false) {
+3848 |   return createRoot2((dispose) => {
+3849 |     try {
+3850 |       const [items] = createStore3(() => [1, 2], []);
+3851 |         draft.total = literal ? items().length : items.length;
+                                            ^
+TypeError: items is not a function. (In 'items()', 'items' is an instance of ProxyObject)
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:3851:38)
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:3735:10)
+      at storeSetter (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:3299:10)
+      at runDirect (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:2535:6)
+      at runProjectionComputed (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:3766:18)
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:3796:26)
+      at recompute (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:1430:21)
+      at setupComputedNode (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:1671:24)
+      at computed (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:1609:20)
+      at createProjectionInternal (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.build/finding047/module.js:3793:21)
+(fail) MIGRATION.md B462: a derived store is consumed as items() in the literal example [12.03ms]
+4 | 
+5 | test('MIGRATION.md B462: a derived store is consumed as items() in the literal example',async()=>{
+6 |  const packages=new Map<string,{path:string,exports:Record<string,any>}>();for(const name of ['solid-js','@solidjs/signals']){const path=await realpath(resolve('node_modules',name));packages.set(name,{path,exports:(await Bun.file(path+'/package.json').json()).exports})}
+7 |  const dir=resolve('.build/finding047');const build=await Bun.build({entrypoints:[resolve('findings/047-derived-store-accessor-example/module.ts')],outdir:dir,target:'bun',plugins:[{name:'actual-client-artifact',setup(builder){builder.onResolve({filter:/^(solid-js|@solidjs\/signals)$/},args=>{const pkg=packages.get(args.path)!,entry=pkg.exports['.'],browser=entry.browser??entry,selected=browser[process.env.BUILD_MODE??'development']??browser.default;return{path:resolve(pkg.path,typeof selected==='string'?selected:selected.import??selected.default)}})}}]});expect(build.success).toBe(true);const runtime=await import(dir+'/module.js');expect(runtime.run()).toBe(2);expect(runtime.run(true)).toBe(2)
+8 | })
+9 | test('MIGRATION.md B462: the literal derived-store usage compiles against public declarations',async()=>{const dir=resolve('.build/finding047/types');await Bun.write(dir+'/usage.ts',Bun.file('findings/047-derived-store-accessor-example/usage.ts.txt'));await Bun.write(dir+'/tsconfig.json',JSON.stringify({compilerOptions:{target:'ESNext',module:'Preserve',moduleResolution:'bundler',strict:true,noEmit:true,skipLibCheck:true,lib:['ESNext'],types:[]},files:[dir+'/usage.ts']}));const child=Bun.spawn(['bun','x','tsc','--project',dir+'/tsconfig.json'],{stdout:'pipe',stderr:'pipe'});const output=await new Response(child.stdout).text()+await new Response(child.stderr).text();expect({exitCode:await child.exited,output}).toEqual({exitCode:0,output:''})},30000)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "exitCode": 0,
+-   "output": "",
++   "exitCode": 1,
++   "output": 
++ ".build/finding047/types/usage.ts(3,47): error TS2349: This expression is not callable.
++   Type 'number[] & { readonly [$REFRESH]: any; }' has no call signatures.
++ "
++ ,
+  }
+
+- Expected  - 2
++ Received  + 6
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/findings/047-derived-store-accessor-example/repro.test.ts:9:720)
+(fail) MIGRATION.md B462: the literal derived-store usage compiles against public declarations [137.34ms]
+
+ 0 pass
+ 2 fail
+ 3 expect() calls
+Ran 2 tests across 1 file. [155.00ms]

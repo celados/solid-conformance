@@ -1,0 +1,1133 @@
+$ bun run scripts/upstream.ts
+> curl -fsSL https://codeload.github.com/solidjs/solid/tar.gz/dafad1db34626feb5f154e98e599f65be1802c6c -o /Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c.tar.gz
+> tar -xzf /Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c.tar.gz -C /Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c --strip-components=1
+> bun install --ignore-scripts
+bun install v1.4.2 (744846f84)
+warn: Relative link dependencies aren't supported yet. Please follow along at https://github.com/oven-sh/bun/issues/23026
+InvalidLockfile: failed to migrate lockfile: 'pnpm-lock.yaml'
+
+warn: Ignoring lockfile
+Resolving dependencies
+Resolved, downloaded and extracted [548]
+Saved lockfile
+
++ @babel/core@7.29.7 (v8.0.7 available)
++ @babel/preset-env@7.29.7 (v8.0.7 available)
++ @babel/preset-typescript@7.29.7 (v8.0.7 available)
++ @changesets/cli@2.31.1 (v3.0.3 available)
++ @rollup/plugin-babel@6.1.0 (v7.1.0 available)
++ @rollup/plugin-node-resolve@15.3.1 (v16.0.3 available)
++ @rollup/plugin-replace@5.0.7 (v6.0.3 available)
++ @solidjs/vite-plugin@3.0.0-next.35
++ @testing-library/jest-dom@6.10.0 (v7.0.1 available)
++ @types/node@25.9.9 (v26.6.4 available)
++ @vitest/coverage-v8@4.1.11 (v5.0.3 available)
++ csstype@3.2.3
++ esbuild@0.27.7 (v0.28.2 available)
++ jsdom@25.0.1 (v30.1.2 available)
++ ncp@2.0.0
++ npm-run-all2@8.0.4 (v9.0.3 available)
++ prettier@3.9.9
++ rimraf@3.0.2 (v6.1.3 available)
++ rollup@4.64.2
++ rollup-plugin-cleanup@3.2.1
++ seroval@1.6.8
++ simple-git-hooks@2.14.0
++ symlink-dir@5.2.1 (v10.0.3 available)
++ tsconfig-replace-paths@0.0.11 (v1.0.0 available)
++ turbo@2.11.7
++ typescript@6.0.3 (v7.0.2 available)
++ vitest@4.1.11 (v5.0.3 available)
+
+582 packages installed [3.91s]
+> bun x --no-install rollup -c
+
+src/index.ts, src/attribution.ts → dist...
+(!) [plugin typescript] tests/createProjection.draft-lifetime-3585.test.ts (84:23): @rollup/plugin-typescript TS2345: Argument of type 'readonly number[]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly number[]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/createProjection.draft-lifetime-3585.test.ts:84:23
+
+[7m84[0m             seen.push(v);
+[7m  [0m [91m                      ~[0m
+
+(!) [plugin typescript] tests/createProjection.draft-lifetime-3585.test.ts (462:23): @rollup/plugin-typescript TS2345: Argument of type 'readonly number[]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly number[]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/createProjection.draft-lifetime-3585.test.ts:462:23
+
+[7m462[0m             seen.push(v);
+[7m   [0m [91m                      ~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (167:32): @rollup/plugin-typescript TS2307: Cannot find module '../dist/prod/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:167:32
+
+[7m167[0m     const prod = (await import("../dist/prod/index.js")) as Tier;
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (173:35): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:173:35
+
+[7m173[0m     const observe = (await import("../dist/observe/index.js")) as Tier;
+[7m   [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (179:31): @rollup/plugin-typescript TS2307: Cannot find module '../dist/dev.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:179:31
+
+[7m179[0m     const dev = (await import("../dist/dev.js")) as Tier;
+[7m   [0m [91m                              ~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (185:31): @rollup/plugin-typescript TS2307: Cannot find module '../dist/prod/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:185:31
+
+[7m185[0m     const prod = await import("../dist/prod/index.js");
+[7m   [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (186:34): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:186:34
+
+[7m186[0m     const observe = await import("../dist/observe/index.js");
+[7m   [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (187:30): @rollup/plugin-typescript TS2307: Cannot find module '../dist/dev.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:187:30
+
+[7m187[0m     const dev = await import("../dist/dev.js");
+[7m   [0m [91m                             ~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (210:24): @rollup/plugin-typescript TS2307: Cannot find module '../dist/prod/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:210:24
+
+[7m210[0m     prod: () => import("../dist/prod/index.js"),
+[7m   [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (211:27): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:211:27
+
+[7m211[0m     observe: () => import("../dist/observe/index.js"),
+[7m   [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (212:23): @rollup/plugin-typescript TS2307: Cannot find module '../dist/dev.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:212:23
+
+[7m212[0m     dev: () => import("../dist/dev.js")
+[7m   [0m [91m                      ~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (296:35): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:296:35
+
+[7m296[0m     const observe = (await import("../dist/observe/index.js")) as any;
+[7m   [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (297:32): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/core/core.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:297:32
+
+[7m297[0m     const core = (await import("../dist/observe/core/core.js")) as any;
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (443:37): @rollup/plugin-typescript TS2307: Cannot find module '../dist/prod/attribution.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:443:37
+
+[7m443[0m     expectEngineInert((await import("../dist/prod/attribution.js")) as Engine);
+[7m   [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (450:20): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:450:20
+
+[7m450[0m       await import("../dist/observe/index.js"),
+[7m   [0m [91m                   ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (451:21): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/attribution.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:451:21
+
+[7m451[0m       (await import("../dist/observe/attribution.js")) as Engine
+[7m   [0m [91m                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (457:20): @rollup/plugin-typescript TS2307: Cannot find module '../dist/dev.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:457:20
+
+[7m457[0m       await import("../dist/dev.js"),
+[7m   [0m [91m                   ~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (458:21): @rollup/plugin-typescript TS2307: Cannot find module '../dist/dev.attribution.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:458:21
+
+[7m458[0m       (await import("../dist/dev.attribution.js")) as Engine
+[7m   [0m [91m                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (494:20): @rollup/plugin-typescript TS2307: Cannot find module '../dist/dev.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:494:20
+
+[7m494[0m       await import("../dist/dev.js"),
+[7m   [0m [91m                   ~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (495:21): @rollup/plugin-typescript TS2307: Cannot find module '../dist/dev.attribution.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:495:21
+
+[7m495[0m       (await import("../dist/dev.attribution.js")) as Engine
+[7m   [0m [91m                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (501:31): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:501:31
+
+[7m501[0m     const core = await import("../dist/observe/index.js");
+[7m   [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (502:34): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/attribution.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:502:34
+
+[7m502[0m     const engine = (await import("../dist/observe/attribution.js")) as Engine;
+[7m   [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (527:61): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:527:61
+
+[7m527[0m     const { OBSERVE, createRoot, getOwner } = (await import("../dist/observe/index.js")) as any;
+[7m   [0m [91m                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/fuzz-findings-l2.test.ts (298:11): @rollup/plugin-typescript TS4104: The type 'readonly [number, number, number]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/fuzz-findings-l2.test.ts:298:11
+
+[7m298[0m           tuple = t;
+[7m   [0m [91m          ~~~~~[0m
+
+(!) [plugin typescript] tests/latest-held-till-flush.test.ts (274:21): @rollup/plugin-typescript TS2345: Argument of type 'readonly [number, number, number, number, number, number] | null' is not assignable to parameter of type 'number[] | null'.
+  The type 'readonly [number, number, number, number, number, number]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/latest-held-till-flush.test.ts:274:21
+
+[7m274[0m           runs.push(v);
+[7m   [0m [91m                    ~[0m
+
+(!) [plugin typescript] tests/latest-held-till-flush.test.ts (338:21): @rollup/plugin-typescript TS2345: Argument of type 'readonly [number, number, number, number] | null' is not assignable to parameter of type 'number[] | null'.
+  The type 'readonly [number, number, number, number]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/latest-held-till-flush.test.ts:338:21
+
+[7m338[0m           runs.push(v);
+[7m   [0m [91m                    ~[0m
+
+(!) [plugin typescript] tests/loading-on-frame-following-3540.test.ts (412:30): @rollup/plugin-typescript TS2345: Argument of type 'SourceAccessor<number> | Accessor<string>' is not assignable to parameter of type 'ComputeFunction<number | undefined, number>'.
+  Type 'Accessor<string>' is not assignable to type 'ComputeFunction<number | undefined, number>'.
+    Type 'string' is not assignable to type 'number | PromiseLike<number> | AsyncIterable<number>'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/loading-on-frame-following-3540.test.ts:412:30
+
+[7m412[0m           createRenderEffect(read, v => {
+[7m   [0m [91m                             ~~~~[0m
+
+(!) [plugin typescript] tests/mount-over-foreign-hold-3761.test.ts (114:22): @rollup/plugin-typescript TS2345: Argument of type 'readonly [number, number]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly [number, number]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/mount-over-foreign-hold-3761.test.ts:114:22
+
+[7m114[0m           shown.push(value);
+[7m   [0m [91m                     ~~~~~[0m
+
+(!) [plugin typescript] tests/store/createOptimisticStore.test.ts (292:25): @rollup/plugin-typescript TS2345: Argument of type 'readonly number[]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly number[]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/createOptimisticStore.test.ts:292:25
+
+[7m292[0m             values.push(v);
+[7m   [0m [91m                        ~[0m
+
+(!) [plugin typescript] tests/store/createOptimisticStore.test.ts (324:25): @rollup/plugin-typescript TS2345: Argument of type 'readonly string[]' is not assignable to parameter of type 'string[]'.
+  The type 'readonly string[]' is 'readonly' and cannot be assigned to the mutable type 'string[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/createOptimisticStore.test.ts:324:25
+
+[7m324[0m             values.push(v);
+[7m   [0m [91m                        ~[0m
+
+(!) [plugin typescript] tests/store/createOptimisticStore.test.ts (1047:24): @rollup/plugin-typescript TS2345: Argument of type 'readonly number[]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly number[]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/createOptimisticStore.test.ts:1047:24
+
+[7m1047[0m             items.push(v);
+[7m    [0m [91m                       ~[0m
+
+(!) [plugin typescript] tests/store/createOptimisticStore.test.ts (1080:24): @rollup/plugin-typescript TS2345: Argument of type 'readonly number[]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly number[]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/createOptimisticStore.test.ts:1080:24
+
+[7m1080[0m             items.push(v);
+[7m    [0m [91m                       ~[0m
+
+(!) [plugin typescript] tests/store/derived-presence-async-3726.test.ts (136:17): @rollup/plugin-typescript TS2769: No overload matches this call.
+  Overload 1 of 2, '(initialValue: number[], options?: StoreOptions | undefined): StoreReturn<number[]>', gave the following error.
+    Argument of type '() => number[] | Promise<unknown>' is not assignable to parameter of type 'number[]'.
+  Overload 2 of 2, '(fn: (draft: number[]) => void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>, seed: number[] | (number | undefined)[], options?: ProjectionOptions | undefined): ProjectionStoreReturn<...>', gave the following error.
+    Type 'number[] | Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+      Type 'Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+        Type 'Promise<unknown>' is not assignable to type 'Promise<void | number[]>'.
+          Type 'unknown' is not assignable to type 'void | number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/derived-presence-async-3726.test.ts:136:17
+
+[7m136[0m       [store] = createStore<number[]>(() => source() ?? new Promise(() => {}), [9, 9, 9]);
+[7m   [0m [91m                ~~~~~~~~~~~[0m
+
+  [96msrc/store/index.ts[0m:[93m87[0m:[93m7[0m
+    [7m87[0m   fn: (draft: T) => void | T | Promise<void | T> | AsyncIterable<void | T>,
+    [7m  [0m [96m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from the return type of this signature.
+
+(!) [plugin typescript] tests/store/derived-presence-async-3726.test.ts (214:23): @rollup/plugin-typescript TS2769: No overload matches this call.
+  Overload 1 of 2, '(initialValue: number[], options?: StoreOptions | undefined): StoreReturn<number[]>', gave the following error.
+    Argument of type '() => number[] | Promise<unknown>' is not assignable to parameter of type 'number[]'.
+  Overload 2 of 2, '(fn: (draft: number[]) => void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>, seed: number[] | (number | undefined)[], options?: ProjectionOptions | undefined): ProjectionStoreReturn<...>', gave the following error.
+    Type 'number[] | Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+      Type 'Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+        Type 'Promise<unknown>' is not assignable to type 'Promise<void | number[]>'.
+          Type 'unknown' is not assignable to type 'void | number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/derived-presence-async-3726.test.ts:214:23
+
+[7m214[0m       const [store] = createStore<number[]>(() => source() ?? new Promise(() => {}), []);
+[7m   [0m [91m                      ~~~~~~~~~~~[0m
+
+  [96msrc/store/index.ts[0m:[93m87[0m:[93m7[0m
+    [7m87[0m   fn: (draft: T) => void | T | Promise<void | T> | AsyncIterable<void | T>,
+    [7m  [0m [96m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from the return type of this signature.
+
+(!) [plugin typescript] tests/store/derived-presence-async-3726.test.ts (246:17): @rollup/plugin-typescript TS2769: No overload matches this call.
+  Overload 1 of 2, '(initialValue: number[], options?: StoreOptions | undefined): StoreReturn<number[]>', gave the following error.
+    Argument of type '() => number[] | Promise<unknown>' is not assignable to parameter of type 'number[]'.
+  Overload 2 of 2, '(fn: (draft: number[]) => void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>, seed: number[] | (number | undefined)[], options?: ProjectionOptions | undefined): ProjectionStoreReturn<...>', gave the following error.
+    Type 'number[] | Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+      Type 'Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+        Type 'Promise<unknown>' is not assignable to type 'Promise<void | number[]>'.
+          Type 'unknown' is not assignable to type 'void | number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/derived-presence-async-3726.test.ts:246:17
+
+[7m246[0m       [store] = createStore<number[]>(() => source() ?? new Promise(() => {}), [9, 9, 9]);
+[7m   [0m [91m                ~~~~~~~~~~~[0m
+
+  [96msrc/store/index.ts[0m:[93m87[0m:[93m7[0m
+    [7m87[0m   fn: (draft: T) => void | T | Promise<void | T> | AsyncIterable<void | T>,
+    [7m  [0m [96m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from the return type of this signature.
+
+(!) [plugin typescript] tests/store/derived-presence-async-3726.test.ts (287:23): @rollup/plugin-typescript TS2769: No overload matches this call.
+  Overload 1 of 2, '(initialValue: number[], options?: StoreOptions | undefined): StoreReturn<number[]>', gave the following error.
+    Argument of type '() => number[] | Promise<unknown>' is not assignable to parameter of type 'number[]'.
+  Overload 2 of 2, '(fn: (draft: number[]) => void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>, seed: number[] | (number | undefined)[], options?: ProjectionOptions | undefined): ProjectionStoreReturn<...>', gave the following error.
+    Type 'number[] | Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+      Type 'Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+        Type 'Promise<unknown>' is not assignable to type 'Promise<void | number[]>'.
+          Type 'unknown' is not assignable to type 'void | number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/derived-presence-async-3726.test.ts:287:23
+
+[7m287[0m       const [store] = createStore<number[]>(() => source() ?? new Promise(() => {}), []);
+[7m   [0m [91m                      ~~~~~~~~~~~[0m
+
+  [96msrc/store/index.ts[0m:[93m87[0m:[93m7[0m
+    [7m87[0m   fn: (draft: T) => void | T | Promise<void | T> | AsyncIterable<void | T>,
+    [7m  [0m [96m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from the return type of this signature.
+
+(!) Circular dependencies
+src/core/core.ts -> src/core/async.ts -> src/core/core.ts
+src/core/dev.ts -> src/core/core.ts -> src/core/async.ts -> src/core/invariants.ts -> src/core/dev.ts
+src/core/dev.ts -> src/core/core.ts -> src/core/async.ts -> src/core/dev.ts
+...and 9 more
+created dist in 6.1s
+
+src/index.ts, src/attribution.prod.ts → dist/prod...
+(!) [plugin typescript] tests/createProjection.draft-lifetime-3585.test.ts (84:23): @rollup/plugin-typescript TS2345: Argument of type 'readonly number[]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly number[]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/createProjection.draft-lifetime-3585.test.ts:84:23
+
+[7m84[0m             seen.push(v);
+[7m  [0m [91m                      ~[0m
+
+(!) [plugin typescript] tests/createProjection.draft-lifetime-3585.test.ts (462:23): @rollup/plugin-typescript TS2345: Argument of type 'readonly number[]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly number[]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/createProjection.draft-lifetime-3585.test.ts:462:23
+
+[7m462[0m             seen.push(v);
+[7m   [0m [91m                      ~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (167:32): @rollup/plugin-typescript TS2307: Cannot find module '../dist/prod/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:167:32
+
+[7m167[0m     const prod = (await import("../dist/prod/index.js")) as Tier;
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (173:35): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:173:35
+
+[7m173[0m     const observe = (await import("../dist/observe/index.js")) as Tier;
+[7m   [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (185:31): @rollup/plugin-typescript TS2307: Cannot find module '../dist/prod/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:185:31
+
+[7m185[0m     const prod = await import("../dist/prod/index.js");
+[7m   [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (186:34): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:186:34
+
+[7m186[0m     const observe = await import("../dist/observe/index.js");
+[7m   [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (210:24): @rollup/plugin-typescript TS2307: Cannot find module '../dist/prod/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:210:24
+
+[7m210[0m     prod: () => import("../dist/prod/index.js"),
+[7m   [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (211:27): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:211:27
+
+[7m211[0m     observe: () => import("../dist/observe/index.js"),
+[7m   [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (296:35): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:296:35
+
+[7m296[0m     const observe = (await import("../dist/observe/index.js")) as any;
+[7m   [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (297:32): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/core/core.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:297:32
+
+[7m297[0m     const core = (await import("../dist/observe/core/core.js")) as any;
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (443:37): @rollup/plugin-typescript TS2307: Cannot find module '../dist/prod/attribution.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:443:37
+
+[7m443[0m     expectEngineInert((await import("../dist/prod/attribution.js")) as Engine);
+[7m   [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (450:20): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:450:20
+
+[7m450[0m       await import("../dist/observe/index.js"),
+[7m   [0m [91m                   ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (451:21): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/attribution.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:451:21
+
+[7m451[0m       (await import("../dist/observe/attribution.js")) as Engine
+[7m   [0m [91m                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (501:31): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:501:31
+
+[7m501[0m     const core = await import("../dist/observe/index.js");
+[7m   [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (502:34): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/attribution.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:502:34
+
+[7m502[0m     const engine = (await import("../dist/observe/attribution.js")) as Engine;
+[7m   [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (527:61): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:527:61
+
+[7m527[0m     const { OBSERVE, createRoot, getOwner } = (await import("../dist/observe/index.js")) as any;
+[7m   [0m [91m                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/fuzz-findings-l2.test.ts (298:11): @rollup/plugin-typescript TS4104: The type 'readonly [number, number, number]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/fuzz-findings-l2.test.ts:298:11
+
+[7m298[0m           tuple = t;
+[7m   [0m [91m          ~~~~~[0m
+
+(!) [plugin typescript] tests/latest-held-till-flush.test.ts (274:21): @rollup/plugin-typescript TS2345: Argument of type 'readonly [number, number, number, number, number, number] | null' is not assignable to parameter of type 'number[] | null'.
+  The type 'readonly [number, number, number, number, number, number]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/latest-held-till-flush.test.ts:274:21
+
+[7m274[0m           runs.push(v);
+[7m   [0m [91m                    ~[0m
+
+(!) [plugin typescript] tests/latest-held-till-flush.test.ts (338:21): @rollup/plugin-typescript TS2345: Argument of type 'readonly [number, number, number, number] | null' is not assignable to parameter of type 'number[] | null'.
+  The type 'readonly [number, number, number, number]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/latest-held-till-flush.test.ts:338:21
+
+[7m338[0m           runs.push(v);
+[7m   [0m [91m                    ~[0m
+
+(!) [plugin typescript] tests/loading-on-frame-following-3540.test.ts (412:30): @rollup/plugin-typescript TS2345: Argument of type 'SourceAccessor<number> | Accessor<string>' is not assignable to parameter of type 'ComputeFunction<number | undefined, number>'.
+  Type 'Accessor<string>' is not assignable to type 'ComputeFunction<number | undefined, number>'.
+    Type 'string' is not assignable to type 'number | PromiseLike<number> | AsyncIterable<number>'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/loading-on-frame-following-3540.test.ts:412:30
+
+[7m412[0m           createRenderEffect(read, v => {
+[7m   [0m [91m                             ~~~~[0m
+
+(!) [plugin typescript] tests/mount-over-foreign-hold-3761.test.ts (114:22): @rollup/plugin-typescript TS2345: Argument of type 'readonly [number, number]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly [number, number]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/mount-over-foreign-hold-3761.test.ts:114:22
+
+[7m114[0m           shown.push(value);
+[7m   [0m [91m                     ~~~~~[0m
+
+(!) [plugin typescript] tests/store/createOptimisticStore.test.ts (292:25): @rollup/plugin-typescript TS2345: Argument of type 'readonly number[]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly number[]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/createOptimisticStore.test.ts:292:25
+
+[7m292[0m             values.push(v);
+[7m   [0m [91m                        ~[0m
+
+(!) [plugin typescript] tests/store/createOptimisticStore.test.ts (324:25): @rollup/plugin-typescript TS2345: Argument of type 'readonly string[]' is not assignable to parameter of type 'string[]'.
+  The type 'readonly string[]' is 'readonly' and cannot be assigned to the mutable type 'string[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/createOptimisticStore.test.ts:324:25
+
+[7m324[0m             values.push(v);
+[7m   [0m [91m                        ~[0m
+
+(!) [plugin typescript] tests/store/createOptimisticStore.test.ts (1047:24): @rollup/plugin-typescript TS2345: Argument of type 'readonly number[]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly number[]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/createOptimisticStore.test.ts:1047:24
+
+[7m1047[0m             items.push(v);
+[7m    [0m [91m                       ~[0m
+
+(!) [plugin typescript] tests/store/createOptimisticStore.test.ts (1080:24): @rollup/plugin-typescript TS2345: Argument of type 'readonly number[]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly number[]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/createOptimisticStore.test.ts:1080:24
+
+[7m1080[0m             items.push(v);
+[7m    [0m [91m                       ~[0m
+
+(!) [plugin typescript] tests/store/derived-presence-async-3726.test.ts (136:17): @rollup/plugin-typescript TS2769: No overload matches this call.
+  Overload 1 of 2, '(initialValue: number[], options?: StoreOptions | undefined): StoreReturn<number[]>', gave the following error.
+    Argument of type '() => number[] | Promise<unknown>' is not assignable to parameter of type 'number[]'.
+  Overload 2 of 2, '(fn: (draft: number[]) => void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>, seed: number[] | (number | undefined)[], options?: ProjectionOptions | undefined): ProjectionStoreReturn<...>', gave the following error.
+    Type 'number[] | Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+      Type 'Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+        Type 'Promise<unknown>' is not assignable to type 'Promise<void | number[]>'.
+          Type 'unknown' is not assignable to type 'void | number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/derived-presence-async-3726.test.ts:136:17
+
+[7m136[0m       [store] = createStore<number[]>(() => source() ?? new Promise(() => {}), [9, 9, 9]);
+[7m   [0m [91m                ~~~~~~~~~~~[0m
+
+  [96msrc/store/index.ts[0m:[93m87[0m:[93m7[0m
+    [7m87[0m   fn: (draft: T) => void | T | Promise<void | T> | AsyncIterable<void | T>,
+    [7m  [0m [96m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from the return type of this signature.
+
+(!) [plugin typescript] tests/store/derived-presence-async-3726.test.ts (214:23): @rollup/plugin-typescript TS2769: No overload matches this call.
+  Overload 1 of 2, '(initialValue: number[], options?: StoreOptions | undefined): StoreReturn<number[]>', gave the following error.
+    Argument of type '() => number[] | Promise<unknown>' is not assignable to parameter of type 'number[]'.
+  Overload 2 of 2, '(fn: (draft: number[]) => void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>, seed: number[] | (number | undefined)[], options?: ProjectionOptions | undefined): ProjectionStoreReturn<...>', gave the following error.
+    Type 'number[] | Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+      Type 'Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+        Type 'Promise<unknown>' is not assignable to type 'Promise<void | number[]>'.
+          Type 'unknown' is not assignable to type 'void | number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/derived-presence-async-3726.test.ts:214:23
+
+[7m214[0m       const [store] = createStore<number[]>(() => source() ?? new Promise(() => {}), []);
+[7m   [0m [91m                      ~~~~~~~~~~~[0m
+
+  [96msrc/store/index.ts[0m:[93m87[0m:[93m7[0m
+    [7m87[0m   fn: (draft: T) => void | T | Promise<void | T> | AsyncIterable<void | T>,
+    [7m  [0m [96m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from the return type of this signature.
+
+(!) [plugin typescript] tests/store/derived-presence-async-3726.test.ts (246:17): @rollup/plugin-typescript TS2769: No overload matches this call.
+  Overload 1 of 2, '(initialValue: number[], options?: StoreOptions | undefined): StoreReturn<number[]>', gave the following error.
+    Argument of type '() => number[] | Promise<unknown>' is not assignable to parameter of type 'number[]'.
+  Overload 2 of 2, '(fn: (draft: number[]) => void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>, seed: number[] | (number | undefined)[], options?: ProjectionOptions | undefined): ProjectionStoreReturn<...>', gave the following error.
+    Type 'number[] | Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+      Type 'Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+        Type 'Promise<unknown>' is not assignable to type 'Promise<void | number[]>'.
+          Type 'unknown' is not assignable to type 'void | number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/derived-presence-async-3726.test.ts:246:17
+
+[7m246[0m       [store] = createStore<number[]>(() => source() ?? new Promise(() => {}), [9, 9, 9]);
+[7m   [0m [91m                ~~~~~~~~~~~[0m
+
+  [96msrc/store/index.ts[0m:[93m87[0m:[93m7[0m
+    [7m87[0m   fn: (draft: T) => void | T | Promise<void | T> | AsyncIterable<void | T>,
+    [7m  [0m [96m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from the return type of this signature.
+
+(!) [plugin typescript] tests/store/derived-presence-async-3726.test.ts (287:23): @rollup/plugin-typescript TS2769: No overload matches this call.
+  Overload 1 of 2, '(initialValue: number[], options?: StoreOptions | undefined): StoreReturn<number[]>', gave the following error.
+    Argument of type '() => number[] | Promise<unknown>' is not assignable to parameter of type 'number[]'.
+  Overload 2 of 2, '(fn: (draft: number[]) => void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>, seed: number[] | (number | undefined)[], options?: ProjectionOptions | undefined): ProjectionStoreReturn<...>', gave the following error.
+    Type 'number[] | Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+      Type 'Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+        Type 'Promise<unknown>' is not assignable to type 'Promise<void | number[]>'.
+          Type 'unknown' is not assignable to type 'void | number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/derived-presence-async-3726.test.ts:287:23
+
+[7m287[0m       const [store] = createStore<number[]>(() => source() ?? new Promise(() => {}), []);
+[7m   [0m [91m                      ~~~~~~~~~~~[0m
+
+  [96msrc/store/index.ts[0m:[93m87[0m:[93m7[0m
+    [7m87[0m   fn: (draft: T) => void | T | Promise<void | T> | AsyncIterable<void | T>,
+    [7m  [0m [96m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from the return type of this signature.
+
+(!) Circular dependencies
+src/core/core.ts -> src/core/async.ts -> src/core/core.ts
+src/core/core.ts -> src/core/async.ts -> src/core/invariants.ts -> src/core/dev.ts -> src/core/core.ts
+src/core/core.ts -> src/core/async.ts -> src/core/graph.ts -> src/core/heap.ts -> src/core/core.ts
+...and 5 more
+created dist/prod in 4.8s
+
+src/index.ts, src/attribution.ts → dist/observe...
+(!) [plugin typescript] tests/createProjection.draft-lifetime-3585.test.ts (84:23): @rollup/plugin-typescript TS2345: Argument of type 'readonly number[]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly number[]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/createProjection.draft-lifetime-3585.test.ts:84:23
+
+[7m84[0m             seen.push(v);
+[7m  [0m [91m                      ~[0m
+
+(!) [plugin typescript] tests/createProjection.draft-lifetime-3585.test.ts (462:23): @rollup/plugin-typescript TS2345: Argument of type 'readonly number[]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly number[]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/createProjection.draft-lifetime-3585.test.ts:462:23
+
+[7m462[0m             seen.push(v);
+[7m   [0m [91m                      ~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (173:35): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:173:35
+
+[7m173[0m     const observe = (await import("../dist/observe/index.js")) as Tier;
+[7m   [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (186:34): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:186:34
+
+[7m186[0m     const observe = await import("../dist/observe/index.js");
+[7m   [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (211:27): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:211:27
+
+[7m211[0m     observe: () => import("../dist/observe/index.js"),
+[7m   [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (296:35): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:296:35
+
+[7m296[0m     const observe = (await import("../dist/observe/index.js")) as any;
+[7m   [0m [91m                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (297:32): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/core/core.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:297:32
+
+[7m297[0m     const core = (await import("../dist/observe/core/core.js")) as any;
+[7m   [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (450:20): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:450:20
+
+[7m450[0m       await import("../dist/observe/index.js"),
+[7m   [0m [91m                   ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (451:21): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/attribution.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:451:21
+
+[7m451[0m       (await import("../dist/observe/attribution.js")) as Engine
+[7m   [0m [91m                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (501:31): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:501:31
+
+[7m501[0m     const core = await import("../dist/observe/index.js");
+[7m   [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (502:34): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/attribution.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:502:34
+
+[7m502[0m     const engine = (await import("../dist/observe/attribution.js")) as Engine;
+[7m   [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/dist-artifacts.test.ts (527:61): @rollup/plugin-typescript TS2307: Cannot find module '../dist/observe/index.js' or its corresponding type declarations.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/dist-artifacts.test.ts:527:61
+
+[7m527[0m     const { OBSERVE, createRoot, getOwner } = (await import("../dist/observe/index.js")) as any;
+[7m   [0m [91m                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+(!) [plugin typescript] tests/fuzz-findings-l2.test.ts (298:11): @rollup/plugin-typescript TS4104: The type 'readonly [number, number, number]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/fuzz-findings-l2.test.ts:298:11
+
+[7m298[0m           tuple = t;
+[7m   [0m [91m          ~~~~~[0m
+
+(!) [plugin typescript] tests/latest-held-till-flush.test.ts (274:21): @rollup/plugin-typescript TS2345: Argument of type 'readonly [number, number, number, number, number, number] | null' is not assignable to parameter of type 'number[] | null'.
+  The type 'readonly [number, number, number, number, number, number]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/latest-held-till-flush.test.ts:274:21
+
+[7m274[0m           runs.push(v);
+[7m   [0m [91m                    ~[0m
+
+(!) [plugin typescript] tests/latest-held-till-flush.test.ts (338:21): @rollup/plugin-typescript TS2345: Argument of type 'readonly [number, number, number, number] | null' is not assignable to parameter of type 'number[] | null'.
+  The type 'readonly [number, number, number, number]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/latest-held-till-flush.test.ts:338:21
+
+[7m338[0m           runs.push(v);
+[7m   [0m [91m                    ~[0m
+
+(!) [plugin typescript] tests/loading-on-frame-following-3540.test.ts (412:30): @rollup/plugin-typescript TS2345: Argument of type 'SourceAccessor<number> | Accessor<string>' is not assignable to parameter of type 'ComputeFunction<number | undefined, number>'.
+  Type 'Accessor<string>' is not assignable to type 'ComputeFunction<number | undefined, number>'.
+    Type 'string' is not assignable to type 'number | PromiseLike<number> | AsyncIterable<number>'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/loading-on-frame-following-3540.test.ts:412:30
+
+[7m412[0m           createRenderEffect(read, v => {
+[7m   [0m [91m                             ~~~~[0m
+
+(!) [plugin typescript] tests/mount-over-foreign-hold-3761.test.ts (114:22): @rollup/plugin-typescript TS2345: Argument of type 'readonly [number, number]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly [number, number]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/mount-over-foreign-hold-3761.test.ts:114:22
+
+[7m114[0m           shown.push(value);
+[7m   [0m [91m                     ~~~~~[0m
+
+(!) [plugin typescript] tests/store/createOptimisticStore.test.ts (292:25): @rollup/plugin-typescript TS2345: Argument of type 'readonly number[]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly number[]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/createOptimisticStore.test.ts:292:25
+
+[7m292[0m             values.push(v);
+[7m   [0m [91m                        ~[0m
+
+(!) [plugin typescript] tests/store/createOptimisticStore.test.ts (324:25): @rollup/plugin-typescript TS2345: Argument of type 'readonly string[]' is not assignable to parameter of type 'string[]'.
+  The type 'readonly string[]' is 'readonly' and cannot be assigned to the mutable type 'string[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/createOptimisticStore.test.ts:324:25
+
+[7m324[0m             values.push(v);
+[7m   [0m [91m                        ~[0m
+
+(!) [plugin typescript] tests/store/createOptimisticStore.test.ts (1047:24): @rollup/plugin-typescript TS2345: Argument of type 'readonly number[]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly number[]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/createOptimisticStore.test.ts:1047:24
+
+[7m1047[0m             items.push(v);
+[7m    [0m [91m                       ~[0m
+
+(!) [plugin typescript] tests/store/createOptimisticStore.test.ts (1080:24): @rollup/plugin-typescript TS2345: Argument of type 'readonly number[]' is not assignable to parameter of type 'number[]'.
+  The type 'readonly number[]' is 'readonly' and cannot be assigned to the mutable type 'number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/createOptimisticStore.test.ts:1080:24
+
+[7m1080[0m             items.push(v);
+[7m    [0m [91m                       ~[0m
+
+(!) [plugin typescript] tests/store/derived-presence-async-3726.test.ts (136:17): @rollup/plugin-typescript TS2769: No overload matches this call.
+  Overload 1 of 2, '(initialValue: number[], options?: StoreOptions | undefined): StoreReturn<number[]>', gave the following error.
+    Argument of type '() => number[] | Promise<unknown>' is not assignable to parameter of type 'number[]'.
+  Overload 2 of 2, '(fn: (draft: number[]) => void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>, seed: number[] | (number | undefined)[], options?: ProjectionOptions | undefined): ProjectionStoreReturn<...>', gave the following error.
+    Type 'number[] | Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+      Type 'Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+        Type 'Promise<unknown>' is not assignable to type 'Promise<void | number[]>'.
+          Type 'unknown' is not assignable to type 'void | number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/derived-presence-async-3726.test.ts:136:17
+
+[7m136[0m       [store] = createStore<number[]>(() => source() ?? new Promise(() => {}), [9, 9, 9]);
+[7m   [0m [91m                ~~~~~~~~~~~[0m
+
+  [96msrc/store/index.ts[0m:[93m87[0m:[93m7[0m
+    [7m87[0m   fn: (draft: T) => void | T | Promise<void | T> | AsyncIterable<void | T>,
+    [7m  [0m [96m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from the return type of this signature.
+
+(!) [plugin typescript] tests/store/derived-presence-async-3726.test.ts (214:23): @rollup/plugin-typescript TS2769: No overload matches this call.
+  Overload 1 of 2, '(initialValue: number[], options?: StoreOptions | undefined): StoreReturn<number[]>', gave the following error.
+    Argument of type '() => number[] | Promise<unknown>' is not assignable to parameter of type 'number[]'.
+  Overload 2 of 2, '(fn: (draft: number[]) => void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>, seed: number[] | (number | undefined)[], options?: ProjectionOptions | undefined): ProjectionStoreReturn<...>', gave the following error.
+    Type 'number[] | Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+      Type 'Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+        Type 'Promise<unknown>' is not assignable to type 'Promise<void | number[]>'.
+          Type 'unknown' is not assignable to type 'void | number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/derived-presence-async-3726.test.ts:214:23
+
+[7m214[0m       const [store] = createStore<number[]>(() => source() ?? new Promise(() => {}), []);
+[7m   [0m [91m                      ~~~~~~~~~~~[0m
+
+  [96msrc/store/index.ts[0m:[93m87[0m:[93m7[0m
+    [7m87[0m   fn: (draft: T) => void | T | Promise<void | T> | AsyncIterable<void | T>,
+    [7m  [0m [96m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from the return type of this signature.
+
+(!) [plugin typescript] tests/store/derived-presence-async-3726.test.ts (246:17): @rollup/plugin-typescript TS2769: No overload matches this call.
+  Overload 1 of 2, '(initialValue: number[], options?: StoreOptions | undefined): StoreReturn<number[]>', gave the following error.
+    Argument of type '() => number[] | Promise<unknown>' is not assignable to parameter of type 'number[]'.
+  Overload 2 of 2, '(fn: (draft: number[]) => void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>, seed: number[] | (number | undefined)[], options?: ProjectionOptions | undefined): ProjectionStoreReturn<...>', gave the following error.
+    Type 'number[] | Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+      Type 'Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+        Type 'Promise<unknown>' is not assignable to type 'Promise<void | number[]>'.
+          Type 'unknown' is not assignable to type 'void | number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/derived-presence-async-3726.test.ts:246:17
+
+[7m246[0m       [store] = createStore<number[]>(() => source() ?? new Promise(() => {}), [9, 9, 9]);
+[7m   [0m [91m                ~~~~~~~~~~~[0m
+
+  [96msrc/store/index.ts[0m:[93m87[0m:[93m7[0m
+    [7m87[0m   fn: (draft: T) => void | T | Promise<void | T> | AsyncIterable<void | T>,
+    [7m  [0m [96m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from the return type of this signature.
+
+(!) [plugin typescript] tests/store/derived-presence-async-3726.test.ts (287:23): @rollup/plugin-typescript TS2769: No overload matches this call.
+  Overload 1 of 2, '(initialValue: number[], options?: StoreOptions | undefined): StoreReturn<number[]>', gave the following error.
+    Argument of type '() => number[] | Promise<unknown>' is not assignable to parameter of type 'number[]'.
+  Overload 2 of 2, '(fn: (draft: number[]) => void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>, seed: number[] | (number | undefined)[], options?: ProjectionOptions | undefined): ProjectionStoreReturn<...>', gave the following error.
+    Type 'number[] | Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+      Type 'Promise<unknown>' is not assignable to type 'void | number[] | Promise<void | number[]> | AsyncIterable<void | number[]>'.
+        Type 'Promise<unknown>' is not assignable to type 'Promise<void | number[]>'.
+          Type 'unknown' is not assignable to type 'void | number[]'.
+/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/signals/tests/store/derived-presence-async-3726.test.ts:287:23
+
+[7m287[0m       const [store] = createStore<number[]>(() => source() ?? new Promise(() => {}), []);
+[7m   [0m [91m                      ~~~~~~~~~~~[0m
+
+  [96msrc/store/index.ts[0m:[93m87[0m:[93m7[0m
+    [7m87[0m   fn: (draft: T) => void | T | Promise<void | T> | AsyncIterable<void | T>,
+    [7m  [0m [96m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from the return type of this signature.
+
+(!) Circular dependencies
+src/core/core.ts -> src/core/async.ts -> src/core/core.ts
+src/core/dev.ts -> src/core/core.ts -> src/core/async.ts -> src/core/invariants.ts -> src/core/dev.ts
+src/core/dev.ts -> src/core/core.ts -> src/core/async.ts -> src/core/dev.ts
+...and 9 more
+created dist/observe in 4.9s
+> bun scripts/mangle-props.mjs dist/prod
+mangled _-props across 36 files in dist/prod
+> bun scripts/check-pure.mjs dist/prod
+check-pure: 1 annotation(s) present in dist/prod (src has 1)
+> bun scripts/mangle-props.mjs dist/observe
+mangled _-props across 40 files in dist/observe
+> bun scripts/check-pure.mjs dist/observe
+check-pure: 1 annotation(s) present in dist/observe (src has 1)
+> bun x --no-install rollup -c
+
+src/index.ts → dist/solid.js...
+created dist/solid.js in 249ms
+
+src/index.ts → dist/solid.observe.js...
+created dist/solid.observe.js in 110ms
+
+src/index.ts → dist/solid.dev.js...
+created dist/solid.dev.js in 91ms
+
+src/server/index.ts → dist/server.js...
+(!) Circular dependencies
+src/server/signals.ts -> src/server/shared.ts -> src/server/signals.ts
+src/server/signals.ts -> src/server/diagnostics.ts -> src/server/signals.ts
+created dist/server.js in 187ms
+
+src/server/index.ts → dist/server.observe.js...
+(!) Circular dependencies
+src/server/signals.ts -> src/server/shared.ts -> src/server/signals.ts
+src/server/signals.ts -> src/server/diagnostics.ts -> src/server/signals.ts
+created dist/server.observe.js in 195ms
+
+src/server/index.ts → dist/server.dev.js...
+(!) Circular dependencies
+src/server/signals.ts -> src/server/shared.ts -> src/server/signals.ts
+src/server/signals.ts -> src/server/diagnostics.ts -> src/server/signals.ts
+created dist/server.dev.js in 169ms
+
+src/refresh/index.ts → dist/refresh.js...
+created dist/refresh.js in 18ms
+
+src/refresh/index.ts → dist/refresh.dev.js...
+created dist/refresh.dev.js in 18ms
+
+src/attribution.ts → dist/attribution.js...
+created dist/attribution.js in 4ms
+
+src/internal.ts → dist/internal.js...
+created dist/internal.js in 4ms
+
+src/client/container-trace.ts → dist/container-trace.js...
+created dist/container-trace.js in 8ms
+> bun scripts/jsx-sync.mjs --compile --element SolidElement | Node | ArrayElement --import import type { Element as SolidElement } from "solid-js";
+> bun x --no-install rollup -c
+
+src/index.ts → dist/web.js...
+created dist/web.js in 336ms
+
+src/index.ts → dist/web.observe.js...
+created dist/web.observe.js in 169ms
+
+src/index.server.ts → dist/server.js...
+created dist/server.js in 490ms
+
+src/index.server.ts → dist/server.dev.js...
+created dist/server.dev.js in 469ms
+
+src/index.server.ts → dist/server.observe.js...
+created dist/server.observe.js in 457ms
+
+src/index.ts → dist/web.dev.js...
+created dist/web.dev.js in 140ms
+
+storage/src/index.ts → storage/dist/storage.js...
+created storage/dist/storage.js in 6ms
+
+performance-tracks/src/index.ts → performance-tracks/dist/performance-tracks.js...
+created performance-tracks/dist/performance-tracks.js in 33ms
+
+performance-tracks/src/index.ts → performance-tracks/dist/performance-tracks.observe.js...
+created performance-tracks/dist/performance-tracks.observe.js in 59ms
+
+performance-tracks/src/index.ts → performance-tracks/dist/performance-tracks.dev.js...
+created performance-tracks/dist/performance-tracks.dev.js in 40ms
+
+serialization/src/serializer.ts → serialization/dist/serialization.js...
+created serialization/dist/serialization.js in 28ms
+
+serialization/src/serializer-decode.ts → serialization/dist/decode.js...
+created serialization/dist/decode.js in 21ms
+
+server-functions/src/client.ts → server-functions/dist/client.js...
+created server-functions/dist/client.js in 99ms
+
+server-functions/src/client.ts → server-functions/dist/client.observe.js...
+created server-functions/dist/client.observe.js in 96ms
+
+server-functions/src/client.ts → server-functions/dist/client.dev.js...
+created server-functions/dist/client.dev.js in 96ms
+
+server-functions/src/rich-args.ts → server-functions/dist/rich-args.js...
+created server-functions/dist/rich-args.js in 4ms
+
+server-functions/src/server.ts → server-functions/dist/server.js...
+(!) Unused external imports
+ssrScope imported from external module "solid-js/internal" but never used in "src/server.ts".
+createComponent,untrack,merge imported from external module "solid-js" but never used in "src/server.ts".
+created server-functions/dist/server.js in 610ms
+
+server-functions/src/server.ts → server-functions/dist/server.dev.js...
+(!) Unused external imports
+ssrScope imported from external module "solid-js/internal" but never used in "src/server.ts".
+createComponent,untrack,merge imported from external module "solid-js" but never used in "src/server.ts".
+created server-functions/dist/server.dev.js in 587ms
+
+server-functions/src/server.ts → server-functions/dist/server.observe.js...
+(!) Unused external imports
+ssrScope imported from external module "solid-js/internal" but never used in "src/server.ts".
+createComponent,untrack,merge imported from external module "solid-js" but never used in "src/server.ts".
+created server-functions/dist/server.observe.js in 606ms
+
+frames/src/client.ts → frames/dist/client.js...
+created frames/dist/client.js in 174ms
+
+frames/src/client.ts → frames/dist/client.observe.js...
+(!) Circular dependencies
+../signals/dist/prod/core/core.js -> ../signals/dist/prod/core/async.js -> ../signals/dist/prod/core/core.js
+../signals/dist/prod/core/core.js -> ../signals/dist/prod/core/async.js -> ../signals/dist/prod/core/graph.js -> ../signals/dist/prod/core/heap.js -> ../signals/dist/prod/core/core.js
+../signals/dist/prod/core/core.js -> ../signals/dist/prod/core/async.js -> ../signals/dist/prod/core/graph.js -> ../signals/dist/prod/core/heap.js -> ../signals/dist/prod/core/scheduler.js -> ../signals/dist/prod/core/core.js
+...and 6 more
+created frames/dist/client.observe.js in 454ms
+
+frames/src/client.ts → frames/dist/client.dev.js...
+created frames/dist/client.dev.js in 182ms
+
+frames/src/trace-tier.ts → frames/dist/trace.js...
+created frames/dist/trace.js in 15ms
+
+frames/src/regions-tier.ts → frames/dist/regions.js...
+created frames/dist/regions.js in 83ms
+
+frames/src/assets-tier.ts → frames/dist/assets.js...
+created frames/dist/assets.js in 8ms
+
+frames/src/bind-tier.ts → frames/dist/bind.js...
+created frames/dist/bind.js in 107ms
+
+frames/src/bind-tier.ts → frames/dist/bind.dev.js...
+created frames/dist/bind.dev.js in 110ms
+
+frames/src/wire-tier.ts → frames/dist/wire.js...
+created frames/dist/wire.js in 118ms
+
+frames/src/server.ts → frames/dist/server.js...
+created frames/dist/server.js in 269ms
+
+frames/src/server.ts → frames/dist/server.dev.js...
+created frames/dist/server.dev.js in 258ms
+
+frames/src/server.ts → frames/dist/server.observe.js...
+created frames/dist/server.observe.js in 268ms
+> bun x --no-install tsc -p tsconfig.build.json
+> bun x --no-install tsc -p tsconfig.build.json
+> bun x --no-install tsc -p tsconfig.build.json
+> bun scripts/copy-types.mjs
+> bun x --no-install tsc -p performance-tracks/tsconfig.build.json
+> bun ../web/scripts/jsx-sync.mjs --input ../web/jsx/jsx-h.d.ts --output ./jsx-runtime/src/jsx.d.ts --element SolidElement | Node | FunctionElement | ArrayElement --import import type { Element as SolidElement } from "solid-js";
+> bun ../web/scripts/jsx-sync.mjs --input ../web/jsx/jsx-h.d.ts --output ./jsx-runtime/types/jsx.d.ts --element SolidElement | Node | FunctionElement | ArrayElement --import import type { Element as SolidElement } from "solid-js";
+> bun x --no-install tsc -p tsconfig.json
+> bun x --no-install tsc -p jsx-runtime/tsconfig.json
+> bun x --no-install rollup -c
+
+src/index.ts → dist/h.js...
+created dist/h.js in 107ms
+
+jsx-runtime/src/index.ts → jsx-runtime/dist/jsx.js...
+created jsx-runtime/dist/jsx.js in 7ms
+> bun x --no-install tsc -p tsconfig.json
+> bun x --no-install rollup -c
+
+src/index.ts → dist/html.js...
+created dist/html.js in 142ms
+> bun x --no-install tsc -p tsconfig.json
+> bun x --no-install rollup -c
+
+src/index.ts → dist/universal.js...
+created dist/universal.js in 133ms
+
+src/index.ts → dist/universal.observe.js...
+created dist/universal.observe.js in 38ms
+
+src/index.ts → dist/universal.dev.js...
+created dist/universal.dev.js in 34ms
+> bun x --no-install rollup -c --bundleConfigAsCjs
+
+src/index.ts → index.js...
+(!) Circular dependencies
+src/shared/transform.ts -> src/dom/element.ts -> src/shared/transform.ts
+src/shared/transform.ts -> src/dom/element.ts -> src/universal/element.ts -> src/shared/transform.ts
+src/shared/transform.ts -> src/ssr/element.ts -> src/shared/transform.ts
+src/shared/transform.ts -> src/shared/component.ts -> src/shared/transform.ts
+src/shared/transform.ts -> src/shared/fragment.ts -> src/shared/transform.ts
+created index.js in 650ms
+> bun x --no-install napi build --release --strip --manifest-path ./Cargo.toml
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.24
+   Compiling siphasher v1.0.3
+   Compiling serde_core v1.0.229
+   Compiling cfg-if v1.0.4
+   Compiling serde v1.0.229
+   Compiling fastrand v2.5.0
+   Compiling memchr v2.8.3
+   Compiling itoa v1.0.18
+   Compiling rustversion v1.0.23
+   Compiling phf_shared v0.14.0
+   Compiling rustc-hash v2.1.3
+   Compiling owo-colors v4.3.0
+   Compiling allocator-api2 v0.2.21
+   Compiling unicode-width v0.2.2
+   Compiling smawk v0.3.3
+   Compiling unicode-linebreak v0.1.5
+   Compiling unicode-segmentation v1.13.3
+   Compiling textwrap v0.16.2
+   Compiling hashbrown v0.17.1
+   Compiling static_assertions v1.1.0
+   Compiling dragonbox_ecma v0.1.12
+   Compiling phf v0.14.0
+   Compiling zmij v1.0.23
+   Compiling phf_generator v0.14.0
+   Compiling cow-utils v0.1.3
+   Compiling unicode-id-start v1.4.0
+   Compiling percent-encoding v2.3.2
+   Compiling nonmax v0.5.5
+   Compiling phf_shared v0.13.1
+   Compiling autocfg v1.5.1
+   Compiling thiserror v2.0.20
+   Compiling num-traits v0.2.19
+   Compiling oxc_data_structures v0.140.0 (https://github.com/oxc-project/oxc?rev=8e0ed2ebb96137fb1611cdbd5742d5cb46037d40#8e0ed2eb)
+   Compiling phf_generator v0.13.1
+   Compiling ryu v1.0.23
+   Compiling oxc_data_structures v0.144.0
+   Compiling bytecount v0.6.9
+   Compiling libc v0.2.189
+   Compiling oxc-miette v4.0.0
+   Compiling oxc_allocator v0.144.0
+   Compiling phf_codegen v0.13.1
+   Compiling oxc_estree v0.144.0
+   Compiling serde_json v1.0.151
+   Compiling parking_lot_core v0.9.12
+   Compiling bitflags v2.13.1
+   Compiling syn v3.0.3
+   Compiling syn v2.0.119
+   Compiling scopeguard v1.2.0
+   Compiling castaway v0.2.4
+   Compiling lock_api v0.4.14
+   Compiling string_cache_codegen v0.6.1
+   Compiling oxc_estree v0.140.0 (https://github.com/oxc-project/oxc?rev=8e0ed2ebb96137fb1611cdbd5742d5cb46037d40#8e0ed2eb)
+   Compiling new_debug_unreachable v1.0.6
+   Compiling web_atoms v0.2.6
+   Compiling phf v0.13.1
+   Compiling precomputed-hash v0.1.1
+   Compiling either v1.17.0
+   Compiling itertools v0.15.0
+   Compiling futures-sink v0.3.34
+   Compiling napi-build v2.4.1
+   Compiling self_cell v1.3.0
+   Compiling futures-core v0.3.34
+   Compiling futures-channel v0.3.34
+   Compiling tendril v0.5.1
+   Compiling num-integer v0.1.47
+   Compiling serde_derive v1.0.229
+   Compiling thiserror-impl v2.0.20
+   Compiling num-bigint v0.5.1
+   Compiling oxc_ast_macros v0.144.0
+   Compiling futures-macro v0.3.34
+   Compiling phf_macros v0.14.0
+   Compiling oxc-miette-derive v3.0.1
+   Compiling compact_str v0.10.0
+   Compiling oxc_ast_macros v0.140.0 (https://github.com/oxc-project/oxc?rev=8e0ed2ebb96137fb1611cdbd5742d5cb46037d40#8e0ed2eb)
+   Compiling oxc_str v0.144.0
+   Compiling oxc_span v0.144.0
+   Compiling log v0.4.33
+   Compiling pin-project-lite v0.2.17
+   Compiling futures-io v0.3.34
+   Compiling slab v0.4.12
+   Compiling futures-task v0.3.34
+   Compiling seq-macro v0.3.6
+   Compiling futures-util v0.3.34
+   Compiling oxc_sourcemap v8.1.2
+   Compiling vsimd v0.8.0
+   Compiling outref v0.5.2
+   Compiling convert_case v0.11.0
+   Compiling base64-simd v0.8.0
+   Compiling oxc-miette v3.0.1
+   Compiling napi v3.12.1
+   Compiling libloading v0.9.0
+   Compiling tsrx_tape_schema v0.8.0 (https://github.com/tsrx-org/oxc?rev=218e90ed566b4b83d4a23550cb0fc0de2d10fef0#218e90ed)
+   Compiling json-escape-simd v3.1.1
+   Compiling semver v1.0.28
+   Compiling napi-derive-backend v6.1.2
+   Compiling napi-sys v3.3.0
+   Compiling htmlize v1.1.0
+   Compiling solidjs-compiler v0.0.0 (/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/compiler)
+   Compiling tsrx_syntax v0.8.0 (https://github.com/tsrx-org/oxc?rev=218e90ed566b4b83d4a23550cb0fc0de2d10fef0#218e90ed)
+   Compiling smallvec v1.15.2
+   Compiling oxc_index v5.0.0
+   Compiling compact_str v0.9.1
+   Compiling oxc_allocator v0.140.0 (https://github.com/oxc-project/oxc?rev=8e0ed2ebb96137fb1611cdbd5742d5cb46037d40#8e0ed2eb)
+   Compiling oxc_diagnostics v0.144.0
+   Compiling oxc_syntax v0.144.0
+   Compiling oxc_str v0.140.0 (https://github.com/oxc-project/oxc?rev=8e0ed2ebb96137fb1611cdbd5742d5cb46037d40#8e0ed2eb)
+   Compiling oxc_regular_expression v0.144.0
+   Compiling parking_lot v0.12.5
+   Compiling oxc_ast v0.144.0
+   Compiling oxc_span v0.140.0 (https://github.com/oxc-project/oxc?rev=8e0ed2ebb96137fb1611cdbd5742d5cb46037d40#8e0ed2eb)
+   Compiling oxc_diagnostics v0.140.0 (https://github.com/oxc-project/oxc?rev=8e0ed2ebb96137fb1611cdbd5742d5cb46037d40#8e0ed2eb)
+   Compiling string_cache v0.9.0
+   Compiling futures-executor v0.3.34
+   Compiling futures v0.3.34
+   Compiling ctor v1.0.13
+   Compiling pastey v0.1.1
+   Compiling nohash-hasher v0.2.0
+   Compiling napi-derive v3.6.3
+   Compiling oxc_regular_expression v0.140.0 (https://github.com/oxc-project/oxc?rev=8e0ed2ebb96137fb1611cdbd5742d5cb46037d40#8e0ed2eb)
+   Compiling oxc_syntax v0.140.0 (https://github.com/oxc-project/oxc?rev=8e0ed2ebb96137fb1611cdbd5742d5cb46037d40#8e0ed2eb)
+   Compiling markup5ever v0.39.0
+   Compiling html5ever v0.39.0
+   Compiling xml5ever v0.39.0
+   Compiling oxc_ast v0.140.0 (https://github.com/oxc-project/oxc?rev=8e0ed2ebb96137fb1611cdbd5742d5cb46037d40#8e0ed2eb)
+   Compiling markup5ever_rcdom v0.39.0+unofficial
+   Compiling oxc_ecmascript v0.144.0
+   Compiling oxc_ast_visit v0.144.0
+   Compiling oxc_parser v0.144.0
+   Compiling oxc_semantic v0.144.0
+   Compiling oxc_codegen v0.144.0
+   Compiling oxc_ecmascript v0.140.0 (https://github.com/oxc-project/oxc?rev=8e0ed2ebb96137fb1611cdbd5742d5cb46037d40#8e0ed2eb)
+   Compiling oxc_ast_visit v0.140.0 (https://github.com/oxc-project/oxc?rev=8e0ed2ebb96137fb1611cdbd5742d5cb46037d40#8e0ed2eb)
+   Compiling oxc_parser v0.140.0 (https://github.com/oxc-project/oxc?rev=8e0ed2ebb96137fb1611cdbd5742d5cb46037d40#8e0ed2eb)
+   Compiling oxc_semantic v0.140.0 (https://github.com/oxc-project/oxc?rev=8e0ed2ebb96137fb1611cdbd5742d5cb46037d40#8e0ed2eb)
+   Compiling oxc_adapter v0.8.0 (https://github.com/tsrx-org/oxc?rev=218e90ed566b4b83d4a23550cb0fc0de2d10fef0#218e90ed)
+   Compiling tsrx_parser_engine v0.8.0 (https://github.com/tsrx-org/oxc?rev=218e90ed566b4b83d4a23550cb0fc0de2d10fef0#218e90ed)
+warning: linker stderr: ld: -s is obsolete
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `solidjs-compiler` (lib) generated 1 warning
+    Finished `release` profile [optimized] target(s) in 42.39s
+> bun x --no-install tsc -p tsconfig.build.json
+Linked upstream dafad1db34626feb5f154e98e599f65be1802c6c. Restore: bun run upstream --restore

@@ -14,12 +14,13 @@ Refetching argument 1 and then requesting 2 should update the nested server span
 
 ## Reproduction
 
-In an empty Bun project, create the files below. No conformance-harness imports are needed. Browser cases use the installed system Google Chrome, not a downloaded browser. The rc.13 command is the comparison baseline; to reproduce HEAD, replace the five Solid packages with the matching built distributions from `solidjs/solid` commit `dafad1db34626feb5f154e98e599f65be1802c6c`. Do not mix package generations. 
+Use a built Solid checkout at `dafad1db34626feb5f154e98e599f65be1802c6c` (all five package distributions, including the native compiler). Copy these files into an empty Bun project. The commands below explicitly link that HEAD build; omit the link command only to run the rc.13 comparison. HEAD-only cases pass on rc.13. Browser tests use system Google Chrome.
 
 ```sh
 bun init -y
 bun add solid-js@2.0.0-rc.13 @solidjs/web@2.0.0-rc.13 @solidjs/signals@2.0.0-rc.13 @solidjs/compiler@2.0.0-rc.13 @solidjs/diagnostics@2.0.0-rc.13
 bun add -d playwright
+bun run link-head.ts /absolute/path/to/built/solid
 BUILD_MODE=development bun test ./repro.test.ts
 ```
 
@@ -239,10 +240,37 @@ Refetching argument 1 and then requesting 2 should update the nested server span
 
 ## Versions and builds
 
-Both builds fail; rc.13 also fails. The original failing snapshot was `53ef0e69`; the refresh target is `dafad1db34626feb5f154e98e599f65be1802c6c`. Refresh disposition is recorded in the batch index before filing.
+Verified on Solid HEAD `dafad1db34626feb5f154e98e599f65be1802c6c`: 009: development, production.
+
+Comparison: 009: rc.13 also fails the named contract. The original snapshot was `53ef0e69`; rc.13 results come from the versioned baseline evidence. No refreshed confirmed case passed.
 
 ## Related issues
 
 [#2965](https://github.com/solidjs/solid/issues/2965), [#2974](https://github.com/solidjs/solid/issues/2974), [#2966](https://github.com/solidjs/solid/issues/2966)
 
 Local evidence: [finding 009](../../findings/009-frame-nested-region-stale/README.md).
+
+### `link-head.ts`
+
+```ts
+import { mkdir, realpath, rm, symlink } from 'node:fs/promises'
+import { resolve } from 'node:path'
+
+const source = process.argv[2]
+if (!source) throw new Error('Pass the path to the built Solid HEAD checkout.')
+const root = await realpath(source)
+for (const [name, folder] of [
+ ['solid-js', 'solid'], ['@solidjs/signals', 'signals'],
+ ['@solidjs/web', 'web'], ['@solidjs/compiler', 'compiler'],
+ ['@solidjs/diagnostics', 'diagnostics'],
+]) {
+ const packagePath = resolve(root, 'packages', folder!)
+ if (!await Bun.file(resolve(packagePath, 'package.json')).exists())
+  throw new Error('Missing built package: ' + packagePath)
+ const destination = resolve('node_modules', name!)
+ await rm(destination, { recursive: true, force: true })
+ await mkdir(resolve(destination, '..'), { recursive: true })
+ await symlink(packagePath, destination, 'dir')
+}
+console.log('Linked the five matching HEAD packages from ' + root)
+```

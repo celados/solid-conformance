@@ -1,0 +1,14 @@
+bun test v1.4.2 (744846f84)
+
+findings/025-async-fanout-classification/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"dafad1db34626feb5f154e98e599f65be1802c6c","directory":"/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c"},"buildMode":"production","solid":"2.0.0-rc.13"}
+{
+  value: 1,
+  warnings: [],
+  causes: [],
+}
+
+ 1 pass
+ 0 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [8.10s]

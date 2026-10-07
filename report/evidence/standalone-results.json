@@ -1,0 +1,182 @@
+{
+  "head": "dafad1db34626feb5f154e98e599f65be1802c6c",
+  "method": "Markdown files extracted into isolated scratch folders, compared byte-for-byte with companion sources, then run without conformance preload or harness.",
+  "results": [
+    {
+      "issue": "report/issues/01-store-rejection.md",
+      "test": "repro.test.ts",
+      "mode": "development",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "ms": 9328.977042,
+      "log": "report/evidence/standalone/01-store-rejection-repro.test.ts.log"
+    },
+    {
+      "issue": "report/issues/02-production-refresh.md",
+      "test": "repro.test.ts",
+      "mode": "production",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "ms": 9491.425625,
+      "log": "report/evidence/standalone/02-production-refresh-repro.test.ts.log"
+    },
+    {
+      "issue": "report/issues/04-live-decoder-stream-lifetime.md",
+      "test": "repro.test.ts",
+      "mode": "development",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "ms": 343.4732500000009,
+      "log": "report/evidence/standalone/04-live-decoder-stream-lifetime-repro.test.ts.log"
+    },
+    {
+      "issue": "report/issues/03-multisite-hydration.md",
+      "test": "repro.test.ts",
+      "mode": "development",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "ms": 8725.684208,
+      "log": "report/evidence/standalone/03-multisite-hydration-repro.test.ts.log"
+    },
+    {
+      "issue": "report/issues/05-production-store-affects.md",
+      "test": "repro.test.ts",
+      "mode": "production",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "ms": 22.114541999999346,
+      "log": "report/evidence/standalone/05-production-store-affects-repro.test.ts.log"
+    },
+    {
+      "issue": "report/issues/04-live-decoder-stream-lifetime.md",
+      "test": "live.test.ts",
+      "mode": "development",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "ms": 9961.153125,
+      "log": "report/evidence/standalone/04-live-decoder-stream-lifetime-live.test.ts.log"
+    },
+    {
+      "issue": "report/issues/07-document-live-abort.md",
+      "test": "repro.test.ts",
+      "mode": "development",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 3,
+      "ms": 245.17795800000022,
+      "log": "report/evidence/standalone/07-document-live-abort-repro.test.ts.log"
+    },
+    {
+      "issue": "report/issues/06-loading-nonconvergence.md",
+      "test": "repro.test.ts",
+      "mode": "development",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "ms": 10020.003333,
+      "log": "report/evidence/standalone/06-loading-nonconvergence-repro.test.ts.log"
+    },
+    {
+      "issue": "report/issues/09-refresh-optimistic-authority.md",
+      "test": "repro.test.ts",
+      "mode": "development",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "ms": 28.840250000001106,
+      "log": "report/evidence/standalone/09-refresh-optimistic-authority-repro.test.ts.log"
+    },
+    {
+      "issue": "report/issues/10-sync-asset-resolver.md",
+      "test": "repro.test.ts",
+      "mode": "development",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "ms": 36.98079100000177,
+      "log": "report/evidence/standalone/10-sync-asset-resolver-repro.test.ts.log"
+    },
+    {
+      "issue": "report/issues/08-nested-server-region.md",
+      "test": "repro.test.ts",
+      "mode": "development",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "ms": 9413.132332999998,
+      "log": "report/evidence/standalone/08-nested-server-region-repro.test.ts.log"
+    },
+    {
+      "issue": "report/issues/12-async-action-live-ack.md",
+      "test": "repro.test.ts",
+      "mode": "development",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "ms": 144.77124999999796,
+      "log": "report/evidence/standalone/12-async-action-live-ack-repro.test.ts.log"
+    },
+    {
+      "issue": "report/issues/13-cookie-proto-key.md",
+      "test": "repro.test.ts",
+      "mode": "development",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "ms": 31.79475000000093,
+      "log": "report/evidence/standalone/13-cookie-proto-key-repro.test.ts.log"
+    },
+    {
+      "issue": "report/issues/11-conditional-get-format.md",
+      "test": "repro.test.ts",
+      "mode": "development",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "ms": 8726.750084,
+      "log": "report/evidence/standalone/11-conditional-get-format-repro.test.ts.log"
+    },
+    {
+      "issue": "report/issues/14-mixed-object-insert.md",
+      "test": "repro.test.ts",
+      "mode": "development",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "ms": 8795.091708999997,
+      "log": "report/evidence/standalone/14-mixed-object-insert-repro.test.ts.log"
+    },
+    {
+      "issue": "report/issues/15-spread-children-hydration.md",
+      "test": "repro.test.ts",
+      "mode": "development",
+      "exitCode": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "ms": 7831.061584000003,
+      "log": "report/evidence/standalone/15-spread-children-hydration-repro.test.ts.log"
+    }
+  ]
+}

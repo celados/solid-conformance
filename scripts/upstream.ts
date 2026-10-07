@@ -1,4 +1,4 @@
-import { mkdir, rm, symlink } from 'node:fs/promises'
+import { mkdir, rm, symlink, realpath } from 'node:fs/promises'
 import { resolve } from 'node:path'
 const root = process.cwd()
 async function run(cmd: string[], cwd = root) {
@@ -7,6 +7,7 @@ async function run(cmd: string[], cwd = root) {
 	if ((await child.exited) !== 0) throw new Error(`Failed: ${cmd.join(' ')}`)
 }
 async function link(directory: string, revision: string, ref: string) {
+	const canonical = await realpath(directory)
 	for (const [name, folder] of [
 		['solid-js', 'solid'],
 		['@solidjs/signals', 'signals'],
@@ -21,11 +22,11 @@ async function link(directory: string, revision: string, ref: string) {
 		const destination = resolve('node_modules', name!)
 		await rm(destination, { recursive: true, force: true })
 		await mkdir(resolve(destination, '..'), { recursive: true })
-		await symlink(`${directory}/packages/${folder}`, destination, 'dir')
+		await symlink(`${canonical}/packages/${folder}`, destination, 'dir')
 	}
 	await Bun.write(
 		'.upstream/active.json',
-		JSON.stringify({ ref, revision, directory }, null, 2),
+		JSON.stringify({ ref, revision, directory: canonical }, null, 2),
 	)
 	console.log(
 		`Linked upstream ${revision}. Restore: bun run upstream --restore`,
@@ -57,9 +58,11 @@ if (process.argv.includes('--link-built')) {
 	if (!revisionResponse.ok)
 		throw new Error(`GitHub revision: ${revisionResponse.status}`)
 	const revision = ((await revisionResponse.json()) as { sha: string }).sha
-	const directory = resolve('.upstream', revision)
+	await mkdir(resolve('.upstream'), { recursive: true })
+	const upstream = await realpath(resolve('.upstream'))
+	const directory = resolve(upstream, revision)
 	await mkdir(directory, { recursive: true })
-	const tar = resolve('.upstream', `${revision}.tar.gz`)
+	const tar = resolve(upstream, `${revision}.tar.gz`)
 	await run([
 		'curl',
 		'-fsSL',

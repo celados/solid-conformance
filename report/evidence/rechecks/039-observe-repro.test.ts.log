@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+findings/039-missing-resource-timing-fallback/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"dafad1db34626feb5f154e98e599f65be1802c6c","directory":"/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c"},"buildMode":"observe","solid":"2.0.0-rc.13"}
+ 5 | import {rm} from 'node:fs/promises'
+ 6 | test('RFC08 L1222: a resource-less call gets a centred server span after the 30 second observer window',async()=>{
+ 7 |  const mode=(process.env.BUILD_MODE??'development') as BuildMode,dir=resolve('.build','server-fallback-'+process.pid+'-'+mode)
+ 8 |  await build(dir,mode,{client:['findings/039-missing-resource-timing-fallback/client.ts'],server:[]})
+ 9 |  const host=Bun.serve({port:0,fetch:r=>new URL(r.url).pathname.endsWith('.js')?new Response(Bun.file(dir+'/client.js'),{headers:{'content-type':'text/javascript'}}):new Response('<script type="module" src="/client.js"></script>',{headers:{'content-type':'text/html'}})}),browser=await chromium.launch({channel:'chrome',headless:true})
+10 |  try{const page=await browser.newPage();await page.goto(String(host.url));await page.waitForFunction(()=>!!(window as any).serverPerformance);const positive=await page.evaluate(async()=>{const active=await(window as any).serverPerformance.cache(false);try{return active.snapshot()}finally{active.close()}});expect(positive).toHaveLength(mode==='production'?0:1);await page.clock.install();await page.clock.pauseAt(new Date('2050-01-01T00:00:00Z'));const before=await page.evaluate(async()=>{const active=await(window as any).serverPerformance.cache(true);(window as any).fallback=active;return {result:active.result,calls:active.calls,entries:active.snapshot(),nativeObserver:typeof PerformanceObserver}});expect(before.result).toBe(17);expect(before.nativeObserver).toBe('function');expect(before.entries).toEqual([]);if(mode!=='production')expect(before.calls).toHaveLength(1);await page.clock.runFor(30001);await page.evaluate(async()=>{await(await fetch('/probe?expiry')).text()});await page.clock.runFor(100);const entr
+
+error: expect(received).toHaveLength(expected)
+
+Expected length: 1
+Received length: 0
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/findings/039-missing-resource-timing-fallback/repro.test.ts:10:1262)
+(fail) RFC08 L1222: a resource-less call gets a centred server span after the 30 second observer window [8962.56ms]
+
+ 0 pass
+ 1 fail
+ 6 expect() calls
+Ran 1 test across 1 file. [9.11s]
