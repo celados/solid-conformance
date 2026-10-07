@@ -1493,9 +1493,11 @@
   },
   {
     "id": "10-server-functions:L228:5",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/live-scopes.test.ts#RFC10 live takeover releases per hydration scope before the whole document ends"
+    ],
+    "reason": "Actual streamingdocument: rootpass live source takes over and renders second while slow boundary SSR gate remains pending; slow boundary makes its own sole live request only after reveal/release. Three modes, no page-wide EOF gate."
   },
   {
     "id": "10-server-functions:L229:1",
@@ -1626,15 +1628,20 @@
   },
   {
     "id": "10-server-functions:L231:3",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/live-scopes.test.ts#RFC10 live takeover releases per hydration scope before the whole document ends",
+      "tracks/docs/rpc-cases.ts#10/live-digest-skip"
+    ],
+    "reason": "Document-adopted value remains locally usable; request carries digest; equal first serveremission skipped while second emission flows. Return-from-pause part refers withdrawn hidden-page pause, not an implemented separately triggerable pause API."
   },
   {
     "id": "10-server-functions:L231:4",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/live-scopes.test.ts#RFC10 live takeover releases per hydration scope before the whole document ends"
+    ],
+    "reason": "Hydrate adopts identical fast DOMnode and value synchronously; effectvalues fastfirst/second each once despite adopted-first takeover; both sources send Last-Event-ID and own first values without Loading fallback/pending reset."
   },
   {
     "id": "10-server-functions:L231:5",

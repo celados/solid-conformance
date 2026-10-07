@@ -1,0 +1,13 @@
+import {test,expect} from 'bun:test';
+import {chromium} from 'playwright';
+import {resolve} from 'node:path';
+import {rm} from 'node:fs/promises';
+import {build,type BuildMode} from '../../scripts/build';
+for(const mode of ['development','observe','production'] as BuildMode[])test('RFC10 live takeover releases per hydration scope before the whole document ends '+mode,async()=>{
+ const dir=resolve('.build','live-scopes-'+process.pid+'-'+mode);await build(dir,mode,{client:['tracks/frames/live-scopes/client.tsx'],server:['tracks/frames/live-scopes/server.tsx']});const ssr=await import(dir+'/server.js');
+ const server=Bun.serve({hostname:'127.0.0.1',port:0,fetch(request){const path=new URL(request.url).pathname;return path.startsWith('/_server')?ssr.handle(request):path.endsWith('.js')?new Response(Bun.file(dir+path),{headers:{'content-type':'text/javascript'}}):path==='/favicon.ico'?new Response(null,{status:204}):new Response(ssr.document(request).readable,{headers:{'content-type':'text/html'}})}});
+ const browser=await chromium.launch({channel:'chrome',headless:true});try{const page=await browser.newPage();const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(['error','warning'].includes(m.type()))errors.push(m.text())});await page.goto(String(server.url),{waitUntil:'commit'});
+ await page.waitForFunction(()=>document.querySelector('[data-fast]')?.textContent==='fast-second',{},{timeout:5000});expect(await page.locator('[data-slow-fallback]').textContent()).toBe('slow-pending');let requests=await page.evaluate(()=>(window as any).scopes.requests);expect(requests.map((r:any)=>r.address)).toEqual(['/_server/live/scopes-fast']);
+ ssr.releaseSlow();await page.waitForFunction(()=>document.querySelector('[data-slow]')?.textContent==='slow-second');requests=await page.evaluate(()=>(window as any).scopes.requests);expect(requests.map((r:any)=>r.address)).toEqual(['/_server/live/scopes-fast','/_server/live/scopes-slow']);expect(requests.every((r:any)=>r.headers.some(([key]:string[])=>key?.toLowerCase()==='last-event-id'))).toBe(true);expect(ssr.stats).toEqual({opened:4,closed:4});const adopted=await page.evaluate(()=>{const {before,during,adoptedSameNode,effects}=(window as any).scopes;return {before,during,adoptedSameNode,effects}});expect(adopted).toMatchObject({before:"fast-first",during:"fast-first",adoptedSameNode:true});expect(adopted.effects).toEqual([["fast","fast-first"],["fast","fast-second"],["slow","slow-first"],["slow","slow-second"]]);expect(errors).toEqual([]);await page.evaluate(()=>(window as any).scopes.unmount());
+ }finally{ssr.releaseSlow();await browser.close();server.stop(true);await rm(dir,{recursive:true,force:true})}
+},30000);
