@@ -2042,9 +2042,11 @@
     {
       "id": "08-dev-diagnostics:L477:7",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-checks-false"
+      ],
+      "reason": "所有对应 families 与通道severity、环效应/derivedstore路径或关闭6cost有针对断言。"
     },
     {
       "id": "08-dev-diagnostics:L481:1",
@@ -2072,11 +2074,12 @@
     {
       "id": "08-dev-diagnostics:L483:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
+        "08/cost-effect-cycle-families",
         "08/attribution-warning-effect_writes_own_source"
       ],
-      "reason": "partial: directsignal feedback有验证，多层memo/store未验证。"
+      "reason": "所有对应 families 与通道severity、环效应/derivedstore路径或关闭6cost有针对断言。"
     },
     {
       "id": "08-dev-diagnostics:L483:3",
@@ -2088,9 +2091,12 @@
     {
       "id": "08-dev-diagnostics:L483:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-effect-cycle-families",
+        "08/attribution-warning-effect_writes_own_source"
+      ],
+      "reason": "所有对应 families 与通道severity、环效应/derivedstore路径或关闭6cost有针对断言。"
     },
     {
       "id": "08-dev-diagnostics:L483:5",
@@ -2104,11 +2110,12 @@
     {
       "id": "08-dev-diagnostics:L485:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
+        "08/cost-effect-cycle-families",
         "08/attribution-warning-effect_writes_own_source"
       ],
-      "reason": "partial: 其他signal写negative有测试，untrack仍反馈/不反馈细分未覆盖。"
+      "reason": "所有对应 families 与通道severity、环效应/derivedstore路径或关闭6cost有针对断言。"
     },
     {
       "id": "08-dev-diagnostics:L489:1",

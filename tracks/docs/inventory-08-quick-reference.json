@@ -320,11 +320,11 @@
     {
       "id": "08-dev-diagnostics:L963:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/attribution-warning-effect_writes_own_source"
+        "08/cost-effect-cycle-families"
       ],
-      "reason": "root direct feedback已测；multi-effect info ring未测。"
+      "reason": "单effect经store/memo写回warn，2effect ring info，perf category与每change flush数量明确断言。"
     },
     {
       "id": "08-dev-diagnostics:L964:1",
