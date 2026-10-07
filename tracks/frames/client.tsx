@@ -148,8 +148,26 @@ async function startLive() {
       () => null,
       (e) => String(e),
     );
+    const cycle: any = {};
+    cycle.self = cycle;
+    const richRefusals = [];
+    for (const value of [new Map(), new Set([1]), new Uint8Array([1]), cycle, undefined])
+      richRefusals.push(
+        await echo(value).then(
+          () => null,
+          (e) => String(e),
+        ),
+      );
+    const json = await echo({ nested: [1, false, null, "json"] });
+    const form = new FormData();
+    form.set("title", "form");
+    const naturalForm = await echo(form);
+    const body = createServerReference("wave3-body");
+    const naturalBlob = await body(new Blob(["blob-body"], { type: "text/plain" }));
+    const naturalFile = await body(new File(["file-body"], "fixture.txt", { type: "text/plain" }));
     enableRichArguments();
     const rich = await echo(new Date("2020-01-01"), new Map([["n", 1]]));
+    const richShapes = await echo(new Set([2]), new Uint8Array([3]), cycle, undefined);
     const decorated = withMeta(echo, { requiresAuth: true });
     await decorated(9);
     const unknown = await createServerReference("unknown-wave3")().then(
@@ -198,6 +216,17 @@ async function startLive() {
       longRequest,
       richDate: rich.args[0] instanceof Date,
       richMap: rich.args[1] instanceof Map,
+      richRefusals,
+      json: json.args,
+      naturalForm: Object.fromEntries(naturalForm.args[0]),
+      naturalBlob: naturalBlob.text,
+      naturalFile: naturalFile,
+      richShapes: [
+        richShapes.args[0] instanceof Set,
+        richShapes.args[1] instanceof Uint8Array,
+        richShapes.args[2].self === richShapes.args[2],
+        richShapes.args[3] === undefined,
+      ],
       unknown,
       failure,
       abort,

@@ -89,6 +89,10 @@ registerServerReference("wave3-echo", (...args: any[]) => ({
   authorization: getRequestEvent()?.request.headers.get("authorization"),
 }));
 GET(createServerReference(registerServerReference("wave3-read", (n: number) => n + 1)));
+registerServerReference("wave3-body", async (body: Blob) => ({
+  text: await body.text(),
+  name: body instanceof File ? body.name : null,
+}));
 registerServerReference("wave3-fail", () => {
   throw new Error("private-rpc-error");
 });

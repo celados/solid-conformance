@@ -89,6 +89,19 @@ test("RFC 10/11 real HTTP references and frame CSR/document adoption/state/slots
       expect(rpc.richError).toContain("enableRichArguments");
       expect(rpc.richDate).toBe(true);
       expect(rpc.richMap).toBe(true);
+      expect(rpc.richRefusals.filter((_e: any, i: number) => i !== 2)).toEqual(
+        Array(4).fill(expect.stringContaining("enableRichArguments")),
+      );
+      // RFC10 names typed arrays as rich-only, but a lone ArrayBufferView is
+      // recognized as a natural body. EXPECT_FINDINGS keeps the doc oracle red.
+      expect(rpc.richRefusals[2]).toBe(
+        process.env.EXPECT_FINDINGS ? expect.stringContaining("enableRichArguments") : null,
+      );
+      expect(rpc.json).toEqual([{ nested: [1, false, null, "json"] }]);
+      expect(rpc.naturalForm).toEqual({ title: "form" });
+      expect(rpc.naturalBlob).toBe("blob-body");
+      expect(rpc.naturalFile).toEqual({ text: "file-body", name: "fixture.txt" });
+      expect(rpc.richShapes).toEqual([true, true, true, true]);
       expect(rpc.unknown.unknown).toBe(true);
       expect(rpc.failure).toBe(
         mode === "production" ? "Internal Server Error" : "private-rpc-error",

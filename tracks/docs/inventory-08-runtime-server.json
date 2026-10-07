@@ -540,5 +540,85 @@
       "tracks/frames/recovery.test.ts"
     ],
     "reason": "production no-record已测，no-listener clock和byte-identical还需补"
+  },
+  {
+    "id": "08-dev-diagnostics:L727:1",
+    "status": "covered",
+    "classification": "behavioral",
+    "coverage": [
+      "08/binding-server-valid",
+      "08/binding-server-spread",
+      "tracks/frames/binding.test.ts:13 client shapes"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L727:2",
+    "status": "covered",
+    "classification": "behavioral",
+    "coverage": [
+      "08/binding-server-valid",
+      "08/binding-server-spread",
+      "tracks/frames/binding.test.ts:13 client shapes"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L727:3",
+    "status": "covered",
+    "classification": "behavioral",
+    "coverage": [
+      "08/binding-server-valid",
+      "08/binding-server-spread",
+      "tracks/frames/binding.test.ts:13 client shapes"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L727:7",
+    "status": "covered",
+    "classification": "behavioral",
+    "coverage": [
+      "08/binding-truthiness-and-source-order"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L727:8",
+    "status": "covered",
+    "classification": "behavioral",
+    "coverage": [
+      "08/binding-truthiness-and-source-order"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L727:4",
+    "status": "uncovered",
+    "classification": "behavioral",
+    "coverage": [
+      "tracks/frames/binding.test.ts"
+    ],
+    "reason": "已测全部reason/多shape；同句话部分fields/双面position/canonical reservedkey全列去重仍需精确断言，不能整句称covered"
+  },
+  {
+    "id": "08-dev-diagnostics:L727:6",
+    "status": "uncovered",
+    "classification": "behavioral",
+    "coverage": [
+      "tracks/frames/binding.test.ts"
+    ],
+    "reason": "已测全部reason/多shape；同句话部分fields/双面position/canonical reservedkey全列去重仍需精确断言，不能整句称covered"
+  },
+  {
+    "id": "08-dev-diagnostics:L727:9",
+    "status": "uncovered",
+    "classification": "behavioral",
+    "coverage": [
+      "tracks/frames/binding.test.ts"
+    ],
+    "reason": "已测全部reason/多shape；同句话部分fields/双面position/canonical reservedkey全列去重仍需精确断言，不能整句称covered"
+  },
+  {
+    "id": "08-dev-diagnostics:L727:5",
+    "status": "not-behavioral",
+    "classification": "not-behavioral",
+    "coverage": [],
+    "reason": "风险/动机说明；具体orphan trigger另测"
   }
 ]

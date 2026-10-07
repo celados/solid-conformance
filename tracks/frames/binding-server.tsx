@@ -1,5 +1,12 @@
 import { OBSERVE } from "solid-js";
-import { isDev, ssr, ssrElement, ssrClassName } from "@solidjs/web";
+import {
+  isDev,
+  ssr,
+  ssrElement,
+  ssrClassName,
+  renderToString,
+  createRequestEvent,
+} from "@solidjs/web";
 import { renderServerComponent } from "@solidjs/web/frames/server";
 import { equal, ok, runCases, type DocCase } from "../docs/registry";
 const cases: DocCase[] = [];
@@ -19,6 +26,10 @@ const modes: Record<string, (p: any) => any> = {
   },
   "server-handler": () => <button onClick={() => {}} />,
   "handler-tuple": () => <button onKeyDown={[() => {}, "data"]} />,
+  tuple: (p) => {
+    const row = p.row({});
+    return <button onKeyDown={[row.key, 1]} />;
+  },
   arg: (p) => {
     const row = p.row({});
     return <p.other nested={{ x: row.done }} />;
@@ -99,7 +110,11 @@ cases.push({
     }
   },
 });
-export const run = () => runCases(cases);
+export const run = () =>
+  (globalThis as any)[RequestContext].run(
+    createRequestEvent(new Request("http://localhost/")),
+    () => runCases(cases),
+  );
 
 import { AsyncLocalStorage } from "node:async_hooks";
 import { RequestContext } from "@solidjs/web";
@@ -112,9 +127,89 @@ import {
   ChunkReader,
   createChunk,
 } from "@solidjs/web/server-functions/server";
-import { frameTransformResult } from "@solidjs/web/frames/server";
+import {
+  frameTransformResult,
+  frameTransformDirectResult,
+  ServerComponentPlugin,
+} from "@solidjs/web/frames/server";
 (globalThis as any)[RequestContext] ??= new AsyncLocalStorage();
-configureServerFunctionsServer({ transformResult: frameTransformResult });
+configureServerFunctionsServer({
+  transformResult: frameTransformResult,
+  transformDirectResult: frameTransformDirectResult,
+});
+for (const reason of ["markup", "reserved-key"] as const)
+  cases.push({
+    id: "08/binding-document-" + reason,
+    file: "08-dev-diagnostics.md",
+    statement:
+      "The SSR document face classifies a client fill and reports " +
+      reason +
+      " without leaking a server value.",
+    async run() {
+      const id = "binding-doc-" + reason;
+      const C = frameTransformDirectResult(
+        (p: any) => {
+          const row = p.row({});
+          return <button class={row.done}>{row.title}</button>;
+        },
+        { id },
+      );
+      const capture = OBSERVE?.diagnostics.capture();
+      const previous = console.warn;
+      console.warn = () => {};
+      try {
+        const html = renderToString(() => (
+          <C
+            row={
+              reason === "markup"
+                ? () => <b>markup</b>
+                : () => ({ title: "valid", done: true, $bad: "reserved" })
+            }
+          />
+        ));
+        const events = capture?.events.filter((e) => e.code === "BINDING_SLOT_POSITION") ?? [];
+        if (isDev) {
+          ok(events.length > 0);
+          for (const e of events) {
+            equal(e.kind, "ssr");
+            equal(e.severity, "warn");
+            equal(e.data?.reason, reason);
+          }
+        } else equal(events, []);
+        if (reason === "reserved-key") ok(html.includes("valid"));
+      } finally {
+        capture?.stop();
+        console.warn = previous;
+      }
+    },
+  });
+cases.push({
+  id: "08/binding-truthiness-and-source-order",
+  file: "08-dev-diagnostics.md",
+  statement:
+    "Truthiness has no runtime warning; a later spread owning an event position leaves the earlier local handler unread.",
+  async run() {
+    const capture = OBSERVE?.diagnostics.capture();
+    try {
+      const chunks: any[] = await renderServerComponent(
+        (p: any) => {
+          const row = p.row({});
+          return (
+            <section>
+              <b>{row.done ? "always-truthy" : "false"}</b>
+              <button onClick={() => {}} {...({ onClick: undefined } as any)} />
+            </section>
+          );
+        },
+        { frame: { id: "truthy-and-override" } },
+      );
+      equal(capture?.events.filter((e) => e.code === "BINDING_SLOT_POSITION") ?? [], []);
+      ok(chunks.find((c) => c.type === "html").html.includes("always-truthy"));
+    } finally {
+      capture?.stop();
+    }
+  },
+});
 GET(
   createServerReference(
     registerServerReference("binding-client", (shape: string) => (p: any) => {

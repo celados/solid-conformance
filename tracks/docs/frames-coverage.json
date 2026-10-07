@@ -757,15 +757,22 @@
   },
   {
     "id": "10-server-functions:L116:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "08/server-road-sanitize-ssr-false",
+      "08/server-road-sanitize-frame-root",
+      "08/server-road-sanitize-frame-fragment",
+      "08/server-road-sanitize-frame-live-hole",
+      "08/server-road-sanitize-async-source"
+    ]
   },
   {
     "id": "10-server-functions:L116:2",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "08/server-road-sanitize-rpc-true",
+      "08/server-road-sanitize-ssr-true"
+    ]
   },
   {
     "id": "10-server-functions:L118:1",
@@ -940,9 +947,10 @@
   },
   {
     "id": "10-server-functions:L133:6",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "10/no-js-get-form"
+    ]
   },
   {
     "id": "10-server-functions:L133:7",
@@ -2848,8 +2856,11 @@
   {
     "id": "11-server-components:L114:4",
     "status": "uncovered",
-    "coverage": [],
-    "reason": "This earlier per-args reset sentence contradicts the later DR-1 same-instance delivery statement. The state test currently checks DR-1, so it cannot claim this reset statement as covered."
+    "coverage": [
+      "tracks/frames/frames.test.ts:same call retains counter/different args nested-region stale",
+      "findings/009-frame-nested-region-stale/repro.test.ts"
+    ],
+    "reason": "server nested region stale确有红例，但旧句要求counter按argsreset与L149 mount belongs consumption site相冲突；不能把009的不同机制冒充该counter合同反例。"
   },
   {
     "id": "11-server-components:L114:5",
@@ -2860,9 +2871,10 @@
   },
   {
     "id": "11-server-components:L118:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/router.test.ts:query preload/warm navigation/mount isolation/multi-frame single-flight"
+    ]
   },
   {
     "id": "11-server-components:L118:2",
@@ -2879,9 +2891,10 @@
   },
   {
     "id": "11-server-components:L118:4",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/router.test.ts:query preload/warm navigation/mount isolation/multi-frame single-flight"
+    ]
   },
   {
     "id": "11-server-components:L122:1",
@@ -2998,9 +3011,10 @@
   },
   {
     "id": "11-server-components:L149:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/router.test.ts:query preload/warm navigation/mount isolation/multi-frame single-flight"
+    ]
   },
   {
     "id": "11-server-components:L149:2",
@@ -3068,15 +3082,17 @@
   },
   {
     "id": "11-server-components:L167:2",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "本句描述已实现或当前公开合同；不能因位于Open questions就当历史设计。需补精确跨轨断言。"
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/router.test.ts:query preload/warm navigation/mount isolation/multi-frame single-flight"
+    ]
   },
   {
     "id": "11-server-components:L167:3",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "本句描述已实现或当前公开合同；不能因位于Open questions就当历史设计。需补精确跨轨断言。"
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/router.test.ts:query preload/warm navigation/mount isolation/multi-frame single-flight"
+    ]
   },
   {
     "id": "11-server-components:L168:1",
@@ -3105,14 +3121,18 @@
   {
     "id": "11-server-components:L169:3",
     "status": "uncovered",
-    "coverage": [],
-    "reason": "本句描述已实现或当前公开合同；不能因位于Open questions就当历史设计。需补精确跨轨断言。"
+    "coverage": [
+      "08/server-diagnostic-write-categories"
+    ],
+    "reason": "development warning已测；all-server-builds原句与RFC08 dev-only checks相矛盾，红文档repro仍需登记；禁止写的规范建议与当前暂时容忍需区分"
   },
   {
     "id": "11-server-components:L169:4",
     "status": "uncovered",
-    "coverage": [],
-    "reason": "本句描述已实现或当前公开合同；不能因位于Open questions就当历史设计。需补精确跨轨断言。"
+    "coverage": [
+      "08/server-diagnostic-write-categories"
+    ],
+    "reason": "development warning已测；all-server-builds原句与RFC08 dev-only checks相矛盾，红文档repro仍需登记；禁止写的规范建议与当前暂时容忍需区分"
   },
   {
     "id": "11-server-components:L169:5",
@@ -3123,8 +3143,10 @@
   {
     "id": "11-server-components:L169:6",
     "status": "uncovered",
-    "coverage": [],
-    "reason": "本句描述已实现或当前公开合同；不能因位于Open questions就当历史设计。需补精确跨轨断言。"
+    "coverage": [
+      "08/server-diagnostic-write-categories"
+    ],
+    "reason": "development warning已测；all-server-builds原句与RFC08 dev-only checks相矛盾，红文档repro仍需登记；禁止写的规范建议与当前暂时容忍需区分"
   },
   {
     "id": "11-server-components:L169:7",
