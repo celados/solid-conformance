@@ -28,3 +28,13 @@ One render callback throws a single Error. There are no components, boundaries, 
 ## Dedupe
 
 Searched all states in solid, solid-router, and solid-start for `SSR_RENDER_ERROR_CONTAINED`, `diagnostic synchronous render`, and `renderToStream first pass`. Reviewed the relevant solid issues #3478, #3750, #3468, #3569, and #3723: they cover stream completion, boundary discovery, sanitization, and the request-level hook. #3723 added request failures before any render, whereas this render's hook already reports its original error and only its diagnostics record is absent. No matching issue was found.
+
+## Initial-pass render-record sibling
+
+The same early catch reports the public hook and rethrows but omits the render lifecycle's accounting: RFC 08 L842 promises one `render` record with `outcome: "error"` when a stream render fails. A normal stream emits one `complete` record first; the failed stream returns the original thrown Error by identity, but emits zero render records. This sibling uses no boundary or diagnostic capture.
+
+```sh
+bun test ./findings/017-initial-render-error-record/renderrecord-repro.test.ts
+```
+
+Development and observe are red. Production explicitly skips because it has no observer. The broad boundary track retains its raw strict failure in its artifact and recognizes only this exact id/error pair; every other failure still fails that track. The runtime first-pass catch (`packages/web/src/server.ts`, near line 2977) reports then throws before the normal settle/teardown path, whereas the string renderer finalizes its error record in `finally`.

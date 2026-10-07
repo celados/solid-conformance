@@ -505,9 +505,10 @@
       "08/boundary-render-render-initial-failed",
       "08/boundary-render-render-initial-failed-stream",
       "08/boundary-render-render-abandoned",
-      "08/boundary-render-preflush-redirect-abandoned"
+      "08/boundary-render-preflush-redirect-abandoned",
+      "findings/017-initial-render-error-record/renderrecord-repro.test.ts"
     ],
-    "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。"
+    "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。 Initialfailedstream严格缺errorrecord为017 sibling，broad仅识别此exact raw error，其最小onecommand独立红保留。"
   },
   {
     "id": "08-dev-diagnostics:L842:5",
