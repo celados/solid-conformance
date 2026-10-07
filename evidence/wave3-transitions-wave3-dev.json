@@ -1,0 +1,34 @@
+{
+  "runtime": {
+    "target": "head",
+    "upstream": {
+      "ref": "next",
+      "revision": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+      "directory": "/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"
+    },
+    "buildMode": "development",
+    "solid": "2.0.0-rc.13"
+  },
+  "seed": 20261008,
+  "generated": 80,
+  "spine": 8,
+  "attempts": 88,
+  "browserRuns": 440,
+  "counts": {
+    "supersede": 7,
+    "reject-before": 12,
+    "reject-after": 11,
+    "reconnect": 14,
+    "remount": 12,
+    "route-shared": 10,
+    "route-other": 11,
+    "action-failure": 11
+  },
+  "knownHits": {
+    "004": 45
+  },
+  "failed": false,
+  "counterexample": null,
+  "counterexamplePath": null,
+  "error": ""
+}
