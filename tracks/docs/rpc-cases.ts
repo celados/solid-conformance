@@ -3,6 +3,7 @@ import {
   isDev,
   getRequestEvent,
   redirect,
+  reload,
   respond,
   markSafeError,
   isSafeError,
@@ -811,4 +812,43 @@ if (isServer) {
       equal((replay.match(/^id:/gm) ?? []).length, 1);
     },
   );
+}
+
+if(isServer){
+ doc("reload-scopes", "reload returns no value and distinguishes host-default, named keys, explicit none and explicit all.",async()=>{
+  for(const [init,header] of [[{},null],[{revalidate:"todos"},"todos"],[{revalidate:[]},""],[{revalidate:"*"},"*"]] as const){const response=reload(init as any);equal(response.headers.get("X-Revalidate"),header);equal(await response.text(),"");}
+ });
+ doc("live-inprocess-top-only-brand", "In-process live brands only a top-level iterable/component, never nested bounded sources.",async()=>{
+  const generator=async function*(){yield 1;yield 2};const nested=generator();const promise=Promise.resolve(3);
+  const obj=await sf.live(sf.GET(reference(()=>({nested,promise}))))();
+  equal((obj as any)[Symbol.for("solid.LiveSource")],undefined);equal((obj.nested as any)[Symbol.for("solid.LiveSource")],undefined);equal((obj.promise as any)[Symbol.for("solid.LiveSource")],undefined);
+  equal((await sf.live(sf.GET(reference(()=>generator())))() as any)[Symbol.for("solid.LiveSource")],true);
+  const component=()=>"component";equal((await sf.live(sf.GET(reference(()=>component)))() as any)[Symbol.for("solid.LiveSource")],true);
+ });
+}
+if(isServer){
+ doc("live-nested-response-lifetime", "A live value answer holds the response until both a nested promise and bounded iterator end.",async()=>{
+  let finishPromise!:(v:string)=>void,finishIterator!:()=>void,closed=0;
+  const pending=new Promise<string>(r=>finishPromise=r),gate=new Promise<void>(r=>finishIterator=r);
+  const fn=sf.GET(reference(()=>({meta:"nested-value",pending,progress:(async function*(){try{yield 1;await gate;yield 2}finally{closed++}})()})));
+  const response=await server.handleServerFunctionRequest(new Request("http://conformance.test/_server/live/"+fn.id+"?args=[]"));
+  let ended=false;const body=response.text().then(text=>{ended=true;return text});
+  await new Promise(r=>setTimeout(r,5));equal(ended,false);equal(closed,0);
+  finishPromise("resolved-promise");await new Promise(r=>setTimeout(r,5));equal(ended,false);equal(closed,0);
+  finishIterator();const text=await body;equal(closed,1);ok(text.includes("nested-value"));ok(text.includes("resolved-promise"));ok(text.includes("data:"));
+ });
+}
+if(isServer){
+ doc("undeclared-promise-death", "A dying undeclared response rejects a nested pending promise and never invokes the source again.",async()=>{
+  let finish!:(v:string)=>void,calls=0;const pending=new Promise<string>(r=>finish=r);
+  const fn=sf.GET(reference(()=>{calls++;return {pending}}));
+  const response=await server.handleServerFunctionRequest(new Request("http://conformance.test/_server/data/"+fn.id+"?args=[]"));
+  const reader=response.body!.getReader();let cut!:(reason:Error)=>void;
+  const faulty=new ReadableStream<Uint8Array>({start(controller){cut=e=>controller.error(e)},async pull(controller){const chunk=await reader.read();if(chunk.done)controller.close();else controller.enqueue(chunk.value)}});
+  try{
+   const value:any=await sf.decodeResponse(new Response(faulty,{headers:response.headers}));ok(value.pending instanceof Promise);
+   const caught=value.pending.catch((e:any)=>e);cut(new Error("test-owned transport cut"));
+   ok(await caught instanceof Error);equal(calls,1);
+  }finally{finish("finished");void reader.cancel().catch(()=>{})}
+ });
 }

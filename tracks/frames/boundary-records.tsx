@@ -161,11 +161,11 @@ doc(
     if (OBSERVE) {
       const e = result.boundary[0].event;
       equal(e.outcome, "error");
-      equal(result.boundary[0].live.error, original);
+      ok(result.boundary[0].live.error === original);
       equal(e.id, reports[0].site.boundary);
       measure(e);
     }
-    equal(reports[0].error, original);
+    ok(reports[0].error === original);
   },
 );
 doc(
@@ -252,7 +252,7 @@ doc(
         thrown = error;
       }
     });
-    equal(thrown, original);
+    ok(thrown === original);
     equal(result.render.length, OBSERVE ? 1 : 0);
     if (OBSERVE) {
       const e = result.render[0].event;
