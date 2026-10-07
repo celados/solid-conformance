@@ -1,16 +1,19 @@
 # solid-conformance
 
-Find as many real defects in Solid 2 (currently `2.0.0-rc.13` on npm `next`, and
-upstream HEAD) as possible, each proven by a minimal executable reproduction, so
-they can be reported upstream in one batch. Fixing is upstream's job; finding is
-ours.
+A conformance and property-based test suite for the Solid 2 UI framework
+(currently `2.0.0-rc.13` on npm `next`, and upstream HEAD). We write tests that
+check the documented behavior and general invariants of rendering, SSR,
+hydration and async data. Where the framework behaves differently from its
+documentation or an invariant, we keep a minimal failing test so the
+discrepancy can be reported to the Solid maintainers as an ordinary bug report,
+in one batch. Fixing is upstream's job; writing the tests is ours.
 
 This is a standalone project. It is not part of the celados workspace and not
 part of Delta. Do not copy Delta code here; read it for context only.
 
 ## Rules
 
-- **A finding exists only as a failing test.** Every finding has a minimal
+- **A discrepancy exists only as a failing test.** Every finding has a minimal
   repro in `findings/<id>/` that fails on the version it names and that anyone
   can run with one command. A claim without a red test is not a finding.
 - **Never file, comment on, or open anything upstream.** Reporting is a later,
@@ -32,8 +35,8 @@ part of Delta. Do not copy Delta code here; read it for context only.
 - `harness/` — shared test infrastructure: client render, SSR render,
   SSR → hydrate in a real browser, timing control (deferred promises / async
   iterables whose settle order the test chooses), invariant checks.
-- `tracks/<name>/` — exploration tracks (spec-to-test, fuzzer, bug-class
-  mining, …). Tests here may be broad; passing ones stay as a regression net.
+- `tracks/<name>/` — test tracks (docs-to-tests, generated property tests,
+  regression families, …). Tests here may be broad; passing ones stay as a regression net.
 - `findings/<id>-<slug>/` — one directory per finding: `README.md` (ledger
   entry, format below) and the minimal repro test.
 - `LEDGER.md` — the index: one line per finding with id, status, title.
