@@ -10,7 +10,7 @@ function doc(id:string,statement:string,run:DocCase['run']) {cases.push({id:'08/
 async function capture(code:string,run:()=>unknown|Promise<unknown>,positive=true,count=1) {
   const session=OBSERVE?.diagnostics.capture(), warn=console.warn,error=console.error
   console.warn=console.error=()=>{}
-  try {await run();await ticks(2);const events=session?.events.filter(e=>e.code===code)??[];equal(events.length,isDev&&positive?count:0);for(const event of events){equal(event.kind,['UNTRACKED_READ_AFTER_AWAIT','LOADING_ON_OUTSIDE_HOLD','PENDING_ASYNC_FORBIDDEN_SCOPE'].includes(code)?'async':'lifecycle');equal(event.severity,code==='SETTLED_CLEANUP_UNOWNED'?'error':'warn')}return events}
+  try {await run();await ticks(2);const events=session?.events.filter(e=>e.code===code)??[];equal(events.length,isDev&&positive?count:0);for(const event of events){if(code==='LOADING_ON_OUTSIDE_HOLD')equal(event.data?.source,'held-data');equal(event.kind,['UNTRACKED_READ_AFTER_AWAIT','LOADING_ON_OUTSIDE_HOLD','PENDING_ASYNC_FORBIDDEN_SCOPE'].includes(code)?'async':'lifecycle');equal(event.severity,code==='SETTLED_CLEANUP_UNOWNED'?'error':'warn')}return events}
   finally {session?.stop();console.warn=warn;console.error=error;resetErrorHalt()}
 }
 function root(fn:()=>void) {let close!:()=>void;createRoot(dispose=>{close=dispose;fn()});return close}
