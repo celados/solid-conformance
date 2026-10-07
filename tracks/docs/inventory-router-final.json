@@ -1,0 +1,73 @@
+{
+  "commit": "53ef0e69",
+  "router": "2.0.0-next.35",
+  "entries": [
+    {
+      "id": "10-server-functions:L138:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/router/contract.test.ts"
+      ],
+      "reason": "真实system Chrome/Bun HTTP；metadata GET handed callable具有抛错旧.GET getter，GET请求/meta保持，单flight POST header自动注册且缓存5→6无第二次GET，服务异常进入submission（dev原文/非dev脱敏）。noJS是显式server integration：handleNoJS可计数hook→core加密cookie helper→303→integration等待decode并提供event.router.submission seed→router useSubmissions SSR显示success/error→清cookie后reload空。GET consumer-only/servergraph三tier405→200由framesfixture交叉证明；liveQuery共享连接/两消费更新/最后关闭有CSR/hydrate spine。"
+    },
+    {
+      "id": "10-server-functions:L138:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/router/contract.test.ts"
+      ],
+      "reason": "真实system Chrome/Bun HTTP；metadata GET handed callable具有抛错旧.GET getter，GET请求/meta保持，单flight POST header自动注册且缓存5→6无第二次GET，服务异常进入submission（dev原文/非dev脱敏）。noJS是显式server integration：handleNoJS可计数hook→core加密cookie helper→303→integration等待decode并提供event.router.submission seed→router useSubmissions SSR显示success/error→清cookie后reload空。GET consumer-only/servergraph三tier405→200由framesfixture交叉证明；liveQuery共享连接/两消费更新/最后关闭有CSR/hydrate spine。"
+    },
+    {
+      "id": "10-server-functions:L186:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/router/metadata.test.ts"
+      ],
+      "reason": "真实system Chrome/Bun HTTP；metadata GET handed callable具有抛错旧.GET getter，GET请求/meta保持，单flight POST header自动注册且缓存5→6无第二次GET，服务异常进入submission（dev原文/非dev脱敏）。noJS是显式server integration：handleNoJS可计数hook→core加密cookie helper→303→integration等待decode并提供event.router.submission seed→router useSubmissions SSR显示success/error→清cookie后reload空。GET consumer-only/servergraph三tier405→200由framesfixture交叉证明；liveQuery共享连接/两消费更新/最后关闭有CSR/hydrate spine。"
+    },
+    {
+      "id": "10-server-functions:L321:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/router/metadata.test.ts",
+        "tracks/router/contract.test.ts"
+      ],
+      "reason": "真实system Chrome/Bun HTTP；metadata GET handed callable具有抛错旧.GET getter，GET请求/meta保持，单flight POST header自动注册且缓存5→6无第二次GET，服务异常进入submission（dev原文/非dev脱敏）。noJS是显式server integration：handleNoJS可计数hook→core加密cookie helper→303→integration等待decode并提供event.router.submission seed→router useSubmissions SSR显示success/error→清cookie后reload空。GET consumer-only/servergraph三tier405→200由framesfixture交叉证明；liveQuery共享连接/两消费更新/最后关闭有CSR/hydrate spine。"
+    },
+    {
+      "id": "10-server-functions:L356:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/router/metadata.test.ts"
+      ],
+      "reason": "真实system Chrome/Bun HTTP；metadata GET handed callable具有抛错旧.GET getter，GET请求/meta保持，单flight POST header自动注册且缓存5→6无第二次GET，服务异常进入submission（dev原文/非dev脱敏）。noJS是显式server integration：handleNoJS可计数hook→core加密cookie helper→303→integration等待decode并提供event.router.submission seed→router useSubmissions SSR显示success/error→清cookie后reload空。GET consumer-only/servergraph三tier405→200由framesfixture交叉证明；liveQuery共享连接/两消费更新/最后关闭有CSR/hydrate spine。"
+    },
+    {
+      "id": "10-server-functions:L251:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/router/metadata.test.ts",
+        "router/live-key-has-one-connection",
+        "router/live-both-consumers-update",
+        "08/server-road-get-server-graph-topology"
+      ],
+      "reason": "真实system Chrome/Bun HTTP；metadata GET handed callable具有抛错旧.GET getter，GET请求/meta保持，单flight POST header自动注册且缓存5→6无第二次GET，服务异常进入submission（dev原文/非dev脱敏）。noJS是显式server integration：handleNoJS可计数hook→core加密cookie helper→303→integration等待decode并提供event.router.submission seed→router useSubmissions SSR显示success/error→清cookie后reload空。GET consumer-only/servergraph三tier405→200由framesfixture交叉证明；liveQuery共享连接/两消费更新/最后关闭有CSR/hydrate spine。"
+    },
+    {
+      "id": "10-server-functions:L251:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-road-get-server-graph-topology"
+      ],
+      "reason": "真实system Chrome/Bun HTTP；metadata GET handed callable具有抛错旧.GET getter，GET请求/meta保持，单flight POST header自动注册且缓存5→6无第二次GET，服务异常进入submission（dev原文/非dev脱敏）。noJS是显式server integration：handleNoJS可计数hook→core加密cookie helper→303→integration等待decode并提供event.router.submission seed→router useSubmissions SSR显示success/error→清cookie后reload空。GET consumer-only/servergraph三tier405→200由framesfixture交叉证明；liveQuery共享连接/两消费更新/最后关闭有CSR/hydrate spine。"
+    }
+  ]
+}

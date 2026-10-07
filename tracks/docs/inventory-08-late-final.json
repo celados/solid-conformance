@@ -614,6 +614,36 @@
       ],
       "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
       "statement": "// reach for a layer bundled without a framework import."
+    },
+    {
+      "id": "08-dev-diagnostics:C1210:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-default-tracks.test.ts",
+        "tracks/docs/late-final-performance.test.ts"
+      ],
+      "reason": "nativeChrome default、richtrue、richfalse、文档完整三options组合四模式。默认dev0/Observe.05ms精确0.01/.049/.051ms对照，真实measure vs timeStamp、4模式logquiet、tier default/full与explicitlabels隐私；默认records-only六cost family另实测。ordered8seed亦明确断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:C1211:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-default-tracks.test.ts",
+        "tracks/docs/late-final-performance.test.ts"
+      ],
+      "reason": "nativeChrome default、richtrue、richfalse、文档完整三options组合四模式。默认dev0/Observe.05ms精确0.01/.049/.051ms对照，真实measure vs timeStamp、4模式logquiet、tier default/full与explicitlabels隐私；默认records-only六cost family另实测。ordered8seed亦明确断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:C1212:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-default-tracks.test.ts",
+        "tracks/docs/late-final-performance.test.ts"
+      ],
+      "reason": "nativeChrome default、richtrue、richfalse、文档完整三options组合四模式。默认dev0/Observe.05ms精确0.01/.049/.051ms对照，真实measure vs timeStamp、4模式logquiet、tier default/full与explicitlabels隐私；默认records-only六cost family另实测。ordered8seed亦明确断言。"
     }
   ]
 }
