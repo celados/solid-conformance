@@ -1,0 +1,704 @@
+{
+  "searchedAt": "2026-10-07",
+  "queries": [
+    {
+      "repo": "solidjs/solid",
+      "query": "frame hydration",
+      "stateFilter": "none (open and closed)",
+      "total": 70,
+      "issues": [
+        {
+          "number": 3849,
+          "state": "open",
+          "title": "frames: A0 correctness pass, part 2 — park, hydrateWindow, declared records, error propagation, fragment ownership, server half, generic hydration pins",
+          "url": "https://github.com/solidjs/solid/pull/3849"
+        },
+        {
+          "number": 3860,
+          "state": "open",
+          "title": "frames: tiers, binding-slot tier, residue cuts, live wire tier (Phase B, C2–C6, residue 1–4)",
+          "url": "https://github.com/solidjs/solid/pull/3860"
+        },
+        {
+          "number": 3194,
+          "state": "open",
+          "title": "Proposal: make derived store APIs type-safe and ergonomic",
+          "url": "https://github.com/solidjs/solid/pull/3194"
+        },
+        {
+          "number": 3809,
+          "state": "open",
+          "title": "fix(web): server-function arguments never decode Response/Request; default nosniff",
+          "url": "https://github.com/solidjs/solid/pull/3809"
+        },
+        {
+          "number": 3710,
+          "state": "open",
+          "title": "feat(signals,solid): createDeferred — an async memo that may lag, but never leads",
+          "url": "https://github.com/solidjs/solid/pull/3710"
+        },
+        {
+          "number": 3831,
+          "state": "closed",
+          "title": "fix(web/frames): hydration-done counts the frame's holds — a waiting adopted occurrence is a pending boundary (C3)",
+          "url": "https://github.com/solidjs/solid/pull/3831"
+        },
+        {
+          "number": 3840,
+          "state": "closed",
+          "title": "frames: A2b — 3.6 (iii) park port, hydrateWindow hold, R.claim deletion",
+          "url": "https://github.com/solidjs/solid/pull/3840"
+        },
+        {
+          "number": 3671,
+          "state": "closed",
+          "title": "fix(web): async dynamic() serializes its landing and the client adopts it (#3666)",
+          "url": "https://github.com/solidjs/solid/pull/3671"
+        },
+        {
+          "number": 3513,
+          "state": "closed",
+          "title": "perf(web,signals): trim per-node work on the hydration claim path",
+          "url": "https://github.com/solidjs/solid/pull/3513"
+        },
+        {
+          "number": 3717,
+          "state": "open",
+          "title": "examples: idiomatic pass — hackernews twins, notes, occlusion specs",
+          "url": "https://github.com/solidjs/solid/pull/3717"
+        },
+        {
+          "number": 3866,
+          "state": "closed",
+          "title": "frames: residue 3 — every fill through insert; createFrame marker-less",
+          "url": "https://github.com/solidjs/solid/pull/3866"
+        },
+        {
+          "number": 3833,
+          "state": "closed",
+          "title": "fix(web/frames): report a rejected server <Loading> fragment inside an adopted frame in dev; the client shows the server's outcome (C12 c)",
+          "url": "https://github.com/solidjs/solid/pull/3833"
+        },
+        {
+          "number": 3863,
+          "state": "closed",
+          "title": "frames: residue 1 — D list, FRAME_HAVE_* off the client entry, lean re-ask",
+          "url": "https://github.com/solidjs/solid/pull/3863"
+        },
+        {
+          "number": 3856,
+          "state": "closed",
+          "title": "frames: C3 — traces tier: lazy store materializer on the tier mechanism",
+          "url": "https://github.com/solidjs/solid/pull/3856"
+        },
+        {
+          "number": 3647,
+          "state": "closed",
+          "title": "Hydrating a server-rendered liveQuery never connects: the hydration trace opens the channel under mocked fetch",
+          "url": "https://github.com/solidjs/solid/issues/3647"
+        },
+        {
+          "number": 3834,
+          "state": "closed",
+          "title": "docs(server-components): A0, the frames rulings and prior art, the plans — with the overnight pass's defaults and the server-half drafts",
+          "url": "https://github.com/solidjs/solid/pull/3834"
+        },
+        {
+          "number": 3813,
+          "state": "closed",
+          "title": "test(web): frames/hydration consistency contract — 19 invariants, pins, and a property harness (9 red on next)",
+          "url": "https://github.com/solidjs/solid/pull/3813"
+        },
+        {
+          "number": 3862,
+          "state": "closed",
+          "title": "frames: C6 — binding-slot tier; _hk on event-slot consumers closes the replay window",
+          "url": "https://github.com/solidjs/solid/pull/3862"
+        },
+        {
+          "number": 3660,
+          "state": "closed",
+          "title": "Stage 8 Part B: live server components — frames consume live, document face, conditional reconnect, GET end to end",
+          "url": "https://github.com/solidjs/solid/pull/3660"
+        },
+        {
+          "number": 3847,
+          "state": "closed",
+          "title": "frames: A5′ — fragment ownership by rendering, G9 collapse, claimRegionFragments deleted",
+          "url": "https://github.com/solidjs/solid/pull/3847"
+        },
+        {
+          "number": 3854,
+          "state": "closed",
+          "title": "frames: Phase B — server-announced tier mechanism (seam only, no tier cut)",
+          "url": "https://github.com/solidjs/solid/pull/3854"
+        },
+        {
+          "number": 3667,
+          "state": "closed",
+          "title": "fix(web): the document live channel crosses as a ReadableStream, not an async iterator",
+          "url": "https://github.com/solidjs/solid/pull/3667"
+        },
+        {
+          "number": 3823,
+          "state": "closed",
+          "title": "docs: size audits (SC layer, solid-js + web) and the frames rulings (proposed) with A0 and prior art",
+          "url": "https://github.com/solidjs/solid/pull/3823"
+        },
+        {
+          "number": 3653,
+          "state": "closed",
+          "title": "Stage 8 Phase A: live over event streams — response lifetime, per-scope takeover, chaos knob, room demo",
+          "url": "https://github.com/solidjs/solid/pull/3653"
+        },
+        {
+          "number": 3837,
+          "state": "closed",
+          "title": "frames: A0 correctness pass — S-flush, C3 hold, C5 data scope, C12 report, rulings",
+          "url": "https://github.com/solidjs/solid/pull/3837"
+        },
+        {
+          "number": 3858,
+          "state": "closed",
+          "title": "frames: C4 — regions tier",
+          "url": "https://github.com/solidjs/solid/pull/3858"
+        },
+        {
+          "number": 3846,
+          "state": "closed",
+          "title": "fix(web): end cancelled chunk streams cleanly and validate chunk headers",
+          "url": "https://github.com/solidjs/solid/pull/3846"
+        },
+        {
+          "number": 3761,
+          "state": "closed",
+          "title": "feat(signals): let mainline mounts publish before foreign holds",
+          "url": "https://github.com/solidjs/solid/pull/3761"
+        },
+        {
+          "number": 3842,
+          "state": "closed",
+          "title": "frames: A6 server half — C13 ops chunk, complete.bound, C12(c) error outcome",
+          "url": "https://github.com/solidjs/solid/pull/3842"
+        },
+        {
+          "number": 3468,
+          "state": "closed",
+          "title": "SSR serializes <Errored> errors verbatim: production page load ships what the server-function wire sanitizes",
+          "url": "https://github.com/solidjs/solid/issues/3468"
+        },
+        {
+          "number": 3848,
+          "state": "closed",
+          "title": "frames: A7 + A3 — a frame's error throws to the client boundary, reset re-asks, R.reveal deleted",
+          "url": "https://github.com/solidjs/solid/pull/3848"
+        },
+        {
+          "number": 3755,
+          "state": "closed",
+          "title": "fix(web): stylesheet-gated fragments reveal under a nonce CSP and when a sheet loads early",
+          "url": "https://github.com/solidjs/solid/pull/3755"
+        },
+        {
+          "number": 3534,
+          "state": "closed",
+          "title": "test-integration: solid-query gate must pack the workspace compiler, not just the runtime",
+          "url": "https://github.com/solidjs/solid/issues/3534"
+        },
+        {
+          "number": 3804,
+          "state": "closed",
+          "title": "fix(solid): server async-iterable memos keep by-slot flight memory (#3734)",
+          "url": "https://github.com/solidjs/solid/pull/3804"
+        },
+        {
+          "number": 3844,
+          "state": "closed",
+          "title": "frames: A1b + A4 — stage/preview deletion, declared slot records, S-ref",
+          "url": "https://github.com/solidjs/solid/pull/3844"
+        },
+        {
+          "number": 3830,
+          "state": "closed",
+          "title": "fix(web/frames): the address is an async source — one landing per bound address, one response per store (S-flush)",
+          "url": "https://github.com/solidjs/solid/pull/3830"
+        },
+        {
+          "number": 3643,
+          "state": "closed",
+          "title": "fix(web): frames server build shares one server-functions instance; X-Frame-Stream carries the invocation id (#3641)",
+          "url": "https://github.com/solidjs/solid/pull/3643"
+        },
+        {
+          "number": 3697,
+          "state": "closed",
+          "title": "Release RC packages (rc)",
+          "url": "https://github.com/solidjs/solid/pull/3697"
+        },
+        {
+          "number": 2973,
+          "state": "closed",
+          "title": "Adopted claims derive their prefix from the wire id, not the call address",
+          "url": "https://github.com/solidjs/solid/pull/2973"
+        },
+        {
+          "number": 3867,
+          "state": "closed",
+          "title": "frames: residue 4 — pending {$ref} reads owned by the decode table",
+          "url": "https://github.com/solidjs/solid/pull/3867"
+        },
+        {
+          "number": 3714,
+          "state": "closed",
+          "title": "web: binding-slot text positions",
+          "url": "https://github.com/solidjs/solid/pull/3714"
+        },
+        {
+          "number": 2968,
+          "state": "closed",
+          "title": "Server component slot callback is invoked without props during hydration",
+          "url": "https://github.com/solidjs/solid/issues/2968"
+        },
+        {
+          "number": 3099,
+          "state": "closed",
+          "title": "[compiler] `validate` warns but still emits the broken template walk",
+          "url": "https://github.com/solidjs/solid/issues/3099"
+        },
+        {
+          "number": 3183,
+          "state": "closed",
+          "title": "feat(web): support responsive image preloads",
+          "url": "https://github.com/solidjs/solid/pull/3183"
+        },
+        {
+          "number": 3259,
+          "state": "closed",
+          "title": "[compiler] `validate` rejects document-shell templates (`<html><head><body>`) — fatal in client compiles since rc.5 made validate failures errors",
+          "url": "https://github.com/solidjs/solid/issues/3259"
+        },
+        {
+          "number": 3614,
+          "state": "closed",
+          "title": "perf(server): materialize scoped hole ids lazily (follow-up to #3599)",
+          "url": "https://github.com/solidjs/solid/pull/3614"
+        },
+        {
+          "number": 2961,
+          "state": "closed",
+          "title": "fix(frames): hand slot claims over from the enclosing hydration registry",
+          "url": "https://github.com/solidjs/solid/pull/2961"
+        },
+        {
+          "number": 3477,
+          "state": "closed",
+          "title": "fix(solid,web,signals): SSR render failures reach the client sanitized (#3468)",
+          "url": "https://github.com/solidjs/solid/pull/3477"
+        },
+        {
+          "number": 3281,
+          "state": "closed",
+          "title": "feat(solid,web): unified For — one slot owns rows and placement, default-on via For's module graph",
+          "url": "https://github.com/solidjs/solid/pull/3281"
+        },
+        {
+          "number": 3827,
+          "state": "closed",
+          "title": "fix(web/frames): classify an adopted occurrence only after every delivered record has drained (C18)",
+          "url": "https://github.com/solidjs/solid/pull/3827"
+        },
+        {
+          "number": 3452,
+          "state": "closed",
+          "title": "feat(solid,web,signals): server boundary records on OBSERVE.server.records",
+          "url": "https://github.com/solidjs/solid/pull/3452"
+        },
+        {
+          "number": 2964,
+          "state": "closed",
+          "title": "Server component that settles after the shell flush never mounts (blank region, no fallback, no error)",
+          "url": "https://github.com/solidjs/solid/issues/2964"
+        },
+        {
+          "number": 3014,
+          "state": "closed",
+          "title": "SSR spread ignores omit()'s hidden keys when props are a merge proxy — omitted props leak into the HTML and the leaked handler is re-bound on hydration",
+          "url": "https://github.com/solidjs/solid/issues/3014"
+        },
+        {
+          "number": 3389,
+          "state": "closed",
+          "title": "Perf tracker: Solid primitives vs the hand-rolled `@yak/solid` runtime",
+          "url": "https://github.com/solidjs/solid/issues/3389"
+        },
+        {
+          "number": 3192,
+          "state": "closed",
+          "title": "Release RC packages (rc)",
+          "url": "https://github.com/solidjs/solid/pull/3192"
+        },
+        {
+          "number": 2967,
+          "state": "closed",
+          "title": "Keep a late-arriving server-component boundary claimable and its slot range live",
+          "url": "https://github.com/solidjs/solid/pull/2967"
+        },
+        {
+          "number": 2978,
+          "state": "closed",
+          "title": "<Loading> inside a server component never reveals on document SSR — held-fragment policy and frames adoption deadlock (no claimant path)",
+          "url": "https://github.com/solidjs/solid/issues/2978"
+        },
+        {
+          "number": 3433,
+          "state": "closed",
+          "title": "feat(solid,web,signals): server diagnostics on OBSERVE.diagnostics; OBSERVE.server owned by solid-js's server entry",
+          "url": "https://github.com/solidjs/solid/pull/3433"
+        },
+        {
+          "number": 2958,
+          "state": "closed",
+          "title": "Streamed <Loading> boundary silently dies when the trailing `_fr` resolution chunk is lost (host truncates stream) — plus `_$HY.fe` is never implemented",
+          "url": "https://github.com/solidjs/solid/issues/2958"
+        },
+        {
+          "number": 3649,
+          "state": "closed",
+          "title": "refactor!: prune observability surface — OBSERVE.ownerPath, DEV.guideUrl, drop install/aliases/unused options",
+          "url": "https://github.com/solidjs/solid/pull/3649"
+        },
+        {
+          "number": 2975,
+          "state": "closed",
+          "title": "SSR streaming: async head-tag props (`<Title>{asyncValue()}</Title>` in `<Loading>`) never suspend the boundary and are dropped with a NotReadyError warning",
+          "url": "https://github.com/solidjs/solid/issues/2975"
+        },
+        {
+          "number": 3065,
+          "state": "closed",
+          "title": "Release RC packages (rc)",
+          "url": "https://github.com/solidjs/solid/pull/3065"
+        },
+        {
+          "number": 3116,
+          "state": "closed",
+          "title": "A failure escaping through the result graph ships its message and own-properties to the client",
+          "url": "https://github.com/solidjs/solid/issues/3116"
+        },
+        {
+          "number": 2956,
+          "state": "closed",
+          "title": "Promise-valued JSX holes: CSR crash halts all reactivity, streamed SSR emits empty, hydrated bindings die silently",
+          "url": "https://github.com/solidjs/solid/issues/2956"
+        },
+        {
+          "number": 3091,
+          "state": "closed",
+          "title": "Patch mode default-on: channel hardening rounds 6–10.14, static manifests, node-driven delivery",
+          "url": "https://github.com/solidjs/solid/pull/3091"
+        },
+        {
+          "number": 3704,
+          "state": "closed",
+          "title": "Stage 7: attribute slots, second form — one slot per data context, bound per position",
+          "url": "https://github.com/solidjs/solid/pull/3704"
+        },
+        {
+          "number": 2883,
+          "state": "closed",
+          "title": "Bundle size audit: pay-for-use tree-shaking for @solidjs/signals subsystems",
+          "url": "https://github.com/solidjs/solid/issues/2883"
+        },
+        {
+          "number": 2047,
+          "state": "closed",
+          "title": "[Bug?]: multiple hydration errors with createResource",
+          "url": "https://github.com/solidjs/solid/issues/2047"
+        },
+        {
+          "number": 264,
+          "state": "closed",
+          "title": "Partial Hydration",
+          "url": "https://github.com/solidjs/solid/issues/264"
+        },
+        {
+          "number": 109,
+          "state": "closed",
+          "title": "SSR Specification",
+          "url": "https://github.com/solidjs/solid/issues/109"
+        }
+      ]
+    },
+    {
+      "repo": "solidjs/solid-router",
+      "query": "frame hydration",
+      "stateFilter": "none (open and closed)",
+      "total": 1,
+      "issues": [
+        {
+          "number": 623,
+          "state": "closed",
+          "title": "feat(observe): declare the route the document arrived on",
+          "url": "https://github.com/solidjs/solid-router/pull/623"
+        }
+      ]
+    },
+    {
+      "repo": "solidjs/solid-start",
+      "query": "server component hydration",
+      "stateFilter": "none (open and closed)",
+      "total": 39,
+      "issues": [
+        {
+          "number": 2287,
+          "state": "open",
+          "title": "Support initial serialized page data with client-only rendering",
+          "url": "https://github.com/solidjs/solid-start/issues/2287"
+        },
+        {
+          "number": 2304,
+          "state": "closed",
+          "title": "fix: defer hydration until suspense stream is parsed",
+          "url": "https://github.com/solidjs/solid-start/pull/2304"
+        },
+        {
+          "number": 2260,
+          "state": "closed",
+          "title": "Syntax error in a lazy route module hangs the SSR stream and shows no overlay",
+          "url": "https://github.com/solidjs/solid-start/issues/2260"
+        },
+        {
+          "number": 2214,
+          "state": "closed",
+          "title": "fix: resolve correct source positions for server-side stack frames in dev overlay",
+          "url": "https://github.com/solidjs/solid-start/pull/2214"
+        },
+        {
+          "number": 400,
+          "state": "closed",
+          "title": "Future Architecture: Hybrid Routing + Minimal Hydration",
+          "url": "https://github.com/solidjs/solid-start/issues/400"
+        },
+        {
+          "number": 2207,
+          "state": "closed",
+          "title": "fix: fail loudly when client code imports server-only entry points",
+          "url": "https://github.com/solidjs/solid-start/pull/2207"
+        },
+        {
+          "number": 1941,
+          "state": "closed",
+          "title": "[Bug?]: Hydration mismatch -- ContextProvider inside Show inside Suspense",
+          "url": "https://github.com/solidjs/solid-start/issues/1941"
+        },
+        {
+          "number": 1674,
+          "state": "closed",
+          "title": "[Bug?]: clientOnly inside Suspense boundary with createAsync that uses server action and cache is not rendered",
+          "url": "https://github.com/solidjs/solid-start/issues/1674"
+        },
+        {
+          "number": 1174,
+          "state": "closed",
+          "title": "[Bug?]: SSR / Hydration Mismatch for Ark UI + Panda CSS Project (Stackblitz example included)",
+          "url": "https://github.com/solidjs/solid-start/issues/1174"
+        },
+        {
+          "number": 2048,
+          "state": "closed",
+          "title": "[Bug?]:TypeError: template2 is not a function",
+          "url": "https://github.com/solidjs/solid-start/issues/2048"
+        },
+        {
+          "number": 1973,
+          "state": "closed",
+          "title": "client component",
+          "url": "https://github.com/solidjs/solid-start/issues/1973"
+        },
+        {
+          "number": 1942,
+          "state": "closed",
+          "title": "Devinxi",
+          "url": "https://github.com/solidjs/solid-start/pull/1942"
+        },
+        {
+          "number": 2007,
+          "state": "closed",
+          "title": "VItest + Playwright migration",
+          "url": "https://github.com/solidjs/solid-start/pull/2007"
+        },
+        {
+          "number": 1043,
+          "state": "closed",
+          "title": "Add support for `Portal` in SSR",
+          "url": "https://github.com/solidjs/solid-start/issues/1043"
+        },
+        {
+          "number": 1807,
+          "state": "closed",
+          "title": "[Bug?]: hydration fails silently without an error",
+          "url": "https://github.com/solidjs/solid-start/issues/1807"
+        },
+        {
+          "number": 1473,
+          "state": "closed",
+          "title": "[Bug?]:Error: Hydration Mismatch. Unable to find DOM nodes for hydration key: 0-0-0-0-0-0-0-0-1-0-0-0-1-0-0-0-0-0-1",
+          "url": "https://github.com/solidjs/solid-start/issues/1473"
+        },
+        {
+          "number": 1110,
+          "state": "closed",
+          "title": "[Bug?]: Error: Hydration Mismatch with component from node_modules",
+          "url": "https://github.com/solidjs/solid-start/issues/1110"
+        },
+        {
+          "number": 1666,
+          "state": "closed",
+          "title": "[Bug?]: When triggering a Server Action -> Nested Cache (Server Resource) triggers infinite loop",
+          "url": "https://github.com/solidjs/solid-start/issues/1666"
+        },
+        {
+          "number": 1286,
+          "state": "closed",
+          "title": "[Bug?]: Hydration Error Occurs When Adding New Route",
+          "url": "https://github.com/solidjs/solid-start/issues/1286"
+        },
+        {
+          "number": 1457,
+          "state": "closed",
+          "title": "Redirect doesn't early exit component when loading from browser address bar",
+          "url": "https://github.com/solidjs/solid-start/issues/1457"
+        },
+        {
+          "number": 589,
+          "state": "closed",
+          "title": "[Docs] CSR / SSR / SSG",
+          "url": "https://github.com/solidjs/solid-start/issues/589"
+        },
+        {
+          "number": 1475,
+          "state": "closed",
+          "title": "[Bug?]: Hydration Mismatch during Development. Nesting element within an object will break hydration. ",
+          "url": "https://github.com/solidjs/solid-start/issues/1475"
+        },
+        {
+          "number": 1175,
+          "state": "closed",
+          "title": "[Bug?]: CSS module styles injected after hydration; in `dev`?",
+          "url": "https://github.com/solidjs/solid-start/issues/1175"
+        },
+        {
+          "number": 1503,
+          "state": "closed",
+          "title": "[Bug?]: SolidStart fails to start with Daisyui and tailwindcss",
+          "url": "https://github.com/solidjs/solid-start/issues/1503"
+        },
+        {
+          "number": 1332,
+          "state": "closed",
+          "title": "[Bug?]: Hydration error on new project",
+          "url": "https://github.com/solidjs/solid-start/issues/1332"
+        },
+        {
+          "number": 1427,
+          "state": "closed",
+          "title": "[Bug?]: client only doesn't work anymore for `props.children`",
+          "url": "https://github.com/solidjs/solid-start/issues/1427"
+        },
+        {
+          "number": 522,
+          "state": "closed",
+          "title": "Hydration bug (build only) with components from linked dependency",
+          "url": "https://github.com/solidjs/solid-start/issues/522"
+        },
+        {
+          "number": 604,
+          "state": "closed",
+          "title": "Rewriting URLs breaks hydration",
+          "url": "https://github.com/solidjs/solid-start/issues/604"
+        },
+        {
+          "number": 306,
+          "state": "closed",
+          "title": "Broken CSS imports in lazy loaded components in SSR",
+          "url": "https://github.com/solidjs/solid-start/issues/306"
+        },
+        {
+          "number": 1299,
+          "state": "closed",
+          "title": "[Bug?]: resource without deferStream causes errors",
+          "url": "https://github.com/solidjs/solid-start/issues/1299"
+        },
+        {
+          "number": 1273,
+          "state": "closed",
+          "title": "[Bug?]: Ref is undefined when component has a loading resource",
+          "url": "https://github.com/solidjs/solid-start/issues/1273"
+        },
+        {
+          "number": 1207,
+          "state": "closed",
+          "title": "[Bug?]: TypeError: Cannot read properties of undefined (reading 'submissions')",
+          "url": "https://github.com/solidjs/solid-start/issues/1207"
+        },
+        {
+          "number": 699,
+          "state": "closed",
+          "title": "Cannot use `createResource` at the top of a module (`build` hang and `yarn dev` doesn't work - but hot reloading does -)",
+          "url": "https://github.com/solidjs/solid-start/issues/699"
+        },
+        {
+          "number": 748,
+          "state": "closed",
+          "title": "Are there any guidelines on how to use local storage as a Store?",
+          "url": "https://github.com/solidjs/solid-start/issues/748"
+        },
+        {
+          "number": 796,
+          "state": "closed",
+          "title": "Suggest an official way to use libraries *only* on the client",
+          "url": "https://github.com/solidjs/solid-start/issues/796"
+        },
+        {
+          "number": 255,
+          "state": "closed",
+          "title": "Typescript `tsc` can not exclude `node_modules/solid-start/`",
+          "url": "https://github.com/solidjs/solid-start/issues/255"
+        },
+        {
+          "number": 96,
+          "state": "closed",
+          "title": "Support router integrations of solid-app-router",
+          "url": "https://github.com/solidjs/solid-start/issues/96"
+        },
+        {
+          "number": 1030,
+          "state": "closed",
+          "title": "[Bug?]: Global Suspense trigger reruns everything during SSR",
+          "url": "https://github.com/solidjs/solid-start/issues/1030"
+        },
+        {
+          "number": 539,
+          "state": "closed",
+          "title": "customElement with interop",
+          "url": "https://github.com/solidjs/solid-start/issues/539"
+        }
+      ]
+    }
+  ],
+  "read": [
+    {
+      "id": 2973,
+      "url": "https://github.com/solidjs/solid/issues/2973"
+    },
+    {
+      "id": 3813,
+      "url": "https://github.com/solidjs/solid/issues/3813"
+    },
+    {
+      "id": 3849,
+      "url": "https://github.com/solidjs/solid/issues/3849"
+    }
+  ],
+  "multiInstanceExactSearchCount": 0
+}
