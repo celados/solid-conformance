@@ -452,9 +452,14 @@
     "coverage": [
       "08/boundary-render-sync-silent",
       "08/boundary-render-one-wait",
+      "08/boundary-render-shell-waited",
+      "08/boundary-render-render-only-count",
       "08/boundary-render-render-initial-failed",
-      "08/boundary-render-render-abandoned"
-    ]
+      "08/boundary-render-render-initial-failed-stream",
+      "08/boundary-render-render-abandoned",
+      "08/boundary-render-preflush-redirect-abandoned"
+    ],
+    "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。"
   },
   {
     "id": "08-dev-diagnostics:L842:2",
@@ -463,18 +468,30 @@
     "coverage": [
       "08/boundary-render-sync-silent",
       "08/boundary-render-one-wait",
+      "08/boundary-render-shell-waited",
+      "08/boundary-render-render-only-count",
       "08/boundary-render-render-initial-failed",
-      "08/boundary-render-render-abandoned"
-    ]
+      "08/boundary-render-render-initial-failed-stream",
+      "08/boundary-render-render-abandoned",
+      "08/boundary-render-preflush-redirect-abandoned"
+    ],
+    "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。"
   },
   {
     "id": "08-dev-diagnostics:L842:3",
     "classification": "behavioral",
     "status": "covered",
     "coverage": [
-      "08/boundary-render-shell-wait",
-      "08/boundary-render-render-only-count"
-    ]
+      "08/boundary-render-sync-silent",
+      "08/boundary-render-one-wait",
+      "08/boundary-render-shell-waited",
+      "08/boundary-render-render-only-count",
+      "08/boundary-render-render-initial-failed",
+      "08/boundary-render-render-initial-failed-stream",
+      "08/boundary-render-render-abandoned",
+      "08/boundary-render-preflush-redirect-abandoned"
+    ],
+    "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。"
   },
   {
     "id": "08-dev-diagnostics:L842:4",
@@ -482,19 +499,25 @@
     "status": "covered",
     "coverage": [
       "08/boundary-render-sync-silent",
-      "08/boundary-render-render-abandoned",
-      "08/boundary-render-preflush-redirect-abandoned",
+      "08/boundary-render-one-wait",
+      "08/boundary-render-shell-waited",
+      "08/boundary-render-render-only-count",
       "08/boundary-render-render-initial-failed",
-      "08/boundary-render-render-initial-failed-stream"
-    ]
+      "08/boundary-render-render-initial-failed-stream",
+      "08/boundary-render-render-abandoned",
+      "08/boundary-render-preflush-redirect-abandoned"
+    ],
+    "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。"
   },
   {
     "id": "08-dev-diagnostics:L842:5",
     "classification": "behavioral",
     "status": "covered",
     "coverage": [
+      "08/server-road-live-request-event-identity",
       "08/boundary-render-sync-silent"
-    ]
+    ],
+    "reason": "ambientrender live.event/trace严格===；outside request live.event absent仍有rendertrace。"
   },
   {
     "id": "08-dev-diagnostics:L842:7",
@@ -502,14 +525,15 @@
     "status": "covered",
     "coverage": [
       "08/boundary-render-unobserved-clocks"
-    ]
+    ],
+    "reason": "替换performance.now统计：unobserved Loading+render Observe/prod0 clocks，dev正控>0。"
   },
   {
     "id": "08-dev-diagnostics:L842:9",
     "classification": "not-behavioral",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "标题、展示消息或建议，不是独立外部行为保证；相邻实际码与字段另测。"
+    "reason": "解释http.route匹配模式减少APM名称基数的用途，没有额外运行保证；实际route字段合同是L842:8。"
   },
   {
     "id": "08-dev-diagnostics:L887:1",
@@ -707,10 +731,10 @@
     "classification": "behavioral",
     "status": "covered",
     "coverage": [
-      "08/server-road-live-request-event-identity",
-      "tracks/records/records.test.ts"
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles",
+      "08/server-road-live-request-event-identity"
     ],
-    "reason": "live invocation.event严格等于body读到的derived RequestEvent，render.event严格等于原ambient RequestEvent；derived request/response共享身份；trace与ambient对象同身份。"
+    "reason": "5 direct invocation及3HTTP invocation分别id/direct/request/outcome/originalerror；Loading id严格join；nestedRequestEvent与render event/trace用===验证。"
   },
   {
     "id": "08-dev-diagnostics:C835:1",
@@ -737,19 +761,32 @@
     "classification": "behavioral",
     "status": "covered",
     "coverage": [
-      "08/boundary-render-render-route-declaration"
+      "08/boundary-render-sync-silent",
+      "08/boundary-render-one-wait",
+      "08/boundary-render-shell-waited",
+      "08/boundary-render-render-only-count",
+      "08/boundary-render-render-initial-failed",
+      "08/boundary-render-render-initial-failed-stream",
+      "08/boundary-render-render-abandoned",
+      "08/boundary-render-preflush-redirect-abandoned"
     ],
-    "reason": "公开 OBSERVE attribution.withOrigin(initial navigation)在当前render声明route，serializable event严格匹配 name/to/params。"
+    "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。"
   },
   {
     "id": "08-dev-diagnostics:C838:1",
     "classification": "behavioral",
     "status": "covered",
     "coverage": [
-      "08/server-road-live-request-event-identity",
-      "tracks/records/records.test.ts"
+      "08/boundary-render-sync-silent",
+      "08/boundary-render-one-wait",
+      "08/boundary-render-shell-waited",
+      "08/boundary-render-render-only-count",
+      "08/boundary-render-render-initial-failed",
+      "08/boundary-render-render-initial-failed-stream",
+      "08/boundary-render-render-abandoned",
+      "08/boundary-render-preflush-redirect-abandoned"
     ],
-    "reason": "live invocation.event严格等于body读到的derived RequestEvent，render.event严格等于原ambient RequestEvent；derived request/response共享身份；trace与ambient对象同身份。"
+    "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。"
   },
   {
     "id": "08-dev-diagnostics:C848:1",
@@ -1036,5 +1073,99 @@
     "coverage": [
       "08/boundary-render-preflush-redirect-abandoned"
     ]
+  },
+  {
+    "id": "08-dev-diagnostics:L820:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles",
+      "08/server-road-live-request-event-identity"
+    ],
+    "reason": "5 direct invocation及3HTTP invocation分别id/direct/request/outcome/originalerror；Loading id严格join；nestedRequestEvent与render event/trace用===验证。"
+  },
+  {
+    "id": "08-dev-diagnostics:L829:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles",
+      "08/server-road-live-request-event-identity"
+    ],
+    "reason": "5 direct invocation及3HTTP invocation分别id/direct/request/outcome/originalerror；Loading id严格join；nestedRequestEvent与render event/trace用===验证。"
+  },
+  {
+    "id": "08-dev-diagnostics:L829:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles",
+      "08/server-road-live-request-event-identity"
+    ],
+    "reason": "5 direct invocation及3HTTP invocation分别id/direct/request/outcome/originalerror；Loading id严格join；nestedRequestEvent与render event/trace用===验证。"
+  },
+  {
+    "id": "08-dev-diagnostics:L829:5",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles",
+      "08/server-road-live-request-event-identity"
+    ],
+    "reason": "5 direct invocation及3HTTP invocation分别id/direct/request/outcome/originalerror；Loading id严格join；nestedRequestEvent与render event/trace用===验证。"
+  },
+  {
+    "id": "08-dev-diagnostics:C826:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles",
+      "08/server-road-live-request-event-identity"
+    ],
+    "reason": "5 direct invocation及3HTTP invocation分别id/direct/request/outcome/originalerror；Loading id严格join；nestedRequestEvent与render event/trace用===验证。"
+  },
+  {
+    "id": "08-dev-diagnostics:C839:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-sync-silent",
+      "08/boundary-render-one-wait",
+      "08/boundary-render-shell-waited",
+      "08/boundary-render-render-only-count",
+      "08/boundary-render-render-initial-failed",
+      "08/boundary-render-render-initial-failed-stream",
+      "08/boundary-render-render-abandoned",
+      "08/boundary-render-preflush-redirect-abandoned"
+    ],
+    "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。"
+  },
+  {
+    "id": "08-dev-diagnostics:L842:6",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/trace.test.ts#RFC12 trace server timing exact record durations"
+    ],
+    "reason": "response solid-shell数值与同render record.shellMs差<=0.051；devalways/Observe gated/prodnone，headcommit冻结。"
+  },
+  {
+    "id": "08-dev-diagnostics:L842:8",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-render-route-declaration",
+      "08/boundary-render-sync-silent"
+    ],
+    "reason": "initial navigation origin在active render内声明name/to/params，精确record.route；no origin render无route。"
+  },
+  {
+    "id": "08-dev-diagnostics:L985:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/undeclared-source.test.ts"
+    ],
+    "reason": "真实document scope source保持5.3s，dev唯一ssr/warn afterMs5000；live声明documentfirstonly和standing frame均豁免，三tier producerclosed计数独立。"
   }
 ]
