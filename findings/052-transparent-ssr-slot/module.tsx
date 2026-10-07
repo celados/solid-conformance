@@ -1,0 +1,3 @@
+import {createMemo,Loading} from 'solid-js'
+import {renderToStream} from '@solidjs/web'
+export async function run(transparent=false){const html=await renderToStream(()=>{const value=createMemo(()=>Promise.resolve(42),{transparent});return<Loading fallback={<b>waiting</b>}><span>{value()}</span></Loading>});const self={$R:{}},hydration={r:{}as Record<string,unknown>};for(const match of html.matchAll(/<script>([\s\S]*?)<\/script>/g))new Function('self','_$HY','$R',match[1]!)(self,hydration,self.$R);return{sourceRecord:Object.hasOwn(hydration.r,'0'),value:await hydration.r['0'],keys:Object.keys(hydration.r),elementKey:/_hk=([^ >]+)/.exec(html)?.[1]}}

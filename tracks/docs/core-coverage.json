@@ -5992,8 +5992,12 @@
     "end_line": 227,
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "SSR ignores the option (server-side nodes always allocate their id slot), so only mark nodes the server does not create; outside hydration it is a no-op.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "findings/052-transparent-ssr-slot/repro.test.ts",
+      "05/transparent-csr-noop"
+    ],
+    "status": "covered",
+    "rationale": "SSRignore选项字面red，CSRno-op positive；源记录与element key为公开wire，不查私有node。"
   },
   {
     "id": "05-async-data:L227:5",
