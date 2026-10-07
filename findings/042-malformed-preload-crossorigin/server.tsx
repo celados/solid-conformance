@@ -1,0 +1,3 @@
+import {OBSERVE,lazy} from 'solid-js'
+import {isDev,renderToStream} from '@solidjs/web'
+export async function sample(crossorigin:unknown){const Part=lazy(async()=>({default:()=> <span>page</span>}),undefined,'part.tsx');const capture=OBSERVE?.diagnostics.capture(),warn=console.warn;console.warn=()=>{};try{const descriptor={as:'font',href:'/font.woff2',...(crossorigin===undefined?{}:{crossorigin})};const html=await renderToStream(()=><html><head/><body><Part/></body></html>,{manifest:()=>({js:["/part.js"],css:[],preloads:[descriptor]}) as any});return{dev:isDev,html,events:capture?.events.filter(e=>e.code==='PRELOAD_DESCRIPTOR_INVALID').map(e=>({kind:e.kind,severity:e.severity,data:e.data}))??[]}}finally{capture?.stop();console.warn=warn}}
