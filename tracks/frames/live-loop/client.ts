@@ -1,3 +1,4 @@
+import {createRoot,createMemo,createProjection,createEffect} from "solid-js";
 import {configureServerFunctionsClient,createServerReference,GET,live,invoke} from '@solidjs/web/server-functions/client';
 const fn=live(GET(createServerReference('loop')));
 async function scenario(kind:string){
@@ -11,4 +12,7 @@ async function scenario(kind:string){
  const nestedValues=await Promise.all(values.map(async answer=>{const seen=[];for await(const value of answer.nestedStream)seen.push(value);return seen}));const fresh=values.every((value,i)=>!i||value!==values[i-1]&&value.nestedStream!==values[i-1].nestedStream);await iterator.return!();for(const timer of timers)clearTimeout(timer);await Promise.resolve();return {times:times.map(t=>t-times[0]!),statuses,values,nestedValues,fresh,cleanups,args,error:error?{name:error.name,status:error.status}:null};
 }
 const results:any={};for(const kind of ['backoff','online','definite','retry','retry-408','retry-425','retry-429','retry-named-404','abort'])results[kind]=await scenario(kind);
+let reactiveCount=0;const memoValues:any[]=[],projectionValues:number[]=[];let disposed!:()=>void;let finish!:()=>void;const completed=new Promise<void>(r=>finish=r);
+configureServerFunctionsClient({fetch:async()=>new Response(String(reactiveCount++)),responseHandler:{handle(response){return response.text().then(text=>(async function*(){const n=Number(text);yield {n};if(n===0)throw new Error('refresh')})())}}});
+createRoot(dispose=>{disposed=dispose;const answer=createMemo(()=>fn());const projection=createProjection(()=>({n:answer().n}),{n:-1});createEffect(answer,value=>{memoValues.push(value)});createEffect(()=>projection.n,value=>{projectionValues.push(value);if(value===1)finish()})});await completed;disposed();results.reactive={memoValues: memoValues.map(v=>v.n),projectionValues,fresh:memoValues[0]!==memoValues[1],calls:reactiveCount};
 (window as any).result=results;

@@ -14,6 +14,6 @@ for(const mode of ["development","observe","production"] as BuildMode[])test("RF
  expect(result.definite.error).toMatchObject({status:404});expect(result.definite.times.length).toBe(2);expect(result.definite.statuses.at(-1)).toBe('closed');
  expect(result.retry.values.map((v:any)=>v.n)).toEqual([0,2]);expect(result.retry.times.length).toBe(3);
  for(const kind of ['retry-408','retry-425','retry-429','retry-named-404']){expect(result[kind].values.map((v:any)=>v.n)).toEqual([0,2]);expect(result[kind].times.length).toBe(3)}expect(result['retry-named-404'].times[2]-result['retry-named-404'].times[1]).toBeGreaterThan(950);
- expect(result.abort.error).toMatchObject({name:'AbortError'});expect(result.abort.statuses.filter((s:string)=>s==='closed').length).toBe(1);expect(result.abort.times.length).toBe(2);expect(errors).toEqual([]);
+ expect(result.abort.error).toMatchObject({name:'AbortError'});expect(result.abort.statuses.filter((s:string)=>s==='closed').length).toBe(1);expect(result.abort.times.length).toBe(2);expect(result.reactive).toEqual({memoValues:[0,1],projectionValues:[0,1],fresh:true,calls:2});expect(errors).toEqual([]);
  }finally{await browser.close();server.stop(true);await rm(dir,{recursive:true,force:true})}
 },30000);
