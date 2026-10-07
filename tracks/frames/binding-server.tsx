@@ -9,6 +9,7 @@ import {
 } from "@solidjs/web";
 import { renderServerComponent } from "@solidjs/web/frames/server";
 import { equal, ok, runCases, type DocCase } from "../docs/registry";
+import {createJSONDeserializer} from "@solidjs/web/serialization";
 const cases: DocCase[] = [];
 const modes: Record<string, (p: any) => any> = {
   spread: (p) => <div {...p.row({ id: 1 })} />,
@@ -67,6 +68,9 @@ for (const [reason, component] of Object.entries(modes))
             ["server-handler", "handler-tuple"].includes(reason) ? "server-local" : reason,
           );
           equal(found[0]!.severity, reason === "spread" ? "error" : "warn");
+          if(["stringified","coerced","inline","tuple","prop"].includes(reason)){equal(found[0]!.data?.occurrence,"row#0");equal(found[0]!.data?.key,reason==="coerced"||reason==="prop"?"count":reason==="tuple"?"key":"done")}
+          if(reason==="prop")equal(found[0]!.data?.position,"prop:value");
+
         }
         if (isDev && reason === "spread")
           ok(errors.length || chunks.some((c) => c.type === "error"));
@@ -250,3 +254,15 @@ export async function handle(request: Request) {
     { status: response.status, headers: response.headers },
   );
 }
+
+cases.push({id:'08/binding-reserved-key-set',file:'08-dev-diagnostics.md',statement:'The explicit reserved range keys warn individually while ordinary filter/map data keys remain readable.',run(){
+ const keys=['$bad','0bad','length','slice','t','h','p','then','constructor','toString','valueOf','toJSON'];const C=frameTransformDirectResult((p:any)=>{const row=p.row({});return <b>{row.filter}:{row.map}</b>},{id:'reserved-set'});const capture=OBSERVE?.diagnostics.capture();const old=console.warn;console.warn=()=>{};
+ try{const values=Object.fromEntries(keys.map(k=>[k,'reserved']));const html=renderToString(()=><C row={()=>({...values,filter:'filter-value',map:'map-value'})}/>);ok(html.includes('filter-value'));ok(html.includes('map-value'));const events=capture?.events.filter(e=>e.code==='BINDING_SLOT_POSITION')??[];equal(events.length,isDev?keys.length:0);if(isDev){equal(events.map(e=>e.data?.key),keys);for(const e of events){equal(e.kind,'ssr');equal(e.severity,'warn');equal(e.data?.reason,'reserved-key');equal(e.data?.occurrence,'row#0')}}}finally{capture?.stop();console.warn=old}
+}});
+cases.push({id:'08/binding-nested-arg-first-path',file:'08-dev-diagnostics.md',statement:'Nested plain-object/array stand-ins are scrubbed to undefined on stream and document faces, reported once at first path with origin fields.',async run(){
+ const component=(p:any)=>{const row=p.row({});const value=row.done;return <p.child payload={{first:{x:value},second:[value]}}/>};
+ const capture=OBSERVE?.diagnostics.capture();const old=console.warn;console.warn=()=>{};
+ try{const chunks:any[]=await renderServerComponent(component,{frame:{id:'nested-arg'}});const reference=chunks.find(c=>c.type==='slot'&&c.key==='child#0').args.payload;const arg:any=createJSONDeserializer()(chunks.find(c=>c.type==='data'&&c.key===reference.$ref).node);equal(arg.first.x,undefined);equal(arg.second[0],undefined);const streamEvents=capture?.events.filter(e=>e.code==='BINDING_SLOT_POSITION')??[];equal(streamEvents.length,isDev?1:0);if(isDev){const e=streamEvents[0]!;equal(e.kind,'ssr');equal(e.severity,'warn');equal(e.data,{reason:'arg',occurrence:'child#0',key:'payload',path:'.first.x',from:'row#0',fromKey:'done'})}
+ const C=frameTransformDirectResult(component,{id:'nested-doc'});let received:any;renderToString(()=><C row={()=>({done:42})} child={(p:any)=>{received=p.payload;return 'child'}}/>);ok(received);equal(received.first.x,undefined);equal(received.second[0],undefined);const all=capture?.events.filter(e=>e.code==='BINDING_SLOT_POSITION')??[];equal(all.length,isDev?2:0);if(isDev)equal(all[1]!.data,streamEvents[0]!.data)
+ }finally{capture?.stop();console.warn=old}
+}});

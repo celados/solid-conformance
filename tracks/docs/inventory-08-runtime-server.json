@@ -608,9 +608,11 @@
     "coverage": [
       "tracks/frames/binding.test.ts",
       "08/binding-server-arg",
-      "08/binding-document-reserved-key"
+      "08/binding-document-reserved-key",
+      "08/binding-reserved-key-set",
+      "08/binding-nested-arg-first-path"
     ],
-    "reason": "全部 reason 与 client shape/key/occurrence/why/elements 已精确断言；reserved-key 全集合、arg 多路径 first-only 与双面 undefined 尚缺，不能整句 covered。"
+    "reason": "所有reason已测，完整reservedkey显式集且filter/map正控、nestedarg同standinfirstpathonce及双面undefined已补；Map/Set/class不遍历与nonfunctionprop/tupleclientfill仍需精确补，不称整句covered。"
   },
   {
     "id": "08-dev-diagnostics:L727:6",
@@ -623,12 +625,17 @@
   },
   {
     "id": "08-dev-diagnostics:L727:9",
-    "status": "uncovered",
+    "status": "covered",
     "classification": "behavioral",
     "coverage": [
-      "tracks/frames/binding.test.ts"
+      "08/binding-server-stringified",
+      "08/binding-server-coerced",
+      "08/binding-server-inline",
+      "08/binding-server-tuple",
+      "08/binding-server-prop",
+      "08/binding-nested-arg-first-path"
     ],
-    "reason": "已测全部reason/多shape；同句话部分fields/双面position/canonical reservedkey全列去重仍需精确断言，不能整句称covered"
+    "reason": "stand-in occurrence/key exact fields and prop:value exact position；nested arg occurrence/key/path/from/fromKey及双面firstonly精确验证。"
   },
   {
     "id": "08-dev-diagnostics:L727:5",
