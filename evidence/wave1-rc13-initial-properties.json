@@ -1,0 +1,29 @@
+{
+  "seed": 20261007,
+  "requested": 200,
+  "generated": 200,
+  "attemptsIncludingShrink": 200,
+  "browserRuns": 1462,
+  "kinds": {
+    "group": 38,
+    "optimistic-store": 44,
+    "for": 30,
+    "errored": 30,
+    "text": 23,
+    "effect": 34,
+    "store": 40,
+    "keyed-for": 31,
+    "lazy": 38,
+    "optimistic": 28,
+    "action": 30,
+    "switch": 29,
+    "loading": 28,
+    "show": 33,
+    "iterable": 26,
+    "promise": 39
+  },
+  "failed": false,
+  "counterexample": null,
+  "counterexamplePath": null,
+  "error": ""
+}

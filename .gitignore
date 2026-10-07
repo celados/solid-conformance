@@ -1,4 +1,6 @@
-.orchestration/*.jsonl
-.orchestration/*.stderr
 node_modules/
+.scratch/
 .upstream/
+.build/
+artifacts/*
+!artifacts/.gitkeep

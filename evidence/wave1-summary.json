@@ -1,0 +1,46 @@
+{
+  "type": "verification-receipt",
+  "runtime_default": "2.0.0-rc.13",
+  "router": "2.0.0-next.35",
+  "upstream_sha": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+  "commands": {
+    "default": {
+      "command": "CASES=20 bun test",
+      "passed": 8,
+      "failed": 0
+    },
+    "head_regressions_and_findings": {
+      "command": "EXPECT_FIXED=1 bun test tracks/regressions ./findings",
+      "passed": 8,
+      "failed": 0
+    },
+    "head_final_minimal_repros": {
+      "command": "bun test ./findings",
+      "passed": 3,
+      "failed": 0
+    },
+    "rc13_minimal_repros": {
+      "command": "bun test ./findings",
+      "passed": 0,
+      "failed": 3
+    },
+    "typecheck": {
+      "command": "bun run check",
+      "passed": true,
+      "runtimes": [
+        "rc13",
+        "head"
+      ]
+    }
+  },
+  "property_receipts": [
+    "wave1-rc13-initial-properties.json",
+    "wave1-rc13-strengthened-properties.json",
+    "wave1-rc13-delivery-properties.json",
+    "wave1-head-properties.json"
+  ],
+  "generated_checks": 420,
+  "browser_runs": 3046,
+  "historical_matrix": "rc.6/rc.10 pairs were not qualified; fixes after RC13 are verified by red RC13 tests and green built HEAD tests",
+  "upstream_writes": false
+}
