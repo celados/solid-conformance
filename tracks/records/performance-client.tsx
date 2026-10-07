@@ -4,7 +4,7 @@ import { enablePerformanceTracks } from '@solidjs/web/performance-tracks'
 import { attribution } from 'solid-js/attribution'
 export async function performanceCases(){
  performance.clearMeasures();const tasks:string[]=[];const originalTask=(console as any).createTask
- ;(console as any).createTask=(name:string)=>{tasks.push(name);return {run:(fn:()=>unknown)=>fn()}}
+ ;(console as any).createTask=(name:string)=>{tasks.push(name);return typeof originalTask==='function'?originalTask.call(console,name):{run:(fn:()=>unknown)=>fn()}}
  const release=enablePerformanceTracks({rich:true,minMs:0});const extra=enablePerformanceTracks({rich:false,minMs:999999})
  let set!:(n:number)=>void,resolve!:(n:number)=>void;const pending=new Promise<number>(r=>resolve=r)
  function Card(){const[r,w]=createSignal(0,{name:'count'});set=w;const m=createMemo(()=>r()*2,{name:'double'});createEffect(m,()=>{},{name:'paint'});const data=createMemo(()=>pending,{name:'remote'});return <section><span>{m()}</span><Loading fallback={<i>pending</i>}><b>{data()}</b></Loading></section>}
