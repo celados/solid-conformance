@@ -18,7 +18,7 @@ if(!isServer){
   doc('after-await','Each computation warns once per signal or memo, and once per store (naming the first untracked property it reads, at any depth).',async()=>{
     // Run this in system Chrome: Bun's JavaScriptCore does not provide V8 async stacks.
     for(const shape of ['signal','store','before','untrack'] as const) {
-      await capture('UNTRACKED_READ_AFTER_AWAIT',async()=>{
+      const diagnostics=await capture('UNTRACKED_READ_AFTER_AWAIT',async()=>{
         let result!:()=>number,set!:()=>void,runs=0
         const gate=deferred<void>()
         const close=root(()=>{
@@ -29,7 +29,7 @@ if(!isServer){
           try{result()}catch{}
         })
         try{gate.resolve();await ticks(8);equal(result(),shape==='store'?10:shape==='before'?2:1);set();await ticks(8);equal(runs,shape==='before'?2:1);if(shape==='signal')equal(result(),1)}finally{close()}
-      },shape==='signal'||shape==='store')
+      },shape==='signal'||shape==='store');if(isDev&&shape==='store')ok(diagnostics[0]!.nodeName?.includes('first'))
     }
   })
   doc('loading-outside','The diagnostic fires once, at the change, and data.source names the source.',async()=>{

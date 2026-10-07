@@ -693,9 +693,11 @@
     {
       "id": "08-dev-diagnostics:L249:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-flush-iteration-cap"
+      ],
+      "reason": "真实Chrome正例/负对照明确断言该tier、触发、时间顺序或boundedguard合同。"
     },
     {
       "id": "08-dev-diagnostics:L249:2",
@@ -1107,11 +1109,12 @@
     {
       "id": "08-dev-diagnostics:L353:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/client-diagnostic-after-await"
+        "08/client-diagnostic-after-await",
+        "08/primitive-after-await-memo-source"
       ],
-      "reason": "partial: signal once/store per-source及rowwalk验证，memo/任意深度首属性命名未穷举。"
+      "reason": "Chrome dev/prod targeted assertions: first store key and once/source; unreachable ownerless graph exclusion and false-disable tested explicitly."
     },
     {
       "id": "08-dev-diagnostics:L353:3",
@@ -1166,9 +1169,12 @@
     {
       "id": "08-dev-diagnostics:L359:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-async-stack-exclusions",
+        "findings/023-returned-helper-diagnostic/repro.test.ts"
+      ],
+      "reason": "iterable/subclass/thenable 安静有负对照；returned-helper 排除声明由023最小红测试记录，倾向文档过窄。"
     },
     {
       "id": "08-dev-diagnostics:L359:3",
@@ -1319,9 +1325,11 @@
     {
       "id": "08-dev-diagnostics:L405:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-disposed-owner-lifetime"
+      ],
+      "reason": "有真实Chrome各tier触发、negative以及lifetime/threshold明确断言。"
     },
     {
       "id": "08-dev-diagnostics:L409:1",
@@ -1364,11 +1372,12 @@
     {
       "id": "08-dev-diagnostics:L417:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/attribution-warning-huge_fan_out"
+        "08/cost-fanout-core-threshold",
+        "08/cost-fanout-invalidation-kinds"
       ],
-      "reason": "partial: signal write自定义低阈值检查；memo/async landing 未覆盖。"
+      "reason": "有真实Chrome各tier触发、negative以及lifetime/threshold明确断言。"
     },
     {
       "id": "08-dev-diagnostics:L417:2",
@@ -1409,11 +1418,13 @@
     {
       "id": "08-dev-diagnostics:L419:3",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/attribution-warning-huge_fan_out"
+        "08/cost-fanout-engine-handover",
+        "08/cost-fanout-invalidation-kinds",
+        "findings/025-async-fanout-classification/repro.test.ts"
       ],
-      "reason": "partial: 正例覆盖一个入口，句子还列出其他 scope/target 或同步提交时序；需要进一步精确断言。"
+      "reason": "Default250/2000handover与store write/refresh明确测试；async metadata错分由025最小红测试记录。"
     },
     {
       "id": "08-dev-diagnostics:L419:4",
@@ -1510,9 +1521,12 @@
     {
       "id": "08-dev-diagnostics:L427:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-wide-default-threshold",
+        "08/cost-fanin-core-threshold"
+      ],
+      "reason": "有真实Chrome各tier触发、negative以及lifetime/threshold明确断言。"
     },
     {
       "id": "08-dev-diagnostics:L427:2",
@@ -1644,9 +1658,11 @@
     {
       "id": "08-dev-diagnostics:L437:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-graph-reachability-disposal"
+      ],
+      "reason": "Chrome dev/prod targeted assertions: first store key and once/source; unreachable ownerless graph exclusion and false-disable tested explicitly."
     },
     {
       "id": "08-dev-diagnostics:L437:5",
@@ -1660,9 +1676,11 @@
     {
       "id": "08-dev-diagnostics:L437:6",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-graph-reachability-disposal"
+      ],
+      "reason": "Chrome dev/prod targeted assertions: first store key and once/source; unreachable ownerless graph exclusion and false-disable tested explicitly."
     },
     {
       "id": "08-dev-diagnostics:L441:1",
@@ -2143,9 +2161,12 @@
     {
       "id": "08-dev-diagnostics:L494:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-relay-advisory-and-escalation",
+        "08/cost-effect-relay-tear"
+      ],
+      "reason": "真实Chrome正例/负对照明确断言该tier、触发、时间顺序或boundedguard合同。"
     },
     {
       "id": "08-dev-diagnostics:L496:1",
@@ -2159,16 +2180,20 @@
     {
       "id": "08-dev-diagnostics:L497:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-relay-advisory-and-escalation"
+      ],
+      "reason": "真实Chrome正例/负对照明确断言该tier、触发、时间顺序或boundedguard合同。"
     },
     {
       "id": "08-dev-diagnostics:L498:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-relay-advisory-and-escalation"
+      ],
+      "reason": "真实Chrome正例/负对照明确断言该tier、触发、时间顺序或boundedguard合同。"
     },
     {
       "id": "08-dev-diagnostics:L498:2",

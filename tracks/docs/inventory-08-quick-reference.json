@@ -329,11 +329,12 @@
     {
       "id": "08-dev-diagnostics:L964:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/attribution-warning-effect_relay_tear"
+        "08/cost-effect-relay-tear",
+        "08/cost-relay-advisory-and-escalation"
       ],
-      "reason": "warn/singlewriter identity正例已测；info变换/otherwriters未测。"
+      "reason": "perf类别、singlewriter warn、otherwriter identity info及transform info→warn有显式断言，另测两帧value时间线。"
     },
     {
       "id": "08-dev-diagnostics:L965:1",
