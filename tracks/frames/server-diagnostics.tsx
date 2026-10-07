@@ -8,6 +8,8 @@ import {
   createRequestEvent,
   ssr,
   escape,
+  configureServerErrors,
+  renderToString,
 } from "@solidjs/web";
 import { AsyncLocalStorage } from "node:async_hooks";
 import {
@@ -480,5 +482,12 @@ for (const road of ["frame-root", "frame-fragment", "frame-live-hole", "async-so
       }
     },
   );
+// RFC08 L615/L619: original identity, authored replacement and repeated-road deduplication.
+doc("hook-wire-and-repeated-roads", "The observer records the original once per wire policy; the hook controls the exact SSR replacement across repeated boundaries.", async()=>{
+ const original=new Error("private repeat"),replacement=new Error("public replacement");let calls=0;const values:unknown[]=[];
+ configureServerErrors({onError:()=>{calls++;return replacement}});
+ try{const result=await observed(()=>{function Broken():never{throw original};const html=renderToString(()=><><Errored fallback={e=>{values.push(e());return <b>{(e() as Error).message}</b>}}><Broken/></Errored><Errored fallback={e=>{values.push(e());return <b>{(e() as Error).message}</b>}}><Broken/></Errored></>);ok(html.includes("public replacement"));ok(!html.includes("private repeat"))});equal(calls,1);equal(values.length,2);ok(values.every(v=>v===replacement));const sanitized=selected(result,"SERVER_ERROR_SANITIZED");equal(sanitized.length,OBSERVE?1:0);for(const e of sanitized){equal(e.kind,"ssr");equal(e.severity,"info");equal(e.data?.source,"ssr");ok(e.data?.error===original);ok(e.data?.wire===replacement)}
+ }finally{configureServerErrors({})}
+});
 export const run = () =>
   scope.run(createRequestEvent(new Request("http://test/")), () => runCases(cases));

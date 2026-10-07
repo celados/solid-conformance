@@ -246,12 +246,14 @@
   {
     "id": "08-dev-diagnostics:L615:2",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
       "08/server-road-sanitize-rpc-false",
-      "08/server-road-sanitize-ssr-false"
+      "08/server-road-sanitize-ssr-false",
+      "08/server-road-hook-wire-and-repeated-roads",
+      "12/server-hook-rpc-mapping"
     ],
-    "reason": "original error和source已测，hook replacement/data.wire完整覆盖仍需补"
+    "reason": "默认 generic wire 与作者 hook replacement 分别测试；两个 Errored 重复同一 original，hook once、两次 fallback 与 data.wire 同 replacement 身份。"
   },
   {
     "id": "08-dev-diagnostics:L617:1",
@@ -300,18 +302,26 @@
   {
     "id": "08-dev-diagnostics:L619:3",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "08/server-road-sanitize-ssr-false"
+      "08/server-road-sanitize-rpc-false",
+      "08/server-road-sanitize-ssr-false",
+      "08/server-road-hook-wire-and-repeated-roads",
+      "12/server-hook-rpc-mapping"
     ],
-    "reason": "SSR info original身份已测，same original多road去重还未测试"
+    "reason": "默认 generic wire 与作者 hook replacement 分别测试；两个 Errored 重复同一 original，hook once、两次 fallback 与 data.wire 同 replacement 身份。"
   },
   {
     "id": "08-dev-diagnostics:L619:4",
     "classification": "behavioral",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "prod hook replacement road待补"
+    "status": "covered",
+    "coverage": [
+      "08/server-road-sanitize-rpc-false",
+      "08/server-road-sanitize-ssr-false",
+      "08/server-road-hook-wire-and-repeated-roads",
+      "12/server-hook-rpc-mapping"
+    ],
+    "reason": "默认 generic wire 与作者 hook replacement 分别测试；两个 Errored 重复同一 original，hook once、两次 fallback 与 data.wire 同 replacement 身份。"
   },
   {
     "id": "08-dev-diagnostics:L625:1",
@@ -589,12 +599,14 @@
   },
   {
     "id": "08-dev-diagnostics:L727:4",
-    "status": "uncovered",
     "classification": "behavioral",
+    "status": "uncovered",
     "coverage": [
-      "tracks/frames/binding.test.ts"
+      "tracks/frames/binding.test.ts",
+      "08/binding-server-arg",
+      "08/binding-document-reserved-key"
     ],
-    "reason": "已测全部reason/多shape；同句话部分fields/双面position/canonical reservedkey全列去重仍需精确断言，不能整句称covered"
+    "reason": "全部 reason 与 client shape/key/occurrence/why/elements 已精确断言；reserved-key 全集合、arg 多路径 first-only 与双面 undefined 尚缺，不能整句 covered。"
   },
   {
     "id": "08-dev-diagnostics:L727:6",
@@ -620,5 +632,240 @@
     "classification": "not-behavioral",
     "coverage": [],
     "reason": "风险/动机说明；具体orphan trigger另测"
+  },
+  {
+    "id": "08-dev-diagnostics:C809:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-one-wait",
+      "08/boundary-render-string-fallback",
+      "08/boundary-render-client-outcome",
+      "08/boundary-render-error-original",
+      "08/boundary-render-reveal-held"
+    ],
+    "reason": "事件 id/at/durationMs/heldMs/passes 四 outcome 和 live.error 原始身份均有直接断言。"
+  },
+  {
+    "id": "08-dev-diagnostics:C810:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-one-wait",
+      "08/boundary-render-string-fallback",
+      "08/boundary-render-client-outcome",
+      "08/boundary-render-error-original",
+      "08/boundary-render-reveal-held"
+    ],
+    "reason": "事件 id/at/durationMs/heldMs/passes 四 outcome 和 live.error 原始身份均有直接断言。"
+  },
+  {
+    "id": "08-dev-diagnostics:C812:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-one-wait",
+      "08/boundary-render-string-fallback",
+      "08/boundary-render-client-outcome",
+      "08/boundary-render-error-original",
+      "08/boundary-render-reveal-held"
+    ],
+    "reason": "事件 id/at/durationMs/heldMs/passes 四 outcome 和 live.error 原始身份均有直接断言。"
+  },
+  {
+    "id": "08-dev-diagnostics:C811:1",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "08/boundary-render-one-wait",
+      "08/boundary-render-string-fallback",
+      "08/boundary-render-client-outcome",
+      "08/boundary-render-error-original",
+      "08/boundary-render-reveal-held",
+      "tracks/records/trace.test.ts"
+    ],
+    "reason": "streamed、revealGroup 与 dev ownerPath 已精准测；Observe component owner labels 缺失仍需独立判定。"
+  },
+  {
+    "id": "08-dev-diagnostics:C824:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+    ],
+    "reason": "direct sync/promise/error/generator 五种 invocation；id、at、duration、ok/error、deferred 和 boundary join。"
+  },
+  {
+    "id": "08-dev-diagnostics:C825:1",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+    ],
+    "reason": "request existence、args/result/error 与 serializable exclusion 已测；RequestEvent 本体 identity 尚未找到专门断言。"
+  },
+  {
+    "id": "08-dev-diagnostics:C835:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-sync-silent",
+      "08/boundary-render-one-wait",
+      "08/boundary-render-shell-waited"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:C836:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-sync-silent",
+      "08/boundary-render-render-initial-failed",
+      "08/boundary-render-render-abandoned"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:C837:1",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "可测试的 route name/to/params render record 尚无精确 fixture。"
+  },
+  {
+    "id": "08-dev-diagnostics:C838:1",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "08/boundary-render-sync-silent",
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+    ],
+    "reason": "无 RequestEvent 时 undefined 与 trace 存在已测；RequestEvent live 原始身份尚缺。"
+  },
+  {
+    "id": "08-dev-diagnostics:C848:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+    ],
+    "reason": "POST/GET、200/500、ok/error、interaction origin、pending/deferred、explicit-name/anonymous 和 monotonic clocks 各独立场景。"
+  },
+  {
+    "id": "08-dev-diagnostics:C849:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+    ],
+    "reason": "真实 HTTP request/response 与 custom-fetch requestCases 的 result/error、克隆 body 以及 bodyUsed 精确验证。"
+  },
+  {
+    "id": "08-dev-diagnostics:C863:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+    ],
+    "reason": "request side/client、id、name、method、origin；opening at-send 未有 response；与 settle call 共享 live identity，clone body 不消费实际 body。"
+  },
+  {
+    "id": "08-dev-diagnostics:C864:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+    ],
+    "reason": "request side/client、id、name、method、origin；opening at-send 未有 response；与 settle call 共享 live identity，clone body 不消费实际 body。"
+  },
+  {
+    "id": "08-dev-diagnostics:C865:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+    ],
+    "reason": "request side/client、id、name、method、origin；opening at-send 未有 response；与 settle call 共享 live identity，clone body 不消费实际 body。"
+  },
+  {
+    "id": "08-dev-diagnostics:C875:1",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+    ],
+    "reason": "真实 server/client complete frame 精确 join id/version/chunks/fragments/slots/regions/errors 与 response；error/truncated live-error 及 optional address/shellMs 的复合句尚未全部精确测。"
+  },
+  {
+    "id": "08-dev-diagnostics:C876:1",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+    ],
+    "reason": "真实 server/client complete frame 精确 join id/version/chunks/fragments/slots/regions/errors 与 response；error/truncated live-error 及 optional address/shellMs 的复合句尚未全部精确测。"
+  },
+  {
+    "id": "08-dev-diagnostics:C877:1",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+    ],
+    "reason": "真实 server/client complete frame 精确 join id/version/chunks/fragments/slots/regions/errors 与 response；error/truncated live-error 及 optional address/shellMs 的复合句尚未全部精确测。"
+  },
+  {
+    "id": "08-dev-diagnostics:C878:1",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+    ],
+    "reason": "真实 server/client complete frame 精确 join id/version/chunks/fragments/slots/regions/errors 与 response；error/truncated live-error 及 optional address/shellMs 的复合句尚未全部精确测。"
+  },
+  {
+    "id": "08-dev-diagnostics:C879:1",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+    ],
+    "reason": "真实 server/client complete frame 精确 join id/version/chunks/fragments/slots/regions/errors 与 response；error/truncated live-error 及 optional address/shellMs 的复合句尚未全部精确测。"
+  },
+  {
+    "id": "08-dev-diagnostics:C891:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/recovery.test.ts"
+    ],
+    "reason": "真实 streamed rejection→fresh client recovery，id server boundary join、at/waitedMs/renderMs 非负以及 live={}，production 无记录。"
+  },
+  {
+    "id": "08-dev-diagnostics:C892:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/recovery.test.ts"
+    ],
+    "reason": "真实 streamed rejection→fresh client recovery，id server boundary join、at/waitedMs/renderMs 非负以及 live={}，production 无记录。"
+  },
+  {
+    "id": "08-dev-diagnostics:L674:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-diagnostic-lazy-unmapped",
+      "08/server-diagnostic-lazy-resolution-metadata"
+    ],
+    "reason": "两种 reason 分别触发，resolution id 与 original Error 严格身份断言（5d315ed）。"
+  },
+  {
+    "id": "08-dev-diagnostics:L674:3",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "08/server-diagnostic-lazy-resolution-metadata"
+    ],
+    "reason": "server markup available 已断言；无 preload 与 hydration late-loading 正控尚待精确测试。"
   }
 ]

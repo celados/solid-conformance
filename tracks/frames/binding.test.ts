@@ -84,6 +84,10 @@ for (const variant of ["development", "observe", "production"] as BuildMode[])
                   : "fill-shape",
             );
             expect(events[0].severity).toBe("warn");expect(events[0].kind).toBe("render");
+            expect(events[0].data.occurrence).toBe("row#0");
+            if(shape === "missing-fill"){expect(events[0].data.why).toBe("fill");expect(events[0].data.elements).toHaveLength(1)}
+            else{const shapes:Record<string,string>={array:"an array",null:"null",number:"number",async:"an async value",node:"a DOM node","text-object":"object","text-array":"an array","text-function":"function","text-async":"an async value"};expect(events[0].data.shape).toBe(shapes[shape]);if(shape.startsWith("text-"))expect(events[0].data.key).toBe("title")}
+
           }
           expect(result.remaining).toBe("");
           if (shape === "valid") {
