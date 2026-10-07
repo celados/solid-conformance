@@ -1,11 +1,12 @@
 import { createMemo, createSignal, isPending, Loading, onCleanup, flush } from 'solid-js'
-import { isServer } from '@solidjs/web'
+import { isServer, clientOnly } from '@solidjs/web'
 import type { Spec } from '../../harness/tree'
 import { controlledIterable, deferred, ticks } from '../../harness/timing'
 import { equal, type DocResult } from './registry'
 
 export function policyCase(spec:Spec){
  const kind=spec.scenario!.split(':')[1]!
+ if(kind.startsWith('client-only'))return clientOnlyPolicy(kind)
  const iterable=kind==='hybrid-iterable'
  const policy=kind==='client'||kind==='declared-client'?'client':kind.startsWith('hybrid')?'hybrid':'server'
  const gates=[deferred<number>(),deferred<number>()]
@@ -57,4 +58,13 @@ export function policyCase(spec:Spec){
   }
   record(kind)
  }}
+}
+
+function clientOnlyPolicy(kind:string){
+ const gate=deferred<{default:()=>any}>();let imports=0;const claims:boolean[]=[]
+ const original=!isServer&&window.mode==='hydrate'?document.querySelector('#root [data-fallback]'):undefined
+ const Only=clientOnly(()=>{imports++;return gate.promise},{lazy:kind==='client-only-lazy'})
+ const docs:DocResult[]=[]
+ function App(){return<><Only fallback={<b data-fallback ref={(node:Element)=>{claims.push(!original||node===original)}}>fallback</b>}/><i>stable sibling</i></>}
+ return{App,streams:[],docs,async settle(){if(isServer){equal(imports,0);return}equal(imports,1);equal(document.querySelectorAll('#root [data-fallback]').length,1);if(original)equal(claims[0],true);gate.resolve({default:()=><span>loaded</span>});await ticks(8);equal(document.getElementById('root')!.textContent,'loadedstable sibling');equal(document.querySelectorAll('#root [data-fallback]').length,0);equal(document.querySelectorAll('#root i').length,1);docs.push({id:'03/client-only-hydration-'+kind,file:'03-control-flow.md',statement:'The clientOnly hydration gate claims the server fallback DOM without duplication and swaps only after load, without Loading.'})}}
 }
