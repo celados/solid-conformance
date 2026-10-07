@@ -19,6 +19,7 @@ import { equal, ok, runCases, type DocCase } from "../docs/registry";
 const scope = new AsyncLocalStorage<any>();
 (globalThis as any)[RequestContext] = scope;
 const cases: DocCase[] = [];
+let configureExternal:typeof configureServerErrors;
 let serial = 0;
 const doc = (id: string, statement: string, run: DocCase["run"]) =>
   cases.push({ id: "12/server-hook-" + id, file: "12-ssr-http.md", statement, run:()=>scope.run(createRequestEvent(new Request("http://localhost/")),run) });
@@ -335,5 +336,24 @@ doc("direct-observe-multi-road", "One direct invocation verdict keeps both invoc
  if(OBSERVE){ok(records.length===1, JSON.stringify({records,events:session!.events}));ok(records[0].live.error===original);const errors=session!.events.filter(e=>e.code==="SSR_RENDER_ERROR_CONTAINED");ok(errors.length===1, JSON.stringify({records,events:session!.events}));equal(errors[0]!.kind,"ssr");equal(errors[0]!.severity,"error");ok(errors[0]!.data?.error===original)}
  }finally{off?.();session?.stop()}
 }));
-export const run = () =>
-  scope.run(createRequestEvent(new Request("http://localhost/")), () => runCases(cases));
+doc("external-ambient-symbol", "Independently bundled configureServerErrors policy reaches this server build through a registered global symbol.",async()=>hooked(async()=>{
+ const original=new Error("external original"),heard:any[]=[];
+ configureExternal({onError:(error,site)=>{heard.push({error,site});return new Error("external mapped")}});
+ const html=renderToString(()=><Errored fallback={e=><b>{(e() as Error).message}</b>}><Broken error={original}/></Errored>);
+ equal(heard.length,1);ok(heard[0].error===original);ok(html.includes("external mapped"));
+}));
+doc("stream-old-shape", "Stream onError with the old single-argument shape hears a handled failure without failing the render.",async()=>hooked(async(heard)=>{
+ const original=new Error("stream handled"),local:unknown[]=[];
+ const html=await renderToStream(()=><Errored fallback="handled"><Broken error={original}/></Errored>,{onError:error=>{local.push(error)}});
+ equal(local.length,1);ok(local[0]===original);equal(heard.length,0);ok(html.includes("handled"));
+}));
+doc("loading-repull-same-verdict", "Loading re-pulls repeating one source rejection use one error-object hook verdict across two boundaries.",async()=>hooked(async(heard)=>{
+ const original=new Error("repull original"),mapped=new Error("repull mapped");let reject!:(e:unknown)=>void,reads=0;
+ const pending=new Promise<string>((_,j)=>reject=j);
+ configureServerErrors({onError:(error,site)=>{heard.push({error,site});return mapped}});
+ function Pending(){const value=createMemo(()=>pending);return <b>{(()=>{reads++;return value()})()}</b>}
+ const stream=renderToStream(()=><><Loading fallback="one"><Pending/></Loading><Loading fallback="two"><Pending/></Loading></>);
+ let html="";const ended=new Promise<void>(resolve=>stream.pipe({write(chunk:any){html+=String(chunk)},end:resolve}));await new Promise(r=>setTimeout(r,5));reject(original);await ended;
+ ok(reads>=4, "both boundaries re-pull pending reads");equal(heard.length,1);ok(heard[0].error===original);ok(html.includes("repull mapped"));
+}));
+export const run = (external:typeof configureServerErrors) =>{configureExternal=external;return runCases(cases)};

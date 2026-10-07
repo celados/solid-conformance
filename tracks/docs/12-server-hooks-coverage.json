@@ -1,11 +1,10 @@
 [
   {
     "id": "12-ssr-http:L145:2",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-tracks/frames/server-diagnostics.test.ts#08/server-road-sanitize-ssr-false"
-    ],
-    "reason": "SSR sanitizer tests need co-occurring contained-error + wire identity asserted in same road"
+      "tracks/frames/server-diagnostics.test.ts#08/server-road-sanitize-ssr-false"
+    ]
   },
   {
     "id": "12-ssr-http:L168:1",
@@ -115,11 +114,10 @@
   },
   {
     "id": "12-ssr-http:L170:2",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-client-source-mapping"
-    ],
-    "reason": "Repeated Loading re-pulls recurring the same object need an explicit fixture"
+      "tracks/frames/server-hooks.test.ts#12/server-hook-loading-repull-same-verdict"
+    ]
   },
   {
     "id": "12-ssr-http:L170:3",
@@ -130,11 +128,11 @@
   },
   {
     "id": "12-ssr-http:L171:1",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "findings/031-direct-error-hook-tier/repro.test.ts"
-    ],
-    "reason": "Direct-only tier counterexample is proven; cross-bundle registered-symbol delivery still needs a positive test"
+      "findings/031-direct-error-hook-tier/repro.test.ts",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-external-ambient-symbol"
+    ]
   },
   {
     "id": "12-ssr-http:L171:2",
@@ -169,11 +167,10 @@
   },
   {
     "id": "12-ssr-http:L172:1",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-render-override"
-    ],
-    "reason": "renderToStream old single-argument handled failure road needs explicit assertion"
+      "tracks/frames/server-hooks.test.ts#12/server-hook-stream-old-shape"
+    ]
   },
   {
     "id": "12-ssr-http:L172:2",

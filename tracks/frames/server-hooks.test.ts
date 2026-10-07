@@ -10,7 +10,9 @@ for (const mode of ["development", "observe", "production"] as BuildMode[])
       try {
         await build(dir, mode, { client: [], server: ["tracks/frames/server-hooks.tsx"] });
         const module = await import(dir + "/server-hooks.js");
-        const results = await module.run();
+        await build(dir+"/ambient",mode,{client:[],server:["tracks/frames/server-hooks-ambient.ts"]});
+        const external=await import(dir+"/ambient/server-hooks-ambient.js");
+        const results = await module.run(external.configure);
         await Bun.write(
           "artifacts/server-hooks-" + mode + ".json",
           JSON.stringify(results, null, 2),

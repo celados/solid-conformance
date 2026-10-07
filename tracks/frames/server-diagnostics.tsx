@@ -75,7 +75,7 @@ doc(
     const events = assertFinding(result, "SSR_RENDER_ERROR_CONTAINED");
     if (OBSERVE) {
       equal(events[0]!.data?.handling, "fallback");
-      equal(events[0]!.data?.error, original);
+      ok(events[0]!.data?.error === original);
       equal(events[0]!.severity, "error");
       if (isDev) ok(JSON.stringify(events[0]!.ownerPath).includes("Broken"));
       ok(events[0]!.data?.boundary);
@@ -117,7 +117,7 @@ doc(
     const events = assertFinding(result, "SSR_RENDER_ERROR_CONTAINED");
     if (OBSERVE) {
       equal(events[0]!.data?.handling, "client");
-      equal(events[0]!.data?.error, original);
+      ok(events[0]!.data?.error === original);
       ok(events[0]!.data?.boundary);
     }
     assertFinding(result, "SSR_SUBTREE_ABANDONED", 0);
@@ -144,7 +144,7 @@ doc(
         thrown = error;
       }
     });
-    equal(thrown, original);
+    ok(thrown === original);
     equal(reports, [[original, "render", "failed"]]);
   },
 );
@@ -295,11 +295,12 @@ for (const safe of [false, true]) {
       });
       equal(wire.message, safe || isDev ? "private-database" : "Internal Server Error");
       const events = selected(result, "SERVER_ERROR_SANITIZED");
+      for(const event of events) equal(event.kind,"ssr");
       equal(events.length, OBSERVE && !isDev && !safe ? 1 : 0);
       if (events.length) {
         equal(events[0]!.severity, "error");
         equal(events[0]!.data?.source, "server-function");
-        equal(events[0]!.data?.error, original);
+        ok(events[0]!.data?.error === original);
         equal((events[0]!.data?.wire as Error).message, "Internal Server Error");
       }
       equal(
@@ -315,13 +316,14 @@ for (const safe of [false, true]) {
       const original = new Error("private-render");
       if (safe) markSafeError(original);
       let text = "";
+      let fallback:unknown;
       function Broken(): never {
         throw original;
       }
       const result = await observed(async () => {
         text = await renderToStream(
           () => (
-            <Errored fallback={(error) => <b>{String(error())}</b>}>
+            <Errored fallback={(error) => {fallback=error();return <b>{String(fallback)}</b>}}>
               <Broken />
             </Errored>
           ),
@@ -335,7 +337,9 @@ for (const safe of [false, true]) {
       if (events.length) {
         equal(events[0]!.severity, "info");
         equal(events[0]!.data?.source, "ssr");
-        equal(events[0]!.data?.error, original);
+        ok(events[0]!.data?.error === original);
+        ok(events[0]!.data?.wire === fallback);
+        const contained=assertFinding(result,"SSR_RENDER_ERROR_CONTAINED");equal(contained[0]!.severity,"error");ok(contained[0]!.data?.error===original);
       }
     },
   );
@@ -405,7 +409,7 @@ doc(
     const events = assertFinding(result, "SSR_SUBTREE_ABANDONED");
     if (events.length) {
       equal(events[0]!.severity, "warn");
-      equal(events[0]!.data?.error, original);
+      ok(events[0]!.data?.error === original);
       ok(typeof events[0]!.data?.fragment === "string");
       equal(events[0]!.data?.fragments, 1);
       ok((events[0]!.data?.serialized as number) >= 1);
@@ -470,7 +474,7 @@ for (const road of ["frame-root", "frame-fragment", "frame-live-hole", "async-so
         equal(event.kind, "ssr");
         equal(event.severity, "info");
         equal(event.data?.source, "ssr");
-        equal(event.data?.error, original);
+        ok(event.data?.error === original);
         equal((event.data?.wire as Error).message, "Internal Server Error");
       }
     },
