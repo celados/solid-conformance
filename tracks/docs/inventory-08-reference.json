@@ -3377,7 +3377,7 @@
       "coverage": [
         "08/server-diagnostic-write-categories"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L635:2",
@@ -3386,7 +3386,7 @@
       "coverage": [
         "08/server-diagnostic-write-categories"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L635:3",
@@ -3453,7 +3453,7 @@
       "coverage": [
         "08/server-diagnostic-reveal-sync"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L647:2",
@@ -3465,9 +3465,11 @@
     {
       "id": "08-dev-diagnostics:L647:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-reveal-sync"
+      ],
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L651:1",
@@ -3513,7 +3515,7 @@
       "coverage": [
         "08/server-diagnostic-waterfall"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L653:5",
@@ -3522,7 +3524,7 @@
       "coverage": [
         "08/server-diagnostic-waterfall"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L653:6",
@@ -3561,7 +3563,7 @@
       "coverage": [
         "08/server-diagnostic-client-masked"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L659:2",
@@ -3570,7 +3572,7 @@
       "coverage": [
         "08/server-diagnostic-client-masked"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L659:3",
@@ -3586,14 +3588,16 @@
       "coverage": [
         "08/server-diagnostic-client-masked"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L659:5",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-client-masked"
+      ],
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L663:1",
@@ -3698,9 +3702,10 @@
       "classification": "behavioral",
       "status": "covered",
       "coverage": [
-        "08/server-diagnostic-lazy-unmapped"
+        "08/server-diagnostic-lazy-unmapped",
+        "08/server-diagnostic-lazy-resolution-metadata"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L674:2",
@@ -3737,9 +3742,9 @@
       "classification": "behavioral",
       "status": "covered",
       "coverage": [
-        "08/server-diagnostic-preload-descriptor"
+        "08/server-diagnostic-preload-all-fields"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L680:2",
@@ -3753,9 +3758,11 @@
     {
       "id": "08-dev-diagnostics:L680:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-preload-all-fields"
+      ],
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L684:1",
@@ -3769,25 +3776,29 @@
       "classification": "behavioral",
       "status": "covered",
       "coverage": [
-        "08/server-diagnostic-head-invalid"
+        "08/server-diagnostic-head-reasons",
+        "08/server-diagnostic-head-outside"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L686:2",
-      "classification": "not-behavioral",
-      "status": "not-behavioral",
-      "coverage": [],
-      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-head-reasons"
+      ],
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L686:3",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/server-diagnostic-head-invalid"
+        "08/server-diagnostic-head-reasons",
+        "08/server-diagnostic-head-outside"
       ],
-      "reason": "partial: non-head-tag/invalid-attribute/duplicate-title正例；其余props/group/outside/late规则未覆盖。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L686:4",
@@ -3815,25 +3826,30 @@
       "classification": "behavioral",
       "status": "covered",
       "coverage": [
-        "08/server-diagnostic-unrecognized-value"
+        "08/server-diagnostic-unrecognized-value",
+        "findings/033-symbol-insert-diagnostic/repro.test.ts"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L692:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/server-diagnostic-unrecognized-value"
+        "08/server-diagnostic-unrecognized-value",
+        "findings/034-mixed-insert-object/repro.test.ts"
       ],
-      "reason": "partial: object警告已测，symbol及实际跳过结果未验证。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L692:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-unrecognized-value",
+        "findings/033-symbol-insert-diagnostic/repro.test.ts"
+      ],
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L692:4",
@@ -3992,7 +4008,7 @@
       "coverage": [
         "08/server-diagnostic-lowercase-event"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L708:2",
@@ -4001,16 +4017,16 @@
       "coverage": [
         "08/server-diagnostic-lowercase-event"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L708:3",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
         "08/server-diagnostic-lowercase-event"
       ],
-      "reason": "partial: camelCase negativevs lowercase warn正例，onclick文本及未click执行/on:click细分未验证。"
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L708:4",
@@ -4024,9 +4040,11 @@
     {
       "id": "08-dev-diagnostics:L708:5",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-lowercase-event"
+      ],
+      "reason": "HEAD development/production 精确断言正负、字段和可见行为；red discrepancy 由独立最小finding保留。"
     },
     {
       "id": "08-dev-diagnostics:L708:6",
