@@ -13,12 +13,14 @@ test('RFC chapters: behavioral statements execute in the selected client/server 
 		console.log('Doc cases:',results.length,JSON.stringify(results.filter(r=>r.error),null,2))
 		expect(client.messages.filter(m=>!m.startsWith('warning: [REACTIVE_WRITE_IN_OWNED_SCOPE] repair guide:'))).toEqual([])
 		const known = new Set(['04/keyed-reconcile', '04/store-path', '05/loading-on-constant', '02/pinned-derived-signal'])
-		if (h.variant === 'production') for (const id of ['05/refresh-delivery','05/refresh-quiet','05/refresh-quiescence']) known.add(id)
+		if (h.variant === 'production') for (const id of ['05/refresh-delivery','05/refresh-quiet','05/refresh-quiescence','06/affects-key-granularity','06/affects-nested-record']) known.add(id)
 		const signatures: Record<string, RegExp> = {
 			'02/pinned-derived-signal': /^Error: Expected \{"n":3,"pinned":false\}, received \{"n":99,"pinned":false\}$/,
 			'04/keyed-reconcile': /Expected true, received false/,
 			'04/store-path': /storePath.*not a function/,
 			'05/loading-on-constant': /Expected "fallback", received "1"/,
+			'06/affects-key-granularity': /^Error: Expected true, received false$/,
+			'06/affects-nested-record': /^Error: Expected true, received false$/,
 			'05/refresh-delivery': /did not settle within/,
 			'05/refresh-quiet': /did not settle within/,
 			'05/refresh-quiescence': /did not settle within/,

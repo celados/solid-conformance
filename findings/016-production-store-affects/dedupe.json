@@ -1,0 +1,72 @@
+{
+  "at": "2026-10-07T15:42:43.381Z",
+  "results": [
+    {
+      "term": "affects production",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "affects production",
+      "state": "closed",
+      "results": []
+    },
+    {
+      "term": "affects store",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "affects store",
+      "state": "closed",
+      "results": [
+        {
+          "number": 2887,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "`affects(store)` as the first statement of an action never lights `isPending`",
+          "url": "https://github.com/solidjs/solid/issues/2887"
+        },
+        {
+          "number": 2886,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "`affects(store)` on a derived optimistic store hides concurrent optimistic writes from tracked readers",
+          "url": "https://github.com/solidjs/solid/issues/2886"
+        },
+        {
+          "number": 2929,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.21 | `affects` should have higher priority over uninitialized state of a store. when checking for pending",
+          "url": "https://github.com/solidjs/solid/issues/2929"
+        },
+        {
+          "number": 2882,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.17: affects() marks are not witnessed through captured store proxies (<For> rows) or derived memos",
+          "url": "https://github.com/solidjs/solid/issues/2882"
+        }
+      ]
+    },
+    {
+      "term": "storeMarks",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "storeMarks",
+      "state": "closed",
+      "results": []
+    }
+  ]
+}

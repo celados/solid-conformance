@@ -29,6 +29,7 @@ import { storeRejectionCase } from '../findings/004-derived-store-rejection/comp
 import { loadingAccessorCase } from '../findings/007-loading-on-accessor/component'
 import { refreshCase } from '../findings/008-production-refresh/component'
 import { transportCase } from '../tracks/transport/component'
+import { policyCase } from '../tracks/docs/policy-case'
 import { docsCase } from '../tracks/docs/cases'
 import { transitionCase } from '../tracks/transitions/component'
 import { deferred, controlledIterable, ticks } from './timing'
@@ -40,6 +41,7 @@ export function createCase(spec: Spec) {
 	if (spec.scenario === 'finding:007') return loadingAccessorCase()
 	if (spec.scenario === 'finding:008') return refreshCase()
 	if (spec.scenario === 'docs') return docsCase()
+	if (spec.scenario?.startsWith('doc-policy:')) return policyCase(spec)
 	if (spec.transition) return transitionCase(spec.transition, spec.tree)
 	if (spec.scenario === 'minimal-store') return storeKeyedCase()
 	if (spec.scenario?.startsWith('live:'))
