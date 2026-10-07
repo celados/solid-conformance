@@ -16,7 +16,7 @@ function selectExport(
 		}
 }
 export type BuildMode = 'development' | 'production'
-export async function build(outdir = '.build', variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development') {
+export async function build(outdir = '.build', variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development', entries?: { client: string[]; server: string[] }) {
 	const packages = new Map<
 		string,
 		{ directory: string; exports: Record<string, ExportValue> }
@@ -39,10 +39,10 @@ export async function build(outdir = '.build', variant: BuildMode = (process.env
 			'default',
 		])
 		const result = await Bun.build({
-			entrypoints:
+			entrypoints: entries?.[mode] ?? (
 				mode === 'client'
 					? ['harness/client.tsx', 'harness/lazy-part.tsx']
-					: ['harness/server.tsx'],
+					: ['harness/server.tsx']),
 			outdir,
 			naming: '[name].js',
 			splitting: mode === 'client',

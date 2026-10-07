@@ -2,7 +2,7 @@
 .orchestration/*.stderr
 node_modules/
 .scratch/
-.upstream/
+.upstream
 .build/
 artifacts/*
 !artifacts/.gitkeep

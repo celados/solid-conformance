@@ -1,0 +1,19 @@
+{
+  "head": {
+    "ref": "next",
+    "revision": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+    "directory": "/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"
+  },
+  "packages": {
+    "solid-js": "/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/packages/solid",
+    "@solidjs/web": "/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/packages/web",
+    "@solidjs/signals": "/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/packages/signals",
+    "@solidjs/compiler": "/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/packages/compiler",
+    "@solidjs/babel-plugin": "/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/packages/babel-plugin",
+    "@solidjs/diagnostics": "/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/packages/diagnostics"
+  },
+  "oldWorktreesRemoved": [
+    "solid-conformance-wave1",
+    "solid-conformance-wave2"
+  ]
+}

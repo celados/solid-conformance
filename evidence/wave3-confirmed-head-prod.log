@@ -1,0 +1,62 @@
+bun test v1.4.2 (744846f84)
+
+findings/004-derived-store-rejection/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712","directory":"/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"},"buildMode":"production","solid":"2.0.0-rc.13"}
+1 | import {test,expect} from 'bun:test'
+2 | import {openHarness} from '../../harness/browser'
+3 | import {leaf} from '../../harness/tree'
+4 | test('a rejected derived store request reaches Errored',async()=>{
+5 | 	const h=await openHarness(undefined, true)
+6 | 	try {const result=await h.run({tree:leaf(),order:[],scenario:'finding:004'},'csr');expect(result.messages).toEqual([]);expect(result.dom).toBe('<b>error</b>')}finally{await h.close()}
+                                                                                                                                               ^
+error: expect(received).toBe(expected)
+
+Expected: "<b>error</b>"
+Received: "<span>0</span>"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/findings/004-derived-store-rejection/repro.test.ts:6:140)
+(fail) a rejected derived store request reaches Errored [8377.18ms]
+
+findings/006-storepath-export/repro.test.ts:
+3 | import { storePath } from 'solid-js'
+             ^
+error: No matching export in ".upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/packages/solid/dist/solid.js" for import "storePath"
+    at /Users/dio/Projects/solid-conformance/findings/006-storepath-export/module.ts:3:10
+(fail) 04-stores.md: storePath is exported from the browser core [8.42ms]
+
+findings/007-loading-on-accessor/repro.test.ts:
+1 | import {test,expect} from 'bun:test'
+2 | import {openHarness} from '../../harness/browser'
+3 | import {leaf} from '../../harness/tree'
+4 | test('05-async-data.md: zero-argument Loading on accessor is tracked',async()=>{
+5 | 	const h=await openHarness(undefined, true)
+6 | 	try{const result=await h.run({tree:leaf(),order:[],scenario:'finding:007'},'csr');expect(result.messages).toEqual([]);expect(result.dom).toBe('<b>fallback</b>')}finally{await h.close()}
+                                                                                                                                              ^
+error: expect(received).toBe(expected)
+
+Expected: "<b>fallback</b>"
+Received: "<span>1</span>"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/findings/007-loading-on-accessor/repro.test.ts:6:139)
+(fail) 05-async-data.md: zero-argument Loading on accessor is tracked [8377.24ms]
+
+findings/008-production-refresh/repro.test.ts:
+1 | import { test, expect } from 'bun:test'
+2 | import { openHarness } from '../../harness/browser'
+3 | import { leaf } from '../../harness/tree'
+4 | test('05-async-data.md: production refresh resolves its next value', async () => {
+5 | 	const h = await openHarness(undefined, true)
+6 | 	try { const result = await h.run({ tree: leaf(), order: [], scenario: 'finding:008' }, 'csr'); expect(result.messages).toEqual([]); expect(result.dom).toBe('<span>2</span>') }
+                                                                                                                                                            ^
+error: expect(received).toBe(expected)
+
+Expected: "<span>2</span>"
+Received: "<span>timeout</span>"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/findings/008-production-refresh/repro.test.ts:6:153)
+(fail) 05-async-data.md: production refresh resolves its next value [8605.64ms]
+
+ 0 pass
+ 4 fail
+ 6 expect() calls
+Ran 4 tests across 4 files. [25.57s]

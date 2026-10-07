@@ -7,7 +7,7 @@ import type { Spec } from './tree'
 
 import { build, type BuildMode } from '../scripts/build'
 let buildId = 0
-export async function openHarness(variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development', csrOnly = false) {
+export async function openHarness(variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development', csrOnly = false, extension?: { fetch: (request: Request) => Response | undefined | Promise<Response | undefined> }) {
 	const directory = resolve('.build', `browser-${process.pid}-${buildId++}`)
 	await build(directory, variant)
 	const ssr = (csrOnly ? undefined : await import(
@@ -24,6 +24,8 @@ export async function openHarness(variant: BuildMode = (process.env.BUILD_MODE a
 		idleTimeout: 30,
 		hostname: '127.0.0.1',
 		async fetch(request) {
+			const external = await extension?.fetch(request)
+			if (external) return external
 			const url = new URL(request.url)
 			if (/^\/[a-zA-Z0-9_-]+\.js$/.test(url.pathname))
 				return new Response(Bun.file(directory + url.pathname), {
