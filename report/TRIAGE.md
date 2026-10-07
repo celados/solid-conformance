@@ -14,9 +14,9 @@ Active counts: **A 16, B 16, C 15**. A covers runtime and protocol failures; B c
 
 | Finding | Tier | User impact | Severity | HEAD-only regression? | Failing current build(s) | Status | Proposed issue |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [001](../findings/001-streamed-store-keyed/README.md) | A | Streamed keyed store content can stall hydration on rc.13. | low | no | historical target only | fixed-upstream | not proposed |
-| [002](../findings/002-iterable-discovery/README.md) | A | A new async-iterable child can prevent SSR convergence on rc.13. | low | no | historical target only | fixed-upstream | not proposed |
-| [003](../findings/003-tsrx-asi/README.md) | A | Native TSX setup declarations can compile incorrectly on rc.13. | low | no | historical target only | fixed-upstream | not proposed |
+| [001](../findings/001-streamed-store-keyed/README.md) | A | Streamed keyed store content can stall hydration on rc.13. | high | no | historical target only | fixed-upstream | not proposed |
+| [002](../findings/002-iterable-discovery/README.md) | A | A new async-iterable child can prevent SSR convergence on rc.13. | high | no | historical target only | fixed-upstream | not proposed |
+| [003](../findings/003-tsrx-asi/README.md) | A | Native TSX setup declarations can compile incorrectly on rc.13. | med | no | historical target only | fixed-upstream | not proposed |
 | [004](../findings/004-derived-store-rejection/README.md) | A | Replacement derived-store failures leave stale UI instead of reaching Errored. | high | yes | development, production | confirmed | [01-store-rejection.md](issues/01-store-rejection.md) |
 | [005](../findings/005-keyed-reconcile-identity/README.md) | B | Readers may expect identity retention for nodes that were never subscribed. | low | no | historical target only | duplicate | not proposed |
 | [006](../findings/006-storepath-export/README.md) | B | The documented storePath import cannot be used in a browser project. | med | no | development, production | confirmed | [19-docs-04-errata.md](issues/19-docs-04-errata.md) |
@@ -31,7 +31,7 @@ Active counts: **A 16, B 16, C 15**. A covers runtime and protocol failures; B c
 | [015](../findings/015-untrack-owned-write/README.md) | B | The documented untrack workaround still throws an owned-write error. | med | no | development | confirmed | [16-docs-01-errata.md](issues/16-docs-01-errata.md) |
 | [016](../findings/016-production-store-affects/README.md) | A | Production affects(store,key) throws after tree shaking. | high | yes | production | confirmed | [05-production-store-affects.md](issues/05-production-store-affects.md) |
 | [017](../findings/017-initial-render-error-record/README.md) | C | Initial render failures are absent from structured diagnostics and render records. | med | not established | development, observe | confirmed | [27-diagnostics-observability.md](issues/27-diagnostics-observability.md) |
-| [018](../findings/018-nested-refresh-types/README.md) | B | Supported nested-store refresh usage is rejected by public types. | med | no | development | confirmed | [21-docs-06-errata.md](issues/21-docs-06-errata.md) |
+| [018](../findings/018-nested-refresh-types/README.md) | B | Supported nested-store refresh usage is rejected by public types. | med | no | public .d.ts | confirmed | [21-docs-06-errata.md](issues/21-docs-06-errata.md) |
 | [019](../findings/019-action-await-origin/README.md) | C | After-await action writes receive misleading external origin metadata. | low | no | development, observe | confirmed | [27-diagnostics-observability.md](issues/27-diagnostics-observability.md) |
 | [020](../findings/020-observe-frame-corruption/README.md) | C | Observe builds miss a corrupted frame end marker. | med | no | observe | confirmed | [27-diagnostics-observability.md](issues/27-diagnostics-observability.md) |
 | [021](../findings/021-recovery-boundary-outcome/README.md) | C | The documented server recovery outcome differs from the emitted enum. | low | no | development, observe | confirmed | [27-diagnostics-observability.md](issues/27-diagnostics-observability.md) |
@@ -43,7 +43,7 @@ Active counts: **A 16, B 16, C 15**. A covers runtime and protocol failures; B c
 | [027](../findings/027-server-write-all-builds/README.md) | B | Applications relying on all-build server-write warnings receive none in production. | low | no | production | confirmed | [24-docs-11-errata.md](issues/24-docs-11-errata.md) |
 | [028](../findings/028-artifact-format-version/README.md) | C | Artifact consumers are told the wrong public format version. | low | no | development, observe | confirmed | [27-diagnostics-observability.md](issues/27-diagnostics-observability.md) |
 | [029](../findings/029-latest-loading-convergence/README.md) | A | Loading keeps showing fallback after every async source has settled. | high | yes | development, production | confirmed | [06-loading-nonconvergence.md](issues/06-loading-nonconvergence.md) |
-| [030](../findings/030-effect-error-signature/README.md) | B | The documented effect error-handler signature fails type checking. | med | no | development | confirmed | [18-docs-03-errata.md](issues/18-docs-03-errata.md) |
+| [030](../findings/030-effect-error-signature/README.md) | B | The documented effect error-handler signature fails type checking. | med | no | public .d.ts | confirmed | [18-docs-03-errata.md](issues/18-docs-03-errata.md) |
 | [031](../findings/031-direct-error-hook-tier/README.md) | B | A direct-call error hook is missing outside a request scope. | low | no | development, production | confirmed | [25-docs-12-errata.md](issues/25-docs-12-errata.md) |
 | [032](../findings/032-sync-lazy-resolver/README.md) | A | A synchronous lazy asset resolver error aborts otherwise renderable SSR. | low | no | development, production | confirmed | [10-sync-asset-resolver.md](issues/10-sync-asset-resolver.md) |
 | [033](../findings/033-symbol-insert-diagnostic/README.md) | C | Invalid symbol children produce no promised server diagnostic. | low | no | development | confirmed | [27-diagnostics-observability.md](issues/27-diagnostics-observability.md) |

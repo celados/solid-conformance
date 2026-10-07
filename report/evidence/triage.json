@@ -22,7 +22,7 @@
         "https://github.com/solidjs/solid/issues/3764"
       ],
       "tier": "A",
-      "severity": "low",
+      "severity": "high",
       "impact": "Streamed keyed store content can stall hydration on rc.13.",
       "regression": "no",
       "builds": [],
@@ -42,7 +42,7 @@
         "https://github.com/solidjs/solid/issues/3734"
       ],
       "tier": "A",
-      "severity": "low",
+      "severity": "high",
       "impact": "A new async-iterable child can prevent SSR convergence on rc.13.",
       "regression": "no",
       "builds": [],
@@ -62,7 +62,7 @@
         "https://github.com/solidjs/solid/issues/3762"
       ],
       "tier": "A",
-      "severity": "low",
+      "severity": "med",
       "impact": "Native TSX setup declarations can compile incorrectly on rc.13.",
       "regression": "no",
       "builds": [],
@@ -801,7 +801,7 @@
       "impact": "Supported nested-store refresh usage is rejected by public types.",
       "regression": "no",
       "builds": [
-        "development"
+        "public .d.ts"
       ],
       "issue": "report/issues/21-docs-06-errata.md",
       "rechecks": [
@@ -1393,7 +1393,7 @@
       "impact": "The documented effect error-handler signature fails type checking.",
       "regression": "no",
       "builds": [
-        "development"
+        "public .d.ts"
       ],
       "issue": "report/issues/18-docs-03-errata.md",
       "rechecks": [
