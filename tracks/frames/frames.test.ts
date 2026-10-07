@@ -80,6 +80,12 @@ test("RFC 10/11 real HTTP references and frame CSR/document adoption/state/slots
       expect(rpc.plain.args).toEqual(["plain"]);
       expect(rpc.plain.authorization).toBe("Bearer wave3");
       expect(rpc.get).toBe(5);
+      expect(rpc.natural.args.title).toBe("natural");
+      expect(rpc.boundNatural).toEqual([1, null, { title: "bound" }]);
+      expect(rpc.undefinedError).toContain("enableRichArguments");
+      expect(rpc.longGet).toBe(rpc.longArg + "1");
+      expect(rpc.longRequest.method).toBe("POST");
+      expect(rpc.longRequest.address).toContain("/data/wave3-read");
       expect(rpc.richError).toContain("enableRichArguments");
       expect(rpc.richDate).toBe(true);
       expect(rpc.richMap).toBe(true);

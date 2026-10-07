@@ -649,3 +649,166 @@ if (isServer) {
     },
   );
 }
+
+if (isServer) {
+  // RFC 10 lines 63, 66, 78, 99, 129: exact public handler guarantees.
+  doc(
+    "registry-public",
+    "Public integration registry lookup returns the registered original function.",
+    () => {
+      const fn = (n: number) => n + 1;
+      server.registerServerFunction("docs-custom-dispatch", fn);
+      equal(server.getServerFunction("docs-custom-dispatch"), fn);
+      equal(server.getServerFunction("docs-custom-dispatch")(2), 3);
+    },
+  );
+  doc(
+    "request-standard-shape",
+    "Body-size enforcement rebuilds a standards-only Request; the host restores platform data through locals.",
+    async () => {
+      const fn = reference(() => ({
+        custom: (getRequestEvent()!.request as any).cf,
+        region: (getRequestEvent()!.locals as any).region,
+      }));
+      const req = request(fn.id);
+      (req as any).cf = { region: "host-region" };
+      const response = await server.handleServerFunctionRequest(req, {
+        bodySizeLimit: 1024,
+        createEvent: (rebuilt) => {
+          ok(rebuilt instanceof Request);
+          equal(rebuilt.url, req.url);
+          equal(rebuilt.method, "POST");
+          equal(rebuilt.headers.get("origin"), "http://conformance.test");
+          equal((rebuilt as any).cf, undefined);
+          return { request: rebuilt, locals: { region: (req as any).cf.region } };
+        },
+      });
+      equal(await sf.decodeResponse(response), { custom: undefined, region: "host-region" });
+    },
+  );
+  doc(
+    "not-modified-forward",
+    "304 is not a followable redirect and forwards untouched on the scripted address.",
+    async () => {
+      const fn = reference(() => new Response(null, { status: 304 }));
+      const response = await server.handleServerFunctionRequest(request(fn.id));
+      equal(response.status, 304);
+      equal(response.headers.has(sf.REDIRECT_HEADER), false);
+    },
+  );
+  doc(
+    "transform-direct-config",
+    "transformDirectResult decorates in-process SSR calls without the HTTP transform path.",
+    async () => {
+      const fn = reference(() => 7);
+      const ids: string[] = [];
+      server.configureServerFunctionsServer({
+        transformDirectResult: (value, context) => {
+          ids.push(context.id);
+          return Number(value) + 2;
+        },
+      });
+      try {
+        equal(await fn(), 9);
+        equal(ids, [fn.id]);
+      } finally {
+        server.configureServerFunctionsServer({ transformDirectResult: (value) => value });
+      }
+    },
+  );
+  doc(
+    "transform-flight-first-refusal",
+    "The transformFlightResult seam sees the folded outcome and may claim its Response.",
+    async () => {
+      const fn = reference(() => 7);
+      const req = request(fn.id);
+      req.headers.set(sf.SINGLE_FLIGHT_HEADER, "true");
+      let folded: any;
+      const response = await server.handleServerFunctionRequest(req, {
+        collectFlightData: () => ({ fresh: 8 }),
+        transformFlightResult: (_event, value) => {
+          folded = value;
+          return new Response("claimed", {
+            headers: { "x-claimed": "true", "X-Content-Raw": "true" },
+          });
+        },
+      });
+      equal(folded, { value: 7, data: { true: { fresh: 8 } } });
+      equal(await response.text(), "claimed");
+      equal(response.headers.get("x-claimed"), "true");
+    },
+  );
+}
+
+if (isServer) {
+  doc(
+    "get-url-refusals",
+    "serverFunctionUrl refuses rich-codec arguments and URLs that would fall back to POST.",
+    () => {
+      const fn = sf.GET(reference(() => 7));
+      throws(() => server.serverFunctionUrl(fn, new Date()));
+      throws(() => server.serverFunctionUrl(fn, "x".repeat(10000)));
+    },
+  );
+  doc(
+    "live-data-url",
+    "live(GET(fn)) exposes its distinct live address while inner GET retains its data address.",
+    () => {
+      const fn = sf.GET(reference(() => 7));
+      const standing = server.live(fn);
+      ok(server.serverFunctionUrl(standing, 3).includes("/live/" + fn.id));
+      ok(server.serverFunctionUrl(fn, 3).includes("/data/" + fn.id));
+    },
+  );
+  doc(
+    "live-wire-framing",
+    "The live address is SSE with no-store and X-Accel-Buffering:no; data remains codec framing.",
+    async () => {
+      const fn = sf.GET(
+        reference(async function* () {
+          yield 1;
+          yield 2;
+        }),
+      );
+      const liveRequest = new Request("http://conformance.test/_server/live/" + fn.id + "?args=[]");
+      const response = await server.handleServerFunctionRequest(liveRequest);
+      equal(response.headers.get("content-type"), "text/event-stream");
+      equal(response.headers.get("cache-control"), "no-store");
+      equal(response.headers.get("x-accel-buffering"), "no");
+      const text = await response.text();
+      ok(text.includes("data:"));
+      ok(text.includes("id:"));
+      const data = await server.handleServerFunctionRequest(
+        new Request("http://conformance.test/_server/data/" + fn.id + "?args=[]"),
+      );
+      equal(data.headers.get("content-type")?.includes("text/event-stream"), false);
+      const result: any = await sf.decodeResponse(data);
+      const values: number[] = [];
+      for await (const value of result) values.push(value);
+      equal(values, [1, 2]);
+    },
+  );
+  doc(
+    "live-digest-skip",
+    "Last-Event-ID digest suppresses only the matching first value, leaving subsequent values flowing.",
+    async () => {
+      const fn = sf.GET(
+        reference(async function* () {
+          yield 1;
+          yield 2;
+        }),
+      );
+      const url = "http://conformance.test/_server/live/" + fn.id + "?args=[]";
+      const first = await server.handleServerFunctionRequest(new Request(url));
+      const initial = await first.text();
+      const digest = initial.match(/^id: (.+)$/m)?.[1];
+      ok(digest);
+      const response = await server.handleServerFunctionRequest(
+        new Request(url, { headers: { "Last-Event-ID": digest! } }),
+      );
+      const replay = await response.text();
+      equal((initial.match(/^id:/gm) ?? []).length, 2);
+      equal((replay.match(/^id:/gm) ?? []).length, 1);
+    },
+  );
+}

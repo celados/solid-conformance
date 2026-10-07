@@ -1,0 +1,14 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/compiler.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712","directory":"/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"},"buildMode":"development","solid":"2.0.0-rc.13"}
+
+tracks/frames/frames.test.ts:
+Server function "docs-44" answered a scripted call with 304 Not Modified. The client transport sends no conditional headers, so nothing was asked to be revalidated: the call resolves to undefined, not "unchanged". For conditional reads, declare the function GET and set ETag/Cache-Control response headers - the browser owns that exchange and replays its cached answer on a 304.
+[SSR_STREAM_ABANDONED] The response stream was abandoned mid-render (signal) with 0 fragment(s) still pending; the render was torn down.
+[SSR_STREAM_ABANDONED] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#ssr_stream_abandoned
+
+ 5 pass
+ 0 fail
+ 104 expect() calls
+Ran 5 tests across 3 files. [24.14s]

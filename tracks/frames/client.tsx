@@ -136,6 +136,14 @@ async function startLive() {
     const plain = await echo("plain");
     const natural = await echo(new URLSearchParams({ title: "natural" }));
     const get = await read(4);
+    const longArg = "x".repeat(10000);
+    const longGet = await read(longArg);
+    const longRequest = requests.at(-1);
+    const boundNatural = await echo(1, undefined, new URLSearchParams({ title: "bound" }));
+    const undefinedError = await echo(1, undefined, "str").then(
+      () => null,
+      (e) => String(e),
+    );
     const richError = await echo(new Date()).then(
       () => null,
       (e) => String(e),
@@ -176,9 +184,18 @@ async function startLive() {
       flight,
       delivery,
       plain,
-      natural,
+      natural: { args: Object.fromEntries(natural.args[0]) },
       get,
       richError,
+      undefinedError,
+      boundNatural: [
+        boundNatural.args[0],
+        boundNatural.args[1],
+        Object.fromEntries(boundNatural.args[2]),
+      ],
+      longGet,
+      longArg,
+      longRequest,
       richDate: rich.args[0] instanceof Date,
       richMap: rich.args[1] instanceof Map,
       unknown,
