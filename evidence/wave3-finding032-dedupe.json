@@ -1,0 +1,40 @@
+{
+  "queries": [
+    {
+      "repository": "solidjs/solid",
+      "query": "lazy asset resolver",
+      "state": "all",
+      "results": []
+    },
+    {
+      "repository": "solidjs/solid",
+      "query": "LAZY_ASSET_UNMAPPED",
+      "state": "all",
+      "results": []
+    },
+    {
+      "repository": "solidjs/solid-router",
+      "query": "lazy asset resolver",
+      "state": "all",
+      "results": []
+    },
+    {
+      "repository": "solidjs/solid-router",
+      "query": "LAZY_ASSET_UNMAPPED",
+      "state": "all",
+      "results": []
+    },
+    {
+      "repository": "solidjs/solid-start",
+      "query": "lazy asset resolver",
+      "state": "all",
+      "results": []
+    },
+    {
+      "repository": "solidjs/solid-start",
+      "query": "LAZY_ASSET_UNMAPPED",
+      "state": "all",
+      "results": []
+    }
+  ]
+}

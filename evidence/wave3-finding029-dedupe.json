@@ -1,0 +1,74 @@
+{
+  "queries": [
+    {
+      "repository": "solidjs/solid",
+      "query": "Loading latest",
+      "state": "all",
+      "results": [
+        {
+          "number": 2706,
+          "state": "closed",
+          "title": "2.0.0-beta.13 |  `<Loading>` / `latest()` and `async` derived value, unexpected render",
+          "url": "https://github.com/solidjs/solid/issues/2706"
+        },
+        {
+          "number": 2829,
+          "state": "closed",
+          "title": "2.0.0-beta.15: A few latest() bugs",
+          "url": "https://github.com/solidjs/solid/issues/2829"
+        },
+        {
+          "number": 2630,
+          "state": "closed",
+          "title": "`2.0.0-beta.3` Async signal  + sync signal inconsistent UI and values in the past",
+          "url": "https://github.com/solidjs/solid/issues/2630"
+        }
+      ]
+    },
+    {
+      "repository": "solidjs/solid-router",
+      "query": "Loading latest",
+      "state": "all",
+      "results": []
+    },
+    {
+      "repository": "solidjs/solid-start",
+      "query": "Loading latest",
+      "state": "all",
+      "results": [
+        {
+          "number": 1870,
+          "state": "closed",
+          "title": "[Bug?]: Transition makes it impossible to show loading screen for long-running backend processes",
+          "url": "https://github.com/solidjs/solid-start/issues/1870"
+        }
+      ]
+    }
+  ],
+  "reviewed": [
+    {
+      "body": "### Describe the bug\n\n```tsx\n   <Loading fallback=\"Loading...\">\n          a. {derived2()}{\" \"}\n          b. {latest(derived2)}\n        </Loading>\n```\nwe expect\n> a. 555 b. 555\nbut we get \n\n> a. b.555\n\n\n```tsx\n      <Loading fallback=\"Loading...\">\n        <span>\n          a. {derived2()}{\" \"}\n          b. {latest(derived2)}\n        </span>\n      </Loading>\n```\nwrapping this in an element restore the missing value\n\n\n\n### Your Example Website or App\n\nhttps://s.olid.uk/id/0gHNkArzT9mExG2BmwKUAQ\n\n### Steps to Reproduce the Bug or Issue\n\nopen playground and observe the missing value in the broken section \n\n### Expected behavior\n\nconsistent output in the 2 cases \n\n### Screenshots or Videos\n\n<img width=\"377\" height=\"394\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/5753ab1f-864a-4b67-874f-eb40f692b00b\" />\n\n### Platform\n\n- OS: [e.g. macOS, Windows, Linux]\n- Browser: [e.g. Chrome, Safari, Firefox]\n- Version: [e.g. 91.1]\n\n\n### Additional context\n\n_No response_",
+      "state": "CLOSED",
+      "title": "2.0.0-beta.13 |  `<Loading>` / `latest()` and `async` derived value, unexpected render",
+      "url": "https://github.com/solidjs/solid/issues/2706"
+    },
+    {
+      "body": "https://stackblitz.com/edit/solidjs-templates-xxkqgjv6?file=src%2FApp.tsx\n\n```tsx\nimport { createMemo, createSignal, isPending, latest, Loading } from 'solid-js';\n\nexport default function App() {\n  const [count, setCount] = createSignal(0);\n  const asyncValue = createMemo(async () => {\n    const c = count();\n    await new Promise((resolve) => setTimeout(resolve, 1000));\n    return `Async Value ${c}`;\n  });\n\n  const asyncValue2 = createMemo(async () => {\n    const c = count();\n    await new Promise((resolve) => setTimeout(resolve, 5000));\n    return `Async Value 2 ${c}`;\n  });\n\n  return (\n    <Loading fallback=\"Loading...\">\n      <button onClick={() => setCount(count() + 1)}>Click me</button>\n      <p style={{ opacity: isPending(count) ? 0.5 : 1 }}>Count: {count()}</p>\n      <p style={{ opacity: isPending(() => latest(asyncValue)) ? 0.5 : 1 }}>\n        Latest Async Value: {latest(asyncValue)}\n      </p>\n      <p style={{ opacity: isPending(asyncValue2) ? 0.5 : 1 }}>\n        Async Value 2: {asyncValue2()}\n      </p>\n    </Loading>\n  );\n}\n```\n\n1. On initial Load `{latest(asyncValue)}` is undefined\n2. First click of the button doesn't make ` isPending(() => latest(asyncValue))` to true\n3. Second click of the button makes it go pending, but I expected it to clear earlier",
+      "state": "CLOSED",
+      "title": "2.0.0-beta.15: A few latest() bugs",
+      "url": "https://github.com/solidjs/solid/issues/2829"
+    },
+    {
+      "body": "### Describe the bug\n\n1. run repro with useMemo set to  true \ntoggle the button, see that the Loading?... is rendered \n\nrun repro with useMemo false\nclick the button to toggle, see that Loading?... is not rendered instead we get stale data rendered. \n\n\n```tsx\nimport { render } from '@solidjs/web';\nimport { createSignal, createMemo, action, refresh, onSettled, Show, Loading } from 'solid-js';\nimport { createPersistingOptimistic } from \"./solid2\"\n\n\n\n// update fetch id on interval \nlet id = 0;\nsetInterval(() => {\n  id++\n}, 1000)\n\n// fetch the data for current id \nconst fetchData = async () => {\n  await new Promise(r => setTimeout(r, 3000))\n  return <>{\"data\" + id}</>\n}\n\n\n// wrap data in signal\nconst [data, setData] = createSignal(() => {\n  return fetchData()\n})\n\nconst [change, setChange] = createSignal(0)\n\n\n\nvar change2, setChange2;\n\n\n// when useMemo is true. and toggling the component to Show\n// we will see the \"Loading?...\"\n// however if we use a signal instead. the loading does not trigger \n// when the change() dependency updates. \n\n\n\nlet useMemo = true;\n// let useMemo = false\n\n\nif (useMemo) {\n  change2 = createMemo(async () => {\n    const c = change()\n    await new Promise(r => setTimeout(r, 1000))\n    return c\n  })\n\n} else {\n  [change2, setChange2] = createSignal(async () => {\n    const c = change()\n    await new Promise(r => setTimeout(r, 1000))\n    return c\n  })\n\n}\n\n\n/**\n * When rendered will refresh data\n * - show loading until new data is resolved \n */\nfunction RefreshOnLoad() {\n  const [loading, setLoading] = createPersistingOptimistic(true)\n\n  // Action to trigger refresh and show loading affordance \n  const refreshData = action(async function* () {\n    setLoading(true)\n    refresh(data)\n    setLoading(false)\n  })\n\n  // trigger the action on settled \n  onSettled(() => {\n    refreshData()\n    setChange(v => v + 1)\n  })\n\n\n\n  let i = 0 // used in on always return something different to always trigger fallback reset\n  return <>\n    {/**\n    <div>\n      {loading() ? \"Loading\" : data()}\n    </div>\n     */}\n\n    <Loading on={(() => {\n      // nothing reactive here will trigger fallback reset \n      // it must be triggered by a change inside the boundary.\n      // simply returning a new value will always reset the fallback on \n      // any async dependency going into pending in the loading boundary.\n      return i++;\n    })()} fallback={<b>Loading?...</b>}>\n      [{data()}]\n\n      [{change2()}]\n    </Loading>\n  </>\n\n}\n\nexport default function App() {\n  const [toggle, setToggle] = createSignal(false);\n  return (\n    <Loading fallback={\"initial loading\"}>\n      <div class=\"p-2\">\n\n\n        <div>\n          {data()}\n        </div>\n\n        <div>\n          <Show when={toggle()}>\n            <RefreshOnLoad />\n          </Show>\n        </div>\n\n\n\n        <button class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded\" onClick={() => setToggle(v => !v)}>\n          Toggle: {toggle()}\n        </button>\n      </div >\n    </Loading>\n  );\n}\n\n\nif (typeof document !== 'undefined') {\n  render(() => <App />, document.getElementById('root')!);\n}\n\n\n\n\n```\n\n### Your Example Website or App\n\nhttps://s.olid.uk/id/WAvU6sKpQrKi3Gnkqdjj9A\n\n### Steps to Reproduce the Bug or Issue\n\nsee repro\n\n### Expected behavior\n\nit is expected that memo or signal getter \nwould trigger the fallback reset \nwhen the dependency changes and they should go into pending. \n\nboth memo and signal have an async source function with dependency on change() signal \n\n\n### Screenshots or Videos\n\nuseMemo true \n\n<img width=\"503\" height=\"383\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/520c2462-14e8-494a-bb89-0ac53dddb6bb\" />\n\nuseMemo false \n\n<img width=\"341\" height=\"324\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/05290e82-90c1-48f3-b3e2-cfda8b428e4b\" />\n\n### Platform\n\n.\n\n### Additional context\n\n_No response_",
+      "state": "CLOSED",
+      "title": "2.0.0-rc8 | `<Loading>` fallback reset does not detect changes when a signal source is pending , but does when it is from a memo",
+      "url": "https://github.com/solidjs/solid/issues/3524"
+    },
+    {
+      "body": "**Setup:** `@solidjs/vite-plugin` start mode, `ssr: true`, production build + `vite preview` (Node). Reproduces on 2.0.0-rc.10 and 2.0.0-rc.13 (solid-js, @solidjs/web, @solidjs/signals, compiler all at rc.13, vite-plugin next.47), 5/5 runs each. No router, no Cloudflare/workerd needed.\n\nThe server answer resolves after 300 ms, so the boundary streams. The browser value is an async iterable branded `Symbol.for('solid.LiveSource')`; it subscribes inside the first `next()`'s executor.\n\n```tsx\nfunction source(liveMs) {\n  if (isServer) return (getRequestEvent().locals.answer ??= new Promise(r => setTimeout(() => r(ROWS), 300)))\n  let sent = false\n  return { [Symbol.for('solid.LiveSource')]: true, [Symbol.asyncIterator]: () => ({\n    next: () => sent ? new Promise(() => {}) : new Promise(res => setTimeout(() => (sent = true, res({ done: false, value: ROWS })), liveMs)),\n    return: () => Promise.resolve({ done: true }) }) }\n}\n\n// A: duplicate render\nfunction A() {\n  const rows = createMemo(() => source(600))\n  return <Loading fallback={null}><Show when={rows().length > 0}><ul><li>rows: {rows().length}</li></ul></Show></Loading>\n}\n\n// B: undefined rows in a keyed <For>\nfunction B() {\n  const [rows] = createOptimisticStore(() => source(0), [], { key: 'id' })\n  createMemo(() => rows.map(r => r.id).join(','))\n  return <Errored fallback={e => <p>{String(e())}</p>}><Loading fallback={null}>\n    <ul><For each={[...rows]} keyed={r => r.id}>{r => <li>{r().id}</li>}</For></ul></Loading></Errored>\n}\n```\n\n**Expected:** the source is adopted from the serialized snapshot when its boundary hydrates, then taken over once. One copy of the DOM, no errors.\n\n**Actual:** the live source subscribes at ~30 ms (when the shell finishes hydrating); the boundary's fragment arrives at ~300 ms.\n- **A:** the server `<ul _hk=…>` stays and a second `<ul>` is client-rendered. In dev: `Hydration completed with 1 unclaimed server-rendered node(s)`.\n- **B:** `TypeError: Cannot read properties of undefined (reading 'id')` from the `keyed` function; the server list stays beside the error fallback.\n- With `ssrSource: 'hybrid'`, A is fixed (takeover waits for the boundary), but B still throws, at takeover time.\n- If the live answer arrives before the fragment and differs from the snapshot, the late snapshot overwrites the newer live value.\n- Dev reproduces too once the server delay exceeds the dev entry's load time (e.g. 4000 ms) — production builds hit it with ordinary delays because the entry loads fast.\n- A source created *inside* the boundary (its owner is the boundary) behaves correctly: it waits for the boundary to hydrate before subscribing.\n\n**Cause (as far as I can read):** `hydratedCreateRoot` → `markTopLevelSnapshotScope` → `openLiveScope(root)`. Setting `sharedConfig.hydrating = false` calls `releaseLiveScope(root)`, which releases every root-scoped takeover gate armed by `armLiveTakeover` while boundaries still waiting on streamed fragments (`_pendingBoundaries > 0`) read those sources.\n\n**Workarounds we use:** `ssrSource: 'client'` for such sources, or create the source inside the streamed boundary; `ssrSource: 'hybrid'` works for memos but not for stores read by a derived memo.\n\nHappy to share the full minimal Vite app if useful.\n",
+      "state": "CLOSED",
+      "title": "[2.0 rc.10–rc.13] A live source created outside a streamed <Loading> takes over when the shell finishes hydrating, before the boundary's fragment hydrates: unclaimed server DOM + duplicate render, or undefined rows in a keyed <For>",
+      "url": "https://github.com/solidjs/solid/issues/3764"
+    }
+  ]
+}
