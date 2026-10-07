@@ -102,6 +102,150 @@
       ],
       "statement": "To get them, opt in explicitly — `enablePerformanceTracks({ attribution: { checks: true } })`, `performanceTracks: { attribution: { checks: true } }` in the plugin, or a hold of your own (`attribution.enable()`), which turns them on beside the tracks while it is held.",
       "reason": "公开 native Chrome 控制，原生记录字段/计数/时钟/对应聚合与正负模式全部断言；production 无测量/记录。"
+    },
+    {
+      "id": "08-dev-diagnostics:L801:10",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-server.test.ts#last-writer execution policy"
+      ],
+      "statement": "This is the seam for tooling that watches the app — APM adapters, devtools — and deliberately not a policy hook: `configureServerFunctionsServer({ wrapInvocation })` remains the single, last-writer-wins wrap around execution for code that must **change** a call, and an observer that installed itself there would either displace the host's policy or be displaced by it.",
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
+    },
+    {
+      "id": "08-dev-diagnostics:L857:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-server-call-origin-families"
+      ],
+      "statement": "`origin` is what the call ran for, when the attribution engine is enabled and knows: the interaction whose handler made it (`{ kind: \"interaction\", name: \"click\", target, at }`), the navigation whose data needed it (`{ kind: \"navigation\", name: \"/users/:id\", …, interaction }` — a `createAsync` calling the server inside the recompute the location write caused), an effect or action frame, an async landing's recompute calling again.",
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
+    },
+    {
+      "id": "08-dev-diagnostics:L883:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-rpc.test.ts",
+        "tracks/docs/late-final-server.test.ts"
+      ],
+      "statement": "`id` is the frame's on the wire: for a server-function response that is a frame stream (`frameTransformResult`), the function's id — the same `id` the call's `\"invocation\"` and `\"call\"` records carry, so all three join by it (the invocation is the execution, the call is the caller's wait, the frame is the response that streamed); for a bare `renderToFrameStream`, what the producer named it or `\"\"`.",
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
+    },
+    {
+      "id": "08-dev-diagnostics:L883:3",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-server.test.ts"
+      ],
+      "statement": "`at` is `performance.now()` at `start`; `durationMs` runs start → `complete`, the whole stream; `shellMs` runs start → the shell (`html`) chunk — time to first content — and is absent when no shell was produced.",
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1004:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts"
+      ],
+      "statement": "The engine is its own entry, `solid-js/attribution` (re-exporting `@solidjs/signals/attribution`), so a build that never imports it never ships it: the runtime carries only the hook slot the engine installs into (internal to `@solidjs/signals`; `OBSERVE.attribution.installed` says whether an engine is present) and the two declared frames — the interaction frame the web runtime opens around event dispatch (`OBSERVE.attribution.withInteraction`) and the origin frame a router opens around its navigation write (`OBSERVE.attribution.withOrigin`).",
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1121:6",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-observer-microtask-handoff"
+      ],
+      "statement": "A listener runs inside the engine and must not write signals; hand work off to a microtask.",
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1123:7",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-fallback-swap-never-painted",
+        "08/late-final-fallback-fields-and-fold"
+      ],
+      "statement": "`at` is the end of the drain that rendered the swap — the boundary's swap is a staged write that lands with its frame ([RFC 05](05-async-data.md#loading-on-prop-dependencies-that-show-the-fallback-again)), and a swap cleared before that (the content landed before the frame did, or the commit's own sweep cleared it ahead of any effect — the `LOADING_ON_OUTSIDE_HOLD` shape) was never on screen and is no record.",
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1131:3",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-event-target-and-preview-limits",
+        "08/late-final-held-and-verdict-value-previews",
+        "08/attribution-values-levels"
+      ],
+      "statement": "The fields the level governs: `ChangeRecord.prev`/`value` and `HeldWrite.prev`/`value` — previews of the written values (`preview()`: strings quoted and cut at 40 characters, numbers/booleans verbatim, everything else a type tag such as `Array(12)` or `[Object]`); `ChangeOrigin.target` (and so `InteractionEvent.target`, `HoldEvent.interaction.target`) — the element hit as the runtime described it, `tag#id \"text\"` with up to 30 characters of `textContent` for anything that is not an `input`/`textarea`/`select`, so a label but also whatever a `<td>` said; and every sentence the engine builds from those — `formatRerun`, `formatOrigin`, the `SILENT_HOLD`/`LONG_HOLD` verdicts (`click on button#next \"Next →\" wrote \"page\" (1 → 2)…`, with `data.interaction.target` structured beside), `OPTIMISTIC_REVERTED` (which quotes the shown and settled values, `data.shown`/`data.truth`).",
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1170:3",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-navigation-delayed-publish-clock"
+      ],
+      "statement": "The engine has no router-specific seam beyond that: a navigation the router abandons before it publishes is the router's to report, and the wait it owns is inside `settledMs` only through `at`. (Making the loader wait itself part of the transition, so the location write is the one to wrap, is router work — planned for the Solid 2 TanStack adapter, not yet done.) Such a router also loses the click: the interaction frame is gone by the time it publishes.",
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1175:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-literal-handler-origin-gap"
+      ],
+      "statement": "Known gap: handlers bound through the runtime (delegated events, and non-literal `on*` expressions that route through `addEvent`) are stamped; a _literal_ function handler compiles to a bare `addEventListener` and is not, so its writes read as `external` until the compiler wraps them too.",
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1188:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-interaction-after-fallback-landing"
+      ],
+      "statement": "Runs are counted while the record is open; an async landing the interaction caused that arrives after its writes committed (a fetch behind a `Loading` boundary that showed its fallback) is attributed to it on the `RerunEvent` but is not the interaction's wait — the boundary answered.",
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1194:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-feedback-sources-interactions-complete"
+      ],
+      "statement": "- `sources`: per set of async sources waited on, `holds`, `heldMs`/`worstMs`, the `silent` subset (no acknowledgement at any duration) with its `silentMs`, `latestOnly` (the only acknowledgement was a `latest()` shadow — the input showed, nothing said \"loading\"), `long`/`longMs` (holds whose tail reached `longHolds.infoMs`, acknowledged or not — the `LONG_HOLD` shape; `longMs` sums the tails), `acknowledgedBy` ranked by affordance (`isPending:`, `latest:`, `optimistic:`, `affects:` prefixed with the node), the `interactions` and root `writes` that were held, and how many holds an `action` opened or joined.",
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1195:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-feedback-sources-interactions-complete"
+      ],
+      "statement": "- `interactions`: per opening interaction (`click on button#next \"Next →\"`), `dispatches` folded together, the re-`runs` traced back to it with summed `selfMs` and `worstDispatchMs` (the long-flush hazard) beside `holds`, `heldMs`, `silentMs`, and `worstHoldMs` (the silent-hold hazard) — the two INP failure modes as columns of one row.",
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1200:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-rpc.test.ts"
+      ],
+      "statement": "The `@solidjs/diagnostics` artifact includes `holds` and `feedback` alongside diagnostics and costs, and the browser bridge exposes both as live queries.",
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
     }
   ]
 }
