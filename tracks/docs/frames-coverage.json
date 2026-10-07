@@ -255,9 +255,11 @@
   },
   {
     "id": "10-server-functions:L41:8",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/directive-get.test.ts"
+    ],
+    "reason": "public native transformDirectives dev/prod两组：module客户端仅bareproxy/无GET，server GET在注册initializer内；functionlevelclient仍GET(reference)；消费site GET(reference)methodGET且id不变，bareproxy无GETmetadata。"
   },
   {
     "id": "10-server-functions:L45:1",
@@ -1480,15 +1482,23 @@
   },
   {
     "id": "10-server-functions:L228:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "10/live-inprocess-top-only-brand",
+      "10/live-nested-response-lifetime",
+      "tracks/frames/nested-live.test.ts"
+    ],
+    "reason": "top iterable与component带LiveSourcebrand；valueanswer/nestedpromise/nestediterable均不带brand；真实内建live answer包含boundedPromise且EOF等其结束。"
   },
   {
     "id": "10-server-functions:L228:2",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "10/live-nested-response-lifetime",
+      "tracks/frames/shared-source.test.ts",
+      "tracks/frames/undeclared-source.test.ts"
+    ],
+    "reason": "nestedpromise与nestediterable分别controlled完成后response才end；documentSSR与hydratedclient共享完整17/35nested序列；真实document standing source 5.3s仍open触发cap诊断、live/frame exemption。"
   },
   {
     "id": "10-server-functions:L228:3",
@@ -1747,9 +1757,13 @@
   },
   {
     "id": "10-server-functions:L253:2",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/nested-live.test.ts",
+      "tracks/frames/live-scopes.test.ts",
+      "10/live-digest-skip"
+    ],
+    "reason": "nestedwholeanswer EOF绑定全部nested完成；per-scope nativehydrationtakenover含slow sibling；Last-Event-ID真实serverresponse suppress matchingfirstdigest但laterframes继续且handlerargs为空。"
   },
   {
     "id": "10-server-functions:L253:3",
@@ -2672,27 +2686,35 @@
   },
   {
     "id": "11-server-components:L15:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/vite-components.test.ts"
+    ],
+    "reason": "root实际Vite HEADplugin generateddev/prod SSR inlineframe+Chromehydratecounter；componentstransforms/生成entriesbootstrap/install与use server functiondirective剥离同contract。"
   },
   {
     "id": "11-server-components:L15:2",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/vite-components.test.ts"
+    ],
+    "reason": "root实际Vite HEADplugin generateddev/prod SSR inlineframe+Chromehydratecounter；componentstransforms/生成entriesbootstrap/install与use server functiondirective剥离同contract。"
   },
   {
     "id": "11-server-components:L15:3",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/vite-components.test.ts"
+    ],
+    "reason": "root实际Vite HEADplugin generateddev/prod SSR inlineframe+Chromehydratecounter；componentstransforms/生成entriesbootstrap/install与use server functiondirective剥离同contract。"
   },
   {
     "id": "11-server-components:L15:4",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/vite-authored.test.ts"
+    ],
+    "reason": "root实际hand-authoredentries dev/prod：servermarkers inline/客户端显式install hydrateclick/startup0RPC，插件仍servertransform而document/clientowned wiring。"
   },
   {
     "id": "11-server-components:L15:5",
@@ -2702,9 +2724,11 @@
   },
   {
     "id": "11-server-components:L15:6",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/vite-components.test.ts"
+    ],
+    "reason": "root实际Vite HEADplugin generateddev/prod SSR inlineframe+Chromehydratecounter；componentstransforms/生成entriesbootstrap/install与use server functiondirective剥离同contract。"
   },
   {
     "id": "11-server-components:L17:1",
@@ -3040,11 +3064,11 @@
   },
   {
     "id": "11-server-components:L126:3",
-    "status": "uncovered",
+    "status": "untestable",
     "coverage": [
-      "tracks/frames/zero-bytes.test.ts#optional machinery absence / enabled positive"
+      "tracks/frames/zero-bytes.test.ts"
     ],
-    "reason": "Optional full frame machinery is excluded; exact zero-byte cost versus core interop symbols has no proven measurement baseline yet"
+    "reason": "absolute zero feature bytes需要没有此features的反事实core构建基准；现core原生JSX已有framecompat，无独立no-feature export可比较。现no-import graph positive只能证明framesentry machinery未入图，不能把core已内嵌支持误称绝对0byte。"
   },
   {
     "id": "11-server-components:L126:4",
