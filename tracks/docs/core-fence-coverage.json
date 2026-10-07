@@ -743,8 +743,11 @@
     "end_line": 216,
     "section": "Async sources and `Loading`",
     "statement": "// A server component answering an async call: the source may stay async.",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "tracks/docs/vite-authored.test.ts",
+      "tracks/docs/vite-components.test.ts"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
@@ -1979,8 +1982,10 @@
     "end_line": 182,
     "section": "The trace the request belongs to: `getTraceContext()`",
     "statement": "// in a server function: forward the trace to the service it calls",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "tracks/frames/server-diagnostics.test.ts#08/server-road-server-function-forward-trace"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {

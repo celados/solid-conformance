@@ -2450,8 +2450,11 @@
     "end_line": 204,
     "section": "Async sources and `Loading`",
     "statement": "- **A server component** (`\"use server\"` function returning JSX, called directly or through a wrapper such as a router `query()`): crosses as a reference; the client adopts the frame the server rendered.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/vite-authored.test.ts",
+      "tracks/docs/vite-components.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L204:2",
@@ -5012,8 +5015,13 @@
     "end_line": 84,
     "section": "`Loading` `on` prop: dependencies that show the fallback again",
     "statement": "One shape shows no fallback at all: when the data the boundary is waiting on is also read outside it (a sibling `<Loading>` over the same `comments(id)`, an `isPending` on it in the header), or the write's `action` stays open until the data lands.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/loading-on-shared-sibling",
+      "05/loading-on-shared-pending",
+      "05/loading-on-shared-action-held",
+      "05/loading-on-shared-action-race"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L84:2",
@@ -5022,8 +5030,13 @@
     "end_line": 84,
     "section": "`Loading` `on` prop: dependencies that show the fallback again",
     "statement": "The frame waits on that read, so by the time it commits the content is ready and the fallback was never needed.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/loading-on-shared-sibling",
+      "05/loading-on-shared-pending",
+      "05/loading-on-shared-action-held",
+      "05/loading-on-shared-action-race"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L84:3",
@@ -5044,8 +5057,13 @@
     "end_line": 84,
     "section": "`Loading` `on` prop: dependencies that show the fallback again",
     "statement": "The second is a race the fallback may still win (an action that ends first shows it with the commit), and is not reported: during an `action`, show the wait with `isPending()` or an optimistic value, which is what a hold's stale content is for.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/loading-on-shared-sibling",
+      "05/loading-on-shared-pending",
+      "05/loading-on-shared-action-held",
+      "05/loading-on-shared-action-race"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L84:5",
@@ -5641,8 +5659,10 @@
     "end_line": 187,
     "section": "Transitions: built-in, multiple in flight",
     "statement": "Multiple transitions can be in flight; “entangling” determines what should block what.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/concurrent-actions-settle-orders"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L187:3",
@@ -5982,8 +6002,10 @@
     "end_line": 227,
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "A node created with no owner (`runWithOwner(null, …)`), or under a root without an `id`, has no id slot to consume and takes this path on its own.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/policy.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L231:1",
@@ -6109,8 +6131,10 @@
     "end_line": 245,
     "section": "The tracking run: known limitations",
     "statement": "The server-function client awaits before it sends in two cases: when `prepareRequest` is configured (it is awaited even if it returns synchronously), and when the arguments need the codec (`serializeArgs`, installed by `enableRichArguments()`).",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/rpc-tracking.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L245:2",
@@ -6119,8 +6143,10 @@
     "end_line": 245,
     "section": "The tracking run: known limitations",
     "statement": "Calling the server function first in the compute does not help there; the `await` is inside the client.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/rpc-tracking.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L245:3",
@@ -9308,8 +9334,10 @@
     "end_line": 31,
     "section": "Render entry points",
     "statement": "The client entry must execute after that script: make it a deferred `<script type=\"module\">` (or a `defer` classic script), or place it after the render output — never `async`, which may run before the records have been parsed and hydrate against an empty document.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/bootstrap-order.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L31:3",
@@ -9512,7 +9540,8 @@
     "coverage": [
       "08/server-road-live-request-event-identity"
     ],
-    "status": "covered"
+    "status": "covered",
+    "rationale": "nested direct-call RequestEvent !==parent，request和response分别===parent；live.event===bodygetRequestEvent。"
   },
   {
     "id": "12-ssr-http:L83:1",
@@ -9740,8 +9769,12 @@
     "end_line": 133,
     "section": "The response head from the render tree: `httpStatus` / `httpHeader`",
     "statement": "An error boundary that renders a 500 fallback, declares a status, and later recovers retracts its write instead of stomping to defaults; a 404 page whose inner boundary recovers stays a 404.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/ssr-reset-static-model",
+      "12/declaration-restoration"
+    ],
+    "status": "untestable",
+    "reason": "条件 later recovers 在当前公开SSR静态模型中无可构造的head提交前恢复路径：public Errored reset回调在packages/solid/src/server/signals.ts L3610为noop；11-server-components.md L169明确setter仅数据写入不rerender，05异步iterable SSR只取首值。public reset静态对照确认原分支不再运行、head已committed、500仍500；公开scope声明撤回恢复surviving404另有partial proof，但不冒称完整覆盖真正boundary恢复。"
   },
   {
     "id": "12-ssr-http:L133:3",
@@ -10367,8 +10400,12 @@
     "end_line": 203,
     "section": "The trace the request belongs to: `getTraceContext()`",
     "statement": "The runtime also hands the trace **down to the browser**, which cannot send a header on the initial document request and has to learn the server's trace from the response: `entries` are emitted as `Server-Timing` metrics (`traceparent;desc=\"00-…\"`) on the response head when it commits — every exit, so frames, server-function responses and redirects carry it too — and, for HTML documents, as `<meta name=\"traceparent\" content=\"…\">` in the shell head (the `</head>` splice or the `onHead` string; a headless fragment ships only the header).",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "08/server-road-trace-every-response-face",
+      "tracks/records/trace.test.ts#RFC08 L801/L902 and RFC12 L201–205: pre-runtime subscriptions cross bundled copies; real response trace and metric gates"
+    ],
+    "status": "covered",
+    "rationale": "sampled真实HTML </head>splice、headlesshost onHead、无onHead fragment仅header、publicframe RPC transform、preflush bodylessredirect均精确当前traceparent value；plainRPC在records.trace真实responseheader，三tier。"
   },
   {
     "id": "12-ssr-http:L203:2",
@@ -10699,8 +10736,13 @@
     "end_line": 242,
     "section": "Cookies: the codec + native `Headers`",
     "statement": "That is the portability contract across Node/undici, workerd, and Deno; integrations merging headers themselves should follow the same rule.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/commit-cookies",
+      "12/cookie-expiry-serialization",
+      "tracks/frames/server-diagnostics.test.ts#08/server-road-mutation-cookie-thrown-redirect"
+    ],
+    "status": "untestable",
+    "reason": "合同横跨Node/undici、workerd、Deno。用户明确bun-only，因此不能启动这些独立runtime测它们的原生Headers portability。Bun平台真实两cookie含Expires逗号与serverfn/SSR/middleware合并保留已测；该partial proof不代表其余平台。"
   },
   {
     "id": "12-ssr-http:L244:1",
@@ -10709,8 +10751,10 @@
     "end_line": 244,
     "section": "Cookies: the codec + native `Headers`",
     "statement": "During a server function the handler folds the event’s response stub onto the outgoing response as the head freezes — cookies appended by the mutation ride whatever leaves, thrown redirects included (the set-session-then-`throw redirect()` login flow works by construction) — and commits the stub, so a straggling write after the response is on the wire fails loudly instead of vanishing.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-diagnostics.test.ts#08/server-road-mutation-cookie-thrown-redirect"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L248:1",
@@ -10752,8 +10796,11 @@
     "end_line": 248,
     "section": "Sessions (recipe)",
     "statement": "What core guarantees instead is the seam: anything that can read `event.request.headers` and append to `event.response.headers` composes, in server functions, SSR handlers, and middleware alike.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "08/server-road-cookie-exchange-three-domains"
+    ],
+    "status": "covered",
+    "rationale": "同一public request Cookie parse+response Set-Cookie append helper在serverfn/SSR/middleware三domain运行：2entries保留、request仍previous、middlewareunwrap前stub未commit而handleredge commit。"
   },
   {
     "id": "12-ssr-http:L250:1",
@@ -10867,8 +10914,10 @@
     "end_line": 302,
     "section": "Sessions (recipe)",
     "statement": "- **The stub is the commit step.** No `commitSession`: `event.response` _is_ the uncommitted response head, so appends ride whatever leaves — including thrown redirects in server functions (the set-session-then-`throw redirect()` login flow works by construction), and a post-commit write fails loudly per the stub contract above.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-diagnostics.test.ts#08/server-road-mutation-cookie-thrown-redirect"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L304:1",
@@ -11113,8 +11162,10 @@
     "end_line": 335,
     "section": "The response-head lifecycle: `createRequestEvent` / `createSSRResponse` / `commitEventResponse`",
     "statement": "An event **without** a `response` stub (the server-function handler's default event, a bare integration) still hands the request's trace on: the response is rebuilt with the `Server-Timing` entries when there is something to say, and comes back untouched otherwise.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-diagnostics.test.ts#08/server-road-bare-event-trace-commit"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L335:4",
@@ -13854,8 +13905,10 @@
     "end_line": 771,
     "section": "New in 2.0",
     "statement": "- **`ssrSource` option** (`\"server\"` | `\"hybrid\"` | `\"client\"`) — per-primitive hydration policy on memos, function-form signals/stores, projections, and effects: whether the client seeds from the serialized server value (`\"server\"`, default), seeds then continues an async-iterable compute's stream from it (`\"hybrid\"` — identical to `\"server\"` for sync/promise computes), or skips the server value and computes only after hydration (`\"client\"` — the compute never runs on the server).",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/policy.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "MIGRATION:L771:2",
