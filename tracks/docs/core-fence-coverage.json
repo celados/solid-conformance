@@ -31,7 +31,7 @@
     "line": 33,
     "end_line": 33,
     "section": "No writes under owned scope",
-    "statement": "// \u274c BAD: using ownedWrite to suppress the write-under-scope error for app state",
+    "statement": "// ❌ BAD: using ownedWrite to suppress the write-under-scope error for app state",
     "coverage": [],
     "status": "uncovered",
     "unit": "fenced-comment"
@@ -64,7 +64,7 @@
     "line": 38,
     "end_line": 38,
     "section": "No writes under owned scope",
-    "statement": "// \u2705 GOOD: derive without writing back, or write in an event",
+    "statement": "// ✅ GOOD: derive without writing back, or write in an event",
     "coverage": [],
     "status": "uncovered",
     "unit": "fenced-comment"
@@ -88,7 +88,7 @@
     "line": 50,
     "end_line": 50,
     "section": "Strict top-level access (new in 2.0)",
-    "statement": "const t = untrack(() => props.title); // intentional one-time read \u2014 no warn",
+    "statement": "const t = untrack(() => props.title); // intentional one-time read — no warn",
     "coverage": [
       "08/primitive-strict-component-controls"
     ],
@@ -127,7 +127,7 @@
     "line": 67,
     "end_line": 67,
     "section": "Strict top-level access (new in 2.0)",
-    "statement": "// \u274c BAD: reactive read in callback body (warns)",
+    "statement": "// ❌ BAD: reactive read in callback body (warns)",
     "coverage": [
       "08/primitive-strict-flow-callback-controls"
     ],
@@ -140,7 +140,7 @@
     "line": 75,
     "end_line": 75,
     "section": "Strict top-level access (new in 2.0)",
-    "statement": "// \u2705 GOOD: read in JSX expression (tracked)",
+    "statement": "// ✅ GOOD: read in JSX expression (tracked)",
     "coverage": [
       "08/primitive-strict-flow-callback-controls"
     ],
@@ -425,7 +425,7 @@
     "line": 78,
     "end_line": 78,
     "section": "Context: default-less form throws on missing Provider",
-    "statement": "// 1.x boilerplate \u2014 the wrapper exists only to narrow the type",
+    "statement": "// 1.x boilerplate — the wrapper exists only to narrow the type",
     "coverage": [],
     "status": "not-behavioral",
     "unit": "fenced-comment",
@@ -437,7 +437,7 @@
     "line": 86,
     "end_line": 86,
     "section": "Context: default-less form throws on missing Provider",
-    "statement": "// 2.0 \u2014 direct call, no wrapper. Throws if no Provider; type is TodosCtx, not TodosCtx | undefined.",
+    "statement": "// 2.0 — direct call, no wrapper. Throws if no Provider; type is TodosCtx, not TodosCtx | undefined.",
     "coverage": [
       "02/context-missing",
       "tracks/docs/types.test.ts"
@@ -450,7 +450,7 @@
     "file": "02-signals-derived-ownership.md",
     "line": 106,
     "end_line": 106,
-    "section": "Function-form `createSignal` (\u201cwritable memo\u201d)",
+    "section": "Function-form `createSignal` (“writable memo”)",
     "statement": "// Example: derived signal",
     "coverage": [],
     "status": "not-behavioral",
@@ -462,7 +462,7 @@
     "file": "02-signals-derived-ownership.md",
     "line": 108,
     "end_line": 108,
-    "section": "Function-form `createSignal` (\u201cwritable memo\u201d)",
+    "section": "Function-form `createSignal` (“writable memo”)",
     "statement": "// If you want a first-run default for prev, use a default parameter:",
     "coverage": [
       "01/memo-previous",
@@ -476,7 +476,7 @@
     "file": "02-signals-derived-ownership.md",
     "line": 110,
     "end_line": 110,
-    "section": "Function-form `createSignal` (\u201cwritable memo\u201d)",
+    "section": "Function-form `createSignal` (“writable memo”)",
     "statement": "// setValue(...) writes like a normal signal; the compute receives prev on recompute.",
     "coverage": [
       "01/memo-previous",
@@ -502,7 +502,7 @@
     "file": "02-signals-derived-ownership.md",
     "line": 159,
     "end_line": 159,
-    "section": "`Context.Provider` \u2192 context-as-provider",
+    "section": "`Context.Provider` → context-as-provider",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -514,7 +514,7 @@
     "file": "02-signals-derived-ownership.md",
     "line": 164,
     "end_line": 164,
-    "section": "`Context.Provider` \u2192 context-as-provider",
+    "section": "`Context.Provider` → context-as-provider",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -645,9 +645,12 @@
     "end_line": 159,
     "section": "Reporting what a boundary caught: the client error hook",
     "statement": "// or per root, ahead of the ambient hook:",
-    "coverage": [],
-    "status": "uncovered",
-    "unit": "fenced-comment"
+    "coverage": [
+      "03/client-error-root-overrides"
+    ],
+    "status": "covered",
+    "unit": "fenced-comment",
+    "rationale": "精确行为测试；红合同保留在最小finding并记录原始失败，不按相邻API推定。"
   },
   {
     "id": "03-control-flow:C178:1",
@@ -693,7 +696,7 @@
     "line": 193,
     "end_line": 193,
     "section": "Dynamic components: the `dynamic` factory",
-    "statement": "// after \u2014 hoist per component instance, or per module for a constant tag",
+    "statement": "// after — hoist per component instance, or per module for a constant tag",
     "coverage": [],
     "status": "not-behavioral",
     "unit": "fenced-comment",
@@ -738,7 +741,7 @@
     "line": 265,
     "end_line": 265,
     "section": "Props",
-    "statement": "// Sequential (default) \u2014 reveals top-to-bottom as each resolves.",
+    "statement": "// Sequential (default) — reveals top-to-bottom as each resolves.",
     "coverage": [
       "03/reveal-sequential"
     ],
@@ -751,7 +754,7 @@
     "line": 271,
     "end_line": 271,
     "section": "Props",
-    "statement": "// Together \u2014 every boundary waits for the whole group, then reveals at once.",
+    "statement": "// Together — every boundary waits for the whole group, then reveals at once.",
     "coverage": [
       "03/reveal-together"
     ],
@@ -764,7 +767,7 @@
     "line": 277,
     "end_line": 277,
     "section": "Props",
-    "statement": "// Collapsed (sequential-only) \u2014 only the frontier shows a fallback.",
+    "statement": "// Collapsed (sequential-only) — only the frontier shows a fallback.",
     "coverage": [
       "03/reveal-collapsed-sequential"
     ],
@@ -776,7 +779,7 @@
     "file": "03-control-flow.md",
     "line": 355,
     "end_line": 355,
-    "section": "`SuspenseList` \u2192 `Reveal`",
+    "section": "`SuspenseList` → `Reveal`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -788,7 +791,7 @@
     "file": "03-control-flow.md",
     "line": 361,
     "end_line": 361,
-    "section": "`SuspenseList` \u2192 `Reveal`",
+    "section": "`SuspenseList` → `Reveal`",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -800,7 +803,7 @@
     "file": "03-control-flow.md",
     "line": 371,
     "end_line": 371,
-    "section": "`Index` \u2192 `For keyed={false}`",
+    "section": "`Index` → `For keyed={false}`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -812,7 +815,7 @@
     "file": "03-control-flow.md",
     "line": 376,
     "end_line": 376,
-    "section": "`Index` \u2192 `For keyed={false}`",
+    "section": "`Index` → `For keyed={false}`",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -824,7 +827,7 @@
     "file": "03-control-flow.md",
     "line": 385,
     "end_line": 385,
-    "section": "`Suspense` \u2192 `Loading`",
+    "section": "`Suspense` → `Loading`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -836,7 +839,7 @@
     "file": "03-control-flow.md",
     "line": 390,
     "end_line": 390,
-    "section": "`Suspense` \u2192 `Loading`",
+    "section": "`Suspense` → `Loading`",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -848,7 +851,7 @@
     "file": "03-control-flow.md",
     "line": 399,
     "end_line": 399,
-    "section": "`ErrorBoundary` \u2192 `Errored`",
+    "section": "`ErrorBoundary` → `Errored`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -860,7 +863,7 @@
     "file": "03-control-flow.md",
     "line": 404,
     "end_line": 404,
-    "section": "`ErrorBoundary` \u2192 `Errored`",
+    "section": "`ErrorBoundary` → `Errored`",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -872,7 +875,7 @@
     "file": "03-control-flow.md",
     "line": 413,
     "end_line": 413,
-    "section": "`createDynamic(source, props)` \u2192 `dynamic(source)` factory",
+    "section": "`createDynamic(source, props)` → `dynamic(source)` factory",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -884,8 +887,8 @@
     "file": "03-control-flow.md",
     "line": 417,
     "end_line": 417,
-    "section": "`createDynamic(source, props)` \u2192 `dynamic(source)` factory",
-    "statement": "// 2.0 \u2014 factory form",
+    "section": "`createDynamic(source, props)` → `dynamic(source)` factory",
+    "statement": "// 2.0 — factory form",
     "coverage": [
       "03/dynamic-stable-shared",
       "03/dynamic-tag"
@@ -898,8 +901,8 @@
     "file": "03-control-flow.md",
     "line": 422,
     "end_line": 422,
-    "section": "`createDynamic(source, props)` \u2192 `dynamic(source)` factory",
-    "statement": "// 2.0 \u2014 manual composition, if you really want a one-shot call",
+    "section": "`createDynamic(source, props)` → `dynamic(source)` factory",
+    "statement": "// 2.0 — manual composition, if you really want a one-shot call",
     "coverage": [
       "03/dynamic-stable-shared",
       "03/dynamic-tag"
@@ -1068,7 +1071,7 @@
     "line": 221,
     "end_line": 221,
     "section": "`deep(store)` helper",
-    "statement": "// snapshot is a plain object \u2014 safe to read, serialize, diff",
+    "statement": "// snapshot is a plain object — safe to read, serialize, diff",
     "coverage": [
       "04/snapshot-untracked"
     ],
@@ -1081,7 +1084,7 @@
     "line": 25,
     "end_line": 25,
     "section": "Async in computations (no `createResource`)",
-    "statement": "// user() is not ready at first \u2014 wrap in <Loading>",
+    "statement": "// user() is not ready at first — wrap in <Loading>",
     "coverage": [
       "12/sync-fallback"
     ],
@@ -1121,9 +1124,13 @@
     "end_line": 67,
     "section": "`Loading` `on` prop: dependencies that show the fallback again",
     "statement": "// Several dependencies: a change to any of them shows the fallback",
-    "coverage": [],
-    "status": "uncovered",
-    "unit": "fenced-comment"
+    "coverage": [
+      "05/loading-on-multiple-a",
+      "05/loading-on-multiple-b"
+    ],
+    "status": "covered",
+    "unit": "fenced-comment",
+    "rationale": "精确行为测试；红合同保留在最小finding并记录原始失败，不按相邻API推定。"
   },
   {
     "id": "05-async-data:C133:1",
@@ -1332,7 +1339,7 @@
     "file": "05-async-data.md",
     "line": 289,
     "end_line": 289,
-    "section": "`createResource` \u2192 async computations + `Loading`",
+    "section": "`createResource` → async computations + `Loading`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -1344,7 +1351,7 @@
     "file": "05-async-data.md",
     "line": 292,
     "end_line": 292,
-    "section": "`createResource` \u2192 async computations + `Loading`",
+    "section": "`createResource` → async computations + `Loading`",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -1356,7 +1363,7 @@
     "file": "05-async-data.md",
     "line": 303,
     "end_line": 303,
-    "section": "`resource.loading` \u2192 `isPending`",
+    "section": "`resource.loading` → `isPending`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -1368,7 +1375,7 @@
     "file": "05-async-data.md",
     "line": 307,
     "end_line": 307,
-    "section": "`resource.loading` \u2192 `isPending`",
+    "section": "`resource.loading` → `isPending`",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -1380,7 +1387,7 @@
     "file": "05-async-data.md",
     "line": 324,
     "end_line": 324,
-    "section": "`resource.refetch` \u2192 `refresh()`",
+    "section": "`resource.refetch` → `refresh()`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -1392,7 +1399,7 @@
     "file": "05-async-data.md",
     "line": 328,
     "end_line": 328,
-    "section": "`resource.refetch` \u2192 `refresh()`",
+    "section": "`resource.refetch` → `refresh()`",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -1404,7 +1411,7 @@
     "file": "05-async-data.md",
     "line": 339,
     "end_line": 339,
-    "section": "`resource.refetch` \u2192 `refresh()`",
+    "section": "`resource.refetch` → `refresh()`",
     "statement": "// or, for a store/projection:",
     "coverage": [
       "06/refresh-store-delivery"
@@ -1417,8 +1424,8 @@
     "file": "05-async-data.md",
     "line": 353,
     "end_line": 353,
-    "section": "`resource.mutate` \u2192 `createOptimisticStore` / `action`",
-    "statement": "// 1.x \u2014 replaces entire array, no diffing, races possible",
+    "section": "`resource.mutate` → `createOptimisticStore` / `action`",
+    "statement": "// 1.x — replaces entire array, no diffing, races possible",
     "coverage": [],
     "status": "not-behavioral",
     "unit": "fenced-comment",
@@ -1429,8 +1436,8 @@
     "file": "05-async-data.md",
     "line": 363,
     "end_line": 363,
-    "section": "`resource.mutate` \u2192 `createOptimisticStore` / `action`",
-    "statement": "// 2.0 \u2014 granular updates, reconciled refresh, race-safe",
+    "section": "`resource.mutate` → `createOptimisticStore` / `action`",
+    "statement": "// 2.0 — granular updates, reconciled refresh, race-safe",
     "coverage": [],
     "status": "uncovered",
     "unit": "fenced-comment"
@@ -1441,7 +1448,7 @@
     "line": 382,
     "end_line": 382,
     "section": "Error handling",
-    "statement": "// 1.x \u2014 two parallel error paths that don't compose",
+    "statement": "// 1.x — two parallel error paths that don't compose",
     "coverage": [],
     "status": "not-behavioral",
     "unit": "fenced-comment",
@@ -1475,7 +1482,7 @@
     "line": 399,
     "end_line": 399,
     "section": "Error handling",
-    "statement": "// 2.0 \u2014 one error path, composable with SSR",
+    "statement": "// 2.0 — one error path, composable with SSR",
     "coverage": [
       "03/error-fallback"
     ],
@@ -1581,7 +1588,7 @@
     "line": 111,
     "end_line": 111,
     "section": "`affects(target, key?)` (declare what in-flight work will change)",
-    "statement": "affects(todos);   // the whole store reads pending\u2026",
+    "statement": "affects(todos);   // the whole store reads pending…",
     "coverage": [
       "06/affects-refresh-additive"
     ],
@@ -1594,7 +1601,7 @@
     "line": 112,
     "end_line": 112,
     "section": "`affects(target, key?)` (declare what in-flight work will change)",
-    "statement": "refresh(todos);   // \u2026over this otherwise-quiet re-ask",
+    "statement": "refresh(todos);   // …over this otherwise-quiet re-ask",
     "coverage": [
       "06/affects-refresh-additive"
     ],
@@ -1684,7 +1691,7 @@
     "line": 169,
     "end_line": 169,
     "section": "`until()` (live-source acknowledgment)",
-    "statement": "// settle \u2192 the override drops onto data that already contains the real row",
+    "statement": "// settle → the override drops onto data that already contains the real row",
     "coverage": [
       "06/until-authority"
     ],
@@ -1900,7 +1907,7 @@
     "line": 109,
     "end_line": 109,
     "section": "The request event",
-    "statement": "/** Set by the integration once the response head has been derived/sent \u2014",
+    "statement": "/** Set by the integration once the response head has been derived/sent —",
     "coverage": [
       "12/committed-header-mutation"
     ],
@@ -1957,7 +1964,7 @@
     "line": 191,
     "end_line": 191,
     "section": "The trace the request belongs to: `getTraceContext()`",
-    "statement": "traceId: string; // 32 hex \u2014 the whole trace",
+    "statement": "traceId: string; // 32 hex — the whole trace",
     "coverage": [
       "12/trace-verbatim-fields",
       "12/trace-malformed-future-origin"
@@ -1971,7 +1978,7 @@
     "line": 192,
     "end_line": 192,
     "section": "The trace the request belongs to: `getTraceContext()`",
-    "statement": "spanId: string; // 16 hex \u2014 this request's span",
+    "statement": "spanId: string; // 16 hex — this request's span",
     "coverage": [
       "12/trace-verbatim-fields",
       "12/trace-malformed-future-origin"
@@ -2041,7 +2048,7 @@
     "line": 197,
     "end_line": 197,
     "section": "The trace the request belongs to: `getTraceContext()`",
-    "statement": "entries: Record<string, string>; // what the browser is handed \u2014 `traceparent`, plus a provider's",
+    "statement": "entries: Record<string, string>; // what the browser is handed — `traceparent`, plus a provider's",
     "coverage": [],
     "status": "uncovered",
     "unit": "fenced-comment"
@@ -2107,7 +2114,7 @@
     "line": 260,
     "end_line": 260,
     "section": "Sessions (recipe)",
-    "statement": "const MAX_AGE = 60 * 60 * 24 * 7; // seconds \u2014 drives the cookie AND the enforced expiry",
+    "statement": "const MAX_AGE = 60 * 60 * 24 * 7; // seconds — drives the cookie AND the enforced expiry",
     "coverage": [
       "tracks/docs/session-recipe.test.ts"
     ],
@@ -2146,7 +2153,7 @@
     "line": 266,
     "end_line": 266,
     "section": "Sessions (recipe)",
-    "statement": "httpOnly: true, // set explicitly \u2014 the package defaults httpOnly/secure to false",
+    "statement": "httpOnly: true, // set explicitly — the package defaults httpOnly/secure to false",
     "coverage": [
       "tracks/docs/session-recipe.test.ts"
     ],
@@ -2292,7 +2299,7 @@
     "file": "MIGRATION.md",
     "line": 84,
     "end_line": 84,
-    "section": "TypeScript JSX: `solid-js` \u2192 renderer package",
+    "section": "TypeScript JSX: `solid-js` → renderer package",
     "statement": "// 1.x / earlier 2.0 betas",
     "coverage": [],
     "status": "not-behavioral",
@@ -2304,7 +2311,7 @@
     "file": "MIGRATION.md",
     "line": 87,
     "end_line": 87,
-    "section": "TypeScript JSX: `solid-js` \u2192 renderer package",
+    "section": "TypeScript JSX: `solid-js` → renderer package",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -2491,8 +2498,8 @@
     "file": "MIGRATION.md",
     "line": 234,
     "end_line": 234,
-    "section": "\u201cTop-level reactive read\u201d in a component",
-    "statement": "// \u274c 2.0 warns (top-level reactive read)",
+    "section": "“Top-level reactive read” in a component",
+    "statement": "// ❌ 2.0 warns (top-level reactive read)",
     "coverage": [
       "08/primitive-strict-component-controls"
     ],
@@ -2504,8 +2511,8 @@
     "file": "MIGRATION.md",
     "line": 240,
     "end_line": 240,
-    "section": "\u201cTop-level reactive read\u201d in a component",
-    "statement": "// \u2705 read inside JSX/expression",
+    "section": "“Top-level reactive read” in a component",
+    "statement": "// ✅ read inside JSX/expression",
     "coverage": [
       "08/primitive-strict-component-controls"
     ],
@@ -2517,8 +2524,8 @@
     "file": "MIGRATION.md",
     "line": 247,
     "end_line": 247,
-    "section": "\u201cTop-level reactive read\u201d in a component",
-    "statement": "// \u274c 2.0 warns (common: destructuring in args)",
+    "section": "“Top-level reactive read” in a component",
+    "statement": "// ❌ 2.0 warns (common: destructuring in args)",
     "coverage": [
       "08/primitive-strict-component-controls"
     ],
@@ -2530,8 +2537,8 @@
     "file": "MIGRATION.md",
     "line": 252,
     "end_line": 252,
-    "section": "\u201cTop-level reactive read\u201d in a component",
-    "statement": "// \u2705 keep props object, or destructure inside a memo/effect",
+    "section": "“Top-level reactive read” in a component",
+    "statement": "// ✅ keep props object, or destructure inside a memo/effect",
     "coverage": [
       "08/primitive-strict-component-controls"
     ],
@@ -2543,8 +2550,8 @@
     "file": "MIGRATION.md",
     "line": 267,
     "end_line": 267,
-    "section": "\u201cWrite inside reactive scope\u201d (owned scope)",
-    "statement": "// \u274c throws: writing from inside a memo",
+    "section": "“Write inside reactive scope” (owned scope)",
+    "statement": "// ❌ throws: writing from inside a memo",
     "coverage": [
       "08/owned-write"
     ],
@@ -2556,8 +2563,8 @@
     "file": "MIGRATION.md",
     "line": 270,
     "end_line": 270,
-    "section": "\u201cWrite inside reactive scope\u201d (owned scope)",
-    "statement": "// \u2705 derive instead of writing back",
+    "section": "“Write inside reactive scope” (owned scope)",
+    "statement": "// ✅ derive instead of writing back",
     "coverage": [],
     "status": "uncovered",
     "unit": "fenced-comment"
@@ -2614,7 +2621,7 @@
     "file": "MIGRATION.md",
     "line": 313,
     "end_line": 313,
-    "section": "`Suspense` / `ErrorBoundary` \u2192 `Loading` / `Errored`",
+    "section": "`Suspense` / `ErrorBoundary` → `Loading` / `Errored`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -2626,7 +2633,7 @@
     "file": "MIGRATION.md",
     "line": 318,
     "end_line": 318,
-    "section": "`Suspense` / `ErrorBoundary` \u2192 `Loading` / `Errored`",
+    "section": "`Suspense` / `ErrorBoundary` → `Loading` / `Errored`",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -2638,7 +2645,7 @@
     "file": "MIGRATION.md",
     "line": 329,
     "end_line": 329,
-    "section": "`createResource` \u2192 async computations + `Loading`",
+    "section": "`createResource` → async computations + `Loading`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -2650,7 +2657,7 @@
     "file": "MIGRATION.md",
     "line": 332,
     "end_line": 332,
-    "section": "`createResource` \u2192 async computations + `Loading`",
+    "section": "`createResource` → async computations + `Loading`",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -2662,7 +2669,7 @@
     "file": "MIGRATION.md",
     "line": 376,
     "end_line": 376,
-    "section": "\u201cRefetch/refresh\u201d patterns \u2192 `refresh()`",
+    "section": "“Refetch/refresh” patterns → `refresh()`",
     "statement": "// After a server write, explicitly recompute a derived read:",
     "coverage": [
       "06/refresh-store-delivery"
@@ -2730,7 +2737,7 @@
     "line": 414,
     "end_line": 414,
     "section": "Draft-first setters (and `storePath` as an opt-in helper)",
-    "statement": "// Optional compatibility: old \u201cpath argument\u201d ergonomics via storePath",
+    "statement": "// Optional compatibility: old “path argument” ergonomics via storePath",
     "coverage": [
       "04/store-path"
     ],
@@ -2742,7 +2749,7 @@
     "file": "MIGRATION.md",
     "line": 428,
     "end_line": 428,
-    "section": "`mergeProps` / `splitProps` \u2192 `merge` / `omit`",
+    "section": "`mergeProps` / `splitProps` → `merge` / `omit`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -2754,7 +2761,7 @@
     "file": "MIGRATION.md",
     "line": 431,
     "end_line": 431,
-    "section": "`mergeProps` / `splitProps` \u2192 `merge` / `omit`",
+    "section": "`mergeProps` / `splitProps` → `merge` / `omit`",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -2766,7 +2773,7 @@
     "file": "MIGRATION.md",
     "line": 439,
     "end_line": 439,
-    "section": "`mergeProps` / `splitProps` \u2192 `merge` / `omit`",
+    "section": "`mergeProps` / `splitProps` → `merge` / `omit`",
     "statement": "// merged.b is undefined",
     "coverage": [
       "04/merge-undefined"
@@ -2779,7 +2786,7 @@
     "file": "MIGRATION.md",
     "line": 443,
     "end_line": 443,
-    "section": "`mergeProps` / `splitProps` \u2192 `merge` / `omit`",
+    "section": "`mergeProps` / `splitProps` → `merge` / `omit`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -2791,7 +2798,7 @@
     "file": "MIGRATION.md",
     "line": 446,
     "end_line": 446,
-    "section": "`mergeProps` / `splitProps` \u2192 `merge` / `omit`",
+    "section": "`mergeProps` / `splitProps` → `merge` / `omit`",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -2827,7 +2834,7 @@
     "file": "MIGRATION.md",
     "line": 517,
     "end_line": 517,
-    "section": "Dynamic components: `createDynamic` / `<Dynamic>` \u2192 `dynamic` factory",
+    "section": "Dynamic components: `createDynamic` / `<Dynamic>` → `dynamic` factory",
     "statement": "// 1.x style",
     "coverage": [],
     "status": "not-behavioral",
@@ -2839,8 +2846,8 @@
     "file": "MIGRATION.md",
     "line": 521,
     "end_line": 521,
-    "section": "Dynamic components: `createDynamic` / `<Dynamic>` \u2192 `dynamic` factory",
-    "statement": "// 2.0 \u2014 hoist a factory; use it like any component",
+    "section": "Dynamic components: `createDynamic` / `<Dynamic>` → `dynamic` factory",
+    "statement": "// 2.0 — hoist a factory; use it like any component",
     "coverage": [
       "03/dynamic-stable-shared"
     ],
@@ -2852,7 +2859,7 @@
     "file": "MIGRATION.md",
     "line": 538,
     "end_line": 538,
-    "section": "Coordinating loading boundaries: `SuspenseList` \u2192 `Reveal`",
+    "section": "Coordinating loading boundaries: `SuspenseList` → `Reveal`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -2864,8 +2871,8 @@
     "file": "MIGRATION.md",
     "line": 544,
     "end_line": 544,
-    "section": "Coordinating loading boundaries: `SuspenseList` \u2192 `Reveal`",
-    "statement": "// 2.0 \u2014 default sequential ordering",
+    "section": "Coordinating loading boundaries: `SuspenseList` → `Reveal`",
+    "statement": "// 2.0 — default sequential ordering",
     "coverage": [
       "03/reveal-sequential"
     ],
@@ -2877,8 +2884,8 @@
     "file": "MIGRATION.md",
     "line": 550,
     "end_line": 550,
-    "section": "Coordinating loading boundaries: `SuspenseList` \u2192 `Reveal`",
-    "statement": "// 2.0 \u2014 reveal the whole group at once",
+    "section": "Coordinating loading boundaries: `SuspenseList` → `Reveal`",
+    "statement": "// 2.0 — reveal the whole group at once",
     "coverage": [
       "03/reveal-together"
     ],
@@ -2890,8 +2897,8 @@
     "file": "MIGRATION.md",
     "line": 556,
     "end_line": 556,
-    "section": "Coordinating loading boundaries: `SuspenseList` \u2192 `Reveal`",
-    "statement": "// 2.0 \u2014 nested natural group that reveals independently within its slot",
+    "section": "Coordinating loading boundaries: `SuspenseList` → `Reveal`",
+    "statement": "// 2.0 — nested natural group that reveals independently within its slot",
     "coverage": [
       "03/reveal-matrix-together-natural"
     ],
@@ -2941,7 +2948,7 @@
     "line": 623,
     "end_line": 623,
     "section": "Ref callbacks: no longer owned",
-    "statement": "// 1.x \u2014 the ref callback ran owned, so cleanup could live inside it",
+    "statement": "// 1.x — the ref callback ran owned, so cleanup could live inside it",
     "coverage": [],
     "status": "not-behavioral",
     "unit": "fenced-comment",
@@ -2953,7 +2960,7 @@
     "line": 637,
     "end_line": 637,
     "section": "Ref callbacks: no longer owned",
-    "statement": "// 2.0 \u2014 setup + teardown together in the owned component scope",
+    "statement": "// 2.0 — setup + teardown together in the owned component scope",
     "coverage": [
       "07/ref-unowned",
       "01/render-effect-cleanup"
@@ -2966,7 +2973,7 @@
     "file": "MIGRATION.md",
     "line": 673,
     "end_line": 673,
-    "section": "Directives: `use:` \u2192 `ref` directive factories (two-phase pattern)",
+    "section": "Directives: `use:` → `ref` directive factories (two-phase pattern)",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -2978,7 +2985,7 @@
     "file": "MIGRATION.md",
     "line": 676,
     "end_line": 676,
-    "section": "Directives: `use:` \u2192 `ref` directive factories (two-phase pattern)",
+    "section": "Directives: `use:` → `ref` directive factories (two-phase pattern)",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -2990,7 +2997,7 @@
     "file": "MIGRATION.md",
     "line": 685,
     "end_line": 685,
-    "section": "Directives: `use:` \u2192 `ref` directive factories (two-phase pattern)",
+    "section": "Directives: `use:` → `ref` directive factories (two-phase pattern)",
     "statement": "// Setup phase (owned): create primitives/subscriptions here.",
     "coverage": [
       "07/ref-unowned",
@@ -3004,7 +3011,7 @@
     "file": "MIGRATION.md",
     "line": 686,
     "end_line": 686,
-    "section": "Directives: `use:` \u2192 `ref` directive factories (two-phase pattern)",
+    "section": "Directives: `use:` → `ref` directive factories (two-phase pattern)",
     "statement": "// Avoid imperative DOM mutation at top level.",
     "coverage": [
       "07/ref-unowned",
@@ -3018,7 +3025,7 @@
     "file": "MIGRATION.md",
     "line": 692,
     "end_line": 692,
-    "section": "Directives: `use:` \u2192 `ref` directive factories (two-phase pattern)",
+    "section": "Directives: `use:` → `ref` directive factories (two-phase pattern)",
     "statement": "// Apply phase (unowned): DOM writes happen here.",
     "coverage": [
       "07/ref-unowned",
@@ -3032,7 +3039,7 @@
     "file": "MIGRATION.md",
     "line": 693,
     "end_line": 693,
-    "section": "Directives: `use:` \u2192 `ref` directive factories (two-phase pattern)",
+    "section": "Directives: `use:` → `ref` directive factories (two-phase pattern)",
     "statement": "// No new primitives should be created in this callback.",
     "coverage": [
       "08/diagnostic-primitive_in_forbidden_scope",
@@ -3046,7 +3053,7 @@
     "file": "MIGRATION.md",
     "line": 703,
     "end_line": 703,
-    "section": "`classList` \u2192 `class` (object/array forms)",
+    "section": "`classList` → `class` (object/array forms)",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -3058,7 +3065,7 @@
     "file": "MIGRATION.md",
     "line": 706,
     "end_line": 706,
-    "section": "`classList` \u2192 `class` (object/array forms)",
+    "section": "`classList` → `class` (object/array forms)",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -3070,7 +3077,7 @@
     "file": "MIGRATION.md",
     "line": 715,
     "end_line": 715,
-    "section": "Context providers: `Context.Provider` \u2192 \u201ccontext is the provider\u201d",
+    "section": "Context providers: `Context.Provider` → “context is the provider”",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -3082,7 +3089,7 @@
     "file": "MIGRATION.md",
     "line": 719,
     "end_line": 719,
-    "section": "Context providers: `Context.Provider` \u2192 \u201ccontext is the provider\u201d",
+    "section": "Context providers: `Context.Provider` → “context is the provider”",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -3095,7 +3102,7 @@
     "line": 729,
     "end_line": 729,
     "section": "`useContext` on a default-less context returns `T`, not `T | undefined`",
-    "statement": "// 1.x \u2014 wrapper exists purely to narrow T | undefined \u2192 T",
+    "statement": "// 1.x — wrapper exists purely to narrow T | undefined → T",
     "coverage": [],
     "status": "not-behavioral",
     "unit": "fenced-comment",
@@ -3107,7 +3114,7 @@
     "line": 737,
     "end_line": 737,
     "section": "`useContext` on a default-less context returns `T`, not `T | undefined`",
-    "statement": "// 2.0 \u2014 direct call. Type is TodosCtx; throws if no Provider.",
+    "statement": "// 2.0 — direct call. Type is TodosCtx; throws if no Provider.",
     "coverage": [
       "02/context-missing",
       "tracks/docs/types.test.ts"
@@ -3120,7 +3127,7 @@
     "file": "MIGRATION.md",
     "line": 783,
     "end_line": 783,
-    "section": "`batch` \u2192 default microtask batching + `flush()`",
+    "section": "`batch` → default microtask batching + `flush()`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -3132,8 +3139,8 @@
     "file": "MIGRATION.md",
     "line": 789,
     "end_line": 789,
-    "section": "`batch` \u2192 default microtask batching + `flush()`",
-    "statement": "// 2.0 \u2014 just write; batching is automatic",
+    "section": "`batch` → default microtask batching + `flush()`",
+    "statement": "// 2.0 — just write; batching is automatic",
     "coverage": [
       "01/microtask",
       "01/flush-reads"
@@ -3146,7 +3153,7 @@
     "file": "MIGRATION.md",
     "line": 793,
     "end_line": 793,
-    "section": "`batch` \u2192 default microtask batching + `flush()`",
+    "section": "`batch` → default microtask batching + `flush()`",
     "statement": "// If you need synchronous \"apply now\":",
     "coverage": [
       "01/microtask",
@@ -3160,7 +3167,7 @@
     "file": "MIGRATION.md",
     "line": 806,
     "end_line": 806,
-    "section": "`createComputed` \u2192 `createMemo`, `createEffect`, or derived `createSignal`",
+    "section": "`createComputed` → `createMemo`, `createEffect`, or derived `createSignal`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -3172,7 +3179,7 @@
     "file": "MIGRATION.md",
     "line": 809,
     "end_line": 809,
-    "section": "`createComputed` \u2192 `createMemo`, `createEffect`, or derived `createSignal`",
+    "section": "`createComputed` → `createMemo`, `createEffect`, or derived `createSignal`",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -3184,7 +3191,7 @@
     "file": "MIGRATION.md",
     "line": 816,
     "end_line": 816,
-    "section": "`createComputed` \u2192 `createMemo`, `createEffect`, or derived `createSignal`",
+    "section": "`createComputed` → `createMemo`, `createEffect`, or derived `createSignal`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -3196,7 +3203,7 @@
     "file": "MIGRATION.md",
     "line": 822,
     "end_line": 822,
-    "section": "`createComputed` \u2192 `createMemo`, `createEffect`, or derived `createSignal`",
+    "section": "`createComputed` → `createMemo`, `createEffect`, or derived `createSignal`",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -3208,7 +3215,7 @@
     "file": "MIGRATION.md",
     "line": 832,
     "end_line": 832,
-    "section": "`createComputed` \u2192 `createMemo`, `createEffect`, or derived `createSignal`",
+    "section": "`createComputed` → `createMemo`, `createEffect`, or derived `createSignal`",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -3220,7 +3227,7 @@
     "file": "MIGRATION.md",
     "line": 836,
     "end_line": 836,
-    "section": "`createComputed` \u2192 `createMemo`, `createEffect`, or derived `createSignal`",
+    "section": "`createComputed` → `createMemo`, `createEffect`, or derived `createSignal`",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -3232,7 +3239,7 @@
     "file": "MIGRATION.md",
     "line": 845,
     "end_line": 845,
-    "section": "`on` helper \u2192 split effects",
+    "section": "`on` helper → split effects",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -3244,8 +3251,8 @@
     "file": "MIGRATION.md",
     "line": 852,
     "end_line": 852,
-    "section": "`on` helper \u2192 split effects",
-    "statement": "// 2.0 \u2014 compute phase declares deps, effect phase runs side effects",
+    "section": "`on` helper → split effects",
+    "statement": "// 2.0 — compute phase declares deps, effect phase runs side effects",
     "coverage": [
       "01/effects-order"
     ],
@@ -3257,8 +3264,8 @@
     "file": "MIGRATION.md",
     "line": 862,
     "end_line": 862,
-    "section": "`on` helper \u2192 split effects",
-    "statement": "// 1.x \u2014 multiple deps",
+    "section": "`on` helper → split effects",
+    "statement": "// 1.x — multiple deps",
     "coverage": [],
     "status": "not-behavioral",
     "unit": "fenced-comment",
@@ -3269,7 +3276,7 @@
     "file": "MIGRATION.md",
     "line": 869,
     "end_line": 869,
-    "section": "`on` helper \u2192 split effects",
+    "section": "`on` helper → split effects",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -3281,7 +3288,7 @@
     "file": "MIGRATION.md",
     "line": 879,
     "end_line": 879,
-    "section": "`on` helper \u2192 split effects",
+    "section": "`on` helper → split effects",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -3293,7 +3300,7 @@
     "file": "MIGRATION.md",
     "line": 890,
     "end_line": 890,
-    "section": "`on` helper \u2192 split effects",
+    "section": "`on` helper → split effects",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -3305,7 +3312,7 @@
     "file": "MIGRATION.md",
     "line": 907,
     "end_line": 907,
-    "section": "`onError` / `catchError` \u2192 `Errored` + effect `error` option",
+    "section": "`onError` / `catchError` → `Errored` + effect `error` option",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -3317,7 +3324,7 @@
     "file": "MIGRATION.md",
     "line": 912,
     "end_line": 912,
-    "section": "`onError` / `catchError` \u2192 `Errored` + effect `error` option",
+    "section": "`onError` / `catchError` → `Errored` + effect `error` option",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -3329,7 +3336,7 @@
     "file": "MIGRATION.md",
     "line": 921,
     "end_line": 921,
-    "section": "`onError` / `catchError` \u2192 `Errored` + effect `error` option",
+    "section": "`onError` / `catchError` → `Errored` + effect `error` option",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -3341,7 +3348,7 @@
     "file": "MIGRATION.md",
     "line": 929,
     "end_line": 929,
-    "section": "`onError` / `catchError` \u2192 `Errored` + effect `error` option",
+    "section": "`onError` / `catchError` → `Errored` + effect `error` option",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -3353,7 +3360,7 @@
     "file": "MIGRATION.md",
     "line": 932,
     "end_line": 932,
-    "section": "`onError` / `catchError` \u2192 `Errored` + effect `error` option",
+    "section": "`onError` / `catchError` → `Errored` + effect `error` option",
     "statement": "/* success path */",
     "coverage": [],
     "status": "not-behavioral",
@@ -3365,7 +3372,7 @@
     "file": "MIGRATION.md",
     "line": 943,
     "end_line": 943,
-    "section": "`produce` \u2192 now the default setter behavior",
+    "section": "`produce` → now the default setter behavior",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -3377,8 +3384,8 @@
     "file": "MIGRATION.md",
     "line": 952,
     "end_line": 952,
-    "section": "`produce` \u2192 now the default setter behavior",
-    "statement": "// 2.0 \u2014 draft-first is the default",
+    "section": "`produce` → now the default setter behavior",
+    "statement": "// 2.0 — draft-first is the default",
     "coverage": [
       "04/draft-first"
     ],
@@ -3390,7 +3397,7 @@
     "file": "MIGRATION.md",
     "line": 970,
     "end_line": 970,
-    "section": "`createMutable` / `modifyMutable` \u2192 `createStore` with draft setters",
+    "section": "`createMutable` / `modifyMutable` → `createStore` with draft setters",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -3402,7 +3409,7 @@
     "file": "MIGRATION.md",
     "line": 975,
     "end_line": 975,
-    "section": "`createMutable` / `modifyMutable` \u2192 `createStore` with draft setters",
+    "section": "`createMutable` / `modifyMutable` → `createStore` with draft setters",
     "statement": "// 2.0",
     "coverage": [],
     "status": "not-behavioral",
@@ -3414,7 +3421,7 @@
     "file": "MIGRATION.md",
     "line": 992,
     "end_line": 992,
-    "section": "`from` / `observable` \u2192 async iterators / effects",
+    "section": "`from` / `observable` → async iterators / effects",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -3426,8 +3433,8 @@
     "file": "MIGRATION.md",
     "line": 996,
     "end_line": 996,
-    "section": "`from` / `observable` \u2192 async iterators / effects",
-    "statement": "// 2.0 \u2014 async iterables are first-class in computations",
+    "section": "`from` / `observable` → async iterators / effects",
+    "statement": "// 2.0 — async iterables are first-class in computations",
     "coverage": [
       "05/iterable-values"
     ],
@@ -3439,7 +3446,7 @@
     "file": "MIGRATION.md",
     "line": 1007,
     "end_line": 1007,
-    "section": "`from` / `observable` \u2192 async iterators / effects",
+    "section": "`from` / `observable` → async iterators / effects",
     "statement": "// 1.x",
     "coverage": [],
     "status": "not-behavioral",
@@ -3451,8 +3458,8 @@
     "file": "MIGRATION.md",
     "line": 1012,
     "end_line": 1012,
-    "section": "`from` / `observable` \u2192 async iterators / effects",
-    "statement": "// 2.0 \u2014 use an effect to push changes outward",
+    "section": "`from` / `observable` → async iterators / effects",
+    "statement": "// 2.0 — use an effect to push changes outward",
     "coverage": [],
     "status": "uncovered",
     "unit": "fenced-comment"
@@ -3463,7 +3470,7 @@
     "line": 114,
     "end_line": 114,
     "section": "Fenced code comments",
-    "statement": "<Show when={listPending()}>{/* subtle \"updating\u2026\" indicator while a new query loads */}</Show>",
+    "statement": "<Show when={listPending()}>{/* subtle \"updating…\" indicator while a new query loads */}</Show>",
     "unit": "fenced-comment",
     "coverage": [
       "05/pending-read-placement"
@@ -3491,8 +3498,12 @@
     "section": "Fenced code comments",
     "statement": "status and headers can no longer change. */",
     "unit": "fenced-comment",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/committed-stub-writes",
+      "12/committed-header-mutation"
+    ],
+    "status": "covered",
+    "rationale": "精确行为测试；红合同保留在最小finding并记录原始失败，不按相邻API推定。"
   },
   {
     "id": "MIGRATION:C284:1",
@@ -3524,7 +3535,7 @@
     "line": 362,
     "end_line": 362,
     "section": "Fenced code comments",
-    "statement": "<Show when={listPending()}>{/* subtle \"updating\u2026\" indicator while a new query loads */}</Show>",
+    "statement": "<Show when={listPending()}>{/* subtle \"updating…\" indicator while a new query loads */}</Show>",
     "unit": "fenced-comment",
     "coverage": [
       "05/pending-read-placement"
