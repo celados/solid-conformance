@@ -1,0 +1,235 @@
+{
+  "commit": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+  "reviewed_blocks": 14,
+  "blocks": [
+    {
+      "id": "10-server-functions:B27:1",
+      "file": "10-server-functions.md",
+      "line": 27,
+      "end_line": 31,
+      "review": "reviewed",
+      "classification": "application-placeholders",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/router/reload.test.ts"
+      ],
+      "reason": "db.insert是应用提供的外部副作用；use server编译由root Vite fixture负责，reload action返回值由真实router reload测试验证。"
+    },
+    {
+      "id": "10-server-functions:B52:1",
+      "file": "10-server-functions.md",
+      "line": 52,
+      "end_line": 58,
+      "review": "reviewed",
+      "classification": "integration-recipe",
+      "comment_units": [
+        "10-server-functions:C55:1"
+      ],
+      "additional_code_only_units": [],
+      "coverage": [
+        "10/handler-json",
+        "tracks/frames/frames.test.ts"
+      ],
+      "reason": "url/request是handler参数，virtual manifest由编译插件注入；运行handler路由由rpc与frames真实loopback测试验证；字面manifest构建在root Vite recipe，不把纯runtime覆盖当虚拟模块编译证明。"
+    },
+    {
+      "id": "10-server-functions:B85:1",
+      "file": "10-server-functions.md",
+      "line": 85,
+      "end_line": 94,
+      "review": "reviewed",
+      "classification": "public-runtime",
+      "comment_units": [
+        "10-server-functions:C87:1",
+        "10-server-functions:C90:1",
+        "10-server-functions:C93:1"
+      ],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/frames/transport-contracts.test.ts",
+        "tracks/router/reload.test.ts"
+      ],
+      "reason": "三个顶层return是互斥API示例，不是单文件；实际helper返回value/status/location/revalidate由公开client/server helper和router双keyreload对照验证。"
+    },
+    {
+      "id": "10-server-functions:B158:1",
+      "file": "10-server-functions.md",
+      "line": 158,
+      "end_line": 163,
+      "review": "reviewed",
+      "classification": "application-placeholders",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "10/get-read",
+        "10/get-metadata"
+      ],
+      "reason": "db.users是应用提供；GET(method metadata)包裹server-reference的公有运行证明存在，源码use server directive需compiler recipe证明。"
+    },
+    {
+      "id": "10-server-functions:B173:1",
+      "file": "10-server-functions.md",
+      "line": 173,
+      "end_line": 181,
+      "review": "reviewed",
+      "classification": "public-signature",
+      "comment_units": [
+        "10-server-functions:C174:1",
+        "10-server-functions:C176:1"
+      ],
+      "additional_code_only_units": [],
+      "coverage": [
+        "10/reference-brand",
+        "10/get-metadata",
+        "10/metadata-merge",
+        "10/nonfunction-metadata"
+      ],
+      "reason": "声明省略实现，是public metadata接口签名示例；runtime guard/unknown input/readonlymetadata不被任意function属性冒充由rpc metadata cases验证。类型tuple invoke有独立strictcompile，但不声称其覆盖本块全部接口签名。"
+    },
+    {
+      "id": "10-server-functions:B207:1",
+      "file": "10-server-functions.md",
+      "line": 207,
+      "end_line": 218,
+      "review": "reviewed",
+      "classification": "application-placeholders",
+      "comment_units": [
+        "10-server-functions:C216:1",
+        "10-server-functions:C217:1"
+      ],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/frames/live-loop.test.ts",
+        "tracks/frames/live-hidden.test.ts"
+      ],
+      "reason": "subscribe/setStatus由应用提供；live同步返回可重连AsyncIterable、onstatus、memo消费的真实运输生命周期有独立tests；async generator编译directive单独属于root插件recipe。"
+    },
+    {
+      "id": "10-server-functions:B237:1",
+      "file": "10-server-functions.md",
+      "line": 237,
+      "end_line": 246,
+      "review": "reviewed",
+      "classification": "application-placeholders",
+      "comment_units": [
+        "10-server-functions:C240:1",
+        "10-server-functions:C245:1"
+      ],
+      "additional_code_only_units": [],
+      "coverage": [],
+      "reason": "subscribeRoom/Feed/props是应用提供；这是live component形状，普通live数据或单次frame不足覆盖整个recipe。10L249:1/11L15仍需真实插件站立liveframe integration，不假标fullcovered。"
+    },
+    {
+      "id": "10-server-functions:B260:1",
+      "file": "10-server-functions.md",
+      "line": 260,
+      "end_line": 264,
+      "review": "reviewed",
+      "classification": "application-placeholders",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/frames/transport-contracts.test.ts"
+      ],
+      "reason": "session.token为应用getter；prepareRequest返回新RequestInit并等待异步hook、保留实际headers由transportcontracts正控。带rich codec在tracking下的完整05L245仍单独缺口。"
+    },
+    {
+      "id": "10-server-functions:B276:1",
+      "file": "10-server-functions.md",
+      "line": 276,
+      "end_line": 278,
+      "review": "reviewed",
+      "classification": "public-runtime-and-types",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/frames/invoke-types.test.ts",
+        "10/direct-invoke-abort",
+        "10/invoke-options-no-residue"
+      ],
+      "reason": "getUser/controller/id是上文引用；invoke公有argument tuple/options签名严格编译，signal caller取消而serverwork继续及transport hints无metadata残留有runtime对照。"
+    },
+    {
+      "id": "11-server-components:B20:1",
+      "file": "11-server-components.md",
+      "line": 20,
+      "end_line": 31,
+      "review": "reviewed",
+      "classification": "public-runtime",
+      "comment_units": [
+        "11-server-components:C28:1",
+        "11-server-components:C29:1",
+        "11-server-components:C30:1"
+      ],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/frames/frames.test.ts",
+        "tracks/frames/router.test.ts",
+        "11/plain-flight-bytes"
+      ],
+      "reason": "三transform公开函数实际安装运行：HTTPframe/rootdocumentinline/单次actionflight均有真实fixture，而plain-data保持bytes单独对照。"
+    },
+    {
+      "id": "11-server-components:B39:1",
+      "file": "11-server-components.md",
+      "line": 39,
+      "end_line": 42,
+      "review": "reviewed",
+      "classification": "public-runtime",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/frames/frames.test.ts",
+        "findings/011-router-frame-multiple-sites/repro.test.ts"
+      ],
+      "reason": "App/root为应用组件与DOM容器；install与hydrate在真实Chrome SSRframecounteractive/data-fid正控，第二site失活单独011red。"
+    },
+    {
+      "id": "11-server-components:B50:1",
+      "file": "11-server-components.md",
+      "line": 50,
+      "end_line": 55,
+      "review": "reviewed",
+      "classification": "integration-recipe",
+      "comment_units": [
+        "11-server-components:C54:1"
+      ],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/frames/frames.test.ts"
+      ],
+      "reason": "App/writable为应用组件/sink，bootstrap与hydration script实际前置shell并配置ServerComponentPlugin用于frames真实SSRhydrate；非本文独立可直接粘贴的完整服务器。"
+    },
+    {
+      "id": "11-server-components:B75:1",
+      "file": "11-server-components.md",
+      "line": 75,
+      "end_line": 92,
+      "review": "reviewed",
+      "classification": "application-placeholders",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "11/render-prop-slots",
+        "findings/009-frame-nested-region-stale/repro.test.ts"
+      ],
+      "reason": "db/stories/renderReply为应用helper；props.comment $key/cid/children由servercompiler slotclientadoption真实fixtures及009 staleCID红验证。"
+    },
+    {
+      "id": "11-server-components:B104:1",
+      "file": "11-server-components.md",
+      "line": 104,
+      "end_line": 111,
+      "review": "reviewed",
+      "classification": "application-placeholders",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/frames/frames.test.ts",
+        "findings/038-frame-call-state-doc-reset/repro.test.ts"
+      ],
+      "reason": "Story/getStory/CollapsibleComment/ShareBar来自应用；dynamic source+binding children客户端state、same/newargs语义由真实framescounter与038 docs反例，不能以mock函数泛盖slotadoption。"
+    }
+  ]
+}
