@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-07T15:07:35.109Z",
+  "results": [
+    {
+      "term": "PRIMITIVE_IN_FORBIDDEN_SCOPE",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "PRIMITIVE_IN_FORBIDDEN_SCOPE",
+      "state": "closed",
+      "results": []
+    },
+    {
+      "term": "onSettled createSignal",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "onSettled createSignal",
+      "state": "closed",
+      "results": []
+    }
+  ]
+}
