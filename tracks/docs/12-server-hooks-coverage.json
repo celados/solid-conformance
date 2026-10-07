@@ -223,5 +223,14 @@
       "08/server-road-cookie-exchange-three-domains"
     ],
     "reason": "同一public request Cookie parse+response Set-Cookie append helper在serverfn/SSR/middleware三domain运行：2entries保留、request仍previous、middlewareunwrap前stub未commit而handleredge commit。"
+  },
+  {
+    "id": "12-ssr-http:L203:1",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-trace-every-response-face",
+      "tracks/records/trace.test.ts#RFC08 L801/L902 and RFC12 L201–205: pre-runtime subscriptions cross bundled copies; real response trace and metric gates"
+    ],
+    "reason": "sampled真实HTML </head>splice、headlesshost onHead、无onHead fragment仅header、publicframe RPC transform、preflush bodylessredirect均精确当前traceparent value；plainRPC在records.trace真实responseheader，三tier。"
   }
 ]

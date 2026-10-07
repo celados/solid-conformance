@@ -27,7 +27,7 @@ import {
   decodeResponse,
   REDIRECT_HEADER,
 } from "@solidjs/web/server-functions/server";
-import { renderServerComponent } from "@solidjs/web/frames/server";
+import { renderServerComponent, frameTransformResult } from "@solidjs/web/frames/server";
 import { equal, ok, type DocCase, runCases } from "../docs/registry";
 const scope = new AsyncLocalStorage<any>();
 (globalThis as any)[RequestContext] = scope;
@@ -547,6 +547,12 @@ doc("cookie-exchange-three-domains", "The same request-header/read and response-
  registerServerReference("three-domain-cookie",()=>{exchange();return "server-function"});const response=await handleServerFunctionRequest(new Request(requestFor("_server/data/three-domain-cookie"),{method:"POST",body:"[]",headers:{cookie:"session=previous",origin:"http://localhost","content-type":"application/json","X-Server-Function-Format":"8"}}),{createEvent:createRequestEvent});equal(response.headers.getSetCookie(),expected);
  await scope.run(createRequestEvent(requestFor("ssr")),()=>{const html=renderToString(()=>{exchange();return "ssr"});const response=createSSRResponse(html,getRequestEvent()!);equal(response.headers.getSetCookie(),expected);equal(response.status,200)});
  await scope.run(createRequestEvent(requestFor("middleware")),async()=>{const run=composeMiddleware([async(_request,next)=>{exchange();const response=await next();equal(getRequestEvent()!.response.committed,false);return response}]);const response=commitEventResponse(await run(getRequestEvent()!.request,()=>new Response("middleware")));equal(response.headers.getSetCookie(),expected);equal(getRequestEvent()!.response.committed,true);equal(await response.text(),"middleware")});
+});
+doc("trace-every-response-face", "Sampled trace travels through document shell splice, onHead, headless fragments, frame RPC and redirects without echoing incoming baggage.",async()=>{
+ const headers={traceparent:"00-1234567890abcdef1234567890abcdef-1234567890abcdef-01",baggage:"private=upstream"};
+ for(const mode of ["splice","onHead","headless"] as const){await scope.run(createRequestEvent(new Request("http://localhost/trace",{headers})),()=>{let head="";const event=getRequestEvent()!;event.response.headers.set("server-timing","application;dur=2");const trace=getTraceContext()!;const html=renderToString(()=>mode!=="splice"?"fragment":<html><head/><body>document</body></html>,mode==="onHead"?{onHead:value=>{head=value}}:{});const response=createSSRResponse(html,event);const metric=response.headers.get("server-timing")!;ok(metric.includes('traceparent;desc="'+trace.entries.traceparent+'"'));ok(metric.includes("application;dur=2"));ok(!metric.includes("private=upstream"));ok(!html.includes("private=upstream"));const meta='<meta name="traceparent" content="'+trace.entries.traceparent+'"';if(mode==="onHead")ok(head.includes(meta),head);else if(mode==="splice")ok(html.includes(meta),html);else ok(!html.includes('name="traceparent"'))})}
+ let current:any;registerServerReference("trace-frame",()=>{current=getTraceContext();return ()=> <b>framed</b>});const request=new Request("http://localhost/_server/data/trace-frame",{method:"POST",body:"[]",headers:{...headers,origin:"http://localhost","content-type":"application/json","X-Server-Function-Format":"8"}});const response=await handleServerFunctionRequest(request,{createEvent:createRequestEvent,transformResult:frameTransformResult});ok(response.headers.get("server-timing")!.includes('traceparent;desc="'+current.entries.traceparent+'"'));ok((await response.text()).includes("framed"));ok(!response.headers.get("server-timing")!.includes("private=upstream"));
+ await scope.run(createRequestEvent(new Request("http://localhost/redirect",{headers})),()=>{const event=getRequestEvent()!;const trace=getTraceContext()!;event.response.headers.set("location","/next");const response=createSSRResponse("discarded",event);equal(response.status,302);equal(response.body,null);ok(response.headers.get("server-timing")!.includes('traceparent;desc="'+trace.entries.traceparent+'"'))});
 });
 export const run = () =>
   scope.run(createRequestEvent(new Request("http://test/")), () => runCases(cases));
