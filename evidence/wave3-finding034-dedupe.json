@@ -1,0 +1,30 @@
+{
+  "queries": [
+    {
+      "repository": "solidjs/solid",
+      "query": "insertBefore object",
+      "state": "all",
+      "results": []
+    },
+    {
+      "repository": "solidjs/solid-router",
+      "query": "insertBefore object",
+      "state": "all",
+      "results": []
+    },
+    {
+      "repository": "solidjs/solid-start",
+      "query": "insertBefore object",
+      "state": "all",
+      "results": []
+    }
+  ],
+  "reviewed": [
+    {
+      "body": "**Versions:** solid-js / @solidjs/web 2.0.0-rc.10 and 2.0.0-rc.13; @solidjs/router 2.0.0-next.30 and 2.0.0-next.33. Node 26, server build (`dist/server.js`). Seen in production as a Worker hitting its CPU limit with the document cut off after the shell; `vite dev` does not reproduce it.\n\n## What happens\n\nA `<Loading>` whose children contain a dynamic expression that (1) waits on an async value and then (2) creates a component which creates a memo over an async source and reads it during setup, fails with:\n\n```\n<Loading> boundary discovery did not converge after 10001 passes — an async source produces a new pending answer on every retry.\n```\n\nThis happens even when the source is the router's `query()` or `liveQuery()`, which dedupe the request per render: the fetcher runs once, but every pass gets a new pending answer. Only a source that returns the *same Promise object* for the same question converges.\n\n| Source | Passes | Fetcher calls |\n| --- | --- | --- |\n| same Promise per question | 2 | 1 |\n| `query(fetcher, 'k')` | 10001, throws | 1 |\n| `liveQuery(fetcher, 'k')` | 10001, throws | 1 |\n| new request per call | 10001, throws | 10000 |\n\n## Why (as far as I can tell)\n\n`processResult` keeps settled answers in `ctx[SLOTS]` by owner id, so a memo created again with the same id reads its value on the next pass. In this shape the id does not stay the same. Logging `getOwner().id` on each pass (rc.13): the component's owner keeps id `101`, but the memo created inside it gets `1010`, `1011`, `1012`, … So the slot recorded on one pass is never found on the next, and every pass starts a new pending answer.\n\nA source that hands back the very same Promise still converges in 2 passes. `query()` returns `cached[1].then(...)` on a cache hit (a new promise each call) and `liveQuery()` returns a new subscriber iterable, so neither can take that route.\n\n## Repro\n\n`probe.mjs`, run with `node probe.mjs query liveQuery` against the published packages (no JSX; hand-written `ssr()` calls):\n\n```js\n// probe3's failing shape against the router's real query() and liveQuery().\nimport { createMemo, Loading, createComponent } from 'solid-js'\nimport { renderToStream, ssr, escape, RequestContext, createRequestEvent } from '@solidjs/web'\nimport { query, liveQuery, RouterContext } from '@solidjs/router'\n\nconst tick = (v) => new Promise((r) => setTimeout(() => r(v), 1))\nlet event\nglobalThis[RequestContext] = { getStore: () => event }\nconst render = (App) =>\n\tnew Promise((res, rej) => {\n\t\tlet out = ''\n\t\trenderToStream(App, { onError: rej })\n\t\t\t.pipeTo(new WritableStream({ write(c) { out += typeof c === 'string' ? c : new TextDecoder().decode(c) }, close() { res(out) } }))\n\t\t\t.catch(rej)\n\t})\nconst errors = []\nconsole.error = (...a) => errors.push(a.map((x) => String(x?.message ?? x)).join(' ').slice(0, 110))\nfor (const name of process.argv.slice(2)) {\n\tlet calls = 0, fetches = 0\n\tconst fetcher = (id) => (fetches++, tick('v'))\n\tconst source = {\n\t\tquery: query(fetcher, 'probe'),\n\t\tliveQuery: liveQuery(fetcher, 'probeLive'),\n\t\tliveIter: liveQuery(async function* (id) { fetches++; yield await tick('v') }, 'probeIter'),\n\t}[name]\n\tevent = createRequestEvent(new Request('https://app.example/'))\n\tconst Child = () => {\n\t\tconst value$ = createMemo(() => (calls++, source('a')))\n\t\tconst now = value$() // setup read\n\t\treturn ssr(['<p>', '</p>'], escape(now))\n\t}\n\tconst App = () => {\n\t\tconst user$ = createMemo(() => tick({ name: 'u' }))\n\t\treturn createComponent(RouterContext, {\n\t\t\tvalue: { navigatorFactory: () => () => {}, intent: () => undefined },\n\t\t\tget children() {\n\t\t\t\treturn createComponent(Loading, {\n\t\t\t\t\tfallback: 'loading',\n\t\t\t\t\tget children() {\n\t\t\t\t\t\treturn ssr(['<div>', '</div>'], () => (user$(), createComponent(Child, {})))\n\t\t\t\t\t},\n\t\t\t\t})\n\t\t\t},\n\t\t})\n\t}\n\terrors.length = 0\n\tconst started = Date.now()\n\ttry {\n\t\tconst html = await Promise.race([render(App), new Promise((_, r) => setTimeout(() => r(new Error('timeout 60s')), 60000))])\n\t\tconsole.log(name, `calls=${calls} fetches=${fetches}`, (Date.now() - started) + 'ms', /<p>v<\\/p>/.test(html) ? 'rendered' : 'NOT-RENDERED', errors[0] ?? '', '| serialized keys:', [...html.matchAll(/probe\\w*\\[[^\\]]*\\]/g)].map((m) => m[0]).slice(0, 3).join(','))\n\t} catch (e) {\n\t\tconsole.log(name, `FAIL calls=${calls} fetches=${fetches}`, (Date.now() - started) + 'ms', String(e.message).slice(0, 140))\n\t}\n}\nprocess.exit(0)\n```\n\n## Expected\n\nThe boundary settles once the answer has arrived: either the memo gets the same owner id on every pass, so its settled slot is found, or `query()` / `liveQuery()` hand back an answer the server recognises as settled on the next pass.\n\n## Platform\n\n- OS: macOS 26 (darwin arm64)\n- Node: 26.10.0\n- solid-js / @solidjs/web: 2.0.0-rc.10, 2.0.0-rc.13\n- @solidjs/router: 2.0.0-next.30, 2.0.0-next.33\n",
+      "state": "CLOSED",
+      "title": "[2.0 rc.13] `<Loading>` discovery never converges when a hole re-creates a component that reads its own async source during setup (router `query()` / `liveQuery()` included)",
+      "url": "https://github.com/solidjs/solid/issues/3734"
+    }
+  ]
+}
