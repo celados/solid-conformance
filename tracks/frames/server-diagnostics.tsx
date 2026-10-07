@@ -27,8 +27,9 @@ import {
   decodeResponse,
   REDIRECT_HEADER,
   GET,
+  ChunkReader,
 } from "@solidjs/web/server-functions/server";
-import { GET as clientGET, createServerReference as createClientReference, getServerFunctionMetadata } from "@solidjs/web/server-functions/client";
+import { GET as clientGET, createServerReference as createClientReference, getServerFunctionMetadata, EventStreamReader } from "@solidjs/web/server-functions/client";
 import { renderServerComponent, frameTransformResult } from "@solidjs/web/frames/server";
 import { equal, ok, type DocCase, runCases } from "../docs/registry";
 const scope = new AsyncLocalStorage<any>();
@@ -558,6 +559,12 @@ doc("trace-every-response-face", "Sampled trace travels through document shell s
 });
 doc("get-server-graph-topology", "GET applied only to a client proxy changes client transport metadata but grants server dispatch only when the declaration is evaluated in the server graph.",async()=>{
  const id="get-graph-topology";const fn=createServerReference(registerServerReference(id,()=>17));const request=()=>new Request("http://localhost/_server/data/"+id+"?args=[]",{headers:{origin:"http://localhost"}});equal((await handleServerFunctionRequest(request())).status,405);const client=clientGET(createClientReference(id));equal(getServerFunctionMetadata(client)?.method,"GET");equal((await handleServerFunctionRequest(request())).status,405);GET(fn);const response=await handleServerFunctionRequest(request());equal(response.status,200);equal(await response.text(),"17");
+});
+doc("live-nested-wire-identical", "Tracking nested live completion adds no codec records: the SSE payload nodes exactly equal an ordinary streamed answer.",async()=>{
+ const id="wire-identical";let opened=0,closed=0;const fn=GET(createServerReference(registerServerReference(id,()=>({pending:new Promise<number>(resolve=>setTimeout(()=>resolve(23),10)),progress:(async function*(){opened++;try{yield 1;yield 2}finally{closed++}})()}))));
+ const payloads:string[][]=[];
+ for(const kind of ["data","live"]){const response=await handleServerFunctionRequest(new Request("http://localhost/_server/"+kind+"/"+id+"?args=[]"));equal(response.status,200);equal(response.headers.get("X-Server-Function-Format"),"0");const reader=kind==="data"?new ChunkReader(response.body!):new EventStreamReader(response.body!,{});const chunks:string[]=[];while(true){const next=await reader.next();if(next.done)break;chunks.push(next.value)}payloads.push(chunks)}
+ ok(payloads[0]!.length>2);equal(payloads[1],payloads[0]);equal(opened,2);equal(closed,2);
 });
 export const run = () =>
   scope.run(createRequestEvent(new Request("http://test/")), () => runCases(cases));

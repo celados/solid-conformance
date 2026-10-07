@@ -117,8 +117,11 @@
         "10-server-functions:C245:1"
       ],
       "additional_code_only_units": [],
-      "coverage": [],
-      "reason": "subscribeRoom/Feed/props是应用提供；这是live component形状，普通live数据或单次frame不足覆盖整个recipe。10L249:1/11L15仍需真实插件站立liveframe integration，不假标fullcovered。"
+      "coverage": [
+        "tracks/frames/live-component.test.ts",
+        "tracks/frames/live-component-drop.test.ts"
+      ],
+      "reason": "subscribeRoom/Feed/props是应用提供；公有live返回组件函数及memo站立源由真实HTTP帧SSR首值/iterator关闭、Chrome原节点adoption/后续值、TCP断线带position重连和unmount清理验证。"
     },
     {
       "id": "10-server-functions:B260:1",
@@ -130,9 +133,10 @@
       "comment_units": [],
       "additional_code_only_units": [],
       "coverage": [
-        "tracks/frames/transport-contracts.test.ts"
+        "tracks/frames/transport-contracts.test.ts",
+        "tracks/docs/rpc-tracking.test.ts"
       ],
-      "reason": "session.token为应用getter；prepareRequest返回新RequestInit并等待异步hook、保留实际headers由transportcontracts正控。带rich codec在tracking下的完整05L245仍单独缺口。"
+      "reason": "session.token为应用getter；prepareRequest返回新RequestInit并等待异步hook、保留实际headers由transportcontracts正控；同步prepareRequest及enableRichArguments导致真实hydrate重复POST并丢弃99响应由rpc-tracking精确验证。"
     },
     {
       "id": "10-server-functions:B276:1",
