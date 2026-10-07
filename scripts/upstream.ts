@@ -106,7 +106,10 @@ if (process.argv.includes('--link-built')) {
 			['bun', 'x', '--no-install', 'tsc', '-p', 'tsconfig.build.json'],
 			cwd,
 		)
-		if (name === 'web') await run(['bun', 'scripts/copy-types.mjs'], cwd)
+		if (name === 'web') {
+			await run(['bun', 'scripts/copy-types.mjs'], cwd)
+			await run(['bun', 'x', '--no-install', 'tsc', '-p', 'performance-tracks/tsconfig.build.json'], cwd)
+		}
 	}
 	const h = `${directory}/packages/h`
 	for (const destination of ['src', 'types']) {

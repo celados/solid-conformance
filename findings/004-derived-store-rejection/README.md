@@ -37,3 +37,20 @@ argument-change/reject operations. Removed router, events, extra boundaries,
 wrappers and extra fields. Replaced the first deferred request with a synchronous
 initial value; one signal, one promise and one store remain. Loading covers the
 pending read and Errored supplies the oracle.
+
+## Wave 3 sibling: live takeover rejection
+
+```sh
+bun test ./findings/004-derived-store-rejection/live-repro.test.ts
+```
+
+The SSE transport generator exposed the same missing error route when a branded
+live store adopts `{value: 0}` from SSR and its first client iteration rejects.
+The reduced sibling removes the network, transport, events, request argument,
+Loading, extra DOM and statistics. It retains one store, an adopted server
+answer, an iterable with a rejecting first `next()`, and Errored. HEAD stays at
+`<span>0</span>`; rc.13 renders the error. This is recorded under 004 rather than
+as another finding because both shapes lose the rejection of a derived store's
+replacement flight while retaining its settled value. The real transport track
+keeps the store, projection and optimistic-store siblings and their raw trace;
+`STRICT_FINDINGS=1 bun test tracks/transport` rejects the recognized signature.

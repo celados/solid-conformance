@@ -1,3 +1,4 @@
+import { liveStoreRejectionCase } from "../findings/004-derived-store-rejection/live-component"
 import { routerCase } from '../tracks/router/router-case'
 import { isServer } from '@solidjs/web'
 import {
@@ -34,6 +35,7 @@ import { deferred, controlledIterable, ticks } from './timing'
 export function createCase(spec: Spec) {
 	if (spec.transport) return transportCase(spec.transport)
 	if (spec.scenario?.startsWith('router:')) return routerCase(spec.scenario.slice(7) as import('../tracks/router/router-case').RouterScenario, spec.tree.value, spec.order[0] === 1)
+	if (spec.scenario === 'finding:004-live') return liveStoreRejectionCase()
 	if (spec.scenario === 'finding:004') return storeRejectionCase()
 	if (spec.scenario === 'finding:007') return loadingAccessorCase()
 	if (spec.scenario === 'finding:008') return refreshCase()
