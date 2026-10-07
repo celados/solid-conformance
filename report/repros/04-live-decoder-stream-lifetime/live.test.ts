@@ -9,7 +9,7 @@ test("A connected live source must reconnect after a real TCP drop", async () =>
     client: "live-client.ts",
     server: "live-server.ts",
   });
-  const ssr = await import(dir + "/server.js");
+  const ssr = await import(dir + "/live-server.js");
   const fetchHandler = (request: Request) => {
     const url = new URL(request.url);
     if (url.pathname.startsWith("/_server")) return ssr.handle(request);
@@ -17,7 +17,7 @@ test("A connected live source must reconnect after a real TCP drop", async () =>
       return new Response(Bun.file(dir + url.pathname), {
         headers: { "content-type": "text/javascript" },
       });
-    return new Response('<script type="module" src="/client.js"></script>', {
+    return new Response('<script type="module" src="/live-client.js"></script>', {
       headers: { "content-type": "text/html" },
     });
   };
