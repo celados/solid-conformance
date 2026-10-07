@@ -15,7 +15,7 @@ function selectExport(
 			if (selected) return selected
 		}
 }
-export type BuildMode = 'development' | 'production'
+export type BuildMode = 'development' | 'production' | 'observe'
 export async function build(outdir = '.build', variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development', entries?: { client: string[]; server: string[] }) {
 	const packages = new Map<
 		string,
@@ -32,6 +32,7 @@ export async function build(outdir = '.build', variant: BuildMode = (process.env
 		packages.set(name, { directory, exports: pkg.exports })
 	}
 	for (const mode of ['client', 'server'] as const) {
+		if (entries?.[mode].length === 0) continue
 		const conditions = new Set([
 			mode === 'client' ? 'browser' : 'node',
 			variant,

@@ -154,4 +154,4 @@ test('generated trees preserve DOM, settle order, wrappers and iterator cleanup'
 	} finally {
 		await harness.close()
 	}
-}, 600000)
+}, Math.max(600000, Number(process.env.CASES ?? 100) * 6000))
