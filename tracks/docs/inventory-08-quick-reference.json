@@ -340,15 +340,19 @@
       "id": "08-dev-diagnostics:L965:1",
       "classification": "behavioral",
       "status": "covered",
-      "coverage": [],
-      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+      "coverage": [
+        "08/cost-store-copy-paths"
+      ],
+      "reason": "新增真实正负矩阵显式assertcode、kindperf、severitywarn和触发字段；修复空coverage。"
     },
     {
       "id": "08-dev-diagnostics:L966:1",
       "classification": "behavioral",
       "status": "covered",
-      "coverage": [],
-      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+      "coverage": [
+        "08/cost-list-identity-shapes"
+      ],
+      "reason": "新增真实正负矩阵显式assertcode、kindperf、severitywarn和触发字段；修复空coverage。"
     },
     {
       "id": "08-dev-diagnostics:L967:1",

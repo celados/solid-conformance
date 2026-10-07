@@ -1,0 +1,5 @@
+import {createServerReference,registerServerReference,invoke} from '@solidjs/web/server-functions/server'
+import {RequestContext,createRequestEvent} from '@solidjs/web'
+import {AsyncLocalStorage} from 'node:async_hooks'
+import {query,liveQuery,action} from '@solidjs/router'
+export async function run(){const previous=(globalThis as any)[RequestContext],storage=new AsyncLocalStorage();(globalThis as any)[RequestContext]=storage;try{return await storage.run(createRequestEvent(new Request('http://router.test/')),async()=>{let calls=0;const reference=createServerReference(registerServerReference('router-invoke-floor',async(n:number)=>{calls++;return n+1}));const base=await invoke(reference,{},2);const liveReference=createServerReference(registerServerReference('router-invoke-live',async function*(n:number){yield n}));const wrappers=[query(reference,'invoke-query'),action(reference,'invoke-action'),liveQuery(liveReference,'invoke-live')];const errors=[];for(const wrapped of wrappers)try{await invoke(wrapped as any,{},2);errors.push(null)}catch(error){errors.push(String(error))};return{base,calls,errors}})}finally{(globalThis as any)[RequestContext]=previous}}

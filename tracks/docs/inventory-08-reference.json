@@ -599,11 +599,11 @@
     {
       "id": "08-dev-diagnostics:L175:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/client-diagnostic-settled-unowned"
+        "08/primitive-settled-cleanup-nested-scopes"
       ],
-      "reason": "partial: 无 owner 路径有测试；trackedEffect/nested onSettled 拒绝cleanup 未分别验证。"
+      "reason": "实际store/list矩阵或6种nested/unowned setup cleanup/one-shot路径断言。"
     },
     {
       "id": "08-dev-diagnostics:L175:3",
@@ -2259,11 +2259,11 @@
     {
       "id": "08-dev-diagnostics:L504:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/attribution-warning-immutable_update_in_store"
+        "08/cost-store-copy-paths"
       ],
-      "reason": "partial: object replacement测试，array/proxy unwrapping 未验证。"
+      "reason": "实际store/list矩阵或6种nested/unowned setup cleanup/one-shot路径断言。"
     },
     {
       "id": "08-dev-diagnostics:L504:3",
@@ -2282,9 +2282,11 @@
     {
       "id": "08-dev-diagnostics:L504:5",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-store-copy-paths"
+      ],
+      "reason": "实际store/list矩阵或6种nested/unowned setup cleanup/one-shot路径断言。"
     },
     {
       "id": "08-dev-diagnostics:L508:1",
@@ -2305,11 +2307,11 @@
     {
       "id": "08-dev-diagnostics:L510:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/attribution-warning-unstable_list_identity"
+        "08/cost-list-identity-shapes"
       ],
-      "reason": "partial: mapArray freshobject正例，id/key/_id/position pairing未分别验证。"
+      "reason": "实际store/list矩阵或6种nested/unowned setup cleanup/one-shot路径断言。"
     },
     {
       "id": "08-dev-diagnostics:L510:3",
@@ -2321,18 +2323,20 @@
     {
       "id": "08-dev-diagnostics:L510:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-list-identity-shapes"
+      ],
+      "reason": "实际store/list矩阵或6种nested/unowned setup cleanup/one-shot路径断言。"
     },
     {
       "id": "08-dev-diagnostics:L510:5",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/attribution-warning-unstable_list_identity"
+        "08/cost-list-identity-shapes"
       ],
-      "reason": "partial: 稳定输入negative；genuine turnover和small edit尚未验证。"
+      "reason": "实际store/list矩阵或6种nested/unowned setup cleanup/one-shot路径断言。"
     },
     {
       "id": "08-dev-diagnostics:L514:1",

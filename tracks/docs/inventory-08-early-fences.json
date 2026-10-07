@@ -1,0 +1,366 @@
+{
+  "commit": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+  "scope": "08 early diagnostic fenced-code statements C38–380",
+  "entries": [
+    {
+      "id": "08-dev-diagnostics:C38:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-owned-write-scopes"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Throws in dev"
+    },
+    {
+      "id": "08-dev-diagnostics:C42:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-derive-and-event-controls"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Fix: derive instead of writing back"
+    },
+    {
+      "id": "08-dev-diagnostics:C45:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-derive-and-event-controls"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Fix: write/invalidate from an event handler"
+    },
+    {
+      "id": "08-dev-diagnostics:C49:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-owned-write-scopes"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Escape hatch: mark as ownedWrite (internal signals only)"
+    },
+    {
+      "id": "08-dev-diagnostics:C60:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-async-setter-families"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Throws in dev — only `d.n = 1` was in the transaction"
+    },
+    {
+      "id": "08-dev-diagnostics:C64:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-async-setter-families"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "d.n = 2; // closed draft: lost"
+    },
+    {
+      "id": "08-dev-diagnostics:C67:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-async-action-store-control"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Fix: orchestrate the async in an action, write synchronously inside it"
+    },
+    {
+      "id": "08-dev-diagnostics:C87:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-pending_async_untracked_read"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Throws if user() is async and pending"
+    },
+    {
+      "id": "08-dev-diagnostics:C93:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-root-async-mount"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Fix: read in JSX (tracked by the compiler)"
+    },
+    {
+      "id": "08-dev-diagnostics:C110:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-root-async-mount"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Warns (non-halting): no Loading ancestor"
+    },
+    {
+      "id": "08-dev-diagnostics:C111:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-root-async-mount"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Container stays empty until asyncUser() resolves, then mounts atomically."
+    },
+    {
+      "id": "08-dev-diagnostics:C114:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-root-async-mount"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Explicit fallback UI: wrap in Loading"
+    },
+    {
+      "id": "08-dev-diagnostics:C142:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-loading-outside"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Warns: B reads the same data() and holds the frame — A's fallback can never show."
+    },
+    {
+      "id": "08-dev-diagnostics:C146:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-loading-outside"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Fix: one boundary owns the read."
+    },
+    {
+      "id": "08-dev-diagnostics:C159:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-cleanup-forbidden-both"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Throws"
+    },
+    {
+      "id": "08-dev-diagnostics:C164:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-settled-unowned"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Fix: return cleanup"
+    },
+    {
+      "id": "08-dev-diagnostics:C178:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-settled-cleanup-nested-scopes"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Throws (in dev): the inner onSettled fires out of band, so its cleanup"
+    },
+    {
+      "id": "08-dev-diagnostics:C179:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-settled-cleanup-nested-scopes"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// has no owner lifecycle to attach to."
+    },
+    {
+      "id": "08-dev-diagnostics:C181:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-settled-cleanup-nested-scopes"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "useSubscription(); // internally: onSettled(() => { sub(); return unsub; })"
+    },
+    {
+      "id": "08-dev-diagnostics:C184:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-settled-unowned"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Fix: call setup-with-teardown directly from an owned scope. A plain owned"
+    },
+    {
+      "id": "08-dev-diagnostics:C185:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-settled-unowned"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// onSettled already waits for settle AND ties cleanup to disposal."
+    },
+    {
+      "id": "08-dev-diagnostics:C188:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-settled-cleanup-nested-scopes"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Out-of-band, one-shot work (no cleanup) stays fine:"
+    },
+    {
+      "id": "08-dev-diagnostics:C202:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "findings/010-leaf-signal-diagnostic/repro.test.ts"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Throws"
+    },
+    {
+      "id": "08-dev-diagnostics:C207:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-safe-leaf-signal-usage"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Fix: create primitives in the component body, use them in onSettled"
+    },
+    {
+      "id": "08-dev-diagnostics:C221:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-invalid-cleanup"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Throws"
+    },
+    {
+      "id": "08-dev-diagnostics:C225:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-invalid-cleanup"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "return value; // not a function!"
+    },
+    {
+      "id": "08-dev-diagnostics:C229:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-invalid-cleanup"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Fix: return a function or nothing"
+    },
+    {
+      "id": "08-dev-diagnostics:C234:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-invalid-cleanup"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "return () => {}; // cleanup function"
+    },
+    {
+      "id": "08-dev-diagnostics:C310:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-strict-read-contexts"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Warns: top-level read won't track"
+    },
+    {
+      "id": "08-dev-diagnostics:C316:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-derive-and-event-controls"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Fix: read in JSX"
+    },
+    {
+      "id": "08-dev-diagnostics:C321:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-strict-component-controls"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Fix: explicit one-time read"
+    },
+    {
+      "id": "08-dev-diagnostics:C339:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-after-await"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Warns: query() is read after the await and never tracked"
+    },
+    {
+      "id": "08-dev-diagnostics:C345:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-after-await"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Fix: read it before the first await"
+    },
+    {
+      "id": "08-dev-diagnostics:C374:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-unowned-effect-lifetime"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Warns: no owner"
+    },
+    {
+      "id": "08-dev-diagnostics:C380:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-no_owner_effect"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "// Fix: create inside a component or createRoot"
+    },
+    {
+      "id": "08-dev-diagnostics:C161:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-cleanup-forbidden-both"
+      ],
+      "reason": "精确代码注释对应运行时正负控制；signal leaf 的 throw claim 由 finding010 独立红证据覆盖。",
+      "statement": "onCleanup(() => /* ... */);"
+    }
+  ]
+}

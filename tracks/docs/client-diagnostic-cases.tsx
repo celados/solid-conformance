@@ -28,7 +28,7 @@ if(!isServer){
           result=createMemo(async()=>{runs++;const before=shape==='before'?signal():0;await gate.promise;return shape==='store'?store.first+store.nested.second+store.rows.map(r=>r.n).reduce((a,b)=>a+b,0):shape==='untrack'?untrack(signal):before+signal()},{name:'after-await'})
           try{result()}catch{}
         })
-        try{gate.resolve();await ticks(8);equal(result(),shape==='store'?10:shape==='before'?2:1);set();await ticks(8);equal(runs,shape==='before'?2:1);if(shape==='signal')equal(result(),1)}finally{close()}
+        try{gate.resolve();await ticks(8);equal(result(),shape==='store'?10:shape==='before'?2:1);set();await ticks(8);equal(runs,shape==='before'?2:1);if(shape==='signal')equal(result(),1);if(shape==='before')equal(result(),4)}finally{close()}
       },shape==='signal'||shape==='store');if(isDev&&shape==='store')ok(diagnostics[0]!.nodeName?.includes('first'))
     }
   })
@@ -37,9 +37,10 @@ if(!isServer){
       const gates=[deferred<number>(),deferred<number>()];let change!:(n:number)=>void
       const el=document.createElement('div')
       const dispose=render(()=>{const [id,set]=createSignal(0);change=set;const data=createMemo(()=>gates[id()]!.promise,{name:'held-data'});return <><Loading on={id()} fallback={<i>A</i>}><span>{data()}</span>{!outside&&<b>{data()}</b>}</Loading>{outside&&<Loading fallback={<i>B</i>}><b>{data()}</b></Loading>}</>},el)
-      try{gates[0]!.resolve(1);await ticks(8);change(1);flush();await ticks(2);if(outside)ok(!el.textContent!.includes('A'));gates[1]!.resolve(2);await ticks(8);equal(el.textContent,'22')}finally{dispose()}
+      try{gates[0]!.resolve(1);await ticks(8);change(1);flush();await ticks(2);if(outside)ok(!el.textContent!.includes('A'));else ok(el.textContent!.includes('A'));gates[1]!.resolve(2);await ticks(8);equal(el.textContent,'22')}finally{dispose()}
     },outside)
   })
+  doc('loading-other-flight-race','L137: an unrelated flight can hold the frame, but its settle order may still let this fallback win; no structural outside-hold diagnostic.',async()=>{for(const innerFirst of [false,true])await capture('LOADING_ON_OUTSIDE_HOLD',async()=>{const inner=[deferred<number>(),deferred<number>()],outer=[deferred<number>(),deferred<number>()];let write!:(n:number)=>void;const el=document.createElement('div');const stop=render(()=>{const[id,set]=createSignal(0);write=set;const a=createMemo(()=>inner[id()]!.promise),b=createMemo(()=>outer[id()]!.promise);return <><Loading on={id()} fallback='A'><span>{a()}</span></Loading><Loading fallback='B'><b>{b()}</b></Loading></>},el);try{inner[0]!.resolve(1);outer[0]!.resolve(1);await ticks(8);equal(el.textContent,'11');write(1);flush();await ticks(4);(innerFirst?inner[1]:outer[1])!.resolve(2);await ticks(8);if(!innerFirst)ok(el.textContent!.includes('A'),el.textContent!);(innerFirst?outer[1]:inner[1])!.resolve(2);await ticks(8);equal(el.textContent,'22')}finally{stop()}},false)})
   doc('pending-forbidden','Warns that an async value read inside createTrackedEffect or onSettled will throw if it is ever pending, because these scopes cannot route not-ready reads through Loading.',async()=>{
     for(const pending of [true,false]) await capture('PENDING_ASYNC_FORBIDDEN_SCOPE',()=>{
       let errors=0;const gate=deferred<number>();const close=root(()=>{const source=createMemo(()=>pending?gate.promise:1);createTrackedEffect(()=>{try{source()}catch{errors++}})});try{flush();equal(errors,pending?1:0)}finally{gate.resolve(1);close()}
@@ -58,16 +59,16 @@ if(!isServer){
   })
   doc('invalid-cleanup','Effect, tracked effect, reaction, and onSettled callbacks must return either a cleanup function or undefined. Returning anything else throws.',async()=>{
     for(const kind of ['effect','tracked','reaction','settled'] as const) {
-      if(isDev) {
+      if(isDev) {for(const invalid of [123,'bad',{bad:true}]) {
       const warn=console.warn,error=console.error, report=globalThis.reportError;const reported:unknown[]=[];console.warn=console.error=()=>{};globalThis.reportError=(e:unknown)=>{reported.push(e)}
       let close!:()=>void
       try {
         let invalidate!:(v:number)=>void
-        close=root(()=>{const [n,set]=createSignal(0);invalidate=set;const bad=()=>123 as any; if(kind==='effect')createEffect(n,bad);else if(kind==='tracked')createTrackedEffect(bad);else if(kind==='settled')onSettled(bad);else {const track=createReaction(bad);track(n)}})
+        close=root(()=>{const [n,set]=createSignal(0);invalidate=set;const bad=()=>invalid as any; if(kind==='effect')createEffect(n,bad);else if(kind==='tracked')createTrackedEffect(bad);else if(kind==='settled')onSettled(bad);else {const track=createReaction(bad);track(n)}})
         if(kind==='reaction'){flush();invalidate(1)}
         throws(flush,'invalid cleanup value')
       } finally {close?.();resetErrorHalt();await ticks(2);console.warn=warn;console.error=error;globalThis.reportError=report}
-      }
+      }}
       let cleaned=0,changeGood:((v:number)=>void)|undefined;const good=root(()=>{const callback=()=>()=>{cleaned++};if(kind==='effect')createEffect(()=>1,callback);else if(kind==='tracked')createTrackedEffect(callback);else if(kind==='settled')onSettled(callback);else {const [n,set]=createSignal(0);changeGood=set;const track=createReaction(callback);track(n)}});flush();if(changeGood){changeGood(1);flush()}good();equal(cleaned,1)
     }
   })
