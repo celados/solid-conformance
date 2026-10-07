@@ -1,0 +1,246 @@
+[
+  {
+    "repo": "solidjs/solid",
+    "query": "SSR_RENDER_ERROR_CONTAINED",
+    "exit_code": 0,
+    "issues": [
+      {
+        "number": 3478,
+        "state": "CLOSED",
+        "title": "renderToStream hangs when a nested <Loading> settles before its parent fragment fails",
+        "url": "https://github.com/solidjs/solid/issues/3478"
+      },
+      {
+        "number": 3750,
+        "state": "CLOSED",
+        "title": "[2.0 rc.13] Errored around a pending Loading reports non-convergence with a stable promise",
+        "url": "https://github.com/solidjs/solid/issues/3750"
+      },
+      {
+        "number": 3468,
+        "state": "CLOSED",
+        "title": "SSR serializes <Errored> errors verbatim: production page load ships what the server-function wire sanitizes",
+        "url": "https://github.com/solidjs/solid/issues/3468"
+      },
+      {
+        "number": 3569,
+        "state": "CLOSED",
+        "title": "[2.0 rc.9] await renderToStream(): an async value that rejects as a direct child of <Loading> throws \"reading 'emit'\" and the promise never settles",
+        "url": "https://github.com/solidjs/solid/issues/3569"
+      }
+    ]
+  },
+  {
+    "repo": "solidjs/solid",
+    "query": "diagnostic synchronous render",
+    "exit_code": 0,
+    "issues": [
+      {
+        "number": 3494,
+        "state": "CLOSED",
+        "title": "Remaining publication and observer-release regressions from #3473",
+        "url": "https://github.com/solidjs/solid/issues/3494"
+      },
+      {
+        "number": 2858,
+        "state": "CLOSED",
+        "title": "2.0.0-beta.16: SSR does not await non-Promise thenables returned from async memos",
+        "url": "https://github.com/solidjs/solid/issues/2858"
+      },
+      {
+        "number": 3226,
+        "state": "CLOSED",
+        "title": "Pending wedge: superseded async flight + re-park leaves a stale self pending-source (breaks router navigation, solid-router#595)",
+        "url": "https://github.com/solidjs/solid/issues/3226"
+      },
+      {
+        "number": 2779,
+        "state": "CLOSED",
+        "title": "2.0.0-beta.14: Server `dynamic()` renders nothing for Promise component sources",
+        "url": "https://github.com/solidjs/solid/issues/2779"
+      },
+      {
+        "number": 2956,
+        "state": "CLOSED",
+        "title": "Promise-valued JSX holes: CSR crash halts all reactivity, streamed SSR emits empty, hydrated bindings die silently",
+        "url": "https://github.com/solidjs/solid/issues/2956"
+      },
+      {
+        "number": 2837,
+        "state": "CLOSED",
+        "title": "2.0.0-beta.15: errors thrown by a memo `equals` comparator bypass error boundaries",
+        "url": "https://github.com/solidjs/solid/issues/2837"
+      },
+      {
+        "number": 2758,
+        "state": "CLOSED",
+        "title": "2.0.0-beta.14: Portal no owner effect issue",
+        "url": "https://github.com/solidjs/solid/issues/2758"
+      },
+      {
+        "number": 2958,
+        "state": "CLOSED",
+        "title": "Streamed <Loading> boundary silently dies when the trailing `_fr` resolution chunk is lost (host truncates stream) — plus `_$HY.fe` is never implemented",
+        "url": "https://github.com/solidjs/solid/issues/2958"
+      }
+    ]
+  },
+  {
+    "repo": "solidjs/solid",
+    "query": "renderToStream first pass",
+    "exit_code": 0,
+    "issues": [
+      {
+        "number": 1754,
+        "state": "OPEN",
+        "title": "Value of `<select>` is set before the children are created when using spread",
+        "url": "https://github.com/solidjs/solid/issues/1754"
+      },
+      {
+        "number": 3569,
+        "state": "CLOSED",
+        "title": "[2.0 rc.9] await renderToStream(): an async value that rejects as a direct child of <Loading> throws \"reading 'emit'\" and the promise never settles",
+        "url": "https://github.com/solidjs/solid/issues/3569"
+      },
+      {
+        "number": 3478,
+        "state": "CLOSED",
+        "title": "renderToStream hangs when a nested <Loading> settles before its parent fragment fails",
+        "url": "https://github.com/solidjs/solid/issues/3478"
+      },
+      {
+        "number": 3468,
+        "state": "CLOSED",
+        "title": "SSR serializes <Errored> errors verbatim: production page load ships what the server-function wire sanitizes",
+        "url": "https://github.com/solidjs/solid/issues/3468"
+      },
+      {
+        "number": 3815,
+        "state": "CLOSED",
+        "title": "[2.0.0-rc.13] SSR stream never ends: after a hole retry re-creates a component, a cascading memo spins in microtasks on a shared serialization slot",
+        "url": "https://github.com/solidjs/solid/issues/3815"
+      },
+      {
+        "number": 3723,
+        "state": "CLOSED",
+        "title": "Public request-level failure report for the server error hook (kind: \"request\")",
+        "url": "https://github.com/solidjs/solid/issues/3723"
+      },
+      {
+        "number": 3719,
+        "state": "CLOSED",
+        "title": "[2.0 rc.11] createSSRResponse never settles when the render fails before the shell flushes",
+        "url": "https://github.com/solidjs/solid/issues/3719"
+      },
+      {
+        "number": 3659,
+        "state": "CLOSED",
+        "title": "[2.0 SSR] Derived async computations over an ssrSource: \"client\" hole hang the response (async memo, projection, dynamic deferStream)",
+        "url": "https://github.com/solidjs/solid/issues/3659"
+      },
+      {
+        "number": 3299,
+        "state": "CLOSED",
+        "title": "Solid 2: `deferStream: true` is silently ignored for memos created inside lazy-loaded (code-split) components",
+        "url": "https://github.com/solidjs/solid/issues/3299"
+      },
+      {
+        "number": 3769,
+        "state": "CLOSED",
+        "title": "[2.0 rc.13] An async read that rejects under `<Errored>` still triggers `unhandledrejection` in the browser",
+        "url": "https://github.com/solidjs/solid/issues/3769"
+      },
+      {
+        "number": 3385,
+        "state": "CLOSED",
+        "title": "`renderToString` disposes its root via `setTimeout`; graphs are retained across synchronous renders",
+        "url": "https://github.com/solidjs/solid/issues/3385"
+      },
+      {
+        "number": 3574,
+        "state": "CLOSED",
+        "title": "rc.9: Hybrid store handoff races streamed Loading hydration, re-rendering fallback",
+        "url": "https://github.com/solidjs/solid/issues/3574"
+      },
+      {
+        "number": 3047,
+        "state": "CLOSED",
+        "title": "deferStream loses shell-holding when <Loading> is mounted behind a root-level async hole",
+        "url": "https://github.com/solidjs/solid/issues/3047"
+      },
+      {
+        "number": 2975,
+        "state": "CLOSED",
+        "title": "SSR streaming: async head-tag props (`<Title>{asyncValue()}</Title>` in `<Loading>`) never suspend the boundary and are dropped with a NotReadyError warning",
+        "url": "https://github.com/solidjs/solid/issues/2975"
+      },
+      {
+        "number": 2919,
+        "state": "CLOSED",
+        "title": "Streamed Loading boundary duplicates content after Solid Refresh HMR",
+        "url": "https://github.com/solidjs/solid/issues/2919"
+      },
+      {
+        "number": 2860,
+        "state": "CLOSED",
+        "title": "2.0.0-beta.16: streaming SSR — a root-level `lazy()` after a pending `<Loading>` renders HTML but never hydrates",
+        "url": "https://github.com/solidjs/solid/issues/2860"
+      },
+      {
+        "number": 2956,
+        "state": "CLOSED",
+        "title": "Promise-valued JSX holes: CSR crash halts all reactivity, streamed SSR emits empty, hydrated bindings die silently",
+        "url": "https://github.com/solidjs/solid/issues/2956"
+      },
+      {
+        "number": 2871,
+        "state": "CLOSED",
+        "title": "2.0.0-beta.17: streaming SSR/client asymmetry — a nested `<Loading>` joins the ancestor `<Reveal>` group and delays its direct slots",
+        "url": "https://github.com/solidjs/solid/issues/2871"
+      }
+    ]
+  },
+  {
+    "repo": "solidjs/solid-router",
+    "query": "SSR_RENDER_ERROR_CONTAINED",
+    "exit_code": 0,
+    "issues": []
+  },
+  {
+    "repo": "solidjs/solid-router",
+    "query": "diagnostic synchronous render",
+    "exit_code": 0,
+    "issues": []
+  },
+  {
+    "repo": "solidjs/solid-router",
+    "query": "renderToStream first pass",
+    "exit_code": 0,
+    "issues": []
+  },
+  {
+    "repo": "solidjs/solid-start",
+    "query": "SSR_RENDER_ERROR_CONTAINED",
+    "exit_code": 0,
+    "issues": []
+  },
+  {
+    "repo": "solidjs/solid-start",
+    "query": "diagnostic synchronous render",
+    "exit_code": 0,
+    "issues": []
+  },
+  {
+    "repo": "solidjs/solid-start",
+    "query": "renderToStream first pass",
+    "exit_code": 0,
+    "issues": [
+      {
+        "number": 255,
+        "state": "CLOSED",
+        "title": "Typescript `tsc` can not exclude `node_modules/solid-start/`",
+        "url": "https://github.com/solidjs/solid-start/issues/255"
+      }
+    ]
+  }
+]

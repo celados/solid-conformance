@@ -16,7 +16,7 @@ function selectExport(
 		}
 }
 export type BuildMode = 'development' | 'production' | 'observe'
-export async function build(outdir = '.build', variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development', entries?: { client: string[]; server: string[] }) {
+export async function build(outdir = '.build', variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development', entries?: { client: string[]; server: string[]; serverComponents?: boolean }) {
 	const packages = new Map<
 		string,
 		{ directory: string; exports: Record<string, ExportValue> }
@@ -83,6 +83,7 @@ export async function build(outdir = '.build', variant: BuildMode = (process.env
 								generate: mode === 'client' ? 'dom' : 'ssr',
 								hydratable: true,
 								dev: variant === 'development',
+								...(entries?.serverComponents ? { serverComponents: true } : {}),
 							}).code,
 							loader: 'ts',
 						}))
