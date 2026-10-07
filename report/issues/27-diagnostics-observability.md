@@ -4,225 +4,57 @@ title: Solid 2 diagnostics and observability contract discrepancies
 status: draft
 tier: C
 findings: ["010", "012", "017", "019", "020", "021", "023", "025", "028", "033", "039", "040", "042", "051", "054"]
+code_cases: ["010", "012", "023", "042"]
 head: dafad1db34626feb5f154e98e599f65be1802c6c
 ---
 
 # Diagnostics and observability contract discrepancies
 
-These cases affect warning coverage, record metadata, or development tooling. Rendering/transport failures are filed separately. The linked minimal tests retain positive controls and the desired-behavior assertions; this list separates likely runtime omissions from stale prose.
-
-Public contract: [RFC08 at the tested commit](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md). Ordinary production intentionally lacks these observation APIs unless otherwise stated.
-
-## 010 — Leaf-scope signal has no forbidden-scope diagnostic
-
-**Quote:** “you cannot nest `createSignal`, `createMemo`, `createEffect`, or other reactive primitives inside them.” ([RFC08:199](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L199)).
-
-**Observed:** createSignal(0) inside onSettled returns normally with an empty diagnostics channel.
-
-**Suggested resolution:** Documentation is likely too broad: restrict the prohibition to primitives with a computation lifecycle. Plain createSignal does not create such a computation; derived signals and memos have the guard. A blanket prohibition would instead require an additional signal guard.
-
-**Builds / severity / regression:** development; low; no demonstrated HEAD-only regression.
-
-**Local validation (review only):** [finding 010](../../findings/010-leaf-signal-diagnostic/README.md).
-
-**Related upstream:** No matching issue identified in the recorded open/closed searches.
-
-## 012 — Development attribution pays for folds without an audience
-
-**Quote:** “allocates no record, and `history("rerun")` stays empty.” ([RFC08:1128](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L1128)).
-
-**Observed:** Importing only solid-js/attribution, with log false and no listener/fold import, still creates rerun history in development. Observe is an on-demand positive control.
-
-**Suggested resolution:** The flattened development entry statically re-exports self-registering folds. Either split that entry or document its prepaid development cost; do not claim it allocates no records.
-
-**Builds / severity / regression:** development; observe control passes; med; no demonstrated HEAD-only regression.
-
-**Local validation (review only):** [finding 012](../../findings/012-attribution-audience-gate/README.md).
-
-**Related upstream:** [#2883](https://github.com/solidjs/solid/issues/2883), [#3754](https://github.com/solidjs/solid/issues/3754)
-
-## 017 — Initial render failure is missing from diagnostics and render records
-
-**Quote:** “Render error outside any boundary — the request failed” ([RFC08:580](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L580)).
-
-**Observed:** A synchronous first-pass render failure reaches onError as failed, but emits neither the promised SSR_RENDER_ERROR_CONTAINED diagnostic nor the completed failed render record. Normal completed render controls produce records.
-
-**Suggested resolution:** Implementation likely misses the initial-pass failure path. Emit the same structured failure information as later render failures.
-
-**Builds / severity / regression:** development and observe; med; no demonstrated HEAD-only regression (rc.13 lacks the positive-control hook, so its failure is not the same defect).
-
-**Local validation (review only):** [finding 017](../../findings/017-initial-render-error-record/README.md).
-
-**Related upstream:** [#3723](https://github.com/solidjs/solid/issues/3723)
-
-## 019 — Post-await action writes are stamped external
-
-**Quote:** “they are stamped `async`” ([RFC08:1161](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L1161)).
-
-**Observed:** A signal write after native await in an action has external origin, while pre-await writes are action and source promise landings are async.
-
-**Suggested resolution:** Documentation is likely wrong: the synchronous action frame has escaped and this continuation has no async-source node. Describe external origin rather than async.
-
-**Builds / severity / regression:** development and observe; low; no demonstrated HEAD-only regression.
-
-**Local validation (review only):** [finding 019](../../findings/019-action-await-origin/README.md).
-
-**Related upstream:** [#3754](https://github.com/solidjs/solid/issues/3754)
-
-## 020 — Missing slot marker is not reported in observe
-
-**Quote:** “Finding (`error`, observe + dev) on the **client**” ([RFC08:625](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L625)).
-
-**Observed:** Removing a slot end marker produces FRAME_MARKER_CORRUPTED in development but no error finding in observe.
-
-**Suggested resolution:** Implementation likely gates the frames corruption check too narrowly. Keep the error finding in observe as promised, or explicitly change that tier contract.
-
-**Builds / severity / regression:** observe; development control passes; med; no demonstrated HEAD-only regression.
-
-**Local validation (review only):** [finding 020](../../findings/020-observe-frame-corruption/README.md).
-
-**Related upstream:** No matching issue identified in the recorded open/closed searches.
-
-## 021 — Recovery joins an error boundary, not client outcome
-
-**Quote:** “whose `outcome` was `"client"`” ([RFC08:887](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L887)).
-
-**Observed:** A streamed async rejection recovers with fresh client DOM and a same-id recovery record, but the server boundary outcome is error.
-
-**Suggested resolution:** Documentation is wrong: use error for rejected content, consistent with the boundary enum at L816. Reserve client for ssrSource: client.
-
-**Builds / severity / regression:** development and observe; low; no demonstrated HEAD-only regression.
-
-**Local validation (review only):** [finding 021](../../findings/021-recovery-boundary-outcome/README.md).
-
-**Related upstream:** No matching issue identified in the recorded open/closed searches.
-
-## 023 — Returned async helper is diagnosed after await
-
-**Quote:** “a helper returned without `await` (`return load()`)” ([RFC08:359](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L359)).
-
-**Observed:** createMemo(() => load()) reports UNTRACKED_READ_AFTER_AWAIT when the returned helper reads a signal after await; the direct async shape reports it too.
-
-**Suggested resolution:** Documentation exclusion is too broad. Preserve the useful runtime warning and narrow the excluded helper shapes.
-
-**Builds / severity / regression:** development; production control is quiet; low; no demonstrated HEAD-only regression.
-
-**Local validation (review only):** [finding 023](../../findings/023-returned-helper-diagnostic/README.md).
-
-**Related upstream:** No matching issue identified in the recorded open/closed searches.
-
-## 025 — Async fan-out finding labels invalidation as write
-
-**Quote:** “adds `data.write: "write" | "refresh" | "async"` naming the invalidation” ([RFC08:419](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L419)).
-
-**Observed:** A Promise memo landing with no user setter emits HUGE_FAN_OUT data.write=write, although its reader rerun correctly has async cause.
-
-**Suggested resolution:** Implementation metadata is likely wrong: stamp the invalidation as async before emitting its fan-out finding.
-
-**Builds / severity / regression:** development and observe; low; no demonstrated HEAD-only regression.
-
-**Local validation (review only):** [finding 025](../../findings/025-async-fanout-classification/README.md).
-
-**Related upstream:** No matching issue identified in the recorded open/closed searches.
-
-## 028 — Artifact format documentation says v7
-
-**Quote:** “format v7” ([RFC08:898](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L898)).
-
-**Observed:** captureArtifact returns formatVersion 8, including the newer recovery table.
-
-**Suggested resolution:** Documentation is stale: update the version and list the complete record tables rather than changing the emitted format.
-
-**Builds / severity / regression:** development and observe; low; no demonstrated HEAD-only regression.
-
-**Local validation (review only):** [finding 028](../../findings/028-artifact-format-version/README.md).
-
-**Related upstream:** No matching issue identified in the recorded open/closed searches.
-
-## 033 — SSR skips Symbol without promised warning
-
-**Quote:** “a plain object, a symbol — was skipped” ([RFC08:692](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L692)).
-
-**Observed:** Server insert warns for a plain object but skips Symbol silently. Both client controls warn, and production is quiet as intended.
-
-**Suggested resolution:** Implementation likely omitted the server Symbol diagnostic. Emit UNRECOGNIZED_INSERT_VALUE without changing the skip behavior.
-
-**Builds / severity / regression:** development; production control passes; low; no demonstrated HEAD-only regression.
-
-**Local validation (review only):** [finding 033](../../findings/033-symbol-insert-diagnostic/README.md).
-
-**Related upstream:** No matching issue identified in the recorded open/closed searches.
-
-## 039 — Server-Timing disappears when resource timing never arrives
-
-**Quote:** “watches `PerformanceObserver({ type: "resource", buffered: true })` for up to 30 s per call and centres the span inside the call when no entry arrives.” ([RFC08:1230](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L1230)).
-
-**Observed:** With a native PerformanceObserver but no resource entry, the call expires after 30 seconds without a server span. A platform-without-observer control paints the centred span.
-
-**Suggested resolution:** Implementation likely lacks the expiry fallback. Paint the approximate server span when the resource lookup times out.
-
-**Builds / severity / regression:** development and observe; production has no performance tracks; med; no demonstrated HEAD-only regression.
-
-**Local validation (review only):** [finding 039](../../findings/039-missing-resource-timing-fallback/README.md).
-
-**Related upstream:** No matching issue identified in the recorded open/closed searches.
-
-## 040 — Initial binding diagnostic lacks its element console argument
-
-**Quote:** “the element it writes as a second console argument” ([RFC08:17](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L17)).
-
-**Observed:** An initial compiled attribute-binding WIDE_SCOPE_DEPS report contains only its message. A post-initial computation with the same dependency shape includes the element.
-
-**Suggested resolution:** Documentation promise is too broad: the first compute can precede binding tagging. Document that initial reports may lack the element, or tag the binding before computing.
-
-**Builds / severity / regression:** development console only; low; no demonstrated HEAD-only regression.
-
-**Local validation (review only):** [finding 040](../../findings/040-initial-binding-console/README.md).
-
-**Related upstream:** No matching issue identified in the recorded open/closed searches.
-
-## 042 — Malformed crossorigin is not validated as stated
-
-**Quote:** “a malformed `imagesrcset`/`imagesizes`/`crossorigin`” ([RFC08:680](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L680)).
-
-**Observed:** An external manifest with crossorigin:42 emits crossorigin="42" without PRELOAD_DESCRIPTOR_INVALID. Missing font CORS produces the positive diagnostic; legal anonymous is quiet.
-
-**Suggested resolution:** Documentation is likely too broad: if HTML normalization is intentional, limit the claim to missing font/fetch CORS mode. This does not assert an incorrect resource request.
-
-**Builds / severity / regression:** development; production control passes; low; no demonstrated HEAD-only regression.
-
-**Local validation (review only):** [finding 042](../../findings/042-malformed-preload-crossorigin/README.md).
-
-**Related upstream:** No matching issue identified in the recorded open/closed searches.
-
-## 051 — Unnamed attribution node does not fall back to owner id
-
-**Quote:** “Unnamed nodes fall back to their owner id.” ([RFC08:1242](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L1242)).
-
-**Observed:** In a named root with a public owner id, unnamed memo/signal labels stay anonymous or empty. Explicit naming works.
-
-**Suggested resolution:** Documentation is likely wrong: describe the anonymous label and require explicit names, or implement the stated fallback.
-
-**Builds / severity / regression:** development; low; no demonstrated HEAD-only regression.
-
-**Local validation (review only):** [finding 051](../../findings/051-unnamed-attribution-owner-id/README.md).
-
-**Related upstream:** [#3063](https://github.com/solidjs/solid/issues/3063)
-
-## 054 — Prearrived rejection still has nonzero recovery wait
-
-**Quote:** “`0` when the rejection had already arrived at hydration” ([RFC08:896](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L896)).
-
-**Observed:** With the complete server rejection present before hydration, a controlled public clock reports waitedMs=100 rather than zero; four recovery positive controls pass.
-
-**Suggested resolution:** Documentation is likely wrong: waitedMs includes client recovery scheduling until rejection handling, rather than only network arrival. Clarify its endpoints.
-
-**Builds / severity / regression:** development and observe; low; no demonstrated HEAD-only regression.
-
-**Local validation (review only):** [finding 054](../../findings/054-prearrived-recovery-wait/README.md).
-
-**Related upstream:** No matching issue identified in the recorded open/closed searches.
-
-## Versions
-
-Rechecked against Solid next dafad1db34626feb5f154e98e599f65be1802c6c. rc.13 reproduces the documented discrepancies except 017, where the required positive-control hook is absent. Observe parity is asserted only for the cases explicitly listed above.
+These cases affect diagnostic coverage or metadata. Each row gives the documented contract, the observed result, and the proposed correction. “Observe” means the instrumented production export, with observation APIs enabled; ordinary production omits those APIs unless noted.
+
+**Versions/builds:** Solid next `dafad1db34626feb5f154e98e599f65be1802c6c`; rc.13 shows the same discrepancies except 017, whose required observation hook is absent. No HEAD-only regression is established. Builds are listed per row.
+
+| Case and documented contract | Actual | Expected / suggested correction | Builds |
+| --- | --- | --- | --- |
+| **010 — Leaf-scope signal has no forbidden-scope diagnostic**. “you cannot nest `createSignal`, `createMemo`, `createEffect`, or other reactive primitives inside them.” ([RFC08:199](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L199)). | createSignal(0) inside onSettled returns normally with an empty diagnostics channel. | Documentation is likely too broad: restrict the prohibition to primitives with a computation lifecycle. Plain createSignal does not create such a computation; derived signals and memos have the guard. A blanket prohibition would instead require an additional signal guard. | development |
+| **012 — Development attribution pays for folds without an audience**. “allocates no record, and `history("rerun")` stays empty.” ([RFC08:1128](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L1128)). | Importing only solid-js/attribution, with log false and no listener/fold import, still creates rerun history in development. The instrumented production export is quiet until observation is requested. | The flattened development entry statically re-exports self-registering folds. Either split that entry or document its prepaid development cost; do not claim it allocates no records. | development |
+| **017 — Initial render failure is missing from diagnostics and render records**. “Render error outside any boundary — the request failed” ([RFC08:580](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L580)). | A synchronous first-pass render failure reaches onError as failed, but emits neither the promised SSR_RENDER_ERROR_CONTAINED diagnostic nor the completed failed render record. Normal completed render controls produce records. | Implementation likely misses the initial-pass failure path. Emit the same structured failure information as later render failures. | development and observe |
+| **019 — Post-await action writes are stamped external**. “they are stamped `async`” ([RFC08:1161](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L1161)). | A signal write after native await in an action has external origin, while pre-await writes are action and source promise landings are async. | Documentation is likely wrong: the synchronous action frame has escaped and this continuation has no async-source node. Describe external origin rather than async. | development and observe |
+| **020 — Missing slot marker is not reported in observe**. “Finding (`error`, observe + dev) on the **client**” ([RFC08:625](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L625)). | Removing a slot end marker produces FRAME_MARKER_CORRUPTED in development but no error diagnostic in observe. | Implementation likely gates the frames corruption check too narrowly. Keep the error diagnostic in observe as promised, or explicitly change that tier contract. | observe |
+| **021 — Recovery joins an error boundary, not client outcome**. “whose `outcome` was `"client"`” ([RFC08:887](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L887)). | A streamed async rejection recovers with fresh client DOM and a same-id recovery record, but the server boundary outcome is error. | Documentation is wrong: use error for rejected content, consistent with the boundary enum at L816. Reserve client for ssrSource: client. | development and observe |
+| **023 — Returned async helper is diagnosed after await**. “a helper returned without `await` (`return load()`)” ([RFC08:359](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L359)). | createMemo(() => load()) reports UNTRACKED_READ_AFTER_AWAIT when the returned helper reads a signal after await; the direct async shape reports it too. | Documentation exclusion is too broad. Preserve the useful runtime warning and narrow the excluded helper shapes. | development |
+| **025 — Async fan-out diagnostic labels invalidation as write**. “adds `data.write: "write" \| "refresh" \| "async"` naming the invalidation” ([RFC08:419](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L419)). | A Promise memo landing with no user setter emits HUGE_FAN_OUT data.write=write, although its reader rerun correctly has async cause. | Implementation metadata is likely wrong: stamp the invalidation as async before emitting its fan-out diagnostic. | development and observe |
+| **028 — Artifact format documentation says v7**. “format v7” ([RFC08:898](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L898)). | captureArtifact returns formatVersion 8, including the newer recovery table. | Documentation is stale: update the version and list the complete record tables rather than changing the emitted format. | development and observe |
+| **033 — SSR skips Symbol without promised warning**. “a plain object, a symbol — was skipped” ([RFC08:692](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L692)). | Server insert warns for a plain object but skips Symbol silently. Both client controls warn, and production is quiet as intended. | Implementation likely omitted the server Symbol diagnostic. Emit UNRECOGNIZED_INSERT_VALUE without changing the skip behavior. | development |
+| **039 — Server-Timing disappears when resource timing never arrives**. “watches `PerformanceObserver({ type: "resource", buffered: true })` for up to 30 s per call and centres the span inside the call when no entry arrives.” ([RFC08:1230](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L1230)). | With a native PerformanceObserver but no resource entry, the call expires after 30 seconds without a server span. A platform-without-observer control paints the centred span. | Implementation likely lacks the expiry fallback. Paint the approximate server span when the resource lookup times out. | development and observe |
+| **040 — Initial binding diagnostic lacks its element console argument**. “the element it writes as a second console argument” ([RFC08:17](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L17)). | An initial compiled attribute-binding WIDE_SCOPE_DEPS report contains only its message. A post-initial computation with the same dependency shape includes the element. | Documentation promise is too broad: the first compute can precede binding tagging. Document that initial reports may lack the element, or tag the binding before computing. | development console only |
+| **042 — Malformed crossorigin is not validated as stated**. “a malformed `imagesrcset`/`imagesizes`/`crossorigin`” ([RFC08:680](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L680)). | An external manifest with crossorigin:42 emits crossorigin="42" without PRELOAD_DESCRIPTOR_INVALID. Missing font CORS produces the positive diagnostic; legal anonymous is quiet. | Documentation is likely too broad: if HTML normalization is intentional, limit the claim to missing font/fetch CORS mode. This does not assert an incorrect resource request. | development |
+| **051 — Unnamed attribution node does not fall back to owner id**. “Unnamed nodes fall back to their owner id.” ([RFC08:1242](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L1242)). | In a named root with a public owner id, unnamed memo/signal labels stay anonymous or empty. Explicit naming works. | Documentation is likely wrong: describe the anonymous label and require explicit names, or implement the stated fallback. | development |
+| **054 — Prearrived rejection still has nonzero recovery wait**. “`0` when the rejection had already arrived at hydration” ([RFC08:896](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L896)). | With the complete server rejection present before hydration, a controlled public clock reports waitedMs=100 rather than zero; four recovery positive controls pass. | Documentation is likely wrong: waitedMs includes client recovery scheduling until rejection handling, rather than only network arrival. Clarify its endpoints. | development and observe |
+
+<details>
+<summary>Complete automated checks and related issue references</summary>
+
+- [010: full reproduction](../../findings/010-leaf-signal-diagnostic/README.md).
+- [012: full reproduction](../../findings/012-attribution-audience-gate/README.md).
+  Related upstream: [#2883](https://github.com/solidjs/solid/issues/2883), [#3754](https://github.com/solidjs/solid/issues/3754)
+- [017: full reproduction](../../findings/017-initial-render-error-record/README.md).
+  Related upstream: [#3723](https://github.com/solidjs/solid/issues/3723)
+- [019: full reproduction](../../findings/019-action-await-origin/README.md).
+  Related upstream: [#3754](https://github.com/solidjs/solid/issues/3754)
+- [020: full reproduction](../../findings/020-observe-frame-corruption/README.md).
+- [021: full reproduction](../../findings/021-recovery-boundary-outcome/README.md).
+- [023: full reproduction](../../findings/023-returned-helper-diagnostic/README.md).
+- [025: full reproduction](../../findings/025-async-fanout-classification/README.md).
+- [028: full reproduction](../../findings/028-artifact-format-version/README.md).
+- [033: full reproduction](../../findings/033-symbol-insert-diagnostic/README.md).
+- [039: full reproduction](../../findings/039-missing-resource-timing-fallback/README.md).
+- [040: full reproduction](../../findings/040-initial-binding-console/README.md).
+- [042: full reproduction](../../findings/042-malformed-preload-crossorigin/README.md).
+- [051: full reproduction](../../findings/051-unnamed-attribution-owner-id/README.md).
+  Related upstream: [#3063](https://github.com/solidjs/solid/issues/3063)
+- [054: full reproduction](../../findings/054-prearrived-recovery-wait/README.md).
+
+The linked directories preserve executable checks and positive controls. No matching upstream issue was identified for rows without a related-issue link.
+
+</details>

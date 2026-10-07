@@ -4,37 +4,56 @@ title: Solid 2 documentation errata — 03-control-flow.md
 status: draft
 tier: B
 findings: ["030", "041"]
+code_cases: ["030", "041"]
 head: dafad1db34626feb5f154e98e599f65be1802c6c
 ---
 
 # Solid 2 documentation errata: 03-control-flow.md
 
-The following published contracts disagree with the public API. Each item identifies the side we think needs correction.
+The documented usage differs from the public API below. Suggested corrections identify whether the documentation or implementation should change.
+
+```ts
+import { createEffect } from "solid-js";
+
+// Type-check the documented three-callback signature.
+createEffect(
+  () => 1,
+  () => {},
+  () => {},
+);
+// TS2559: the third argument must be EffectOptions.
+```
+
+Type-check the snippet against the public declarations.
 
 ## 030 — Effect error arm is not a third callback
 
 **Quote:** “`createEffect(compute, effect, onError)`” ([03-control-flow.md:169](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/03-control-flow.md#L169)).
 
-**Observed:** The public third argument is EffectOptions; a callback there fails TypeScript with TS2559. The runtime error arm belongs in the second-argument bundle.
+**Expected:** The documented three-callback signature type-checks.
+**Actual:** The public third argument is EffectOptions; a callback there fails TypeScript with TS2559. The runtime error arm belongs in the second-argument bundle.
 
 **Proposed correction:** Documentation signature is wrong: write `createEffect(compute, { effect, error: onError })`. The surrounding rule that handled errors bypass the client error hook is correct.
 
-**Versions/builds:** dafad1db34626feb5f154e98e599f65be1802c6c, public types; rc.13 also contradicts the same contract. HEAD-only regression: no.
-
-**Local validation (review only):** [minimal failing test and related issues](../../findings/030-effect-error-signature/README.md).
-
-**Related upstream:** No matching issue identified in the recorded open/closed searches.
+**Versions/builds:** dafad1db34626feb5f154e98e599f65be1802c6c, public types; rc.13 also contradicts the same contract. No HEAD-only regression.
 
 ## 041 — Hydration still evaluates the dynamic callback
 
 **Quote:** “the source is not re-run” ([03-control-flow.md:202](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/03-control-flow.md#L202)).
 
-**Observed:** A dynamic source returning Promise.resolve("article") runs once during hydration. Server DOM is adopted correctly, with no hydration warnings or network request in this repro.
+**Expected:** Hydration adopts the result without invoking the dynamic callback.
+**Actual:** A dynamic source returning Promise.resolve("article") runs once during hydration. Server DOM is adopted correctly, with no hydration warnings or network request in this repro.
 
 **Proposed correction:** Documentation is likely wrong: distinguish dependency-tracking evaluation during hydration from another real source request. Adoption does not guarantee zero callback invocations.
 
-**Versions/builds:** dafad1db34626feb5f154e98e599f65be1802c6c, development and production; rc.13 also contradicts the same contract. HEAD-only regression: no.
+**Versions/builds:** dafad1db34626feb5f154e98e599f65be1802c6c, development and production; rc.13 also contradicts the same contract. No HEAD-only regression.
 
-**Local validation (review only):** [minimal failing test and related issues](../../findings/041-dynamic-source-tracking/README.md).
+<details>
+<summary>Automated reproduction and related-case evidence</summary>
 
-**Related upstream:** No matching issue identified in the recorded open/closed searches.
+- 030: [minimal failing test and related issues](../../findings/030-effect-error-signature/README.md).
+- 041: [minimal failing test and related issues](../../findings/041-dynamic-source-tracking/README.md).
+
+The linked test directories contain the complete executable checks, setup, and recorded upstream searches.
+
+</details>
