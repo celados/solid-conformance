@@ -25,16 +25,16 @@
   },
   "scripts": {
     "test": "bun test",
-    "regressions": "bun test tracks/regressions",
-    "properties": "bun test tracks/properties",
+    "regressions": "bun test ./tracks/regressions",
+    "properties": "bun test ./tracks/properties",
     "build": "bun run scripts/build.ts",
     "check": "bun x tsc --noEmit",
     "upstream": "bun run scripts/upstream.ts",
-    "transitions": "bun test tracks/transitions",
-    "docs": "bun test tracks/docs",
+    "transitions": "bun test ./tracks/transitions",
+    "docs": "bun test ./tracks/docs",
     "test:production": "BUILD_MODE=production bun test",
     "vite:upstream": "bun run scripts/vite-upstream.ts",
     "coverage": "bun run scripts/coverage.ts",
-    "router:transitions": "bun test tracks/transitions/router-transitions.test.ts"
+    "router:transitions": "bun test ./tracks/transitions/router-transitions.test.ts"
   }
 }

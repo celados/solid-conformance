@@ -25,3 +25,11 @@ test('RFC inventory: every entry has a stable source locator, explicit classific
  expect(inventory.summary.nonBehavioral).toBe(count('not-behavioral'))
  expect(inventory.summary.behavioral).toBe(count('covered')+count('uncovered')+count('untestable'))
 })
+
+test('RFC fenced recipes: every original block has one complete source review, separate from assertion coverage',async()=>{
+ const blocks=await Bun.file('tracks/docs/fenced-examples.json').json()
+ const reviews=(await Promise.all(['core-fenced-examples-review.json','frames-fenced-examples-review.json','router-diagnostic-fenced-examples-review.json'].map(async name=>(await Bun.file('tracks/docs/'+name).json()).blocks))).flat()
+ expect(reviews.length).toBe(blocks.length)
+ const ids=new Set<string>()
+ for(const block of blocks){const matches=reviews.filter(r=>r.id===block.id);expect(matches).toHaveLength(1);expect(ids.has(block.id)).toBe(false);ids.add(block.id);expect(matches[0].line).toBe(block.line);expect(matches[0].end_line).toBe(block.end_line);expect(matches[0].review).toBe('reviewed');expect(matches[0].reason.length).toBeGreaterThan(0)}
+})
