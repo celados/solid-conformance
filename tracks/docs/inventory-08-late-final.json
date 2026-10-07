@@ -246,6 +246,370 @@
       ],
       "statement": "The `@solidjs/diagnostics` artifact includes `holds` and `feedback` alongside diagnostics and costs, and the browser bridge exposes both as live queries.",
       "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1123:1",
+      "classification": "behavioral",
+      "status": "untestable",
+      "coverage": [
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "statement": "**Timeline records.** Five further record types describe the work itself rather than its outcome, shaped for a profiler track (`@solidjs/web/performance-tracks`, below) and for the responsiveness findings; they enter no ring buffer and are built only while something is subscribed to them (`OBSERVE.records.observed(type)`), so an app that does not listen pays nothing beyond the hook null-check.",
+      "reason": "公开部分全实测：五timeline observed audience切换、无订阅时emit未调用、每类型正控、unsubscribe与不存在history ring。唯一不可经公开JS API观测子claim是每次零堆分配/精确hook null-check成本；无稳定公开分配计数器，不能以未delivery推断零堆分配。",
+      "untestable_subclaims": [
+        "timeline record allocation counts and the exact hook null-check cost: no public heap allocation counter or stable microbenchmark contract"
+      ]
+    },
+    {
+      "id": "08-dev-diagnostics:L1127:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/excluded-owner-attribution",
+        "08/late-final-excluded-diagnostic-memory-and-throws"
+      ],
+      "statement": "**Excluding the observer.** `OBSERVE.exclude(owner)` marks an owner subtree as the observer's own: diagnostics whose subject sits under it are built (a throwing site still throws) but never delivered or printed, and the attribution engine records no run for its computations, charges none of them to an interaction, counts no write to its signals or stores toward an interaction, and does not spend a once-per-key slot (`IMMUTABLE_UPDATE_IN_STORE`'s per-path memory) on them.",
+      "reason": "实际原生 records/HTTP/Chrome时钟与聚合表逐字段断言，跨正负模式的精确join。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1131:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/records/records.test.ts",
+        "08/attribution-values-levels",
+        "08/late-final-event-target-and-preview-limits",
+        "08/late-final-held-and-verdict-value-previews"
+      ],
+      "statement": "**Values in records — the PII surface.** Records name things (owner paths, `name` options, store paths, route patterns, function ids) and are otherwise numbers, kinds and outcomes; a handful of fields carry _user data_.",
+      "reason": "实际原生 records/HTTP/Chrome时钟与聚合表逐字段断言，跨正负模式的精确join。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1179:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/timeline-hold-navigation-interaction",
+        "08/late-final-derived-cause-node-ids",
+        "08/late-final-feedback-sources-interactions-complete"
+      ],
+      "statement": "Every downstream fact is already keyed to the interaction frame — writes stamp it, re-runs trace to it through their causes, holds and navigations carry it — and `feedback().interactions` folds those by interaction _name_.",
+      "reason": "实际原生 records/HTTP/Chrome时钟与聚合表逐字段断言，跨正负模式的精确join。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1179:3",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/timeline-hold-navigation-interaction",
+        "tracks/records/input.test.ts",
+        "08/late-final-feedback-sources-interactions-complete",
+        "08/late-final-interaction-after-fallback-landing"
+      ],
+      "statement": "`history(\"interaction\")` keeps one `InteractionEvent` per dispatch instead (delivered on `OBSERVE.records.subscribe(\"interaction\", …)` as it settles), with a start, an end, and the pieces attached, so a consumer building a span per interaction (an APM adapter) neither infers the end from an idle gap nor sums quantized per-run times to approximate the wall clock:",
+      "reason": "实际原生 records/HTTP/Chrome时钟与聚合表逐字段断言，跨正负模式的精确join。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1192:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-feedback-sources-interactions-complete",
+        "08/late-final-feedback-navigation-fields-and-ranks",
+        "08/late-final-flight-fields-and-fold",
+        "08/late-final-fallback-fields-and-fold"
+      ],
+      "statement": "`feedback()` is a pure aggregation over `HoldEvent`s and `RerunEvent`s — facts, not verdicts — shaped for an agent to read in one pass:",
+      "reason": "实际原生 records/HTTP/Chrome时钟与聚合表逐字段断言，跨正负模式的精确join。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1196:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-feedback-navigation-fields-and-ranks"
+      ],
+      "statement": "- `navigations`: per route pattern (`/users/:id`), `navigations` settled, summed `settledMs` and `worstMs`, the `held` subset with its `heldMs` and how many of those were `silent`, `superseded` — navigations the user moved on from before they landed — and `redirected` — navigations a guard or loader sent elsewhere on the way (keyed by where they ended up).",
+      "reason": "实际原生 records/HTTP/Chrome时钟与聚合表逐字段断言，跨正负模式的精确join。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1200:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-feedback-navigation-fields-and-ranks",
+        "08/late-final-fallback-fields-and-fold"
+      ],
+      "statement": "All tables are sorted worst-first.",
+      "reason": "实际原生 records/HTTP/Chrome时钟与聚合表逐字段断言，跨正负模式的精确join。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1220:1",
+      "classification": "behavioral",
+      "status": "untestable",
+      "coverage": [
+        "tracks/docs/late-final-native.test.ts",
+        "tracks/docs/late-final-rpc.test.ts",
+        "tracks/records/server-performance.test.ts"
+      ],
+      "statement": "Group `Solid`, tracks in order: **Interactions** — the input delay, the handler, then the settle to `committed`/`held` (a silent hold as a warning); **Propagation** — one span per scheduler drain labelled by the writes that started it and what they reached (`count 0 → 1 — click on button#next · 5 runs, 1 unchanged`), with every run inside it beneath, labelled by what made it run (`<TodoRow> › effect ← doubled`) — the write's path through the graph as a flame; **Effects** and **Memos** — one span per re-run, creation run (`· create`) and effect callback (`· callback`), coloured by self time, `warning` for a run that changed nothing; **Async** — flights kickoff → landing (abandoned ones as warnings) and fallbacks shown → hidden; **Holds** — each wait labelled by its blockers, `warning` when silent, `error` when long; **Navigations** — request → settle by route pattern; **Server** — server-function calls and frame streams.",
+      "reason": "八family原生条目、rich属性、时钟、propagation写入/因果/嵌套、creation/callback、未变化warning、abandoned warning、fallback、silent warning/long error、native HTTP call/frame和ServerTiming均实际执行断言。仅Chrome DevTools Performance面板视觉track顺序没有稳定公开机器排序接口：PerformanceEntry.detail给track/trackGroup/color而没有order，当前headless+CDP无法检查DevTools前端内部面板布局；不把family存在当排序proof。 已尝试system Chrome headed devtools:true并CDP Target.getTargets：只暴露应用page和browser_ui omnibox，没有可附着Performance面板target（证据tracks/docs/late-final-devtools-targets.json）。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1234:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "findings/051-unnamed-attribution-owner-id/repro.test.ts"
+      ],
+      "statement": "Unnamed nodes fall back to their owner id.",
+      "reason": "051最小红例：显式name正控通过，省略和空name都不回退公开owner.id；三仓排重，倾向docs-wrong。"
+    },
+    {
+      "id": "08-dev-diagnostics:C1060:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-engine-only.test.ts",
+        "findings/012-attribution-audience-gate/repro.test.ts",
+        "tracks/docs/types.test.ts"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// The folds over those records, the point queries and the formatters are"
+    },
+    {
+      "id": "08-dev-diagnostics:C1061:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-engine-only.test.ts",
+        "findings/012-attribution-audience-gate/repro.test.ts",
+        "tracks/docs/types.test.ts"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// NAMED EXPORTS, not methods: a fold's module registers its accounting with"
+    },
+    {
+      "id": "08-dev-diagnostics:C1062:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-engine-only.test.ts",
+        "findings/012-attribution-audience-gate/repro.test.ts",
+        "tracks/docs/types.test.ts"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// the engine when it is imported, so a consumer that only subscribes to"
+    },
+    {
+      "id": "08-dev-diagnostics:C1063:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-engine-only.test.ts",
+        "findings/012-attribution-audience-gate/repro.test.ts",
+        "tracks/docs/types.test.ts"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// records (a production adapter) never ships the tables a console or an"
+    },
+    {
+      "id": "08-dev-diagnostics:C1064:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-engine-only.test.ts",
+        "findings/012-attribution-audience-gate/repro.test.ts",
+        "tracks/docs/types.test.ts"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// agent reads — importing `costs` or `feedback` is what turns them on."
+    },
+    {
+      "id": "08-dev-diagnostics:C1079:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// Runtime side (`OBSERVE`, present in dev and observe builds): stamp the"
+    },
+    {
+      "id": "08-dev-diagnostics:C1080:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// writes made synchronously inside `fn` with a user interaction. Compiled"
+    },
+    {
+      "id": "08-dev-diagnostics:C1081:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "findings/050-literal-handler-attribution/repro.test.ts"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// event bindings do this for every handler; custom renderers and test"
+    },
+    {
+      "id": "08-dev-diagnostics:C1082:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// harnesses call it themselves. `fn()` when no engine is enabled."
+    },
+    {
+      "id": "08-dev-diagnostics:C1093:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-server.test.ts",
+        "08/navigation-declaration-controls"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// And the route the document arrived on, around the work that establishes"
+    },
+    {
+      "id": "08-dev-diagnostics:C1094:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-server.test.ts",
+        "08/navigation-declaration-controls"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// its initial match (there is no location write on a fresh document). On the"
+    },
+    {
+      "id": "08-dev-diagnostics:C1095:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-server.test.ts",
+        "08/navigation-declaration-controls"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// client this is the first \"navigation\" record; on the server it names the"
+    },
+    {
+      "id": "08-dev-diagnostics:C1096:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-server.test.ts",
+        "08/navigation-declaration-controls"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// request's \"render\" record (`RenderEvent.route`). Same call on both sides."
+    },
+    {
+      "id": "08-dev-diagnostics:C1103:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// A runtime recording a fact of its own asks what a write here would be"
+    },
+    {
+      "id": "08-dev-diagnostics:C1104:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// stamped with — the engine's own interaction/navigation object, or"
+    },
+    {
+      "id": "08-dev-diagnostics:C1105:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// undefined — and puts it on its record (the web runtime's \"call\" record"
+    },
+    {
+      "id": "08-dev-diagnostics:C1106:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// does this at dispatch); an observer then joins the two by identity."
+    },
+    {
+      "id": "08-dev-diagnostics:C1108:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// Whether an engine is present: OBSERVE.attribution.installed (the hook"
+    },
+    {
+      "id": "08-dev-diagnostics:C1109:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// table itself is opaque — the slot is the engine's, not a public seam)."
+    },
+    {
+      "id": "08-dev-diagnostics:C1110:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// The installed hooks are also registered on globalThis under"
+    },
+    {
+      "id": "08-dev-diagnostics:C1111:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// Symbol.for(\"@solidjs/signals/observe/attribution\"), the records channel's"
+    },
+    {
+      "id": "08-dev-diagnostics:C1112:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。",
+      "statement": "// reach for a layer bundled without a framework import."
     }
   ]
 }

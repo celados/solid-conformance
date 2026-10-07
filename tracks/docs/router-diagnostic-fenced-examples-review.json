@@ -83,7 +83,7 @@
       "comment_units": [],
       "additional_code_only_units": [],
       "coverage": [
-        "08/client-loading-outside",
+        "08/client-diagnostic-loading-outside",
         "08/primitive-loading-displayahead-controls",
         "08/late-final-fallback-swap-never-painted"
       ],
@@ -101,7 +101,7 @@
       "comment_units": [],
       "additional_code_only_units": [],
       "coverage": [
-        "08/client-settled-unowned",
+        "08/client-diagnostic-settled-unowned",
         "08/primitive-settled-cleanup-nested-scopes"
       ],
       "reason": "onSettled无owner内onCleanup抛错，返回cleanup在dispose执行；interval句用途是可释放外部资源，fixtures使用cleanup计数避免泄漏定时器。",
@@ -151,7 +151,7 @@
       "comment_units": [],
       "additional_code_only_units": [],
       "coverage": [
-        "08/client-invalid-cleanup",
+        "08/client-diagnostic-invalid-cleanup",
         "tracks/docs/types-negative.tsx"
       ],
       "reason": "effect back-half返回非函数的runtime坏形状使用局部cast触发，合法function/void清理和公共类型拒绝misuse均验证。",
@@ -185,7 +185,7 @@
       "comment_units": [],
       "additional_code_only_units": [],
       "coverage": [
-        "08/client-after-await",
+        "08/client-diagnostic-after-await",
         "08/primitive-after-await-memo-source"
       ],
       "reason": "await后读取source的V8实际告警与before-await负控；fetch/filter是应用占位，可控promise源读取实现同async前后tracking。",
@@ -202,7 +202,7 @@
       "comment_units": [],
       "additional_code_only_units": [],
       "coverage": [
-        "08/client-no-owner-boundary",
+        "08/client-diagnostic-no-owner-boundary",
         "08/primitive-unowned-effect-lifetime"
       ],
       "reason": "owner外effect warn但可运行/无自动清理，createRoot正控无诊断且dispose清理；console只是观察输出，未要求具体文本。",
@@ -219,7 +219,7 @@
       "comment_units": [],
       "additional_code_only_units": [],
       "coverage": [
-        "08/observe-api",
+        "08/channel-capture",
         "tracks/docs/diagnostic-cases.tsx"
       ],
       "reason": "subscribe(event,subject)回调及unsub后停收，severity/code/message字段在具体diagnostic familyassert中验证；console模板只是应用如何打印，不是独立runtime保证。",
@@ -236,7 +236,7 @@
       "comment_units": [],
       "additional_code_only_units": [],
       "coverage": [
-        "08/observe-api",
+        "08/channel-capture",
         "tracks/docs/diagnostic-cases.tsx"
       ],
       "reason": "capture创建→诊断→stop返回累计数组/停止观察有实测；省略号是应用触发区，DiagnosticEvent[]公共类型另测。",
@@ -424,7 +424,7 @@
         "08/cost-checks-false",
         "08/attribution-holder-option-merge",
         "tracks/docs/late-final-engine-only.test.ts",
-        "findings/012-attribution-import-folds/repro.test.ts",
+        "findings/012-attribution-audience-gate/repro.test.ts",
         "findings/050-literal-handler-attribution/repro.test.ts"
       ],
       "reason": "逐表达式审阅：enable options/5history/release-disable/subscriptions/多hold合并/6 named exports/markFlight/origin frames/global注册/exclude。代码中的someMemo/event/origin/promise/startedAt/to/from/match/buildContext/fn均应用占位；type union写法subscribe(\"a\"|\"b\")是枚举替代值而非JS按位或使用。完整comments已独立inventory逐句盘点；fold shipping与everyhandler全称由012/050红例，不以API调用可执行取代这些合同。",

@@ -1,0 +1,14 @@
+[
+  {
+    "type": "browser_ui",
+    "url": "chrome://omnibox-popup.top-chrome/"
+  },
+  {
+    "type": "browser_ui",
+    "url": "chrome://omnibox-popup.top-chrome/omnibox_popup_aim.html"
+  },
+  {
+    "type": "page",
+    "url": "data:text/html,<button>Solid track order probe</button>"
+  }
+]
