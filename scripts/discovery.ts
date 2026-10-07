@@ -1,7 +1,10 @@
+import { resolve } from 'node:path'
+
 import { build } from './build'
 await build()
-const { discovery, renderToStream, inRequest } =
-	(await import('../.build/server.js')) as typeof import('../harness/server')
+const { discovery, renderToStream, inRequest } = (await import(
+	resolve('.build/server.js')
+)) as typeof import('../harness/server')
 const kind = process.argv[2] ?? 'hole',
 	source = process.argv[3] ?? 'iterable'
 const fixture = discovery(kind, source)

@@ -1,12 +1,14 @@
 import { test, expect } from 'bun:test'
+import { resolve } from 'node:path'
 
 import { ticks } from '../../harness/timing'
 import { leaf, sourceIds } from '../../harness/tree'
 import { build } from '../../scripts/build'
 test('SSR strings and streaming Loading produce shell and settled fragment', async () => {
 	await build()
-	const ssr =
-		(await import('../../.build/server.js')) as typeof import('../../harness/server')
+	const ssr = (await import(
+		resolve('.build/server.js')
+	)) as typeof import('../../harness/server')
 	expect(ssr.sync({ tree: leaf('text', 7), order: [] })).toMatch(
 		/<span[^>]*>7<\/span>/,
 	)

@@ -1,5 +1,6 @@
 import { transform, projectTsrxForTypecheck } from '@solidjs/compiler'
 import { test, expect } from 'bun:test'
+import { resolve } from 'node:path'
 
 import { openHarness } from '../../harness/browser'
 import { leaf } from '../../harness/tree'
@@ -36,8 +37,9 @@ test('#3762: native TSRX setup declarations, DOM and SSR, projection parity', ()
 })
 test('#3734: compiled holes with promise/iterable sources and For/Show/Errored neighbors', async () => {
 	await build()
-	const ssr =
-		(await import('../../.build/server.js')) as typeof import('../../harness/server')
+	const ssr = (await import(
+		resolve('.build/server.js')
+	)) as typeof import('../../harness/server')
 	for (const placement of ['hole', 'show', 'for', 'errored'])
 		for (const source of ['promise', 'iterable', 'query', 'liveQuery']) {
 			const fixture = ssr.discovery(placement, source)
