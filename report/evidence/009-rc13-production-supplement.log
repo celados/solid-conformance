@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+findings/009-frame-nested-region-stale/repro.test.ts:
+Conformance target: {"target":"rc13","upstream":null,"buildMode":"production","solid":"2.0.0-rc.13"}
+31 |     await page.waitForFunction(() => document.querySelector("section")?.textContent === "1");
+32 |     await page.evaluate(() => (window as any).refetch());
+33 |     await page.waitForTimeout(300);
+34 |     await page.evaluate(() => (window as any).change());
+35 |     await page.waitForTimeout(300);
+36 |     expect(await page.locator("section").textContent()).toBe("2");
+                                                             ^
+error: expect(received).toBe(expected)
+
+Expected: "2"
+Received: "1"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/009-frame-nested-region-stale/repro.test.ts:36:57)
+(fail) A new server-function argument must replace nested server slot content [9396.56ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [9.55s]

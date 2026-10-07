@@ -30,3 +30,5 @@ Removed router, hydration, RPC metadata, counter state, event handlers, heading,
 Searched open and closed issues in `solidjs/solid`, `solidjs/solid-router`, and `solidjs/solid-start` for `server component slot children`, `frame slot argument change`, `nested region stale`, `frame`, and `slot`. Related closed issues above describe duplicate document adoption/cache ownership (#2965), a remount with no mounted sites (#2974), and reactive async slot transport (#2966). This repro uses CSR, has no query cache or unmount, and uses only synchronous server JSX. None describes the remaining refetch→argument-change nested-region failure.
 
 The rc.13 comparison is recorded in the wave receipt after the isolated baseline run.
+
+Wave 4a 独立 rc.13 补验：development 0 pass / 1 fail；production 0 pass / 1 fail。原始日志在 report/evidence/009-rc13-*-supplement.log；报告版本陈述以此为准。

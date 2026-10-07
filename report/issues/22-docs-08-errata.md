@@ -21,4 +21,8 @@ The following published contracts disagree with the public API. Each item identi
 
 **Versions/builds:** dafad1db34626feb5f154e98e599f65be1802c6c, development and production SSR; rc.13 also contradicts the same contract. HEAD-only regression: no.
 
-**Evidence:** [minimal failing test and related issues](../../findings/045-server-optimistic-write-wording/README.md).
+**Local validation (review only):** [minimal failing test and related issues](../../findings/045-server-optimistic-write-wording/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
+
+The inert-data contrast and the “all server builds” warning clause share RFC11 L171; please apply the correction together with [RFC11 erratum 027](24-docs-11-errata.md).

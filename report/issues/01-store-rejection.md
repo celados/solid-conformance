@@ -167,6 +167,8 @@ export async function build(outdir = '.build', variant: BuildMode, entries: { cl
 
 A replacement request rejecting should reach the nearest Errored; instead the old 0 remains visible without an error.
 
+The same missing-error route also occurs for a derived LiveSource after SSR hydration handoff: the first client iterable rejection leaves the last value visible. That sibling is separately rechecked in both builds; the CSR replacement above is the smaller public reproduction. This report does not claim that every server-component reconnect path fails.
+
 ## Versions and builds
 
 Verified on Solid HEAD `dafad1db34626feb5f154e98e599f65be1802c6c`: 004: development, production.
@@ -177,7 +179,7 @@ Comparison: 004: rc.13 passes the same case. The original snapshot was `53ef0e69
 
 [#2997](https://github.com/solidjs/solid/issues/2997), [#3769](https://github.com/solidjs/solid/issues/3769)
 
-Local evidence: [finding 004](../../findings/004-derived-store-rejection/README.md).
+Local validation (review only; omit when filing): [finding 004](../../findings/004-derived-store-rejection/README.md).
 
 ### `link-head.ts`
 

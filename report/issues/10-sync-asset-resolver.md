@@ -179,7 +179,7 @@ Comparison: 032: rc.13 also fails the named contract. The original snapshot was 
 
 No matching issue found in the recorded open/closed searches of Solid, Router and Start.
 
-Local evidence: [finding 032](../../findings/032-sync-lazy-resolver/README.md).
+Local validation (review only; omit when filing): [finding 032](../../findings/032-sync-lazy-resolver/README.md).
 
 ### `link-head.ts`
 
@@ -205,3 +205,5 @@ for (const [name, folder] of [
 }
 console.log('Linked the five matching HEAD packages from ' + root)
 ```
+
+Local baseline validation (review only): [rc.13 032 logs](../evidence/032-rc13-development-supplement.log), plus the corresponding production log.

@@ -67,7 +67,7 @@ Comparison: 022: rc.13 passes the same case. The original snapshot was `53ef0e69
 
 No matching issue found in the recorded open/closed searches of Solid, Router and Start.
 
-Local evidence: [finding 022](../../findings/022-refresh-optimistic-authority/README.md).
+Local validation (review only; omit when filing): [finding 022](../../findings/022-refresh-optimistic-authority/README.md).
 
 ### `link-head.ts`
 
@@ -93,3 +93,5 @@ for (const [name, folder] of [
 }
 console.log('Linked the five matching HEAD packages from ' + root)
 ```
+
+Local baseline validation (review only): [rc.13 022 logs](../evidence/022-rc13-development-supplement.log), plus the corresponding production log.

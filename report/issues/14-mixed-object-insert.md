@@ -159,7 +159,7 @@ Comparison: 034: rc.13 also fails the named contract. The original snapshot was 
 
 [#3734](https://github.com/solidjs/solid/issues/3734)
 
-Local evidence: [finding 034](../../findings/034-mixed-insert-object/README.md).
+Local validation (review only; omit when filing): [finding 034](../../findings/034-mixed-insert-object/README.md).
 
 ### `link-head.ts`
 

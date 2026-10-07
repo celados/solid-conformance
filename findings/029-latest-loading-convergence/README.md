@@ -28,4 +28,6 @@ BUILD_MODE=production bun test ./findings/029-latest-loading-convergence/repro.t
 
 从三种 display-ahead 模式缩到一个 signal、一个 memo、两个受控 Promise 和两个 Loading，无 action、optimistic、diagnostics listener 或 SSR。第二个共享读取的 `<b>` 是必要形状：改成裸 hole 后通过。删掉额外 Loading 则不能复现共享位置问题。
 
-三仓 open/closed 搜索 `Loading latest` 并读取 solid#2706、#2829、#3524、#3764。2706 是同一边界混合 latest/read 时缺失值、2829 是首次 latest 与 isPending、3524 是 signal 与 memo 的 fallback 未启动、3764 是 SSR live 订阅；这里 fallback 已启动但共享源落地后不退出，保留相关链接而未判定重复。记录在 evidence/wave3-finding029-dedupe.json。rc.13 比较由主线程统一执行。
+三仓 open/closed 搜索 `Loading latest` 并读取 solid#2706、#2829、#3524、#3764。2706 是同一边界混合 latest/read 时缺失值、2829 是首次 latest 与 isPending、3524 是 signal 与 memo 的 fallback 未启动、3764 是 SSR live 订阅；这里 fallback 已启动但共享源落地后不退出，保留相关链接而未判定重复。记录在 evidence/wave3-finding029-dedupe.json。
+
+Wave 4a 独立 rc.13 补验：development 1 pass / 0 fail；production 1 pass / 0 fail。原始日志在 report/evidence/029-rc13-*-supplement.log；报告版本陈述以此为准。

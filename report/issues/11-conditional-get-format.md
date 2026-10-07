@@ -177,6 +177,8 @@ export async function build(outdir = '.build', variant: BuildMode, entries: { cl
 
 Browser-managed conditional GET should replay cached {value:17}. Both client fetches see 200, but the second decoded result is undefined.
 
+Development also logs “answered a scripted call with 304…” even though the origin receives the browser-generated If-None-Match header. That warning misclassifies a real conditional browser request; it is a related diagnostic symptom of this path.
+
 ## Versions and builds
 
 Verified on Solid HEAD `dafad1db34626feb5f154e98e599f65be1802c6c`: 036: development, production, observe.
@@ -187,7 +189,7 @@ Comparison: 036: rc.13 also fails the named contract. The original snapshot was 
 
 [#3101](https://github.com/solidjs/solid/issues/3101), [#3134](https://github.com/solidjs/solid/issues/3134)
 
-Local evidence: [finding 036](../../findings/036-conditional-cache-format/README.md).
+Local validation (review only; omit when filing): [finding 036](../../findings/036-conditional-cache-format/README.md).
 
 ### `link-head.ts`
 

@@ -10,7 +10,7 @@ target: dafad1db34626feb5f154e98e599f65be1802c6c
 
 # Production tree shaking removes store affects registration
 
-affects(store, key) inside an action should not throw. Production bundles reject with GlobalQueue.O is not a function; disabling tree shaking passes.
+affects(store, key) inside an action should not throw. A production consumer bundle rejects when calling a removed registration hook; disabling tree shaking and ignoring DCE annotations passes. This is consistent with a dropped registration side effect, not a stable contract for any mangled property name.
 
 ## Reproduction
 
@@ -22,6 +22,8 @@ bun add solid-js@2.0.0-rc.13 @solidjs/web@2.0.0-rc.13 @solidjs/signals@2.0.0-rc.
 bun add -d playwright
 bun run link-head.ts /absolute/path/to/built/solid
 BUILD_MODE=production bun test ./repro.test.ts
+# Passing control on the same HEAD:
+NO_TREE_SHAKE=1 BUILD_MODE=production bun test ./repro.test.ts
 ```
 
 ### `module.ts`
@@ -49,13 +51,13 @@ test('RFC 06 production affects(store,key) must not throw',async()=>{
  const result=await Bun.build({entrypoints:[resolve('./module.ts')],outdir,target:'bun',treeShaking:process.env.NO_TREE_SHAKE!=='1',ignoreDCEAnnotations:process.env.NO_TREE_SHAKE==='1',plugins:[{name:'actual-browser-development',setup(builder){builder.onResolve({filter:/^(solid-js|@solidjs\/signals)$/},args=>{const pkg=packages.get(args.path)!;const entry=pkg.exports['.'];const browser=entry.browser??entry;const dev=browser[process.env.BUILD_MODE??'production']??browser.default;return{path:resolve(pkg.path,typeof dev==='string'?dev:dev.import??dev.default)}})}}]})
  expect(result.success).toBe(true)
  const runtime=await import(outdir+'/module.js')
- await expect(runtime.run()).resolves.toBeUndefined()
+ const pending=runtime.run();pending.catch((error:unknown)=>console.log('Observed rejection:',String(error)));await expect(pending).resolves.toBeUndefined()
 })
 ```
 
 ## Expected versus actual
 
-affects(store, key) inside an action should not throw. Production bundles reject with GlobalQueue.O is not a function; disabling tree shaking passes.
+affects(store, key) inside an action should not throw. A production consumer bundle rejects when calling a removed registration hook; disabling tree shaking and ignoring DCE annotations passes. This is consistent with a dropped registration side effect, not a stable contract for any mangled property name.
 
 ## Versions and builds
 
@@ -67,7 +69,7 @@ Comparison: 016: rc.13 passes the same case. The original snapshot was `53ef0e69
 
 [#2887](https://github.com/solidjs/solid/issues/2887)
 
-Local evidence: [finding 016](../../findings/016-production-store-affects/README.md).
+Local validation (review only; omit when filing): [finding 016](../../findings/016-production-store-affects/README.md).
 
 ### `link-head.ts`
 
@@ -93,3 +95,5 @@ for (const [name, folder] of [
 }
 console.log('Linked the five matching HEAD packages from ' + root)
 ```
+
+Local baseline validation (review only): [rc.13 016 logs](../evidence/016-rc13-development-supplement.log), plus the corresponding production log.

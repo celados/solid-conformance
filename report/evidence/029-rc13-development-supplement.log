@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+findings/029-latest-loading-convergence/repro.test.ts:
+Conformance target: {"target":"rc13","upstream":null,"buildMode":"development","solid":"2.0.0-rc.13"}
+{
+  normal: {
+    initial: "11",
+    waiting: "11",
+    final: "22",
+    source: 2,
+  },
+  latest: {
+    initial: "11",
+    waiting: "A1",
+    final: "22",
+    source: 2,
+  },
+}
+
+ 1 pass
+ 0 fail
+ 5 expect() calls
+Ran 1 test across 1 file. [8.71s]

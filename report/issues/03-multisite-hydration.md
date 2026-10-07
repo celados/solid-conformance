@@ -202,7 +202,7 @@ Comparison: 011: rc.13 also fails the named contract. The original snapshot was 
 
 [#2973](https://github.com/solidjs/solid/issues/2973)
 
-Local evidence: [finding 011](../../findings/011-frame-multisite-hydration/README.md).
+Local validation (review only; omit when filing): [finding 011](../../findings/011-frame-multisite-hydration/README.md).
 
 ### `link-head.ts`
 
@@ -228,3 +228,5 @@ for (const [name, folder] of [
 }
 console.log('Linked the five matching HEAD packages from ' + root)
 ```
+
+Local baseline validation (review only): [rc.13 011 logs](../evidence/011-rc13-development-supplement.log), plus the corresponding production log.

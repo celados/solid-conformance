@@ -1,0 +1,36 @@
+bun test v1.4.2 (744846f84)
+
+repro.test.ts:
+ 6 |  const dir=resolve(".build","finding035-"+process.pid);
+ 7 |  try{
+ 8 |   await build(dir,(process.env.BUILD_MODE??"development") as BuildMode,{client:[],server:["./server.ts"]});
+ 9 |   const module=await import(dir+"/server.js"),result=await module.run(death);
+10 |   expect(result.first).toEqual({done:false,value:"first"});expect(result.transportFailed).toBe(true);
+11 |   expect(result.outcome.outcome).toBe("rejected");
+                                      ^
+error: expect(received).toBe(expected)
+
+Expected: "rejected"
+Received: "pending"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.scratch/report-inline-verification/04-live-decoder-stream-lifetime/repro.test.ts:11:34)
+(fail) RFC10 dying body rejects an open iterator pull: error [334.81ms]
+ 6 |  const dir=resolve(".build","finding035-"+process.pid);
+ 7 |  try{
+ 8 |   await build(dir,(process.env.BUILD_MODE??"development") as BuildMode,{client:[],server:["./server.ts"]});
+ 9 |   const module=await import(dir+"/server.js"),result=await module.run(death);
+10 |   expect(result.first).toEqual({done:false,value:"first"});expect(result.transportFailed).toBe(true);
+11 |   expect(result.outcome.outcome).toBe("rejected");
+                                      ^
+error: expect(received).toBe(expected)
+
+Expected: "rejected"
+Received: "pending"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.scratch/report-inline-verification/04-live-decoder-stream-lifetime/repro.test.ts:11:34)
+(fail) RFC10 dying body rejects an open iterator pull: eof [330.81ms]
+
+ 0 pass
+ 2 fail
+ 6 expect() calls
+Ran 2 tests across 1 file. [675.00ms]

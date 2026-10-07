@@ -161,7 +161,7 @@ Comparison: 049: rc.13 also fails the named contract. The original snapshot was 
 
 [#3768](https://github.com/solidjs/solid/issues/3768)
 
-Local evidence: [finding 049](../../findings/049-document-live-channel-abort/README.md).
+Local validation (review only; omit when filing): [finding 049](../../findings/049-document-live-channel-abort/README.md).
 
 ### `link-head.ts`
 

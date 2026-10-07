@@ -1,0 +1,9 @@
+bun test v1.4.2 (744846f84)
+
+findings/016-production-store-affects/repro.test.ts:
+Conformance target: {"target":"rc13","upstream":null,"buildMode":"production","solid":"2.0.0-rc.13"}
+
+ 1 pass
+ 0 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [16.00ms]

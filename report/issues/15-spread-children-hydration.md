@@ -179,7 +179,7 @@ Comparison: 044: rc.13 also fails the named contract. The original snapshot was 
 
 [#3313](https://github.com/solidjs/solid/issues/3313)
 
-Local evidence: [finding 044](../../findings/044-literal-spread-hydration/README.md).
+Local validation (review only; omit when filing): [finding 044](../../findings/044-literal-spread-hydration/README.md).
 
 ### `link-head.ts`
 

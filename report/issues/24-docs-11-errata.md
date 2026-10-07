@@ -21,7 +21,9 @@ The following published contracts disagree with the public API. Each item identi
 
 **Versions/builds:** dafad1db34626feb5f154e98e599f65be1802c6c, production; development positive control passes; rc.13 also contradicts the same contract. HEAD-only regression: no.
 
-**Evidence:** [minimal failing test and related issues](../../findings/027-server-write-all-builds/README.md).
+**Local validation (review only):** [minimal failing test and related issues](../../findings/027-server-write-all-builds/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
 
 ## 038 — Client state follows the mount, not argument address
 
@@ -33,4 +35,8 @@ The following published contracts disagree with the public API. Each item identi
 
 **Versions/builds:** dafad1db34626feb5f154e98e599f65be1802c6c, development and production; rc.13 also contradicts the same contract. HEAD-only regression: no.
 
-**Evidence:** [minimal failing test and related issues](../../findings/038-frame-call-state-doc-reset/README.md).
+**Local validation (review only):** [minimal failing test and related issues](../../findings/038-frame-call-state-doc-reset/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
+
+The warning clause and inert-data distinction share RFC11 L171; [RFC08 erratum 045](22-docs-08-errata.md) describes the companion correction.

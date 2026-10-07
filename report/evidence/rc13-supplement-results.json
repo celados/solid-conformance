@@ -1,0 +1,117 @@
+{
+  "baseline": "2.0.0-rc.13",
+  "results": [
+    {
+      "id": "011",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "009",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "011",
+      "mode": "production",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "009",
+      "mode": "production",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "016",
+      "mode": "development",
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0
+    },
+    {
+      "id": "016",
+      "mode": "production",
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0
+    },
+    {
+      "id": "020",
+      "mode": "development",
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0
+    },
+    {
+      "id": "014",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "020",
+      "mode": "observe",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "022",
+      "mode": "development",
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0
+    },
+    {
+      "id": "022",
+      "mode": "production",
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0
+    },
+    {
+      "id": "014",
+      "mode": "production",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "032",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "032",
+      "mode": "production",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "029",
+      "mode": "development",
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0
+    },
+    {
+      "id": "029",
+      "mode": "production",
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0
+    }
+  ]
+}

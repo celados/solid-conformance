@@ -21,7 +21,6 @@ bun init -y
 bun add solid-js@2.0.0-rc.13 @solidjs/web@2.0.0-rc.13 @solidjs/signals@2.0.0-rc.13 @solidjs/compiler@2.0.0-rc.13 @solidjs/diagnostics@2.0.0-rc.13
 bun add -d playwright
 bun run link-head.ts /absolute/path/to/built/solid
-bun add seroval@1.6.8
 BUILD_MODE=development bun test ./repro.test.ts ./live.test.ts
 ```
 
@@ -32,11 +31,11 @@ import {test,expect} from "bun:test";
 import {resolve} from "node:path";
 import {rm} from "node:fs/promises";
 import {build,type BuildMode} from './build';
-test("RFC10 dying body rejects an open iterator pull",async()=>{
+for(const death of ["error","eof"])test("RFC10 dying body rejects an open iterator pull: "+death,async()=>{
  const dir=resolve(".build","finding035-"+process.pid);
  try{
   await build(dir,(process.env.BUILD_MODE??"development") as BuildMode,{client:[],server:["./server.ts"]});
-  const module=await import(dir+"/server.js"),result=await module.run();
+  const module=await import(dir+"/server.js"),result=await module.run(death);
   expect(result.first).toEqual({done:false,value:"first"});expect(result.transportFailed).toBe(true);
   expect(result.outcome.outcome).toBe("rejected");
  }finally{await rm(dir,{recursive:true,force:true})}
@@ -318,6 +317,8 @@ A dropped live response should reconnect; a non-live iterator pull should reject
 
 The suspected shared cause is decoded-stream classification, not transport death alone. The JSON decoder recognizes streams via `__SEROVAL_STREAM__`; Seroval 1.6.8's JSON `Stream` class lacks that property. The same classification feeds both the abort sweep and the open-deferred count. The live loop treats a body ending with zero open deferreds as completion. That explains both pending pulls and `connected, closed` instead of `reconnecting`. This has not been confirmed by patching the runtime. The TCP repro below retains an unfinished producer and an origin that remains available; it does not simulate a clean server shutdown.
 
+The linked HEAD checkout supplies Seroval 1.6.8 (recorded in the upstream build dependency log). Installing Seroval in the consumer does not override that linked dependency.
+
 ## Versions and builds
 
 Verified on Solid HEAD `dafad1db34626feb5f154e98e599f65be1802c6c`: 014: development, production; 035: development, production, observe.
@@ -328,7 +329,7 @@ Comparison: 014: rc.13 also fails the named contract; 035: rc.13 also fails the 
 
 [#3819](https://github.com/solidjs/solid/issues/3819), [#3125](https://github.com/solidjs/solid/issues/3125), [#3244](https://github.com/solidjs/solid/issues/3244), [#3232](https://github.com/solidjs/solid/issues/3232)
 
-Local evidence: [finding 014](../../findings/014-live-drop-completes/README.md). Local evidence: [finding 035](../../findings/035-decoder-iterator-body-death/README.md).
+Local validation (review only; omit when filing): [finding 014](../../findings/014-live-drop-completes/README.md). Local validation (review only; omit when filing): [finding 035](../../findings/035-decoder-iterator-body-death/README.md).
 
 ### `link-head.ts`
 
@@ -354,3 +355,5 @@ for (const [name, folder] of [
 }
 console.log('Linked the five matching HEAD packages from ' + root)
 ```
+
+Local baseline validation (review only): [rc.13 014 logs](../evidence/014-rc13-development-supplement.log), plus the corresponding production log.

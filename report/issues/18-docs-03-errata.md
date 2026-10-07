@@ -21,7 +21,9 @@ The following published contracts disagree with the public API. Each item identi
 
 **Versions/builds:** dafad1db34626feb5f154e98e599f65be1802c6c, public types; rc.13 also contradicts the same contract. HEAD-only regression: no.
 
-**Evidence:** [minimal failing test and related issues](../../findings/030-effect-error-signature/README.md).
+**Local validation (review only):** [minimal failing test and related issues](../../findings/030-effect-error-signature/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
 
 ## 041 — Hydration still evaluates the dynamic callback
 
@@ -33,4 +35,6 @@ The following published contracts disagree with the public API. Each item identi
 
 **Versions/builds:** dafad1db34626feb5f154e98e599f65be1802c6c, development and production; rc.13 also contradicts the same contract. HEAD-only regression: no.
 
-**Evidence:** [minimal failing test and related issues](../../findings/041-dynamic-source-tracking/README.md).
+**Local validation (review only):** [minimal failing test and related issues](../../findings/041-dynamic-source-tracking/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.

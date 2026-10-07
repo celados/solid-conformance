@@ -214,7 +214,7 @@ Comparison: 029: rc.13 passes the same case. The original snapshot was `53ef0e69
 
 [#2706](https://github.com/solidjs/solid/issues/2706), [#2829](https://github.com/solidjs/solid/issues/2829), [#3524](https://github.com/solidjs/solid/issues/3524)
 
-Local evidence: [finding 029](../../findings/029-latest-loading-convergence/README.md).
+Local validation (review only; omit when filing): [finding 029](../../findings/029-latest-loading-convergence/README.md).
 
 ### `link-head.ts`
 
@@ -240,3 +240,5 @@ for (const [name, folder] of [
 }
 console.log('Linked the five matching HEAD packages from ' + root)
 ```
+
+Local baseline validation (review only): [rc.13 029 logs](../evidence/029-rc13-development-supplement.log), plus the corresponding production log.

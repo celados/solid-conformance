@@ -25,3 +25,5 @@ BUILD_MODE=production NO_TREE_SHAKE=1 bun test ./findings/016-production-store-a
 缩减：没有 DOM、Loading、isPending、effect、异步源、gate、optimistic write；只保留 root、createStore、action 和 affects(store, 'n')。
 
 去重：搜索 solid、solid-router、solid-start 的 open 与 closed issues 的 affects production、affects store、storeMarks，相关 #2887 是 beta.18 的 first-statement mark witnessing/生命周期故障，已在 #2888 修复；它需要 live For 与后续 optimistic write，且没有生产 bundle 抛错。本例无需任何 reader，根因是注册模块被摇掉。没有上游写入。
+
+Wave 4a 独立 rc.13 补验：development 1 pass / 0 fail；production 1 pass / 0 fail。原始日志在 report/evidence/016-rc13-*-supplement.log；报告版本陈述以此为准。

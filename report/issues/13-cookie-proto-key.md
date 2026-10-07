@@ -155,7 +155,7 @@ Comparison: 026: rc.13 also fails the named contract. The original snapshot was 
 
 [#3239](https://github.com/solidjs/solid/issues/3239)
 
-Local evidence: [finding 026](../../findings/026-cookie-proto-key/README.md).
+Local validation (review only; omit when filing): [finding 026](../../findings/026-cookie-proto-key/README.md).
 
 ### `link-head.ts`
 

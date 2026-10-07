@@ -27,3 +27,5 @@ A public frame host applies three records: start, one HTML fragment with its end
 ## Dedupe
 
 Searched open and closed issues in solidjs/solid, solidjs/solid-router, and solidjs/solid-start for `FRAME_MARKER_CORRUPTED`, `frame marker corruption`, and `observe slot markers`. Only the broad solid query matched #2830 (adjacent JSX expression DOM migration) and #2871 (SSR Reveal membership and fragment replacement); their reported mechanisms do not concern missing frame diagnostics in Observe. Existing local findings also contain no such case. The raw search summary and the two build results are retained beside this repro.
+
+Wave 4a 独立 rc.13 补验：development 1 pass / 0 fail；observe 0 pass / 1 fail。原始日志在 report/evidence/020-rc13-*-supplement.log；报告版本陈述以此为准。

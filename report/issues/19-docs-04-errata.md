@@ -21,4 +21,6 @@ The following published contracts disagree with the public API. Each item identi
 
 **Versions/builds:** dafad1db34626feb5f154e98e599f65be1802c6c, development and production browser exports; rc.13 also contradicts the same contract. HEAD-only regression: no.
 
-**Evidence:** [minimal failing test and related issues](../../findings/006-storepath-export/README.md).
+**Local validation (review only):** [minimal failing test and related issues](../../findings/006-storepath-export/README.md).
+
+**Related upstream:** [#3092](https://github.com/solidjs/solid/issues/3092)

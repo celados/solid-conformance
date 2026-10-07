@@ -25,4 +25,6 @@ BUILD_MODE=production bun test ./findings/011-frame-multisite-hydration/repro.te
 
 移除了 router、query、preload、导航、actions、参数变化、外层 article、slot args 与显式 `$key`。剩余一个 Promise memo、一个 dynamic factory、两个调用点和一个共享 Counter。删掉任何一个调用点即恢复单挂载；同一测试先跑 CSR 作为可重复 factory 的正对照。
 
-在 solid、solid-router、solid-start 搜索时没有限定 state，因此同时检查了 open/closed。读了 solid#3849、#3813 的 consistency 索引和 solid#2973：#2973 是 args-bearing address 与 wire-id 前缀不一致；本例没有参数仍失败。#3813/C18 的延迟 record 分类与本例已完整到达的两个挂载不同。完整查询摘要在 evidence/wave3-finding011-dedupe.json。rc.13 比较待主线程统一恢复 baseline 后执行，未声称已测。
+在 solid、solid-router、solid-start 搜索时没有限定 state，因此同时检查了 open/closed。读了 solid#3849、#3813 的 consistency 索引和 solid#2973：#2973 是 args-bearing address 与 wire-id 前缀不一致；本例没有参数仍失败。#3813/C18 的延迟 record 分类与本例已完整到达的两个挂载不同。完整查询摘要在 evidence/wave3-finding011-dedupe.json。
+
+Wave 4a 独立 rc.13 补验：development 0 pass / 1 fail；production 0 pass / 1 fail。原始日志在 report/evidence/011-rc13-*-supplement.log；报告版本陈述以此为准。

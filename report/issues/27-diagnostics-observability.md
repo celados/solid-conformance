@@ -19,11 +19,13 @@ Public contract: [RFC08 at the tested commit](https://github.com/solidjs/solid/b
 
 **Observed:** createSignal(0) inside onSettled returns normally with an empty diagnostics channel.
 
-**Suggested resolution:** Implementation likely omits the promised leaf-scope guard for ordinary signals, or documentation must explicitly exclude them.
+**Suggested resolution:** Documentation is likely too broad: restrict the prohibition to primitives with a computation lifecycle. Plain createSignal does not create such a computation; derived signals and memos have the guard. A blanket prohibition would instead require an additional signal guard.
 
 **Builds / severity / regression:** development; low; no demonstrated HEAD-only regression.
 
-**Repro and related issues:** [finding 010](../../findings/010-leaf-signal-diagnostic/README.md).
+**Local validation (review only):** [finding 010](../../findings/010-leaf-signal-diagnostic/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
 
 ## 012 — Development attribution pays for folds without an audience
 
@@ -35,7 +37,9 @@ Public contract: [RFC08 at the tested commit](https://github.com/solidjs/solid/b
 
 **Builds / severity / regression:** development; observe control passes; med; no demonstrated HEAD-only regression.
 
-**Repro and related issues:** [finding 012](../../findings/012-attribution-audience-gate/README.md).
+**Local validation (review only):** [finding 012](../../findings/012-attribution-audience-gate/README.md).
+
+**Related upstream:** [#2883](https://github.com/solidjs/solid/issues/2883), [#3754](https://github.com/solidjs/solid/issues/3754)
 
 ## 017 — Initial render failure is missing from diagnostics and render records
 
@@ -47,7 +51,9 @@ Public contract: [RFC08 at the tested commit](https://github.com/solidjs/solid/b
 
 **Builds / severity / regression:** development and observe; med; no demonstrated HEAD-only regression (rc.13 lacks the positive-control hook, so its failure is not the same defect).
 
-**Repro and related issues:** [finding 017](../../findings/017-initial-render-error-record/README.md).
+**Local validation (review only):** [finding 017](../../findings/017-initial-render-error-record/README.md).
+
+**Related upstream:** [#3723](https://github.com/solidjs/solid/issues/3723)
 
 ## 019 — Post-await action writes are stamped external
 
@@ -59,19 +65,23 @@ Public contract: [RFC08 at the tested commit](https://github.com/solidjs/solid/b
 
 **Builds / severity / regression:** development and observe; low; no demonstrated HEAD-only regression.
 
-**Repro and related issues:** [finding 019](../../findings/019-action-await-origin/README.md).
+**Local validation (review only):** [finding 019](../../findings/019-action-await-origin/README.md).
+
+**Related upstream:** [#3754](https://github.com/solidjs/solid/issues/3754)
 
 ## 020 — Missing slot marker is not reported in observe
 
 **Quote:** “Finding (`error`, observe + dev) on the **client**” ([RFC08:625](https://github.com/solidjs/solid/blob/dafad1db34626feb5f154e98e599f65be1802c6c/documentation/solid-2.0/08-dev-diagnostics.md#L625)).
 
-**Observed:** Removing a slot end marker produces FRAME_MARKER_MISSING in development but no error finding in observe.
+**Observed:** Removing a slot end marker produces FRAME_MARKER_CORRUPTED in development but no error finding in observe.
 
 **Suggested resolution:** Implementation likely gates the frames corruption check too narrowly. Keep the error finding in observe as promised, or explicitly change that tier contract.
 
 **Builds / severity / regression:** observe; development control passes; med; no demonstrated HEAD-only regression.
 
-**Repro and related issues:** [finding 020](../../findings/020-observe-frame-corruption/README.md).
+**Local validation (review only):** [finding 020](../../findings/020-observe-frame-corruption/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
 
 ## 021 — Recovery joins an error boundary, not client outcome
 
@@ -83,7 +93,9 @@ Public contract: [RFC08 at the tested commit](https://github.com/solidjs/solid/b
 
 **Builds / severity / regression:** development and observe; low; no demonstrated HEAD-only regression.
 
-**Repro and related issues:** [finding 021](../../findings/021-recovery-boundary-outcome/README.md).
+**Local validation (review only):** [finding 021](../../findings/021-recovery-boundary-outcome/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
 
 ## 023 — Returned async helper is diagnosed after await
 
@@ -95,7 +107,9 @@ Public contract: [RFC08 at the tested commit](https://github.com/solidjs/solid/b
 
 **Builds / severity / regression:** development; production control is quiet; low; no demonstrated HEAD-only regression.
 
-**Repro and related issues:** [finding 023](../../findings/023-returned-helper-diagnostic/README.md).
+**Local validation (review only):** [finding 023](../../findings/023-returned-helper-diagnostic/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
 
 ## 025 — Async fan-out finding labels invalidation as write
 
@@ -107,7 +121,9 @@ Public contract: [RFC08 at the tested commit](https://github.com/solidjs/solid/b
 
 **Builds / severity / regression:** development and observe; low; no demonstrated HEAD-only regression.
 
-**Repro and related issues:** [finding 025](../../findings/025-async-fanout-classification/README.md).
+**Local validation (review only):** [finding 025](../../findings/025-async-fanout-classification/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
 
 ## 028 — Artifact format documentation says v7
 
@@ -119,7 +135,9 @@ Public contract: [RFC08 at the tested commit](https://github.com/solidjs/solid/b
 
 **Builds / severity / regression:** development and observe; low; no demonstrated HEAD-only regression.
 
-**Repro and related issues:** [finding 028](../../findings/028-artifact-format-version/README.md).
+**Local validation (review only):** [finding 028](../../findings/028-artifact-format-version/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
 
 ## 033 — SSR skips Symbol without promised warning
 
@@ -131,7 +149,9 @@ Public contract: [RFC08 at the tested commit](https://github.com/solidjs/solid/b
 
 **Builds / severity / regression:** development; production control passes; low; no demonstrated HEAD-only regression.
 
-**Repro and related issues:** [finding 033](../../findings/033-symbol-insert-diagnostic/README.md).
+**Local validation (review only):** [finding 033](../../findings/033-symbol-insert-diagnostic/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
 
 ## 039 — Server-Timing disappears when resource timing never arrives
 
@@ -143,7 +163,9 @@ Public contract: [RFC08 at the tested commit](https://github.com/solidjs/solid/b
 
 **Builds / severity / regression:** development and observe; production has no performance tracks; med; no demonstrated HEAD-only regression.
 
-**Repro and related issues:** [finding 039](../../findings/039-missing-resource-timing-fallback/README.md).
+**Local validation (review only):** [finding 039](../../findings/039-missing-resource-timing-fallback/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
 
 ## 040 — Initial binding diagnostic lacks its element console argument
 
@@ -155,7 +177,9 @@ Public contract: [RFC08 at the tested commit](https://github.com/solidjs/solid/b
 
 **Builds / severity / regression:** development console only; low; no demonstrated HEAD-only regression.
 
-**Repro and related issues:** [finding 040](../../findings/040-initial-binding-console/README.md).
+**Local validation (review only):** [finding 040](../../findings/040-initial-binding-console/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
 
 ## 042 — Malformed crossorigin is not validated as stated
 
@@ -167,7 +191,9 @@ Public contract: [RFC08 at the tested commit](https://github.com/solidjs/solid/b
 
 **Builds / severity / regression:** development; production control passes; low; no demonstrated HEAD-only regression.
 
-**Repro and related issues:** [finding 042](../../findings/042-malformed-preload-crossorigin/README.md).
+**Local validation (review only):** [finding 042](../../findings/042-malformed-preload-crossorigin/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
 
 ## 051 — Unnamed attribution node does not fall back to owner id
 
@@ -179,7 +205,9 @@ Public contract: [RFC08 at the tested commit](https://github.com/solidjs/solid/b
 
 **Builds / severity / regression:** development; low; no demonstrated HEAD-only regression.
 
-**Repro and related issues:** [finding 051](../../findings/051-unnamed-attribution-owner-id/README.md).
+**Local validation (review only):** [finding 051](../../findings/051-unnamed-attribution-owner-id/README.md).
+
+**Related upstream:** [#3063](https://github.com/solidjs/solid/issues/3063)
 
 ## 054 — Prearrived rejection still has nonzero recovery wait
 
@@ -191,7 +219,9 @@ Public contract: [RFC08 at the tested commit](https://github.com/solidjs/solid/b
 
 **Builds / severity / regression:** development and observe; low; no demonstrated HEAD-only regression.
 
-**Repro and related issues:** [finding 054](../../findings/054-prearrived-recovery-wait/README.md).
+**Local validation (review only):** [finding 054](../../findings/054-prearrived-recovery-wait/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
 
 ## Versions
 

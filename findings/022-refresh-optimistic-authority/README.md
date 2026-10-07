@@ -21,3 +21,5 @@ bun test ./findings/022-refresh-optimistic-authority/repro.test.ts
 缩减：没有 DOM、Loading、effect、until、gate、store 或其他 async source；只保留一个固定返回 Promise.resolve(2) 的 createOptimistic、一次 write(99)、yield refresh(read)。首次 resolve 只使程序在合法 settled 初态开始，root/dispose 只负责生命周期清理。去掉 optimistic write 后应返回 2。
 
 去重：在 solid、solid-router、solid-start 的 open 与 closed issues 搜索 refresh optimistic override、refresh authority、refresh staged，无结果。没有上游写入。
+
+Wave 4a 独立 rc.13 补验：development 1 pass / 0 fail；production 1 pass / 0 fail。原始日志在 report/evidence/022-rc13-*-supplement.log；报告版本陈述以此为准。

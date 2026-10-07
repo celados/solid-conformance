@@ -21,7 +21,9 @@ The following published contracts disagree with the public API. Each item identi
 
 **Versions/builds:** dafad1db34626feb5f154e98e599f65be1802c6c, development and production; rc.13 also contradicts the same contract. HEAD-only regression: no.
 
-**Evidence:** [minimal failing test and related issues](../../findings/013-pinned-source-retake/README.md).
+**Local validation (review only):** [minimal failing test and related issues](../../findings/013-pinned-source-retake/README.md).
+
+**Related upstream:** [#3612](https://github.com/solidjs/solid/issues/3612)
 
 ## 046 — Hold invariance is too broad for store draft writes
 
@@ -33,4 +35,6 @@ The following published contracts disagree with the public API. Each item identi
 
 **Versions/builds:** dafad1db34626feb5f154e98e599f65be1802c6c, development and production; rc.13 also contradicts the same contract. HEAD-only regression: no.
 
-**Evidence:** [minimal failing test and related issues](../../findings/046-held-derived-store-seed/README.md).
+**Local validation (review only):** [minimal failing test and related issues](../../findings/046-held-derived-store-seed/README.md).
+
+**Related upstream:** [#3612](https://github.com/solidjs/solid/issues/3612)

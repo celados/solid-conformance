@@ -248,7 +248,7 @@ Comparison: 009: rc.13 also fails the named contract. The original snapshot was 
 
 [#2965](https://github.com/solidjs/solid/issues/2965), [#2974](https://github.com/solidjs/solid/issues/2974), [#2966](https://github.com/solidjs/solid/issues/2966)
 
-Local evidence: [finding 009](../../findings/009-frame-nested-region-stale/README.md).
+Local validation (review only; omit when filing): [finding 009](../../findings/009-frame-nested-region-stale/README.md).
 
 ### `link-head.ts`
 
@@ -274,3 +274,5 @@ for (const [name, folder] of [
 }
 console.log('Linked the five matching HEAD packages from ' + root)
 ```
+
+Local baseline validation (review only): [rc.13 009 logs](../evidence/009-rc13-development-supplement.log), plus the corresponding production log.

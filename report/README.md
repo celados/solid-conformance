@@ -37,6 +37,7 @@ Review **27 proposals** covering **47 findings**: 15 runtime issues (16 A findin
 ## Review aids
 
 - [TRIAGE.md](TRIAGE.md): impact, severity, HEAD-only flag, exact failing builds and grouping rationale.
+- [Independent review resolutions](evidence/review-resolution.md): corrections, supplementary baseline checks and scope decisions.
 - [Recheck results](evidence/recheck-results.json): every current build execution, including green controls.
 - Runtime drafts contain every source file inline. Matching executable copies are in [repros/](repros/), independent of the conformance harness. Infrastructure/build code is included to avoid mixing SSR, browser and production exports or compiling JSX as React.
 - 014/035 are grouped on a suspected shared classifier; no runtime patch was applied to prove causality. Other A items are intentionally separate.

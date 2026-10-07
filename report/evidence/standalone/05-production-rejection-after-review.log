@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+Observed rejection: TypeError: GlobalQueue.O is not a function. (In 'GlobalQueue.O(n, t)', 'GlobalQueue.O' is undefined)
+
+repro.test.ts:
+ 7 |  for(const name of ['solid-js','@solidjs/signals']){const path=await realpath(resolve('node_modules',name));packages.set(name,{path,exports:(await Bun.file(path+'/package.json').json()).exports})}
+ 8 |  const outdir=resolve('.build/finding016')
+ 9 |  const result=await Bun.build({entrypoints:[resolve('./module.ts')],outdir,target:'bun',treeShaking:process.env.NO_TREE_SHAKE!=='1',ignoreDCEAnnotations:process.env.NO_TREE_SHAKE==='1',plugins:[{name:'actual-browser-development',setup(builder){builder.onResolve({filter:/^(solid-js|@solidjs\/signals)$/},args=>{const pkg=packages.get(args.path)!;const entry=pkg.exports['.'];const browser=entry.browser??entry;const dev=browser[process.env.BUILD_MODE??'production']??browser.default;return{path:resolve(pkg.path,typeof dev==='string'?dev:dev.import??dev.default)}})}}]})
+10 |  expect(result.success).toBe(true)
+11 |  const runtime=await import(outdir+'/module.js')
+12 |  const pending=runtime.run();pending.catch((error:unknown)=>console.log('Observed rejection:',String(error)));await expect(pending).resolves.toBeUndefined()
+                                                                                                                                                  ^
+error: expect(received).resolves.toBeUndefined()
+
+Expected promise that resolves
+Received promise that rejected: Promise { <rejected> }
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a/.scratch/report-inline-verification/05-production-store-affects/repro.test.ts:12:142)
+(fail) RFC 06 production affects(store,key) must not throw [15.30ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [25.00ms]

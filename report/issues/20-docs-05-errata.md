@@ -17,11 +17,13 @@ The following published contracts disagree with the public API. Each item identi
 
 **Observed:** With `on={() => { id(); return 1; }}`, changing id while a replacement request is pending retains prior content. `on={id()}` supplies a reactive dependency instead.
 
-**Proposed correction:** Documentation example is likely wrong for compiled JSX: use a reactive expression and remove the promise that Loading automatically invokes an arbitrary zero-argument function value.
+**Proposed correction:** The immediate example correction is on={id()}, matching current compiled value-prop behavior. The quoted zero-argument-accessor definition is normative, so restoring accessor unwrapping is another valid implementation-side resolution; the repro does not establish that the present behavior is intentional.
 
 **Versions/builds:** dafad1db34626feb5f154e98e599f65be1802c6c, development and production; rc.13 also contradicts the same contract. HEAD-only regression: no.
 
-**Evidence:** [minimal failing test and related issues](../../findings/007-loading-on-accessor/README.md).
+**Local validation (review only):** [minimal failing test and related issues](../../findings/007-loading-on-accessor/README.md).
+
+**Related upstream:** [#3728](https://github.com/solidjs/solid/issues/3728), [#3524](https://github.com/solidjs/solid/issues/3524)
 
 ## 048 — A new Loading can read a held committed value
 
@@ -33,7 +35,9 @@ The following published contracts disagree with the public API. Each item identi
 
 **Versions/builds:** dafad1db34626feb5f154e98e599f65be1802c6c, development and production; rc.13 also contradicts the same contract. HEAD-only regression: no.
 
-**Evidence:** [minimal failing test and related issues](../../findings/048-first-loading-held-signal/README.md).
+**Local validation (review only):** [minimal failing test and related issues](../../findings/048-first-loading-held-signal/README.md).
+
+**Related upstream:** No matching issue identified in the recorded open/closed searches.
 
 ## 052 — transparent also changes SSR slots
 
@@ -45,4 +49,6 @@ The following published contracts disagree with the public API. Each item identi
 
 **Versions/builds:** dafad1db34626feb5f154e98e599f65be1802c6c, development and production SSR; rc.13 also contradicts the same contract. HEAD-only regression: no.
 
-**Evidence:** [minimal failing test and related issues](../../findings/052-transparent-ssr-slot/README.md).
+**Local validation (review only):** [minimal failing test and related issues](../../findings/052-transparent-ssr-slot/README.md).
+
+**Related upstream:** [#3012](https://github.com/solidjs/solid/issues/3012), [#3609](https://github.com/solidjs/solid/issues/3609)

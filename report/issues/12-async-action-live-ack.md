@@ -55,7 +55,7 @@ Comparison: 053: rc.13 passes the same case. The original snapshot was `53ef0e69
 
 [#3687](https://github.com/solidjs/solid/issues/3687)
 
-Local evidence: [finding 053](../../findings/053-await-send-until-context/README.md).
+Local validation (review only; omit when filing): [finding 053](../../findings/053-await-send-until-context/README.md).
 
 ### `link-head.ts`
 

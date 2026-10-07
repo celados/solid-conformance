@@ -1,0 +1,35 @@
+{
+  "results": [
+    {
+      "name": "04-live-decoder-stream-lifetime",
+      "env": {
+        "BUILD_MODE": "development"
+      },
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 2,
+      "log": "report/evidence/standalone/04-body-death-after-review.log"
+    },
+    {
+      "name": "05-production-store-affects",
+      "env": {
+        "BUILD_MODE": "production"
+      },
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/standalone/05-production-rejection-after-review.log"
+    },
+    {
+      "name": "05-production-store-affects",
+      "env": {
+        "BUILD_MODE": "production",
+        "NO_TREE_SHAKE": "1"
+      },
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/standalone/05-no-tree-shake-after-review.log"
+    }
+  ]
+}

@@ -1473,7 +1473,7 @@
       ],
       "upstream": [],
       "tier": "A",
-      "severity": "low",
+      "severity": "med",
       "impact": "A synchronous lazy asset resolver error aborts otherwise renderable SSR.",
       "regression": "no",
       "builds": [
@@ -1724,7 +1724,7 @@
         "https://github.com/solidjs/solid/issues/3134"
       ],
       "tier": "A",
-      "severity": "low",
+      "severity": "med",
       "impact": "A conditional GET yields undefined instead of the browser cached result.",
       "regression": "no",
       "builds": [

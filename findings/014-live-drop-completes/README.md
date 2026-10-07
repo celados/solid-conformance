@@ -28,3 +28,5 @@ Removed Loading, createMemo, frames installation, custom fetch, prepareRequest, 
 ## Dedupe
 
 Searched open and closed issues in solid, solid-router, and solid-start for `live reconnect`, `live connection`, and `live completed`. The related open #3819 is about per-scope hydration takeover of a server value which is still streaming; this program is CSR and starts a fresh HTTP subscription. No matching established issue was found. The rc.13 result is recorded in the wave receipt after running the isolated comparison checkout.
+
+Wave 4a 独立 rc.13 补验：development 0 pass / 1 fail；production 0 pass / 1 fail。原始日志在 report/evidence/014-rc13-*-supplement.log；报告版本陈述以此为准。

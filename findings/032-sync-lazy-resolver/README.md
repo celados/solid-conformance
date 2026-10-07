@@ -23,4 +23,6 @@ BUILD_MODE=production bun test ./findings/032-sync-lazy-resolver/repro.test.ts
 
 ## 去重
 
-三仓 solid、solid-router、solid-start 搜索 `lazy asset resolver` 与 `LAZY_ASSET_UNMAPPED`，不限制 issue state，均无结果；现有 ledger 无同类。查询结果与 dev/prod 红日志在 evidence/wave3-finding032-*。rc.13 比较由主线程统一执行。
+三仓 solid、solid-router、solid-start 搜索 `lazy asset resolver` 与 `LAZY_ASSET_UNMAPPED`，不限制 issue state，均无结果；现有 ledger 无同类。查询结果与 dev/prod 红日志在 evidence/wave3-finding032-*。
+
+Wave 4a 独立 rc.13 补验：development 0 pass / 1 fail；production 0 pass / 1 fail。原始日志在 report/evidence/032-rc13-*-supplement.log；报告版本陈述以此为准。
