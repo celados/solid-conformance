@@ -3,7 +3,7 @@ import {isServer,isDev,render,renderToString,renderToStream,dynamic,useHead,type
 import {equal,ok,type DocCase} from './registry'
 import {ticks,deferred} from '../../harness/timing'
 const cases: DocCase[] = []
-function doc(id:string,statement:string,run:DocCase['run']) {cases.push({id:'08/server-diagnostic-'+id,file:'08-diagnostics.md',statement,run})}
+function doc(id:string,statement:string,run:DocCase['run']) {cases.push({id:'08/server-diagnostic-'+id,file:'08-dev-diagnostics.md',statement,run})}
 async function capture(code:string,positive:boolean,run:()=>unknown|Promise<unknown>,count=1) {
   const session = OBSERVE?.diagnostics.capture()
   const warn=console.warn,error=console.error,info=console.info
