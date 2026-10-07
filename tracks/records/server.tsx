@@ -29,3 +29,7 @@ export {traceCases,traceWireCases} from './trace-cases'
 
 import {captureArtifact} from '@solidjs/diagnostics'
 export async function artifactCase(){if(!OBSERVE)return null;return (await captureArtifact(serverCases,{scenario:'server-actual-runtime',attribution:{log:false,checks:false}})).artifact}
+
+import {createSSRResponse} from '@solidjs/web'
+import {provideRequestEvent} from '@solidjs/web/storage'
+export function performanceDocument(request:Request){const event=createRequestEvent(request);return provideRequestEvent(event,()=>{function Page(){const data=createMemo(()=>new Promise<string>(r=>setTimeout(()=>r('ready'),5)),{deferStream:true});return <Loading fallback="pending"><b>{data()}</b></Loading>};return createSSRResponse(renderToStream(()=><html><head/><body><Page/><script type="module" src="/server-performance-client.js"/></body></html>),event)})}

@@ -1,0 +1,10 @@
+import {test,expect} from 'bun:test'
+import {chromium} from 'playwright'
+import {build,type BuildMode} from '../../scripts/build'
+import {resolve} from 'node:path'
+import {rm} from 'node:fs/promises'
+test('RFC08 L16–18: compiled JSX diagnostic reports point to their DOM binding element',async()=>{
+ const mode=(process.env.BUILD_MODE??'development') as BuildMode,dir=resolve('.build','console-binding-'+process.pid+'-'+mode);await build(dir,mode,{client:['tracks/docs/console-binding.tsx'],server:[]})
+ const server=Bun.serve({port:0,fetch:r=>new URL(r.url).pathname.endsWith('.js')?new Response(Bun.file(dir+'/console-binding.js'),{headers:{'content-type':'text/javascript'}}):new Response('<div id="root"></div><script type="module" src="/console-binding.js"></script>',{headers:{'content-type':'text/html'}})}),browser=await chromium.launch({channel:'chrome',headless:true})
+ try{const page=await browser.newPage();await page.goto(String(server.url));await page.waitForFunction(()=>!!(window as any).bindingConsole);const result=await page.evaluate(()=>(window as any).bindingConsole.run());await Bun.write('artifacts/console-binding-'+mode+'.json',JSON.stringify(result,null,2));if(mode!=='development'){expect(result.reports).toEqual([]);if(mode==='production')expect(result.events).toEqual([]);else expect(result.events.length).toBeGreaterThanOrEqual(6);return}expect(result.events.length).toBeGreaterThanOrEqual(6);for(const binding of ['attribute','class','style','classMap','spread','insert'])expect(result.reports.some((r:any)=>r.element===binding)).toBe(true);expect(result.reports.some((r:any)=>r.message.includes('attribution.enable()')&&r.message.includes('@solidjs/diagnostics/skills/agent-loops/SKILL.md'))).toBe(true);for(const event of result.events){expect(event.ownerPath[0]).toBe('<App>');expect(result.reports.some((r:any)=>r.message.includes(event.ownerPath.join(' › ')))).toBe(true)}}finally{await browser.close();server.stop(true);await rm(dir,{recursive:true,force:true})}
+},60000)

@@ -1,5 +1,6 @@
 import {test,expect} from 'bun:test'
 import {transform,transformSourceNames} from '@solidjs/compiler'
+import {dirname} from 'node:path'
 
 test('08-dev-diagnostics.md: sourceNames components and bindings preserve the source site in DOM and SSR output',()=>{
   const input='const Home = () => null; const Page = () => <><Home/><section class={style()}>{count()}</section></>'
@@ -9,6 +10,11 @@ test('08-dev-diagnostics.md: sourceNames components and bindings preserve the so
     expect(named).toContain('"Home"');expect(unnamed).not.toContain('"Home"')
     if(generate==='dom') {expect(named).toContain('name: "section.children"');expect(named).toContain('name: "section.class"');expect(unnamed).not.toContain('name: "section.class"')}
   }
+})
+test('RFC08 L16: Babel and native JSX compilers share sourceNames components/bindings controls',async()=>{
+ const core=await import(Bun.resolveSync('@babel/core',dirname(Bun.resolveSync('@solidjs/babel-plugin',process.cwd())))),plugin=await import('@solidjs/babel-plugin')
+ const source='const Home=()=>null;const View=()=> <><Home/><section class={style()}>{count()}</section></>'
+ for(const names of [true,false]){const result=core.transformSync(source,{filename:'site.jsx',configFile:false,babelrc:false,plugins:[[plugin.default,{generate:'dom',dev:true,moduleName:'@solidjs/web',sourceNames:names}]]}).code;expect(result.includes('"Home"')).toBe(names);expect(result.includes('name: "section.class"')).toBe(names);expect(result.includes('name: "section.children"')).toBe(names)}
 })
 test('08-dev-diagnostics.md: primitive naming is a standalone transformSourceNames pass for ts/js modules, preserving explicit names',()=>{
   const input='import {createSignal, createMemo} from "solid-js"; const [count,setCount]=createSignal(0);const doubled=createMemo(()=>count()*2);function createCounter(){const [value,set]=createSignal(1);return value};const explicit=createMemo(()=>count(),{name:"manual"})'
