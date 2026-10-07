@@ -871,5 +871,68 @@
     "coverage": [
       "08/server-road-explicit-component-owner-path"
     ]
+  },
+  {
+    "id": "08-dev-diagnostics:L665:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/undeclared-source.test.ts"
+    ],
+    "reason": "实际 document ServerComponent 第一值17且保持5.3秒未end；dev唯一ssr/warn afterMs5000与命名owner；Observe/prod静默。live声明document首值后closed/end，standing frame保持打开静默；测试producer正常完成后各源closed1。"
+  },
+  {
+    "id": "08-dev-diagnostics:L665:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/undeclared-source.test.ts"
+    ],
+    "reason": "实际 document ServerComponent 第一值17且保持5.3秒未end；dev唯一ssr/warn afterMs5000与命名owner；Observe/prod静默。live声明document首值后closed/end，standing frame保持打开静默；测试producer正常完成后各源closed1。"
+  },
+  {
+    "id": "08-dev-diagnostics:L665:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/undeclared-source.test.ts"
+    ],
+    "reason": "实际 document ServerComponent 第一值17且保持5.3秒未end；dev唯一ssr/warn afterMs5000与命名owner；Observe/prod静默。live声明document首值后closed/end，standing frame保持打开静默；测试producer正常完成后各源closed1。"
+  },
+  {
+    "id": "08-dev-diagnostics:L665:5",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/undeclared-source.test.ts"
+    ],
+    "reason": "实际 document ServerComponent 第一值17且保持5.3秒未end；dev唯一ssr/warn afterMs5000与命名owner；Observe/prod静默。live声明document首值后closed/end，standing frame保持打开静默；测试producer正常完成后各源closed1。"
+  },
+  {
+    "id": "08-dev-diagnostics:L665:6",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/undeclared-source.test.ts"
+    ],
+    "reason": "实际 document ServerComponent 第一值17且保持5.3秒未end；dev唯一ssr/warn afterMs5000与命名owner；Observe/prod静默。live声明document首值后closed/end，standing frame保持打开静默；测试producer正常完成后各源closed1。"
+  },
+  {
+    "id": "08-dev-diagnostics:L665:7",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/undeclared-source.test.ts"
+    ],
+    "reason": "实际 document ServerComponent 第一值17且保持5.3秒未end；dev唯一ssr/warn afterMs5000与命名owner；Observe/prod静默。live声明document首值后closed/end，standing frame保持打开静默；测试producer正常完成后各源closed1。"
+  },
+  {
+    "id": "08-dev-diagnostics:L665:8",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/undeclared-source.test.ts"
+    ],
+    "reason": "实际 document ServerComponent 第一值17且保持5.3秒未end；dev唯一ssr/warn afterMs5000与命名owner；Observe/prod静默。live声明document首值后closed/end，standing frame保持打开静默；测试producer正常完成后各源closed1。"
   }
 ]
