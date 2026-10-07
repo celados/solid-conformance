@@ -537,9 +537,11 @@
     {
       "id": "08-dev-diagnostics:L150:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-loading-displayahead-controls"
+      ],
+      "reason": "实际server counter与Chrome hydration/no-handler行为、call-hole负对照或对应primitive矩阵精确断言。"
     },
     {
       "id": "08-dev-diagnostics:L150:2",
@@ -817,11 +819,11 @@
     {
       "id": "08-dev-diagnostics:L273:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/diagnostic-invalid_refresh_target"
+        "08/primitive-refresh-target-shapes"
       ],
-      "reason": "partial: 正例覆盖一个入口，句子还列出其他 scope/target 或同步提交时序；需要进一步精确断言。"
+      "reason": "实际server counter与Chrome hydration/no-handler行为、call-hole负对照或对应primitive矩阵精确断言。"
     },
     {
       "id": "08-dev-diagnostics:L277:1",
@@ -3896,20 +3898,20 @@
     {
       "id": "08-dev-diagnostics:L700:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/server-diagnostic-unscoped-hole"
+        "tracks/docs/unscoped.test.ts"
       ],
-      "reason": "partial: server trigger和called-function/control验证；clienthydrate/onceperholesite未验证。"
+      "reason": "实际server counter与Chrome hydration/no-handler行为、call-hole负对照或对应primitive矩阵精确断言。"
     },
     {
       "id": "08-dev-diagnostics:L700:2",
       "classification": "behavioral",
       "status": "covered",
       "coverage": [
-        "08/server-diagnostic-unscoped-hole"
+        "tracks/docs/unscoped.test.ts"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "实际server counter与Chrome hydration/no-handler行为、call-hole负对照或对应primitive矩阵精确断言。"
     },
     {
       "id": "08-dev-diagnostics:L700:3",
@@ -3923,16 +3925,18 @@
       "classification": "behavioral",
       "status": "covered",
       "coverage": [
-        "08/server-diagnostic-unscoped-hole"
+        "tracks/docs/unscoped.test.ts"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "实际server counter与Chrome hydration/no-handler行为、call-hole负对照或对应primitive矩阵精确断言。"
     },
     {
       "id": "08-dev-diagnostics:L700:5",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "此解释/修复段包含可观测额外合同，仍需专门证明；不能排除为背景文字。"
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/unscoped.test.ts"
+      ],
+      "reason": "实际server counter与Chrome hydration/no-handler行为、call-hole负对照或对应primitive矩阵精确断言。"
     },
     {
       "id": "08-dev-diagnostics:L700:6",
@@ -3953,9 +3957,11 @@
     {
       "id": "08-dev-diagnostics:L702:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/unscoped.test.ts"
+      ],
+      "reason": "实际server counter与Chrome hydration/no-handler行为、call-hole负对照或对应primitive矩阵精确断言。"
     },
     {
       "id": "08-dev-diagnostics:L702:3",
@@ -3967,9 +3973,11 @@
     {
       "id": "08-dev-diagnostics:L702:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/unscoped.test.ts"
+      ],
+      "reason": "实际server counter与Chrome hydration/no-handler行为、call-hole负对照或对应primitive矩阵精确断言。"
     },
     {
       "id": "08-dev-diagnostics:L702:5",
