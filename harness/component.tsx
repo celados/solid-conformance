@@ -26,10 +26,12 @@ import { optimisticCase } from '../tracks/regressions/optimistic-case'
 import { storeRejectionCase } from '../findings/004-derived-store-rejection/component'
 import { loadingAccessorCase } from '../findings/007-loading-on-accessor/component'
 import { refreshCase } from '../findings/008-production-refresh/component'
+import { transportCase } from '../tracks/transport/component'
 import { docsCase } from '../tracks/docs/cases'
 import { transitionCase } from '../tracks/transitions/component'
 import { deferred, controlledIterable, ticks } from './timing'
 export function createCase(spec: Spec) {
+	if (spec.transport) return transportCase(spec.transport)
 	if (spec.scenario === 'finding:004') return storeRejectionCase()
 	if (spec.scenario === 'finding:007') return loadingAccessorCase()
 	if (spec.scenario === 'finding:008') return refreshCase()
