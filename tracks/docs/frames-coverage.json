@@ -1993,9 +1993,11 @@
   },
   {
     "id": "10-server-functions:L302:2",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/superseded-call.test.ts"
+    ],
+    "reason": "真实Chrome native memo pending args1→2，两个serverfunction fetch signal均未abort；先settle2 DOM/effecthistory只2，再settle1 appcache两key都warm且DOM仍2/history不添加1，无手工controller/取消API，三tier。fetch控制hook实际走公共protocol JSON8解码。"
   },
   {
     "id": "10-server-functions:L302:3",
