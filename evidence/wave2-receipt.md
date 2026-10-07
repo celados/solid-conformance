@@ -8,7 +8,7 @@ description: HEAD／rc.13 与开发／生产的执行数量、发现和未完成
 
 # Wave 2 回执
 
-004 和所列文档差异已完成最小复现、版本对照及去重，代码已提交到 wave2，交付时合并 main。**原 Wave 2 工作单的全文逐句文档覆盖尚未完成**；不以默认绿色掩盖这个缺口。
+004 和所列文档差异已完成最小复现、版本对照及去重，代码已提交到 wave2，并已快进合并 main。**原 Wave 2 工作单的全文逐句文档覆盖尚未完成**；不以默认绿色掩盖这个缺口。
 
 ## 目标与运行环境
 
@@ -82,3 +82,9 @@ Wave 3 优先补齐全文声明盘点及 08/09/10/11 的缺口，加入真实 RP
 ## 证据
 
 本目录的 wave2 properties/transitions/docs JSON 保存 runtime SHA、seed、执行计数及原始失败。`wave2-findings-*.log`、`wave2-repros-rc13-*.log` 保存版本对照；`wave2-dedupe-*.json` 保存三个仓库的 open/closed 查询。宽搜索最多取 100 个结果，相关具体查询用于收窄；不声称穷尽所有历史 issue。全部红测试都保留 desired-behavior 断言，没有改成“期待 bug”来充当最小 finding。
+
+## 合并后交付检查
+
+main 已包含 d0c6d27、8bb33e9、89a0b3f 三个阶段提交。main 链接本轮测试过的 HEAD build；`bun run check` 通过。`CASES=5 TRANSITION_CASES=4 bun test` 在 main 为 **10 pass / 0 fail**，5 个额外树、35 次 property Chrome run，8 个必跑 + 4 个随机转换、60 次 transition Chrome run；这些交付 smoke 不计入上方主批次。
+
+`STRICT_FINDINGS=1 bun test tracks/transitions` 再次失败并成功 shrinking：seed 20261008、path `2:2:2:2`，最终为 promise/store + argument(1)/reject(1)。22 次尝试、94 次 Chrome run；JSON 和日志保存在 wave2-transitions-shrink。

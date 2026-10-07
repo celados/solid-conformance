@@ -1,0 +1,54 @@
+{
+  "runtime": {
+    "target": "head",
+    "upstream": {
+      "ref": "next",
+      "revision": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+      "directory": "/Users/dio/Projects/solid-conformance-wave2/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"
+    },
+    "buildMode": "development",
+    "solid": "2.0.0-rc.13"
+  },
+  "seed": 20261008,
+  "generated": 3,
+  "spine": 8,
+  "attempts": 22,
+  "browserRuns": 94,
+  "counts": {
+    "supersede": 5,
+    "reject-before": 9,
+    "reject-after": 2,
+    "reconnect": 1,
+    "remount": 1,
+    "route-shared": 1,
+    "route-other": 1,
+    "action-failure": 2
+  },
+  "knownHits": {},
+  "failed": true,
+  "counterexample": [
+    {
+      "family": "reject-before",
+      "source": "promise",
+      "primitive": "store",
+      "value": 1,
+      "reverse": false,
+      "spec": {
+        "source": "promise",
+        "primitive": "store",
+        "events": [
+          {
+            "kind": "argument",
+            "request": 1
+          },
+          {
+            "kind": "reject",
+            "request": 1
+          }
+        ]
+      }
+    }
+  ],
+  "counterexamplePath": "2:2:2:2",
+  "error": "Error: expect(received).toHaveLength(expected)\n\nExpected length: 1\nReceived length: 0\n"
+}

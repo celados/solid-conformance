@@ -1,0 +1,75 @@
+bun test v1.4.2 (744846f84)
+
+tracks/docs/docs.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712","directory":"/Users/dio/Projects/solid-conformance-wave2/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"},"buildMode":"development","solid":"2.0.0-rc.13"}
+[SSR_RENDER_ERROR_CONTAINED] Render error caught by <Errored>: Error: private-error
+  in <Errored> › <Bad>
+[SSR_RENDER_ERROR_CONTAINED] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#ssr_render_error_contained
+[SSR_STREAM_ABANDONED] The response stream was abandoned mid-render (consumer) with 0 fragment(s) still pending; the render was torn down.
+[SSR_STREAM_ABANDONED] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#ssr_stream_abandoned
+[SSR_STREAM_ABANDONED] The response stream was abandoned mid-render (consumer) with 0 fragment(s) still pending; the render was torn down.
+[SSR_STREAM_ABANDONED] The response stream was abandoned mid-render (signal) with 0 fragment(s) still pending; the render was torn down.
+Doc cases: 163 [
+  {
+    "id": "04/keyed-reconcile",
+    "file": "04-stores.md",
+    "statement": "reconcile preserves identity for unchanged entries.",
+    "error": "Error: Expected true, received false",
+    "platform": "client"
+  },
+  {
+    "id": "04/store-path",
+    "file": "04-stores.md",
+    "statement": "storePath supports indices, filters, ranges and a delete sentinel.",
+    "error": "TypeError: storePath2 is not a function",
+    "platform": "client"
+  },
+  {
+    "id": "05/loading-on-constant",
+    "file": "05-async-data.md",
+    "statement": "The value returned by on is never compared; only the notification matters.",
+    "error": "Error: Expected \"fallback\", received \"1\"",
+    "platform": "client"
+  }
+]
+
+tracks/properties/properties.test.ts:
+Runtime ready: {"resolvedSolid":"/Users/dio/Projects/solid-conformance-wave2/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/packages/solid","upstream":{"ref":"next","revision":"53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712","directory":"/Users/dio/Projects/solid-conformance-wave2/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"},"solid":"2.0.0-rc.13","signals":"2.0.0-rc.13","compiler":"2.0.0-rc.13","label":"head","buildMode":"development"}
+{"seed":20261007,"generated":5,"browserRuns":35,"kinds":{"group":3,"optimistic-store":2,"for":1,"errored":1,"text":1,"effect":1,"store":2},"failed":false}
+
+tracks/regressions/regressions.test.ts:
+Asset manifest returned no client assets for module "missing.tsx". If this module is a server-rendered lazy() component, its entry will be missing from the serialized hydration asset map, the client will be unable to preload it, and hydration will fail with 'lazy() module "…" was not preloaded before hydration'. This means the integration's asset resolver (dev manifest bridge or build client manifest) failed to answer for this module — check the integration's server logs, restart the dev server, or verify the module is included in the client build.
+
+tracks/transitions/transitions.test.ts:
+Transition supersede iterable memo true
+Transition reject-before iterable memo true
+Transition reject-after iterable memo true
+Transition reconnect iterable memo true
+Transition remount iterable memo true
+Transition route-shared iterable memo true
+Transition route-other iterable memo true
+Transition action-failure iterable memo true
+Transition reject-after iterable store true
+Transition action-failure promise store false
+Transition reject-before promise store true
+Transition remount promise projection true
+{
+  attempts: 12,
+  browserRuns: 60,
+  counts: {
+    supersede: 1,
+    "reject-before": 2,
+    "reject-after": 2,
+    reconnect: 1,
+    remount: 2,
+    "route-shared": 1,
+    "route-other": 1,
+    "action-failure": 2,
+  },
+  failed: false,
+}
+
+ 10 pass
+ 0 fail
+ 1674 expect() calls
+Ran 10 tests across 6 files. [86.17s]

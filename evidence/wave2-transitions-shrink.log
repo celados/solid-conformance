@@ -1,0 +1,63 @@
+bun test v1.4.2 (744846f84)
+
+tracks/transitions/transitions.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712","directory":"/Users/dio/Projects/solid-conformance-wave2/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"},"buildMode":"development","solid":"2.0.0-rc.13"}
+Transition supersede iterable memo true
+Transition reject-before iterable memo true
+Transition reject-after iterable memo true
+Transition reconnect iterable memo true
+Transition remount iterable memo true
+Transition route-shared iterable memo true
+Transition route-other iterable memo true
+Transition action-failure iterable memo true
+Transition reject-after iterable store true
+Transition action-failure promise store false
+Transition reject-before promise store true
+Transition supersede promise store true
+Transition reject-before promise memo true
+Transition reject-before promise store true
+Transition supersede promise store true
+Transition reject-before promise memo true
+Transition reject-before promise store false
+Transition supersede promise store false
+Transition reject-before promise memo false
+Transition reject-before promise store false
+Transition supersede promise store false
+Transition reject-before promise memo false
+{
+  attempts: 22,
+  browserRuns: 94,
+  counts: {
+    supersede: 5,
+    "reject-before": 9,
+    "reject-after": 2,
+    reconnect: 1,
+    remount: 1,
+    "route-shared": 1,
+    "route-other": 1,
+    "action-failure": 2,
+  },
+  failed: true,
+}
+24 | 			const shouldError = s.family === 'reject-before' || (s.family === 'reject-after' && s.source === 'iterable')
+25 | 			// 004 remains a red standalone repro. Recognition is exact: stale initial
+26 | 			// value, zero reports and no boundary fallback; every other oracle still runs.
+27 | 			const known004 = shouldError && s.primitive !== 'memo' && last.errors.length === 0 && last.dom.includes('>0</span>') && !last.dom.includes('source-error')
+28 | 			if (known004 && !process.env.STRICT_FINDINGS) { knownHits['004'] = (knownHits['004'] ?? 0) + 1; return }
+29 | 			expect(last.errors).toHaveLength(shouldError ? 1 : 0)
+                            ^
+error: expect(received).toHaveLength(expected)
+
+Expected length: 1
+Received length: 0
+
+      at invariant (/Users/dio/Projects/solid-conformance-wave2/tracks/transitions/transitions.test.ts:29:24)
+      at check (/Users/dio/Projects/solid-conformance-wave2/tracks/transitions/transitions.test.ts:44:3)
+      at async run (/Users/dio/Projects/solid-conformance-wave2/node_modules/fast-check/lib/fast-check.js:1217:30)
+      at async asyncPropertyExecution (/Users/dio/Projects/solid-conformance-wave2/node_modules/fast-check/lib/fast-check.js:2564:29)
+(fail) state transitions: errors, supersession, lifetime, navigation and failed optimism [47122.34ms]
+
+ 0 pass
+ 1 fail
+ 2068 expect() calls
+Ran 1 test across 1 file. [47.31s]

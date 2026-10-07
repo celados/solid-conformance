@@ -1,0 +1,34 @@
+{
+  "runtime": {
+    "target": "head",
+    "upstream": {
+      "ref": "next",
+      "revision": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+      "directory": "/Users/dio/Projects/solid-conformance-wave2/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"
+    },
+    "buildMode": "development",
+    "solid": "2.0.0-rc.13"
+  },
+  "seed": 20261008,
+  "generated": 4,
+  "spine": 8,
+  "attempts": 12,
+  "browserRuns": 60,
+  "counts": {
+    "supersede": 1,
+    "reject-before": 2,
+    "reject-after": 2,
+    "reconnect": 1,
+    "remount": 2,
+    "route-shared": 1,
+    "route-other": 1,
+    "action-failure": 2
+  },
+  "knownHits": {
+    "004": 5
+  },
+  "failed": false,
+  "counterexample": null,
+  "counterexamplePath": null,
+  "error": ""
+}
