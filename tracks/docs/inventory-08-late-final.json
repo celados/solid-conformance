@@ -1,0 +1,107 @@
+{
+  "commit": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+  "scope": "RFC08 late final compound contracts public evidence",
+  "entries": [
+    {
+      "id": "08-dev-diagnostics:L1129:3",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-exclude-cached-verdicts"
+      ],
+      "statement": "An owner carries one mark: a later `exclude` or `include` on the same owner replaces it, and — like `exclude` — a mark belongs at the owner's creation: the engine caches each node's verdict the first time it asks (`_devExcluded`, for the node's life), so a mark set or replaced after the subtree has run does not reach nodes already judged.",
+      "reason": "公开 native Chrome 控制，原生记录字段/计数/时钟/对应聚合与正负模式全部断言；production 无测量/记录。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1123:8",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-derived-cause-node-ids"
+      ],
+      "statement": "Every derived `ChangeRecord` on a re-run's cause chain also carries the `nodeId` of the memo it came from, so a consumer can walk the propagation of one write node by node.",
+      "reason": "公开 native Chrome 控制，原生记录字段/计数/时钟/对应聚合与正负模式全部断言；production 无测量/记录。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1123:5",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-flight-fields-and-fold"
+      ],
+      "statement": "`flight` — an async node's flight, kickoff to landing: `nodeId`, `nodeName`, `ownerPath`, `at`, `durationMs`, `outcome: \"landed\" | \"abandoned\"` (superseded before it landed), `interaction`.",
+      "reason": "公开 native Chrome 控制，原生记录字段/计数/时钟/对应聚合与正负模式全部断言；production 无测量/记录。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1197:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-flight-fields-and-fold"
+      ],
+      "statement": "- `flights`: per async source, flights started, `landed` (with `landedMs`/`worstMs`) and `abandoned` — superseded before landing.",
+      "reason": "公开 native Chrome 控制，原生记录字段/计数/时钟/对应聚合与正负模式全部断言；production 无测量/记录。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1123:6",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-fallback-fields-and-fold"
+      ],
+      "statement": "`fallback` — a `<Loading>` boundary's fallback, displayed to hidden: `ownerPath`, `at`, `shownMs`, `interaction`.",
+      "reason": "公开 native Chrome 控制，原生记录字段/计数/时钟/对应聚合与正负模式全部断言；production 无测量/记录。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1198:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/late-final-fallback-fields-and-fold"
+      ],
+      "statement": "- `fallbacks`: per `Loading` boundary, `shows`, total `shownMs`, `worstMs`, and `flashes` — fallbacks shown under 150ms, the loading-flash shape.",
+      "reason": "公开 native Chrome 控制，原生记录字段/计数/时钟/对应聚合与正负模式全部断言；production 无测量/记录。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1139:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-wasted-overlay-phases"
+      ],
+      "statement": "`costs()` aggregates since `enable()`: `scopes` ranked by self-time with `wastedMs` (time in runs whose value didn't change — the equality cutoff absorbed them), and `writes` ranked by the total downstream re-run time each root write caused.",
+      "reason": "公开 native Chrome 控制，原生记录字段/计数/时钟/对应聚合与正负模式全部断言；production 无测量/记录。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1139:2",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-wasted-overlay-phases"
+      ],
+      "statement": "Overlay work (optimistic-lane and held runs — `phase: \"optimistic\" | \"held\"`) is accounted separately as `overlayMs` and never blamed as waste.",
+      "reason": "公开 native Chrome 控制，原生记录字段/计数/时钟/对应聚合与正负模式全部断言；production 无测量/记录。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1216:3",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-performance.test.ts"
+      ],
+      "statement": "The tracks' engine hold is **records only**: it runs none of the six cost checks (`hotRuns`, `hotTime`, `wideDeps`, `unstableMemos`, `fanOut`, `wastedRecompute`), so a default dev session paints the timeline without turning them on.",
+      "reason": "公开 native Chrome 控制，原生记录字段/计数/时钟/对应聚合与正负模式全部断言；production 无测量/记录。"
+    },
+    {
+      "id": "08-dev-diagnostics:L1216:4",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/late-final-performance.test.ts",
+        "tracks/docs/vite-performance.test.ts"
+      ],
+      "statement": "To get them, opt in explicitly — `enablePerformanceTracks({ attribution: { checks: true } })`, `performanceTracks: { attribution: { checks: true } }` in the plugin, or a hold of your own (`attribution.enable()`), which turns them on beside the tracks while it is held.",
+      "reason": "公开 native Chrome 控制，原生记录字段/计数/时钟/对应聚合与正负模式全部断言；production 无测量/记录。"
+    }
+  ]
+}
