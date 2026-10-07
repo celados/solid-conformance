@@ -868,9 +868,11 @@
   },
   {
     "id": "10-server-functions:L125:5",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/transport-contracts.test.ts#RFC10 transport awaits the replacement hook and owns one consumer per source"
+    ],
+    "reason": "Latest same-source consumer alone receives its slice; stale unsubscribe leaves replacement; no registered consumer returns a whole Response whose decode yields envelope."
   },
   {
     "id": "10-server-functions:L127:1",
@@ -915,9 +917,13 @@
   },
   {
     "id": "10-server-functions:L129:4",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/frame-cases.tsx#11/plain-flight-bytes",
+      "tracks/frames/frames.test.ts",
+      "tracks/frames/transport-contracts.test.ts"
+    ],
+    "reason": "Plain nonempty data byte-equivalence control; broad HTTP frame flight checks cache/frames slice delivery before mutation return and updated UI; dedicated one-source test verifies value and slice."
   },
   {
     "id": "10-server-functions:L133:1",
@@ -1728,9 +1734,11 @@
   },
   {
     "id": "10-server-functions:L267:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/transport-contracts.test.ts#RFC10 transport awaits the replacement hook and owns one consumer per source"
+    ],
+    "reason": "Reconfiguring prepareRequest replaces original hook: obsolete count0, replacement once per call."
   },
   {
     "id": "10-server-functions:L267:2",
@@ -1740,9 +1748,11 @@
   },
   {
     "id": "10-server-functions:L269:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/transport-contracts.test.ts#RFC10 transport awaits the replacement hook and owns one consumer per source"
+    ],
+    "reason": "Deferred prepareRequest blocks first send; separately deferred serializeArgs blocks third send, both with positive started/sent/body controls."
   },
   {
     "id": "10-server-functions:L269:2",
@@ -2673,9 +2683,12 @@
   },
   {
     "id": "11-server-components:L34:4",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/frame-cases.tsx#11/plain-flight-bytes",
+      "tracks/frames/frames.test.ts"
+    ],
+    "reason": "Byte equality with asserted nonempty parsed keyed payload plus enabled client/server three-policy real HTTP fixtures."
   },
   {
     "id": "11-server-components:L36:1",
@@ -2691,9 +2704,11 @@
   },
   {
     "id": "11-server-components:L45:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/zero-bytes.test.ts#RFC11 opt-in frame bundle machinery"
+    ],
+    "reason": "Three builds exclude frame machinery in bare import and no-import entries, with explicit installation positive."
   },
   {
     "id": "11-server-components:L45:2",
@@ -2725,9 +2740,11 @@
   },
   {
     "id": "11-server-components:L58:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/frame-cases.tsx#11/one-render-consumer"
+    ],
+    "reason": "All six ordered pairs of different pipe/pipeTo/readable modes throw already consumed, with first-consumer output positive and repeated readable identity stable."
   },
   {
     "id": "11-server-components:L60:1",

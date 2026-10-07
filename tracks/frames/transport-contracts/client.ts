@@ -1,0 +1,15 @@
+import {configureServerFunctionsClient,createServerReference,subscribeFlightData,decodeResponse,invoke,GET} from '@solidjs/web/server-functions/client';
+const sent:any[]=[];let release!:()=>void;const gate=new Promise<void>(r=>release=r);const hooks:string[]=[];
+const response=()=>new Response(JSON.stringify({value:7,data:{owned:{answer:9}}}),{headers:{'X-Server-Function-Format':'8','X-Single-Flight':'owned'}});
+configureServerFunctionsClient({endpoint:'/fixture',prepareRequest:async(init)=>{hooks.push('obsolete');return init},fetch:async(address,init)=>{sent.push({address:String(address),headers:[...new Headers(init?.headers)],argc:2,signal:!!init?.signal,priority:(init as any)?.priority,keepalive:init?.keepalive,body:init?.body});return response()}});
+configureServerFunctionsClient({prepareRequest:async(init)=>{hooks.push('replacement');await gate;return {...init,headers:{...init.headers,'X-Fixture':'ready'}}}});
+const events:any[]=[];
+const old=subscribeFlightData('owned',slice=>{events.push(['obsolete',slice])});
+const current=subscribeFlightData('owned',slice=>{events.push(['current',slice])});old();
+const fn=createServerReference('transport');const pending=invoke(fn,{signal:AbortSignal.any([new AbortController().signal,AbortSignal.timeout(10000)]),priority:'low',keepalive:true},1);
+await Promise.resolve();await Promise.resolve();const before=sent.length;release();const value=await pending;
+current();const whole=await fn(2);const passthrough=whole instanceof Response;const envelope=passthrough?await decodeResponse(whole):null;
+let releaseEncoding!:()=>void;const encodingGate=new Promise<void>(r=>releaseEncoding=r);let encodingStarted=false;
+configureServerFunctionsClient({serializeArgs:async(args)=>{encodingStarted=true;await encodingGate;return 'fixture-rich-encoding'}});
+const encoding=fn(new Set([1]));for(let i=0;i<6;i++)await Promise.resolve();const encodingBefore=sent.length;releaseEncoding();await encoding;
+(window as any).result={before,hooks,sent,value,events,passthrough,envelope,encodingStarted,encodingBefore};

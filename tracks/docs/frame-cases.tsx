@@ -1,12 +1,14 @@
-import { isServer } from "@solidjs/web";
+import { isServer, renderToStream } from "@solidjs/web";
 import { Loading, createMemo, Errored } from "solid-js";
 import {
   renderServerComponent,
   asyncArg,
   frameTransformDirectResult,
   frameTransformResult,
+  frameTransformFlightResult,
 } from "@solidjs/web/frames/server";
-import { equal, ok, type DocCase } from "./registry";
+import { equal, ok, throws, type DocCase } from "./registry";
+import * as rpc from "@solidjs/web/server-functions/server";
 const cases: DocCase[] = [];
 function doc(name: string, statement: string, run: DocCase["run"]) {
   cases.push({ id: `11/${name}`, file: "11-server-components.md", statement, run });
@@ -174,4 +176,26 @@ if (isServer) {
     ok(cs.some((c) => c.type === "html"));
   });
 }
+if(isServer) {
+ doc("plain-flight-bytes", "Enabling frame flight transforms leaves data-only envelopes byte-identical to plain transport.",async()=>{
+  rpc.registerServerReference("frame-byte-equivalence",()=>({mutated:7}));
+  const off=rpc.registerFlightDataSource("byte-cache",()=>({fresh:[1,2]}));
+  const request=()=>new Request("http://conformance.test/_server/data/frame-byte-equivalence",{method:"POST",body:"[]",headers:{origin:"http://conformance.test","content-type":"application/json","X-Server-Function-Format":"8","X-Single-Flight":"byte-cache"}});
+  try {const plain=await rpc.handleServerFunctionRequest(request(),{transformFlightResult:()=>undefined});const framed=await rpc.handleServerFunctionRequest(request(),{transformFlightResult:frameTransformFlightResult});
+   const bytes=await plain.text();equal(JSON.parse(bytes),{value:{mutated:7},data:{"byte-cache":{fresh:[1,2]}}});equal(await framed.text(),bytes);equal(framed.headers.get("X-Server-Function-Format"),plain.headers.get("X-Server-Function-Format"));equal(framed.headers.get("X-Single-Flight"),"byte-cache");
+  }finally{off()}
+ });
+ doc("one-render-consumer", "renderToStream permits exactly one consumer mode: pipe, pipeTo, or readable.",async()=>{
+  for(const first of ["pipe","pipeTo","readable"] as const)for(const second of ["pipe","pipeTo","readable"] as const){
+   if(first===second)continue;
+   const render=renderToStream(()=><p>one-consumer</p>);let text="";const writes:any[]=[];
+   const pipe=()=>render.pipe({write(chunk:string){text+=chunk},end(){}});
+   const pipeTo=()=>render.pipeTo(new WritableStream({write(chunk){writes.push(chunk)}}));
+   if(first==="pipe"){pipe();await render;}else if(first==="pipeTo")await pipeTo();else {const readable=render.readable;ok(render.readable===readable,"readable identity "+first+"/"+second);text=await new Response(readable).text()}
+   throws(()=>{if(second==="pipe")pipe();else if(second==="pipeTo")pipeTo();else void render.readable},"already consumed");
+   if(first!=="pipeTo")ok(text.includes("one-consumer"),"missing output "+first+"/"+second+": "+text);else ok(writes.length>0,"empty pipeTo "+first+"/"+second);
+  }
+ });
+}
+
 export const frameCases = cases;
