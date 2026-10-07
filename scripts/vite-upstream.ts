@@ -1,12 +1,15 @@
-import {mkdir,rm,symlink} from 'node:fs/promises'
+import {mkdir,rm,symlink,realpath} from 'node:fs/promises'
 import {resolve} from 'node:path'
 async function run(cmd:string[],cwd=process.cwd()){const child=Bun.spawn(cmd,{cwd,stdout:'inherit',stderr:'inherit'});if(await child.exited)throw new Error(cmd.join(' '))}
 const ref=process.env.VITE_UPSTREAM_REF??'next'
-const metadata=resolve('.upstream/vite-revision.json');await mkdir(resolve('.upstream'),{recursive:true});await run(['curl','--max-time','30','-fsSL','https://api.github.com/repos/solidjs/solid-vite-plugin/commits/'+encodeURIComponent(ref),'-o',metadata])
-const revision=(await Bun.file(metadata).json() as {sha:string}).sha,directory=resolve('.upstream','vite-plugin',revision)
-await mkdir(directory,{recursive:true})
-await run(['curl','-fsSL','https://codeload.github.com/solidjs/solid-vite-plugin/tar.gz/'+revision,'-o',directory+'/snapshot.tar.gz'])
-await run(['tar','-xzf',directory+'/snapshot.tar.gz','-C',directory,'--strip-components=1'])
+await mkdir(resolve(".upstream"),{recursive:true})
+const upstream=await realpath(resolve(".upstream"))
+const archive=resolve(upstream,"vite-plugin-source.tar.gz")
+await run(["curl","--max-time","60","-fsSL","https://codeload.github.com/solidjs/solid-vite-plugin/tar.gz/"+encodeURIComponent(ref),"-o",archive])
+const header=new TextDecoder().decode(Bun.gunzipSync(new Uint8Array(await Bun.file(archive).arrayBuffer())).slice(0,1024))
+const revision=header.match(/comment=([a-f0-9]{40})/)?.[1];if(!revision)throw new Error("Snapshot lacks a commit PAX header")
+const directory=resolve(upstream,"vite-plugin",revision);await mkdir(directory,{recursive:true})
+await run(["tar","-xzf",archive,"-C",directory,"--strip-components=1"])
 const pkg=await Bun.file(directory+'/package.json').json()
 // Install build tools without Cypress or its browser download; execute upstream rollup directly through Bun.
 pkg.devDependencies=Object.fromEntries(Object.entries(pkg.devDependencies).filter(([name])=>name.startsWith('@rollup/')||name.startsWith('@babel/preset-')||['rollup','rollup-plugin-cleaner','typescript','@types/node'].includes(name)))

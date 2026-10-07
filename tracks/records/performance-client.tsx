@@ -10,7 +10,7 @@ export async function performanceCases(){
  function Card(){const[r,w]=createSignal(0,{name:'count'});set=w;const m=createMemo(()=>r()*2,{name:'double'});createEffect(m,()=>{},{name:'paint'});const data=createMemo(()=>pending,{name:'remote'});return <section><span>{m()}</span><Loading fallback={<i>pending</i>}><b>{data()}</b></Loading></section>}
  const close=render(()=> <Card/>,document.querySelector('#root')!)
  try{
-  flush();OBSERVE?.attribution.withInteraction({type:'click',target:'button#next',at:performance.now()-1},()=>OBSERVE.attribution.withOrigin({kind:'navigation',name:'/items/:id',to:'/items/2'},()=>set(1)))
+  flush();OBSERVE?.attribution.withInteraction({type:'click',target:'button#next',at:performance.now()-1},()=>OBSERVE?.attribution.withOrigin({kind:'navigation',name:'/items/:id',to:'/items/2'},()=>set(1)))
   flush();resolve(7);for(let i=0;i<20;i++)await new Promise(r=>setTimeout(r,1));flush()
   OBSERVE?.diagnostics.emit({code:'NO_OWNER_CLEANUP',kind:'lifecycle',severity:'warn',message:'[NO_OWNER_CLEANUP] marker fixture'},null)
   const entries=[...performance.getEntriesByType('measure'),...performance.getEntriesByType('mark')].map(e=>({name:e.name,start:e.startTime,duration:e.duration,detail:(e as PerformanceMeasure).detail})).filter(e=>e.detail?.devtools?.trackGroup==='Solid'||e.detail?.devtools?.dataType==='marker')
