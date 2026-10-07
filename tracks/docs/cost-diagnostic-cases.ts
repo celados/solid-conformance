@@ -1,0 +1,34 @@
+import {OBSERVE,createRoot,createSignal,createMemo,flush,untrack} from 'solid-js'
+import {attribution,type AttributionOptions} from 'solid-js/attribution'
+import {isDev,isServer} from '@solidjs/web'
+import {equal,ok,type DocCase} from './registry'
+const cases:DocCase[]=[]
+const quiet:AttributionOptions={hotRuns:false,hotTime:false,wideDeps:false,fanOut:false,unstableMemos:false,wastedRecompute:false,holds:false,longHolds:false,stackedHolds:false,optimisticReverts:false,waterfalls:false,abandonedFlights:false,fallbackFlashes:false,graphGrowth:false}
+function doc(id:string,line:number,statement:string,run:DocCase['run']){cases.push({id:'08/cost-'+id,file:'08-dev-diagnostics.md',statement:`L${line}: ${statement}`,run})}
+async function capture(run:(events:any[])=>void|Promise<void>){const session=OBSERVE?.diagnostics.capture(),warn=console.warn;console.warn=()=>{};try{const events=session?.events??[];await run(events);return [...events]}finally{session?.stop();console.warn=warn}}
+function withEngine(opts:AttributionOptions,work:()=>void){const release=attribution.enable({...quiet,...opts});try{work()}finally{release()}}
+if(!isServer){
+ doc('fanout-core-threshold',419,'Always on core threshold 2000; unchanged writes silent; once per node, re-warning after growth 500; disposed subscribers do not count.',async()=>{
+ const events=await capture(list=>{let close!:()=>void,write!:(n:number)=>void,read!:()=>number,add!:(count:number)=>()=>void;createRoot(d=>{close=d;[read,write]=createSignal(0);add=count=>{let dispose!:()=>void;createRoot(d=>{dispose=d;for(let i=0;i<count;i++)createMemo(read)});return dispose}});const off=add(2000);const reports=()=>list.filter(e=>e.code==='HUGE_FAN_OUT');try{equal(reports().length,0);write(0);flush();equal(reports().length,0);write(1);flush();equal(reports().length,isDev?1:0);if(isDev)equal(reports()[0].data.count,2000);write(2);flush();equal(reports().length,isDev?1:0);const stop=add(500);write(3);flush();equal(reports().length,isDev?2:0);if(isDev)equal(reports()[1].data.count,2500);stop();write(4);flush();equal(reports().length,isDev?2:0);off();write(5);flush();equal(reports().length,isDev?2:0)}finally{close()}});if(isDev)equal(events.filter(e=>e.code==='HUGE_FAN_OUT').every(e=>e.severity==='warn'),true)
+ })
+ doc('fanout-engine-handover',419,'Attribution default fanOut 250, at 2000 the core alone reports, no duplicate finding.',async()=>{
+ for(const count of [249,250,2000]){const events=await capture(()=>withEngine({fanOut:undefined},()=>{let close!:()=>void,write!:(n:number)=>void;createRoot(d=>{close=d;const[r,w]=createSignal(0);write=w;for(let i=0;i<count;i++)createMemo(r)});try{write(1);flush()}finally{close()}}));const found=events.filter(e=>e.code==='HUGE_FAN_OUT');equal(found.length,isDev&&count>=250?1:0);if(isDev&&count===250){equal(found[0].data.count,250);equal(found[0].data.write,'write')}}
+ })
+ doc('wide-default-threshold',445,'Default dependency count 200, re-warns after another 50% growth, names sources.',async()=>{
+ for(const count of [199,200]){const events=await capture(()=>withEngine({wideDeps:undefined},()=>{let close!:()=>void;createRoot(d=>{close=d;const reads=Array.from({length:count},(_,i)=>createSignal(0,{name:'s'+i})[0]);createMemo(()=>reads.reduce((n,r)=>n+r(),0),{name:'wide'});flush()});close()}));const found=events.filter(e=>e.code==='WIDE_SCOPE_DEPS');equal(found.length,isDev&&count===200?1:0);if(isDev&&count===200){equal(found[0].data.depCount,200);ok(found[0].message.includes('s0'))}}
+ })
+ doc('hot-runs-default',443,'Default 120 runs in 1000ms, with most recent cause chain.',async()=>{
+ const events=await capture(()=>withEngine({hotRuns:undefined},()=>{let close!:()=>void,write!:(n:number)=>void;createRoot(d=>{close=d;const[r,w]=createSignal(0,{name:'hot-source'});write=w;createMemo(r,{name:'hot-reader'})});try{for(let n=1;n<=125;n++){write(n);flush()}}finally{close()}}));const found=events.filter(e=>e.code==='HOT_SCOPE_RERUNS');equal(found.length,isDev?1:0);if(isDev){ok(found[0].data.runs>=120);equal(found[0].data.windowMs,1000);ok(found[0].message.includes('hot-source'))}
+ })
+ doc('hot-time-default',444,'Default self-time budget 8ms in 1000ms.',async()=>{
+ for(const costly of [false,true]){const events=await capture(()=>withEngine({hotTime:undefined},()=>{let close!:()=>void,write!:(n:number)=>void;createRoot(d=>{close=d;const[r,w]=createSignal(0);write=w;createMemo(()=>{const n=r();if(costly&&n){const end=performance.now()+12;while(performance.now()<end){}}return n})});try{write(1);flush()}finally{close()}}));const found=events.filter(e=>e.code==='HOT_SCOPE_TIME');equal(found.length,isDev&&costly?1:0);if(isDev&&costly){ok(found[0].data.spentMs>=8);equal(found[0].data.budgetMs,8);equal(found[0].data.windowMs,1000)}}
+ })
+ doc('unstable-default-and-equality',471,'Default four fresh shallow-equivalent runs; stable references or custom equals absorb the churn.',async()=>{
+ for(const stable of [false,true]){const events=await capture(()=>withEngine({unstableMemos:undefined},()=>{let close!:()=>void,write!:(n:number)=>void;createRoot(d=>{close=d;const[r,w]=createSignal(0);write=w;const value=[1];const out=createMemo(()=>{r();return stable?value:[1]});createMemo(()=>out().length)});try{for(let n=1;n<=5;n++){write(n);flush()}}finally{close()}}));const found=events.filter(e=>e.code==='UNSTABLE_MEMO_OUTPUT');equal(found.length,isDev&&!stable?1:0);if(isDev&&!stable)ok(found[0].data.runs>=4)}
+ })
+ doc('wasted-default-and-output',477,'Default minRuns5, unchanged ratio .8, compute budget2ms, window1000; undefined outputs exempt.',async()=>{
+ for(const sideOnly of [false,true]){const events=await capture(()=>withEngine({wastedRecompute:undefined},()=>{let close!:()=>void,write!:(n:number)=>void;createRoot(d=>{close=d;const[r,w]=createSignal(0);write=w;createMemo(()=>{r();const end=performance.now()+0.7;while(performance.now()<end){};return sideOnly?undefined:0})});try{for(let n=1;n<=7;n++){write(n);flush()}}finally{close()}}));const found=events.filter(e=>e.code==='WASTED_RECOMPUTE');equal(found.length,isDev&&!sideOnly?1:0);if(isDev&&!sideOnly){ok(found[0].data.runs>=5);ok(found[0].data.wasted/found[0].data.runs>=.8);ok(found[0].data.wastedMs>=2);equal(found[0].data.windowMs,1000);ok(Array.isArray(found[0].data.causes))}}
+ })
+ doc('checks-false',419,'checks:false folds off six cost checks, fanOut:false leaves only core threshold.',async()=>{const events=await capture(()=>withEngine({checks:false,hotRuns:{count:1},wideDeps:1,fanOut:1,unstableMemos:1,wastedRecompute:{budgetMs:0,minRuns:1,ratio:0}},()=>{let close!:()=>void,write!:(n:number)=>void;createRoot(d=>{close=d;const[r,w]=createSignal(0);write=w;createMemo(()=>({n:(r(),0)}));createMemo(r)});try{write(1);flush()}finally{close()}}));equal(events.filter(e=>['HOT_SCOPE_RERUNS','WIDE_SCOPE_DEPS','HUGE_FAN_OUT','UNSTABLE_MEMO_OUTPUT','WASTED_RECOMPUTE'].includes(e.code)),[])})
+}
+export const costDiagnosticCases=cases
