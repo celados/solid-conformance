@@ -1,0 +1,338 @@
+[
+  {
+    "query": "repo:solidjs/solid is:issue literal handler attribution",
+    "result": {
+      "total_count": 1,
+      "incomplete_results": false,
+      "items": [
+        {
+          "url": "https://api.github.com/repos/solidjs/solid/issues/3389",
+          "repository_url": "https://api.github.com/repos/solidjs/solid",
+          "labels_url": "https://api.github.com/repos/solidjs/solid/issues/3389/labels{/name}",
+          "comments_url": "https://api.github.com/repos/solidjs/solid/issues/3389/comments",
+          "events_url": "https://api.github.com/repos/solidjs/solid/issues/3389/events",
+          "html_url": "https://github.com/solidjs/solid/issues/3389",
+          "id": 5432334073,
+          "node_id": "I_kwDOB80jds8AAAABQ8rW-Q",
+          "number": 3389,
+          "title": "Perf tracker: Solid primitives vs the hand-rolled `@yak/solid` runtime",
+          "user": {
+            "login": "ryansolid",
+            "id": 2768267,
+            "node_id": "MDQ6VXNlcjI3NjgyNjc=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/2768267?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ryansolid",
+            "html_url": "https://github.com/ryansolid",
+            "followers_url": "https://api.github.com/users/ryansolid/followers",
+            "following_url": "https://api.github.com/users/ryansolid/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ryansolid/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ryansolid/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ryansolid/subscriptions",
+            "organizations_url": "https://api.github.com/users/ryansolid/orgs",
+            "repos_url": "https://api.github.com/users/ryansolid/repos",
+            "events_url": "https://api.github.com/users/ryansolid/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ryansolid/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "labels": [
+            {
+              "id": 912631390,
+              "node_id": "MDU6TGFiZWw5MTI2MzEzOTA=",
+              "url": "https://api.github.com/repos/solidjs/solid/labels/enhancement",
+              "name": "enhancement",
+              "color": "a2eeef",
+              "default": true,
+              "description": "New feature or request",
+              "archived_at": null,
+              "archived_by": null
+            }
+          ],
+          "state": "closed",
+          "locked": false,
+          "assignees": [],
+          "milestone": null,
+          "comments": 9,
+          "created_at": "2026-09-12T08:59:02Z",
+          "updated_at": "2026-09-28T18:21:13Z",
+          "closed_at": "2026-09-28T18:21:12Z",
+          "assignee": null,
+          "author_association": "MEMBER",
+          "issue_field_values": [],
+          "type": null,
+          "active_lock_reason": null,
+          "sub_issues_summary": {
+            "total": 0,
+            "completed": 0,
+            "percent_completed": 0
+          },
+          "issue_dependencies_summary": {
+            "blocked_by": 0,
+            "total_blocked_by": 0,
+            "blocking": 0,
+            "total_blocking": 0
+          },
+          "body": "[DigitecGalaxus/next-yak#644](https://github.com/DigitecGalaxus/next-yak/pull/644) rewrote the `@yak/solid` `styled()` runtime and made it 12\u00d7 faster on SSR and ~2\u00d7 on hydrate/mount over its own base. Reading the PR against our code, almost every piece of the rewrite is a reimplementation of a Solid primitive that was too slow or too generic to use directly:\n\n| yak hand-rolls | instead of | because |\n|---|---|---|\n| `serializeElement` | `ssrElement` | needs a finished props object; walks getter-backed merged props again; emits `style=\"\"`/`class=\"\"` (#3382) |\n| `copyProps` / `proxyProps` | `merge` / `omit` | proxy layers when any source is `$PROXY`; `omit` has no predicate/prefix form; plain path leaks `$SOURCES` (#3384) |\n| `createElementRenderer` (template + `getNextElement` + `spread` + `insert`) | `Dynamic` / `dynamic()` | per-instance memo for a constant tag; no static class in the template; no `runHydrationEvents`; tag-only namespace (#3386) |\n| shared `withTheme` proxy | `merge(props, { theme })` | one merge object per instance is measurable |\n| `once()` on the server | `createMemo` | server memos are real nodes held until the deferred dispose (#3385) |\n\nThis issue tracks closing those gaps so a library can call Solid and get the same numbers. Baseline harness: [ryansolid/yak-bench](https://github.com/ryansolid/yak-bench) \u2014 the 14 `css-in-js-bench` workloads, `@yak/solid` at the PR's base and head, both on `2.0.0-rc.8`, with `next-yak`/React as the reference lane. Acceptance for every item below: a variant of the yak runtime using our primitive lands within noise of the hand-rolled one in that harness.\n\n## Where the remaining time goes\n\nSolid 2.0.0-rc.8, `@yak/solid` at PR head. Full tables: [SSR](https://github.com/ryansolid/yak-bench/blob/main/result/ssr-latest.md) \u00b7 [Chromium](https://github.com/ryansolid/yak-bench/blob/main/result/browser-latest.md).\n\nStatic styled intrinsics are fast (SSR 25\u00d7 React, hydrate/mount 2\u20133.5\u00d7 React). The cases still **behind React** are the ones that go through our generic paths \u2014 `styled(Component)` with `{...rest}` spreads, dynamic `$props`, imported primitives:\n\n| case | SSR PR/React | hydrate PR/React | mount PR/React |\n|---|---:|---:|---:|\n| tabs (styled(Component) + spread) | 1.10\u00d7 | 0.45\u00d7 | 0.63\u00d7 |\n| multifile-composition | 1.05\u00d7 | 0.46\u00d7 | 0.64\u00d7 |\n| product-grid (400 tiles \u00d7 11 el) | 4.15\u00d7 | 0.46\u00d7 | 0.81\u00d7 |\n| realistic-button | 6.10\u00d7 | 0.72\u00d7 | 1.02\u00d7 |\n| dyn-fair (CSS var per element) | 10.06\u00d7 | 0.81\u00d7 | 1.04\u00d7 |\n| btn-variant vs compose-1 (dynamic vs static props, same element) | 2.7M vs 10M inst/s | 30.4 vs 15.7 ms | 22.6 vs 9.3 ms |\n\n## Checklist\n\n- [x] **`spread()` \u2192 one render effect per element** (`client.ts` ~809, the `// TODO: make this better`). Three reactive nodes per element today; the dynamic-props path costs 2\u00d7 the static one on hydrate and mount, and `spread` is the largest share. (#3388) \u2014 **landed in #3419**: `ref` folded into the attribute effect, children stay owned (two nodes with children, one without), sources array; compilers emit the array form for element spreads (#3423, universal #3424). Browser hydrate on the styled-element shape went from 1.47\u00d7 behind yak's hand-rolled path to 1.00\u00d7.\n- [x] **Constant-tag `Dynamic`/`dynamic()`**: when `source()` is a string that can't change, skip the factory + instance memos, allow a static `class` baked into a cached template, and take the compiled-JSX element path. Same fix carries `runHydrationEvents` and namespace correctness. (#3387, #3386) \u2014 **landed as `dynamic(source, { static })` + `isStatic(o, key)` in #3471**: no memo per instance, the tag goes straight to `ssrElement` / the compiled element path, and a library decides per instance from the prop's descriptor (`isStatic` sees through merge/omit layers), so a literal `as=\"a\"` at the call site takes the static path while a reactive `as` keeps the memo. #3386 part 1 (`runHydrationEvents`) fixed in #3396, part 2 (namespace: `dynamic()` honors `xmlns`) in #3436; `<Dynamic>` deprecated in favor of `dynamic()`. The compiler-lowered `<element tag>` (#3429) stays open as a later question \u2014 the runtime path is fast enough that it is a spread-shape question, not a memo one.\n- [x] **Server `merge`/`omit` fast path** when every source is a plain object (the rc.8 `spread` fast path 4e730a9, but on the server), and a **predicate / `$`-prefix form of `omit`** so \"drop all `$` keys\" doesn't require enumerating first. \u2014 **landed in #3454** (`merge`/`omit` always return O(1) lazy views; an omit over a merge flattens to filtered leaf entries; `omit(props, key => \u2026)` predicate form; truthful `getOwnPropertyDescriptor` through every layer), **#3470** (the view protocol consumers walk moves behind `solid-js/internal`), and **#3475**: a view's resolved key table is built by enumeration or after 16 reads, never on the first read, and `ssrElement` walks a view's entries instead \u2014 profiled on the Kobalte-shaped chain, a third of SSR time was the table code and its garbage. Same-process A/B: SSR chain 8.2\u00d7 \u2192 5.8\u00d7 the compiled floor. A follow-up that chained `omit`'s folded hidden-key lists instead of copying them (#3487) was **closed unmerged**: against a correctly built `next`, no fold form beats `slice()`+`push` on instruction count, and its TurboFan gains appeared only on an artificial depth-7 chain \u2014 the allocation it targeted is real but costs no time. **#3497** then took the other route: an `omit` over a `merge` holds the merge *record* (`SOURCE_MERGE`) instead of one filtered leaf view per flattened source \u2014 one record per layer, and the nested walk is by function call with a `MISSING` sentinel (one pass per read, no trap hop, the outer view builds the table in one pass). `ssrElement` gets `sourceOwners`: keys and owning objects for any source in one walk. Kobalte-shaped depth-7 chain: build+consume +62%, `ownKeys(defaults 100)` \u00d74.9, the nine `merge-*` construction benches +9\u201320%; yak-bench composition cases move from 0.8\u00d7 to parity (0.95\u20130.99\u00d7) with the merged runtime. Original design note follows. CPU profile of the tabs SSR case (styled(Component) + `omit` + spread): `merge` 18%, `omit` 10%, yak's `copyProps` 11%, GC 16% (mostly from the same allocations); Solid's rendering proper (`ssrElement`, `escape`, `resolveSSRNode`, `ssr`) ~7%; component machinery ~2%. Each `Tab` builds a chain of three or four Proxies and every consumer enumerates through the traps. Direction: `omit` carries its skip-set on the `$SOURCES` brand and `ssrElement`/`spread`/`merge` walk branded views directly, never through traps; the Proxy stays only for direct property reads.\n- [x] **`ssrElement` with skip rules / extra sources**, or a lower-level serializer, so a library doesn't have to materialize getter-bearing props just to have them walked again (yak measured \u221218.9% HTTP throughput on that path). \u2014 **landed in #3418**: `ssrElement(tag, sources[], children, needsId, skip?)`, single walk, later wins, winner read once. On dynamic-prop shapes `ssrElement` is now within 3\u201323% of yak's `serializeElement` (was 2\u20133\u00d7 behind); the fully static shapes remain 3\u00d7 behind because yak string-concats those at build time (not our gap). **#3486**: plain string/number/null/boolean and finished-node children concatenate in place without `resolveSSRNode`/`ssr()`, and a uniform source array carries one kind instead of an array of them \u2014 element-dense SSR (`dyn-translate`) +21% throughput, \u221227% bytes/instance; gap to yak's direct writer 1.76\u00d7 \u2192 1.46\u00d7.\n- [x] **Hydration per-element overhead** \u2014 **closed 2026-09-28 as not a hydration problem** (see the client-profile comment below: the claim machinery is the whole hydrate-over-mount excess, 3.4 of 18.1 ms/page on `tabs`, and removing all of it would leave 14.7 ms against React's 6.6; the gap is the component layer per instance, as on the server). History: hydrate is ~1.7\u00d7 mount for 1000 static buttons (15.7 vs 9.3 ms at 4\u00d7 throttle). Profile `gatherHydratable` / registry build and per-element `getNextElement`, and `stripTextSeparators` + `[...childNodes]` in `claimInitial` on large flat lists (interacts with #3383 separators). \u2014 the styled-element shape closed with #3419 (1.47\u00d7 behind yak's path \u2192 1.00\u00d7), and yak reports the whole PR's hydrate on rc.8 \"inside the floor\" with rc.8's spread fast path alone worth ~12 points to their runtime. The composition cases (tabs, multifile: 0.45\u00d7 React on rc.8's predecessor) have not been re-measured since; re-run on rc.9 before profiling further. \u2014 **Re-measured after #3509** (4\u00d7 throttle, median of 15 fresh pages): hydrate `tabs` 0.44\u00d7 React, `multifile-composition` 0.46\u00d7, `polymorphic-chain` 0.53\u00d7 \u2014 unchanged; #3419 fixed the styled-element shape, not composition. And on all three, **Solid's hydrate is slower than Solid's mount** (54.9 vs 47.6 ms on `tabs`) while React's hydrate is 25% cheaper than its mount. Chromium CPU profile of `tabs` hydrate vs mount, sourcemap-attributed, per page: hydration saves ~1.5 ms of DOM writes (`setAttribute`, `className`, clone/append) and spends ~3.6 ms claiming. Hydrate-only costs: `gatherHydratable` 0.85 ms (per-`[_hk]` `closest(\"[data-fid]\")` + `contains` to skip frame interiors \u2014 a DOM-ancestor walk per element even when the page has no frames), `claimInitial` 0.8 ms (`[...parent.childNodes]` iterator spread on every hydrating `insert()`, then a second `stripTextSeparators` pass), `getNextElement` 0.4 ms (string key + Map get/delete + WeakSet add), `clearSnapshots` 0.47 ms (`delete source._x._snapshotValue` over every source captured during hydration \u2014 `delete` on a fixed-shape object; assignment of `undefined` is equivalent and is what the store branch already does), `isHydrating(node)` 0.29 ms (`node.isConnected` per call), `_x` extension allocated per hydrated source to hold its snapshot (GC 1.8 vs 1.4 ms). The first three plus `clearSnapshots` are ~2.1 of the ~3.7 ms/page excess and are local fixes in `client.ts` / `core.ts`. \u2014 **#3513 landed** (the `gatherHydratable` frame gate, `insert()`'s one-pass claim copy that drops separators as it goes, `clearSnapshots` assign-not-delete): re-profiled, `clearSnapshots` is gone and the claim copy shrank, but `gatherHydratable` only went 4.7% \u2192 3.9% \u2014 the rest of it is the registry itself (`querySelectorAll`, `getAttribute`, `Map.set` per keyed node), not a local fix \u2014 for a **net ~3% of hydrate time** on `tabs`, well under the 2.1 ms estimate. The client half of the props-class spike (#3511) was **time-neutral** (1.00\u00d7 geomean hydrate and mount, six component-heavy cases, 31/21 samples) \u2014 so the theory that the composition-case client gap was \"the props literal again\" is disproven, and the `hoistProps` emission is server-only. **Open, unattributed:** hydrate on the composition cases is still ~0.45\u20130.53\u00d7 React and slower than our own mount, and mount itself is ~0.63\u00d7 React on `tabs`/`multifile-composition`; the last client profile predates #3419/#3497/#3513 and its unopened buckets were claim + registry 18\u201333%, signals snapshot bookkeeping 5\u201311% (`_x` per hydrated source, `releaseSubtree`, `ownerInSnapshotScope`), per-primitive probes ~7% (`sharedConfig.has` against an empty `_$HY.r`, `hydrateSignalLike`, `formatId`/`childId`), graph construction 13\u201316%. React's claim is a sibling-pointer walk with no registry, no per-node id strings and no end sweep; if the registry is the bulk, that is a design question (keyed lookup for streamed / out-of-order holes has to coexist with a walk), not a fix. **Profiled on rc.10 (comment below):** the same component-layer residue as the server; local trims \u22641 ms/page; no registry redesign filed. The `btn-variant` client parity gap was `omit()` + `spread()`'s array form per element, not the baked template \u2014 DigitecGalaxus/next-yak#659 amended to copy on the fixed-key client tag path, back to 1.00\u00d7.\n- [x] **Cheap \"props plus one key\"** for the theme case (`merge(props, { theme })` allocates a merge object per instance; `Object.create(props)` was slower). \u2014 since #3454 a `merge()` is one record + one Proxy with no descriptor copy, the same shape as the shared-handler view yak settled on (`withTheme` / `viewTraps`, 279317a6). **Measured at parity** on `next` with the `merged-prim` overlay (`__PRIM_THEME__` 1.03\u00d7 geomean, inside the \u00b18% lane noise); the yak-side deletion waits on rc.9.\n- [x] **The props literal itself** \u2014 the largest SSR self-time bucket on composition cases was compiled component code: a dictionary-mode object with a closure per getter, per component, per render, with non-identifier keys emitted computed (#3511). **Landed in #3514** (finding 1: keys emitted as plain properties) and **#3550** (`hoistProps`, default on in both compilers): a props literal with getters compiles to a hoisted per-site constructor \u2014 one fast-mode object per instance, shared getter descriptors, `prototype = Object.prototype`, own keys/order/descriptors unchanged so `Object.keys`, spread, `hasOwn`, `isStatic()` answer as before. yak-bench SSR geomean **1.12\u00d7**, composition cases 1.15\u20131.31\u00d7 (`polymorphic-chain` 1.31\u00d7, `multifile-shop` 1.29\u00d7, `tabs` 1.15\u00d7), `dyn-inline` 1.46\u00d7; Octane element-heavy fixtures flat. **The contract:** a getter is defined for a read through its own object; copying its descriptor elsewhere no longer works (dev throws naming the rule). Our one copier, `omit()`'s no-Proxy path, re-homes accessors (756b1b3); next-yak's `combineProps`/`copyProps` need the same one-line re-home \u2014 measured within 2% of their current runtime (`merged` vs `merged-fix`). **#3562** then closed #3550's merge gate on the runtime side: `ssrElement` takes trailing `attrs` markup (string or thunk, `ssrElementAttribute` for dynamic parts), one cached record per tag, every source body read directly; `merge()` presized sources, direct plain-source walk in the trap, one `$RECORD` read to classify a proxy source; and both compilers emit attributes after an element's last spread as markup with a hoisted skip predicate, and hoist a spread element's own source literal. Element path vs a hand writer 22 \u2192 9 ns/element; `spread-static-tail` bench 1.21\u20131.42\u00d7. Paired yak-bench, `merged-fix` vs `mprim` (every hand-rolled piece \u2192 Solid primitives): geomean **1.04\u00d7** yak's favour \u2014 `mprim` ahead 1.33\u00d7 on `tabs` and `multifile-composition`, yak ahead 1.25\u20131.29\u00d7 on the four computed-class micro-cases, the residual being the server memo owner protocol (~22 ns/instance, kept: it is what gives the compute `getOwner()`/`onCleanup`) and the generic-proxy floor of `merge({ theme }, props)` (~12 ns). Pinning output equivalence surfaced #3557 (static text children of spread elements unescaped in both compilers; Babel's textarea fold) \u2192 fixed in #3559.\n- [x] Re-run the harness after each item (gated on an rc.9 so yak targets published packages); when a primitive is within noise of yak's version, open the corresponding follow-up on `@yak/solid` to delete the duplicate. \u2014 **done on rc.10** (2026-09-26/27, published `solid-js` / `@solidjs/web` / `@solidjs/compiler` 2.0.0-rc.10, stock native compiler): yak+DigitecGalaxus/next-yak#658 vs `mprim` geomean 1.06\u00d7 / 1.01\u00d7 over two rounds; `tabs` 0.67\u20130.68\u00d7, `multifile-composition` 0.68\u20130.73\u00d7 (ours by 1.4\u20131.5\u00d7), the four computed-class micro-cases yak's by 1.17\u20131.38\u00d7, output byte-identical on all 15 cases. Yak-side follow-ups opened: DigitecGalaxus/next-yak#658 (the descriptor re-home, at the maintainer's request in #657) and DigitecGalaxus/next-yak#659 (`copyProps`/`proxyProps` \u2192 `merge`/`omit` views, `spread()` array form on tag targets; measured on its own commit at 1.48\u20131.54\u00d7 over #658 on `tabs`/`multifile-composition`, tag cases unchanged). Along the way: `merge()`'s function-source memo takes a hydration id, so a client path for a hand-serialized element must use `spread()`'s array form \u2014 documented behaviour, easy trap; and `@solidjs/vite-plugin` next.44\u201345 pre-bundled a semi-framework library's node-only deps (solidjs/vite-plugin-solid#375 \u2192 #376, released in next.46). History: rc.9 shipped without the props-literal work below; rc.10 is the first published build a yak PR can target with `hoistProps` and #3562's runtime. The re-run is `merged` vs `mprim` on the published packages with the stock native compiler \u2014 the table for the primitives PR. Heads-up to yak filed as DigitecGalaxus/next-yak#657 (2026-09-23). Previously blocked on rc.9 (#3399). DigitecGalaxus/next-yak#644 merged 2026-09-15 on rc.8, so none of #3454 / #3471 / the table follow-up is in what it measures. Its final experiment table (rc.8 vs rc.6) is the list to re-run: see the status comment below.\n\n## Not our gap\n\nDefinition-time chain flattening, static-class collection, choosing the renderer when the module loads, caching template parts: that is yak doing at runtime what our compiler does at build time. No Solid change removes it.\n\n\n## Landed alongside (correctness surfaced by the same audit)\n\n- #3383 `<!--!$-->` separators decided on resolved values \u2192 #3394 (+ #3430 recovers the ~2% SSR cost of the walker split)\n- #3382 empty `style=\"\"`/`class=\"\"` \u2192 #3395\n- #3384 `merge()` stale `$SOURCES` \u2192 #3401\n- #3385 `renderToString` deferred dispose \u2192 #3422\n- #3386 (1) `runHydrationEvents` after `dynamic()` string tag \u2192 #3396\n- #3557 static text children of spread elements unescaped (both compilers), Babel textarea `value` folded into children with spreads \u2192 #3559\n\n## Versus React (the part that matters more than parity with yak's PR)\n\nElement-dense cases: Solid 1.5\u20134\u00d7 faster than React on SSR, hydrate and mount. Deep composition (`compose-*`, `button-variants*`): 5.3\u20136.8\u00d7 React on SSR after #3497 (yak's PR: 4.2\u20135.5\u00d7). **Still behind React on SSR \u2014 and identically so across every yak lane, so none of the props-plumbing work above touched it:** `polymorphic-chain` 0.29\u00d7, `tabs` 0.50\u00d7, `multifile-composition` 0.51\u00d7. That residue is Solid's component layer on the server, not `merge`/`omit`. **Attributed** (`--cpu-prof --no-turbo-inlining`, sourcemapped, `polymorphic-chain` / `tabs` SSR): compiled component code 24\u201326% (the props literals with accessors the compiler emits at every call site \u2014 #3511, which also finds the non-identifier keys are emitted *computed*, `get [\"aria-disabled\"]()`, a 45% cost by itself), `merge`/`omit` views 33% on the chain, GC 13\u201315%, reactive graph / owner / child-id 16%; Solid's serializer is faster than React's renderer. Server `memo()` identity was read and rejected: `_$memo` is id-load-bearing on the server (#3033, #2976) \u2014 its owner slot is the retry-stable scope a deferred hole re-runs under, so it can't be transparent or a bare id burn. Hydrate half: re-measured, still 0.44\u20130.53\u00d7 React, and slower than our own mount \u2014 see the hydration item above. **Update after #3550/#3562** (same run, `mprim` vs React, `ssr-latest-parity1.md`): `polymorphic-chain` 0.29\u00d7 \u2192 0.47\u00d7, `tabs` 0.50\u00d7 \u2192 0.67\u00d7, `multifile-composition` 0.51\u00d7 \u2192 0.64\u00d7 \u2014 the props literal was the largest single piece of that residue and is gone; what remains is the server memo/owner protocol, `merge`/`omit` proxy reads and GC. A later run with the final #3562 runtime (no React lane in it) puts `mprim` at 119k/124k inst/s on `tabs`/`multifile-composition` against React's 121k/127k from the paired run \u2014 near parity. **Confirmed on rc.10** with a React lane in the same run (two rounds): `mprim` vs React `tabs` 1.02\u00d7 / 1.09\u00d7, `multifile-composition` 0.94\u00d7 / 1.06\u00d7, `polymorphic-chain` 0.45\u00d7 / 0.50\u00d7. The two composition cases went 0.50\u00d7 / 0.51\u00d7 \u2192 parity over the life of this tracker; `polymorphic-chain` sits at ~0.47\u00d7 \u2014 the server memo/owner protocol (kept deliberately: it is what gives the compute `getOwner()`/`onCleanup` and retry-stable ids), `merge`/`omit` proxy reads, and GC \u2014 accepted as the floor of the current design unless the owner protocol is reopened as its own item.\n\n\n\n\n\n\n\n",
+          "reactions": {
+            "url": "https://api.github.com/repos/solidjs/solid/issues/3389/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "timeline_url": "https://api.github.com/repos/solidjs/solid/issues/3389/timeline",
+          "performed_via_github_app": null,
+          "state_reason": "completed",
+          "pinned_comment": null,
+          "score": 1.0
+        }
+      ],
+      "search_type": "lexical"
+    }
+  },
+  {
+    "query": "repo:solidjs/solid is:issue withInteraction addEventListener",
+    "result": {
+      "total_count": 1,
+      "incomplete_results": false,
+      "items": [
+        {
+          "url": "https://api.github.com/repos/solidjs/solid/issues/3754",
+          "repository_url": "https://api.github.com/repos/solidjs/solid",
+          "labels_url": "https://api.github.com/repos/solidjs/solid/issues/3754/labels{/name}",
+          "comments_url": "https://api.github.com/repos/solidjs/solid/issues/3754/comments",
+          "events_url": "https://api.github.com/repos/solidjs/solid/issues/3754/events",
+          "html_url": "https://github.com/solidjs/solid/issues/3754",
+          "id": 5682137519,
+          "node_id": "I_kwDOB80jds8AAAABUq6Jrw",
+          "number": 3754,
+          "title": "Observe: open one interaction frame per event, so listeners outside the runtime can join it",
+          "user": {
+            "login": "ryansolid",
+            "id": 2768267,
+            "node_id": "MDQ6VXNlcjI3NjgyNjc=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/2768267?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ryansolid",
+            "html_url": "https://github.com/ryansolid",
+            "followers_url": "https://api.github.com/users/ryansolid/followers",
+            "following_url": "https://api.github.com/users/ryansolid/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ryansolid/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ryansolid/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ryansolid/subscriptions",
+            "organizations_url": "https://api.github.com/users/ryansolid/orgs",
+            "repos_url": "https://api.github.com/users/ryansolid/repos",
+            "events_url": "https://api.github.com/users/ryansolid/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ryansolid/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "labels": [],
+          "state": "open",
+          "locked": false,
+          "assignees": [],
+          "milestone": null,
+          "comments": 0,
+          "created_at": "2026-10-02T19:11:23Z",
+          "updated_at": "2026-10-02T19:11:23Z",
+          "closed_at": null,
+          "assignee": null,
+          "author_association": "MEMBER",
+          "issue_field_values": [],
+          "type": null,
+          "active_lock_reason": null,
+          "sub_issues_summary": {
+            "total": 0,
+            "completed": 0,
+            "percent_completed": 0
+          },
+          "issue_dependencies_summary": {
+            "blocked_by": 0,
+            "total_blocked_by": 0,
+            "blocking": 0,
+            "total_blocking": 0
+          },
+          "body": "Observed with `solid-js` / `@solidjs/web` `2.0.0-rc.13` (observe build) and `@solidjs/router` `next`. Context: solidjs/solid-router#643.\n\n## Problem\n\nAn interaction frame is opened per **listener**, not per **event**. `dispatchAsInteraction` wraps each runtime-attached handler in its own `withInteraction` call, and the frame is recorded (as `\"idle\"` if nothing was written) as soon as that handler returns.\n\nThat leaves code outside the runtime with no good option when it reacts to the same event:\n\n- If it uses plain `addEventListener`, its work runs outside any frame. Today, router navigations from anchor clicks and form submits get `NavigationEvent.interaction === undefined`. This is solidjs/solid-router#643.\n- If it opens its own frame (through `addEvent(\u2026, false)` or `withInteraction`), the click produces **two** records. The render root's delegated listener has already opened and closed a frame for that click, recorded as idle. The second record carries the navigation.\n\nWhat I saw clicking one `<a>` inside a rendered root:\n\n| Router listener | Interaction records | `NavigationEvent.interaction` |\n|---|---|---|\n| plain `addEventListener` (today) | 1: `click a#go`, idle | `undefined` |\n| through `addEvent(document, \"click\", h, false)` | 2: the same idle record, then a second `click a#go` that owns the navigation | the second record |\n\nIf the anchor also has an `onClick` that does work, that work lands on the first record and the navigation on the second. One user click shows up as two interactions, which skews INP-style numbers and the click spans that consumers display.\n\nAttaching per root container instead of on `document` doesn't help, because it is still a second listener and a second frame. Neither does looking up the anchor's container first: frames aren't tied to containers, and by the time the event bubbles to a later listener, the delegated frame has already closed.\n\n## Proposal: one frame per event\n\n- **Runtime:** `dispatchAsInteraction(e, fn)` remembers the frame it opened for `e`, for example in a `WeakMap<Event, Frame>`. A later call for the same event re-enters that frame instead of opening a new one.\n- **Engine:** the frame is finalized (recorded, or marked idle) after the event's dispatch, not when the first handler returns. All listeners for one dispatch run within a single task, so closing at the next task works for both native and synthetic events. A microtask is too early: browsers run microtasks between listeners for native events.\n- **Surface:** export `dispatchAsInteraction` from `@solidjs/web`. It already exists internally and is the only new public entry point. Like every other observe hook, it folds out of production builds.\n\nThe router would then just wrap its click and submit bodies, `dispatchAsInteraction(e, () => \u2026)`, and keep listening on `document`. That gives one record per click, with both the `onClick` work and the navigation in it, and `NavigationEvent.interaction` set.\n\n## Why this belongs in core, not the router\n\nOnly the runtime knows that a frame already exists for an event. Any library that listens at the document level hits this: routers, analytics, drag-and-drop, focus/a11y helpers. The router could call `OBSERVE.attribution.withInteraction` itself, but that opens the duplicate frame above and copies the runtime's target-description and privacy logic.\n\nThat said, a public API that mainly serves this case is a fair concern. The alternative I'd weigh is the delegated-handler route: a frame-aware way for a second handler to join the delegated dispatch on an element. The delegated slot (`$$click`) is single-handler today, and the author's `onClick` already fills it. That fixes compiler-claimed anchors but not elements outside a root or unclaimed anchors, which is why I lean towards the per-event frame.\n\n## Open questions\n\n- A listener running after its event's frame has closed (for example a re-dispatched event): should it open a fresh frame? I'd say yes.\n- Records arrive one task later. Timing still comes from `e.timeStamp`, so measurements don't change. Is the delay acceptable for consumers?\n- Should the preload-style listeners (`mousemove`, `focusin`) stay outside frames? For the router, yes: wrapping them would flood the records with idle interactions. That's a usage guideline, not something the runtime needs to enforce.\n",
+          "reactions": {
+            "url": "https://api.github.com/repos/solidjs/solid/issues/3754/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "timeline_url": "https://api.github.com/repos/solidjs/solid/issues/3754/timeline",
+          "performed_via_github_app": null,
+          "state_reason": null,
+          "pinned_comment": null,
+          "score": 1.0
+        }
+      ],
+      "search_type": "lexical"
+    }
+  },
+  {
+    "query": "repo:solidjs/solid is:issue compiled event attribution",
+    "result": {
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": [],
+      "search_type": "lexical"
+    }
+  },
+  {
+    "query": "repo:solidjs/solid-router is:issue literal handler attribution",
+    "result": {
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": [],
+      "search_type": "lexical"
+    }
+  },
+  {
+    "query": "repo:solidjs/solid-router is:issue withInteraction addEventListener",
+    "result": {
+      "total_count": 1,
+      "incomplete_results": false,
+      "items": [
+        {
+          "url": "https://api.github.com/repos/solidjs/solid-router/issues/643",
+          "repository_url": "https://api.github.com/repos/solidjs/solid-router",
+          "labels_url": "https://api.github.com/repos/solidjs/solid-router/issues/643/labels{/name}",
+          "comments_url": "https://api.github.com/repos/solidjs/solid-router/issues/643/comments",
+          "events_url": "https://api.github.com/repos/solidjs/solid-router/issues/643/events",
+          "html_url": "https://github.com/solidjs/solid-router/issues/643",
+          "id": 5648920800,
+          "node_id": "I_kwDOElBRY88AAAABULOw4A",
+          "number": 643,
+          "title": "Anchor-click and form-submit navigations run outside the runtime's interaction frame (observe: NavigationEvent.interaction is undefined)",
+          "user": {
+            "login": "ryansolid",
+            "id": 2768267,
+            "node_id": "MDQ6VXNlcjI3NjgyNjc=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/2768267?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ryansolid",
+            "html_url": "https://github.com/ryansolid",
+            "followers_url": "https://api.github.com/users/ryansolid/followers",
+            "following_url": "https://api.github.com/users/ryansolid/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ryansolid/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ryansolid/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ryansolid/subscriptions",
+            "organizations_url": "https://api.github.com/users/ryansolid/orgs",
+            "repos_url": "https://api.github.com/users/ryansolid/repos",
+            "events_url": "https://api.github.com/users/ryansolid/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ryansolid/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "labels": [
+            {
+              "id": 2454816799,
+              "node_id": "MDU6TGFiZWwyNDU0ODE2Nzk5",
+              "url": "https://api.github.com/repos/solidjs/solid-router/labels/bug",
+              "name": "bug",
+              "color": "d73a4a",
+              "default": true,
+              "description": "Something isn't working",
+              "archived_at": null,
+              "archived_by": null
+            }
+          ],
+          "state": "open",
+          "locked": false,
+          "assignees": [],
+          "milestone": null,
+          "comments": 1,
+          "created_at": "2026-09-30T15:27:34Z",
+          "updated_at": "2026-10-02T19:11:33Z",
+          "closed_at": null,
+          "assignee": null,
+          "author_association": "MEMBER",
+          "issue_field_values": [],
+          "type": null,
+          "active_lock_reason": null,
+          "sub_issues_summary": {
+            "total": 0,
+            "completed": 0,
+            "percent_completed": 0
+          },
+          "issue_dependencies_summary": {
+            "blocked_by": 0,
+            "total_blocked_by": 0,
+            "blocking": 0,
+            "total_blocking": 0
+          },
+          "body": "## Summary\n\nUnder Solid's observe tier, a navigation performed by clicking an `<a>` records no interaction: `NavigationEvent.interaction` is `undefined`, and the calls the route's data makes carry a navigation origin with no click behind it. A navigation performed by `navigate()` from an `onClick` handler is attributed correctly. The difference is where the handler runs: the router attaches its anchor handler to `document` directly, outside the web runtime's interaction frame.\n\n## Where\n\n`src/data/events.ts`, `setupNativeEvents`:\n\n```ts\n// ensure delegated event run first\ndelegateEvents([\"click\", \"submit\"]);\ndocument.addEventListener(\"click\", handleAnchorClick);\nif (preload) {\n  document.addEventListener(\"mousemove\", handleAnchorMove, { passive: true });\n  document.addEventListener(\"focusin\", handleAnchorPreload, { passive: true });\n  document.addEventListener(\"touchstart\", handleAnchorPreload, { passive: true });\n}\ndocument.addEventListener(\"submit\", handleFormSubmit);\n```\n\n`@solidjs/web` wraps every handler it dispatches \u2014 delegated events via `eventHandler`, runtime-attached ones via `addEvent` \u2014 in `dispatchAsInteraction`, i.e. `OBSERVE.attribution.withInteraction({ type, target, at }, fn)`, so every root write inside the handler (the router's location write included) is attributed to that interaction. A raw `document.addEventListener` goes around that wrapper. `handleAnchorClick` then calls `navigateFromRoute`, whose `withOrigin(describeNavigation\u2026)` frame opens with no enclosing interaction, so the record is an orphan.\n\n`handleFormSubmit` has the same shape: an action submitted through a native `<form>` is unattributed, while one submitted from a handler is not.\n\n## Observed\n\nWith `@sentry/solid-2` consuming the records (e2e app on rc.13 / next.32, `/` \u2192 `/users/6`):\n\n- `<button onClick={() => navigate('/users/6')}>`: `NavigationEvent.interaction` is the click; the click span links to the route-named navigation span.\n- `<a href=\"/users/6\">`: `NavigationEvent.interaction === undefined`; there is no click span at all, since no interaction frame ever opened. The navigation and its server-function call stand alone. The INP-relevant facts on the interaction record (`inputDelayMs`, `handlerMs`, `settledMs`) are lost for every link click in the app \u2014 which is most navigations.\n\nThe consumer documents the caveat for now rather than guessing a parent by time.\n\n## Cause\n\nThe direct `document` listeners date from the ordering requirement noted in the comment \u2014 Solid's delegated `click` must run first so a component's `onClick` with `preventDefault()` can stop the navigation \u2014 and predate the runtime having an interaction frame to run under. That ordering still has to hold; the fix is to run the handler *inside* the frame, not to change when it runs.\n\n## Options\n\n1. **Router wraps its handlers.** In `setupNativeEvents`, when `OBSERVE` is defined, dispatch `handleAnchorClick` and `handleFormSubmit` through `OBSERVE.attribution.withInteraction({ type: evt.type, target: \u2026, at: evt.timeStamp }, () => handler(evt))`. Smallest change, but it duplicates the web runtime's `describeEventTarget` (element description, the `values` privacy gate for text) and `interactionStart` (the `timeStamp` clock check), which the router should not own.\n2. **Web exposes the frame.** `@solidjs/web` gains a small public entry \u2014 a listener attach that wraps under observe and is the identity function otherwise (`addEvent(node, name, handler, false)` already does exactly this but is marked `@internal`, compiler-emitted). The router uses it for the `click` and `submit` listeners. Preload listeners (`mousemove`, `focusin`, `touchstart`) stay raw: preloading is not a user interaction and should not open frames.\n3. **Web stamps `document`-level listeners itself.** Not viable without patching `EventTarget.prototype`; not proposed.\n\n(2) is the right shape: the web runtime owns interaction description, the router only needs \"run this as the event's handler\". It is a public-surface addition on `@solidjs/web`, so it needs a decision there first; (1) can land in the router alone if that is preferred short-term.\n\nEither way the order relative to Solid's delegated handler must not change: attach after `delegateEvents([\"click\", \"submit\"])` exactly as today, so `evt.defaultPrevented` still reflects component handlers.\n\n## Acceptance\n\n- An anchor click that navigates produces a `NavigationEvent` whose `interaction` is the click's `InteractionRef` (type `click`, target `a#\u2026`), the same object identity a `navigate()` from `onClick` gets today.\n- A `<form>` submitted to an action produces an interaction of type `submit` on the action's records.\n- A component `onClick` calling `preventDefault()` still stops the anchor navigation.\n- Nothing changes in non-observe builds (the wrapper folds to the plain listener).\n\nRelated: solidjs/solid#3683 (route declaration to the observe tier), getsentry/sentry-javascript#24517 (consumer; the caveat is documented in `docs/solid-2-observe.md` there).\n\n\u2014 *Claude via Cursor*\n",
+          "reactions": {
+            "url": "https://api.github.com/repos/solidjs/solid-router/issues/643/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+          },
+          "timeline_url": "https://api.github.com/repos/solidjs/solid-router/issues/643/timeline",
+          "performed_via_github_app": null,
+          "state_reason": null,
+          "pinned_comment": null,
+          "score": 1.0
+        }
+      ],
+      "search_type": "lexical"
+    }
+  },
+  {
+    "query": "repo:solidjs/solid-router is:issue compiled event attribution",
+    "result": {
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": [],
+      "search_type": "lexical"
+    }
+  },
+  {
+    "query": "repo:solidjs/solid-start is:issue literal handler attribution",
+    "result": {
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": [],
+      "search_type": "lexical"
+    }
+  },
+  {
+    "query": "repo:solidjs/solid-start is:issue withInteraction addEventListener",
+    "result": {
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": [],
+      "search_type": "lexical"
+    }
+  },
+  {
+    "query": "repo:solidjs/solid-start is:issue compiled event attribution",
+    "result": {
+      "total_count": 0,
+      "incomplete_results": false,
+      "items": [],
+      "search_type": "lexical"
+    }
+  }
+]

@@ -1,0 +1,4 @@
+import {OBSERVE,createSignal,createMemo,createRoot,flush} from 'solid-js'
+import {render} from '@solidjs/web'
+import {attribution} from 'solid-js/attribution'
+const release=attribution.enable({log:false,checks:false});let n=0;const rows:any[]=[];const off=OBSERVE?.records.subscribe('rerun',e=>rows.push(e));const[r,w]=createSignal(0);const rootClose=createRoot(d=>{createMemo(r);return d});const close=render(()=>{const handler=createMemo(()=>()=>w(++n));return <><button id="dynamic" onMouseEnter={handler()}>dynamic</button><button id="literal" onMouseEnter={()=>w(++n)}>literal</button></>},document.body);const origins=[];for(const id of ['dynamic','literal']){document.querySelector('#'+id)!.dispatchEvent(new MouseEvent('mouseenter'));flush();origins.push(rows.at(-1)?.causes[0]?.origin.kind)};(window as any).finding={origins};close();rootClose();off?.();release()
