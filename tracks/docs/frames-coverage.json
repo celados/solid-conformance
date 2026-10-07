@@ -615,7 +615,7 @@
     "coverage": [
       "tracks/frames/transport-contracts.test.ts",
       "tracks/docs/rpc-cases.ts#10/response-envelope-body",
-      "tracks/docs/rpc-cases.ts#10/redirect-carrier",
+      "tracks/docs/rpc-cases.ts#10/redirect-masking",
       "tracks/docs/rpc-cases.ts#10/reload-scopes"
     ],
     "reason": "CSR generator actions return actual authored response envelopes/redirects/reload carrying value/body/status/Location/revalidate; server handlers and in-process helper cases assert same semantics."
@@ -1663,9 +1663,11 @@
   },
   {
     "id": "10-server-functions:L232:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/live-hidden.test.ts#RFC10 a genuinely hidden Chrome page retains its live connection"
+    ],
+    "reason": "SystemChrome independentprofile and publicCDP noDefaults (noPWfocus emulation): actual taskwindow minimized, document.visibilityState hidden positive; controlled server second emission arrives while hidden over same solerequest, noClosed event, serverproducer remainsopen until explicitsignalabort; allthreebuilds."
   },
   {
     "id": "10-server-functions:L232:2",
