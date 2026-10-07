@@ -429,9 +429,12 @@
   {
     "id": "08-dev-diagnostics:L818:2",
     "classification": "behavioral",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "现有warning cases未同时捕获boundary records以join hydration id"
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-waterfall-record-join",
+      "08/boundary-render-masked-record-join"
+    ],
+    "reason": "实际macrotask顺序3次asyncwait→4passes，warning字段/data.boundary严格joinrecord.id且namedLoading owner；masked client-only handoff另road同idjoin。"
   },
   {
     "id": "08-dev-diagnostics:L831:1",
@@ -990,5 +993,32 @@
       "08/server-diagnostic-unrecognized-value"
     ],
     "reason": "同ASYNC_OUTSIDE_LOADING_BOUNDARY码clientwarn/servererror与data.side区别；plainobject/symbol同UNRECOGNIZED_INSERT_VALUE在双artifact插入并省略。"
+  },
+  {
+    "id": "08-dev-diagnostics:L653:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-waterfall-record-join"
+    ],
+    "reason": "实际macrotask顺序3次asyncwait→4passes，warning字段/data.boundary严格joinrecord.id且namedLoading owner；masked client-only handoff另road同idjoin。"
+  },
+  {
+    "id": "08-dev-diagnostics:L653:6",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-waterfall-record-join"
+    ],
+    "reason": "实际macrotask顺序3次asyncwait→4passes，warning字段/data.boundary严格joinrecord.id且namedLoading owner；masked client-only handoff另road同idjoin。"
+  },
+  {
+    "id": "08-dev-diagnostics:L653:7",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-waterfall-record-join"
+    ],
+    "reason": "实际macrotask顺序3次asyncwait→4passes，warning字段/data.boundary严格joinrecord.id且namedLoading owner；masked client-only handoff另road同idjoin。"
   }
 ]
