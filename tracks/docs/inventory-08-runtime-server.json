@@ -1115,32 +1115,6 @@
     "reason": "5 direct invocation及3HTTP invocation分别id/direct/request/outcome/originalerror；Loading id严格join；nestedRequestEvent与render event/trace用===验证。"
   },
   {
-    "id": "08-dev-diagnostics:C826:1",
-    "classification": "behavioral",
-    "status": "covered",
-    "coverage": [
-      "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles",
-      "08/server-road-live-request-event-identity"
-    ],
-    "reason": "5 direct invocation及3HTTP invocation分别id/direct/request/outcome/originalerror；Loading id严格join；nestedRequestEvent与render event/trace用===验证。"
-  },
-  {
-    "id": "08-dev-diagnostics:C839:1",
-    "classification": "behavioral",
-    "status": "covered",
-    "coverage": [
-      "08/boundary-render-sync-silent",
-      "08/boundary-render-one-wait",
-      "08/boundary-render-shell-waited",
-      "08/boundary-render-render-only-count",
-      "08/boundary-render-render-initial-failed",
-      "08/boundary-render-render-initial-failed-stream",
-      "08/boundary-render-render-abandoned",
-      "08/boundary-render-preflush-redirect-abandoned"
-    ],
-    "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。"
-  },
-  {
     "id": "08-dev-diagnostics:L842:6",
     "classification": "behavioral",
     "status": "covered",
