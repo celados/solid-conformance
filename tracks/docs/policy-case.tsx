@@ -1,12 +1,15 @@
+import {dynamicTrackingCase} from '../../findings/041-dynamic-source-tracking/component'
 import { createMemo, createSignal, isPending, Loading, onCleanup, flush } from 'solid-js'
-import { isServer, clientOnly } from '@solidjs/web'
+import { isServer, clientOnly, dynamic } from '@solidjs/web'
 import type { Spec } from '../../harness/tree'
 import { controlledIterable, deferred, ticks } from '../../harness/timing'
 import { equal, type DocResult } from './registry'
 
 export function policyCase(spec:Spec){
  const kind=spec.scenario!.split(':')[1]!
+ if(kind==='dynamic-count-only')return dynamicTrackingCase()
  if(kind.startsWith('client-only'))return clientOnlyPolicy(kind)
+ if(kind.startsWith('dynamic-native'))return dynamicNativePolicy(kind)
  const iterable=kind==='hybrid-iterable'
  const policy=kind==='client'||kind==='declared-client'?'client':kind.startsWith('hybrid')?'hybrid':'server'
  const gates=[deferred<number>(),deferred<number>()]
@@ -67,4 +70,12 @@ function clientOnlyPolicy(kind:string){
  const docs:DocResult[]=[]
  function App(){return<><Only fallback={<b data-fallback ref={(node:Element)=>{claims.push(!original||node===original)}}>fallback</b>}/><i>stable sibling</i></>}
  return{App,streams:[],docs,async settle(){if(isServer){equal(imports,0);return}equal(imports,1);equal(document.querySelectorAll('#root [data-fallback]').length,1);if(original)equal(claims[0],true);gate.resolve({default:()=><span>loaded</span>});await ticks(8);equal(document.getElementById('root')!.textContent,'loadedstable sibling');equal(document.querySelectorAll('#root [data-fallback]').length,0);equal(document.querySelectorAll('#root i').length,1);docs.push({id:'03/client-only-hydration-'+kind,file:'03-control-flow.md',statement:'The clientOnly hydration gate claims the server fallback DOM without duplication and swaps only after load, without Loading.'})}}
+}
+
+function dynamicNativePolicy(kind:string){
+ const sync=kind.endsWith('sync');const gates=[deferred<'article'|'section'>(),deferred<'article'|'section'>()];let write!:(n:number)=>void,calls=0;const claims:boolean[]=[]
+ const original=!isServer&&window.mode==='hydrate'?document.querySelector('#root article'):undefined
+ const docs:(DocResult&{observations:Record<string,unknown>})[]=[]
+ function App(){const [id,setId]=createSignal(0);write=setId;const Tag=dynamic(()=>{calls++;const argument=id();return sync?(argument?'section':'article'):gates[argument]!.promise},{deferStream:kind.endsWith('defer')});return<Loading fallback={<b>fallback</b>}><Tag id="chosen" ref={(node:Element)=>{claims.push(!original||node===original)}}>chosen</Tag></Loading>}
+ return{App,streams:[],docs,async settle(){if(isServer){equal(calls,1);gates[0]!.resolve('article');await ticks(8);return}if(window.mode==='hydrate'){equal(document.querySelector('#root article')===original,true);equal(document.getElementById('root')!.textContent,'chosen');equal(claims[0],true)}else equal(document.getElementById('root')!.textContent,sync?'chosen':'fallback');gates[0]!.resolve(window.mode==='hydrate'?'section':'article');await ticks(8);equal(document.querySelector('#root article')?.id,'chosen');write(1);flush();await ticks(4);if(!sync)equal(document.querySelector('#root article')?.id,'chosen');gates[1]!.resolve('section');await ticks(8);equal(document.querySelector('#root section')?.id,'chosen');equal(document.getElementById('root')!.textContent,'chosen');docs.push({id:'03/dynamic-native-hydration-'+kind,file:'03-control-flow.md',statement:'An async dynamic native tag composes with Loading, adopts its serialized tag and DOM without re-entering Loading, and updates after an argument change.',observations:{calls,claims}})}}
 }
