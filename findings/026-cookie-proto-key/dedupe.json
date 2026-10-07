@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-07T16:47:33.336Z",
+  "results": [
+    {
+      "term": "cookie __proto__",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "cookie __proto__",
+      "state": "closed",
+      "results": []
+    },
+    {
+      "term": "cookie prototype",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "cookie prototype",
+      "state": "closed",
+      "results": []
+    },
+    {
+      "term": "parseCookieHeader",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "parseCookieHeader",
+      "state": "closed",
+      "results": [
+        {
+          "number": 3239,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "The flash cookie carries the submission with no `SameSite`, no lifetime and no `__Host-` prefix",
+          "url": "https://github.com/solidjs/solid/issues/3239"
+        }
+      ]
+    }
+  ]
+}

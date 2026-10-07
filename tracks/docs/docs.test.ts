@@ -12,14 +12,16 @@ test('RFC chapters: behavioral statements execute in the selected client/server 
 		await Bun.write(process.env.DOC_RECEIPT??'artifacts/docs.json',JSON.stringify({runtime:await runtimeReceipt(),results,messages:client.messages},null,2))
 		console.log('Doc cases:',results.length,JSON.stringify(results.filter(r=>r.error),null,2))
 		expect(client.messages.filter(m=>!m.startsWith('warning: [REACTIVE_WRITE_IN_OWNED_SCOPE] repair guide:'))).toEqual([])
-		const known = new Set(['04/keyed-reconcile', '04/store-path', '05/loading-on-constant', '02/pinned-derived-signal', '06/refresh-staged-authority'])
-		if (h.variant === 'production') for (const id of ['05/refresh-delivery','05/refresh-quiet','05/refresh-quiescence','06/affects-key-granularity','06/affects-nested-record']) known.add(id)
+		const known = new Set(['04/keyed-reconcile', '04/store-path', '05/loading-on-constant', '02/pinned-derived-signal', '06/refresh-staged-authority', '12/cookie-proto-key'])
+		if (h.variant === 'production') for (const id of ['05/refresh-delivery','05/refresh-quiet','05/refresh-quiescence','06/affects-key-granularity','06/affects-nested-record','06/until-staged-source']) known.add(id)
 		const signatures: Record<string, RegExp> = {
+			'12/cookie-proto-key': /^Error: Expected true, received false$/,
 			'06/refresh-staged-authority': /^Error: Expected 2, received 99$/,
 			'02/pinned-derived-signal': /^Error: Expected \{"n":3,"pinned":false\}, received \{"n":99,"pinned":false\}$/,
 			'04/keyed-reconcile': /Expected true, received false/,
 			'04/store-path': /storePath.*not a function/,
 			'05/loading-on-constant': /Expected "fallback", received "1"/,
+			'06/until-staged-source': /^Error: Expected true, received false$/,
 			'06/affects-key-granularity': /^Error: Expected true, received false$/,
 			'06/affects-nested-record': /^Error: Expected true, received false$/,
 			'05/refresh-delivery': /did not settle within/,

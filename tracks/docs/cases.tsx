@@ -1,5 +1,6 @@
 import { holdDiagnosticCases } from './hold-diagnostic-cases'
 import { isServer } from '@solidjs/web'
+import { remainingHttpCases } from './remaining-http-cases'
 import { remainingRenderCases } from './remaining-render-cases'
 import { remainingCoreCases } from './remaining-core-cases'
 import { diagnosticCases } from './diagnostic-cases'
@@ -13,7 +14,7 @@ import { renderCases } from './render-cases'
 import { runCases, type DocResult } from './registry'
 export async function runDocCases() {
 	const serverOnly = new Set(['03/client-only-ssr','05/client-source-ssr','05/declared-client-ssr'])
-	return runCases([...serverDiagnosticCases, ...(isServer ? [] : coreCases), ...renderCases, ...httpCases, ...rpcCases, ...diagnosticCases, ...clientDiagnosticCases, ...remainingRenderCases, ...attributionCases, ...holdDiagnosticCases, ...(isServer ? [] : remainingCoreCases)].filter(c =>
+	return runCases([...serverDiagnosticCases, ...(isServer ? [] : coreCases), ...renderCases, ...httpCases, ...rpcCases, ...diagnosticCases, ...clientDiagnosticCases, ...remainingRenderCases, ...remainingHttpCases, ...attributionCases, ...holdDiagnosticCases, ...(isServer ? [] : remainingCoreCases)].filter(c =>
 		isServer ? c.id !== '12/client-http-noop' : !serverOnly.has(c.id)))
 }
 export function docsCase() {
