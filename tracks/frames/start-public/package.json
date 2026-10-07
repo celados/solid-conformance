@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@solidjs/start": "2.0.5"
+  }
+}

@@ -1302,11 +1302,13 @@
   },
   {
     "id": "10-server-functions:L221:2",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "tracks/frames/transport-contracts.test.ts#RFC10 transport awaits the replacement hook and owns one consumer per source"
+      "tracks/frames/live-loop.test.ts#RFC10 live integration seam reconnection backoff and cancellation",
+      "tracks/frames/transport-contracts.test.ts",
+      "findings/014-live-drop-completes/repro.test.ts"
     ],
-    "reason": "Partial controls: first-connect HTTP400/404/408/425/429/500 each reject after one request even with Retry-After; return() aborts each independent connected wire. Actual post-connect TCP-drop finding014 remains red; backoff timing/online wake/transient retries need further exact controls."
+    "reason": "Public responseHandler returned iterators exercise real500\u21921000 backoff and healthy-value reset500, online earlywake, actualHTTP404 no retry,408/425/429 retries and404+Retry-After1s, invoke abort wakes sleep/rejects once, return closes own controller; first-connect refusals tested separately. Real TCP-drop decoder path independently remains014 red rather than being suppressed by integration seam."
   },
   {
     "id": "10-server-functions:L221:3",
@@ -1429,15 +1431,19 @@
   },
   {
     "id": "10-server-functions:L227:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/live-loop.test.ts#RFC10 live integration seam reconnection backoff and cancellation"
+    ],
+    "reason": "Each successful connect yields new answer and independently consumable nested generator; retained values/iterator identities stay distinct across retry."
   },
   {
     "id": "10-server-functions:L227:2",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/live-loop.test.ts#RFC10 live integration seam reconnection backoff and cancellation"
+    ],
+    "reason": "Nested generators of successful connections produce respective0/2/3 independently; no old nested iterator is continued when fresh connection answer arrives."
   },
   {
     "id": "10-server-functions:L227:3",
@@ -1447,9 +1453,11 @@
   },
   {
     "id": "10-server-functions:L227:4",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/live-loop.test.ts#RFC10 live integration seam reconnection backoff and cancellation"
+    ],
+    "reason": "Top-level yielded answer objects are the consumer values; no implicit mutation/continuation transport shape."
   },
   {
     "id": "10-server-functions:L227:5",
@@ -1963,12 +1971,13 @@
   },
   {
     "id": "10-server-functions:L304:2",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "tracks/frames/frames.test.ts:invoke-abort",
-      "tracks/frames/frames.test.ts:rpc"
+      "tracks/frames/live-loop.test.ts#RFC10 live integration seam reconnection backoff and cancellation",
+      "tracks/frames/frames.test.ts",
+      "tracks/frames/transport-contracts.test.ts"
     ],
-    "reason": "GET long URL fallback tested; invoke-abort on a reconnecting live source still needs a focused case."
+    "reason": "GET args/query plus longURLPOST fallback controls and signal cancellation across retry/backoff via public invoke; independent normal RPC/abort cases remain."
   },
   {
     "id": "10-server-functions:L304:3",
@@ -1997,9 +2006,11 @@
   },
   {
     "id": "10-server-functions:L304:7",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/router/invocation.test.ts"
+    ],
+    "reason": "Router worker7453960: query/action/liveQuery eachreject invoke with directed transport guidance; raw server reference succeeds and handler invokes once."
   },
   {
     "id": "10-server-functions:L304:8",
@@ -2258,9 +2269,11 @@
   },
   {
     "id": "10-server-functions:L352:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "untestable",
+    "coverage": [
+      "tracks/frames/start-public.test.ts"
+    ],
+    "reason": "No released Solid2-aligned Start target: Bun next tag absent; manager-selected latest2.0.5 publicly exportsGET but depends on Solid1 ^1.9.15 and router<2 prerelease. Public consumer compile baseline proves package/export exists plus HEADcoreGET; next tar is older0.7.7/Solid1.8.16, also not matching this Solid2 migration domain. Cannot treat old-line GET presence as a Solid2 runtime discrepancy."
   },
   {
     "id": "10-server-functions:L353:1",
@@ -2307,9 +2320,11 @@
   },
   {
     "id": "10-server-functions:L362:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "untestable",
+    "coverage": [
+      "tracks/frames/start-public.test.ts"
+    ],
+    "reason": "No released Solid2-aligned Start target: Bun next tag absent; manager-selected latest2.0.5 publicly exportsGET but depends on Solid1 ^1.9.15 and router<2 prerelease. Public consumer compile baseline proves package/export exists plus HEADcoreGET; next tar is older0.7.7/Solid1.8.16, also not matching this Solid2 migration domain. Cannot treat old-line GET presence as a Solid2 runtime discrepancy."
   },
   {
     "id": "10-server-functions:L363:1",

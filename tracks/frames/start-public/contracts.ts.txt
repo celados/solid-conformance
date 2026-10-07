@@ -1,0 +1,9 @@
+import {GET as StartGET} from '@solidjs/start';
+import {GET as CoreGET,type ServerFunction} from '@solidjs/web/server-functions';
+declare const legacy: Parameters<typeof StartGET>[0];
+StartGET(legacy);
+declare const core:ServerFunction<[number],number>;
+const expected:Promise<number>=CoreGET(core)(1);
+// @ts-expect-error Core GET retains the argument tuple.
+CoreGET(core)('wrong');
+void expected;
