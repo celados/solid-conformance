@@ -1,0 +1,32 @@
+[
+  {
+    "term": "derived store held draft",
+    "state": "open",
+    "results": []
+  },
+  {
+    "term": "derived store held draft",
+    "state": "closed",
+    "results": []
+  },
+  {
+    "term": "createStore action derived prev",
+    "state": "open",
+    "results": []
+  },
+  {
+    "term": "createStore action derived prev",
+    "state": "closed",
+    "results": []
+  },
+  {
+    "term": "held derivation external write",
+    "state": "open",
+    "results": []
+  },
+  {
+    "term": "held derivation external write",
+    "state": "closed",
+    "results": []
+  }
+]
