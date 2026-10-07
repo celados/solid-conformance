@@ -23,10 +23,27 @@ for (const path of issues) {
   const body = text.replace(/^---\n[\s\S]*?\n---\n/, "");
   const visible = body.split("<details>")[0]!;
   visibleCounts[path] = visible.trim().split("\n").length;
-  if (visibleCounts[path]! > 60) throw new Error("First view exceeds 60 lines: " + path);
+  if (visibleCounts[path]! > 70) throw new Error("Template view exceeds 70 lines: " + path);
   if (!body.includes("<details>") || !body.trimEnd().endsWith("</details>"))
     throw new Error("Automated reproduction must be last: " + path);
+  if (!/^\[2\.0 (?:rc\.13 \+ next|next, regressed after rc\.13)\]/.test(front.title))
+    throw new Error("Missing version range: " + path);
+  if (!/^[a-f0-9]{40}$/.test(front.repro_commit))
+    throw new Error("Missing pinned repro commit: " + path);
+  if (!body.includes("### Platform")) throw new Error("Missing Platform: " + path);
+  if (/\]\(\.\.\/repros\//.test(body)) throw new Error("Relative repro link: " + path);
   if (front.tier === "A") {
+    const headings = [...body.matchAll(/^### (.+)$/gm)].map((match) => match[1]);
+    const required = [
+      "Describe the bug",
+      "Your Example Website or App",
+      "Steps to Reproduce the Bug or Issue",
+      "Expected behavior",
+      "Platform",
+      "Additional context",
+    ];
+    if (JSON.stringify(headings) !== JSON.stringify(required))
+      throw new Error("Wrong upstream heading order: " + path);
     const name = path.split("/").at(-1)!.replace(".md", "");
     const snippet = visible.match(/```(?:ts|tsx)\n([\s\S]*?)\n```/)?.[1];
     if (!front.snippet || !snippet) throw new Error("Missing readable source: " + path);

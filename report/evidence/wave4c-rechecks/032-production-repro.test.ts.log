@@ -1,0 +1,30 @@
+bun test v1.4.2 (744846f84)
+
+findings/032-sync-lazy-resolver/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"3086f1b77cd7b0431d3a7f768c2984c335758633","directory":"/Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633"},"buildMode":"production","solid":"2.0.0-rc.13"}
+10 |     client: [], server: ['findings/032-sync-lazy-resolver/server.tsx'],
+11 |   })
+12 |   try {
+13 |     const { sample } = await import(dir + '/server.js')
+14 |     expect(await sample(false)).toEqual({ rendered: true, error: null })
+15 |     expect(await sample(true)).toEqual({ rendered: true, error: null })
+                                    ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "error": null,
+-   "rendered": true,
++   "error": "resolver-failed",
++   "rendered": false,
+  }
+
+- Expected  - 2
++ Received  + 2
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/findings/032-sync-lazy-resolver/repro.test.ts:15:32)
+(fail) a failed lazy asset resolver preserves server component HTML [27.65ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [39.00ms]

@@ -1,0 +1,30 @@
+bun test v1.4.2 (744846f84)
+
+repro.test.ts:
+32 |     ],
+33 |   });
+34 |   expect(built.success).toBe(true);
+35 |   const r = await import(resolve(".build/finding053/module.js"));
+36 |   expect(await r.run()).toEqual({ beforeEcho: false, confirmed: true, error: undefined });
+37 |   expect(await r.run(false)).toEqual({ beforeEcho: false, confirmed: true, error: undefined });
+                                  ^
+error: expect(received).toEqual(expected)
+
+@@ -2,4 +2,4 @@
+    "beforeEcho": false,
+-   "confirmed": true,
+-   "error": undefined,
++   "confirmed": false,
++   "error": "TimeoutError: Timed out waiting for condition",
+  }
+
+- Expected  - 2
++ Received  + 2
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/12-async-action-live-ack/repro.test.ts:37:30)
+(fail) 06-actions-optimistic.md C166: await fire-and-forget send then until waits for the authoritative live echo [141.04ms]
+
+ 0 pass
+ 1 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [148.00ms]

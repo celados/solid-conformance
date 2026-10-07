@@ -1,0 +1,79 @@
+bun add v1.4.2 (744846f84)
+
+installed solid-js@2.0.0-rc.13
+installed @solidjs/web@2.0.0-rc.13
+installed @solidjs/signals@2.0.0-rc.13
+installed @solidjs/compiler@2.0.0-rc.13
+installed @solidjs/diagnostics@2.0.0-rc.13
+
+16 packages installed [10.00ms]
+bun add v1.4.2 (744846f84)
+
+installed playwright@1.64.0 with binaries:
+ - playwright
+
+2 packages installed [10.00ms]
+Linked the five matching HEAD packages from /Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633
+Target: next; build: development; isolated host: /var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-MRlaaB
+bun test v1.4.2 (744846f84)
+bun test v1.4.2 (744846f84)
+Resolving dependencies
+Resolved, downloaded and extracted [0]
+Saved lockfile
+Saved lockfile
+
+live.test.ts:
+74 |     });
+75 |     expect(ssr.stats.closed).toBe(0);
+76 |     expect(await page.evaluate(() => (window as any).state.status.at(-1))).toBe("connected");
+77 |     for (const socket of downstream) socket.terminate();
+78 |     await page.waitForTimeout(1500);
+79 |     expect(await page.evaluate(() => (window as any).state.status)).toContain("reconnecting");
+                                                                         ^
+error: expect(received).toContain(expected)
+
+Expected to contain: "reconnecting"
+Received: [ "connected", "closed" ]
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-MRlaaB/live.test.ts:79:69)
+(fail) A connected live source must reconnect after a real TCP drop [12674.18ms]
+
+ 0 pass
+ 1 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [12.86s]
+
+repro.test.ts:
+14 |         });
+15 |         const module = await import(dir + "/server.js"),
+16 |           result = await module.run(death);
+17 |         expect(result.first).toEqual({ done: false, value: "first" });
+18 |         expect(result.transportFailed).toBe(true);
+19 |         expect(result.outcome.outcome).toBe("rejected");
+                                            ^
+error: expect(received).toBe(expected)
+
+Expected: "rejected"
+Received: "pending"
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-MRlaaB/repro.test.ts:19:40)
+(fail) RFC10 dying body rejects an open iterator pull: error [328.81ms]
+14 |         });
+15 |         const module = await import(dir + "/server.js"),
+16 |           result = await module.run(death);
+17 |         expect(result.first).toEqual({ done: false, value: "first" });
+18 |         expect(result.transportFailed).toBe(true);
+19 |         expect(result.outcome.outcome).toBe("rejected");
+                                            ^
+error: expect(received).toBe(expected)
+
+Expected: "rejected"
+Received: "pending"
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-MRlaaB/repro.test.ts:19:40)
+(fail) RFC10 dying body rejects an open iterator pull: eof [315.44ms]
+
+ 0 pass
+ 2 fail
+ 6 expect() calls
+Ran 2 tests across 1 file. [675.00ms]

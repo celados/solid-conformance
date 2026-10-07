@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+findings/021-recovery-boundary-outcome/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"3086f1b77cd7b0431d3a7f768c2984c335758633","directory":"/Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633"},"buildMode":"observe","solid":"2.0.0-rc.13"}
+33 |           (window as any).recovery.records.length === 1,
+34 |       );
+35 |       const recovery = await page.evaluate(() => (window as any).recovery.records[0].event);
+36 |       expect(ssr.records).toHaveLength(1);
+37 |       expect(recovery.id).toBe(ssr.records[0].event.id);
+38 |       expect(ssr.records[0].event.outcome).toBe("client");
+                                                ^
+error: expect(received).toBe(expected)
+
+Expected: "client"
+Received: "error"
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/findings/021-recovery-boundary-outcome/repro.test.ts:38:44)
+(fail) RFC08 recovery joins a boundary whose outcome is client [11289.36ms]
+
+ 0 pass
+ 1 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [11.45s]

@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+findings/017-initial-render-error-record/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"3086f1b77cd7b0431d3a7f768c2984c335758633","directory":"/Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633"},"buildMode":"development","solid":"2.0.0-rc.13"}
+12 |         server: ["findings/017-initial-render-error-record/server.ts"],
+13 |       });
+14 |       const module = await import(directory + "/server.js");
+15 |       const result = module.run();
+16 |       expect(result.hooks).toBe(1);
+17 |       expect(result.events).toBe(1);
+                                 ^
+error: expect(received).toBe(expected)
+
+Expected: 1
+Received: 0
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/findings/017-initial-render-error-record/repro.test.ts:17:29)
+(fail) The initial render failure must also reach the SSR structured diagnostic channel [20.99ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [30.00ms]

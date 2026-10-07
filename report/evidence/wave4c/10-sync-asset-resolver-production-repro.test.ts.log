@@ -1,0 +1,29 @@
+bun test v1.4.2 (744846f84)
+
+repro.test.ts:
+11 |     server: ["./server.tsx"],
+12 |   });
+13 |   try {
+14 |     const { sample } = await import(dir + "/server.js");
+15 |     expect(await sample(false)).toEqual({ rendered: true, error: null });
+16 |     expect(await sample(true)).toEqual({ rendered: true, error: null });
+                                    ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "error": null,
+-   "rendered": true,
++   "error": "resolver-failed",
++   "rendered": false,
+  }
+
+- Expected  - 2
++ Received  + 2
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/10-sync-asset-resolver/repro.test.ts:16:32)
+(fail) a failed lazy asset resolver preserves server component HTML [20.21ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [29.00ms]

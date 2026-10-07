@@ -1,0 +1,22 @@
+bun test v1.4.2 (744846f84)
+
+snippet.test.ts:
+25 |     page.on("pageerror", (error) => errors.push(String(error)));
+26 |     await page.goto(server.url.toString());
+27 |     await page.locator("#trigger").click();
+28 |     await page.waitForTimeout(250);
+29 |     expect(errors).toEqual([]);
+30 |     expect(await page.locator("#answer").textContent()).toBe("2");
+                                                             ^
+error: expect(received).toBe(expected)
+
+Expected: "2"
+Received: "99"
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/09-refresh-optimistic-authority/snippet.test.ts:30:57)
+(fail) Readable App reproduces 09-refresh-optimistic-authority [11352.19ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [11.56s]

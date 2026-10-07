@@ -1,0 +1,49 @@
+bun test v1.4.2 (744846f84)
+
+repro.test.ts:
+{
+  ssr: "<div _hk=1><button _hk=0>click</button></div>",
+  samples: [
+    {
+      count: 1,
+      nested: true,
+      text: "click",
+      issues: [],
+    }, {
+      count: 1,
+      nested: true,
+      text: "click",
+      issues: [ "Hydration tag mismatch for key \"0\": expected <div> but found JSHandle@node",
+        "Hydration tag mismatch for key \"1\": expected <button> but found JSHandle@node"
+      ],
+    }
+  ],
+}
+43 |       await page.evaluate(() => (window as any).stop());
+44 |       await page.close();
+45 |     }
+46 |     console.log({ ssr: runtime.markup(), samples });
+47 |     expect(samples[0]).toEqual({ count: 1, nested: true, text: "click", issues: [] });
+48 |     expect(samples[1]).toEqual(samples[0]);
+                            ^
+error: expect(received).toEqual(expected)
+
+@@ -2,3 +2,6 @@
+    "count": 1,
+-   "issues": [],
++   "issues": [
++     "Hydration tag mismatch for key "0": expected <div> but found JSHandle@node",
++     "Hydration tag mismatch for key "1": expected <button> but found JSHandle@node",
++   ],
+    "nested": true,
+
+- Expected  - 1
++ Received  + 4
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/15-spread-children-hydration/repro.test.ts:48:24)
+(fail) literal spread children keeps nesting and handler through SSR hydration [11241.24ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [11.41s]

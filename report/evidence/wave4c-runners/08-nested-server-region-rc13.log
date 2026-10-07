@@ -1,0 +1,42 @@
+bun add v1.4.2 (744846f84)
+
+installed solid-js@2.0.0-rc.13
+installed @solidjs/web@2.0.0-rc.13
+installed @solidjs/signals@2.0.0-rc.13
+installed @solidjs/compiler@2.0.0-rc.13
+installed @solidjs/diagnostics@2.0.0-rc.13
+
+16 packages installed [12.00ms]
+bun add v1.4.2 (744846f84)
+
+installed playwright@1.64.0 with binaries:
+ - playwright
+
+2 packages installed [13.00ms]
+Target: rc13; build: development; isolated host: /var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-RAJJEB
+bun test v1.4.2 (744846f84)
+Resolving dependencies
+Resolved, downloaded and extracted [0]
+Saved lockfile
+Saved lockfile
+
+repro.test.ts:
+31 |     await page.waitForFunction(() => document.querySelector("section")?.textContent === "1");
+32 |     await page.evaluate(() => (window as any).refetch());
+33 |     await page.waitForTimeout(300);
+34 |     await page.evaluate(() => (window as any).change());
+35 |     await page.waitForTimeout(300);
+36 |     expect(await page.locator("section").textContent()).toBe("2");
+                                                             ^
+error: expect(received).toBe(expected)
+
+Expected: "2"
+Received: "1"
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-RAJJEB/repro.test.ts:36:57)
+(fail) A new server-function argument must replace nested server slot content [11542.57ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [12.04s]

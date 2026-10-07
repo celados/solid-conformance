@@ -1,0 +1,53 @@
+bun add v1.4.2 (744846f84)
+
+installed solid-js@2.0.0-rc.13
+installed @solidjs/web@2.0.0-rc.13
+installed @solidjs/signals@2.0.0-rc.13
+installed @solidjs/compiler@2.0.0-rc.13
+installed @solidjs/diagnostics@2.0.0-rc.13
+
+16 packages installed [15.00ms]
+bun add v1.4.2 (744846f84)
+
+installed playwright@1.64.0 with binaries:
+ - playwright
+
+2 packages installed [12.00ms]
+Linked the five matching HEAD packages from /Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633
+Target: next; build: development; isolated host: /var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-e6ubDz
+bun test v1.4.2 (744846f84)
+{
+  surface: "csr",
+  counters: [ "0", "1" ],
+  keys: [ null, null ],
+}
+Resolving dependencies
+Resolved, downloaded and extracted [0]
+Saved lockfile
+Saved lockfile
+
+repro.test.ts:
+31 |     for (const surface of ["csr", "hydrate"]) {
+32 |       const page = await browser.newPage();
+33 |       await page.goto(server.url + (surface === "hydrate" ? "?hydrate" : ""));
+34 |       await page.waitForFunction(() => !!(window as any).ready);
+35 |       await page.evaluate(() => (window as any).ready());
+36 |       expect(await page.locator("button").allTextContents()).toEqual(["0", "0"]);
+                                                                  ^
+error: expect(received).toEqual(expected)
+
+@@ -2,3 +2,2 @@
+    "0",
+-   "0",
+  ]
+
+- Expected  - 1
++ Received  + 0
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-e6ubDz/repro.test.ts:36:62)
+(fail) one shared server-component factory has independently hydrated client slots at each mount [11765.91ms]
+
+ 0 pass
+ 1 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [11.95s]

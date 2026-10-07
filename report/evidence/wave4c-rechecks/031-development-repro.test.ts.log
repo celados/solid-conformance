@@ -1,0 +1,26 @@
+bun test v1.4.2 (744846f84)
+
+findings/031-direct-error-hook-tier/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"3086f1b77cd7b0431d3a7f768c2984c335758633","directory":"/Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633"},"buildMode":"development","solid":"2.0.0-rc.13"}
+[SSR_RENDER_ERROR_CONTAINED] Render error caught by <Errored>: Error: failure
+  in <Errored>
+[SSR_RENDER_ERROR_CONTAINED] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#ssr_render_error_contained
+ 7 |  try{
+ 8 |   await build(dir,(process.env.BUILD_MODE??"development") as BuildMode,{client:[],server:["findings/031-direct-error-hook-tier/server.tsx"]});
+ 9 |   const module=await import(dir+"/server.js"),result=module.run();
+10 |   expect(result.html).toContain("local</b>");
+11 |   expect(result.direct).toBe(true);expect(result.kind).toBe("server-function");expect(result.id).toBe("direct-hook");expect(result.original).toBe(true);
+12 |   expect(result.ambient).toBe(1);
+                              ^
+error: expect(received).toBe(expected)
+
+Expected: 1
+Received: 0
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/findings/031-direct-error-hook-tier/repro.test.ts:12:26)
+(fail) RFC12 only ambient hook hears direct in-process invocation [31.20ms]
+
+ 0 pass
+ 1 fail
+ 6 expect() calls
+Ran 1 test across 1 file. [43.00ms]

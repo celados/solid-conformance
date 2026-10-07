@@ -1,0 +1,52 @@
+bun add v1.4.2 (744846f84)
+
+installed solid-js@2.0.0-rc.13
+installed @solidjs/web@2.0.0-rc.13
+installed @solidjs/signals@2.0.0-rc.13
+installed @solidjs/compiler@2.0.0-rc.13
+installed @solidjs/diagnostics@2.0.0-rc.13
+
+16 packages installed [11.00ms]
+bun add v1.4.2 (744846f84)
+
+installed playwright@1.64.0 with binaries:
+ - playwright
+
+2 packages installed [12.00ms]
+Target: rc13; build: development; isolated host: /var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-XOqIj6
+bun test v1.4.2 (744846f84)
+Resolving dependencies
+Resolved, downloaded and extracted [0]
+Saved lockfile
+Saved lockfile
+
+repro.test.ts:
+[LAZY_ASSET_UNMAPPED] lazy() asset resolution failed for "part.tsx": Error: resolver-failed
+  in <Part>
+[LAZY_ASSET_UNMAPPED] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#lazy_asset_unmapped
+11 |     server: ["./server.tsx"],
+12 |   });
+13 |   try {
+14 |     const { sample } = await import(dir + "/server.js");
+15 |     expect(await sample(false)).toEqual({ rendered: true, error: null });
+16 |     expect(await sample(true)).toEqual({ rendered: true, error: null });
+                                    ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "error": null,
+-   "rendered": true,
++   "error": "resolver-failed",
++   "rendered": false,
+  }
+
+- Expected  - 2
++ Received  + 2
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-XOqIj6/repro.test.ts:16:32)
+(fail) a failed lazy asset resolver preserves server component HTML [26.59ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [381.00ms]

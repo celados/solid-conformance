@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+findings/027-server-write-all-builds/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"3086f1b77cd7b0431d3a7f768c2984c335758633","directory":"/Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633"},"buildMode":"production","solid":"2.0.0-rc.13"}
+10 |       server: ["findings/027-server-write-all-builds/server.ts"],
+11 |     });
+12 |     const module = await import(dir + "/server.js");
+13 |     const result = await module.run();
+14 |     expect(result.html).toContain("1");
+15 |     expect(result.count).toBe(1);
+                              ^
+error: expect(received).toBe(expected)
+
+Expected: 1
+Received: 0
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/findings/027-server-write-all-builds/repro.test.ts:15:26)
+(fail) RFC11 setter warning ships in every server build [34.42ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [67.00ms]

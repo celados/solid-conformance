@@ -1,0 +1,76 @@
+bun add v1.4.2 (744846f84)
+
+installed solid-js@2.0.0-rc.13
+installed @solidjs/web@2.0.0-rc.13
+installed @solidjs/signals@2.0.0-rc.13
+installed @solidjs/compiler@2.0.0-rc.13
+installed @solidjs/diagnostics@2.0.0-rc.13
+
+16 packages installed [15.00ms]
+bun add v1.4.2 (744846f84)
+
+installed playwright@1.64.0 with binaries:
+ - playwright
+
+2 packages installed [11.00ms]
+Target: rc13; build: development; isolated host: /var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-19k4sh
+bun test v1.4.2 (744846f84)
+bun test v1.4.2 (744846f84)
+Resolving dependencies
+Resolved, downloaded and extracted [0]
+Saved lockfile
+Saved lockfile
+
+repro.test.ts:
+26 |     const page = await browser.newPage();
+27 |     await page.goto(server.url.toString());
+28 |     await page.waitForFunction(() => !!(window as any).result);
+29 |     const result = await page.evaluate(() => (window as any).result);
+30 |     expect(result.sole).toEqual({ error: null, text: "" });
+31 |     expect(result.mixed).toEqual({ error: null, text: "valid" });
+                              ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "error": null,
+-   "text": "valid",
++   "error": "TypeError: Failed to execute 'insertBefore' on 'Node': parameter 1 is not of type 'Node'.",
++   "text": "",
+  }
+
+- Expected  - 2
++ Received  + 2
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-19k4sh/repro.test.ts:31:26)
+(fail) unrenderable object is skipped when adjacent to text, as in a sole hole [10941.49ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [11.44s]
+
+snippet.test.ts:
+23 |     const page = await browser.newPage();
+24 |     const errors: string[] = [];
+25 |     page.on("pageerror", (error) => errors.push(String(error)));
+26 |     await page.goto(server.url.toString());
+27 |     await page.waitForTimeout(100);
+28 |     expect(errors).toEqual([]);
+                        ^
+error: expect(received).toEqual(expected)
+
+- []
++ [
++   "TypeError: Failed to execute 'insertBefore' on 'Node': parameter 1 is not of type 'Node'.",
++ ]
+
+- Expected  - 1
++ Received  + 3
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-19k4sh/snippet.test.ts:28:20)
+(fail) Readable App reproduces 14-mixed-object-insert [11094.52ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [11.27s]

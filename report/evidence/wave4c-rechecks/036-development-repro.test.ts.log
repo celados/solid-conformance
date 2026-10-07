@@ -1,0 +1,29 @@
+bun test v1.4.2 (744846f84)
+
+findings/036-conditional-cache-format/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"3086f1b77cd7b0431d3a7f768c2984c335758633","directory":"/Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633"},"buildMode":"development","solid":"2.0.0-rc.13"}
+Server function "conditional" answered a scripted call with 304 Not Modified. The client transport sends no conditional headers, so nothing was asked to be revalidated: the call resolves to undefined, not "unchanged". For conditional reads, declare the function GET and set ETag/Cache-Control response headers - the browser owns that exchange and replays its cached answer on a 304.
+10 |  const module=await import(dir+"/server.js");const server=Bun.serve({hostname:"127.0.0.1",port:0,fetch(req){const url=new URL(req.url);return url.pathname.startsWith("/_server")?module.handle(req):url.pathname.endsWith(".js")?new Response(Bun.file(dir+url.pathname),{headers:{"content-type":"text/javascript"}}):new Response('<script type="module" src="/client.js"></script>',{headers:{"content-type":"text/html"}})}});
+11 |  const browser=await chromium.launch({channel:"chrome",headless:true});
+12 |  try{const page=await browser.newPage();const errors:string[]=[];page.on("pageerror",e=>errors.push(String(e)));await page.goto(String(server.url));await page.waitForFunction(()=>!!(window as any).conditional);const result=await page.evaluate(()=> (window as any).conditional);
+13 |  await Bun.write("artifacts/conditional-"+mode+".json",JSON.stringify({calls:module.calls,result},null,2));
+14 |  expect(module.calls).toEqual([null,'"constant"']);expect(result.statuses).toEqual([200,200]);expect(result.first).toEqual({value:17});expect(result.hints.every((h:any)=>!h["if-none-match"])).toBe(true);expect(errors).toEqual([]);
+15 |  expect(result.second).toEqual({value:17});
+                            ^
+error: expect(received).toEqual(expected)
+
+- {
+-   "value": 17,
+- }
++ undefined
+
+- Expected  - 3
++ Received  + 1
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/findings/036-conditional-cache-format/repro.test.ts:15:24)
+(fail) RFC10 browser owns conditional GET exchange development [11047.48ms]
+
+ 0 pass
+ 1 fail
+ 6 expect() calls
+Ran 1 test across 1 file. [11.21s]

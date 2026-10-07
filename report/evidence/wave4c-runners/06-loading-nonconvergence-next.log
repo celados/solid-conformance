@@ -1,0 +1,79 @@
+bun add v1.4.2 (744846f84)
+
+installed solid-js@2.0.0-rc.13
+installed @solidjs/web@2.0.0-rc.13
+installed @solidjs/signals@2.0.0-rc.13
+installed @solidjs/compiler@2.0.0-rc.13
+installed @solidjs/diagnostics@2.0.0-rc.13
+
+16 packages installed [13.00ms]
+bun add v1.4.2 (744846f84)
+
+installed playwright@1.64.0 with binaries:
+ - playwright
+
+2 packages installed [12.00ms]
+Linked the five matching HEAD packages from /Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633
+Target: next; build: development; isolated host: /var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-e7lQSV
+bun test v1.4.2 (744846f84)
+{
+  normal: {
+    initial: "11",
+    waiting: "11",
+    final: "22",
+    source: 2,
+  },
+  latest: {
+    initial: "11",
+    waiting: "A1",
+    final: "A2",
+    source: 2,
+  },
+}
+bun test v1.4.2 (744846f84)
+Resolving dependencies
+Resolved, downloaded and extracted [0]
+Saved lockfile
+Saved lockfile
+
+repro.test.ts:
+28 |     console.log(result);
+29 |     expect(result.normal.final).toBe("22");
+30 |     expect(result.latest.initial).toBe("11");
+31 |     expect(result.latest.waiting).toBe("A1");
+32 |     expect(result.latest.source).toBe(2);
+33 |     expect(result.latest.final).toBe("22");
+                                     ^
+error: expect(received).toBe(expected)
+
+Expected: "22"
+Received: "A2"
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-e7lQSV/repro.test.ts:33:33)
+(fail) Loading on latest(id) converges after its shared source lands [12364.24ms]
+
+ 0 pass
+ 1 fail
+ 5 expect() calls
+Ran 1 test across 1 file. [12.55s]
+
+snippet.test.ts:
+26 |     await page.goto(server.url.toString());
+27 |     await page.waitForFunction(() => document.querySelector("#answer")?.textContent === "11");
+28 |     await page.locator("#trigger").click();
+29 |     await page.waitForTimeout(250);
+30 |     expect(errors).toEqual([]);
+31 |     expect(await page.locator("#answer").textContent()).toBe("22");
+                                                             ^
+error: expect(received).toBe(expected)
+
+Expected: "22"
+Received: "A2"
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-e7lQSV/snippet.test.ts:31:57)
+(fail) Readable App reproduces 06-loading-nonconvergence [11418.01ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [11.60s]

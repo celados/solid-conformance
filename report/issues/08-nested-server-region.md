@@ -1,17 +1,26 @@
 ---
-type: Issue
-title: "Nested server region stays stale after refetch then argument change"
-status: draft
-tier: A
-severity: med
-findings: ['009']
-target: dafad1db34626feb5f154e98e599f65be1802c6c
-snippet: client.tsx
+type: "Issue"
+title: "[2.0 rc.13 + next] Nested server region stays stale after refetch then argument change"
+status: "draft"
+tier: "A"
+severity: "med"
+findings: ["009"]
+target: "3086f1b77cd7b0431d3a7f768c2984c335758633"
+snippet: "client.tsx"
+repro_commit: "b739f93a27c1d72c5269e15a7ada7543af9e5dbe"
 ---
 
-# Nested server region stays stale after refetch then argument change
+### Describe the bug
 
 Refetching argument 1 and then requesting 2 should update the nested server span to 2; it stays 1.
+
+### Your Example Website or App
+
+[Standalone reproduction](https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/08-nested-server-region)
+
+### Steps to Reproduce the Bug or Issue
+
+1. Use the source below with the selected Solid build (complete setup is linked above).
 
 ```tsx
 import { createSignal, Loading, flush } from "solid-js";
@@ -45,25 +54,37 @@ render(
 };
 ```
 
-Requires a server-component endpoint `region(id)` returning `props => <main><props.wrap><span>{id}</span></props.wrap></main>`. Wait for 1, call `window.refetch()`, wait for that response, then call `window.change()`. The nested section still shows 1.
+2. Requires a server-component endpoint `region(id)` returning `props => <main><props.wrap><span>{id}</span></props.wrap></main>`. Wait for 1, call `window.refetch()`, wait for that response, then call `window.change()`. The nested section still shows 1.
+
+### Expected behavior
 
 **Expected:** Changing the server-function argument to 2 replaces the nested content with 2.
 **Actual:** The nested region stays at 1.
 
-**Versions/builds:** HEAD `dafad1db34626feb5f154e98e599f65be1802c6c`. Development and production fail on HEAD and rc.13.
+### Platform
+
+- Solid: `solid-js` / `@solidjs/web` next at `3086f1b77cd7b0431d3a7f768c2984c335758633`; comparison `2.0.0-rc.13`. Signals, compiler and diagnostics match the selected Solid build.
+- OS: macOS 26.6.2 (25G83); browser cases: system Google Chrome 155.0.8059.40. Server-only/type checks run in Bun 1.4.2.
+- Builds/comparison: Development and production fail on HEAD and rc.13.
+
+### Additional context
+
+A refetch followed by new arguments should replace the corresponding nested server content rather than retain the previous region.
 
 Related: [#2965](https://github.com/solidjs/solid/issues/2965), [#2974](https://github.com/solidjs/solid/issues/2974), [#2966](https://github.com/solidjs/solid/issues/2966)
 
 <details>
 <summary>Full automated reproduction</summary>
 
-Copy [the standalone folder](../repros/08-nested-server-region/) into a fresh Bun project. The visible source above is executed by these tests; the additional files supply the required HTTP, compilation, and browser setup.
+[One-command setup, run and expected output](https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/08-nested-server-region/README.md).
 
-- [build.ts](../repros/08-nested-server-region/build.ts)
-- [client.tsx](../repros/08-nested-server-region/client.tsx)
-- [link-head.ts](../repros/08-nested-server-region/link-head.ts)
-- [repro.test.ts](../repros/08-nested-server-region/repro.test.ts)
-- [server.tsx](../repros/08-nested-server-region/server.tsx)
+Copy [the standalone folder](https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/08-nested-server-region) into a fresh Bun project. The visible source above is executed by these tests; the additional files supply the required HTTP, compilation, and browser setup.
+
+- [build.ts](https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/08-nested-server-region/build.ts)
+- [client.tsx](https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/08-nested-server-region/client.tsx)
+- [link-head.ts](https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/08-nested-server-region/link-head.ts)
+- [repro.test.ts](https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/08-nested-server-region/repro.test.ts)
+- [server.tsx](https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/08-nested-server-region/server.tsx)
 
 ```sh
 bun init -y

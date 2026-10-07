@@ -8,7 +8,7 @@ const issues = (await Array.fromAsync(new Bun.Glob("report/issues/*.md").scan(".
 const root = resolve(".scratch", "report-standalone-verification");
 const results: any[] = [];
 await mkdir(root, { recursive: true });
-await mkdir("report/evidence/wave4b", { recursive: true });
+await mkdir("report/evidence/wave4c", { recursive: true });
 
 async function verify(path: string) {
   const text = await Bun.file(path).text();
@@ -73,7 +73,7 @@ async function verify(path: string) {
         child.once("close", complete);
       }).finally(() => clearTimeout(timer));
       const log = output.join("");
-      const logPath = "report/evidence/wave4b/" + name + "-" + mode + "-" + file + ".log";
+      const logPath = "report/evidence/wave4c/" + name + "-" + mode + "-" + file + ".log";
       await Bun.write(logPath, log);
       const result = {
         issue: path,
@@ -89,7 +89,7 @@ async function verify(path: string) {
       results.push(result);
       console.log(JSON.stringify(result));
       await Bun.write(
-        "report/evidence/wave4b-standalone-results.json",
+        "report/evidence/wave4c-standalone-results.json",
         JSON.stringify(
           {
             head: target.revision,

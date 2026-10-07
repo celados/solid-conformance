@@ -1,0 +1,34 @@
+bun test v1.4.2 (744846f84)
+
+findings/018-nested-refresh-types/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"3086f1b77cd7b0431d3a7f768c2984c335758633","directory":"/Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633"},"buildMode":"development","solid":"2.0.0-rc.13"}
+ 5 |  const directory=resolve('.build/finding018')
+ 6 |  await Bun.write(directory+'/usage.ts',Bun.file('findings/018-nested-refresh-types/usage.ts.txt'))
+ 7 |  await Bun.write(directory+'/tsconfig.json',JSON.stringify({compilerOptions:{target:'ESNext',module:'Preserve',moduleResolution:'bundler',strict:true,noEmit:true,skipLibCheck:true,lib:['ESNext'],types:[]},files:[directory+'/usage.ts']}))
+ 8 |  const compiler=Bun.spawn(['bun','x','tsc','--project',directory+'/tsconfig.json'],{stdout:'pipe',stderr:'pipe'})
+ 9 |  const output=await new Response(compiler.stdout).text()+await new Response(compiler.stderr).text()
+10 |  expect({exitCode:await compiler.exited,output}).toEqual({exitCode:0,output:''})
+                                                      ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "exitCode": 0,
+-   "output": "",
++   "exitCode": 1,
++   "output": 
++ ".build/finding018/usage.ts(3,14): error TS2345: Argument of type '{ n: number; }' is not assignable to parameter of type 'Refreshable<{ n: number; }>'.
++   Property '[$REFRESH]' is missing in type '{ n: number; }' but required in type '{ readonly [$REFRESH]: any; }'.
++ "
++ ,
+  }
+
+- Expected  - 2
++ Received  + 6
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/findings/018-nested-refresh-types/repro.test.ts:10:50)
+(fail) 06-actions-optimistic.md: documented refresh(nested store node) compiles against public declarations [118.69ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [127.00ms]

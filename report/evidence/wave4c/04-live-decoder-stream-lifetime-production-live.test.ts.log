@@ -1,0 +1,22 @@
+bun test v1.4.2 (744846f84)
+
+live.test.ts:
+74 |     });
+75 |     expect(ssr.stats.closed).toBe(0);
+76 |     expect(await page.evaluate(() => (window as any).state.status.at(-1))).toBe("connected");
+77 |     for (const socket of downstream) socket.terminate();
+78 |     await page.waitForTimeout(1500);
+79 |     expect(await page.evaluate(() => (window as any).state.status)).toContain("reconnecting");
+                                                                         ^
+error: expect(received).toContain(expected)
+
+Expected to contain: "reconnecting"
+Received: [ "connected", "closed" ]
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/04-live-decoder-stream-lifetime/live.test.ts:79:69)
+(fail) A connected live source must reconnect after a real TCP drop [12469.41ms]
+
+ 0 pass
+ 1 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [12.63s]

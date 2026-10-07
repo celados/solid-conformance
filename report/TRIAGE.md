@@ -2,13 +2,13 @@
 type: Review
 title: Solid 2 report batch triage
 status: draft
-head: dafad1db34626feb5f154e98e599f65be1802c6c
+head: 3086f1b77cd7b0431d3a7f768c2984c335758633
 description: User impact, severity, regression evidence and build scope for every ledger finding.
 ---
 
 # Triage
 
-Refreshed and rebuilt Solid next at `dafad1db34626feb5f154e98e599f65be1802c6c`. All 47 previously confirmed findings were rerun, including named failing builds and green controls: 99 isolated Bun invocations, 12 passing control tests and 91 desired-behavior failures (some invocations contain multiple tests). No process timeout or build/import failure was accepted as a discrepancy. **None of the 47 became fixed-upstream.** The existing 001–003 remain historical fixed-upstream; 005 and 050 are known duplicates and are not proposed for filing.
+Refreshed and rebuilt Solid next at `3086f1b77cd7b0431d3a7f768c2984c335758633`. All 47 previously confirmed findings were rerun, including named failing builds and green controls: 99 isolated Bun invocations, 12 passing control tests and 91 desired-behavior failures (some invocations contain multiple tests). No process timeout or unrelated build/import failure was accepted as a discrepancy. **None of the 47 became fixed-upstream.** The existing 001–003 remain historical fixed-upstream; 005 and 050 are known duplicates and are not proposed for filing.
 
 Active counts: **A 16, B 16, C 15**. A covers runtime and protocol failures; B covers contested prose, example and public declaration/export contracts, including types (018) rather than calling a type error a runtime fault; C covers warning/observation/tooling contracts even when the likely remedy is prose. Exception: 027 is the chapter RFC11 publishing-policy phrase “in all server builds”; it stays in B so the same paragraph can be corrected with the server-write prose cross-reference (045). Each active finding appears in exactly one proposed issue. Severity is local triage, not an upstream priority assignment. HEAD-only means rc.13 passes the same code; 017 has no comparable rc.13 positive-control hook, so its regression status is not established.
 

@@ -1,0 +1,70 @@
+bun add v1.4.2 (744846f84)
+
+installed solid-js@2.0.0-rc.13
+installed @solidjs/web@2.0.0-rc.13
+installed @solidjs/signals@2.0.0-rc.13
+installed @solidjs/compiler@2.0.0-rc.13
+installed @solidjs/diagnostics@2.0.0-rc.13
+
+16 packages installed [12.00ms]
+bun add v1.4.2 (744846f84)
+
+installed playwright@1.64.0 with binaries:
+ - playwright
+
+2 packages installed [11.00ms]
+Linked the five matching HEAD packages from /Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633
+Target: next; build: development; isolated host: /var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-Krm5rK
+bun test v1.4.2 (744846f84)
+Resolving dependencies
+Resolved, downloaded and extracted [0]
+Saved lockfile
+Saved lockfile
+
+repro.test.ts:
+[SSR_STREAM_ABANDONED] The response stream was abandoned mid-render (signal) with 0 fragment(s) still pending; the render was torn down.
+[SSR_STREAM_ABANDONED] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#ssr_stream_abandoned
+14539 |   live.end = () => {
+14540 |     if (closed)
+14541 |       return;
+14542 |     if (bindings.size)
+14543 |       sweep();
+14544 |     channel.close();
+                         ^
+TypeError: Invalid state: Controller is already closed
+ code: "ERR_INVALID_STATE"
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-Krm5rK/.build/finding049-82524-development/server.js:14544:18)
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-Krm5rK/.build/finding049-82524-development/server.js:11442:14)
+(fail) aborting a document then finishing its server source must not throw development [80.49ms]
+10747 |   live.end = () => {
+10748 |     if (closed)
+10749 |       return;
+10750 |     if (bindings.size)
+10751 |       sweep();
+10752 |     channel.close();
+                         ^
+TypeError: Invalid state: Controller is already closed
+ code: "ERR_INVALID_STATE"
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-Krm5rK/.build/finding049-82524-observe/server.js:10752:18)
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-Krm5rK/.build/finding049-82524-observe/server.js:7753:14)
+(fail) aborting a document then finishing its server source must not throw observe [74.19ms]
+8692 |   live.end = () => {
+8693 |     if (closed)
+8694 |       return;
+8695 |     if (bindings.size)
+8696 |       sweep();
+8697 |     channel.close();
+                        ^
+TypeError: Invalid state: Controller is already closed
+ code: "ERR_INVALID_STATE"
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-Krm5rK/.build/finding049-82524-production/server.js:8697:18)
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-Krm5rK/.build/finding049-82524-production/server.js:5743:14)
+(fail) aborting a document then finishing its server source must not throw production [69.72ms]
+
+ 0 pass
+ 3 fail
+ 10 expect() calls
+Ran 3 tests across 1 file. [254.00ms]

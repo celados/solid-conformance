@@ -1,0 +1,62 @@
+bun add v1.4.2 (744846f84)
+
+installed solid-js@2.0.0-rc.13
+installed @solidjs/web@2.0.0-rc.13
+installed @solidjs/signals@2.0.0-rc.13
+installed @solidjs/compiler@2.0.0-rc.13
+installed @solidjs/diagnostics@2.0.0-rc.13
+
+16 packages installed [11.00ms]
+bun add v1.4.2 (744846f84)
+
+installed playwright@1.64.0 with binaries:
+ - playwright
+
+2 packages installed [11.00ms]
+Target: rc13; build: development; isolated host: /var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-ALW1JY
+bun test v1.4.2 (744846f84)
+{
+  calls: [ null, "\"constant\"" ],
+  result: {
+    first: {
+      value: 17,
+    },
+    second: undefined,
+    statuses: [ 200, 200 ],
+    hints: [
+      [Object ...], [Object ...]
+    ],
+    formats: [ "8", "9" ],
+  },
+}
+Resolving dependencies
+Resolved, downloaded and extracted [0]
+Saved lockfile
+Saved lockfile
+
+repro.test.ts:
+Server function "conditional" answered a scripted call with 304 Not Modified. The client transport sends no conditional headers, so nothing was asked to be revalidated: the call resolves to undefined, not "unchanged". For conditional reads, declare the function GET and set ETag/Cache-Control response headers - the browser owns that exchange and replays its cached answer on a 304.
+38 |       expect(module.calls).toEqual([null, '"constant"']);
+39 |       expect(result.statuses).toEqual([200, 200]);
+40 |       expect(result.first).toEqual({ value: 17 });
+41 |       expect(result.hints.every((h: any) => !h["if-none-match"])).toBe(true);
+42 |       expect(errors).toEqual([]);
+43 |       expect(result.second).toEqual({ value: 17 });
+                                 ^
+error: expect(received).toEqual(expected)
+
+- {
+-   "value": 17,
+- }
++ undefined
+
+- Expected  - 3
++ Received  + 1
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-ALW1JY/repro.test.ts:43:29)
+(fail) RFC10 browser owns conditional GET exchange development [10931.72ms]
+
+ 0 pass
+ 1 fail
+ 6 expect() calls
+Ran 1 test across 1 file. [11.43s]

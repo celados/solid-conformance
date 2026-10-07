@@ -1,0 +1,49 @@
+bun test v1.4.2 (744846f84)
+
+repro.test.ts:
+[SSR_STREAM_ABANDONED] The response stream was abandoned mid-render (signal) with 0 fragment(s) still pending; the render was torn down.
+[SSR_STREAM_ABANDONED] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#ssr_stream_abandoned
+14539 |   live.end = () => {
+14540 |     if (closed)
+14541 |       return;
+14542 |     if (bindings.size)
+14543 |       sweep();
+14544 |     channel.close();
+                         ^
+TypeError: Invalid state: Controller is already closed
+ code: "ERR_INVALID_STATE"
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/07-document-live-abort/.build/finding049-82040-development/server.js:14544:18)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/07-document-live-abort/.build/finding049-82040-development/server.js:11442:14)
+(fail) aborting a document then finishing its server source must not throw development [80.46ms]
+10747 |   live.end = () => {
+10748 |     if (closed)
+10749 |       return;
+10750 |     if (bindings.size)
+10751 |       sweep();
+10752 |     channel.close();
+                         ^
+TypeError: Invalid state: Controller is already closed
+ code: "ERR_INVALID_STATE"
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/07-document-live-abort/.build/finding049-82040-observe/server.js:10752:18)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/07-document-live-abort/.build/finding049-82040-observe/server.js:7753:14)
+(fail) aborting a document then finishing its server source must not throw observe [71.34ms]
+8692 |   live.end = () => {
+8693 |     if (closed)
+8694 |       return;
+8695 |     if (bindings.size)
+8696 |       sweep();
+8697 |     channel.close();
+                        ^
+TypeError: Invalid state: Controller is already closed
+ code: "ERR_INVALID_STATE"
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/07-document-live-abort/.build/finding049-82040-production/server.js:8697:18)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/07-document-live-abort/.build/finding049-82040-production/server.js:5743:14)
+(fail) aborting a document then finishing its server source must not throw production [69.51ms]
+
+ 0 pass
+ 3 fail
+ 10 expect() calls
+Ran 3 tests across 1 file. [229.00ms]

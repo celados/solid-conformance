@@ -1,0 +1,65 @@
+bun add v1.4.2 (744846f84)
+
+installed solid-js@2.0.0-rc.13
+installed @solidjs/web@2.0.0-rc.13
+installed @solidjs/signals@2.0.0-rc.13
+installed @solidjs/compiler@2.0.0-rc.13
+installed @solidjs/diagnostics@2.0.0-rc.13
+
+16 packages installed [18.00ms]
+bun add v1.4.2 (744846f84)
+
+installed playwright@1.64.0 with binaries:
+ - playwright
+
+2 packages installed [16.00ms]
+Linked the five matching HEAD packages from /Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633
+Target: next; build: development; isolated host: /var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-AhvmUX
+bun test v1.4.2 (744846f84)
+bun test v1.4.2 (744846f84)
+Resolving dependencies
+Resolved, downloaded and extracted [0]
+Saved lockfile
+Saved lockfile
+
+repro.test.ts:
+22 |   const browser = await chromium.launch({ channel: "chrome", headless: true });
+23 |   try {
+24 |     const page = await browser.newPage();
+25 |     await page.goto(String(server.url));
+26 |     await page.waitForFunction(() => !!(window as any).result);
+27 |     expect(await page.evaluate(() => (window as any).result)).toBe("<b>error</b>");
+                                                                   ^
+error: expect(received).toBe(expected)
+
+Expected: "<b>error</b>"
+Received: "<span>0</span>"
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-AhvmUX/repro.test.ts:27:63)
+(fail) Replacement derived-store rejection never reaches Errored [11266.51ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [11.47s]
+
+snippet.test.ts:
+26 |     await page.goto(server.url.toString());
+27 |     await page.waitForFunction(() => document.querySelector("#answer")?.textContent === "0");
+28 |     await page.locator("#trigger").click();
+29 |     await page.waitForTimeout(250);
+30 |     expect(errors).toEqual([]);
+31 |     expect(await page.locator("#answer").textContent()).toBe("error");
+                                                             ^
+error: expect(received).toBe(expected)
+
+Expected: "error"
+Received: "0"
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-AhvmUX/snippet.test.ts:31:57)
+(fail) Readable App reproduces 01-store-rejection [11336.75ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [11.52s]

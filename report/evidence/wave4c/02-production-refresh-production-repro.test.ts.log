@@ -1,0 +1,22 @@
+bun test v1.4.2 (744846f84)
+
+repro.test.ts:
+22 |   const browser = await chromium.launch({ channel: "chrome", headless: true });
+23 |   try {
+24 |     const page = await browser.newPage();
+25 |     await page.goto(String(server.url));
+26 |     await page.waitForFunction(() => !!(window as any).result);
+27 |     expect(await page.evaluate(() => (window as any).result)).toBe("<span>2</span>");
+                                                                   ^
+error: expect(received).toBe(expected)
+
+Expected: "<span>2</span>"
+Received: "<span>timeout</span>"
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/02-production-refresh/repro.test.ts:27:63)
+(fail) Production refresh remains pending after a settled computation [11669.42ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [11.83s]

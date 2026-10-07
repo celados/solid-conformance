@@ -6,6 +6,8 @@ description: 每项最小红测试、HEAD／rc.13／production 对照和上游�
 
 # Ledger
 
+Wave 4c 已刷新并重建 next：`3086f1b77cd7b0431d3a7f768c2984c335758633`。47 个 confirmed 均仍在原指定构建中失败，状态无变化；99 次原始调用为 12 pass / 91 fail，独立报告验证及 rc.13 单命令对照另行保存。见 [Wave 4c 回执](report/evidence/wave4c-receipt.md) 和 [最终提交标题](report/FILING.md)。
+
 Wave 4a 已刷新并重建 Solid HEAD：`dafad1db34626feb5f154e98e599f65be1802c6c`。47 个 confirmed 在所列失败构建中仍复现，未新增 fixed-upstream；[报告审阅索引](report/README.md) 与 [重跑结果](report/evidence/recheck-results.json) 记录新证据。下表 rc.13 对照及 001–003 的历史状态沿用 Wave 3 证据，未声称本轮复验这三项已固定问题。上游操作全部只读。各 finding README 记录预期／实际、单命令、应修改文档还是运行时的判断、缩减过程及相关 issue；JSON 去重证据搜索 open 和 closed issues，涵盖 solid、solid-router、solid-start。搜索结果不是不存在重复 issue 的绝对证明。
 
 HEAD 列以 development 为准并额外标出 observe；最后一列独立列出 HEAD production。不适用表示该合同属于 dev 检查、观察 artifact 或类型 API，没有声称生产也有该功能。

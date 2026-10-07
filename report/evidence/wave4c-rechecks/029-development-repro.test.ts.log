@@ -1,0 +1,37 @@
+bun test v1.4.2 (744846f84)
+
+findings/029-latest-loading-convergence/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"3086f1b77cd7b0431d3a7f768c2984c335758633","directory":"/Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633"},"buildMode":"development","solid":"2.0.0-rc.13"}
+{
+  normal: {
+    initial: "11",
+    waiting: "11",
+    final: "22",
+    source: 2,
+  },
+  latest: {
+    initial: "11",
+    waiting: "A1",
+    final: "A2",
+    source: 2,
+  },
+}
+20 |     console.log(result)
+21 |     expect(result.normal.final).toBe('22')
+22 |     expect(result.latest.initial).toBe('11')
+23 |     expect(result.latest.waiting).toBe('A1')
+24 |     expect(result.latest.source).toBe(2)
+25 |     expect(result.latest.final).toBe('22')
+                                     ^
+error: expect(received).toBe(expected)
+
+Expected: "22"
+Received: "A2"
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/findings/029-latest-loading-convergence/repro.test.ts:25:33)
+(fail) Loading on latest(id) converges after its shared source lands [12380.60ms]
+
+ 0 pass
+ 1 fail
+ 5 expect() calls
+Ran 1 test across 1 file. [12.66s]

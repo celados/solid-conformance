@@ -1,0 +1,30 @@
+bun test v1.4.2 (744846f84)
+
+findings/024-single-typed-array-encoding/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"3086f1b77cd7b0431d3a7f768c2984c335758633","directory":"/Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633"},"buildMode":"development","solid":"2.0.0-rc.13"}
+30 |     await page.goto(String(server.url));
+31 |     await page.waitForFunction(() => (window as any).done);
+32 |     const result = await page.evaluate(() => (window as any).done);
+33 |     expect(result.nested).toContain("enableRichArguments");
+34 |     expect(Array.from(result.single.value)).toEqual([65]);
+35 |     expect(result.single).toEqual({error:expect.stringContaining("enableRichArguments")});
+                               ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "error": StringContaining "enableRichArguments",
++   "value": Uint8Array [
++     65,
++   ],
+  }
+
+- Expected  - 1
++ Received  + 3
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/findings/024-single-typed-array-encoding/repro.test.ts:35:27)
+(fail) RFC10 typed arrays require enableRichArguments even as the sole argument [11119.79ms]
+
+ 0 pass
+ 1 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [11.30s]

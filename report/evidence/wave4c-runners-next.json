@@ -1,0 +1,141 @@
+{
+  "target": "next",
+  "built": "/Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633",
+  "results": [
+    {
+      "name": "01-store-rejection",
+      "target": "next",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 2,
+      "log": "report/evidence/wave4c-runners/01-store-rejection-next.log"
+    },
+    {
+      "name": "02-production-refresh",
+      "target": "next",
+      "mode": "production",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 2,
+      "log": "report/evidence/wave4c-runners/02-production-refresh-next.log"
+    },
+    {
+      "name": "03-multisite-hydration",
+      "target": "next",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave4c-runners/03-multisite-hydration-next.log"
+    },
+    {
+      "name": "04-live-decoder-stream-lifetime",
+      "target": "next",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 3,
+      "log": "report/evidence/wave4c-runners/04-live-decoder-stream-lifetime-next.log"
+    },
+    {
+      "name": "05-production-store-affects",
+      "target": "next",
+      "mode": "production",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 2,
+      "log": "report/evidence/wave4c-runners/05-production-store-affects-next.log"
+    },
+    {
+      "name": "07-document-live-abort",
+      "target": "next",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 3,
+      "log": "report/evidence/wave4c-runners/07-document-live-abort-next.log"
+    },
+    {
+      "name": "08-nested-server-region",
+      "target": "next",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave4c-runners/08-nested-server-region-next.log"
+    },
+    {
+      "name": "06-loading-nonconvergence",
+      "target": "next",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 2,
+      "log": "report/evidence/wave4c-runners/06-loading-nonconvergence-next.log"
+    },
+    {
+      "name": "10-sync-asset-resolver",
+      "target": "next",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave4c-runners/10-sync-asset-resolver-next.log"
+    },
+    {
+      "name": "09-refresh-optimistic-authority",
+      "target": "next",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 2,
+      "log": "report/evidence/wave4c-runners/09-refresh-optimistic-authority-next.log"
+    },
+    {
+      "name": "11-conditional-get-format",
+      "target": "next",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave4c-runners/11-conditional-get-format-next.log"
+    },
+    {
+      "name": "13-cookie-proto-key",
+      "target": "next",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave4c-runners/13-cookie-proto-key-next.log"
+    },
+    {
+      "name": "12-async-action-live-ack",
+      "target": "next",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 2,
+      "log": "report/evidence/wave4c-runners/12-async-action-live-ack-next.log"
+    },
+    {
+      "name": "14-mixed-object-insert",
+      "target": "next",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 2,
+      "log": "report/evidence/wave4c-runners/14-mixed-object-insert-next.log"
+    },
+    {
+      "name": "15-spread-children-hydration",
+      "target": "next",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave4c-runners/15-spread-children-hydration-next.log"
+    }
+  ]
+}

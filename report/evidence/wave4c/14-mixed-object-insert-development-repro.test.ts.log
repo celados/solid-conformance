@@ -1,0 +1,29 @@
+bun test v1.4.2 (744846f84)
+
+repro.test.ts:
+26 |     const page = await browser.newPage();
+27 |     await page.goto(server.url.toString());
+28 |     await page.waitForFunction(() => !!(window as any).result);
+29 |     const result = await page.evaluate(() => (window as any).result);
+30 |     expect(result.sole).toEqual({ error: null, text: "" });
+31 |     expect(result.mixed).toEqual({ error: null, text: "valid" });
+                              ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "error": null,
+-   "text": "valid",
++   "error": "TypeError: Failed to execute 'insertBefore' on 'Node': parameter 1 is not of type 'Node'.",
++   "text": "",
+  }
+
+- Expected  - 2
++ Received  + 2
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/14-mixed-object-insert/repro.test.ts:31:26)
+(fail) unrenderable object is skipped when adjacent to text, as in a sole hole [10946.27ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [11.11s]

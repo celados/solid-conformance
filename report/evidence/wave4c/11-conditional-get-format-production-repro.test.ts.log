@@ -1,0 +1,41 @@
+bun test v1.4.2 (744846f84)
+
+repro.test.ts:
+{
+  calls: [ null, "\"constant\"" ],
+  result: {
+    first: {
+      value: 17,
+    },
+    second: undefined,
+    statuses: [ 200, 200 ],
+    hints: [
+      [Object ...], [Object ...]
+    ],
+    formats: [ "8", "9" ],
+  },
+}
+38 |       expect(module.calls).toEqual([null, '"constant"']);
+39 |       expect(result.statuses).toEqual([200, 200]);
+40 |       expect(result.first).toEqual({ value: 17 });
+41 |       expect(result.hints.every((h: any) => !h["if-none-match"])).toBe(true);
+42 |       expect(errors).toEqual([]);
+43 |       expect(result.second).toEqual({ value: 17 });
+                                 ^
+error: expect(received).toEqual(expected)
+
+- {
+-   "value": 17,
+- }
++ undefined
+
+- Expected  - 3
++ Received  + 1
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/11-conditional-get-format/repro.test.ts:43:29)
+(fail) RFC10 browser owns conditional GET exchange production [10946.58ms]
+
+ 0 pass
+ 1 fail
+ 6 expect() calls
+Ran 1 test across 1 file. [11.10s]

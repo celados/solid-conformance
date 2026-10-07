@@ -1,0 +1,140 @@
+{
+  "target": "rc13",
+  "results": [
+    {
+      "name": "02-production-refresh",
+      "target": "rc13",
+      "mode": "production",
+      "exitCode": 0,
+      "pass": 2,
+      "fail": 0,
+      "log": "report/evidence/wave4c-runners/02-production-refresh-rc13.log"
+    },
+    {
+      "name": "01-store-rejection",
+      "target": "rc13",
+      "mode": "development",
+      "exitCode": 0,
+      "pass": 2,
+      "fail": 0,
+      "log": "report/evidence/wave4c-runners/01-store-rejection-rc13.log"
+    },
+    {
+      "name": "03-multisite-hydration",
+      "target": "rc13",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave4c-runners/03-multisite-hydration-rc13.log"
+    },
+    {
+      "name": "04-live-decoder-stream-lifetime",
+      "target": "rc13",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 3,
+      "log": "report/evidence/wave4c-runners/04-live-decoder-stream-lifetime-rc13.log"
+    },
+    {
+      "name": "05-production-store-affects",
+      "target": "rc13",
+      "mode": "production",
+      "exitCode": 0,
+      "pass": 2,
+      "fail": 0,
+      "log": "report/evidence/wave4c-runners/05-production-store-affects-rc13.log"
+    },
+    {
+      "name": "07-document-live-abort",
+      "target": "rc13",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 3,
+      "log": "report/evidence/wave4c-runners/07-document-live-abort-rc13.log"
+    },
+    {
+      "name": "08-nested-server-region",
+      "target": "rc13",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave4c-runners/08-nested-server-region-rc13.log"
+    },
+    {
+      "name": "06-loading-nonconvergence",
+      "target": "rc13",
+      "mode": "development",
+      "exitCode": 0,
+      "pass": 2,
+      "fail": 0,
+      "log": "report/evidence/wave4c-runners/06-loading-nonconvergence-rc13.log"
+    },
+    {
+      "name": "10-sync-asset-resolver",
+      "target": "rc13",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave4c-runners/10-sync-asset-resolver-rc13.log"
+    },
+    {
+      "name": "09-refresh-optimistic-authority",
+      "target": "rc13",
+      "mode": "development",
+      "exitCode": 0,
+      "pass": 2,
+      "fail": 0,
+      "log": "report/evidence/wave4c-runners/09-refresh-optimistic-authority-rc13.log"
+    },
+    {
+      "name": "11-conditional-get-format",
+      "target": "rc13",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave4c-runners/11-conditional-get-format-rc13.log"
+    },
+    {
+      "name": "13-cookie-proto-key",
+      "target": "rc13",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave4c-runners/13-cookie-proto-key-rc13.log"
+    },
+    {
+      "name": "12-async-action-live-ack",
+      "target": "rc13",
+      "mode": "development",
+      "exitCode": 0,
+      "pass": 2,
+      "fail": 0,
+      "log": "report/evidence/wave4c-runners/12-async-action-live-ack-rc13.log"
+    },
+    {
+      "name": "15-spread-children-hydration",
+      "target": "rc13",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave4c-runners/15-spread-children-hydration-rc13.log"
+    },
+    {
+      "name": "14-mixed-object-insert",
+      "target": "rc13",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 2,
+      "log": "report/evidence/wave4c-runners/14-mixed-object-insert-rc13.log"
+    }
+  ]
+}

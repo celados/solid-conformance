@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+findings/017-initial-render-error-record/renderrecord-repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"3086f1b77cd7b0431d3a7f768c2984c335758633","directory":"/Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633"},"buildMode":"observe","solid":"2.0.0-rc.13"}
+2 | import {resolve} from 'node:path';
+3 | import {rm} from 'node:fs/promises';
+4 | import {build,type BuildMode} from '../../scripts/build';
+5 | (process.env.BUILD_MODE==='production'?test.skip:test)('Initial stream render failure emits its render record after a normal-render positive control',async()=>{
+6 |  const directory=resolve('.build','finding017-render-'+process.pid);
+7 |  try{await build(directory,(process.env.BUILD_MODE??'development') as BuildMode,{client:[],server:['findings/017-initial-render-error-record/renderrecord-server.ts']});const module=await import(directory+'/renderrecord-server.js');const result=await module.run();expect(result.positive).toHaveLength(1);expect(result.positive[0].outcome).toBe('complete');expect(result.sameError).toBe(true);expect(result.records).toHaveLength(1);expect(result.records[0].outcome).toBe('error')}finally{await rm(directory,{recursive:true,force:true})}
+
+error: expect(received).toHaveLength(expected)
+
+Expected length: 1
+Received length: 0
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/findings/017-initial-render-error-record/renderrecord-repro.test.ts:7:415)
+(fail) Initial stream render failure emits its render record after a normal-render positive control [18.34ms]
+
+ 0 pass
+ 1 fail
+ 4 expect() calls
+Ran 1 test across 1 file. [28.00ms]

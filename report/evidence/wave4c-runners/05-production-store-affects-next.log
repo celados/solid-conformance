@@ -1,0 +1,66 @@
+bun add v1.4.2 (744846f84)
+
+installed solid-js@2.0.0-rc.13
+installed @solidjs/web@2.0.0-rc.13
+installed @solidjs/signals@2.0.0-rc.13
+installed @solidjs/compiler@2.0.0-rc.13
+installed @solidjs/diagnostics@2.0.0-rc.13
+
+16 packages installed [12.00ms]
+bun add v1.4.2 (744846f84)
+
+installed playwright@1.64.0 with binaries:
+ - playwright
+
+2 packages installed [12.00ms]
+Linked the five matching HEAD packages from /Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633
+Target: next; build: production; isolated host: /var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-lZ9tN9
+bun test v1.4.2 (744846f84)
+Observed rejection: TypeError: GlobalQueue.O is not a function. (In 'GlobalQueue.O(n, t)', 'GlobalQueue.O' is undefined)
+bun test v1.4.2 (744846f84)
+Resolving dependencies
+Resolved, downloaded and extracted [0]
+Saved lockfile
+Saved lockfile
+
+repro.test.ts:
+34 |   });
+35 |   expect(result.success).toBe(true);
+36 |   const runtime = await import(outdir + "/module.js");
+37 |   const pending = runtime.run();
+38 |   pending.catch((error: unknown) => console.log("Observed rejection:", String(error)));
+39 |   await expect(pending).resolves.toBeUndefined();
+                                      ^
+error: expect(received).resolves.toBeUndefined()
+
+Expected promise that resolves
+Received promise that rejected: Promise { <rejected> }
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-lZ9tN9/repro.test.ts:39:34)
+(fail) RFC 06 production affects(store,key) must not throw [13.82ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [40.00ms]
+
+snippet.test.ts:
+25 |     page.on("pageerror", (error) => errors.push(String(error)));
+26 |     await page.goto(server.url.toString());
+27 |     await page.locator("#trigger").click();
+28 |     await page.waitForTimeout(250);
+29 |     expect(errors).toEqual([]);
+30 |     expect(await page.locator("#answer").textContent()).toBe("ok");
+                                                             ^
+error: expect(received).toBe(expected)
+
+Expected: "ok"
+Received: "TypeError: GlobalQueue.O is not a function"
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-lZ9tN9/snippet.test.ts:30:57)
+(fail) Readable App reproduces 05-production-store-affects [11238.10ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [11.42s]

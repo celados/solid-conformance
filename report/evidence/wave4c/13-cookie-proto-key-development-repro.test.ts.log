@@ -1,0 +1,24 @@
+bun test v1.4.2 (744846f84)
+
+repro.test.ts:
+[Object: null prototype] {}
+false
+ 7 |     client: [],
+ 8 |     server: ["module.ts"],
+ 9 |   });
+10 |   const runtime = await import(dir + "/module.js");
+11 |   const cookies = runtime.parse();
+12 |   expect(Object.hasOwn(cookies, "__proto__")).toBe(true);
+                                                   ^
+error: expect(received).toBe(expected)
+
+Expected: true
+Received: false
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/13-cookie-proto-key/repro.test.ts:12:47)
+(fail) valid cookie name __proto__ round trips [20.45ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [29.00ms]

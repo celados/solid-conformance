@@ -1,7 +1,7 @@
 {
   "ref": "next",
-  "revision": "dafad1db34626feb5f154e98e599f65be1802c6c",
-  "directory": "/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c",
+  "revision": "3086f1b77cd7b0431d3a7f768c2984c335758633",
+  "directory": "/Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633",
   "bun": "1.4.2",
   "baseline": "2.0.0-rc.13",
   "router": "2.0.0-next.35",

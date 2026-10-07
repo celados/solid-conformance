@@ -1,0 +1,44 @@
+bun add v1.4.2 (744846f84)
+
+installed solid-js@2.0.0-rc.13
+installed @solidjs/web@2.0.0-rc.13
+installed @solidjs/signals@2.0.0-rc.13
+installed @solidjs/compiler@2.0.0-rc.13
+installed @solidjs/diagnostics@2.0.0-rc.13
+
+16 packages installed [11.00ms]
+bun add v1.4.2 (744846f84)
+
+installed playwright@1.64.0 with binaries:
+ - playwright
+
+2 packages installed [11.00ms]
+Target: rc13; build: development; isolated host: /var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-mUQptd
+bun test v1.4.2 (744846f84)
+[Object: null prototype] {}
+false
+Resolving dependencies
+Resolved, downloaded and extracted [0]
+Saved lockfile
+Saved lockfile
+
+repro.test.ts:
+ 7 |     client: [],
+ 8 |     server: ["module.ts"],
+ 9 |   });
+10 |   const runtime = await import(dir + "/module.js");
+11 |   const cookies = runtime.parse();
+12 |   expect(Object.hasOwn(cookies, "__proto__")).toBe(true);
+                                                   ^
+error: expect(received).toBe(expected)
+
+Expected: true
+Received: false
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-repro-mUQptd/repro.test.ts:12:47)
+(fail) valid cookie name __proto__ round trips [19.76ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [363.00ms]

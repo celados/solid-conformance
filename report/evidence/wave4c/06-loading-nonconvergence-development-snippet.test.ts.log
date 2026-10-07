@@ -1,0 +1,22 @@
+bun test v1.4.2 (744846f84)
+
+snippet.test.ts:
+26 |     await page.goto(server.url.toString());
+27 |     await page.waitForFunction(() => document.querySelector("#answer")?.textContent === "11");
+28 |     await page.locator("#trigger").click();
+29 |     await page.waitForTimeout(250);
+30 |     expect(errors).toEqual([]);
+31 |     expect(await page.locator("#answer").textContent()).toBe("22");
+                                                             ^
+error: expect(received).toBe(expected)
+
+Expected: "22"
+Received: "A2"
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/.scratch/report-standalone-verification/06-loading-nonconvergence/snippet.test.ts:31:57)
+(fail) Readable App reproduces 06-loading-nonconvergence [11226.82ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [11.39s]

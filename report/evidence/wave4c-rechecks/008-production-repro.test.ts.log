@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+findings/008-production-refresh/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"3086f1b77cd7b0431d3a7f768c2984c335758633","directory":"/Users/dio/workspace/projects/solid-conformance/.upstream/3086f1b77cd7b0431d3a7f768c2984c335758633"},"buildMode":"production","solid":"2.0.0-rc.13"}
+1 | import { test, expect } from 'bun:test'
+2 | import { openHarness } from '../../harness/browser'
+3 | import { leaf } from '../../harness/tree'
+4 | test('05-async-data.md: production refresh resolves its next value', async () => {
+5 | 	const h = await openHarness(undefined, true)
+6 | 	try { const result = await h.run({ tree: leaf(), order: [], scenario: 'finding:008' }, 'csr'); expect(result.messages).toEqual([]); expect(result.dom).toBe('<span>2</span>') }
+                                                                                                                                                            ^
+error: expect(received).toBe(expected)
+
+Expected: "<span>2</span>"
+Received: "<span>timeout</span>"
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave4c/findings/008-production-refresh/repro.test.ts:6:153)
+(fail) 05-async-data.md: production refresh resolves its next value [11942.22ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [12.13s]
