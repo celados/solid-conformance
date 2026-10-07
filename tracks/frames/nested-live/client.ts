@@ -1,0 +1,4 @@
+import {configureServerFunctionsClient,createServerReference,GET,live} from '@solidjs/web/server-functions/client';
+const requests:string[]=[],statuses:string[]=[];configureServerFunctionsClient({fetch:(address,init)=>{requests.push(String(address));return fetch(address,init)}});const source=live(GET(createServerReference('nested-live-answer')))();source.onstatus=(s:string)=>statuses.push(s);const iterator=source[Symbol.asyncIterator]();let first:any,later:unknown,second:unknown,settled=false,error:string|undefined;
+(window as any).nestedLive={snapshot:()=>({requests,statuses,later,second,settled,firstDone:first?.done,hasPromise:first?.value?.later instanceof Promise,error,ready:!!first}),close:async()=>{await iterator.return?.()}};
+iterator.next().then((r:any)=>{first=r;r.value.later.then((v:unknown)=>later=v);iterator.next().then((r:any)=>{second=r;settled=true})},(e:unknown)=>error=String(e));

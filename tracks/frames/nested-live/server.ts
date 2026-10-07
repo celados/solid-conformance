@@ -1,0 +1,3 @@
+import {AsyncLocalStorage} from 'node:async_hooks';import {RequestContext} from '@solidjs/web';import {registerServerReference,createServerReference,GET,live,handleServerFunctionRequest} from '@solidjs/web/server-functions/server';
+(globalThis as any)[RequestContext]=new AsyncLocalStorage();let release!:()=>void;const gate=new Promise<void>(r=>release=r);export const settle=()=>release();export let calls=0;
+live(GET(createServerReference(registerServerReference('nested-live-answer',()=>{calls++;return {later:gate.then(()=>42)}}))));export const handle=(request:Request)=>handleServerFunctionRequest(request);
