@@ -9783,7 +9783,7 @@
     "statement": "An error boundary that renders a 500 fallback, declares a status, and later recovers retracts its write instead of stomping to defaults; a 404 page whose inner boundary recovers stays a 404.",
     "coverage": [
       "12/ssr-reset-static-model",
-      "12/declaration-restoration"
+      "12/head-retraction"
     ],
     "status": "untestable",
     "reason": "条件 later recovers 在当前公开SSR静态模型中无可构造的head提交前恢复路径：public Errored reset回调在packages/solid/src/server/signals.ts L3610为noop；11-server-components.md L169明确setter仅数据写入不rerender，05异步iterable SSR只取首值。public reset静态对照确认原分支不再运行、head已committed、500仍500；公开scope声明撤回恢复surviving404另有partial proof，但不冒称完整覆盖真正boundary恢复。"

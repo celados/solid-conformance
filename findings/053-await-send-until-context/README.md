@@ -22,7 +22,7 @@ bun test ./findings/053-await-send-until-context/repro.test.ts
 BUILD_MODE=production bun test ./findings/053-await-send-until-context/repro.test.ts
 ```
 
-来源：[06-actions-optimistic.md L161–169](https://github.com/solidjs/solid/blob/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/documentation/solid-2.0/06-actions-optimistic.md#live-sources-acknowledge-through-the-source-until)。我们认为文档示例错：该章较早的 async-generator 示例已说明 bare yield 用来重新进入 transition context，live-send 示例却在 native await 后先构造依赖数组 row 属性的 until。修正文档插入 bare yield，不要求普通跨 await 代码自动保留上下文。
+来源：[06-actions-optimistic.md L161–169](https://github.com/solidjs/solid/blob/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/documentation/solid-2.0/06-actions-optimistic.md#live-sources-acknowledge-through-the-source-until)。这是 HEAD-only 行为回归：rc.13 development/production 的同一程序均通过。更倾向文档示例应补 bare yield：该章较早的 async-generator 示例已说明 bare yield 用来重新进入 transition context，live-send 示例却在 native await 后先构造依赖数组 row 属性的 until。裸 yield 对照只证明这一规避形状；不能据此宣称 HEAD 的新行为是有意设计。应由上游判断是否恢复 rc.13 的行为，或把上下文要求明确写进该例。我们没有把 runtime 回归的可能性排除。
 
 缩减：将 socket.send 的 fire-and-forget 返回值缩为 await 0，将 transport 缩为一个权威 signal 数组。保留 optimistic store、单个 clientId 属性、some 属性读取、async generator 和 until；去掉 DOM、Loading、router、UUID、text、server function、网络及 async iterable。去掉对象属性读取改为 number[] includes 或改为 optimistic boolean signal 后失败消失，因此它们不能替代必要的 store row 读取。
 
