@@ -17,7 +17,7 @@ A synchronous throw on the first `renderToStream` pass should produce `SSR_RENDE
 bun test ./findings/017-initial-render-error-record/repro.test.ts
 ```
 
-`BUILD_MODE=observe` reproduces the same failure. Production has no diagnostics channel by design, so this finding concerns only development and observe artifacts. The rc.13 comparison runs in the isolated baseline checkout and is recorded in the wave receipt.
+`BUILD_MODE=observe` reproduces the same failure. Production has no diagnostics channel by design, so this finding concerns only development and observe artifacts. The isolated rc.13 development comparison fails the independent positive control first (`hooks=0`), whereas HEAD has `hooks=1` and `records=0`; that baseline cannot establish the same isolated record omission. Production explicitly skips this diagnostics-only repro.
 
 RFC 08 (`documentation/solid-2.0/08-dev-diagnostics.md`, `SSR_RENDER_ERROR_CONTAINED`) describes this as the structured face of the same errors delivered to `renderToStream`'s `onError`, including a request failed outside every boundary. RFC 12 explicitly includes synchronous first-pass throws in the hook's `failed` road. The hook already works; omitting this diagnostic prevents a monitor subscribed to the documented channel from observing an otherwise ordinary failed render. The runtime is the likely wrong side.
 

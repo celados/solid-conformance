@@ -74,6 +74,9 @@ doc(
       equal(events[0]!.data?.handling, "fallback");
       equal(events[0]!.data?.error, original);
       equal(events[0]!.severity, "error");
+      if (isDev) ok(JSON.stringify(events[0]!.ownerPath).includes("Broken"));
+      ok(events[0]!.data?.boundary);
+      if (isDev) ok(Array.isArray(events[0]!.data?.boundaryPath));
     }
     equal(
       result.messages.some((m) => m.includes("SSR_RENDER_ERROR_CONTAINED")),
