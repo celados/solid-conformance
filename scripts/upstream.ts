@@ -14,6 +14,7 @@ async function link(directory: string, revision: string, ref: string) {
 		['@solidjs/compiler', 'compiler'],
 		['@solidjs/babel-plugin', 'babel-plugin'],
 		['@solidjs/diagnostics', 'diagnostics'],
+		['@solidjs/h', 'h'],
 	]) {
 		const destination = resolve('node_modules', name!)
 		await rm(destination, { recursive: true, force: true })
@@ -39,6 +40,7 @@ if (process.argv.includes('--link-built')) {
 		'@solidjs/compiler',
 		'@solidjs/babel-plugin',
 		'@solidjs/diagnostics',
+		'@solidjs/h',
 	])
 		await rm(resolve('node_modules', name), { recursive: true, force: true })
 	await run(['bun', 'install', '--frozen-lockfile'])
@@ -106,6 +108,15 @@ if (process.argv.includes('--link-built')) {
 		)
 		if (name === 'web') await run(['bun', 'scripts/copy-types.mjs'], cwd)
 	}
+	const h = `${directory}/packages/h`
+	for (const destination of ['src', 'types']) {
+		await mkdir(`${h}/jsx-runtime/${destination}`, { recursive: true })
+		await Bun.write(`${h}/jsx-runtime/${destination}/jsx-properties.d.ts`, Bun.file(`${directory}/packages/web/jsx/jsx-properties.d.ts`))
+		await run(['bun', '../web/scripts/jsx-sync.mjs', '--input', '../web/jsx/jsx-h.d.ts', '--output', `./jsx-runtime/${destination}/jsx.d.ts`, '--element', 'SolidElement | Node | FunctionElement | ArrayElement', '--import', 'import type { Element as SolidElement } from "solid-js";'], h)
+	}
+	await run(['bun', 'x', '--no-install', 'tsc', '-p', 'tsconfig.json'], h)
+	await run(['bun', 'x', '--no-install', 'tsc', '-p', 'jsx-runtime/tsconfig.json'], h)
+	await run(['bun', 'x', '--no-install', 'rollup', '-c'], h)
 	await run(
 		['bun', 'x', '--no-install', 'rollup', '-c', '--bundleConfigAsCjs'],
 		`${directory}/packages/babel-plugin`,
