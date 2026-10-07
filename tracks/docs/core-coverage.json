@@ -6054,8 +6054,10 @@
     "end_line": 231,
     "section": "The tracking run: known limitations",
     "statement": "Two things escape the window: work that resumes after it, and fake promises kept beyond it.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/policy.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L233:1",
@@ -6524,8 +6526,10 @@
     "end_line": 360,
     "section": "`resource.mutate` → `createOptimisticStore` / `action`",
     "statement": "In 2.0, `createOptimisticStore` + `action` addresses all three: store-backed granular updates, automatic reconciliation on refresh, and transition coordination that prevents race conditions:",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/optimistic-store-granular-refresh-race"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L375:1",
@@ -7550,8 +7554,12 @@
     "end_line": 184,
     "section": "`until()` (live-source acknowledgment)",
     "statement": "- **Any arrival path confirms.** Live-channel landings, other transactions' commits (they land beneath the hold), and refetches the action itself issued (they land *staged into* the hold, and the predicate reads staged data) all satisfy the predicate the moment they carry the confirming truth.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "06/until-arrival-live",
+      "06/until-arrival-other-action",
+      "06/until-arrival-refetch"
+    ],
+    "status": "covered"
   },
   {
     "id": "06-actions-optimistic:L186:1",

@@ -1457,8 +1457,10 @@
     "end_line": 363,
     "section": "`resource.mutate` → `createOptimisticStore` / `action`",
     "statement": "// 2.0 — granular updates, reconciled refresh, race-safe",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "05/optimistic-store-granular-refresh-race"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
@@ -1689,8 +1691,11 @@
     "end_line": 166,
     "section": "`until()` (live-source acknowledgment)",
     "statement": "await socket.send({ clientId, text });                              // fire-and-forget",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "findings/053-await-send-until-context/repro.test.ts",
+      "06/await-fireforget-before-until"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
