@@ -1,0 +1,32 @@
+{
+  "runtime": {
+    "target": "head",
+    "upstream": {
+      "ref": "next",
+      "revision": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+      "directory": "/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"
+    },
+    "buildMode": "development",
+    "solid": "2.0.0-rc.13"
+  },
+  "seed": 20261010,
+  "spine": 9,
+  "generated": 20,
+  "attempts": 29,
+  "browserRuns": 145,
+  "counts": {
+    "preload": 4,
+    "supersession": 2,
+    "action-failure": 4,
+    "action-success": 1,
+    "redirect": 6,
+    "live": 2,
+    "query-error": 5,
+    "form-success": 3,
+    "server-action": 2
+  },
+  "failed": false,
+  "counterexample": null,
+  "counterexamplePath": null,
+  "error": ""
+}
