@@ -793,8 +793,10 @@ if (isServer) {
     "live-digest-skip",
     "Last-Event-ID digest suppresses only the matching first value, leaving subsequent values flowing.",
     async () => {
+      const argumentsSeen:unknown[][]=[];
       const fn = sf.GET(
-        reference(async function* () {
+        reference(async function* (...args:unknown[]) {
+          argumentsSeen.push(args);
           yield 1;
           yield 2;
         }),
@@ -810,6 +812,7 @@ if (isServer) {
       const replay = await response.text();
       equal((initial.match(/^id:/gm) ?? []).length, 2);
       equal((replay.match(/^id:/gm) ?? []).length, 1);
+      equal(argumentsSeen,[[],[]]);
     },
   );
 }

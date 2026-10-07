@@ -1378,9 +1378,13 @@
   },
   {
     "id": "10-server-functions:L225:2",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "findings/035-decoder-iterator-body-death/eof.test.ts",
+      "findings/035-decoder-iterator-body-death/repro.test.ts",
+      "tracks/docs/rpc-cases.ts#10/live-nested-response-lifetime"
+    ],
+    "reason": "Natural nested promise/iterator completion positive; error and normal EOF each leave open decoded iterator pull pending in minimal red035, contradicting end sweep."
   },
   {
     "id": "10-server-functions:L225:3",
@@ -1511,17 +1515,19 @@
   },
   {
     "id": "10-server-functions:L229:4",
-    "status": "uncovered",
+    "status": "not-behavioral",
     "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "reason": "Expository pointer from ordinary transport failure to reconnect section; no independent behavioral predicate beyond preceding/following statements."
   },
   {
     "id": "10-server-functions:L230:1",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "tracks/frames/frames.test.ts:consumer-end"
+      "tracks/docs/rpc-cases.ts#10/live-wire-framing",
+      "tracks/frames/transport-contracts.test.ts#RFC10 transport awaits the replacement hook and owns one consumer per source",
+      "tracks/frames/live-wire.test.ts"
     ],
-    "reason": "SSE headers and consumer teardown tested; heartbeat interval and multi-line framing still need a focused assertion."
+    "reason": "Actual SSE header/wire positive; independent iteration/abort lifecycle; synthetic multiline CRLF split reassembles exact JSON payload and position; standing response sends comment heartbeat after20s in all builds and producer closes on cancel."
   },
   {
     "id": "10-server-functions:L230:2",
@@ -1544,9 +1550,12 @@
   },
   {
     "id": "10-server-functions:L230:5",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/transport-contracts.test.ts#RFC10 transport awaits the replacement hook and owns one consumer per source",
+      "tracks/docs/rpc-cases.ts#10/live-data-url"
+    ],
+    "reason": "Same reference plain dispatch uses /data, live loop /live including POST fallback; server declaration topology controlled separately in existing GET method cases."
   },
   {
     "id": "10-server-functions:L230:6",
@@ -1557,11 +1566,11 @@
   },
   {
     "id": "10-server-functions:L230:7",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "10/live-wire-framing"
+      "tracks/frames/transport-contracts.test.ts#RFC10 transport awaits the replacement hook and owns one consumer per source"
     ],
-    "reason": "Custom fetch/prepareRequest/abort tested for live; live-specific long-URL POST fallback not yet asserted."
+    "reason": "Custom fetch receives live GET and URL-length POST fallback, prepareRequest header survives, return aborts supplied request signal; no EventSource participates."
   },
   {
     "id": "10-server-functions:L230:8",
@@ -1583,9 +1592,9 @@
   },
   {
     "id": "10-server-functions:L230:11",
-    "status": "uncovered",
+    "status": "not-behavioral",
     "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "reason": "Deployment responsibility conclusion, not a runtime behavioral promise."
   },
   {
     "id": "10-server-functions:L230:12",
@@ -1621,9 +1630,11 @@
   },
   {
     "id": "10-server-functions:L231:5",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/rpc-cases.ts#10/live-digest-skip"
+    ],
+    "reason": "Two handler invocations observe zero args before/after Last-Event-ID position digest; digest only changes response first emission skip, never argument identity."
   },
   {
     "id": "10-server-functions:L232:1",
@@ -1695,8 +1706,11 @@
   {
     "id": "10-server-functions:L253:1",
     "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "coverage": [
+      "tracks/frames/transport-contracts.test.ts#RFC10 transport awaits the replacement hook and owns one consumer per source",
+      "tracks/frames/live-chaos.test.ts"
+    ],
+    "reason": "Partial: parser/framer/heartbeat helpers public imports and chaos dev-only vs observe/production with initial42 and cleanup controls. Remaining helper signature validation pending."
   },
   {
     "id": "10-server-functions:L253:2",
@@ -3183,7 +3197,7 @@
     "id": "11-server-components:L169:4",
     "status": "covered",
     "coverage": [
-      "findings/027-server-write-production/repro.test.ts"
+      "findings/027-server-write-all-builds/repro.test.ts"
     ],
     "reason": "Production server write counterexample contradicts claimed all-build warning; development warning positive retained in minimal finding."
   },
