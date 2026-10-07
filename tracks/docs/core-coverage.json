@@ -4766,8 +4766,11 @@
     "end_line": 50,
     "section": "`Loading` is the UI boundary",
     "statement": "A `Loading` that has not shown content yet owns what is under it.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "findings/048-first-loading-held-signal/repro.test.ts"
+    ],
+    "status": "covered",
+    "rationale": "最小literal red：plain held write独立挂载显示旧值；未ready async source fallback与heldchange挂载Show是正控。报告docs domain过宽，不混淆NotReady与error。"
   },
   {
     "id": "05-async-data:L50:2",
@@ -4776,8 +4779,11 @@
     "end_line": 50,
     "section": "`Loading` is the UI boundary",
     "statement": "Content there that reads a value a still-running change holds (a write inside an `action`, data another change is loading) is not part of that change: the boundary shows its fallback now, and the content appears when the change commits.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "findings/048-first-loading-held-signal/repro.test.ts"
+    ],
+    "status": "covered",
+    "rationale": "最小literal red：plain held write独立挂载显示旧值；未ready async source fallback与heldchange挂载Show是正控。报告docs domain过宽，不混淆NotReady与error。"
   },
   {
     "id": "05-async-data:L50:3",
@@ -4786,8 +4792,11 @@
     "end_line": 50,
     "section": "`Loading` is the UI boundary",
     "statement": "The change does not wait for it.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "findings/048-first-loading-held-signal/repro.test.ts"
+    ],
+    "status": "covered",
+    "rationale": "最小literal red：plain held write独立挂载显示旧值；未ready async source fallback与heldchange挂载Show是正控。报告docs domain过宽，不混淆NotReady与error。"
   },
   {
     "id": "05-async-data:L50:4",
@@ -4796,8 +4805,11 @@
     "end_line": 50,
     "section": "`Loading` is the UI boundary",
     "statement": "The exception is a boundary mounted by the change itself, for example a `<Show when={x()}>` where `x` is the held write: it appears with that change's commit, with no fallback.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "findings/048-first-loading-held-signal/repro.test.ts"
+    ],
+    "status": "covered",
+    "rationale": "最小literal red：plain held write独立挂载显示旧值；未ready async source fallback与heldchange挂载Show是正控。报告docs domain过宽，不混淆NotReady与error。"
   },
   {
     "id": "05-async-data:L50:5",
@@ -5730,8 +5742,10 @@
     "end_line": 196,
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "That handoff is the tail of the initial load, not a refetch: the node reads settled through it — `isPending` is `false`, and a `<Loading>` created in that window shows content — until the stream produces something new.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/policy.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L196:4",
@@ -7264,8 +7278,10 @@
     "end_line": 156,
     "section": "`until()` (live-source acknowledgment)",
     "statement": "Without a hold, the action settles at the transport ack, the optimistic state reverts, and the confirmed data flickers in a beat later.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "06/optimistic-ack-before-live"
+    ],
+    "status": "covered"
   },
   {
     "id": "06-actions-optimistic:L158:1",
@@ -13468,8 +13484,13 @@
     "end_line": 757,
     "section": "New in 2.0",
     "statement": "Returns a promise for the target's next quiescent state: accessors resolve with the settled value, stores with the node passed; a failed re-ask rejects (in an action, `yield refresh(x)` throws back at the yield point); superseded flights fold onto whatever finally lands.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/refresh-delivery",
+      "05/refresh-quiescence",
+      "06/refresh-store-delivery",
+      "06/refresh-rejection-action"
+    ],
+    "status": "covered"
   },
   {
     "id": "MIGRATION:L757:3",
