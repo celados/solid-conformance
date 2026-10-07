@@ -26,7 +26,9 @@ import {
   handleServerFunctionRequest,
   decodeResponse,
   REDIRECT_HEADER,
+  GET,
 } from "@solidjs/web/server-functions/server";
+import { GET as clientGET, createServerReference as createClientReference, getServerFunctionMetadata } from "@solidjs/web/server-functions/client";
 import { renderServerComponent, frameTransformResult } from "@solidjs/web/frames/server";
 import { equal, ok, type DocCase, runCases } from "../docs/registry";
 const scope = new AsyncLocalStorage<any>();
@@ -553,6 +555,9 @@ doc("trace-every-response-face", "Sampled trace travels through document shell s
  for(const mode of ["splice","onHead","headless"] as const){await scope.run(createRequestEvent(new Request("http://localhost/trace",{headers})),()=>{let head="";const event=getRequestEvent()!;event.response.headers.set("server-timing","application;dur=2");const trace=getTraceContext()!;const html=renderToString(()=>mode!=="splice"?"fragment":<html><head/><body>document</body></html>,mode==="onHead"?{onHead:value=>{head=value}}:{});const response=createSSRResponse(html,event);const metric=response.headers.get("server-timing")!;ok(metric.includes('traceparent;desc="'+trace.entries.traceparent+'"'));ok(metric.includes("application;dur=2"));ok(!metric.includes("private=upstream"));ok(!html.includes("private=upstream"));const meta='<meta name="traceparent" content="'+trace.entries.traceparent+'"';if(mode==="onHead")ok(head.includes(meta),head);else if(mode==="splice")ok(html.includes(meta),html);else ok(!html.includes('name="traceparent"'))})}
  let current:any;registerServerReference("trace-frame",()=>{current=getTraceContext();return ()=> <b>framed</b>});const request=new Request("http://localhost/_server/data/trace-frame",{method:"POST",body:"[]",headers:{...headers,origin:"http://localhost","content-type":"application/json","X-Server-Function-Format":"8"}});const response=await handleServerFunctionRequest(request,{createEvent:createRequestEvent,transformResult:frameTransformResult});ok(response.headers.get("server-timing")!.includes('traceparent;desc="'+current.entries.traceparent+'"'));ok((await response.text()).includes("framed"));ok(!response.headers.get("server-timing")!.includes("private=upstream"));
  await scope.run(createRequestEvent(new Request("http://localhost/redirect",{headers})),()=>{const event=getRequestEvent()!;const trace=getTraceContext()!;event.response.headers.set("location","/next");const response=createSSRResponse("discarded",event);equal(response.status,302);equal(response.body,null);ok(response.headers.get("server-timing")!.includes('traceparent;desc="'+trace.entries.traceparent+'"'))});
+});
+doc("get-server-graph-topology", "GET applied only to a client proxy changes client transport metadata but grants server dispatch only when the declaration is evaluated in the server graph.",async()=>{
+ const id="get-graph-topology";const fn=createServerReference(registerServerReference(id,()=>17));const request=()=>new Request("http://localhost/_server/data/"+id+"?args=[]",{headers:{origin:"http://localhost"}});equal((await handleServerFunctionRequest(request())).status,405);const client=clientGET(createClientReference(id));equal(getServerFunctionMetadata(client)?.method,"GET");equal((await handleServerFunctionRequest(request())).status,405);GET(fn);const response=await handleServerFunctionRequest(request());equal(response.status,200);equal(await response.text(),"17");
 });
 export const run = () =>
   scope.run(createRequestEvent(new Request("http://test/")), () => runCases(cases));

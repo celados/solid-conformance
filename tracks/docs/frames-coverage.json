@@ -1742,9 +1742,11 @@
   },
   {
     "id": "10-server-functions:L251:2",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "08/server-road-get-server-graph-topology"
+    ],
+    "reason": "同registeredid实际HTTPdispatch：clientGET(proxy)仅客户端metadataGET而serverGET仍405；servergraph执行GET(ref)后200且value17。origin正控排除CSRF403，三tier。"
   },
   {
     "id": "10-server-functions:L253:1",
