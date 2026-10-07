@@ -5,5 +5,5 @@ Conformance target: {"target":"head","upstream":{"ref":"next","revision":"53ef0e
 
  1 pass
  0 fail
- 2 expect() calls
-Ran 1 test across 1 file. [7.25s]
+ 8 expect() calls
+Ran 1 test across 1 file. [9.77s]

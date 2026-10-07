@@ -18,7 +18,9 @@ createRoot((dispose) => {
   host.apply({ type: "complete", id: "frame", version: 1 });
   (window as any).result = {
     observed: !!OBSERVE,
-    errors: capture.events.filter((e) => e.code === "FRAME_MARKER_CORRUPTED").length,
+    errors: capture.events
+      .filter((e) => e.code === "FRAME_MARKER_CORRUPTED")
+      .map((e) => ({ kind: e.kind, severity: e.severity, data: e.data })),
   };
   capture.stop();
   dispose();

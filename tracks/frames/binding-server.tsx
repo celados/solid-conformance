@@ -50,6 +50,7 @@ for (const [reason, component] of Object.entries(modes))
         const found = capture?.events.filter((e) => e.code === "BINDING_SLOT_POSITION") ?? [];
         equal(found.length, isDev ? 1 : 0);
         if (isDev) {
+          equal(found[0]!.kind, "ssr");
           equal(
             found[0]!.data?.reason,
             ["server-handler", "handler-tuple"].includes(reason) ? "server-local" : reason,

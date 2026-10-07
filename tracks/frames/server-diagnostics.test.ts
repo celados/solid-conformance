@@ -12,6 +12,7 @@ for (const variant of ["development", "observe", "production"] as BuildMode[]) {
         await build(outdir, variant, {
           client: [],
           server: ["tracks/frames/server-diagnostics.tsx"],
+          serverComponents: true,
         });
         const module = await import(outdir + "/server-diagnostics.js");
         const result = await module.run();

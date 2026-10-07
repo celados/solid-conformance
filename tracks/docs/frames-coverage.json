@@ -1,0 +1,3159 @@
+[
+  {
+    "id": "10-server-functions:L3:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L5:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L5:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L5:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L5:4",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts:invocation and call delivery"
+    ]
+  },
+  {
+    "id": "10-server-functions:L5:5",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:name-metadata"
+    ]
+  },
+  {
+    "id": "10-server-functions:L5:6",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L9:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:function directive/client proxy"
+    ]
+  },
+  {
+    "id": "10-server-functions:L9:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L9:3",
+    "status": "covered",
+    "coverage": [
+      "10/get-metadata",
+      "10/metadata-merge",
+      "10/reference-brand",
+      "tracks/frames/frames.test.ts:rpc",
+      "10/invoke-options-no-residue"
+    ]
+  },
+  {
+    "id": "10-server-functions:L11:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L11:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts"
+    ]
+  },
+  {
+    "id": "10-server-functions:L15:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L16:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L16:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L16:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L17:1",
+    "status": "covered",
+    "coverage": [
+      "10/http-dispatch",
+      "10/rich-result-codec"
+    ]
+  },
+  {
+    "id": "10-server-functions:L17:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L18:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L18:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts"
+    ]
+  },
+  {
+    "id": "10-server-functions:L24:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:function-directive"
+    ]
+  },
+  {
+    "id": "10-server-functions:L24:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:module-directive"
+    ]
+  },
+  {
+    "id": "10-server-functions:L34:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L36:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Inventory split a numbered heading or table header; no behavioral assertion."
+  },
+  {
+    "id": "10-server-functions:L36:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:function-directive"
+    ]
+  },
+  {
+    "id": "10-server-functions:L36:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:function-directive"
+    ]
+  },
+  {
+    "id": "10-server-functions:L37:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Inventory split a numbered heading or table header; no behavioral assertion."
+  },
+  {
+    "id": "10-server-functions:L37:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:function-directive"
+    ]
+  },
+  {
+    "id": "10-server-functions:L37:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:function-directive"
+    ]
+  },
+  {
+    "id": "10-server-functions:L39:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts"
+    ]
+  },
+  {
+    "id": "10-server-functions:L39:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts"
+    ]
+  },
+  {
+    "id": "10-server-functions:L41:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts"
+    ]
+  },
+  {
+    "id": "10-server-functions:L41:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts"
+    ]
+  },
+  {
+    "id": "10-server-functions:L41:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L41:4",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:module-directive"
+    ]
+  },
+  {
+    "id": "10-server-functions:L41:5",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:module-directive"
+    ]
+  },
+  {
+    "id": "10-server-functions:L41:6",
+    "status": "covered",
+    "coverage": [
+      "10/reference-nonfunction"
+    ]
+  },
+  {
+    "id": "10-server-functions:L41:7",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:module-directive"
+    ]
+  },
+  {
+    "id": "10-server-functions:L41:8",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L45:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:runtime-resolution"
+    ]
+  },
+  {
+    "id": "10-server-functions:L47:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L47:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:client-rpc"
+    ]
+  },
+  {
+    "id": "10-server-functions:L47:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:rpc"
+    ]
+  },
+  {
+    "id": "10-server-functions:L47:4",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L47:5",
+    "status": "covered",
+    "coverage": [
+      "10/live-wire-framing"
+    ]
+  },
+  {
+    "id": "10-server-functions:L47:6",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L47:7",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L49:1",
+    "status": "covered",
+    "coverage": [
+      "10/http-dispatch"
+    ]
+  },
+  {
+    "id": "10-server-functions:L61:1",
+    "status": "covered",
+    "coverage": [
+      "10/http-dispatch",
+      "10/request-event-create",
+      "10/redirect-control"
+    ]
+  },
+  {
+    "id": "10-server-functions:L61:2",
+    "status": "covered",
+    "coverage": [
+      "10/http-dispatch"
+    ]
+  },
+  {
+    "id": "10-server-functions:L63:1",
+    "status": "covered",
+    "coverage": [
+      "10/request-event-create"
+    ]
+  },
+  {
+    "id": "10-server-functions:L63:2",
+    "status": "covered",
+    "coverage": [
+      "10/request-standard-shape"
+    ]
+  },
+  {
+    "id": "10-server-functions:L63:3",
+    "status": "covered",
+    "coverage": [
+      "10/request-standard-shape"
+    ]
+  },
+  {
+    "id": "10-server-functions:L63:4",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L63:5",
+    "status": "covered",
+    "coverage": [
+      "10/request-standard-shape"
+    ]
+  },
+  {
+    "id": "10-server-functions:L63:6",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:consumer-end"
+    ]
+  },
+  {
+    "id": "10-server-functions:L63:7",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:consumer-end"
+    ]
+  },
+  {
+    "id": "10-server-functions:L63:8",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L64:1",
+    "status": "covered",
+    "coverage": [
+      "10/http-wrap-invocation"
+    ]
+  },
+  {
+    "id": "10-server-functions:L65:1",
+    "status": "covered",
+    "coverage": [
+      "10/http-wrap-invocation"
+    ]
+  },
+  {
+    "id": "10-server-functions:L65:2",
+    "status": "covered",
+    "coverage": [
+      "10/direct-wrap-invocation",
+      "10/http-wrap-invocation"
+    ]
+  },
+  {
+    "id": "10-server-functions:L65:3",
+    "status": "covered",
+    "coverage": [
+      "10/http-wrap-invocation"
+    ]
+  },
+  {
+    "id": "10-server-functions:L65:4",
+    "status": "covered",
+    "coverage": [
+      "10/direct-wrap-invocation"
+    ]
+  },
+  {
+    "id": "10-server-functions:L65:5",
+    "status": "covered",
+    "coverage": [
+      "10/http-wrap-invocation"
+    ]
+  },
+  {
+    "id": "10-server-functions:L65:6",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L66:1",
+    "status": "covered",
+    "coverage": [
+      "10/transform-return-and-throw"
+    ]
+  },
+  {
+    "id": "10-server-functions:L66:2",
+    "status": "covered",
+    "coverage": [
+      "10/transform-return-and-throw"
+    ]
+  },
+  {
+    "id": "10-server-functions:L66:3",
+    "status": "covered",
+    "coverage": [
+      "10/per-request-transform-override"
+    ]
+  },
+  {
+    "id": "10-server-functions:L66:4",
+    "status": "covered",
+    "coverage": [
+      "10/transform-direct-config"
+    ]
+  },
+  {
+    "id": "10-server-functions:L67:1",
+    "status": "covered",
+    "coverage": [
+      "10/single-flight-sources"
+    ]
+  },
+  {
+    "id": "10-server-functions:L68:1",
+    "status": "covered",
+    "coverage": [
+      "10/no-js-form"
+    ]
+  },
+  {
+    "id": "10-server-functions:L70:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:identity"
+    ]
+  },
+  {
+    "id": "10-server-functions:L70:2",
+    "status": "covered",
+    "coverage": [
+      "10/unknown-reference",
+      "tracks/frames/frames.test.ts:unknown-reference"
+    ]
+  },
+  {
+    "id": "10-server-functions:L70:3",
+    "status": "covered",
+    "coverage": [
+      "10/bare-404"
+    ]
+  },
+  {
+    "id": "10-server-functions:L72:1",
+    "status": "covered",
+    "coverage": [
+      "10/invocation-context",
+      "10/per-call-event"
+    ]
+  },
+  {
+    "id": "10-server-functions:L74:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts:sync/promise/error/deferred/direct/HTTP invocation and boundary join"
+    ]
+  },
+  {
+    "id": "10-server-functions:L74:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts:sync/promise/error/deferred/direct/HTTP invocation and boundary join"
+    ]
+  },
+  {
+    "id": "10-server-functions:L74:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts:sync/promise/error/deferred/direct/HTTP invocation and boundary join"
+    ]
+  },
+  {
+    "id": "10-server-functions:L74:4",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts:sync/promise/error/deferred/direct/HTTP invocation and boundary join"
+    ]
+  },
+  {
+    "id": "10-server-functions:L74:5",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts:sync/promise/error/deferred/direct/HTTP invocation and boundary join"
+    ]
+  },
+  {
+    "id": "10-server-functions:L76:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts:call live arguments/response/error, local interception silence, attribution origin and trace"
+    ]
+  },
+  {
+    "id": "10-server-functions:L76:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts:call live arguments/response/error, local interception silence, attribution origin and trace"
+    ]
+  },
+  {
+    "id": "10-server-functions:L76:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts:call live arguments/response/error, local interception silence, attribution origin and trace"
+    ]
+  },
+  {
+    "id": "10-server-functions:L76:4",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts:call live arguments/response/error, local interception silence, attribution origin and trace"
+    ]
+  },
+  {
+    "id": "10-server-functions:L76:5",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts:call live arguments/response/error, local interception silence, attribution origin and trace"
+    ]
+  },
+  {
+    "id": "10-server-functions:L76:6",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts:call live arguments/response/error, local interception silence, attribution origin and trace"
+    ]
+  },
+  {
+    "id": "10-server-functions:L78:1",
+    "status": "covered",
+    "coverage": [
+      "10/registry-public"
+    ]
+  },
+  {
+    "id": "10-server-functions:L78:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L82:1",
+    "status": "uncovered",
+    "coverage": [
+      "10/redirect-control",
+      "10/response-envelope-body"
+    ],
+    "reason": "server返回helper已测，client action helper整体部分需router精准mapping"
+  },
+  {
+    "id": "10-server-functions:L97:1",
+    "status": "covered",
+    "coverage": [
+      "10/cache-opt-in"
+    ]
+  },
+  {
+    "id": "10-server-functions:L97:2",
+    "status": "covered",
+    "coverage": [
+      "10/cache-opt-in",
+      "10/intentional-error-envelope"
+    ]
+  },
+  {
+    "id": "10-server-functions:L97:3",
+    "status": "covered",
+    "coverage": [
+      "10/response-envelope-body"
+    ]
+  },
+  {
+    "id": "10-server-functions:L97:4",
+    "status": "covered",
+    "coverage": [
+      "10/intentional-error-envelope"
+    ]
+  },
+  {
+    "id": "10-server-functions:L97:5",
+    "status": "covered",
+    "coverage": [
+      "10/envelope-brand"
+    ]
+  },
+  {
+    "id": "10-server-functions:L99:1",
+    "status": "covered",
+    "coverage": [
+      "10/redirect-control"
+    ]
+  },
+  {
+    "id": "10-server-functions:L99:2",
+    "status": "covered",
+    "coverage": [
+      "10/redirect-masking"
+    ]
+  },
+  {
+    "id": "10-server-functions:L99:3",
+    "status": "covered",
+    "coverage": [
+      "10/created-location",
+      "10/redirect-masking"
+    ]
+  },
+  {
+    "id": "10-server-functions:L99:4",
+    "status": "covered",
+    "coverage": [
+      "10/not-modified-forward",
+      "10/redirect-masking"
+    ]
+  },
+  {
+    "id": "10-server-functions:L101:1",
+    "status": "covered",
+    "coverage": [
+      "10/http-dispatch"
+    ]
+  },
+  {
+    "id": "10-server-functions:L101:2",
+    "status": "covered",
+    "coverage": [
+      "10/raw-response"
+    ]
+  },
+  {
+    "id": "10-server-functions:L105:1",
+    "status": "covered",
+    "coverage": [
+      "10/intentional-error-envelope"
+    ]
+  },
+  {
+    "id": "10-server-functions:L105:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L105:3",
+    "status": "covered",
+    "coverage": [
+      "10/thrown-sanitization"
+    ]
+  },
+  {
+    "id": "10-server-functions:L105:4",
+    "status": "covered",
+    "coverage": [
+      "10/thrown-sanitization"
+    ]
+  },
+  {
+    "id": "10-server-functions:L107:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:build-variant-error"
+    ]
+  },
+  {
+    "id": "10-server-functions:L109:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L111:1",
+    "status": "covered",
+    "coverage": [
+      "10/intentional-error-envelope"
+    ]
+  },
+  {
+    "id": "10-server-functions:L112:1",
+    "status": "covered",
+    "coverage": [
+      "10/safe-error"
+    ]
+  },
+  {
+    "id": "10-server-functions:L112:2",
+    "status": "covered",
+    "coverage": [
+      "10/safe-error"
+    ]
+  },
+  {
+    "id": "10-server-functions:L114:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L116:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L116:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L118:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L118:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L118:3",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L122:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L122:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L124:1",
+    "status": "covered",
+    "coverage": [
+      "10/single-flight-sources",
+      "10/named-flight-sources"
+    ]
+  },
+  {
+    "id": "10-server-functions:L124:2",
+    "status": "covered",
+    "coverage": [
+      "10/single-flight-sources",
+      "10/named-flight-sources"
+    ]
+  },
+  {
+    "id": "10-server-functions:L124:3",
+    "status": "covered",
+    "coverage": [
+      "10/single-flight-after-transform"
+    ]
+  },
+  {
+    "id": "10-server-functions:L125:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:flight-delivery"
+    ]
+  },
+  {
+    "id": "10-server-functions:L125:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:rpc"
+    ]
+  },
+  {
+    "id": "10-server-functions:L125:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:flight-delivery"
+    ]
+  },
+  {
+    "id": "10-server-functions:L125:4",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:rpc"
+    ]
+  },
+  {
+    "id": "10-server-functions:L125:5",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L127:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:flight-delivery"
+    ]
+  },
+  {
+    "id": "10-server-functions:L127:2",
+    "status": "covered",
+    "coverage": [
+      "10/single-flight-sources"
+    ]
+  },
+  {
+    "id": "10-server-functions:L127:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L129:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:flight-delivery"
+    ]
+  },
+  {
+    "id": "10-server-functions:L129:2",
+    "status": "covered",
+    "coverage": [
+      "10/transform-flight-first-refusal"
+    ]
+  },
+  {
+    "id": "10-server-functions:L129:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:flight-delivery"
+    ]
+  },
+  {
+    "id": "10-server-functions:L129:4",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L133:1",
+    "status": "covered",
+    "coverage": [
+      "10/no-js-bound-body",
+      "10/action-url-roundtrip"
+    ]
+  },
+  {
+    "id": "10-server-functions:L133:2",
+    "status": "covered",
+    "coverage": [
+      "10/action-url-roundtrip"
+    ]
+  },
+  {
+    "id": "10-server-functions:L133:3",
+    "status": "covered",
+    "coverage": [
+      "10/get-data-url"
+    ]
+  },
+  {
+    "id": "10-server-functions:L133:4",
+    "status": "covered",
+    "coverage": [
+      "10/no-js-form",
+      "10/no-js-get-form"
+    ]
+  },
+  {
+    "id": "10-server-functions:L133:5",
+    "status": "covered",
+    "coverage": [
+      "10/malformed-args"
+    ]
+  },
+  {
+    "id": "10-server-functions:L133:6",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L133:7",
+    "status": "covered",
+    "coverage": [
+      "10/no-js-form"
+    ]
+  },
+  {
+    "id": "10-server-functions:L135:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L137:1",
+    "status": "covered",
+    "coverage": [
+      "10/no-js-form"
+    ]
+  },
+  {
+    "id": "10-server-functions:L137:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L138:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L138:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L139:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L143:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L145:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L147:1",
+    "status": "covered",
+    "coverage": [
+      "10/get-metadata",
+      "10/nonfunction-metadata",
+      "tracks/frames/frames.test.ts:consumer-end"
+    ]
+  },
+  {
+    "id": "10-server-functions:L148:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:prepare-request",
+      "10/http-wrap-invocation"
+    ]
+  },
+  {
+    "id": "10-server-functions:L149:1",
+    "status": "covered",
+    "coverage": [
+      "10/invoke-options-no-residue"
+    ]
+  },
+  {
+    "id": "10-server-functions:L151:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L151:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L155:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L166:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:client-rpc"
+    ]
+  },
+  {
+    "id": "10-server-functions:L166:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:rpc"
+    ]
+  },
+  {
+    "id": "10-server-functions:L166:3",
+    "status": "covered",
+    "coverage": [
+      "10/cache-opt-in"
+    ]
+  },
+  {
+    "id": "10-server-functions:L166:4",
+    "status": "covered",
+    "coverage": [
+      "10/get-data-url"
+    ]
+  },
+  {
+    "id": "10-server-functions:L166:5",
+    "status": "covered",
+    "coverage": [
+      "10/get-data-url",
+      "10/get-url-refusals"
+    ]
+  },
+  {
+    "id": "10-server-functions:L166:6",
+    "status": "covered",
+    "coverage": [
+      "10/live-data-url"
+    ]
+  },
+  {
+    "id": "10-server-functions:L166:7",
+    "status": "covered",
+    "coverage": [
+      "10/direct-call"
+    ]
+  },
+  {
+    "id": "10-server-functions:L166:8",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:function-directive"
+    ]
+  },
+  {
+    "id": "10-server-functions:L168:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L168:2",
+    "status": "covered",
+    "coverage": [
+      "10/not-modified-forward"
+    ]
+  },
+  {
+    "id": "10-server-functions:L168:3",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L170:1",
+    "status": "covered",
+    "coverage": [
+      "10/metadata-merge",
+      "10/get-metadata",
+      "10/reference-brand"
+    ]
+  },
+  {
+    "id": "10-server-functions:L170:2",
+    "status": "covered",
+    "coverage": [
+      "10/metadata-merge",
+      "10/get-metadata",
+      "tracks/frames/frames.test.ts:prepare-request"
+    ]
+  },
+  {
+    "id": "10-server-functions:L184:1",
+    "status": "covered",
+    "coverage": [
+      "10/metadata-merge",
+      "10/get-metadata"
+    ]
+  },
+  {
+    "id": "10-server-functions:L184:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:prepare-request"
+    ]
+  },
+  {
+    "id": "10-server-functions:L184:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L186:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L187:1",
+    "status": "covered",
+    "coverage": [
+      "10/default-post",
+      "10/get-read",
+      "10/method-405"
+    ]
+  },
+  {
+    "id": "10-server-functions:L188:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L188:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L188:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L190:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L192:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Inventory split a numbered heading or table header; no behavioral assertion."
+  },
+  {
+    "id": "10-server-functions:L194:1",
+    "status": "covered",
+    "coverage": [
+      "10/direct-call"
+    ]
+  },
+  {
+    "id": "10-server-functions:L195:1",
+    "status": "covered",
+    "coverage": [
+      "10/reference-id"
+    ]
+  },
+  {
+    "id": "10-server-functions:L196:1",
+    "status": "covered",
+    "coverage": [
+      "10/reference-id"
+    ]
+  },
+  {
+    "id": "10-server-functions:L197:1",
+    "status": "covered",
+    "coverage": [
+      "10/metadata-merge"
+    ]
+  },
+  {
+    "id": "10-server-functions:L198:1",
+    "status": "covered",
+    "coverage": [
+      "10/removed-reference-properties"
+    ]
+  },
+  {
+    "id": "10-server-functions:L199:1",
+    "status": "covered",
+    "coverage": [
+      "10/removed-reference-properties",
+      "10/invoke-refusals"
+    ]
+  },
+  {
+    "id": "10-server-functions:L200:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L204:1",
+    "status": "covered",
+    "coverage": [
+      "10/live-wire-framing"
+    ]
+  },
+  {
+    "id": "10-server-functions:L204:2",
+    "status": "covered",
+    "coverage": [
+      "10/live-data-url",
+      "tracks/frames/frames.test.ts:consumer-end"
+    ]
+  },
+  {
+    "id": "10-server-functions:L221:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L221:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L221:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:consumer close status",
+      "findings/014-live-drop-completes/repro.test.ts"
+    ]
+  },
+  {
+    "id": "10-server-functions:L221:4",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L221:5",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L221:6",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L221:7",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L223:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L223:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L223:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L223:4",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L225:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L225:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L225:3",
+    "status": "covered",
+    "coverage": [
+      "findings/014-live-drop-completes/repro.test.ts"
+    ]
+  },
+  {
+    "id": "10-server-functions:L225:4",
+    "status": "covered",
+    "coverage": [
+      "findings/014-live-drop-completes/repro.test.ts"
+    ]
+  },
+  {
+    "id": "10-server-functions:L225:5",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L226:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:consumer-end"
+    ]
+  },
+  {
+    "id": "10-server-functions:L226:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:consumer-end",
+      "findings/014-live-drop-completes/repro.test.ts"
+    ]
+  },
+  {
+    "id": "10-server-functions:L226:3",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L227:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L227:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L227:3",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L227:4",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L227:5",
+    "status": "covered",
+    "coverage": [
+      "10/live-digest-skip"
+    ]
+  },
+  {
+    "id": "10-server-functions:L228:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L228:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L228:3",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L228:4",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L228:5",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L229:1",
+    "status": "uncovered",
+    "coverage": [
+      "findings/014-live-drop-completes/repro.test.ts"
+    ],
+    "reason": "Declared reconnect failure 014 does not exercise the undeclared rejection path."
+  },
+  {
+    "id": "10-server-functions:L229:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L229:3",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L229:4",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L230:1",
+    "status": "uncovered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:consumer-end"
+    ],
+    "reason": "SSE headers and consumer teardown tested; heartbeat interval and multi-line framing still need a focused assertion."
+  },
+  {
+    "id": "10-server-functions:L230:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L230:3",
+    "status": "covered",
+    "coverage": [
+      "10/live-wire-framing"
+    ]
+  },
+  {
+    "id": "10-server-functions:L230:4",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L230:5",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L230:6",
+    "status": "covered",
+    "coverage": [
+      "10/live-wire-framing"
+    ]
+  },
+  {
+    "id": "10-server-functions:L230:7",
+    "status": "uncovered",
+    "coverage": [
+      "10/live-wire-framing"
+    ],
+    "reason": "Custom fetch/prepareRequest/abort tested for live; live-specific long-URL POST fallback not yet asserted."
+  },
+  {
+    "id": "10-server-functions:L230:8",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L230:9",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L230:10",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L230:11",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L230:12",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L231:1",
+    "status": "covered",
+    "coverage": [
+      "10/live-digest-skip"
+    ]
+  },
+  {
+    "id": "10-server-functions:L231:2",
+    "status": "covered",
+    "coverage": [
+      "10/live-digest-skip"
+    ]
+  },
+  {
+    "id": "10-server-functions:L231:3",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L231:4",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L231:5",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L232:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L232:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L232:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L232:4",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L234:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:csr"
+    ]
+  },
+  {
+    "id": "10-server-functions:L234:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L249:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L249:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L249:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L251:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L251:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L253:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L253:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L253:3",
+    "status": "covered",
+    "coverage": [
+      "10/live-wire-framing"
+    ]
+  },
+  {
+    "id": "10-server-functions:L253:4",
+    "status": "covered",
+    "coverage": [
+      "10/live-wire-framing"
+    ]
+  },
+  {
+    "id": "10-server-functions:L253:5",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L253:6",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L257:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L267:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L267:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L269:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L269:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L269:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L273:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L273:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L281:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:invoke-abort"
+    ]
+  },
+  {
+    "id": "10-server-functions:L281:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L281:3",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L283:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L283:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L285:1",
+    "status": "covered",
+    "coverage": [
+      "10/direct-invoke-abort",
+      "tracks/frames/frames.test.ts:invoke abort"
+    ]
+  },
+  {
+    "id": "10-server-functions:L285:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:invoke-abort"
+    ]
+  },
+  {
+    "id": "10-server-functions:L285:3",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L286:1",
+    "status": "covered",
+    "coverage": [
+      "10/invoke-options-no-residue"
+    ]
+  },
+  {
+    "id": "10-server-functions:L286:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L287:1",
+    "status": "covered",
+    "coverage": [
+      "10/invoke-options-no-residue"
+    ]
+  },
+  {
+    "id": "10-server-functions:L289:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L289:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L291:1",
+    "status": "covered",
+    "coverage": [
+      "10/invoke-refusals"
+    ]
+  },
+  {
+    "id": "10-server-functions:L293:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Inventory split a numbered heading or table header; no behavioral assertion."
+  },
+  {
+    "id": "10-server-functions:L295:1",
+    "status": "covered",
+    "coverage": [
+      "10/invoke-refusals"
+    ]
+  },
+  {
+    "id": "10-server-functions:L296:1",
+    "status": "covered",
+    "coverage": [
+      "10/invoke-refusals"
+    ]
+  },
+  {
+    "id": "10-server-functions:L297:1",
+    "status": "covered",
+    "coverage": [
+      "10/invoke-refusals"
+    ]
+  },
+  {
+    "id": "10-server-functions:L298:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L300:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L300:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L302:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L302:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L302:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L304:1",
+    "status": "covered",
+    "coverage": [
+      "10/invoke-contract"
+    ]
+  },
+  {
+    "id": "10-server-functions:L304:2",
+    "status": "uncovered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:invoke-abort",
+      "tracks/frames/frames.test.ts:rpc"
+    ],
+    "reason": "GET long URL fallback tested; invoke-abort on a reconnecting live source still needs a focused case."
+  },
+  {
+    "id": "10-server-functions:L304:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L304:4",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L304:5",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L304:6",
+    "status": "covered",
+    "coverage": [
+      "10/invoke-contract"
+    ]
+  },
+  {
+    "id": "10-server-functions:L304:7",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L304:8",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L304:9",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L304:10",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+  },
+  {
+    "id": "10-server-functions:L306:1",
+    "status": "covered",
+    "coverage": [
+      "10/direct-invoke-abort",
+      "10/invoke-direct"
+    ]
+  },
+  {
+    "id": "10-server-functions:L310:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L310:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L310:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L312:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts"
+    ]
+  },
+  {
+    "id": "10-server-functions:L312:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts"
+    ]
+  },
+  {
+    "id": "10-server-functions:L314:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L314:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L314:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L314:4",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L318:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L320:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L320:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L321:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L322:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L323:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L325:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L329:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L329:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L331:1",
+    "status": "covered",
+    "coverage": [
+      "10/request-event-create"
+    ]
+  },
+  {
+    "id": "10-server-functions:L332:1",
+    "status": "covered",
+    "coverage": [
+      "12/fresh-events",
+      "12/ssr-response-string",
+      "12/stream-response-head"
+    ]
+  },
+  {
+    "id": "10-server-functions:L333:1",
+    "status": "covered",
+    "coverage": [
+      "10/redirect-control",
+      "10/response-envelope-body"
+    ]
+  },
+  {
+    "id": "10-server-functions:L334:1",
+    "status": "covered",
+    "coverage": [
+      "10/http-dispatch"
+    ]
+  },
+  {
+    "id": "10-server-functions:L335:1",
+    "status": "covered",
+    "coverage": [
+      "11/direct-slot"
+    ]
+  },
+  {
+    "id": "10-server-functions:L336:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L338:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L340:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L340:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L340:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L344:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:function-directive"
+    ]
+  },
+  {
+    "id": "10-server-functions:L345:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:module-directive"
+    ]
+  },
+  {
+    "id": "10-server-functions:L345:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/compiler.test.ts:module-directive"
+    ]
+  },
+  {
+    "id": "10-server-functions:L345:3",
+    "status": "covered",
+    "coverage": [
+      "10/reference-nonfunction"
+    ]
+  },
+  {
+    "id": "10-server-functions:L346:1",
+    "status": "covered",
+    "coverage": [
+      "10/reference-dev-name"
+    ]
+  },
+  {
+    "id": "10-server-functions:L346:2",
+    "status": "covered",
+    "coverage": [
+      "10/reference-dev-name",
+      "tracks/frames/compiler.test.ts"
+    ]
+  },
+  {
+    "id": "10-server-functions:L350:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L352:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L353:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L354:1",
+    "status": "covered",
+    "coverage": [
+      "10/removed-reference-properties"
+    ]
+  },
+  {
+    "id": "10-server-functions:L355:1",
+    "status": "covered",
+    "coverage": [
+      "10/removed-reference-properties",
+      "10/invoke-refusals"
+    ]
+  },
+  {
+    "id": "10-server-functions:L356:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L357:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:flight-delivery"
+    ]
+  },
+  {
+    "id": "10-server-functions:L361:1",
+    "status": "covered",
+    "coverage": [
+      "10/removed-reference-properties"
+    ]
+  },
+  {
+    "id": "10-server-functions:L362:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L363:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "10-server-functions:L367:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L369:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L369:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L370:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L370:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L370:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L370:4",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L371:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L371:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L371:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L372:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L373:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L373:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L374:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L374:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L375:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L375:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L375:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L375:4",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L376:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L376:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L377:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L378:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L379:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L379:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L380:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L380:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L380:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L380:4",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L380:5",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L380:6",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L381:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L381:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L385:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Inventory split a numbered heading or table header; no behavioral assertion."
+  },
+  {
+    "id": "10-server-functions:L385:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L386:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Inventory split a numbered heading or table header; no behavioral assertion."
+  },
+  {
+    "id": "10-server-functions:L386:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "10-server-functions:L387:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Inventory split a numbered heading or table header; no behavioral assertion."
+  },
+  {
+    "id": "10-server-functions:L387:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L3:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L3:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L5:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L5:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L5:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L5:4",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L9:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:csr"
+    ]
+  },
+  {
+    "id": "11-server-components:L9:2",
+    "status": "covered",
+    "coverage": [
+      "11/direct-slot",
+      "11/render-prop-slots"
+    ]
+  },
+  {
+    "id": "11-server-components:L9:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:same-args-refetch"
+    ]
+  },
+  {
+    "id": "11-server-components:L9:4",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:arguments"
+    ]
+  },
+  {
+    "id": "11-server-components:L11:1",
+    "status": "covered",
+    "coverage": [
+      "11/single-copy"
+    ]
+  },
+  {
+    "id": "11-server-components:L11:2",
+    "status": "covered",
+    "coverage": [
+      "11/single-copy"
+    ]
+  },
+  {
+    "id": "11-server-components:L15:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+  },
+  {
+    "id": "11-server-components:L15:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+  },
+  {
+    "id": "11-server-components:L15:3",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+  },
+  {
+    "id": "11-server-components:L15:4",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+  },
+  {
+    "id": "11-server-components:L15:5",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Integration recipe explanation and reference to another app, not an additional runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L15:6",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+  },
+  {
+    "id": "11-server-components:L17:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Inventory split a numbered heading or table header; no behavioral assertion."
+  },
+  {
+    "id": "11-server-components:L17:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L34:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:csr"
+    ]
+  },
+  {
+    "id": "11-server-components:L34:2",
+    "status": "covered",
+    "coverage": [
+      "11/transforms-data"
+    ]
+  },
+  {
+    "id": "11-server-components:L34:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:flight-delivery"
+    ]
+  },
+  {
+    "id": "11-server-components:L34:4",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "11-server-components:L36:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Inventory split a numbered heading or table header; no behavioral assertion."
+  },
+  {
+    "id": "11-server-components:L36:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L45:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "11-server-components:L45:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:csr",
+      "tracks/frames/frames.test.ts:hydrate"
+    ]
+  },
+  {
+    "id": "11-server-components:L45:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:csr"
+    ]
+  },
+  {
+    "id": "11-server-components:L47:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Inventory split a numbered heading or table header; no behavioral assertion."
+  },
+  {
+    "id": "11-server-components:L47:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:hydrate"
+    ]
+  },
+  {
+    "id": "11-server-components:L58:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "11-server-components:L60:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:hydrate"
+    ]
+  },
+  {
+    "id": "11-server-components:L60:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:hydrate"
+    ]
+  },
+  {
+    "id": "11-server-components:L60:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:csr"
+    ]
+  },
+  {
+    "id": "11-server-components:L62:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L66:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L66:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L66:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L67:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Comparative history and design heading, not behavior."
+  },
+  {
+    "id": "11-server-components:L67:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:csr"
+    ]
+  },
+  {
+    "id": "11-server-components:L67:3",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+  },
+  {
+    "id": "11-server-components:L68:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Design motivation; concrete state-preservation assertions are inventoried separately."
+  },
+  {
+    "id": "11-server-components:L68:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:same-args-refetch"
+    ]
+  },
+  {
+    "id": "11-server-components:L95:1",
+    "status": "covered",
+    "coverage": [
+      "11/single-copy"
+    ]
+  },
+  {
+    "id": "11-server-components:L96:1",
+    "status": "covered",
+    "coverage": [
+      "11/direct-slot"
+    ]
+  },
+  {
+    "id": "11-server-components:L97:1",
+    "status": "covered",
+    "coverage": [
+      "11/render-prop-slots"
+    ]
+  },
+  {
+    "id": "11-server-components:L97:2",
+    "status": "covered",
+    "coverage": [
+      "11/single-copy",
+      "findings/009-frame-nested-region-stale/repro.test.ts"
+    ]
+  },
+  {
+    "id": "11-server-components:L98:1",
+    "status": "covered",
+    "coverage": [
+      "11/keyed-slots"
+    ]
+  },
+  {
+    "id": "11-server-components:L98:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "11-server-components:L99:1",
+    "status": "covered",
+    "coverage": [
+      "11/stream-loading"
+    ]
+  },
+  {
+    "id": "11-server-components:L99:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/collapsed.test.ts"
+    ]
+  },
+  {
+    "id": "11-server-components:L114:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:arguments"
+    ]
+  },
+  {
+    "id": "11-server-components:L114:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:same-args-refetch",
+      "tracks/frames/frames.test.ts:arguments"
+    ]
+  },
+  {
+    "id": "11-server-components:L114:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:client-state"
+    ]
+  },
+  {
+    "id": "11-server-components:L114:4",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "This earlier per-args reset sentence contradicts the later DR-1 same-instance delivery statement. The state test currently checks DR-1, so it cannot claim this reset statement as covered."
+  },
+  {
+    "id": "11-server-components:L114:5",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:same-args-refetch"
+    ]
+  },
+  {
+    "id": "11-server-components:L118:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "11-server-components:L118:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "11-server-components:L118:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts:server/client frame census and id/version join"
+    ]
+  },
+  {
+    "id": "11-server-components:L118:4",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "11-server-components:L122:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:hydrate",
+      "tracks/frames/frames.test.ts:same-args-refetch"
+    ]
+  },
+  {
+    "id": "11-server-components:L122:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:hydrate",
+      "tracks/frames/frames.test.ts:client-state"
+    ]
+  },
+  {
+    "id": "11-server-components:L126:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Historical min+gzip measurement for a particular app composition; no stable size budget is specified."
+  },
+  {
+    "id": "11-server-components:L126:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Historical reconciler measurement/comparison; no documented reproducible build recipe or contractual size bound."
+  },
+  {
+    "id": "11-server-components:L126:3",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+  },
+  {
+    "id": "11-server-components:L126:4",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:rich-arguments"
+    ]
+  },
+  {
+    "id": "11-server-components:L130:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L132:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L133:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L134:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L138:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L138:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L139:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L140:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L140:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L141:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L145:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L145:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L149:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Executable coverage for this precise behavior is not yet implemented."
+  },
+  {
+    "id": "11-server-components:L149:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/frames.test.ts:arguments"
+    ]
+  },
+  {
+    "id": "11-server-components:L149:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Summary of preserved design guarantees; concrete assertions are inventoried in the preceding sections."
+  },
+  {
+    "id": "11-server-components:L157:1",
+    "status": "covered",
+    "coverage": [
+      "11/async-args",
+      "tracks/frames/frames.test.ts:async-slots"
+    ]
+  },
+  {
+    "id": "11-server-components:L157:2",
+    "status": "covered",
+    "coverage": [
+      "11/async-args"
+    ]
+  },
+  {
+    "id": "11-server-components:L165:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Inventory split a numbered heading or table header; no behavioral assertion."
+  },
+  {
+    "id": "11-server-components:L165:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L165:3",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L166:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Inventory split a numbered heading or table header; no behavioral assertion."
+  },
+  {
+    "id": "11-server-components:L166:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Conservative interim and proposed reverse-templating design work, not a new shipped behavioral guarantee."
+  },
+  {
+    "id": "11-server-components:L167:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+  },
+  {
+    "id": "11-server-components:L167:2",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "本句描述已实现或当前公开合同；不能因位于Open questions就当历史设计。需补精确跨轨断言。"
+  },
+  {
+    "id": "11-server-components:L167:3",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "本句描述已实现或当前公开合同；不能因位于Open questions就当历史设计。需补精确跨轨断言。"
+  },
+  {
+    "id": "11-server-components:L168:1",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Inventory split a numbered heading or table header; no behavioral assertion."
+  },
+  {
+    "id": "11-server-components:L168:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Navigation, experimental/release status, architectural rationale, historical decision, or future proposal; not a current runtime guarantee."
+  },
+  {
+    "id": "11-server-components:L169:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+  },
+  {
+    "id": "11-server-components:L169:2",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Motivation for future persistent server components."
+  },
+  {
+    "id": "11-server-components:L169:3",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "本句描述已实现或当前公开合同；不能因位于Open questions就当历史设计。需补精确跨轨断言。"
+  },
+  {
+    "id": "11-server-components:L169:4",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "本句描述已实现或当前公开合同；不能因位于Open questions就当历史设计。需补精确跨轨断言。"
+  },
+  {
+    "id": "11-server-components:L169:5",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+  },
+  {
+    "id": "11-server-components:L169:6",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "本句描述已实现或当前公开合同；不能因位于Open questions就当历史设计。需补精确跨轨断言。"
+  },
+  {
+    "id": "11-server-components:L169:7",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Historical audit report about other repositories; no new contract on this runtime."
+  },
+  {
+    "id": "11-server-components:L169:8",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Future rollout sequence for persistent server scopes."
+  },
+  {
+    "id": "11-server-components:L169:9",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Example explaining the motivation for a future server-state restriction."
+  },
+  {
+    "id": "11-server-components:L169:10",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "本句描述已实现或当前公开合同；不能因位于Open questions就当历史设计。需补精确跨轨断言。"
+  },
+  {
+    "id": "11-server-components:L169:11",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Migration/design admonition; setter behavior and diagnostics are separate statements."
+  }
+]

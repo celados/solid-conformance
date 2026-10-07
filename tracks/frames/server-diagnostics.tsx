@@ -6,6 +6,8 @@ import {
   markSafeError,
   RequestContext,
   createRequestEvent,
+  ssr,
+  escape,
 } from "@solidjs/web";
 import { AsyncLocalStorage } from "node:async_hooks";
 import {
@@ -45,6 +47,7 @@ const selected = (result: Awaited<ReturnType<typeof observed>>, code: string) =>
 function assertFinding(result: Awaited<ReturnType<typeof observed>>, code: string, count = 1) {
   const events = selected(result, code);
   equal(events.length, OBSERVE ? count : 0);
+  for (const event of events) equal(event.kind, "ssr");
   return events;
 }
 
@@ -361,5 +364,116 @@ doc(
     assertFinding(result, "SERVER_ERROR_SANITIZED", 0);
   },
 );
+doc(
+  "subtree-abandoned-fields",
+  "A failed parent fragment discards pending nested fragments and serialized values, naming its original error and collateral counts.",
+  async () => {
+    const original = new Error("parent-collateral");
+    let reject!: (error: unknown) => void;
+    const fail = new Promise<string>((_r, j) => {
+      reject = j;
+    });
+    function Nested() {
+      const value = createMemo(() => new Promise<string>(() => {}));
+      return <span>{value()}</span>;
+    }
+    function Parent() {
+      const value = createMemo(() => fail);
+      return (
+        <section>
+          <Loading fallback="nested">
+            <Nested />
+          </Loading>
+          <b>{value()}</b>
+        </section>
+      );
+    }
+    const result = await observed(async () => {
+      const stream = renderToStream(
+        () => (
+          <Loading fallback="outer">
+            <Parent />
+          </Loading>
+        ),
+        { onError() {} },
+      );
+      const done = new Promise<void>((resolve) => stream.pipe({ write() {}, end: resolve }));
+      await new Promise((r) => setTimeout(r, 10));
+      reject(original);
+      await done;
+    });
+    const events = assertFinding(result, "SSR_SUBTREE_ABANDONED");
+    if (events.length) {
+      equal(events[0]!.severity, "warn");
+      equal(events[0]!.data?.error, original);
+      ok(typeof events[0]!.data?.fragment === "string");
+      equal(events[0]!.data?.fragments, 1);
+      ok((events[0]!.data?.serialized as number) >= 1);
+    }
+  },
+);
+for (const road of ["frame-root", "frame-fragment", "frame-live-hole", "async-source"] as const)
+  doc(
+    "sanitize-" + road,
+    "SSR error sanitization covers " +
+      road +
+      " and retains the original only on the observation channel.",
+    async () => {
+      const original = Object.assign(new TypeError("private-" + road), { secret: "private-key" });
+      let wire = "";
+      const result = await observed(async () => {
+        function Rejected() {
+          const value = createMemo(() => Promise.reject(original), { ssrSource: "server" });
+          return road === "frame-live-hole" ? (
+            ssr(["<span>", "</span>"], () => escape(value()))
+          ) : (
+            <span>{value()}</span>
+          );
+        }
+        if (road === "async-source") {
+          wire = await renderToStream(
+            () => (
+              <Loading fallback="loading">
+                <Rejected />
+              </Loading>
+            ),
+            { onError() {} },
+          );
+        } else {
+          const chunks: any[] = [];
+          const stream = renderServerComponent(
+            road === "frame-root"
+              ? () => {
+                  throw original;
+                }
+              : () => (
+                  <Loading fallback="loading">
+                    <Rejected />
+                  </Loading>
+                ),
+            { live: road === "frame-live-hole", frame: { id: road }, onError() {} },
+          );
+          await new Promise<void>((resolve) =>
+            stream.pipe({ write: (c) => chunks.push(c), end: resolve }),
+          );
+          wire = JSON.stringify(chunks);
+        }
+      });
+      ok(
+        wire.includes(isDev ? "private-" + road : "Internal Server Error"),
+        road + " wire: " + wire,
+      );
+      if (!isDev) ok(!wire.includes("private-key"));
+      const events = selected(result, "SERVER_ERROR_SANITIZED");
+      equal(events.length, OBSERVE && !isDev ? 1 : 0);
+      for (const event of events) {
+        equal(event.kind, "ssr");
+        equal(event.severity, "info");
+        equal(event.data?.source, "ssr");
+        equal(event.data?.error, original);
+        equal((event.data?.wire as Error).message, "Internal Server Error");
+      }
+    },
+  );
 export const run = () =>
   scope.run(createRequestEvent(new Request("http://test/")), () => runCases(cases));

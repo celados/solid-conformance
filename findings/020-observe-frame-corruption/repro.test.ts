@@ -29,7 +29,12 @@ import { build, type BuildMode } from "../../scripts/build";
       await page.waitForFunction(() => !!(window as any).result);
       const result = await page.evaluate(() => (window as any).result);
       expect(result.observed).toBe(true);
-      expect(result.errors).toBeGreaterThan(0);
+      expect(result.errors.length).toBeGreaterThan(0);
+      for (const error of result.errors) {
+        expect(error.kind).toBe("ssr");
+        expect(error.severity).toBe("error");
+        expect(error.data).toEqual({ slot: "children", end: "slot:children:end" });
+      }
     } finally {
       await browser.close();
       server.stop(true);

@@ -1,0 +1,544 @@
+[
+  {
+    "id": "08-dev-diagnostics:L571:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-contained-fallback",
+      "08/server-road-contained-client",
+      "08/server-road-abandoned-consumer",
+      "08/server-road-sanitize-rpc-false",
+      "08/server-road-sanitize-ssr-false"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L571:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-contained-fallback",
+      "08/server-road-contained-client",
+      "08/server-road-abandoned-consumer",
+      "08/server-road-sanitize-rpc-false",
+      "08/server-road-sanitize-ssr-false"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L571:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-contained-fallback",
+      "08/server-road-contained-client",
+      "08/server-road-abandoned-consumer",
+      "08/server-road-sanitize-rpc-false",
+      "08/server-road-sanitize-ssr-false"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L571:2",
+    "classification": "not-behavioral",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "标题、展示消息或建议，不是独立外部行为保证；相邻实际码与字段另测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L582:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-contained-fallback",
+      "08/server-road-contained-client",
+      "08/server-road-initial-failed-hook",
+      "findings/017-initial-render-error-record/repro.test.ts"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L582:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-contained-fallback",
+      "08/server-road-contained-client",
+      "08/server-road-initial-failed-hook",
+      "findings/017-initial-render-error-record/repro.test.ts"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L582:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-contained-fallback",
+      "08/server-road-contained-client",
+      "08/server-road-initial-failed-hook",
+      "findings/017-initial-render-error-record/repro.test.ts"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L582:3",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "08/server-road-contained-fallback",
+      "08/server-road-contained-client"
+    ],
+    "reason": "dev原始 error与thrown ownerPath/遇到boundaryPath已测；Observe component owner labels 尚无精准红复现，不能把整句称通过。"
+  },
+  {
+    "id": "08-dev-diagnostics:L588:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-subtree-abandoned-fields"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L588:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-subtree-abandoned-fields"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L588:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-subtree-abandoned-fields"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L588:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-contained-client"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L588:5",
+    "classification": "not-behavioral",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "标题、展示消息或建议，不是独立外部行为保证；相邻实际码与字段另测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L594:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-abandoned-consumer",
+      "08/server-road-abandoned-sink",
+      "08/server-road-abandoned-signal"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L594:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-abandoned-consumer",
+      "08/server-road-abandoned-sink",
+      "08/server-road-abandoned-signal"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L594:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-abandoned-consumer",
+      "08/server-road-abandoned-sink",
+      "08/server-road-abandoned-signal"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L594:5",
+    "classification": "not-behavioral",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "标题、展示消息或建议，不是独立外部行为保证；相邻实际码与字段另测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L606:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-dynamic-client-function"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L606:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-dynamic-client-function"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L606:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-dynamic-client-function"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L606:6",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-dynamic-safe-values"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L606:2",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "08/server-road-dynamic-client-function",
+      "08/server-road-dynamic-safe-values"
+    ],
+    "reason": "async tag/function端已测，server component serialized landing的完整 hydration正控仍需跨轨。"
+  },
+  {
+    "id": "08-dev-diagnostics:L606:5",
+    "classification": "not-behavioral",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "标题、展示消息或建议，不是独立外部行为保证；相邻实际码与字段另测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L615:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-sanitize-rpc-false",
+      "08/server-road-sanitize-rpc-true",
+      "08/server-road-sanitize-ssr-false",
+      "08/server-road-sanitize-ssr-true"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L615:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-sanitize-rpc-false",
+      "08/server-road-sanitize-rpc-true",
+      "08/server-road-sanitize-ssr-false",
+      "08/server-road-sanitize-ssr-true"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L615:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-sanitize-rpc-false",
+      "08/server-road-sanitize-rpc-true",
+      "08/server-road-sanitize-ssr-false",
+      "08/server-road-sanitize-ssr-true"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L615:2",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "08/server-road-sanitize-rpc-false",
+      "08/server-road-sanitize-ssr-false"
+    ],
+    "reason": "original error和source已测，hook replacement/data.wire完整覆盖仍需补"
+  },
+  {
+    "id": "08-dev-diagnostics:L617:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-sanitize-rpc-false"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L617:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-sanitize-rpc-false"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L619:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-sanitize-ssr-false"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L619:5",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-error-value-data"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L619:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-sanitize-ssr-false",
+      "08/server-road-sanitize-frame-root",
+      "08/server-road-sanitize-frame-fragment",
+      "08/server-road-sanitize-frame-live-hole",
+      "08/server-road-sanitize-async-source"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L619:3",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "08/server-road-sanitize-ssr-false"
+    ],
+    "reason": "SSR info original身份已测，same original多road去重还未测试"
+  },
+  {
+    "id": "08-dev-diagnostics:L619:4",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "prod hook replacement road待补"
+  },
+  {
+    "id": "08-dev-diagnostics:L625:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "findings/020-observe-frame-corruption/repro.test.ts",
+      "tracks/frames/binding.test.ts:corrupt-marker"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L625:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "findings/020-observe-frame-corruption/repro.test.ts",
+      "tracks/frames/binding.test.ts:corrupt-marker"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L625:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "findings/020-observe-frame-corruption/repro.test.ts:data.slot/end dev control"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L625:4",
+    "classification": "not-behavioral",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "标题、展示消息或建议，不是独立外部行为保证；相邻实际码与字段另测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L805:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-one-wait"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L816:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-sync-silent"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L816:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-one-wait",
+      "08/boundary-render-error-original",
+      "08/boundary-render-shell-wait"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L816:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-one-wait",
+      "08/boundary-render-string-fallback",
+      "08/boundary-render-client-outcome",
+      "08/boundary-render-error-original"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L816:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-reveal-held",
+      "08/boundary-render-one-wait"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L816:5",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "component labels的dev/observe差异未完成红复现"
+  },
+  {
+    "id": "08-dev-diagnostics:L816:6",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-unobserved-clocks"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L818:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/diagnostic-server-boundary-waterfall",
+      "08/diagnostic-server-client-content-masked"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L818:2",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "现有warning cases未同时捕获boundary records以join hydration id"
+  },
+  {
+    "id": "08-dev-diagnostics:L831:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-sync-silent",
+      "08/boundary-render-one-wait"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L842:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-sync-silent",
+      "08/boundary-render-one-wait",
+      "08/boundary-render-render-initial-failed",
+      "08/boundary-render-render-abandoned"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L842:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-sync-silent",
+      "08/boundary-render-one-wait",
+      "08/boundary-render-render-initial-failed",
+      "08/boundary-render-render-abandoned"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L842:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-shell-wait",
+      "08/boundary-render-render-only-count"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L842:4",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "08/boundary-render-sync-silent",
+      "08/boundary-render-render-initial-failed",
+      "08/boundary-render-render-abandoned"
+    ],
+    "reason": "complete/error/consumer covered；preflush redirect root HTTPtrack待精准映射"
+  },
+  {
+    "id": "08-dev-diagnostics:L842:5",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-sync-silent"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L842:7",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-unobserved-clocks"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L842:9",
+    "classification": "not-behavioral",
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "标题、展示消息或建议，不是独立外部行为保证；相邻实际码与字段另测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L887:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "findings/021-recovery-boundary-outcome/repro.test.ts",
+      "tracks/frames/recovery.test.ts"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L896:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/recovery.test.ts"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L896:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/recovery.test.ts"
+    ]
+  },
+  {
+    "id": "08-dev-diagnostics:L896:2",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "findings/021-recovery-boundary-outcome/repro.test.ts",
+      "tracks/frames/recovery.test.ts"
+    ],
+    "reason": "id/计时/枚举反例已覆盖，prearrived waitedMs=0精准时序仍需补"
+  },
+  {
+    "id": "08-dev-diagnostics:L896:3",
+    "classification": "behavioral",
+    "status": "uncovered",
+    "coverage": [
+      "tracks/frames/recovery.test.ts"
+    ],
+    "reason": "production no-record已测，no-listener clock和byte-identical还需补"
+  }
+]

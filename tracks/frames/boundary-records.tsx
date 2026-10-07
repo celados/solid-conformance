@@ -285,5 +285,33 @@ doc(
     }
   },
 );
+doc(
+  "unobserved-clocks",
+  "An unobserved render and its Loading wait take no performance clock readings in observe/production.",
+  async () => {
+    let clocks = 0;
+    const original = performance.now;
+    Object.defineProperty(performance, "now", {
+      configurable: true,
+      value: () => {
+        clocks++;
+        return original.call(performance);
+      },
+    });
+    try {
+      await consumed(
+        renderToStream(() => (
+          <Loading fallback="pending">
+            <AsyncPart promise={Promise.resolve("settled")} />
+          </Loading>
+        )),
+      );
+      if (!isDev) equal(clocks, 0);
+      else ok(clocks > 0);
+    } finally {
+      Object.defineProperty(performance, "now", { configurable: true, value: original });
+    }
+  },
+);
 export const run = () => runCases(cases);
 export const evidence = snapshots;
