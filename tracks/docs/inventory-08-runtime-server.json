@@ -78,12 +78,11 @@
   {
     "id": "08-dev-diagnostics:L582:3",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "08/server-road-contained-fallback",
+      "08/server-road-explicit-component-owner-path",
       "08/server-road-contained-client"
-    ],
-    "reason": "dev原始 error与thrown ownerPath/遇到boundaryPath已测；Observe component owner labels 尚无精准红复现，不能把整句称通过。"
+    ]
   },
   {
     "id": "08-dev-diagnostics:L588:1",
@@ -405,9 +404,10 @@
   {
     "id": "08-dev-diagnostics:L816:5",
     "classification": "behavioral",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "component labels的dev/observe差异未完成红复现"
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-explicit-component-labels"
+    ]
   },
   {
     "id": "08-dev-diagnostics:L816:6",
@@ -675,16 +675,12 @@
   {
     "id": "08-dev-diagnostics:C811:1",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
       "08/boundary-render-one-wait",
-      "08/boundary-render-string-fallback",
-      "08/boundary-render-client-outcome",
-      "08/boundary-render-error-original",
       "08/boundary-render-reveal-held",
-      "tracks/records/trace.test.ts"
-    ],
-    "reason": "streamed、revealGroup 与 dev ownerPath 已精准测；Observe component owner labels 缺失仍需独立判定。"
+      "08/boundary-render-explicit-component-labels"
+    ]
   },
   {
     "id": "08-dev-diagnostics:C824:1",
@@ -867,5 +863,13 @@
       "08/server-diagnostic-lazy-resolution-metadata"
     ],
     "reason": "server markup available 已断言；无 preload 与 hydration late-loading 正控尚待精确测试。"
+  },
+  {
+    "id": "08-dev-diagnostics:L571:6",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-explicit-component-owner-path"
+    ]
   }
 ]

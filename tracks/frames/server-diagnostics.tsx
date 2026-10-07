@@ -1,4 +1,4 @@
-import { OBSERVE, Loading, Errored, createMemo } from "solid-js";
+import { OBSERVE, Loading, Errored, createMemo, createComponent } from "solid-js";
 import {
   isDev,
   renderToStream,
@@ -488,6 +488,14 @@ doc("hook-wire-and-repeated-roads", "The observer records the original once per 
  configureServerErrors({onError:()=>{calls++;return replacement}});
  try{const result=await observed(()=>{function Broken():never{throw original};const html=renderToString(()=><><Errored fallback={e=>{values.push(e());return <b>{(e() as Error).message}</b>}}><Broken/></Errored><Errored fallback={e=>{values.push(e());return <b>{(e() as Error).message}</b>}}><Broken/></Errored></>);ok(html.includes("public replacement"));ok(!html.includes("private repeat"))});equal(calls,1);equal(values.length,2);ok(values.every(v=>v===replacement));const sanitized=selected(result,"SERVER_ERROR_SANITIZED");equal(sanitized.length,OBSERVE?1:0);for(const e of sanitized){equal(e.kind,"ssr");equal(e.severity,"info");equal(e.data?.source,"ssr");ok(e.data?.error===original);ok(e.data?.wire===replacement)}
  }finally{configureServerErrors({})}
+});
+doc("explicit-component-owner-path", "Explicit public component source names locate the thrown owner and its catching boundary in both observed server tiers.",async()=>{
+ const original=new Error("labelled throw");let html="";
+ function Broken():never{throw original}
+ function Page(){return createComponent(Errored,{fallback:()=>"caught",get children(){return createComponent(Broken,{},"Broken")}},"Boundary")}
+ function App(){return createComponent(Page,{},"Page")}
+ const result=await observed(()=>{html=renderToString(()=>createComponent(App,{},"App"),{onError(){}})});ok(html.includes("caught"));
+ const events=assertFinding(result,"SSR_RENDER_ERROR_CONTAINED");if(OBSERVE){const e=events[0]!;ok(e.data?.error===original);equal(e.ownerPath,["<App>","<Page>","<Boundary>","<Broken>"]);equal(e.data?.boundaryPath,["<App>","<Page>","<Boundary>"]);ok(e.data?.boundary);equal(e.severity,"error")}
 });
 export const run = () =>
   scope.run(createRequestEvent(new Request("http://test/")), () => runCases(cases));

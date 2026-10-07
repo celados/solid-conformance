@@ -1,4 +1,4 @@
-import { OBSERVE, Loading, Reveal, createMemo } from "solid-js";
+import { OBSERVE, Loading, Reveal, createMemo, createComponent } from "solid-js";
 import { isDev, renderToString, renderToStream } from "@solidjs/web";
 import { equal, ok, runCases, type DocCase } from "../docs/registry";
 const cases: DocCase[] = [];
@@ -313,5 +313,10 @@ doc(
     }
   },
 );
+doc("explicit-component-labels", "Boundary records inherit compiler-compatible explicit component names in both dev and observe tiers.",async()=>{
+ function Page(){return createComponent(Loading,{fallback:"waiting",get children(){return createComponent(AsyncPart,{promise:Promise.resolve("ready")},"AsyncPart")}},"Loading")}
+ function App(){return createComponent(Page,{},"Page")}
+ const result=await records(()=>consumed(renderToStream(()=>createComponent(App,{},"App"))));equal(result.boundary.length,OBSERVE?1:0);if(OBSERVE){equal(result.boundary[0].event.ownerPath,["<App>","<Page>","<Loading>"]);equal(result.boundary[0].event.outcome,"settled")}
+});
 export const run = () => runCases(cases);
 export const evidence = snapshots;
