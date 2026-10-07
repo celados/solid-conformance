@@ -1,0 +1,98 @@
+bun test v1.4.2 (744846f84)
+
+findings/040-initial-binding-console/repro.test.ts:
+Conformance target: {"target":"rc13","upstream":null,"buildMode":"development","solid":"2.0.0-rc.13"}
+3 | import {build} from '../../scripts/build'
+4 | import {resolve} from 'node:path'
+5 | import {rm} from 'node:fs/promises'
+6 | test('RFC08 L17: a compiled binding diagnostic includes its DOM element on the initial compute',async()=>{
+7 |  const dir=resolve('.build','finding040-'+process.pid);await build(dir,'development',{client:['findings/040-initial-binding-console/client.tsx'],server:[]});const host=Bun.serve({port:0,fetch:r=>new URL(r.url).pathname.endsWith('.js')?new Response(Bun.file(dir+'/client.js'),{headers:{'content-type':'text/javascript'}}):new Response('<div id="root"></div><script type="module" src="/client.js"></script>',{headers:{'content-type':'text/html'}})}),browser=await chromium.launch({channel:'chrome',headless:true})
+8 |  try{const page=await browser.newPage();await page.goto(String(host.url));await page.waitForFunction(()=>!!(window as any).bindingRepro);const later=await page.evaluate(()=>(window as any).bindingRepro.run(false));expect(later.events).toHaveLength(1);expect(later.reports).toHaveLength(1);expect(later.reports[0].element).toBe(true);const initial=await page.evaluate(()=>(window as any).bindingRepro.run(true));expect(initial.events).toHaveLength(1);expect(initial.reports).toHaveLength(1);expect(initial.reports[0].element).toBe(true)}finally{await browser.close();host.stop(true);await rm(dir,{recursive:true,force:true})}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ^
+error: expect(received).toBe(expected)
+
+Expected: true
+Received: false
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/040-initial-binding-console/repro.test.ts:8:526)
+(fail) RFC08 L17: a compiled binding diagnostic includes its DOM element on the initial compute [8464.33ms]
+
+findings/041-dynamic-source-tracking/repro.test.ts:
+1 | import {test,expect} from 'bun:test'
+2 | import {openHarness} from '../../harness/browser'
+3 | import {leaf} from '../../harness/tree'
+4 | test('03-control-flow.md L202: adopted async dynamic source is not re-run on hydration',async()=>{
+5 |  const h=await openHarness()
+6 |  try{for(const mode of ['csr','hydrate']as const){const result=await h.run({tree:leaf(),order:[],scenario:'doc-policy:dynamic-count-only'},mode);expect(result.dom).toBe('<article></article>');expect(result.messages).toEqual([]);expect(result.serverErrors).toEqual([]);const calls=(result.docs[0]as unknown as{observations:{calls:number}}).observations.calls;expect(calls).toBe(mode==='csr'?1:0)}}finally{await h.close()}
+                                                                                                                                                                                                                                                                                                                                                                                        ^
+error: expect(received).toBe(expected)
+
+Expected: 0
+Received: 1
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/041-dynamic-source-tracking/repro.test.ts:6:373)
+(fail) 03-control-flow.md L202: adopted async dynamic source is not re-run on hydration [8357.14ms]
+
+findings/042-malformed-preload-crossorigin/repro.test.ts:
+2 | import {build} from '../../scripts/build'
+3 | import {resolve} from 'node:path'
+4 | import {rm} from 'node:fs/promises'
+5 | // 08-dev-diagnostics.md L680 expressly diagnoses malformed crossorigin.
+6 | // as any permits an external manifest's malformed field to reach its runtime validator.
+7 | test('malformed preload crossorigin is diagnosed rather than emitted as garbage',async()=>{const dir=resolve('.build','cors-'+process.pid);await build(dir,(process.env.BUILD_MODE??'development') as any,{client:[],server:['findings/042-malformed-preload-crossorigin/server.tsx']});try{const {sample}=await import(dir+'/server.js');const missing=await sample(undefined),valid=await sample('anonymous'),bad=await sample(42);expect(missing.events.length).toBe(missing.dev?1:0);expect(valid.events).toEqual([]);expect(bad.html).toContain('page');expect(bad.events.length).toBe(bad.dev?1:0);if(bad.dev){expect(bad.events[0].data.field).toBe('crossorigin');expect(bad.events[0].data.value).toBe(42)}}finally{await rm(dir,{recursive:true,force:true})}})
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ^
+error: expect(received).toBe(expected)
+
+Expected: 1
+Received: 0
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/042-malformed-preload-crossorigin/repro.test.ts:7:568)
+(fail) malformed preload crossorigin is diagnosed rather than emitted as garbage [23.00ms]
+
+findings/044-literal-spread-hydration/repro.test.ts:
+{
+  ssr: "<div _hk=1><button _hk=0>click</button></div>",
+  samples: [
+    {
+      count: 1,
+      nested: true,
+      text: "click",
+      issues: [],
+    }, {
+      count: 1,
+      nested: true,
+      text: "click",
+      issues: [ "Hydration tag mismatch for key \"0\": expected <div> but found JSHandle@node",
+        "Hydration tag mismatch for key \"1\": expected <button> but found JSHandle@node"
+      ],
+    }
+  ],
+}
+2 | import {chromium} from 'playwright'
+3 | import {build} from '../../scripts/build'
+4 | import {resolve} from 'node:path'
+5 | import {rm} from 'node:fs/promises'
+6 | // CSR and SSR->hydrate must produce the same DOM and functioning event handlers.
+7 | test('literal spread children keeps nesting and handler through SSR hydration',async()=>{const dir=resolve('.build','spread-'+process.pid);await build(dir,(process.env.BUILD_MODE??'development') as any,{client:['findings/044-literal-spread-hydration/client.tsx'],server:['findings/044-literal-spread-hydration/server.tsx']});const runtime=await import(dir+'/server.js');const server=Bun.serve({port:0,fetch:r=>{const url=new URL(r.url);return url.pathname.endsWith('.js')?new Response(Bun.file(dir+url.pathname),{headers:{'content-type':'text/javascript'}}):new Response((url.search.includes('csr')?'<main id="root"></main>':runtime.html())+'<script type="module" src="/client.js"></script>',{headers:{'content-type':'text/html'}})}});const browser=await chromium.launch({channel:'chrome',headless:true});try{const samples=[];for(const csr of [true,false]){const page=await browser.newPage();const issues:string[]=[];page.on('console',m=>{if(m.type()==='warning'||m.type()==='error')issues.push(m.text())});page.on('pageerro
+
+error: expect(received).toEqual(expected)
+
+@@ -2,3 +2,6 @@
+    "count": 1,
+-   "issues": [],
++   "issues": [
++     "Hydration tag mismatch for key "0": expected <div> but found JSHandle@node",
++     "Hydration tag mismatch for key "1": expected <button> but found JSHandle@node",
++   ],
+    "nested": true,
+
+- Expected  - 1
++ Received  + 4
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/044-literal-spread-hydration/repro.test.ts:7:1477)
+(fail) literal spread children keeps nesting and handler through SSR hydration [8293.98ms]
+
+ 0 pass
+ 4 fail
+ 20 expect() calls
+Ran 4 tests across 4 files. [25.30s]

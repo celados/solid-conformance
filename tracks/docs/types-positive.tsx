@@ -72,3 +72,13 @@ import { createRenderer } from '@solidjs/universal'
 void [h, html, createRenderer]
 createMemo(() => 1, { transparent: true })
 createEffect(() => 1, () => {}, { transparent: true })
+// RFC08 L773–780: declared categories and optional owner/node/context fields.
+import type {DiagnosticKind,DiagnosticEvent} from 'solid-js'
+const kinds:DiagnosticKind[]=['strict-read','async','write','lifecycle','owner','error','perf','graph','responsiveness']
+const minimalDiagnostic:DiagnosticEvent={sequence:1,code:'NO_OWNER_CLEANUP',kind:'lifecycle',severity:'info',message:'advisory'}
+const locatedDiagnostic:DiagnosticEvent={...minimalDiagnostic,ownerId:'owner',ownerName:'App',ownerPath:['<App>','effect'],nodeName:'count',data:{value:1}}
+// @ts-expect-error Severity is the documented finite union.
+const forbiddenSeverity:DiagnosticEvent={...minimalDiagnostic,severity:'fatal'}
+// @ts-expect-error A record does not contain its live subject.
+const forbiddenLive:DiagnosticEvent={...minimalDiagnostic,subject:{}}
+void[kinds,minimalDiagnostic,locatedDiagnostic,forbiddenSeverity,forbiddenLive]

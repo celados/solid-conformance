@@ -1,0 +1,62 @@
+bun test v1.4.2 (744846f84)
+
+findings/033-symbol-insert-diagnostic/repro.test.ts:
+Conformance target: {"target":"rc13","upstream":null,"buildMode":"development","solid":"2.0.0-rc.13"}
+2 | import {build} from '../../scripts/build'
+3 | import {resolve} from 'node:path'
+4 | import {rm} from 'node:fs/promises'
+5 | // 08-dev-diagnostics.md L692 explicitly includes a plain object and a symbol
+6 | // in UNRECOGNIZED_INSERT_VALUE's warn-and-skip rule on server and client.
+7 | test('server Symbol insertion warns exactly like a plain object',async()=>{const dir=resolve('.build','symbol-'+process.pid);await build(dir,(process.env.BUILD_MODE??'development') as any,{client:[],server:['findings/033-symbol-insert-diagnostic/server.tsx']});try{const {sample}=await import(dir+'/server.js');const object=sample(false),symbol=sample(true);expect(object.html).not.toContain('[object Object]');expect(symbol.html).not.toContain('unrenderable');expect(object.warned).toBe(object.dev?1:0);expect(symbol.warned).toBe(symbol.dev?1:0)}finally{await rm(dir,{recursive:true,force:true})}})
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ^
+error: expect(received).toBe(expected)
+
+Expected: 1
+Received: 0
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/033-symbol-insert-diagnostic/repro.test.ts:7:527)
+(fail) server Symbol insertion warns exactly like a plain object [33.57ms]
+
+findings/034-mixed-insert-object/repro.test.ts:
+2 | import {chromium} from 'playwright'
+3 | import {resolve} from 'node:path'
+4 | import {rm} from 'node:fs/promises'
+5 | import {build} from '../../scripts/build'
+6 | // 08-dev-diagnostics.md L692: plain objects at insert positions are skipped.
+7 | test('unrenderable object is skipped when adjacent to text, as in a sole hole',async()=>{const dir=resolve('.build','mixed-object-'+process.pid);await build(dir,(process.env.BUILD_MODE??'development') as any,{client:['findings/034-mixed-insert-object/client.tsx'],server:[]});const server=Bun.serve({port:0,fetch:r=>new URL(r.url).pathname==='/client.js'?new Response(Bun.file(dir+'/client.js'),{headers:{'content-type':'text/javascript'}}):new Response('<script type="module" src="/client.js"></script>',{headers:{'content-type':'text/html'}})});const browser=await chromium.launch({channel:'chrome',headless:true});try{const page=await browser.newPage();await page.goto(server.url.toString());await page.waitForFunction(()=>!!(window as any).result);const result=await page.evaluate(()=>(window as any).result);expect(result.sole).toEqual({error:null,text:''});expect(result.mixed).toEqual({error:null,text:'valid'})}finally{await browser.close();server.stop(true);await rm(dir,{recursive:true,force:true})}},30000)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "error": null,
+-   "text": "valid",
++   "error": "TypeError: Failed to execute 'insertBefore' on 'Node': parameter 1 is not of type 'Node'.",
++   "text": "",
+  }
+
+- Expected  - 2
++ Received  + 2
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/034-mixed-insert-object/repro.test.ts:7:885)
+(fail) unrenderable object is skipped when adjacent to text, as in a sole hole [9491.82ms]
+
+findings/035-decoder-iterator-body-death/repro.test.ts:
+ 6 |  const dir=resolve(".build","finding035-"+process.pid);
+ 7 |  try{
+ 8 |   await build(dir,(process.env.BUILD_MODE??"development") as BuildMode,{client:[],server:["findings/035-decoder-iterator-body-death/server.ts"]});
+ 9 |   const module=await import(dir+"/server.js"),result=await module.run();
+10 |   expect(result.first).toEqual({done:false,value:"first"});expect(result.transportFailed).toBe(true);
+11 |   expect(result.outcome.outcome).toBe("rejected");
+                                      ^
+error: expect(received).toBe(expected)
+
+Expected: "rejected"
+Received: "pending"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/035-decoder-iterator-body-death/repro.test.ts:11:34)
+(fail) RFC10 dying body rejects an open iterator pull [326.50ms]
+
+ 0 pass
+ 3 fail
+ 9 expect() calls
+Ran 3 tests across 3 files. [10.02s]

@@ -1,0 +1,1007 @@
+[
+  {
+    "id": "08-dev-diagnostics:L7:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/primitive-diagnostics.test.ts: errors halt; tracks/docs/console.test.ts: advisory/console tiers; tracks/docs/primitive-diagnostics.test.ts: positive warning controls and production silence"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L7:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/primitive-diagnostics.test.ts: errors halt; tracks/docs/console.test.ts: advisory/console tiers; tracks/docs/primitive-diagnostics.test.ts: positive warning controls and production silence"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L9:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/diagnostics-package.test.ts: budget validation, Vitest matcher registration and shipped repair skills; tracks/records/records.test.ts: actual captureArtifact and browser bridge"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L15:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/console.test.ts: first report footer, structured-only advisory, collapsed why-run and cause chain; tracks/docs/console-binding.test.ts: root-first owner chain, render binding labels and repair footer"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L16:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/console.test.ts: first report footer, structured-only advisory, collapsed why-run and cause chain; tracks/docs/console-binding.test.ts: root-first owner chain, render binding labels and repair footer"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L18:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/console.test.ts: first report footer, structured-only advisory, collapsed why-run and cause chain; tracks/docs/console-binding.test.ts: root-first owner chain, render binding labels and repair footer"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L18:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/console.test.ts: first report footer, structured-only advisory, collapsed why-run and cause chain; tracks/docs/console-binding.test.ts: root-first owner chain, render binding labels and repair footer"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L20:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/console.test.ts: first report footer, structured-only advisory, collapsed why-run and cause chain; tracks/docs/console-binding.test.ts: root-first owner chain, render binding labels and repair footer"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L17:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "findings/040-initial-binding-console/repro.test.ts: initial callback tagging counterexample with post-mount positive control"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L527:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-default-thresholds, hold-acknowledgement-paths and hold-tail-and-feedback exact clocks, navigation identity, tail/lifetime and feedback totals"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L527:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-default-thresholds, hold-acknowledgement-paths and hold-tail-and-feedback exact clocks, navigation identity, tail/lifetime and feedback totals"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L527:5",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-default-thresholds, hold-acknowledgement-paths and hold-tail-and-feedback exact clocks, navigation identity, tail/lifetime and feedback totals"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L527:6",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-default-thresholds, hold-acknowledgement-paths and hold-tail-and-feedback exact clocks, navigation identity, tail/lifetime and feedback totals"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L533:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-default-thresholds, hold-acknowledgement-paths and hold-tail-and-feedback exact clocks, navigation identity, tail/lifetime and feedback totals"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L533:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-default-thresholds, hold-acknowledgement-paths and hold-tail-and-feedback exact clocks, navigation identity, tail/lifetime and feedback totals"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L533:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-default-thresholds, hold-acknowledgement-paths and hold-tail-and-feedback exact clocks, navigation identity, tail/lifetime and feedback totals"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L535:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-default-thresholds, hold-acknowledgement-paths and hold-tail-and-feedback exact clocks, navigation identity, tail/lifetime and feedback totals"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L535:5",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-default-thresholds, hold-acknowledgement-paths and hold-tail-and-feedback exact clocks, navigation identity, tail/lifetime and feedback totals"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L541:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/interaction.test.ts: no-root-write async waits, 99/100/200ms thresholds, rejection, action/write exemptions, external continuation and 10s cap"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L541:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/interaction.test.ts: no-root-write async waits, 99/100/200ms thresholds, rejection, action/write exemptions, external continuation and 10s cap"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L541:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/interaction.test.ts: no-root-write async waits, 99/100/200ms thresholds, rejection, action/write exemptions, external continuation and 10s cap"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L541:5",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/interaction.test.ts: no-root-write async waits, 99/100/200ms thresholds, rejection, action/write exemptions, external continuation and 10s cap"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L543:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/interaction.test.ts: no-root-write async waits, 99/100/200ms thresholds, rejection, action/write exemptions, external continuation and 10s cap"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L543:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/interaction.test.ts: no-root-write async waits, 99/100/200ms thresholds, rejection, action/write exemptions, external continuation and 10s cap"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L543:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/interaction.test.ts: no-root-write async waits, 99/100/200ms thresholds, rejection, action/write exemptions, external continuation and 10s cap"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L549:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: abandoned-default-window, three abandons/1000ms, per-source once, false, structured subject and origin"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L549:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: abandoned-default-window, three abandons/1000ms, per-source once, false, structured subject and origin"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L549:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: abandoned-default-window, three abandons/1000ms, per-source once, false, structured subject and origin"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L549:5",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: abandoned-default-window, three abandons/1000ms, per-source once, false, structured subject and origin"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L549:6",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: abandoned-default-window, three abandons/1000ms, per-source once, false, structured subject and origin"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L561:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: stacked-contract, default three interactions, full hold metadata, first write live subject, false control"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L561:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: stacked-contract, default three interactions, full hold metadata, first write live subject, false control"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L561:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: stacked-contract, default three interactions, full hold metadata, first write live subject, false control"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L561:5",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: stacked-contract, default three interactions, full hold metadata, first write live subject, false control"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L561:6",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: stacked-contract, default three interactions, full hold metadata, first write live subject, false control"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L567:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: optimistic-correction-contract, reverted/superseded, equality, disabled checks, info and live owner subject"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L567:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: optimistic-correction-contract, reverted/superseded, equality, disabled checks, info and live owner subject"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L567:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: optimistic-correction-contract, reverted/superseded, equality, disabled checks, info and live owner subject"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L567:6",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: optimistic-correction-contract, reverted/superseded, equality, disabled checks, info and live owner subject"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L567:8",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: optimistic-correction-contract, reverted/superseded, equality, disabled checks, info and live owner subject"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L735:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata exact source node/subject, event owner fields, message/data/sequence and JSON shape; tracks/docs/types-positive.tsx: public DiagnosticEvent optional fields"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L748:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata exact source node/subject, event owner fields, message/data/sequence and JSON shape; tracks/docs/types-positive.tsx: public DiagnosticEvent optional fields"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1013:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: default-history-and-stacks, opt-in file frame stacks and default 200 oldest-first rows"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1014:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: default-history-and-stacks, opt-in file frame stacks and default 200 oldest-first rows"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1026:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: default-history-and-stacks, opt-in file frame stacks and default 200 oldest-first rows"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1044:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: holder-option-merge, order-independent sensitive thresholds, maximal history, shared log and release withdrawal; attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1045:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: holder-option-merge, order-independent sensitive thresholds, maximal history, shared log and release withdrawal; attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1046:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: holder-option-merge, order-independent sensitive thresholds, maximal history, shared log and release withdrawal; attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1047:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: holder-option-merge, order-independent sensitive thresholds, maximal history, shared log and release withdrawal; attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1048:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: holder-option-merge, order-independent sensitive thresholds, maximal history, shared log and release withdrawal; attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1049:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: holder-option-merge, order-independent sensitive thresholds, maximal history, shared log and release withdrawal; attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1050:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: holder-option-merge, order-independent sensitive thresholds, maximal history, shared log and release withdrawal; attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1051:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: holder-option-merge, order-independent sensitive thresholds, maximal history, shared log and release withdrawal; attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1052:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: holder-option-merge, order-independent sensitive thresholds, maximal history, shared log and release withdrawal; attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1053:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: holder-option-merge, order-independent sensitive thresholds, maximal history, shared log and release withdrawal; attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1054:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: holder-option-merge, order-independent sensitive thresholds, maximal history, shared log and release withdrawal; attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1055:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: holder-option-merge, order-independent sensitive thresholds, maximal history, shared log and release withdrawal; attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1056:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: holder-option-merge, order-independent sensitive thresholds, maximal history, shared log and release withdrawal; attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1057:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: holder-option-merge, order-independent sensitive thresholds, maximal history, shared log and release withdrawal; attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1058:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: holder-option-merge, order-independent sensitive thresholds, maximal history, shared log and release withdrawal; attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1029:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold history and all acknowledgements"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1030:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: timeline-hold-navigation-interaction, initial/no-write and superseded navigation controls"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1031:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: timeline-hold-navigation-interaction, initial/no-write and superseded navigation controls"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1032:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1033:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1042:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-holds and records-outlive-engine"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1035:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-records-queries, timeline-hold-navigation-interaction live identity and listener lifecycle"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1036:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-records-queries, timeline-hold-navigation-interaction live identity and listener lifecycle"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1037:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-records-queries, timeline-hold-navigation-interaction live identity and listener lifecycle"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1039:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-records-queries, timeline-hold-navigation-interaction live identity and listener lifecycle"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1040:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-records-queries, timeline-hold-navigation-interaction live identity and listener lifecycle"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1067:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-records-queries, formatter shape and live subscriptions; hold-tail-and-feedback"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1068:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-records-queries, formatter shape and live subscriptions; hold-tail-and-feedback"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1069:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-records-queries, formatter shape and live subscriptions; hold-tail-and-feedback"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1070:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-records-queries, formatter shape and live subscriptions; hold-tail-and-feedback"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1071:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-records-queries, formatter shape and live subscriptions; hold-tail-and-feedback"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1072:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-records-queries, formatter shape and live subscriptions; hold-tail-and-feedback"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1074:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-warning-async_waterfall declared promise kickoff positive/negative"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1075:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-warning-async_waterfall declared promise kickoff positive/negative"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1076:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-warning-async_waterfall declared promise kickoff positive/negative"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1084:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: navigation-declaration-controls and navigation-identity-and-redirect"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1085:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: navigation-declaration-controls and navigation-identity-and-redirect"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1086:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: navigation-declaration-controls and navigation-identity-and-redirect"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1113:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: excluded-owner-attribution; tracks/docs/diagnostic-cases.tsx: excluded subtree diagnostics"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1114:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: excluded-owner-attribution; tracks/docs/diagnostic-cases.tsx: excluded subtree diagnostics"
+    ],
+    "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
+  },
+  {
+    "id": "08-dev-diagnostics:L1004:1",
+    "status": "uncovered",
+    "coverage": [],
+    "reason": "Attribution entry tree-shaking and runtime-only hooks require isolated bundle evidence."
+  },
+  {
+    "id": "08-dev-diagnostics:L765:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata; root-first subject ownerPath, optional string fields, nodeName, object data, JSON record has neither live nor subject; tracks/docs/types-positive.tsx: DiagnosticEvent"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L765:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata; root-first subject ownerPath, optional string fields, nodeName, object data, JSON record has neither live nor subject; tracks/docs/types-positive.tsx: DiagnosticEvent"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L776:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/types.test.ts: types-positive.tsx DiagnosticKind/DiagnosticEvent all declared categories, optional metadata and forbidden live/severity fields; tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema actual optional string fields and event/subject separation"
+    ],
+    "reason": "公共声明及实际自然触发 schema 对照。"
+  },
+  {
+    "id": "08-dev-diagnostics:L777:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/types.test.ts: types-positive.tsx DiagnosticKind/DiagnosticEvent all declared categories, optional metadata and forbidden live/severity fields; tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema actual optional string fields and event/subject separation"
+    ],
+    "reason": "公共声明及实际自然触发 schema 对照。"
+  },
+  {
+    "id": "08-dev-diagnostics:L778:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/types.test.ts: types-positive.tsx DiagnosticKind/DiagnosticEvent all declared categories, optional metadata and forbidden live/severity fields; tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema actual optional string fields and event/subject separation"
+    ],
+    "reason": "公共声明及实际自然触发 schema 对照。"
+  },
+  {
+    "id": "08-dev-diagnostics:L779:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/types.test.ts: types-positive.tsx DiagnosticKind/DiagnosticEvent all declared categories, optional metadata and forbidden live/severity fields; tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema actual optional string fields and event/subject separation"
+    ],
+    "reason": "公共声明及实际自然触发 schema 对照。"
+  },
+  {
+    "id": "08-dev-diagnostics:L780:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/types.test.ts: types-positive.tsx DiagnosticKind/DiagnosticEvent all declared categories, optional metadata and forbidden live/severity fields; tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema actual optional string fields and event/subject separation"
+    ],
+    "reason": "公共声明及实际自然触发 schema 对照。"
+  },
+  {
+    "id": "08-dev-diagnostics:L782:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata; root-first subject ownerPath, optional string fields, nodeName, object data, JSON record has neither live nor subject; tracks/docs/types-positive.tsx: DiagnosticEvent"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L782:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata subject identity; tracks/docs/console-binding.test.ts: actual DOM console parameter; tracks/records/records.test.ts: live handles beside JSON summaries"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L782:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/interaction.test.ts: asynchronous handler diagnostic live subject absent; tracks/docs/attribution-cases.ts: timeline-hold-navigation-interaction live hold/flush identity"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L786:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts: server/client channel invocation/call/frame and direct boundary/render facts, original errors live only; tracks/records/trace.test.ts: independent pre-runtime channel; tracks/docs/attribution-cases.ts: synchronous settled record identity order"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L786:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/records.test.ts: server/client channel invocation/call/frame and direct boundary/render facts, original errors live only; tracks/records/trace.test.ts: independent pre-runtime channel; tracks/docs/attribution-cases.ts: synchronous settled record identity order"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:C743:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/diagnostic-cases.tsx: channel-capture stop/unsubscribe/clear and typed DiagnosticEvent array"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:C753:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/diagnostic-cases.tsx: channel-capture stop/unsubscribe/clear and typed DiagnosticEvent array"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:C756:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/diagnostic-cases.tsx: channel-capture stop/unsubscribe/clear and typed DiagnosticEvent array"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:C792:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: records-body-facet and records-listener-lifecycle; tracks/records/records.test.ts: reconstruction, untouched cloned body and separate listener gates"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:C793:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: records-body-facet and records-listener-lifecycle; tracks/records/records.test.ts: reconstruction, untouched cloned body and separate listener gates"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:C794:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: records-body-facet and records-listener-lifecycle; tracks/records/records.test.ts: reconstruction, untouched cloned body and separate listener gates"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:C795:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: records-body-facet and records-listener-lifecycle; tracks/records/records.test.ts: reconstruction, untouched cloned body and separate listener gates"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:C796:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: records-body-facet and records-listener-lifecycle; tracks/records/records.test.ts: reconstruction, untouched cloned body and separate listener gates"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:C798:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: records-body-facet and records-listener-lifecycle; tracks/records/records.test.ts: reconstruction, untouched cloned body and separate listener gates"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L761:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/console.test.ts: first footer guideUrl; tracks/records/performance.test.ts: performanceIssue.learnMoreUrl equals diagnostic guide anchor"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L525:2",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-acknowledgement-paths unrelated effect is stashed/paintedDuringHold=0; hold-default-thresholds silent long remains one SILENT_HOLD with data.long"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L525:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-acknowledgement-paths unrelated effect is stashed/paintedDuringHold=0; hold-default-thresholds silent long remains one SILENT_HOLD with data.long"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L543:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/interaction.test.ts: before-await write and generator action are acknowledgements, plain reject/resolve async handler reports once at settle"
+    ],
+    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+  },
+  {
+    "id": "08-dev-diagnostics:L773:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/types.test.ts: types-positive.tsx DiagnosticKind/DiagnosticEvent all declared categories, optional metadata and forbidden live/severity fields; tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema actual optional string fields and event/subject separation"
+    ],
+    "reason": "公共声明及实际自然触发 schema 对照。"
+  }
+]
