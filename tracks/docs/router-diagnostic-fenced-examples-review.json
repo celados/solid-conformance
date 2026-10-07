@@ -427,7 +427,7 @@
         "findings/012-attribution-audience-gate/repro.test.ts",
         "findings/050-literal-handler-attribution/repro.test.ts"
       ],
-      "reason": "逐表达式审阅：enable options/5history/release-disable/subscriptions/多hold合并/6 named exports/markFlight/origin frames/global注册/exclude。代码中的someMemo/event/origin/promise/startedAt/to/from/match/buildContext/fn均应用占位；type union写法subscribe(\"a\"|\"b\")是枚举替代值而非JS按位或使用。完整comments已独立inventory逐句盘点；fold shipping与everyhandler全称由012/050红例，不以API调用可执行取代这些合同。",
+      "reason": "逐表达式审阅：enable options/5history/release-disable/subscriptions/多hold合并/6 named exports/markFlight/origin frames/global注册/exclude。代码中的someMemo/event/origin/promise/startedAt/to/from/match/buildContext/fn均应用占位；type union写法subscribe(\"a\"|\"b\")是枚举替代值而非JS按位或使用。完整comments已独立inventory逐句盘点；fold shipping与everyhandler全称由012/050红例，不以API调用可执行取代这些合同。 markFlight(promise, startedAt?)中的问号是可选实参的记法，并非可直接执行的JS表达式；公开fixture实际调用省略或number两形状，代码块作为API总览需要应用提供占位变量。",
       "raw_source_reviewed": true,
       "review_is_not_blanket_runtime_coverage": true
     },
@@ -443,9 +443,10 @@
       "coverage": [
         "tracks/records/performance.test.ts",
         "tracks/docs/late-final-performance.test.ts",
-        "tracks/docs/vite-performance.test.ts"
+        "tracks/docs/vite-performance.test.ts",
+        "tracks/docs/late-final-default-tracks.test.ts"
       ],
-      "reason": "真实enablePerformanceTracks/disable与minMs/rich/values选项、dev/Observe默认阈值、默认records-only且optin6checks独立控制；publicTS options另由types fixture，不依赖text-onlycomment。",
+      "reason": "真实enablePerformanceTracks/disable与minMs/rich/values选项、dev/Observe默认阈值、默认records-only且optin6checks独立控制；publicTS options另由types fixture，不依赖text-onlycomment。 默认posture新fixture同时完整执行本例{minMs:0,rich:true,attribution:{values:\"labels\"}}，以及三个default/override负正控；实际native measure/timeStamp、精确.01/.049/.051ms过滤与隐私源字段。",
       "raw_source_reviewed": true,
       "review_is_not_blanket_runtime_coverage": true
     }
