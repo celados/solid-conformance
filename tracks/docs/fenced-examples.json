@@ -1,0 +1,1770 @@
+[
+  {
+    "id": "01-reactivity-batching-effects:B23:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 23,
+    "end_line": 27,
+    "language": "js",
+    "source": "// Default: throws if set in effect/component\nconst [count, setCount] = createSignal(0);\n\n// Opt-in: allow writes in owned scope (e.g. internal flags)\nconst [ref, setRef] = createSignal(null, { ownedWrite: true });"
+  },
+  {
+    "id": "01-reactivity-batching-effects:B33:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 33,
+    "end_line": 40,
+    "language": "js",
+    "source": "// \u274c BAD: using ownedWrite to suppress the write-under-scope error for app state\nconst [count, setCount] = createSignal(0, { ownedWrite: true });\nconst [doubled, setDoubled] = createSignal(untrack(count) + 1); // force untracked read to get around other warning\ncreateMemo(() => setDoubled(count() + 1)); // feedback loop\n\n// \u2705 GOOD: derive without writing back, or write in an event\nconst doubled = createMemo(() => count() * 2);\nbutton.onclick = () => setCount((c) => c + 1);"
+  },
+  {
+    "id": "01-reactivity-batching-effects:B48:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 48,
+    "end_line": 61,
+    "language": "js",
+    "source": "// New: top-level read in component body warns unless wrapped\nfunction Title(props) {\n  const t = untrack(() => props.title); // intentional one-time read \u2014 no warn\n  return <h1>{t}</h1>;\n}\nfunction Bad(props) {\n  const t = props.title; // warns: Untracked reactive read\n  return <h1>{t}</h1>;\n}\n\n// Common pitfall: destructuring reactive props at top level (warns)\nfunction BadArgs({ title }) {\n  return <h1>{title}</h1>;\n}"
+  },
+  {
+    "id": "01-reactivity-batching-effects:B67:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 67,
+    "end_line": 76,
+    "language": "js",
+    "source": "// \u274c BAD: reactive read in callback body (warns)\n<Show when={user()}>\n  {(u) => {\n    const name = u().name;\n    return <span>{name}</span>;\n  }}\n</Show>\n\n// \u2705 GOOD: read in JSX expression (tracked)\n<Show when={user()}>{(u) => <span>{u().name}</span>}</Show>"
+  },
+  {
+    "id": "01-reactivity-batching-effects:B88:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 88,
+    "end_line": 92,
+    "language": "js",
+    "source": "function handleSubmit() {\n  setSubmitted(true);\n  flush(); // apply updates now\n  inputRef.focus(); // DOM is up to date\n}"
+  },
+  {
+    "id": "01-reactivity-batching-effects:B100:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 100,
+    "end_line": 103,
+    "language": "js",
+    "source": "flush(() => {\n  setSubmitted(true);\n  setCount(count() + 1);\n}); // callback updates are applied before flush returns"
+  },
+  {
+    "id": "01-reactivity-batching-effects:B113:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 113,
+    "end_line": 119,
+    "language": "js",
+    "source": "createEffect(\n  () => count(),           // compute: only reads\n  (value, prev) => {       // effect: runs after flush\n    console.log(value);\n    return () => { /* cleanup */ };\n  }\n);"
+  },
+  {
+    "id": "01-reactivity-batching-effects:B125:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 125,
+    "end_line": 129,
+    "language": "js",
+    "source": "// compute receives prev (undefined on first run)\ncreateEffect(\n  (prev = 0) => count(),   // prev defaults to 0 on first run\n  (value, prev) => { ... }\n);"
+  },
+  {
+    "id": "01-reactivity-batching-effects:B139:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 139,
+    "end_line": 146,
+    "language": "js",
+    "source": "const expensive = createMemo(\n  () => heavyComputation(source()),\n  { lazy: true }\n);\n\n// No computation has happened yet.\n// First read triggers the computation:\nexpensive(); // now it runs"
+  },
+  {
+    "id": "01-reactivity-batching-effects:B158:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 158,
+    "end_line": 169,
+    "language": "js",
+    "source": "const data = createMemo(\n  () => {\n    const ws = new WebSocket(url());\n    onCleanup(() => ws.close());\n    return new Promise(resolve => {\n      ws.onmessage = (e) => resolve(JSON.parse(e.data));\n    });\n  },\n  {\n    unobserved: () => console.log(\"no subscribers, resources cleaned up\")\n  }\n);"
+  },
+  {
+    "id": "01-reactivity-batching-effects:B181:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 181,
+    "end_line": 191,
+    "language": "js",
+    "source": "// Bad: passes store proxy through, reads in effect trigger warnings\ncreateEffect(\n  () => store.user,\n  (user) => sendAnalytics(user.name, user.age)  // reads in untracked scope\n);\n\n// Good: reads happen in compute, effect receives plain values\ncreateEffect(\n  () => ({ name: store.user.name, age: store.user.age }),\n  (value) => sendAnalytics(value.name, value.age)\n);"
+  },
+  {
+    "id": "01-reactivity-batching-effects:B197:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 197,
+    "end_line": 200,
+    "language": "js",
+    "source": "createEffect(\n  () => deep(store),\n  (snapshot) => saveToLocalStorage(JSON.stringify(snapshot))\n);"
+  },
+  {
+    "id": "01-reactivity-batching-effects:B206:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 206,
+    "end_line": 212,
+    "language": "js",
+    "source": "createEffect(\n  () => saveFlag(),\n  () => {\n    const data = snapshot(store);\n    upload(data);\n  }\n);"
+  },
+  {
+    "id": "01-reactivity-batching-effects:B224:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 224,
+    "end_line": 233,
+    "language": "js",
+    "source": "// Synchronous render-phase binding\ncreateRenderEffect(\n  () => props.title,         // compute: track the value\n  (value) => {               // apply: runs synchronously when value changes\n    el.title = value;\n    return () => {           // cleanup\n      el.title = \"\";\n    };\n  }\n);"
+  },
+  {
+    "id": "01-reactivity-batching-effects:B241:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 241,
+    "end_line": 252,
+    "language": "js",
+    "source": "createEffect(\n  () => fetchData(id()),\n  {\n    effect: (data) => {\n      renderData(data);\n    },\n    error: (err, cleanup) => {\n      console.error(\"Fetch failed:\", err);\n      cleanup();\n    }\n  }\n);"
+  },
+  {
+    "id": "01-reactivity-batching-effects:B260:1",
+    "file": "01-reactivity-batching-effects.md",
+    "line": 260,
+    "end_line": 264,
+    "language": "js",
+    "source": "onSettled(() => {\n  const value = count(); // reactive read allowed here\n  doSomething(value);\n  return () => cleanup();\n});"
+  },
+  {
+    "id": "02-signals-derived-ownership:B22:1",
+    "file": "02-signals-derived-ownership.md",
+    "line": 22,
+    "end_line": 30,
+    "language": "js",
+    "source": "function Widget() {\n  createRoot(dispose => {\n    const [count, setCount] = createSignal(0);\n    const id = setInterval(() => setCount(c => c + 1), 1000);\n    onCleanup(() => clearInterval(id));\n  });\n  return null;\n}\n// When Widget is disposed, the nested root is disposed too."
+  },
+  {
+    "id": "02-signals-derived-ownership:B42:1",
+    "file": "02-signals-derived-ownership.md",
+    "line": 42,
+    "end_line": 46,
+    "language": "js",
+    "source": "// A truly detached singleton\nexport const singleton = runWithOwner(null, () => {\n  const [value, setValue] = createSignal(0);\n  return { value, setValue };\n});"
+  },
+  {
+    "id": "02-signals-derived-ownership:B56:1",
+    "file": "02-signals-derived-ownership.md",
+    "line": 56,
+    "end_line": 70,
+    "language": "js",
+    "source": "// 2.0\nconst ThemeContext = createContext(\"light\");\n\nfunction App() {\n  return (\n    <ThemeContext value=\"dark\">\n      <Page />\n    </ThemeContext>\n  );\n}\n\nfunction Page() {\n  const theme = useContext(ThemeContext);\n  return <div class={theme}>...</div>;\n}"
+  },
+  {
+    "id": "02-signals-derived-ownership:B78:1",
+    "file": "02-signals-derived-ownership.md",
+    "line": 78,
+    "end_line": 88,
+    "language": "ts",
+    "source": "// 1.x boilerplate \u2014 the wrapper exists only to narrow the type\nconst TodosContext = createContext<TodosCtx>();\nconst useTodos = () => {\n  const ctx = useContext(TodosContext);\n  if (!ctx) throw new Error(\"missing TodosContext.Provider\");\n  return ctx;\n};\n\n// 2.0 \u2014 direct call, no wrapper. Throws if no Provider; type is TodosCtx, not TodosCtx | undefined.\nconst TodosContext = createContext<TodosCtx>();\nconst [todos, { addTodo }] = useContext(TodosContext);"
+  },
+  {
+    "id": "02-signals-derived-ownership:B106:1",
+    "file": "02-signals-derived-ownership.md",
+    "line": 106,
+    "end_line": 110,
+    "language": "js",
+    "source": "// Example: derived signal\nconst [value, setValue] = createSignal(() => props.something);\n// If you want a first-run default for prev, use a default parameter:\nconst [cached, setCached] = createSignal((prev = props.something) => prev);\n// setValue(...) writes like a normal signal; the compute receives prev on recompute."
+  },
+  {
+    "id": "02-signals-derived-ownership:B118:1",
+    "file": "02-signals-derived-ownership.md",
+    "line": 118,
+    "end_line": 129,
+    "language": "ts",
+    "source": "const [cards, setCards] = createStore<Card[]>(\n  draft => {\n    const previous = new Map(draft.map(card => [card.id, card]));\n    return serverCards().map(remote => {\n      const old = previous.get(remote.id);\n      return old?.moveFailed ? { ...remote, column: old.column, moveFailed: true } : remote;\n    });\n  },\n  []\n);\n\nconst [card, setCard] = createSignal<Card>(prev => (prev?.pinned ? prev : source()));"
+  },
+  {
+    "id": "02-signals-derived-ownership:B145:1",
+    "file": "02-signals-derived-ownership.md",
+    "line": 145,
+    "end_line": 151,
+    "language": "js",
+    "source": "// Example: derived store that only flips the active key\nconst [selected, setSelected] = createStore(draft => {\n  const id = selectedId();\n  draft[id] = true;\n  if (draft._prev != null) delete draft[draft._prev];\n  draft._prev = id;\n}, {});"
+  },
+  {
+    "id": "02-signals-derived-ownership:B159:1",
+    "file": "02-signals-derived-ownership.md",
+    "line": 159,
+    "end_line": 167,
+    "language": "jsx",
+    "source": "// 1.x\n<ThemeContext.Provider value=\"dark\">\n  <Page />\n</ThemeContext.Provider>\n\n// 2.0\n<ThemeContext value=\"dark\">\n  <Page />\n</ThemeContext>"
+  },
+  {
+    "id": "03-control-flow:B27:1",
+    "file": "03-control-flow.md",
+    "line": 27,
+    "end_line": 45,
+    "language": "jsx",
+    "source": "// Default keyed behavior (identity)\n<For each={todos()}>\n  {(todo, i) => <TodoRow todo={todo} index={i()} />}\n</For>\n\n// Index-style behavior (reuse by index)\n<For each={todos()} keyed={false}>\n  {(todo, i) => <TodoRow todo={todo()} index={i} />}\n</For>\n\n// Custom key\n<For each={todos()} keyed={(t) => t.id}>\n  {(todo) => <TodoRow todo={todo()} />}\n</For>\n\n// Fallback\n<For each={todos()} fallback={<EmptyState />}>\n  {(todo) => <TodoRow todo={todo()} />}\n</For>"
+  },
+  {
+    "id": "03-control-flow:B61:1",
+    "file": "03-control-flow.md",
+    "line": 61,
+    "end_line": 64,
+    "language": "jsx",
+    "source": "// Store-backed list: index is stable, store handles granular updates\n<Repeat count={store.items.length}>\n  {i => <Row name={store.items[i].name} status={store.items[i].status} />}\n</Repeat>"
+  },
+  {
+    "id": "03-control-flow:B68:1",
+    "file": "03-control-flow.md",
+    "line": 68,
+    "end_line": 79,
+    "language": "jsx",
+    "source": "// Skeletons\n<Repeat count={10}>{(i) => <Skeleton key={i} />}</Repeat>\n\n// Windowing / offset\n<Repeat count={visibleCount()} from={start()}>\n  {(i) => <Row index={i} />}\n</Repeat>\n\n// Fallback when count is 0\n<Repeat count={store.items.length} fallback={<EmptyState />}>\n  {(i) => <div>{store.items[i].label}</div>}\n</Repeat>"
+  },
+  {
+    "id": "03-control-flow:B87:1",
+    "file": "03-control-flow.md",
+    "line": 87,
+    "end_line": 94,
+    "language": "jsx",
+    "source": "<Show when={user()} fallback={<Login />}>\n  {(u) => <Profile user={u()} />}\n</Show>\n\n// Keyed form (treats value identity as the switching condition)\n<Show when={user()} keyed>\n  {(u) => <Profile user={u} />}\n</Show>"
+  },
+  {
+    "id": "03-control-flow:B102:1",
+    "file": "03-control-flow.md",
+    "line": 102,
+    "end_line": 109,
+    "language": "jsx",
+    "source": "<Switch fallback={<NotFound />}>\n  <Match when={route() === \"home\"}>\n    <Home />\n  </Match>\n  <Match when={route() === \"profile\"}>\n    <Profile />\n  </Match>\n</Switch>"
+  },
+  {
+    "id": "03-control-flow:B117:1",
+    "file": "03-control-flow.md",
+    "line": 117,
+    "end_line": 119,
+    "language": "jsx",
+    "source": "<Loading fallback={<Spinner />}>\n  <UserProfile id={params.id} />\n</Loading>"
+  },
+  {
+    "id": "03-control-flow:B133:1",
+    "file": "03-control-flow.md",
+    "line": 133,
+    "end_line": 143,
+    "language": "jsx",
+    "source": "<Errored\n  fallback={(err, reset) => (\n    <div>\n      <p>Something went wrong.</p>\n      <pre>{String(err())}</pre>\n      <button onClick={reset}>Retry</button>\n    </div>\n  )}\n>\n  <Page />\n</Errored>"
+  },
+  {
+    "id": "03-control-flow:B151:1",
+    "file": "03-control-flow.md",
+    "line": 151,
+    "end_line": 160,
+    "language": "ts",
+    "source": "import { configureClientErrors } from \"solid-js\";\n\nconfigureClientErrors({\n  onError(error, { ownerPath, boundaryPath }) {\n    Sentry.captureException(error, { mechanism: { type: \"solid.error_boundary\", handled: true } });\n  }\n});\n\n// or per root, ahead of the ambient hook:\nrender(() => <App />, root, undefined, { onError });"
+  },
+  {
+    "id": "03-control-flow:B176:1",
+    "file": "03-control-flow.md",
+    "line": 176,
+    "end_line": 184,
+    "language": "jsx",
+    "source": "import { dynamic } from \"@solidjs/web\";\n\n// Reactive swap between two components\nconst Active = dynamic(() => (isEditing() ? Editor : Viewer));\nreturn <Active value={value()} />;\n\n// Native tag swap\nconst Tag = dynamic(() => (multiline() ? \"textarea\" : \"input\"));\nreturn <Tag value={value()} />;"
+  },
+  {
+    "id": "03-control-flow:B190:1",
+    "file": "03-control-flow.md",
+    "line": 190,
+    "end_line": 195,
+    "language": "jsx",
+    "source": "// before\n<Dynamic component={isEditing() ? Editor : Viewer} value={value()} />;\n\n// after \u2014 hoist per component instance, or per module for a constant tag\nconst Active = dynamic(() => (isEditing() ? Editor : Viewer));\nreturn <Active value={value()} />;"
+  },
+  {
+    "id": "03-control-flow:B209:1",
+    "file": "03-control-flow.md",
+    "line": 209,
+    "end_line": 217,
+    "language": "jsx",
+    "source": "// A client component chosen by async data: the DATA is async, the source is sync.\nconst page = createAsync(() => fetchPage(params.id));\nconst Page = dynamic(() => (page().editable ? Editor : Viewer));\n\n// Code-split client component: lazy(), not an async dynamic() source.\nconst Editor = lazy(() => import(\"./Editor.jsx\"));\n\n// A server component answering an async call: the source may stay async.\nconst Article = dynamic(() => loadArticle(params.id));"
+  },
+  {
+    "id": "03-control-flow:B225:1",
+    "file": "03-control-flow.md",
+    "line": 225,
+    "end_line": 225,
+    "language": "jsx",
+    "source": "const Article = dynamic(() => loadArticle(params.id), { deferStream: true });"
+  },
+  {
+    "id": "03-control-flow:B237:1",
+    "file": "03-control-flow.md",
+    "line": 237,
+    "end_line": 241,
+    "language": "jsx",
+    "source": "import { clientOnly } from \"@solidjs/web\";\n\nconst Chart = clientOnly(() => import(\"./Chart.jsx\"));\n\n<Chart fallback={<div>Loading chart\u2026</div>} data={data()} />;"
+  },
+  {
+    "id": "03-control-flow:B265:1",
+    "file": "03-control-flow.md",
+    "line": 265,
+    "end_line": 281,
+    "language": "jsx",
+    "source": "// Sequential (default) \u2014 reveals top-to-bottom as each resolves.\n<Reveal>\n  <Loading fallback={<Skeleton />}><ProfileHeader /></Loading>\n  <Loading fallback={<Skeleton />}><Posts /></Loading>\n</Reveal>\n\n// Together \u2014 every boundary waits for the whole group, then reveals at once.\n<Reveal order=\"together\">\n  <Loading fallback={<Skeleton />}><ProfileHeader /></Loading>\n  <Loading fallback={<Skeleton />}><Posts /></Loading>\n</Reveal>\n\n// Collapsed (sequential-only) \u2014 only the frontier shows a fallback.\n<Reveal collapsed>\n  <Loading fallback={<Skeleton />}><ProfileHeader /></Loading>\n  <Loading fallback={<Skeleton />}><Posts /></Loading>\n</Reveal>"
+  },
+  {
+    "id": "03-control-flow:B321:1",
+    "file": "03-control-flow.md",
+    "line": 321,
+    "end_line": 339,
+    "language": "jsx",
+    "source": "<Reveal>\n  <Loading fallback={<Skeleton />}>\n    <Header />\n  </Loading>\n  <Reveal order=\"natural\">\n    <Loading fallback={<CardSkel />}>\n      <Card id={1} />\n    </Loading>\n    <Loading fallback={<CardSkel />}>\n      <Card id={2} />\n    </Loading>\n    <Loading fallback={<CardSkel />}>\n      <Card id={3} />\n    </Loading>\n  </Reveal>\n  <Loading fallback={<Skeleton />}>\n    <Footer />\n  </Loading>\n</Reveal>"
+  },
+  {
+    "id": "03-control-flow:B355:1",
+    "file": "03-control-flow.md",
+    "line": 355,
+    "end_line": 365,
+    "language": "jsx",
+    "source": "// 1.x\n<SuspenseList revealOrder=\"forwards\">\n  <Suspense fallback={<Skeleton />}><ProfileHeader /></Suspense>\n  <Suspense fallback={<Skeleton />}><Posts /></Suspense>\n</SuspenseList>\n\n// 2.0\n<Reveal>\n  <Loading fallback={<Skeleton />}><ProfileHeader /></Loading>\n  <Loading fallback={<Skeleton />}><Posts /></Loading>\n</Reveal>"
+  },
+  {
+    "id": "03-control-flow:B371:1",
+    "file": "03-control-flow.md",
+    "line": 371,
+    "end_line": 379,
+    "language": "jsx",
+    "source": "// 1.x\n<Index each={items()}>\n  {(item, i) => <Row item={item()} index={i} />}\n</Index>\n\n// 2.0\n<For each={items()} keyed={false}>\n  {(item, i) => <Row item={item()} index={i} />}\n</For>"
+  },
+  {
+    "id": "03-control-flow:B385:1",
+    "file": "03-control-flow.md",
+    "line": 385,
+    "end_line": 393,
+    "language": "jsx",
+    "source": "// 1.x\n<Suspense fallback={<Spinner />}>\n  <Page />\n</Suspense>\n\n// 2.0\n<Loading fallback={<Spinner />}>\n  <Page />\n</Loading>"
+  },
+  {
+    "id": "03-control-flow:B399:1",
+    "file": "03-control-flow.md",
+    "line": 399,
+    "end_line": 407,
+    "language": "jsx",
+    "source": "// 1.x\n<ErrorBoundary fallback={(err, reset) => <Fallback err={err} reset={reset} />}>\n  <Page />\n</ErrorBoundary>\n\n// 2.0\n<Errored fallback={(err, reset) => <Fallback err={err} reset={reset} />}>\n  <Page />\n</Errored>"
+  },
+  {
+    "id": "03-control-flow:B413:1",
+    "file": "03-control-flow.md",
+    "line": 413,
+    "end_line": 426,
+    "language": "jsx",
+    "source": "// 1.x\nimport { createDynamic } from \"solid-js/web\";\ncreateDynamic(() => current(), { value: value() });\n\n// 2.0 \u2014 factory form\nimport { dynamic } from \"@solidjs/web\";\nconst Active = dynamic(() => current());\nreturn <Active value={value()} />;\n\n// 2.0 \u2014 manual composition, if you really want a one-shot call\ncreateComponent(\n  dynamic(() => current()),\n  { value: value() }\n);"
+  },
+  {
+    "id": "04-stores:B22:1",
+    "file": "04-stores.md",
+    "line": 22,
+    "end_line": 27,
+    "language": "js",
+    "source": "const [store, setStore] = createStore({ greeting: \"hi\", list: [] });\n\nsetStore((s) => {\n  s.greeting = \"hello\";\n  s.list.push(\"value\");\n});"
+  },
+  {
+    "id": "04-stores:B35:1",
+    "file": "04-stores.md",
+    "line": 35,
+    "end_line": 40,
+    "language": "js",
+    "source": "const [store, setStore] = createStore({ list: [\"a\", \"b\"] });\n\nsetStore((s) => {\n  // Replace the top-level list (shallow diff)\n  return { ...s, list: [] };\n});"
+  },
+  {
+    "id": "04-stores:B48:1",
+    "file": "04-stores.md",
+    "line": 48,
+    "end_line": 54,
+    "language": "js",
+    "source": "// 2.0 preferred: draft-first setter\nsetStore((s) => {\n  s.user.address.city = \"Paris\";\n});\n\n// Optional compat: 1.x-style path setter via storePath\nsetStore(storePath(\"user\", \"address\", \"city\", \"Paris\"));"
+  },
+  {
+    "id": "04-stores:B60:1",
+    "file": "04-stores.md",
+    "line": 60,
+    "end_line": 61,
+    "language": "js",
+    "source": "setStore(storePath(\"items\", { from: 1, to: 4, by: 2 }, 99));\nsetStore(storePath(\"nickname\", storePath.DELETE));"
+  },
+  {
+    "id": "04-stores:B69:1",
+    "file": "04-stores.md",
+    "line": 69,
+    "end_line": 73,
+    "language": "js",
+    "source": "const defaults = { a: 1, b: 2 };\nconst overrides = { b: undefined };\nconst merged = merge(defaults, overrides);\n\n// merged.b is undefined (explicit override)"
+  },
+  {
+    "id": "04-stores:B81:1",
+    "file": "04-stores.md",
+    "line": 81,
+    "end_line": 85,
+    "language": "js",
+    "source": "const props = { a: 1, b: 2, c: 3 };\nconst rest = omit(props, \"a\", \"b\");\n\nrest.c;        // 3\n\"a\" in rest;   // false"
+  },
+  {
+    "id": "04-stores:B102:1",
+    "file": "04-stores.md",
+    "line": 102,
+    "end_line": 110,
+    "language": "js",
+    "source": "// Selection without notifying every row\nconst [selectedId, setSelectedId] = createSignal(\"a\");\n\nconst selected = createProjection((s) => {\n  const id = selectedId();\n  s[id] = true;\n  if (s._prev != null) delete s[s._prev];\n  s._prev = id;\n}, {});"
+  },
+  {
+    "id": "04-stores:B114:1",
+    "file": "04-stores.md",
+    "line": 114,
+    "end_line": 117,
+    "language": "js",
+    "source": "// Reconcile returned list data into a projection (keyed reconciliation)\nconst users = createProjection(async () => {\n  return await api.listUsers();\n}, [], { key: \"id\" });"
+  },
+  {
+    "id": "04-stores:B123:1",
+    "file": "04-stores.md",
+    "line": 123,
+    "end_line": 129,
+    "language": "js",
+    "source": "const data = createProjection((draft) => {\n  draft.length = 0;\n  const unsubscribe = subscribeToData(props.id, (item) => {\n    draft.push(item);\n  });\n  onCleanup(unsubscribe);\n}, []);"
+  },
+  {
+    "id": "04-stores:B139:1",
+    "file": "04-stores.md",
+    "line": 139,
+    "end_line": 144,
+    "language": "js",
+    "source": "const [cache, setCache] = createStore((draft) => {\n  draft.value = expensive(selector());\n}, { value: 0 });\n\n// Can also write imperatively\nsetCache(s => { s.override = true; });"
+  },
+  {
+    "id": "04-stores:B154:1",
+    "file": "04-stores.md",
+    "line": 154,
+    "end_line": 160,
+    "language": "js",
+    "source": "// 1.x (path-style setter)\nsetStore(\"todos\", reconcile(serverTodos));\n\n// 2.0 (draft-first setter)\nsetStore(s => {\n  reconcile(serverTodos, \"id\")(s.todos);\n});"
+  },
+  {
+    "id": "04-stores:B172:1",
+    "file": "04-stores.md",
+    "line": 172,
+    "end_line": 175,
+    "language": "js",
+    "source": "const [rows, setRows] = createStore(initialRows, { shallow: true });\n\n// each poll delivers a completely fresh payload\nonPoll(fresh => setRows(reconcile(fresh, null)));"
+  },
+  {
+    "id": "04-stores:B187:1",
+    "file": "04-stores.md",
+    "line": 187,
+    "end_line": 189,
+    "language": "js",
+    "source": "<For each={rows} keyed={(row) => row.id}>\n  {(row) => <tr>...{row().name}...</tr>}\n</For>"
+  },
+  {
+    "id": "04-stores:B205:1",
+    "file": "04-stores.md",
+    "line": 205,
+    "end_line": 208,
+    "language": "js",
+    "source": "const [store] = createStore({ user: { name: \"A\" } });\n\nconst plain = snapshot(store);\nJSON.stringify(plain);"
+  },
+  {
+    "id": "04-stores:B218:1",
+    "file": "04-stores.md",
+    "line": 218,
+    "end_line": 224,
+    "language": "js",
+    "source": "createEffect(\n  () => deep(store),\n  (snapshot) => {\n    // snapshot is a plain object \u2014 safe to read, serialize, diff\n    saveToLocalStorage(JSON.stringify(snapshot));\n  }\n);"
+  },
+  {
+    "id": "05-async-data:B22:1",
+    "file": "05-async-data.md",
+    "line": 22,
+    "end_line": 31,
+    "language": "js",
+    "source": "const user = createMemo(() => fetchUser(params.id));\n\nfunction Profile() {\n  // user() is not ready at first \u2014 wrap in <Loading>\n  return <div>{user().name}</div>;\n}\n\n<Loading fallback={<Spinner />}>\n  <Profile />\n</Loading>;"
+  },
+  {
+    "id": "05-async-data:B43:1",
+    "file": "05-async-data.md",
+    "line": 43,
+    "end_line": 45,
+    "language": "jsx",
+    "source": "<Loading fallback={<Spinner />}>\n  <UserProfile id={id()} />\n</Loading>"
+  },
+  {
+    "id": "05-async-data:B57:1",
+    "file": "05-async-data.md",
+    "line": 57,
+    "end_line": 70,
+    "language": "jsx",
+    "source": "// Without on: stale content shown during revalidation\n<Loading fallback={<Spinner />}>\n  <UserProfile id={id()} />\n</Loading>\n\n// With on: a change to id shows the fallback while the new profile loads\n<Loading on={id()} fallback={<Spinner />}>\n  <UserProfile id={id()} />\n</Loading>\n\n// Several dependencies: a change to any of them shows the fallback\n<Loading on={[query(), page()]} fallback={<Spinner />}>\n  <Results />\n</Loading>"
+  },
+  {
+    "id": "05-async-data:B78:1",
+    "file": "05-async-data.md",
+    "line": 78,
+    "end_line": 79,
+    "language": "",
+    "source": "no on:      [A]  \u2192  [B + comments]                  the frame waits for both\non={id()}:  [A]  \u2192  [B + spinner]  \u2192  [B + comments]  the fallback lands with B"
+  },
+  {
+    "id": "05-async-data:B91:1",
+    "file": "05-async-data.md",
+    "line": 91,
+    "end_line": 91,
+    "language": "",
+    "source": "on={latest(id)}: [A] \u2192 [A + spinner]  \u2192  [B + spinner]  \u2192  [B + comments]"
+  },
+  {
+    "id": "05-async-data:B107:1",
+    "file": "05-async-data.md",
+    "line": 107,
+    "end_line": 117,
+    "language": "js",
+    "source": "const users = createMemo(() => fetchUsers(query()));\nconst posts = createMemo(() => fetchPosts(query()));\n\nconst listPending = () => isPending(() => users() || posts());\n\nreturn (\n  <Loading fallback={<Spinner />}>\n    <Show when={listPending()}>{/* subtle \"updating\u2026\" indicator while a new query loads */}</Show>\n    <List users={users()} posts={posts()} />\n  </Loading>\n);"
+  },
+  {
+    "id": "05-async-data:B125:1",
+    "file": "05-async-data.md",
+    "line": 125,
+    "end_line": 127,
+    "language": "jsx",
+    "source": "<Loading fallback={<button disabled>Loading...</button>}>\n  <button disabled={isPending(user)}>Save</button>\n</Loading>"
+  },
+  {
+    "id": "05-async-data:B133:1",
+    "file": "05-async-data.md",
+    "line": 133,
+    "end_line": 134,
+    "language": "jsx",
+    "source": "// While a lower subtree is loading this is still false: `id` itself is not pending.\nisPending(id);"
+  },
+  {
+    "id": "05-async-data:B144:1",
+    "file": "05-async-data.md",
+    "line": 144,
+    "end_line": 148,
+    "language": "js",
+    "source": "const [userId, setUserId] = createSignal(1);\nconst user = createMemo(() => fetchUser(userId()));\n\n// During a transition, this can reflect the in-flight userId\nconst latestUserId = () => latest(userId);"
+  },
+  {
+    "id": "05-async-data:B158:1",
+    "file": "05-async-data.md",
+    "line": 158,
+    "end_line": 162,
+    "language": "js",
+    "source": "// Wait for an async memo to have a value\nconst user = await resolve(() => userMemo());\n\n// Useful in tests or imperative code\nconst result = await resolve(() => computedValue());"
+  },
+  {
+    "id": "05-async-data:B172:1",
+    "file": "05-async-data.md",
+    "line": 172,
+    "end_line": 174,
+    "language": "js",
+    "source": "const feed = createMemo(() => fetchFeed(id()), {\n  loadingValue: { provisional: true, items: placeholderItems }\n});"
+  },
+  {
+    "id": "05-async-data:B202:1",
+    "file": "05-async-data.md",
+    "line": 202,
+    "end_line": 222,
+    "language": "js",
+    "source": "// Default (\"server\"): serialized value is authoritative; no client refetch on load.\nconst user = createMemo(() => fetchUser(id()));\n\n// Server serializes the first tick; the client continues the stream from it.\nconst price = createMemo(\n  async function* () {\n    for await (const tick of priceTicks(symbol())) yield tick;\n  },\n  { ssrSource: \"hybrid\" }\n);\n\n// Never serialized; computed fresh once hydration completes. The declared\n// commit #0 (null) is what renders until then.\nconst draft = createMemo(() => readDraftFromStorage(key()) ?? null, {\n  ssrSource: \"client\",\n  loadingValue: null\n});\n\n// Bare form: the server flushes the surrounding <Loading> fallback and the\n// client renders this branch itself after hydration.\nconst widget = createMemo(() => measureBrowserThing(), { ssrSource: \"client\" });"
+  },
+  {
+    "id": "05-async-data:B236:1",
+    "file": "05-async-data.md",
+    "line": 236,
+    "end_line": 240,
+    "language": "js",
+    "source": "const user = createMemo(async () => {\n  const token = await getToken(); // async; returns a cached token without fetching\n  const res = await fetch(`/api/users/${id()}`, { headers: { Authorization: token } });\n  return res.json();\n});"
+  },
+  {
+    "id": "05-async-data:B250:1",
+    "file": "05-async-data.md",
+    "line": 250,
+    "end_line": 257,
+    "language": "js",
+    "source": "const users = new Map();\nconst fetchUser = async id => (await fetch(`/api/users/${id}`)).json();\n\nconst user = createMemo(() => {\n  if (!users.has(id())) users.set(id(), fetchUser(id())); // never settles if set while tracing\n  return users.get(id());\n});\n// `Promise.resolve(value)` inside the compute is the fake too, and never settles either."
+  },
+  {
+    "id": "05-async-data:B263:1",
+    "file": "05-async-data.md",
+    "line": 263,
+    "end_line": 279,
+    "language": "js",
+    "source": "import { isHydrating } from \"solid-js\";\nimport { takeHydrationValue } from \"@solidjs/web\";\n\nconst NativePromise = Promise; // captured at module load, outside any tracking run\nconst cache = new Map();\n\nfunction cached(key, fetcher) {\n  if (!cache.has(key)) {\n    const seed = takeHydrationValue(\"mylib:\" + key); // written on the server with getHydrationWriter()\n    if (seed?.status === \"resolved\") cache.set(key, NativePromise.resolve(seed.value));\n    else if (seed?.status === \"pending\") cache.set(key, seed.promise);\n    // Hydrating with no seed: this may be the tracking run, so don't cache.\n    else if (isHydrating()) return fetcher();\n    else cache.set(key, fetcher());\n  }\n  return cache.get(key);\n}"
+  },
+  {
+    "id": "05-async-data:B289:1",
+    "file": "05-async-data.md",
+    "line": 289,
+    "end_line": 293,
+    "language": "js",
+    "source": "// 1.x\nconst [user] = createResource(id, fetchUser);\n\n// 2.0\nconst user = createMemo(() => fetchUser(id()));"
+  },
+  {
+    "id": "05-async-data:B303:1",
+    "file": "05-async-data.md",
+    "line": 303,
+    "end_line": 312,
+    "language": "js",
+    "source": "// 1.x\nconst [user] = createResource(id, fetchUser);\n<Show when={user.loading}>Refreshing...</Show>;\n\n// 2.0\nconst user = createMemo(() => fetchUser(id()));\n<Loading fallback={<UserSkeleton />}>\n  <Show when={isPending(() => user())}>Updating...</Show>\n  <UserDetails user={user()} />\n</Loading>;"
+  },
+  {
+    "id": "05-async-data:B324:1",
+    "file": "05-async-data.md",
+    "line": 324,
+    "end_line": 330,
+    "language": "js",
+    "source": "// 1.x\nconst [user, { refetch }] = createResource(id, fetchUser);\nrefetch();\n\n// 2.0\nconst user = createMemo(() => fetchUser(id()));\nrefresh(user);"
+  },
+  {
+    "id": "05-async-data:B338:1",
+    "file": "05-async-data.md",
+    "line": 338,
+    "end_line": 341,
+    "language": "js",
+    "source": "const fresh = await refresh(user);\n// or, for a store/projection:\nawait refresh(todos);\nnavigate(`/todos/${todos.at(-1).id}`);"
+  },
+  {
+    "id": "05-async-data:B353:1",
+    "file": "05-async-data.md",
+    "line": 353,
+    "end_line": 357,
+    "language": "js",
+    "source": "// 1.x \u2014 replaces entire array, no diffing, races possible\nconst [todos, { mutate, refetch }] = createResource(fetchTodos);\nmutate(prev => [...prev, newTodo]);\nawait saveTodo(newTodo);\nrefetch();"
+  },
+  {
+    "id": "05-async-data:B363:1",
+    "file": "05-async-data.md",
+    "line": 363,
+    "end_line": 372,
+    "language": "js",
+    "source": "// 2.0 \u2014 granular updates, reconciled refresh, race-safe\nconst [todos, setOptimisticTodos] = createOptimisticStore(fetchTodos, []);\n\nconst addTodo = action(function* (todo) {\n  setOptimisticTodos(s => {\n    s.push(todo);\n  });\n  yield saveTodo(todo);\n  refresh(todos);\n});"
+  },
+  {
+    "id": "05-async-data:B382:1",
+    "file": "05-async-data.md",
+    "line": 382,
+    "end_line": 393,
+    "language": "jsx",
+    "source": "// 1.x \u2014 two parallel error paths that don't compose\nconst [user] = createResource(id, fetchUser);\n\n// Path A: inline check (bypasses ErrorBoundary, invisible to SSR)\n<Show when={user.error} fallback={<Profile user={user()} />}>\n  <p>{user.error.message}</p>\n</Show>\n\n// Path B: ErrorBoundary\n<ErrorBoundary fallback={err => <p>{err.message}</p>}>\n  <Profile user={user()} />\n</ErrorBoundary>"
+  },
+  {
+    "id": "05-async-data:B399:1",
+    "file": "05-async-data.md",
+    "line": 399,
+    "end_line": 402,
+    "language": "jsx",
+    "source": "// 2.0 \u2014 one error path, composable with SSR\n<Errored fallback={err => <p>{err().message}</p>}>\n  <Profile user={user()} />\n</Errored>"
+  },
+  {
+    "id": "06-actions-optimistic:B26:1",
+    "file": "06-actions-optimistic.md",
+    "line": 26,
+    "end_line": 37,
+    "language": "js",
+    "source": "const [todos, setOptimisticTodos] = createOptimisticStore(() => api.getTodos(), []);\n\nconst saveTodo = action(function* (todo) {\n  // optimistic write\n  setOptimisticTodos((todos) => { todos.push(todo); });\n\n  // perform async work\n  yield api.addTodo(todo);\n\n  // refresh reads (store/projection form)\n  refresh(todos);\n});"
+  },
+  {
+    "id": "06-actions-optimistic:B43:1",
+    "file": "06-actions-optimistic.md",
+    "line": 43,
+    "end_line": 49,
+    "language": "js",
+    "source": "const saveTodo = action(async function* (todo) {\n  setOptimisticTodos((todos) => { todos.push(todo); });\n  const res = await api.addTodo(todo);\n  yield; // resume action in the same transition context\n  refresh(todos);\n  return res;\n});"
+  },
+  {
+    "id": "06-actions-optimistic:B61:1",
+    "file": "06-actions-optimistic.md",
+    "line": 61,
+    "end_line": 62,
+    "language": "js",
+    "source": "// Re-run one derived source explicitly\nrefresh(user);"
+  },
+  {
+    "id": "06-actions-optimistic:B66:1",
+    "file": "06-actions-optimistic.md",
+    "line": 66,
+    "end_line": 72,
+    "language": "js",
+    "source": "// After a server write, refresh derived store reads\nconst [todos] = createStore(() => api.getTodos(), []);\n\nconst addTodo = action(function* (todo) {\n  yield api.addTodo(todo);\n  refresh(todos);\n});"
+  },
+  {
+    "id": "06-actions-optimistic:B84:1",
+    "file": "06-actions-optimistic.md",
+    "line": 84,
+    "end_line": 90,
+    "language": "js",
+    "source": "const submit = action(async function* (order) {\n  setOptimisticOrder(order);\n  yield api.placeOrder(order);\n  // Wait for the refetch to actually land, then act on fresh server state.\n  const inv = yield refresh(inventory);\n  if (inv[order.sku] < threshold) yield api.flagRestock(order.sku);\n});"
+  },
+  {
+    "id": "06-actions-optimistic:B110:1",
+    "file": "06-actions-optimistic.md",
+    "line": 110,
+    "end_line": 121,
+    "language": "js",
+    "source": "const reload = action(function* () {\n  affects(todos);   // the whole store reads pending\u2026\n  refresh(todos);   // \u2026over this otherwise-quiet re-ask\n  yield api.done();\n});\n\nconst rename = action(function* (todo, text) {\n  setOptimisticTodos(() => { todo.text = text; });\n  affects(todo, \"updatedAt\"); // server will change this slot too\n  yield api.rename(todo.id, text);\n  refresh(todos);\n});"
+  },
+  {
+    "id": "06-actions-optimistic:B131:1",
+    "file": "06-actions-optimistic.md",
+    "line": 131,
+    "end_line": 136,
+    "language": "js",
+    "source": "const [name, setName] = createOptimistic(\"Alice\");\n\nconst updateName = action(function* (next) {\n  setName(next);          // optimistic\n  yield api.saveName(next);\n});"
+  },
+  {
+    "id": "06-actions-optimistic:B144:1",
+    "file": "06-actions-optimistic.md",
+    "line": 144,
+    "end_line": 151,
+    "language": "js",
+    "source": "const [todos, setOptimisticTodos] = createOptimisticStore(() => api.getTodos(), []);\n\nconst addTodo = action(function* (todo) {\n  setOptimisticTodos((todos) => { todos.push(todo); });\n  yield api.addTodo(todo);\n  // refresh store/projection form (object with [$REFRESH])\n  refresh(todos);\n});"
+  },
+  {
+    "id": "06-actions-optimistic:B161:1",
+    "file": "06-actions-optimistic.md",
+    "line": 161,
+    "end_line": 170,
+    "language": "js",
+    "source": "const [messages, setMessages] = createOptimisticStore(() => liveQuery(\"messages\"), []);\n\nconst send = action(async function* (text) {\n  const clientId = crypto.randomUUID();\n  setMessages((m) => { m.push({ clientId, text, pending: true }); }); // optimistic\n  await socket.send({ clientId, text });                              // fire-and-forget\n  // Hold until the live source echoes the write:\n  yield until(() => messages.some((m) => m.clientId === clientId), { timeout: 10_000 });\n  // settle \u2192 the override drops onto data that already contains the real row\n});"
+  },
+  {
+    "id": "07-dom:B32:1",
+    "file": "07-dom.md",
+    "line": 32,
+    "end_line": 34,
+    "language": "jsx",
+    "source": "<div class=\"card\" />\n<div class={{ active: isActive(), disabled: isDisabled() }} />\n<div class={[\"card\", props.class, { active: isActive() }]} />"
+  },
+  {
+    "id": "07-dom:B43:1",
+    "file": "07-dom.md",
+    "line": 43,
+    "end_line": 48,
+    "language": "jsx",
+    "source": "// Presence/absence boolean attributes\n<video muted={true} />\n<video muted={false} />\n\n// When the platform requires a string value:\n<some-element enabled=\"true\" />"
+  },
+  {
+    "id": "07-dom:B73:1",
+    "file": "07-dom.md",
+    "line": 73,
+    "end_line": 79,
+    "language": "jsx",
+    "source": "// 1.x: directive namespace\n<input use:autofocus />\n<button use:tooltip={{ content: \"Save\" }} />\n\n// 2.0: directive/ref callbacks (factory form)\n<input ref={autofocus} />\n<button ref={tooltip({ content: \"Save\" })} />"
+  },
+  {
+    "id": "07-dom:B85:1",
+    "file": "07-dom.md",
+    "line": 85,
+    "end_line": 85,
+    "language": "jsx",
+    "source": "<button ref={[autofocus, tooltip({ content: \"Save\" })]} />"
+  },
+  {
+    "id": "07-dom:B91:1",
+    "file": "07-dom.md",
+    "line": 91,
+    "end_line": 93,
+    "language": "jsx",
+    "source": "let el;\n<div ref={[el]} />; // el stays undefined\n<div ref={[node => (el = node), autofocus]} />; // assigned"
+  },
+  {
+    "id": "07-dom:B104:1",
+    "file": "07-dom.md",
+    "line": 104,
+    "end_line": 120,
+    "language": "js",
+    "source": "function titleDirective(source) {\n  // Setup phase (owned): create primitives/subscriptions here\n  // but avoid imperative DOM mutation at top level.\n  let el;\n\n  createEffect(source, value => {\n    // Effect can run before the element is available\n    if (el) el.title = value;\n  });\n\n  // Apply phase (unowned): DOM writes happen here.\n  // No new primitives should be created in this callback.\n  return nextEl => {\n    el = nextEl;\n    el.title = source();\n  };\n}"
+  },
+  {
+    "id": "07-dom:B126:1",
+    "file": "07-dom.md",
+    "line": 126,
+    "end_line": 126,
+    "language": "jsx",
+    "source": "<button ref={titleDirective(() => props.title)} />"
+  },
+  {
+    "id": "07-dom:B132:1",
+    "file": "07-dom.md",
+    "line": 132,
+    "end_line": 135,
+    "language": "jsx",
+    "source": "const on = (type, handler, options) => el => el.addEventListener(type, handler, options);\n\n<button ref={on(\"click\", handleClick, { capture: true })} />\n<button ref={[on(\"click\", logCapture, { capture: true }), on(\"click\", logBubble)]} />"
+  },
+  {
+    "id": "08-dev-diagnostics:B38:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 38,
+    "end_line": 50,
+    "language": "js",
+    "source": "// Throws in dev\ncreateMemo(() => setCount(count() + 1));\ncreateMemo(() => refresh(user));\n\n// Fix: derive instead of writing back\nconst doubled = createMemo(() => count() * 2);\n\n// Fix: write/invalidate from an event handler\nbutton.onclick = () => setCount(c => c + 1);\nbutton.onclick = () => refresh(user);\n\n// Escape hatch: mark as ownedWrite (internal signals only)\nconst [ref, setRef] = createSignal(null, { ownedWrite: true });"
+  },
+  {
+    "id": "08-dev-diagnostics:B60:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 60,
+    "end_line": 77,
+    "language": "js",
+    "source": "// Throws in dev \u2014 only `d.n = 1` was in the transaction\nsetStore(async d => {\n  d.n = 1;\n  await save(d.n);\n  d.n = 2; // closed draft: lost\n});\n\n// Fix: orchestrate the async in an action, write synchronously inside it\nconst bump = action(async function* () {\n  setStore(d => {\n    d.n = 1;\n  });\n  await save(1);\n  yield;\n  setStore(d => {\n    d.n = 2;\n  });\n});"
+  },
+  {
+    "id": "08-dev-diagnostics:B87:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 87,
+    "end_line": 96,
+    "language": "jsx",
+    "source": "// Throws if user() is async and pending\nfunction Bad() {\n  const name = user().name;\n  return <div>{name}</div>;\n}\n\n// Fix: read in JSX (tracked by the compiler)\nfunction Good() {\n  return <div>{user().name}</div>;\n}"
+  },
+  {
+    "id": "08-dev-diagnostics:B110:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 110,
+    "end_line": 122,
+    "language": "jsx",
+    "source": "// Warns (non-halting): no Loading ancestor\n// Container stays empty until asyncUser() resolves, then mounts atomically.\nrender(() => <Profile user={asyncUser()} />, root);\n\n// Explicit fallback UI: wrap in Loading\nrender(\n  () => (\n    <Loading fallback={<Spinner />}>\n      <Profile user={asyncUser()} />\n    </Loading>\n  ),\n  root\n);"
+  },
+  {
+    "id": "08-dev-diagnostics:B142:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 142,
+    "end_line": 147,
+    "language": "jsx",
+    "source": "// Warns: B reads the same data() and holds the frame \u2014 A's fallback can never show.\n<Loading on={id()} fallback={<Spinner />}>{data()}</Loading>\n<Loading fallback={<Spinner />}>{data()}</Loading>\n\n// Fix: one boundary owns the read.\n<Loading on={id()} fallback={<Spinner />}>{data()} {data()}</Loading>"
+  },
+  {
+    "id": "08-dev-diagnostics:B159:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 159,
+    "end_line": 168,
+    "language": "js",
+    "source": "// Throws\nonSettled(() => {\n  onCleanup(() => /* ... */);\n});\n\n// Fix: return cleanup\nonSettled(() => {\n  const id = setInterval(tick, 1000);\n  return () => clearInterval(id);\n});"
+  },
+  {
+    "id": "08-dev-diagnostics:B178:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 178,
+    "end_line": 192,
+    "language": "js",
+    "source": "// Throws (in dev): the inner onSettled fires out of band, so its cleanup\n// has no owner lifecycle to attach to.\nonSettled(() => {\n  useSubscription(); // internally: onSettled(() => { sub(); return unsub; })\n});\n\n// Fix: call setup-with-teardown directly from an owned scope. A plain owned\n// onSettled already waits for settle AND ties cleanup to disposal.\nuseSubscription();\n\n// Out-of-band, one-shot work (no cleanup) stays fine:\nconst handleClick = () => {\n  save();\n  onSettled(() => toast(\"Saved!\"));\n};"
+  },
+  {
+    "id": "08-dev-diagnostics:B202:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 202,
+    "end_line": 211,
+    "language": "js",
+    "source": "// Throws\nonSettled(() => {\n  const [s, setS] = createSignal(0);\n});\n\n// Fix: create primitives in the component body, use them in onSettled\nconst [s, setS] = createSignal(0);\nonSettled(() => {\n  console.log(s());\n});"
+  },
+  {
+    "id": "08-dev-diagnostics:B221:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 221,
+    "end_line": 236,
+    "language": "js",
+    "source": "// Throws\ncreateEffect(\n  () => count(),\n  value => {\n    return value; // not a function!\n  }\n);\n\n// Fix: return a function or nothing\ncreateEffect(\n  () => count(),\n  value => {\n    console.log(value);\n    return () => {}; // cleanup function\n  }\n);"
+  },
+  {
+    "id": "08-dev-diagnostics:B310:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 310,
+    "end_line": 325,
+    "language": "jsx",
+    "source": "// Warns: top-level read won't track\nfunction Bad(props) {\n  const n = props.count;\n  return <div>{n}</div>;\n}\n\n// Fix: read in JSX\nfunction Good(props) {\n  return <div>{props.count}</div>;\n}\n\n// Fix: explicit one-time read\nfunction AlsoGood(props) {\n  const n = untrack(() => props.count);\n  return <div>{n}</div>;\n}"
+  },
+  {
+    "id": "08-dev-diagnostics:B339:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 339,
+    "end_line": 350,
+    "language": "js",
+    "source": "// Warns: query() is read after the await and never tracked\nconst items = createMemo(async () => {\n  const res = await fetchItems();\n  return res.filter(item => item.tag === query());\n});\n\n// Fix: read it before the first await\nconst items = createMemo(async () => {\n  const q = query();\n  const res = await fetchItems();\n  return res.filter(item => item.tag === q);\n});"
+  },
+  {
+    "id": "08-dev-diagnostics:B374:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 374,
+    "end_line": 386,
+    "language": "js",
+    "source": "// Warns: no owner\ncreateEffect(\n  () => count(),\n  v => console.log(v)\n);\n\n// Fix: create inside a component or createRoot\ncreateRoot(() => {\n  createEffect(\n    () => count(),\n    v => console.log(v)\n  );\n});"
+  },
+  {
+    "id": "08-dev-diagnostics:B738:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 738,
+    "end_line": 743,
+    "language": "js",
+    "source": "import { OBSERVE } from \"solid-js\";\n\nconst unsub = OBSERVE.diagnostics.subscribe((event, subject) => {\n  console.log(`[${event.severity}] ${event.code}: ${event.message}`);\n});\n// later: unsub();"
+  },
+  {
+    "id": "08-dev-diagnostics:B751:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 751,
+    "end_line": 756,
+    "language": "js",
+    "source": "const capture = OBSERVE.diagnostics.capture();\n\n// ... code that may emit diagnostics ...\n\nconst events = capture.stop();\n// events: DiagnosticEvent[]"
+  },
+  {
+    "id": "08-dev-diagnostics:B789:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 789,
+    "end_line": 798,
+    "language": "js",
+    "source": "import { OBSERVE } from \"solid-js\";\n\nconst off = OBSERVE.records.subscribe(\"invocation\", (event, live) => { \u2026 });\nOBSERVE.records.observed(\"invocation\"); // true while a listener is subscribed \u2014 the emitters' pre-check\n// The bodies opt-in (`RecordSubscribeOptions`): a listener that reads the live handles an\n// emitter pays per record to take \u2014 the \"call\" record's request reconstruction and unread\n// response clone, the \"request\" record's request \u2014 asks for them; `observed(type, \"bodies\")`\n// is that emitter's second gate.\nOBSERVE.records.subscribe(\"call\", (event, live) => { \u2026 }, { bodies: true });\nOBSERVE.records.observed(\"call\", \"bodies\"); // true while a listener asked for bodies"
+  },
+  {
+    "id": "08-dev-diagnostics:B808:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 808,
+    "end_line": 813,
+    "language": "js",
+    "source": "const off = OBSERVE.records.subscribe(\"boundary\", (event, live) => {\n  // event: { id, at, durationMs, heldMs, passes,\n  //          outcome: \"settled\" | \"fallback\" | \"client\" | \"error\",\n  //          streamed, revealGroup?, ownerPath? }\n  // live:  { error? }\n});"
+  },
+  {
+    "id": "08-dev-diagnostics:B823:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 823,
+    "end_line": 826,
+    "language": "js",
+    "source": "const off = OBSERVE.records.subscribe(\"invocation\", (event, live) => {\n  // event: { id, direct, at, durationMs, outcome: \"ok\" | \"error\", deferred?, boundary? }\n  // live:  { event: RequestEvent, request?, args, result? | error? }\n});"
+  },
+  {
+    "id": "08-dev-diagnostics:B834:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 834,
+    "end_line": 839,
+    "language": "js",
+    "source": "const off = OBSERVE.records.subscribe(\"render\", (event, live) => {\n  // event: { mode: \"string\" | \"stream\", at, shellMs?, durationMs, boundaries,\n  //          outcome: \"complete\" | \"abandoned\" | \"error\",\n  //          route?: { name?, to?, params? } }\n  // live:  { event?: RequestEvent, trace: TraceContext }\n});"
+  },
+  {
+    "id": "08-dev-diagnostics:B847:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 847,
+    "end_line": 850,
+    "language": "js",
+    "source": "const off = OBSERVE.records.subscribe(\"call\", (event, live) => {\n  // event: { id, name?, at, durationMs, method: \"GET\" | \"POST\", outcome: \"ok\" | \"error\", status?, origin?, deferred? }\n  // live:  { args, request?, response?, result? | error? }\n});"
+  },
+  {
+    "id": "08-dev-diagnostics:B862:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 862,
+    "end_line": 866,
+    "language": "js",
+    "source": "const off = OBSERVE.records.subscribe(\"request\", (event, live) => {\n  // event: { side: \"client\", id, name?, at, method: \"GET\" | \"POST\", origin? }\n  // live:  the call's own CallLive, shared with its \"call\" record \u2014 { args, request? } now;\n  //        response, result | error filled in at settle (read-only; read the body via request.clone())\n});"
+  },
+  {
+    "id": "08-dev-diagnostics:B874:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 874,
+    "end_line": 880,
+    "language": "js",
+    "source": "const off = OBSERVE.records.subscribe(\"frame\", (event, live) => {\n  // event: { side: \"server\", id, version, at, durationMs, shellMs?,\n  //          outcome: \"complete\" | \"error\", chunks, fragments, slots, regions, errors }\n  //     or { side: \"client\", id, version, at, durationMs, shellMs?, address?,\n  //          outcome: \"complete\" | \"truncated\" | \"error\", chunks, fragments, slots, regions, errors }\n  // live:  { error?, response? }\n});"
+  },
+  {
+    "id": "08-dev-diagnostics:B890:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 890,
+    "end_line": 893,
+    "language": "js",
+    "source": "const off = OBSERVE.records.subscribe(\"recovery\", (event, live) => {\n  // event: { id, at, waitedMs, renderMs }\n  // live:  {}\n});"
+  },
+  {
+    "id": "08-dev-diagnostics:B907:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 907,
+    "end_line": 920,
+    "language": "js",
+    "source": "import { OBSERVE } from \"solid-js\";\n\nconst uninstall = OBSERVE.server.trace.provide(request => {\n  // an APM answering from its active span; `request` is undefined for a\n  // render outside any request scope\n  const span = tracer.activeSpan();\n  if (!span) return undefined; // leave the runtime's derivation alone\n  return {\n    traceId: span.traceId,\n    spanId: span.spanId,\n    sampled: span.sampled,\n    entries: { \"sentry-trace\": span.toSentryTrace(), baggage: span.toBaggage() }\n  };\n});"
+  },
+  {
+    "id": "08-dev-diagnostics:B999:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 999,
+    "end_line": 1001,
+    "language": "",
+    "source": "[why-run] effect \"docTitle\" ran (run 4)\n  \u2190 memo \"userLabel\" changed (#6)\n    \u2190 signal \"notifications\" write (#5) 2 \u2192 3"
+  },
+  {
+    "id": "08-dev-diagnostics:B1009:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 1009,
+    "end_line": 1118,
+    "language": "js",
+    "source": "import { attribution } from \"solid-js/attribution\";\n\nconst release = attribution.enable({\n  log: true,          // pretty-print each re-run (default true)\n  stacks: false,      // capture write stacks \u2014 slow (default false)\n  historyLimit: 200,  // ring buffer size\n  hotRuns: { count: 120, windowMs: 1000 },   // or false\n  hotTime: { budgetMs: 8, windowMs: 1000 },  // or false\n  wideDeps: 200,                              // or false\n  unstableMemos: 4,                           // or false\n  fanOut: 250,                                // or false (HUGE_FAN_OUT threshold while enabled)\n  waterfalls: { minFlightMs: 50 },            // or false\n  holds: { infoMs: 100, warnMs: 200 },        // or false (disables hold tracking)\n  longHolds: { infoMs: 500, warnMs: 1000 },   // or false\n  checks: true                                // false: records only \u2014 none of the six cost checks above\n});\n\n// The ring buffers, by type (readonly, oldest first, `historyLimit` deep):\nattribution.history(\"rerun\");       // RerunEvents \u2014 kept only while a listener, a fold or the log wants them\nattribution.history(\"waterfall\");   // graph-provable sequential flight chains\nattribution.history(\"hold\");        // every hold, acknowledged or not\nattribution.history(\"navigation\");  // every declared navigation, settled or not (below)\nattribution.history(\"interaction\"); // every user interaction, settled or not (below)\nrelease();                      // this consumer's hold; the last release uninstalls\nattribution.disable();          // everything, whatever holds are outstanding (the console's reset)\n\n// The engine's records are delivered on the core's channel, the same place\n// the runtimes' records arrive (`OBSERVE.records`, above): one subscribe,\n// typed by record type, the live node beside the record.\nimport { OBSERVE } from \"solid-js\";\nconst off = OBSERVE.records.subscribe(\"rerun\", (event, node) => { \u2026 });   // live RerunEvent feed; `node` is the computation that ran\nOBSERVE.records.subscribe(\"interaction\" | \"hold\" | \"navigation\", (event, live) => { \u2026 }); // each record as it settles; `live` is the held signal for a hold, undefined otherwise\nOBSERVE.records.subscribe(\"flush\" | \"create\" | \"effect\" | \"flight\" | \"fallback\" | \"graph\", (event, live) => { \u2026 }); // timeline records (below)\noff();                          // subscriptions are the channel's: they outlive enable()/disable()\n\n// Each enable() is a hold and returns its release: a second consumer (a\n// diagnostics capture beside a profiler track beside an APM adapter) takes\n// its own, and live state survives until the last hold goes (record\n// listeners are not the engine's and survive it regardless).\n// Options combine across holds by the most demanding request per key \u2014 the\n// log prints while any holder wants it, a check runs while any holder wants\n// it and at the most sensitive threshold asked for, historyLimit is the\n// largest \u2014 so a hold can add to what the engine does but never take away\n// what another asked for, and the order holds are taken does not matter.\n// Releasing a hold withdraws its requests: a track that enabled with\n// `log: false` beside this session never silenced it; a capture with tight\n// thresholds beside a records-only adapter runs the checks for its own\n// duration. Each enable() does reset the aggregation windows (history, the\n// fold tables), which is what a capture wants; a consumer that re-enables\n// to reopen its window holds twice and releases twice.\n\n// The folds over those records, the point queries and the formatters are\n// NAMED EXPORTS, not methods: a fold's module registers its accounting with\n// the engine when it is imported, so a consumer that only subscribes to\n// records (a production adapter) never ships the tables a console or an\n// agent reads \u2014 importing `costs` or `feedback` is what turns them on.\nimport { costs, feedback, why, subscriptions, formatRerun, formatOrigin } from \"solid-js/attribution\";\n\ncosts();                        // { scopes, writes } ranked cost tables (since enable())\nfeedback();                     // responsiveness tables (below)\nwhy(someMemo);                  // re-run history for one node \u2014 a view of history(\"rerun\"), same gate: empty for runs nothing wanted a record of\nsubscriptions(fn);              // current dep names of one scope \u2014 read from the graph, not a record; unaffected by the gate\nformatRerun(event);             // the console line for one RerunEvent\nformatOrigin(origin);           // `click on button#next \"Next \u2192\"` \u2014 a ChangeOrigin as a name\n\n// Callable anytime (even while disabled): preloaders/caches declare the true\n// kickoff of promises they hand out, so dependents that pick them up later\n// are never misread as waterfalls.\nattribution.markFlight(promise, startedAt?);\n\n// Runtime side (`OBSERVE`, present in dev and observe builds): stamp the\n// writes made synchronously inside `fn` with a user interaction. Compiled\n// event bindings do this for every handler; custom renderers and test\n// harnesses call it themselves. `fn()` when no engine is enabled.\nOBSERVE.attribution.withInteraction({ type: \"click\", target: 'button#next \"Next \u2192\"' }, fn);\n// A router declares a navigation around its location write \u2014 match eagerly,\n// describe by the parametrized route, then write. This is the only\n// router-specific line anywhere; the engine knows no router.\nOBSERVE\n  ? OBSERVE.attribution.withOrigin(\n      { kind: \"navigation\", name: \"/users/:id\", to, from, params: match.params },\n      () => setLocation(to)\n    )\n  : setLocation(to);\n// And the route the document arrived on, around the work that establishes\n// its initial match (there is no location write on a fresh document). On the\n// client this is the first \"navigation\" record; on the server it names the\n// request's \"render\" record (`RenderEvent.route`). Same call on both sides.\nOBSERVE\n  ? OBSERVE.attribution.withOrigin(\n      { kind: \"navigation\", initial: true, name: \"/users/:id\", to, params: match.params },\n      () => buildContext()\n    )\n  : buildContext();\n// A runtime recording a fact of its own asks what a write here would be\n// stamped with \u2014 the engine's own interaction/navigation object, or\n// undefined \u2014 and puts it on its record (the web runtime's \"call\" record\n// does this at dispatch); an observer then joins the two by identity.\nconst origin = OBSERVE.attribution.currentOrigin();\n// Whether an engine is present: OBSERVE.attribution.installed (the hook\n// table itself is opaque \u2014 the slot is the engine's, not a public seam).\n// The installed hooks are also registered on globalThis under\n// Symbol.for(\"@solidjs/signals/observe/attribution\"), the records channel's\n// reach for a layer bundled without a framework import.\n// An observer that renders inside the app it watches (an APM adapter's\n// panel, devtools) marks its own root so neither channel reports it.\ncreateRoot(() => {\n  OBSERVE?.exclude(getOwner());\n  /* panel */\n});"
+  },
+  {
+    "id": "08-dev-diagnostics:B1207:1",
+    "file": "08-dev-diagnostics.md",
+    "line": 1207,
+    "end_line": 1213,
+    "language": "ts",
+    "source": "import { enablePerformanceTracks } from \"@solidjs/web/performance-tracks\";\n\nconst disable = enablePerformanceTracks({\n  minMs: 0, // floor for run spans; 0 in dev, 0.05 in observe builds\n  rich: true, // performance.measure with tooltips/properties (dev default) vs console.timeStamp\n  attribution: { values: \"labels\" } // options for the engine hold it takes (log: false, checks: false; values: the tier's default)\n});"
+  },
+  {
+    "id": "09-typescript-jsx:B12:1",
+    "file": "09-typescript-jsx.md",
+    "line": 12,
+    "end_line": 17,
+    "language": "json",
+    "source": "{\n  \"compilerOptions\": {\n    \"jsx\": \"preserve\",\n    \"jsxImportSource\": \"@solidjs/web\"\n  }\n}"
+  },
+  {
+    "id": "09-typescript-jsx:B27:1",
+    "file": "09-typescript-jsx.md",
+    "line": 27,
+    "end_line": 30,
+    "language": "text",
+    "source": "solid-js              // component model and renderer-neutral renderable values\n@solidjs/web          // DOM JSX namespace and DOM intrinsic elements\n@solidjs/h            // hyperscript JSX namespace\n@solidjs/universal    // custom renderer primitive, renderer supplies JSX types"
+  },
+  {
+    "id": "09-typescript-jsx:B40:1",
+    "file": "09-typescript-jsx.md",
+    "line": 40,
+    "end_line": 43,
+    "language": "ts",
+    "source": "import type { Element, Component, ParentComponent } from \"solid-js\";\n\nconst App: Component = () => \"hello\";\nconst Layout: ParentComponent = props => props.children;"
+  },
+  {
+    "id": "09-typescript-jsx:B53:1",
+    "file": "09-typescript-jsx.md",
+    "line": 53,
+    "end_line": 56,
+    "language": "ts",
+    "source": "import type { ComponentProps, JSX } from \"@solidjs/web\";\n\ntype ButtonProps = ComponentProps<\"button\">;\ntype ClickHandler = JSX.EventHandler<HTMLButtonElement, MouseEvent>;"
+  },
+  {
+    "id": "09-typescript-jsx:B66:1",
+    "file": "09-typescript-jsx.md",
+    "line": 66,
+    "end_line": 71,
+    "language": "json",
+    "source": "{\n  \"compilerOptions\": {\n    \"jsx\": \"react-jsx\",\n    \"jsxImportSource\": \"@solidjs/h\"\n  }\n}"
+  },
+  {
+    "id": "10-server-functions:B27:1",
+    "file": "10-server-functions.md",
+    "line": 27,
+    "end_line": 31,
+    "language": "ts",
+    "source": "export async function addTodo(title: string) {\n  \"use server\";\n  await db.insert(title);\n  return reload({ revalidate: \"todos\" });\n}"
+  },
+  {
+    "id": "10-server-functions:B52:1",
+    "file": "10-server-functions.md",
+    "line": 52,
+    "end_line": 58,
+    "language": "ts",
+    "source": "import { handleServerFunctionRequest } from \"@solidjs/web/server-functions\";\nimport \"virtual:solid-server-function-manifest\";\n\n// in the server's request handling:\nif (url.pathname.startsWith(\"/_server\")) {\n  return handleServerFunctionRequest(request);\n}"
+  },
+  {
+    "id": "10-server-functions:B85:1",
+    "file": "10-server-functions.md",
+    "line": 85,
+    "end_line": 94,
+    "language": "ts",
+    "source": "import { redirect, reload, respond } from \"@solidjs/web\";\n\n// redirect the caller (integration follows it; 302 default)\nreturn redirect(\"/dashboard\", { revalidate: \"session\" });\n\n// no value, just \"refetch your data\" (all keys when omitted)\nreturn reload({ revalidate: \"todos\" });\n\n// a value plus HTTP metadata a naked return can't express\nreturn respond(item, { status: 201, revalidate: \"items\" });"
+  },
+  {
+    "id": "10-server-functions:B158:1",
+    "file": "10-server-functions.md",
+    "line": 158,
+    "end_line": 163,
+    "language": "ts",
+    "source": "import { GET } from \"@solidjs/web/server-functions\";\n\nexport const getUser = GET(async (id: string) => {\n  \"use server\";\n  return db.users.find(id);\n});"
+  },
+  {
+    "id": "10-server-functions:B173:1",
+    "file": "10-server-functions.md",
+    "line": 173,
+    "end_line": 181,
+    "language": "ts",
+    "source": "export interface ServerFunctionMetadata {\n  /** The declared HTTP method. Undeclared references call over POST. */\n  readonly method?: \"GET\" | \"POST\";\n  /** User-declared transport metadata attached with `withMeta`. */\n  readonly [key: string]: unknown;\n}\nexport function getServerFunctionMetadata(fn: unknown): ServerFunctionMetadata | undefined;\nexport function isServerFunction(fn: unknown): fn is ServerFunction;\nexport function withMeta<F extends (...args: any[]) => any>(fn: F, meta: ServerFunctionMetadata): F;"
+  },
+  {
+    "id": "10-server-functions:B207:1",
+    "file": "10-server-functions.md",
+    "line": 207,
+    "end_line": 218,
+    "language": "ts",
+    "source": "import { live, GET } from \"@solidjs/web/server-functions\";\n\nexport const price = live(\n  GET(async function* (symbol: string) {\n    \"use server\";\n    for await (const tick of subscribe(symbol)) yield tick.price;\n  })\n);\n\nconst src = price(\"ACME\"); // the reconnecting iterable itself, synchronously\nsrc.onstatus = setStatus; // optional: \"connected\" | \"reconnecting\" | \"closed\"\nconst current = createMemo(() => src);"
+  },
+  {
+    "id": "10-server-functions:B237:1",
+    "file": "10-server-functions.md",
+    "line": 237,
+    "end_line": 246,
+    "language": "tsx",
+    "source": "export const feed = live(\n  GET(async (room: string) => {\n    \"use server\";\n    const messages = subscribeRoom(room); // raw async iterable; the component reads it\n    return (props: { compose: Slot }) => <Feed messages={messages} compose={props.compose} />;\n  })\n);\n\n// client\nconst Feed = dynamic(() => feed(props.room));"
+  },
+  {
+    "id": "10-server-functions:B260:1",
+    "file": "10-server-functions.md",
+    "line": 260,
+    "end_line": 264,
+    "language": "ts",
+    "source": "configureServerFunctionsClient({\n  prepareRequest(init, { id, meta }) {\n    return { ...init, headers: { ...init.headers, Authorization: `Bearer ${session.token()}` } };\n  }\n});"
+  },
+  {
+    "id": "10-server-functions:B276:1",
+    "file": "10-server-functions.md",
+    "line": 276,
+    "end_line": 278,
+    "language": "ts",
+    "source": "import { invoke } from \"@solidjs/web/server-functions\";\n\nconst user = await invoke(getUser, { signal: controller.signal }, id);"
+  },
+  {
+    "id": "11-server-components:B20:1",
+    "file": "11-server-components.md",
+    "line": 20,
+    "end_line": 31,
+    "language": "ts",
+    "source": "import { configureServerFunctionsServer } from \"@solidjs/web/server-functions/server\";\nimport {\n  frameTransformResult,\n  frameTransformDirectResult,\n  frameTransformFlightResult\n} from \"@solidjs/web/frames/server\";\n\nconfigureServerFunctionsServer({\n  transformResult: frameTransformResult, // HTTP: function results stream as frames\n  transformDirectResult: frameTransformDirectResult, // document SSR: function results render inline\n  transformFlightResult: frameTransformFlightResult // single-flight: invalidated markup rides as regions\n});"
+  },
+  {
+    "id": "11-server-components:B39:1",
+    "file": "11-server-components.md",
+    "line": 39,
+    "end_line": 42,
+    "language": "ts",
+    "source": "import { installServerComponents } from \"@solidjs/web/frames\";\n\ninstallServerComponents();\nhydrate(() => <App />, root);"
+  },
+  {
+    "id": "11-server-components:B50:1",
+    "file": "11-server-components.md",
+    "line": 50,
+    "end_line": 55,
+    "language": "ts",
+    "source": "import { generateHydrationScript, renderToStream } from \"@solidjs/web\";\nimport { ServerComponentPlugin, SERVER_COMPONENT_BOOTSTRAP } from \"@solidjs/web/frames/server\";\n\nconst DOCUMENT_BOOTSTRAP = generateHydrationScript() + `<script>${SERVER_COMPONENT_BOOTSTRAP}</script>`;\n// in the shell\u2019s <head> or before the app root, then:\nrenderToStream(() => <App />, { plugins: [ServerComponentPlugin] }).pipe(writable);"
+  },
+  {
+    "id": "11-server-components:B75:1",
+    "file": "11-server-components.md",
+    "line": 75,
+    "end_line": 92,
+    "language": "tsx",
+    "source": "async function getStory(id: number) {\n  \"use server\";\n  const story = await db.stories.get(id);\n  return props => (\n    <article>\n      <h1>{story.title}</h1>\n      <section>\n        {story.comments.map(c => (\n          <props.comment $key={c.id} cid={c.id}>\n            <p>{c.text}</p>\n            {c.replies.map(renderReply)}\n          </props.comment>\n        ))}\n      </section>\n      <footer>{props.children}</footer>\n    </article>\n  );\n}"
+  },
+  {
+    "id": "11-server-components:B104:1",
+    "file": "11-server-components.md",
+    "line": 104,
+    "end_line": 111,
+    "language": "tsx",
+    "source": "function StoryPage(props) {\n  const Story = dynamic(() => getStory(props.storyId));\n  return (\n    <Story comment={p => <CollapsibleComment cid={p.cid}>{p.children}</CollapsibleComment>}>\n      <ShareBar />\n    </Story>\n  );\n}"
+  },
+  {
+    "id": "12-ssr-http:B42:1",
+    "file": "12-ssr-http.md",
+    "line": 42,
+    "end_line": 49,
+    "language": "tsx",
+    "source": "import { renderToStream } from \"@solidjs/web\";\n\nexport function handler(request: Request): Response {\n  const stream = renderToStream(() => <App />);\n  return new Response(stream.readable, {\n    headers: { \"content-type\": \"text/html\" }\n  });\n}"
+  },
+  {
+    "id": "12-ssr-http:B59:1",
+    "file": "12-ssr-http.md",
+    "line": 59,
+    "end_line": 66,
+    "language": "ts",
+    "source": "export interface RequestEventLocals {\n  [key: string | number | symbol]: any;\n}\n\nexport interface RequestEvent {\n  request: Request;\n  locals: RequestEventLocals;\n}"
+  },
+  {
+    "id": "12-ssr-http:B72:1",
+    "file": "12-ssr-http.md",
+    "line": 72,
+    "end_line": 76,
+    "language": "ts",
+    "source": "declare module \"@solidjs/web\" {\n  interface RequestEventLocals {\n    user: User;\n  }\n}"
+  },
+  {
+    "id": "12-ssr-http:B94:1",
+    "file": "12-ssr-http.md",
+    "line": 94,
+    "end_line": 99,
+    "language": "tsx",
+    "source": "import { provideRequestEvent } from \"@solidjs/web/storage\";\nimport { renderToStream } from \"@solidjs/web\";\n\nasync function handleRequest(request: Request) {\n  return provideRequestEvent({ request, locals: {} }, () => renderToStream(() => <App />));\n}"
+  },
+  {
+    "id": "12-ssr-http:B105:1",
+    "file": "12-ssr-http.md",
+    "line": 105,
+    "end_line": 112,
+    "language": "ts",
+    "source": "export interface ResponseStub {\n  status?: number;\n  statusText?: string;\n  headers: Headers;\n  /** Set by the integration once the response head has been derived/sent \u2014\n      status and headers can no longer change. */\n  committed?: boolean;\n}"
+  },
+  {
+    "id": "12-ssr-http:B120:1",
+    "file": "12-ssr-http.md",
+    "line": 120,
+    "end_line": 126,
+    "language": "tsx",
+    "source": "import { httpStatus, httpHeader } from \"@solidjs/web\";\n\nfunction NotFound() {\n  httpStatus(404);\n  httpHeader(\"cache-control\", \"no-store\");\n  return <h1>Not found</h1>;\n}"
+  },
+  {
+    "id": "12-ssr-http:B152:1",
+    "file": "12-ssr-http.md",
+    "line": 152,
+    "end_line": 165,
+    "language": "ts",
+    "source": "import { configureServerErrors } from \"@solidjs/web\";\n\nconfigureServerErrors({\n  onError(error, { kind, handling, boundary, boundaryPath, functionId, direct, ownerPath, event }) {\n    Sentry.captureException(error, {\n      mechanism: { type: `solid.${kind}.${handling}`, handled: handling !== \"failed\" }\n    });\n    // return nothing: the default wire policy applies\n    // return new Error(\"Something went wrong\"): the client receives this instead\n  }\n});\n// per request, winning over the ambient hook:\nrenderToStream(code, { onError });\nhandleServerFunctionRequest(request, { onError });"
+  },
+  {
+    "id": "12-ssr-http:B180:1",
+    "file": "12-ssr-http.md",
+    "line": 180,
+    "end_line": 186,
+    "language": "ts",
+    "source": "import { getTraceContext } from \"@solidjs/web\";\n\n// in a server function: forward the trace to the service it calls\nconst trace = getTraceContext();\nconst res = await fetch(\"https://orders.internal/api\", {\n  headers: trace ? { traceparent: trace.entries.traceparent } : {}\n});"
+  },
+  {
+    "id": "12-ssr-http:B190:1",
+    "file": "12-ssr-http.md",
+    "line": 190,
+    "end_line": 198,
+    "language": "ts",
+    "source": "interface TraceContext {\n  traceId: string; // 32 hex \u2014 the whole trace\n  spanId: string; // 16 hex \u2014 this request's span\n  parentId?: string; // the incoming parent span, when the request continued a trace\n  sampled?: boolean; // the incoming flags' sampled bit; undefined when the runtime originated\n  state?: string; // incoming `tracestate`, verbatim\n  baggage?: string; // incoming `baggage`, verbatim\n  entries: Record<string, string>; // what the browser is handed \u2014 `traceparent`, plus a provider's\n}"
+  },
+  {
+    "id": "12-ssr-http:B212:1",
+    "file": "12-ssr-http.md",
+    "line": 212,
+    "end_line": 231,
+    "language": "ts",
+    "source": "import { parseCookieHeader, serializeCookie, getRequestEvent } from \"@solidjs/web\";\n\n// inside a server function, loader, or handler:\nconst event = getRequestEvent()!; // `response` is the integration-augmented stub (see above)\n\nconst cookies = parseCookieHeader(event.request.headers.get(\"cookie\"));\nconst theme = cookies.theme; // string | undefined\n\nevent.response.headers.append(\n  \"set-cookie\",\n  serializeCookie(\"session\", token, {\n    httpOnly: true,\n    secure: true,\n    sameSite: \"lax\",\n    maxAge: 60 * 60 * 24 * 7\n  })\n);\n\n// deleting = expiring: empty value + Max-Age=0, matching the path/domain it was set under\nevent.response.headers.append(\"set-cookie\", serializeCookie(\"session\", \"\", { maxAge: 0 }));"
+  },
+  {
+    "id": "12-ssr-http:B253:1",
+    "file": "12-ssr-http.md",
+    "line": 253,
+    "end_line": 296,
+    "language": "ts",
+    "source": "import { getRequestEvent } from \"@solidjs/web\";\nimport { createCookie } from \"@remix-run/cookie\";\n\nexport interface SessionData {\n  userId?: string;\n}\n\nconst MAX_AGE = 60 * 60 * 24 * 7; // seconds \u2014 drives the cookie AND the enforced expiry\n\nconst cookie = createCookie(\"session\", {\n  // secrets[0] signs; every entry verifies. Rotation = prepend the new\n  // secret and keep old ones until outstanding cookies expire.\n  secrets: process.env.SESSION_SECRET!.split(\",\"),\n  httpOnly: true, // set explicitly \u2014 the package defaults httpOnly/secure to false\n  secure: true,\n  sameSite: \"Lax\",\n  maxAge: MAX_AGE\n});\n\nexport async function getSession(): Promise<SessionData | null> {\n  const raw = await cookie.parse(getRequestEvent()!.request.headers.get(\"cookie\"));\n  if (!raw) return null; // absent, tampered, or signed by a rotated-out secret\n  try {\n    const { data, exp } = JSON.parse(raw);\n    return typeof exp === \"number\" && Date.now() < exp * 1000 ? (data as SessionData) : null;\n  } catch {\n    return null;\n  }\n}\n\nexport async function setSession(data: SessionData): Promise<void> {\n  const exp = Math.floor(Date.now() / 1000) + MAX_AGE;\n  getRequestEvent()!.response.headers.append(\n    \"set-cookie\",\n    await cookie.serialize(JSON.stringify({ data, exp }))\n  );\n}\n\nexport async function clearSession(): Promise<void> {\n  getRequestEvent()!.response.headers.append(\n    \"set-cookie\",\n    await cookie.serialize(\"\", { maxAge: 0 })\n  );\n}"
+  },
+  {
+    "id": "12-ssr-http:B311:1",
+    "file": "12-ssr-http.md",
+    "line": 311,
+    "end_line": 322,
+    "language": "tsx",
+    "source": "import { renderToStream, createRequestEvent, createSSRResponse } from \"@solidjs/web\";\nimport { provideRequestEvent } from \"@solidjs/web/storage\";\n\nexport function handleRequest(request: Request): Promise<Response> {\n  const event = createRequestEvent(request);\n  return provideRequestEvent(event, () =>\n    createSSRResponse(\n      renderToStream(() => <App />),\n      event\n    )\n  );\n}"
+  },
+  {
+    "id": "12-ssr-http:B340:1",
+    "file": "12-ssr-http.md",
+    "line": 340,
+    "end_line": 349,
+    "language": "ts",
+    "source": "import { composeMiddleware, getRequestEvent } from \"@solidjs/web\";\n\nconst run = composeMiddleware([\n  async (request, next) => {\n    getRequestEvent()!.locals.user = await authenticate(request);\n    const response = await next();\n    response.headers.set(\"x-served-by\", \"solid\");\n    return response;\n  }\n]);"
+  },
+  {
+    "id": "MIGRATION:B27:1",
+    "file": "MIGRATION.md",
+    "line": 27,
+    "end_line": 31,
+    "language": "ts",
+    "source": "// 1.x (DOM runtime)\nimport { render, hydrate } from \"solid-js/web\";\n\n// 2.0\nimport { render, hydrate } from \"@solidjs/web\";"
+  },
+  {
+    "id": "MIGRATION:B35:1",
+    "file": "MIGRATION.md",
+    "line": 35,
+    "end_line": 39,
+    "language": "ts",
+    "source": "// 1.x (stores)\nimport { createStore } from \"solid-js/store\";\n\n// 2.0 (stores are exported from solid-js)\nimport { createStore, reconcile, snapshot, storePath } from \"solid-js\";"
+  },
+  {
+    "id": "MIGRATION:B43:1",
+    "file": "MIGRATION.md",
+    "line": 43,
+    "end_line": 47,
+    "language": "ts",
+    "source": "// 1.x (hyperscript / alternate JSX factory)\nimport h from \"solid-js/h\";\n\n// 2.0\nimport h from \"@solidjs/h\";"
+  },
+  {
+    "id": "MIGRATION:B51:1",
+    "file": "MIGRATION.md",
+    "line": 51,
+    "end_line": 55,
+    "language": "ts",
+    "source": "// 1.x (tagged-template HTML)\nimport html from \"solid-js/html\";\n\n// 2.0\nimport html from \"@solidjs/html\";"
+  },
+  {
+    "id": "MIGRATION:B59:1",
+    "file": "MIGRATION.md",
+    "line": 59,
+    "end_line": 63,
+    "language": "ts",
+    "source": "// 1.x (custom renderers)\nimport { createRenderer } from \"solid-js/universal\";\n\n// 2.0\nimport { createRenderer } from \"@solidjs/universal\";"
+  },
+  {
+    "id": "MIGRATION:B73:1",
+    "file": "MIGRATION.md",
+    "line": 73,
+    "end_line": 78,
+    "language": "json",
+    "source": "{\n  \"compilerOptions\": {\n    \"jsx\": \"preserve\",\n    \"jsxImportSource\": \"@solidjs/web\"\n  }\n}"
+  },
+  {
+    "id": "MIGRATION:B84:1",
+    "file": "MIGRATION.md",
+    "line": 84,
+    "end_line": 88,
+    "language": "ts",
+    "source": "// 1.x / earlier 2.0 betas\nimport type { JSX, ComponentProps } from \"solid-js\";\n\n// 2.0\nimport type { JSX, ComponentProps } from \"@solidjs/web\";"
+  },
+  {
+    "id": "MIGRATION:B94:1",
+    "file": "MIGRATION.md",
+    "line": 94,
+    "end_line": 96,
+    "language": "ts",
+    "source": "import type { Component, Element } from \"solid-js\";\n\ntype Wrapper = Component<{ children?: Element }>;"
+  },
+  {
+    "id": "MIGRATION:B106:1",
+    "file": "MIGRATION.md",
+    "line": 106,
+    "end_line": 112,
+    "language": "js",
+    "source": "const [count, setCount] = createSignal(0);\n\nsetCount(1);\ncount(); // still 0\n\nflush();\ncount(); // now 1"
+  },
+  {
+    "id": "MIGRATION:B125:1",
+    "file": "MIGRATION.md",
+    "line": 125,
+    "end_line": 136,
+    "language": "js",
+    "source": "// 1.x (single function effect)\ncreateEffect(() => {\n  el().title = name();\n});\n\n// 2.0 (split effect: compute -> apply)\ncreateEffect(\n  () => name(),\n  value => {\n    el().title = value;\n  }\n);"
+  },
+  {
+    "id": "MIGRATION:B142:1",
+    "file": "MIGRATION.md",
+    "line": 142,
+    "end_line": 154,
+    "language": "js",
+    "source": "// 1.x (initialValue as second arg)\ncreateEffect(prev => {\n  console.log(\"changed from\", prev, \"to\", count());\n  return count();\n}, 0);\n\n// 2.0 (default parameter for prev, apply function is second arg)\ncreateEffect(\n  (prev = 0) => count(),\n  (value, prev) => {\n    console.log(\"changed from\", prev, \"to\", value);\n  }\n);"
+  },
+  {
+    "id": "MIGRATION:B160:1",
+    "file": "MIGRATION.md",
+    "line": 160,
+    "end_line": 164,
+    "language": "js",
+    "source": "// 1.x\nconst doubled = createMemo(prev => count() * 2, 0);\n\n// 2.0 (no initialValue arg; prev is undefined on first run)\nconst doubled = createMemo(() => count() * 2);"
+  },
+  {
+    "id": "MIGRATION:B170:1",
+    "file": "MIGRATION.md",
+    "line": 170,
+    "end_line": 183,
+    "language": "js",
+    "source": "// 1.x\ncreateEffect(() => {\n  const id = setInterval(() => console.log(name()), 1000);\n  onCleanup(() => clearInterval(id));\n});\n\n// 2.0\ncreateEffect(\n  () => name(),\n  value => {\n    const id = setInterval(() => console.log(value), 1000);\n    return () => clearInterval(id);\n  }\n);"
+  },
+  {
+    "id": "MIGRATION:B189:1",
+    "file": "MIGRATION.md",
+    "line": 189,
+    "end_line": 200,
+    "language": "js",
+    "source": "// 1.x\nonMount(() => {\n  measureLayout();\n});\n\n// 2.0\nonSettled(() => {\n  measureLayout();\n  const onResize = () => measureLayout();\n  window.addEventListener(\"resize\", onResize);\n  return () => window.removeEventListener(\"resize\", onResize);\n});"
+  },
+  {
+    "id": "MIGRATION:B208:1",
+    "file": "MIGRATION.md",
+    "line": 208,
+    "end_line": 220,
+    "language": "js",
+    "source": "// 1.x (nested root survives the parent)\nconst dispose = createRoot(dispose => {\n  onCleanup(() => controller.destroy());\n  return dispose;\n});\n\n// 2.0 (same lifetime: detach explicitly)\nconst dispose = runWithOwner(null, () =>\n  createRoot(dispose => {\n    onCleanup(() => controller.destroy());\n    return dispose;\n  })\n);"
+  },
+  {
+    "id": "MIGRATION:B234:1",
+    "file": "MIGRATION.md",
+    "line": 234,
+    "end_line": 243,
+    "language": "jsx",
+    "source": "// \u274c 2.0 warns (top-level reactive read)\nfunction Bad(props) {\n  const n = props.count;\n  return <div>{n}</div>;\n}\n\n// \u2705 read inside JSX/expression\nfunction Ok(props) {\n  return <div>{props.count}</div>;\n}"
+  },
+  {
+    "id": "MIGRATION:B247:1",
+    "file": "MIGRATION.md",
+    "line": 247,
+    "end_line": 255,
+    "language": "jsx",
+    "source": "// \u274c 2.0 warns (common: destructuring in args)\nfunction BadArgs({ title }) {\n  return <h1>{title}</h1>;\n}\n\n// \u2705 keep props object, or destructure inside a memo/effect\nfunction OkArgs(props) {\n  return <h1>{props.title}</h1>;\n}"
+  },
+  {
+    "id": "MIGRATION:B267:1",
+    "file": "MIGRATION.md",
+    "line": 267,
+    "end_line": 271,
+    "language": "js",
+    "source": "// \u274c throws: writing from inside a memo\ncreateMemo(() => setDoubled(count() * 2));\n\n// \u2705 derive instead of writing back\nconst doubled = createMemo(() => count() * 2);"
+  },
+  {
+    "id": "MIGRATION:B283:1",
+    "file": "MIGRATION.md",
+    "line": 283,
+    "end_line": 287,
+    "language": "jsx",
+    "source": "// 1.x\n<Component value={/*@once*/ props.value} />\n\n// 2.0: keep reactive values reactive\n<Component value={props.value} />"
+  },
+  {
+    "id": "MIGRATION:B293:1",
+    "file": "MIGRATION.md",
+    "line": 293,
+    "end_line": 297,
+    "language": "jsx",
+    "source": "// 1.x\n<input value={/*@once*/ props.initialValue} />\n\n// 2.0\n<input defaultValue={props.initialValue} />"
+  },
+  {
+    "id": "MIGRATION:B303:1",
+    "file": "MIGRATION.md",
+    "line": 303,
+    "end_line": 303,
+    "language": "jsx",
+    "source": "const value = untrack(() => props.value);"
+  },
+  {
+    "id": "MIGRATION:B313:1",
+    "file": "MIGRATION.md",
+    "line": 313,
+    "end_line": 321,
+    "language": "jsx",
+    "source": "// 1.x\n<Suspense fallback={<Spinner />}>\n  <Profile />\n</Suspense>\n\n// 2.0\n<Loading fallback={<Spinner />}>\n  <Profile />\n</Loading>"
+  },
+  {
+    "id": "MIGRATION:B329:1",
+    "file": "MIGRATION.md",
+    "line": 329,
+    "end_line": 333,
+    "language": "js",
+    "source": "// 1.x\nconst [user] = createResource(id, fetchUser);\n\n// 2.0\nconst user = createMemo(() => fetchUser(id()));"
+  },
+  {
+    "id": "MIGRATION:B337:1",
+    "file": "MIGRATION.md",
+    "line": 337,
+    "end_line": 339,
+    "language": "jsx",
+    "source": "<Loading fallback={<Spinner />}>\n  <Profile user={user()} />\n</Loading>"
+  },
+  {
+    "id": "MIGRATION:B359:1",
+    "file": "MIGRATION.md",
+    "line": 359,
+    "end_line": 364,
+    "language": "jsx",
+    "source": "const listPending = () => isPending(() => users() || posts());\n\n<Loading fallback={<Spinner />}>\n  <Show when={listPending()}>{/* subtle \"updating\u2026\" indicator while a new query loads */}</Show>\n  <List users={users()} posts={posts()} />\n</Loading>;"
+  },
+  {
+    "id": "MIGRATION:B370:1",
+    "file": "MIGRATION.md",
+    "line": 370,
+    "end_line": 370,
+    "language": "js",
+    "source": "const latestId = () => latest(id);"
+  },
+  {
+    "id": "MIGRATION:B376:1",
+    "file": "MIGRATION.md",
+    "line": 376,
+    "end_line": 377,
+    "language": "js",
+    "source": "// After a server write, explicitly recompute a derived read:\nrefresh(storeOrProjection);"
+  },
+  {
+    "id": "MIGRATION:B389:1",
+    "file": "MIGRATION.md",
+    "line": 389,
+    "end_line": 401,
+    "language": "js",
+    "source": "const [todos] = createStore(() => api.getTodos(), { list: [] });\nconst [optimisticTodos, setOptimisticTodos] = createOptimisticStore({ list: [] });\n\nconst addTodo = action(function* (todo) {\n  // optimistic UI\n  setOptimisticTodos(s => s.list.push(todo));\n\n  // server write\n  yield api.addTodo(todo);\n\n  // recompute reads derived from the source-of-truth\n  refresh(todos);\n});"
+  },
+  {
+    "id": "MIGRATION:B409:1",
+    "file": "MIGRATION.md",
+    "line": 409,
+    "end_line": 415,
+    "language": "js",
+    "source": "// 2.0 preferred: produce-style draft updates\nsetStore(s => {\n  s.user.address.city = \"Paris\";\n});\n\n// Optional compatibility: old \u201cpath argument\u201d ergonomics via storePath\nsetStore(storePath(\"user\", \"address\", \"city\", \"Paris\"));"
+  },
+  {
+    "id": "MIGRATION:B421:1",
+    "file": "MIGRATION.md",
+    "line": 421,
+    "end_line": 422,
+    "language": "js",
+    "source": "const plain = snapshot(store);\nJSON.stringify(plain);"
+  },
+  {
+    "id": "MIGRATION:B428:1",
+    "file": "MIGRATION.md",
+    "line": 428,
+    "end_line": 432,
+    "language": "js",
+    "source": "// 1.x\nconst merged = mergeProps(defaults, overrides);\n\n// 2.0\nconst merged = merge(defaults, overrides);"
+  },
+  {
+    "id": "MIGRATION:B438:1",
+    "file": "MIGRATION.md",
+    "line": 438,
+    "end_line": 439,
+    "language": "js",
+    "source": "const merged = merge({ a: 1, b: 2 }, { b: undefined });\n// merged.b is undefined"
+  },
+  {
+    "id": "MIGRATION:B443:1",
+    "file": "MIGRATION.md",
+    "line": 443,
+    "end_line": 447,
+    "language": "js",
+    "source": "// 1.x\nconst [local, rest] = splitProps(props, [\"class\", \"style\"]);\n\n// 2.0\nconst rest = omit(props, \"class\", \"style\");"
+  },
+  {
+    "id": "MIGRATION:B455:1",
+    "file": "MIGRATION.md",
+    "line": 455,
+    "end_line": 456,
+    "language": "js",
+    "source": "const [count, setCount] = createSignal(0);\nconst [doubled] = createSignal(() => count() * 2);"
+  },
+  {
+    "id": "MIGRATION:B462:1",
+    "file": "MIGRATION.md",
+    "line": 462,
+    "end_line": 469,
+    "language": "js",
+    "source": "const [items] = createStore(() => api.listItems(), []);\n\nconst [cache] = createStore(\n  draft => {\n    draft.total = items().length;\n  },\n  { total: 0 }\n);"
+  },
+  {
+    "id": "MIGRATION:B485:1",
+    "file": "MIGRATION.md",
+    "line": 485,
+    "end_line": 493,
+    "language": "jsx",
+    "source": "// 1.x\n<Index each={items()}>\n  {(item, i) => <Row item={item()} index={i} />}\n</Index>\n\n// 2.0\n<For each={items()} keyed={false}>\n  {(item, i) => <Row item={item()} index={i} />}\n</For>"
+  },
+  {
+    "id": "MIGRATION:B503:1",
+    "file": "MIGRATION.md",
+    "line": 503,
+    "end_line": 509,
+    "language": "jsx",
+    "source": "<Show when={user()} fallback={<Login />}>\n  {u => <Profile user={u()} />}\n</Show>\n\n<Switch>\n  <Match when={route() === \"profile\"}>{() => <Profile />}</Match>\n</Switch>"
+  },
+  {
+    "id": "MIGRATION:B517:1",
+    "file": "MIGRATION.md",
+    "line": 517,
+    "end_line": 524,
+    "language": "jsx",
+    "source": "// 1.x style\nimport { Dynamic } from \"solid-js/web\";\n<Dynamic component={isEditing() ? Editor : Viewer} value={value()} />;\n\n// 2.0 \u2014 hoist a factory; use it like any component\nimport { dynamic } from \"@solidjs/web\";\nconst Active = dynamic(() => (isEditing() ? Editor : Viewer));\nreturn <Active value={value()} />;"
+  },
+  {
+    "id": "MIGRATION:B538:1",
+    "file": "MIGRATION.md",
+    "line": 538,
+    "end_line": 565,
+    "language": "jsx",
+    "source": "// 1.x\n<SuspenseList revealOrder=\"forwards\">\n  <Suspense fallback={<Skeleton />}><ProfileHeader /></Suspense>\n  <Suspense fallback={<Skeleton />}><Posts /></Suspense>\n</SuspenseList>\n\n// 2.0 \u2014 default sequential ordering\n<Reveal>\n  <Loading fallback={<Skeleton />}><ProfileHeader /></Loading>\n  <Loading fallback={<Skeleton />}><Posts /></Loading>\n</Reveal>\n\n// 2.0 \u2014 reveal the whole group at once\n<Reveal order=\"together\">\n  <Loading fallback={<Skeleton />}><ProfileHeader /></Loading>\n  <Loading fallback={<Skeleton />}><Posts /></Loading>\n</Reveal>\n\n// 2.0 \u2014 nested natural group that reveals independently within its slot\n<Reveal>\n  <Loading fallback={<Skeleton />}><Header /></Loading>\n  <Reveal order=\"natural\">\n    {/* Held on their fallbacks until the outer frontier reaches this slot.\n        Once released, each card reveals as its own data resolves. */}\n    <Loading fallback={<CardSkel />}><Card id={1} /></Loading>\n    <Loading fallback={<CardSkel />}><Card id={2} /></Loading>\n  </Reveal>\n</Reveal>"
+  },
+  {
+    "id": "MIGRATION:B583:1",
+    "file": "MIGRATION.md",
+    "line": 583,
+    "end_line": 587,
+    "language": "jsx",
+    "source": "<video muted={true} />\n<video muted={false} />\n\n// When the platform really wants a string:\n<some-element enabled=\"true\" />"
+  },
+  {
+    "id": "MIGRATION:B593:1",
+    "file": "MIGRATION.md",
+    "line": 593,
+    "end_line": 596,
+    "language": "jsx",
+    "source": "// 1.x\n<button onclick={increment} />\n// 2.0\n<button onClick={increment} />"
+  },
+  {
+    "id": "MIGRATION:B604:1",
+    "file": "MIGRATION.md",
+    "line": 604,
+    "end_line": 606,
+    "language": "jsx",
+    "source": "const on = (type, handler, options) => el => el.addEventListener(type, handler, options);\n\n<button ref={on(\"click\", handleClick, { capture: true })} />;"
+  },
+  {
+    "id": "MIGRATION:B623:1",
+    "file": "MIGRATION.md",
+    "line": 623,
+    "end_line": 629,
+    "language": "jsx",
+    "source": "// 1.x \u2014 the ref callback ran owned, so cleanup could live inside it\n<div\n  ref={el => {\n    el.addEventListener(\"pointerdown\", onDown);\n    onCleanup(() => el.removeEventListener(\"pointerdown\", onDown));\n  }}\n/>"
+  },
+  {
+    "id": "MIGRATION:B637:1",
+    "file": "MIGRATION.md",
+    "line": 637,
+    "end_line": 644,
+    "language": "jsx",
+    "source": "// 2.0 \u2014 setup + teardown together in the owned component scope\nlet el;\nonSettled(() => {\n  el.addEventListener(\"pointerdown\", onDown);\n  return () => el.removeEventListener(\"pointerdown\", onDown);\n});\n\n<div ref={el} />;"
+  },
+  {
+    "id": "MIGRATION:B650:1",
+    "file": "MIGRATION.md",
+    "line": 650,
+    "end_line": 665,
+    "language": "jsx",
+    "source": "function tooltip(options) {\n  let el;\n  const instance = createTooltipInstance();\n  createEffect(\n    () => options.content,\n    content => el && instance.setContent(content)\n  );\n  onCleanup(() => instance.destroy());\n\n  return nextEl => {\n    el = nextEl;\n    instance.attach(nextEl);\n  };\n}\n\n<button ref={tooltip({ content: \"Save\" })} />;"
+  },
+  {
+    "id": "MIGRATION:B673:1",
+    "file": "MIGRATION.md",
+    "line": 673,
+    "end_line": 678,
+    "language": "jsx",
+    "source": "// 1.x\n<button use:tooltip={{ content: \"Save\" }} />\n\n// 2.0\n<button ref={tooltip({ content: \"Save\" })} />\n<button ref={[autofocus, tooltip({ content: \"Save\" })]} />"
+  },
+  {
+    "id": "MIGRATION:B684:1",
+    "file": "MIGRATION.md",
+    "line": 684,
+    "end_line": 697,
+    "language": "js",
+    "source": "function titleDirective(source) {\n  // Setup phase (owned): create primitives/subscriptions here.\n  // Avoid imperative DOM mutation at top level.\n  let el;\n  createEffect(source, value => {\n    if (el) el.title = value;\n  });\n\n  // Apply phase (unowned): DOM writes happen here.\n  // No new primitives should be created in this callback.\n  return nextEl => {\n    el = nextEl;\n  };\n}"
+  },
+  {
+    "id": "MIGRATION:B703:1",
+    "file": "MIGRATION.md",
+    "line": 703,
+    "end_line": 707,
+    "language": "jsx",
+    "source": "// 1.x\n<div class=\"card\" classList={{ active: isActive(), disabled: isDisabled() }} />\n\n// 2.0\n<div class={[\"card\", { active: isActive(), disabled: isDisabled() }]} />"
+  },
+  {
+    "id": "MIGRATION:B715:1",
+    "file": "MIGRATION.md",
+    "line": 715,
+    "end_line": 721,
+    "language": "jsx",
+    "source": "// 1.x\nconst Theme = createContext(\"light\");\n<Theme.Provider value=\"dark\">{props.children}</Theme.Provider>;\n\n// 2.0\nconst Theme = createContext(\"light\");\n<Theme value=\"dark\">{props.children}</Theme>;"
+  },
+  {
+    "id": "MIGRATION:B729:1",
+    "file": "MIGRATION.md",
+    "line": 729,
+    "end_line": 739,
+    "language": "ts",
+    "source": "// 1.x \u2014 wrapper exists purely to narrow T | undefined \u2192 T\nconst TodosContext = createContext<TodosCtx>();\nconst useTodos = () => {\n  const ctx = useContext(TodosContext);\n  if (!ctx) throw new Error(\"missing TodosContext.Provider\");\n  return ctx;\n};\n\n// 2.0 \u2014 direct call. Type is TodosCtx; throws if no Provider.\nconst TodosContext = createContext<TodosCtx>();\nconst [todos, { addTodo }] = useContext(TodosContext);"
+  },
+  {
+    "id": "MIGRATION:B783:1",
+    "file": "MIGRATION.md",
+    "line": 783,
+    "end_line": 796,
+    "language": "js",
+    "source": "// 1.x\nbatch(() => {\n  setA(1);\n  setB(2);\n});\n\n// 2.0 \u2014 just write; batching is automatic\nsetA(1);\nsetB(2);\n\n// If you need synchronous \"apply now\":\nsetA(1);\nsetB(2);\nflush();"
+  },
+  {
+    "id": "MIGRATION:B806:1",
+    "file": "MIGRATION.md",
+    "line": 806,
+    "end_line": 810,
+    "language": "js",
+    "source": "// 1.x\ncreateComputed(() => setDoubled(count() * 2));\n\n// 2.0\nconst doubled = createMemo(() => count() * 2);"
+  },
+  {
+    "id": "MIGRATION:B816:1",
+    "file": "MIGRATION.md",
+    "line": 816,
+    "end_line": 826,
+    "language": "js",
+    "source": "// 1.x\ncreateComputed(() => {\n  const val = input();\n  localStorage.setItem(\"input\", val);\n});\n\n// 2.0\ncreateEffect(\n  () => input(),\n  val => localStorage.setItem(\"input\", val)\n);"
+  },
+  {
+    "id": "MIGRATION:B832:1",
+    "file": "MIGRATION.md",
+    "line": 832,
+    "end_line": 837,
+    "language": "js",
+    "source": "// 1.x\nconst [value, setValue] = createSignal(props.initial);\ncreateComputed(() => setValue(props.initial));\n\n// 2.0\nconst [value, setValue] = createSignal(() => props.initial);"
+  },
+  {
+    "id": "MIGRATION:B845:1",
+    "file": "MIGRATION.md",
+    "line": 845,
+    "end_line": 858,
+    "language": "js",
+    "source": "// 1.x\ncreateEffect(\n  on(count, (value, prev) => {\n    console.log(\"changed from\", prev, \"to\", value);\n  })\n);\n\n// 2.0 \u2014 compute phase declares deps, effect phase runs side effects\ncreateEffect(\n  () => count(),\n  (value, prev) => {\n    console.log(\"changed from\", prev, \"to\", value);\n  }\n);"
+  },
+  {
+    "id": "MIGRATION:B862:1",
+    "file": "MIGRATION.md",
+    "line": 862,
+    "end_line": 873,
+    "language": "js",
+    "source": "// 1.x \u2014 multiple deps\ncreateEffect(\n  on([a, b], ([a, b]) => {\n    console.log(a, b);\n  })\n);\n\n// 2.0\ncreateEffect(\n  () => [a(), b()],\n  ([a, b]) => console.log(a, b)\n);"
+  },
+  {
+    "id": "MIGRATION:B879:1",
+    "file": "MIGRATION.md",
+    "line": 879,
+    "end_line": 897,
+    "language": "js",
+    "source": "// 1.x\ncreateEffect(\n  on(\n    count,\n    value => {\n      console.log(\"changed to\", value);\n    },\n    { defer: true }\n  )\n);\n\n// 2.0\ncreateEffect(\n  count,\n  value => {\n    console.log(\"changed to\", value);\n  },\n  { defer: true }\n);"
+  },
+  {
+    "id": "MIGRATION:B907:1",
+    "file": "MIGRATION.md",
+    "line": 907,
+    "end_line": 915,
+    "language": "jsx",
+    "source": "// 1.x\n<ErrorBoundary fallback={err => <p>{err.message}</p>}>\n  <Child />\n</ErrorBoundary>\n\n// 2.0\n<Errored fallback={err => <p>{err().message}</p>}>\n  <Child />\n</Errored>"
+  },
+  {
+    "id": "MIGRATION:B921:1",
+    "file": "MIGRATION.md",
+    "line": 921,
+    "end_line": 935,
+    "language": "js",
+    "source": "// 1.x\ncatchError(\n  () => {\n    createEffect(() => riskyAsyncWork());\n  },\n  err => console.error(\"caught:\", err)\n);\n\n// 2.0\ncreateEffect(() => riskyAsyncWork(), {\n  effect: value => {\n    /* success path */\n  },\n  error: err => console.error(\"caught:\", err)\n});"
+  },
+  {
+    "id": "MIGRATION:B943:1",
+    "file": "MIGRATION.md",
+    "line": 943,
+    "end_line": 956,
+    "language": "js",
+    "source": "// 1.x\nimport { produce } from \"solid-js/store\";\nsetStore(\n  produce(s => {\n    s.user.name = \"Alice\";\n    s.list.push(\"item\");\n  })\n);\n\n// 2.0 \u2014 draft-first is the default\nsetStore(s => {\n  s.user.name = \"Alice\";\n  s.list.push(\"item\");\n});"
+  },
+  {
+    "id": "MIGRATION:B962:1",
+    "file": "MIGRATION.md",
+    "line": 962,
+    "end_line": 962,
+    "language": "js",
+    "source": "setStore(storePath(\"user\", \"name\", \"Alice\"));"
+  },
+  {
+    "id": "MIGRATION:B970:1",
+    "file": "MIGRATION.md",
+    "line": 970,
+    "end_line": 980,
+    "language": "js",
+    "source": "// 1.x\nconst state = createMutable({ count: 0, items: [] });\nstate.count++;\nstate.items.push(\"a\");\n\n// 2.0\nconst [state, setState] = createStore({ count: 0, items: [] });\nsetState(s => {\n  s.count++;\n  s.items.push(\"a\");\n});"
+  },
+  {
+    "id": "MIGRATION:B992:1",
+    "file": "MIGRATION.md",
+    "line": 992,
+    "end_line": 1001,
+    "language": "js",
+    "source": "// 1.x\nimport { from } from \"solid-js\";\nconst signal = from(observable$);\n\n// 2.0 \u2014 async iterables are first-class in computations\nconst value = createMemo(async function* () {\n  for await (const val of observable$) {\n    yield val;\n  }\n});"
+  },
+  {
+    "id": "MIGRATION:B1007:1",
+    "file": "MIGRATION.md",
+    "line": 1007,
+    "end_line": 1015,
+    "language": "js",
+    "source": "// 1.x\nimport { observable } from \"solid-js\";\nconst obs$ = observable(signal);\nobs$.subscribe(value => externalLib.update(value));\n\n// 2.0 \u2014 use an effect to push changes outward\ncreateEffect(signal, value => {\n  externalLib.update(value);\n});"
+  }
+]

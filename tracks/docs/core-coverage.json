@@ -390,8 +390,11 @@
     "end_line": 106,
     "section": "`flush` and microtask batching",
     "statement": "Writes inside the callback do not schedule the normal microtask flush; they are drained before `flush(fn)` returns, so you can update state and immediately read reactive values or DOM without leaving a queued flush behind.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "01/flush-callback-no-microtask",
+      "01/dom-flush-boundary"
+    ],
+    "status": "covered"
   },
   {
     "id": "01-reactivity-batching-effects:L106:3",
@@ -724,8 +727,11 @@
     "end_line": 219,
     "section": "`createRenderEffect` (render-phase split effect)",
     "statement": "When its dependencies change, the apply function runs immediately (this is the \"tearing\" behavior: it can observe intermediate states rather than waiting for the full batch to settle).",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "01/render-effect-tearing",
+      "01/render-effect-cleanup"
+    ],
+    "status": "covered"
   },
   {
     "id": "01-reactivity-batching-effects:L221:1",
@@ -1723,8 +1729,11 @@
     "end_line": 14,
     "section": "Motivation",
     "statement": "- **Dynamic components as values:** A factory that returns a stable `Component<P>` composes cleanly with JSX (reactive props, children, refs) and with the async-computation model \u2014 async sources flow through `Loading` via the same `NotReadyError` path as any other not-ready reactive read.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/dynamic-props-children-ref",
+      "03/dynamic-stable-shared"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L20:1",
@@ -1844,8 +1853,11 @@
     "end_line": 56,
     "section": "Range/count rendering: `Repeat`",
     "statement": "`Repeat` renders based on `count` (and optional `from`), with no list diffing.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/repeat-offset",
+      "03/repeat-empty"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L56:2",
@@ -1877,8 +1889,10 @@
     "end_line": 58,
     "section": "Range/count rendering: `Repeat`",
     "statement": "The index is just a stable lookup key; reactivity comes from the store reads, not the index changing:",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/repeat-store-granularity"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L84:1",
@@ -2085,8 +2099,10 @@
     "end_line": 148,
     "section": "Reporting what a boundary caught: the client error hook",
     "statement": "A fallback rendered is a failure handled \u2014 and, until now, one nothing outside the app could see in production: the browser's global handlers hear what reaches `window.onerror`, and a caught error never does.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/client-error-hook-return-ignored"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L148:2",
@@ -2095,8 +2111,10 @@
     "end_line": 148,
     "section": "Reporting what a boundary caught: the client error hook",
     "statement": "The client error hook is the prod-tier seam for it \u2014 any app that wants to log its errors, not only an APM \u2014 and the twin of the server's `configureServerErrors` ([RFC 12](12-ssr-http.md#the-server-error-hook-configureservererrors--onerror)):",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/client-error-hook-return-ignored"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L163:1",
@@ -2117,8 +2135,10 @@
     "end_line": 163,
     "section": "Reporting what a boundary caught: the client error hook",
     "statement": "An **uncaught** error is not this hook's: nothing contained it, the reactive system halts (`REACTIVITY_HALTED`), and the cause goes to the platform's `reportError` \u2014 `window.onerror`, the channel every monitor and every `addEventListener(\"error\")` already listens on.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "08/primitive-halt-lifecycle"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L163:3",
@@ -2127,8 +2147,10 @@
     "end_line": 163,
     "section": "Reporting what a boundary caught: the client error hook",
     "statement": "One event, one channel.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "08/primitive-halt-lifecycle"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L164:1",
@@ -2149,8 +2171,10 @@
     "end_line": 165,
     "section": "Reporting what a boundary caught: the client error hook",
     "statement": "- `ownerPath` is where the error was **thrown** \u2014 labels root-first up the owner chain of the computation that threw (component labels and named primitives; the compiler's inner memos ride along by their default name) \u2014 and `boundaryPath` where it was **met**, the same labels up the `<Errored>`'s own chain: what broke, and what the user saw.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/client-error-owner-path"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L165:2",
@@ -2159,8 +2183,11 @@
     "end_line": 165,
     "section": "Reporting what a boundary caught: the client error hook",
     "statement": "Both where the runtime keeps owner names (the observe and dev artifacts; production owners carry none).",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/client-error-owner-path"
+    ],
+    "status": "uncovered",
+    "reason": "Dev and production proved; observe artifact is not yet run for this client context path fixture."
   },
   {
     "id": "03-control-flow:L165:3",
@@ -2179,8 +2206,10 @@
     "end_line": 166,
     "section": "Reporting what a boundary caught: the client error hook",
     "statement": "- No return: the client has no wire to map for.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/client-error-hook-return-ignored"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L166:2",
@@ -2189,8 +2218,10 @@
     "end_line": 166,
     "section": "Reporting what a boundary caught: the client error hook",
     "statement": "A throwing hook is reported on the console and ignored \u2014 a monitor never takes the app down.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/client-error-hook-return-ignored"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L167:1",
@@ -2209,8 +2240,11 @@
     "end_line": 169,
     "section": "Reporting what a boundary caught: the client error hook",
     "statement": "An effect's own error arm (`createEffect(compute, effect, onError)`) is the author handling the failure and is not reported here.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/client-error-effect-arm",
+      "findings/030-effect-error-signature/repro.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L173:1",
@@ -2245,8 +2279,11 @@
     "end_line": 173,
     "section": "Dynamic components: the `dynamic` factory",
     "statement": "The returned value is usable anywhere a component is \u2014 children, refs, and reactive props flow through the normal JSX path.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/dynamic-props-children-ref",
+      "03/dynamic-stable-shared"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L187:1",
@@ -2266,8 +2303,10 @@
     "end_line": 187,
     "section": "Dynamic components: the `dynamic` factory",
     "statement": "It remains available in 2.0 (no runtime warning), but new code should not use it.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/dynamic-wrapper-retained"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L187:3",
@@ -2503,8 +2542,12 @@
     "end_line": 244,
     "section": "Client-only components: `clientOnly`",
     "statement": "Unlike `lazy()`, it avoids Suspense entirely \u2014 it composes with no `Loading` boundary \u2014 and never server-renders the wrapped component, so the component participates in no hydration asset manifest and its code is guaranteed never to run on the server.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/client-only-ssr",
+      "03/client-only-import-start",
+      "tracks/docs/policy.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L244:2",
@@ -2524,8 +2567,10 @@
     "end_line": 246,
     "section": "Client-only components: `clientOnly`",
     "statement": "Hydration is mismatch-free by construction: during hydration the client renders the fallback exactly as the server did \u2014 the server-rendered fallback DOM is claimed, not re-created \u2014 and the swap to the real component happens only after the tree has settled.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/policy.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L246:2",
@@ -2534,8 +2579,12 @@
     "end_line": 246,
     "section": "Client-only components: `clientOnly`",
     "statement": "In pure client rendering (no hydration), the fallback shows until the import resolves.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/client-only-ssr",
+      "03/client-only-import-start",
+      "tracks/docs/policy.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L248:1",
@@ -2544,8 +2593,12 @@
     "end_line": 248,
     "section": "Client-only components: `clientOnly`",
     "statement": "By default the import starts as soon as `clientOnly(...)` is called (module load); pass `{ lazy: true }` to defer it to the component's first render.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/client-only-ssr",
+      "03/client-only-import-start",
+      "tracks/docs/policy.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L248:2",
@@ -2680,8 +2733,12 @@
     "end_line": 262,
     "section": "Props",
     "statement": "- `collapsed` \u2014 `boolean`.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/reveal-collapsed-sequential",
+      "03/reveal-collapsed-together",
+      "03/reveal-collapsed-natural"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L262:2",
@@ -2690,8 +2747,12 @@
     "end_line": 262,
     "section": "Props",
     "statement": "Only consulted when `order=\"sequential\"` (ignored under `\"together\"` and `\"natural\"`).",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/reveal-collapsed-sequential",
+      "03/reveal-collapsed-together",
+      "03/reveal-collapsed-natural"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L262:3",
@@ -2700,8 +2761,12 @@
     "end_line": 262,
     "section": "Props",
     "statement": "When set, boundaries past the current frontier render nothing instead of their own fallback; only the frontier fallback is visible.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/reveal-collapsed-sequential",
+      "03/reveal-collapsed-together",
+      "03/reveal-collapsed-natural"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L286:1",
@@ -2770,8 +2835,10 @@
     "end_line": 288,
     "section": "Nesting",
     "statement": "This rule is absolute.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/reveal-extra-boundary-loading"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L288:2",
@@ -2780,8 +2847,10 @@
     "end_line": 288,
     "section": "Nesting",
     "statement": "There is no opt-out: wrapping children in an extra `<Loading>` does not let them escape an outer hold, because the `<Loading>` is itself just another slot that the parent holds.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/reveal-extra-boundary-loading"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L288:3",
@@ -2790,8 +2859,10 @@
     "end_line": 288,
     "section": "Nesting",
     "statement": "If you need a subtree to reveal independently of an outer group, do not nest it under that group.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/reveal-extra-boundary-loading"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L290:1",
@@ -2800,8 +2871,11 @@
     "end_line": 290,
     "section": "Nesting",
     "statement": "Group _membership_ is direct-children-only: every boundary (`<Loading>` or `<Errored>`) severs reveal coordination for its subtree.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/reveal-extra-boundary-loading",
+      "03/reveal-extra-boundary-errored"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L290:2",
@@ -2810,8 +2884,11 @@
     "end_line": 290,
     "section": "Nesting",
     "statement": "A `<Loading>` nested inside another slot's content \u2014 or wrapped in an `<Errored>` \u2014 does not join the group and never delays its release; it is covered by its own fallback inside the (possibly held) slot and settles on its own schedule.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/reveal-extra-boundary-loading",
+      "03/reveal-extra-boundary-errored"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L290:3",
@@ -2820,8 +2897,11 @@
     "end_line": 290,
     "section": "Nesting",
     "statement": "While the enclosing slot is still held, any content the severed boundary streams is queued and applied the moment the slot goes live.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/reveal-extra-boundary-loading",
+      "03/reveal-extra-boundary-errored"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L294:1",
@@ -3031,7 +3111,8 @@
     "section": "Nesting matrix",
     "statement": "| Outer `order` | Inner `order` | Outer release condition                                                                                             | After outer releases, inner siblings behave as                                                                            |",
     "coverage": [],
-    "status": "uncovered"
+    "status": "not-behavioral",
+    "reason": "This is the header of the nested Reveal comparison table; the nine behavior-bearing rows are separately inventoried and tested."
   },
   {
     "id": "03-control-flow:L308:1",
@@ -3329,8 +3410,11 @@
     "end_line": 439,
     "section": "Removals",
     "statement": "| `createDynamic(source, props)` | `dynamic(source)` factory |",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/dynamic-stable-shared",
+      "tracks/docs/types.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L443:1",
@@ -3767,8 +3851,11 @@
     "end_line": 134,
     "section": "Derived stores: `createProjection` and `createStore(fn)`",
     "statement": "Reading a not-yet-settled async source inside a derive throws; that propagation is load-bearing.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "04/projection-async-propagation-swallowed",
+      "04/projection-async-propagation-escaped"
+    ],
+    "status": "covered"
   },
   {
     "id": "04-stores:L134:3",
@@ -3777,8 +3864,11 @@
     "end_line": 134,
     "section": "Derived stores: `createProjection` and `createStore(fn)`",
     "statement": "It is how loading states coordinate on every build, and on the server build \u2014 which has no subscription graph \u2014 it is additionally the *only* re-derive channel: the projection machinery catches the escaping error, holds the projection pending, and retries the derive when the source settles.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "04/projection-async-propagation-swallowed",
+      "04/projection-async-propagation-escaped"
+    ],
+    "status": "covered"
   },
   {
     "id": "04-stores:L134:4",
@@ -3787,8 +3877,11 @@
     "end_line": 134,
     "section": "Derived stores: `createProjection` and `createStore(fn)`",
     "statement": "A derive that wraps its reads in a broad `try/catch` \"completes\" with partial state and severs that channel \u2014 the browser build masks the mistake (dependencies register before the throw, so reactivity re-runs the derive anyway), but the node build freezes at the first result.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "04/projection-async-propagation-swallowed",
+      "04/projection-async-propagation-escaped"
+    ],
+    "status": "covered"
   },
   {
     "id": "04-stores:L134:5",
@@ -4605,8 +4698,11 @@
     "end_line": 48,
     "section": "`Loading` is the UI boundary",
     "statement": "Nested `Loading` boundaries can be used to avoid blocking large subtrees and to control where loading UI appears.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/reveal-extra-boundary-loading",
+      "03/reveal-extra-boundary-errored"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L50:1",
@@ -4965,8 +5061,10 @@
     "end_line": 102,
     "section": "`isPending(fn)` (in-flight change queries)",
     "statement": "To make a reload read as pending, declare it: `affects(user); refresh(user)`.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "06/affects-refresh-additive"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L104:1",
@@ -4975,8 +5073,10 @@
     "end_line": 104,
     "section": "`isPending(fn)` (in-flight change queries)",
     "statement": "`isPending` performs the read you pass it, so its placement matters: reading async data can participate in Loading/SSR readiness, while reading upstream state only observes that state's own pending transition.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/pending-read-placement"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L120:1",
@@ -4985,8 +5085,10 @@
     "end_line": 120,
     "section": "`isPending(fn)` (in-flight change queries)",
     "statement": "Because this pending read reaches the async values directly, it sits under the same `Loading` boundary as the data read.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/pending-read-placement"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L120:2",
@@ -4995,8 +5097,10 @@
     "end_line": 120,
     "section": "`isPending(fn)` (in-flight change queries)",
     "statement": "On first load, the boundary owns fallback UI; after the values have resolved once, the inline indicator shows while a changed `query()` is being answered.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/pending-read-placement"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L120:3",
@@ -5005,8 +5109,10 @@
     "end_line": 120,
     "section": "`isPending(fn)` (in-flight change queries)",
     "statement": "`isPending` may also be used outside a `Loading` boundary when the expression only reads upstream state that cannot itself be not ready.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/pending-read-placement"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L122:1",
@@ -5037,8 +5143,10 @@
     "end_line": 130,
     "section": "`isPending(fn)` (in-flight change queries)",
     "statement": "This only works when the expression passed to `isPending` actually reaches the async source (or a value already held by the reactive graph).",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/pending-read-placement"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L130:2",
@@ -5047,8 +5155,10 @@
     "end_line": 130,
     "section": "`isPending(fn)` (in-flight change queries)",
     "statement": "A separate UI tree that only reads an upstream signal cannot infer that some lower subtree is on the Loading path:",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/pending-read-placement"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L137:1",
@@ -5079,8 +5189,11 @@
     "end_line": 141,
     "section": "`latest(fn)` (peek at in-flight values)",
     "statement": "`latest(fn)` reads the \u201cin flight\u201d value of a signal/computation during transitions, and may fall back to stale if the next value isn\u2019t available yet.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/latest",
+      "05/latest-async-stale"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L151:1",
@@ -5236,8 +5349,11 @@
     "end_line": 177,
     "section": "`loadingValue` / `seedLoadingValue`: declared first paint (advanced)",
     "statement": "Its first flight never suspends readers, never trips a `Loading` boundary, and never holds a transition \u2014 the placeholder renders immediately, and the answer reveals when it lands.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/undefined-loading-value",
+      "05/loading-value-pending-window"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L178:1",
@@ -5319,7 +5435,7 @@
     "section": "`loadingValue` / `seedLoadingValue`: declared first paint (advanced)",
     "statement": "- SSR renders the declared value into the HTML rather than suspending, and the landing streams as data; hydration claims against it.",
     "coverage": [
-      "05/policy-declared-client"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5331,7 +5447,7 @@
     "section": "`loadingValue` / `seedLoadingValue`: declared first paint (advanced)",
     "statement": "With `ssrSource: \"client\"` (below) the declaration is what makes a browser-only compute renderable on the server at all \u2014 without it, the source suspends structurally instead.",
     "coverage": [
-      "05/policy-declared-client"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5421,8 +5537,7 @@
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "**`ssrSource`** is the hydration policy: what initial value the client uses, and whether the compute re-runs.",
     "coverage": [
-      "05/policy-server",
-      "05/policy-tracking-fetch"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5434,8 +5549,7 @@
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "- `\"server\"` _(default)_ \u2014 the client uses the serialized server value as its initial state.",
     "coverage": [
-      "05/policy-server",
-      "05/policy-tracking-fetch"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5447,8 +5561,7 @@
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "The compute does **not** re-run for the initial value; the serialized result is authoritative (the client only traces it to record dependencies \u2014 see [the tracking run](#the-tracking-run-known-limitations)).",
     "coverage": [
-      "05/policy-server",
-      "05/policy-tracking-fetch"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5471,7 +5584,7 @@
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "- `\"hybrid\"` \u2014 the client seeds from the serialized server value; then, for a compute that returns an **async iterable**, the client continues the stream from it.",
     "coverage": [
-      "05/policy-hybrid-iterable"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5483,7 +5596,7 @@
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "The server consumed exactly one yield; the client re-runs the generator once the adopted answer has landed, its first yield duplicates that answer and is discarded, and later yields update the node.",
     "coverage": [
-      "05/policy-hybrid-iterable"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5505,7 +5618,7 @@
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "For a **sync or promise-shaped** compute, `\"hybrid\"` is identical to `\"server\"`: there is no stream for the client to continue, so the serialized value is adopted and the compute does not re-run until a dependency changes or `refresh()`.",
     "coverage": [
-      "05/policy-hybrid-promise"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5528,7 +5641,7 @@
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "- `\"client\"` \u2014 skip the server value entirely.",
     "coverage": [
-      "05/policy-client"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5540,7 +5653,7 @@
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "On the server the compute never runs (an owner is still created so hydration ids stay aligned); on the client it is deferred until hydration completes, then runs as if first-mounted.",
     "coverage": [
-      "05/policy-client"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5574,7 +5687,7 @@
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "- **Bare (structural)** \u2014 with no declaration, the source is a hole the server can never fill.",
     "coverage": [
-      "05/policy-client"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5586,7 +5699,7 @@
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "Reads suspend _finally_: the nearest `Loading` boundary flushes its fallback into the HTML and hands the position to the client, which renders the content fresh after hydration.",
     "coverage": [
-      "05/policy-client"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5608,7 +5721,7 @@
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "- **Declared (`loadingValue` / `seedLoadingValue`, above)** \u2014 the server renders the declared first paint instead of suspending; the client serves the same value while hydrating, then runs the compute.",
     "coverage": [
-      "05/policy-declared-client"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5619,8 +5732,12 @@
     "end_line": 199,
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "`loadingValue: undefined` is a valid declaration \u2014 put the `undefined` in the type and branch on it; store-family sources declare `seedLoadingValue: true` (the seed is what the pre-compute window renders).",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/undefined-loading-value",
+      "05/seed-loading-value",
+      "tracks/docs/types.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L225:1",
@@ -5666,7 +5783,7 @@
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "**`transparent: true`** (integration tier \u2014 accepted by effects and memos) makes the node invisible to hydration: it inherits its parent's id instead of consuming a child slot, and its compute runs live during hydration instead of adopting the serialized server value.",
     "coverage": [
-      "05/policy-transparent"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5678,7 +5795,7 @@
     "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
     "statement": "It exists for **client-only reactive nodes created while hydrating** \u2014 nodes the server never rendered, so an id-consuming owner would shift every later sibling's hydration id and break serialized lookups and template claims (this is how `@solidjs/router` wires link state and scroll restoration).",
     "coverage": [
-      "05/policy-transparent"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5721,7 +5838,7 @@
     "section": "The tracking run: known limitations",
     "statement": "A compute that adopts a serialized value (`\"server\"`, `\"hybrid\"`) still has dependencies to record, so the hydrating client runs it synchronously and discards the result.",
     "coverage": [
-      "05/policy-tracking-fetch"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5733,7 +5850,7 @@
     "section": "The tracking run: known limitations",
     "statement": "For that synchronous window the global `Promise` and `fetch` are replaced by fakes whose promises never settle.",
     "coverage": [
-      "05/policy-tracking-fetch"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5745,7 +5862,7 @@
     "section": "The tracking run: known limitations",
     "statement": "The fake `fetch` sends nothing, and code awaiting a fake never resumes, so a request further down that chain is never made either.",
     "coverage": [
-      "05/policy-tracking-fetch"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5767,7 +5884,7 @@
     "section": "The tracking run: known limitations",
     "statement": "**A non-fake `await` before the request sends a duplicate.** `await` and `async` functions use the engine's own Promise, not the global.",
     "coverage": [
-      "05/policy-tracking-await"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5779,7 +5896,7 @@
     "section": "The tracking run: known limitations",
     "statement": "Code after an `await` on anything that isn't a fake resumes a microtask after the window closes, when `fetch` is real again:",
     "coverage": [
-      "05/policy-tracking-await"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5791,7 +5908,7 @@
     "section": "The tracking run: known limitations",
     "statement": "The same happens after `await 0`, an already-resolved promise, or a promise created before hydration.",
     "coverage": [
-      "05/policy-tracking-await"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5803,7 +5920,7 @@
     "section": "The tracking run: known limitations",
     "statement": "The request goes out and its answer is discarded.",
     "coverage": [
-      "05/policy-tracking-await"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5815,7 +5932,7 @@
     "section": "The tracking run: known limitations",
     "statement": "Nothing hangs or corrupts; it is wasted work.",
     "coverage": [
-      "05/policy-tracking-await"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5869,7 +5986,7 @@
     "section": "The tracking run: known limitations",
     "statement": "**Caches must not keep promises created during the tracking run.** A promise that awaits the fake `fetch`, or one built from the fake `Promise`, never settles.",
     "coverage": [
-      "05/policy-cached-fake"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5881,7 +5998,7 @@
     "section": "The tracking run: known limitations",
     "statement": "Stored in a cache that outlives the run, it hangs every later reader of that entry:",
     "coverage": [
-      "05/policy-cached-fake"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -5915,7 +6032,7 @@
     "section": "The tracking run: known limitations",
     "statement": "The fakes only replace the global inside the window.",
     "coverage": [
-      "05/policy-tracking-fetch"
+      "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
   },
@@ -6008,8 +6125,10 @@
     "end_line": 317,
     "section": "`resource.loading` \u2192 `isPending`",
     "statement": "Remember: `isPending(fn)` actively reads `fn`.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/pending-read-placement"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L317:2",
@@ -6018,8 +6137,10 @@
     "end_line": 317,
     "section": "`resource.loading` \u2192 `isPending`",
     "statement": "If that read is not ready yet, it follows the same `Loading` path as reading the value directly.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/pending-read-placement"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L317:3",
@@ -6123,8 +6244,10 @@
     "end_line": 344,
     "section": "`resource.refetch` \u2192 `refresh()`",
     "statement": "The promise is safe to ignore \u2014 fire-and-forget `refresh()` is unchanged, and a failed refetch never surfaces an unhandled rejection from an ignored promise.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "06/ignored-refresh-rejection"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L344:2",
@@ -6689,8 +6812,11 @@
     "end_line": 81,
     "section": "Awaitable `refresh()`",
     "statement": "Fire-and-forget callers can keep ignoring it (an ignored promise never surfaces an unhandled rejection); awaiting it turns refresh into a sequencing point:",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "06/ignored-refresh-rejection",
+      "05/refresh-delivery"
+    ],
+    "status": "covered"
   },
   {
     "id": "06-actions-optimistic:L93:1",
@@ -6786,8 +6912,11 @@
     "end_line": 97,
     "section": "Awaitable `refresh()`",
     "statement": "Inside an action, `yield refresh(x)` throws back at the yield point, so the failure joins the action's normal story: catch it to compensate, or let it revert the optimistic state with the failed action.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "06/refresh-rejection-action",
+      "06/refresh-rejection-compensate"
+    ],
+    "status": "covered"
   },
   {
     "id": "06-actions-optimistic:L98:1",
@@ -6878,8 +7007,10 @@
     "end_line": 105,
     "section": "`affects(target, key?)` (declare what in-flight work will change)",
     "statement": "It is additive only: a declaration can turn pending *on* for data the graph can't see changing yet; nothing turns pending *off* while a real change is in flight \u2014 pairing `affects(x)` with `refresh(x)` keeps the whole window pending even though the bare refresh alone would be quiet.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "06/affects-refresh-additive"
+    ],
+    "status": "covered"
   },
   {
     "id": "06-actions-optimistic:L107:1",
@@ -7253,8 +7384,10 @@
     "end_line": 186,
     "section": "`until()` (live-source acknowledgment)",
     "statement": "They share delivery machinery; the read-semantics differences are deliberate: `resolve` reads your own transaction's view, overrides included \u2014 it is reporting your state.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "06/resolve-own-overlay"
+    ],
+    "status": "covered"
   },
   {
     "id": "06-actions-optimistic:L186:3",
@@ -9054,8 +9187,10 @@
     "end_line": 38,
     "section": "Consuming the stream: `pipe`, `pipeTo`, `readable`",
     "statement": "- `pipeTo(writable)` \u2014 web `WritableStream`; returns a promise that settles when the render has been fully written.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/stream-pipe-to"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L39:1",
@@ -9288,8 +9423,10 @@
     "end_line": 90,
     "section": "The request event",
     "statement": "Returns `undefined` outside one.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/event-outside-scope"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L91:1",
@@ -9310,8 +9447,11 @@
     "end_line": 91,
     "section": "The request event",
     "statement": "Integrations call it around the render; it throws on the client, where there is no request to scope.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/request-scope",
+      "12/client-request-scope-throws"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L102:1",
@@ -9620,8 +9760,10 @@
     "end_line": 145,
     "section": "What a render failure looks like from the client",
     "statement": "The observe tier records each replacement once as `SERVER_ERROR_SANITIZED` with `data.source: \"ssr\"` (advisory; `data.error` the original, `data.wire` what replaced it), beside the `SSR_RENDER_ERROR_CONTAINED` finding that carries the failure itself \u2014 the server keeps the truth, the wire gets the generic.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-diagnostics.test.ts#08/server-road-sanitize-ssr-false"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L149:1",
@@ -9663,8 +9805,11 @@
     "end_line": 168,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "- **Called once per error object, at first sight**, with where the failure was met.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L168:2",
@@ -9673,8 +9818,14 @@
     "end_line": 168,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "`kind: \"render\"` \u2014 `fallback` (an `<Errored>` rendered its fallback; `boundary` is its hydration id and `boundaryPath` its component labels \u2014 where the error was **met** \u2014 while `ownerPath` is where it was **thrown**, the labels up the owner chain it escaped, when the compiler emitted them), `client` (a `<Loading>` fragment rejected, the client re-renders the subtree), `failed` (nothing contained it; the request fails \u2014 including a synchronous throw out of `renderToString` or `renderToStream`'s first pass, reported before it reaches the caller), `serialize` (a hydration value would not serialize and the render went on without it \u2014 reported for a render that passed `onError`, as seroval's own `onError` always was).",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-client-source-mapping",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-serialization-road"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L168:3",
@@ -9683,8 +9834,12 @@
     "end_line": 168,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "`kind: \"server-function\"` \u2014 `thrown` (the body threw; `functionId`, and `direct: true` for an in-process call during SSR) or `channel` (a rejection or throw escaping through the result graph, the head already committed).",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-deferred-channel"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L168:4",
@@ -9693,8 +9848,10 @@
     "end_line": 168,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "`kind: \"request\"` is always `failed`: a failure that fails the request outside any render or server function the runtime reports (a middleware throw, a setup step), reported by the framework's request handler through `reportRequestFailure(error, event)`.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L168:5",
@@ -9703,8 +9860,11 @@
     "end_line": 168,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "A render failure, synchronous throws included, is reported as `render`, so a handler that catches one and passes it to `reportRequestFailure` adds nothing.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L168:6",
@@ -9713,8 +9873,10 @@
     "end_line": 168,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "It has no per-request tier, so only the ambient hook hears it.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L168:7",
@@ -9723,8 +9885,12 @@
     "end_line": 168,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "`event` is the request, when the failure happened inside one, and always for `kind: \"request\"`.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L169:1",
@@ -9733,8 +9899,12 @@
     "end_line": 169,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "- **The return is the wire value**: rendered into the fallback, serialized for hydration, sent as the RPC error.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L169:2",
@@ -9743,8 +9913,10 @@
     "end_line": 169,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "`undefined` leaves the default policy in place (generic outside dev, fidelity in dev).",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-throwing-hook"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L169:3",
@@ -9753,8 +9925,11 @@
     "end_line": 169,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "A returned value is the author's intent \u2014 like a `wrapInvocation` mapping \u2014 and is not sanitized again; `markSafeError` is not needed on it.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L169:4",
@@ -9763,8 +9938,12 @@
     "end_line": 169,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "Ignored for `failed` and `serialize`, which have no wire.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-serialization-road"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L169:5",
@@ -9773,8 +9952,10 @@
     "end_line": 169,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "One road a mapping does not reach: a rejected async source's serialized rejection is encoded the moment the source rejects, ahead of the boundary, and carries the default policy's value; the hydrating client renders from the boundary's record, which carries the mapping.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-client-source-mapping"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L170:1",
@@ -9783,8 +9964,10 @@
     "end_line": 170,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "- **Once means once across roads.** A direct server-function call that throws during SSR is met first by the invocation (`kind: \"server-function\"`, `direct: true`) and then by the `<Errored>` that contains it; the boundary reuses the verdict \u2014 the same replacement in the fallback and the record \u2014 and does not report again.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L170:2",
@@ -9793,8 +9976,10 @@
     "end_line": 170,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "A `<Loading>` re-pull recurring the same throw is the same object, the same verdict.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-loading-repull-same-verdict"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L170:3",
@@ -9803,8 +9988,10 @@
     "end_line": 170,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "The observe tier keeps the multi-event picture (an `\"invocation\"` record _and_ an `SSR_RENDER_ERROR_CONTAINED` finding) for consumers that want it.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-direct-observe-multi-road"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L171:1",
@@ -9813,8 +10000,11 @@
     "end_line": 171,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "- **Two tiers, as `wrapInvocation` has.** Ambient: `configureServerErrors({ onError })`, once per process, registered on `globalThis` under a registered symbol so a bundled server build and an instrumented `--import`ed module share it \u2014 and the only tier that sees direct in-process calls.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "findings/031-direct-error-hook-tier/repro.test.ts",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-external-ambient-symbol"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L171:2",
@@ -9823,8 +10013,11 @@
     "end_line": 171,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "Per request, overriding it: `onError` on `renderToStream`/`renderToString`, and on `handleServerFunctionRequest` for the call it dispatches.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-render-override",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L171:3",
@@ -9833,8 +10026,10 @@
     "end_line": 171,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "A throwing hook is reported on the console and treated as silent.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-throwing-hook"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L171:4",
@@ -9843,8 +10038,10 @@
     "end_line": 171,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "With no hook anywhere, a failure that fails the request goes to `console.error` \u2014 never silent.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-no-hook-failed-console"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L171:5",
@@ -9853,8 +10050,12 @@
     "end_line": 171,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "A synchronous render throw is the exception: it is rethrown to the caller, whose own handling (or `reportRequestFailure`) decides.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-no-hook-failed-console",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L172:1",
@@ -9863,8 +10064,10 @@
     "end_line": 172,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "- **One listener, every failure.** A `renderToStream` `onError` written for the old single-argument shape keeps working; it now hears every handled failure, not only the one that fails the request \u2014 filter on `context.handling === \"failed\"` for the old behaviour.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-stream-old-shape"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L172:2",
@@ -9873,8 +10076,11 @@
     "end_line": 172,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "The hook fires in every tier, dev included; only the _default_ mapping differs by tier.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-throwing-hook"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L173:1",
@@ -9894,8 +10100,10 @@
     "end_line": 173,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "An uncaught client error halts and reaches `reportError`.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "08/primitive-halt-lifecycle"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L177:1",
@@ -9952,8 +10160,12 @@
     "end_line": 201,
     "section": "The trace the request belongs to: `getTraceContext()`",
     "statement": "A render outside any request scope has its own; outside both, and on the client, it is `undefined`.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/trace-render-owned-outside",
+      "12/client-request-scope-throws",
+      "tracks/records/trace.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L201:4",
@@ -9985,8 +10197,10 @@
     "end_line": 203,
     "section": "The trace the request belongs to: `getTraceContext()`",
     "statement": "A `Server-Timing` name the application already wrote (an `httpHeader` declaration, an integration's metrics) is respected; the runtime's entries fold in beside it.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/records/trace.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L203:3",
@@ -10043,8 +10257,10 @@
     "end_line": 203,
     "section": "The trace the request belongs to: `getTraceContext()`",
     "statement": "The incoming `baggage` is likewise never echoed to the page \u2014 it is upstream context; a provider that wants its own in the document adds it.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/records/trace.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L205:1",
@@ -10053,8 +10269,10 @@
     "end_line": 205,
     "section": "The trace the request belongs to: `getTraceContext()`",
     "statement": "The same header carries the request's **timed work** for the Performance panel (RFC 08, [Chrome Performance panel](08-dev-diagnostics.md#chrome-performance-panel-solidjswebperformance-tracks)) each a projection of one of the server's records on `OBSERVE.records`, under that record's gate: `solid-invocation;dur=\u2026;desc=\"<id>\"` on a server-function response (the `\"invocation\"` record), `solid-shell;dur=\u2026` (the `\"render\"` record's `shellMs`: render start \u2192 the shell complete) and one `solid-boundary;dur=\u2026;desc=\"<owner path>\"` per boundary that waited and settled before the shell on a document (each a `\"boundary\"` record).",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/records/trace.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L205:2",
@@ -10063,8 +10281,10 @@
     "end_line": 205,
     "section": "The trace the request belongs to: `getTraceContext()`",
     "statement": "The header is computed from the record objects at head commit \u2014 one clock, one object per metric.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/records/trace.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L205:3",
@@ -10073,8 +10293,10 @@
     "end_line": 205,
     "section": "The trace the request belongs to: `getTraceContext()`",
     "statement": "Dev builds always write them; observe builds only while something has `observe.records.observed(\"invocation\")` / `(\"render\")` / `(\"boundary\")` \u2014 the record is being built for a listener, so the header rides along \u2014 and prod builds never have the code.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/records/trace.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L205:4",
@@ -10083,8 +10305,10 @@
     "end_line": 205,
     "section": "The trace the request belongs to: `getTraceContext()`",
     "statement": "The header freezes when the head leaves, so a streamed boundary is not on it; `desc` values are sanitized to printable ASCII (the owner path joins with `>` on the wire) because a header value cannot carry code points above `0xFF`.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/records/trace.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L207:1",
@@ -10196,8 +10420,10 @@
     "end_line": 237,
     "section": "Cookies: the codec + native `Headers`",
     "statement": "Nothing in the client runtime imports it internally, so it tree-shakes out of bundles that don\u2019t.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/cookie-bundle.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L238:1",
@@ -10218,8 +10444,11 @@
     "end_line": 239,
     "section": "Cookies: the codec + native `Headers`",
     "statement": "- **Writes are event-time mutations of the outgoing head** \u2014 `Headers.append` semantics exactly, owning no scope and never retracting. (Cookies declared through `httpHeader` are also simply correct now \u2014 its retraction snapshots and restores `set-cookie` entry-exactly instead of comma-joining \u2014 but the append above is the blessed spelling.)",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/cookie-scope-independent",
+      "12/cookie-declaration-retraction"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L240:1",
@@ -10228,8 +10457,10 @@
     "end_line": 240,
     "section": "Cookies: the codec + native `Headers`",
     "statement": "- **Committed is a hard line, never a silent one \u2014 enforced on the stub itself.** A late cookie is imperative data (a session being established); losing it is a bug.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/committed-header-mutation"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L240:2",
@@ -10238,8 +10469,10 @@
     "end_line": 240,
     "section": "Cookies: the codec + native `Headers`",
     "statement": "The moment the head freezes (shell flush, or the server-function commit seam), the stub\u2019s `headers` mutating methods fail loudly: a post-commit write **throws in the dev build** and reports through `console.error` (and no-ops) in production, where crashing a request that is already streaming would compound the bug.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/committed-header-mutation"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L240:3",
@@ -10248,8 +10481,10 @@
     "end_line": 240,
     "section": "Cookies: the codec + native `Headers`",
     "statement": "Because the enforcement lives on the stub, it covers every writer uniformly \u2014 direct appends, middleware, anything \u2014 not just code polite enough to check `committed` first.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/committed-header-mutation"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L242:1",
@@ -10369,8 +10604,10 @@
     "end_line": 299,
     "section": "Sessions (recipe)",
     "statement": "- **Signed, not encrypted.** HMAC-SHA256 keeps the payload tamper-proof; it stays client-readable, so nothing secret goes in it.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/session-recipe.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L299:2",
@@ -10569,8 +10806,12 @@
     "end_line": 327,
     "section": "The response-head lifecycle: `createRequestEvent` / `createSSRResponse` / `commitEventResponse`",
     "statement": "- **At shell flush** \u2014 the moment the head freezes \u2014 the stub is `committed` and its status/headers are merged over `options.responseInit` (`Set-Cookie` values survive as separate entries; `Server-Timing` folds entry by entry; `content-type` defaults to `text/html; charset=utf-8`).",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/ssr-head-defaults",
+      "12/ssr-response-cookies",
+      "12/trace-sampled-wire"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L327:2",
@@ -10603,8 +10844,10 @@
     "end_line": 329,
     "section": "The response-head lifecycle: `createRequestEvent` / `createSSRResponse` / `commitEventResponse`",
     "statement": "- **A `Location` set after the flush** can only be honored client-side: stream completion appends `<script>window.location=\u2026</script>` before closing, carrying `options.nonce` so a strict `script-src` CSP doesn\u2019t block it.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/late-redirect-script"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L330:1",
@@ -10637,8 +10880,10 @@
     "end_line": 331,
     "section": "The response-head lifecycle: `createRequestEvent` / `createSSRResponse` / `commitEventResponse`",
     "statement": "- `options.transformChunk(chunk)` rewrites each outgoing HTML chunk \u2014 the seam handlers use for entry-script injection and doctype prefixes.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/chunk-transform"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L333:1",
@@ -10698,8 +10943,10 @@
     "end_line": 335,
     "section": "The response-head lifecycle: `createRequestEvent` / `createSSRResponse` / `commitEventResponse`",
     "statement": "`event` defaults to the ambient `getRequestEvent()`.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/ambient-commit-event"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L335:5",
@@ -10781,8 +11028,10 @@
     "end_line": 355,
     "section": "The response-head lifecycle: `createRequestEvent` / `createSSRResponse` / `commitEventResponse`",
     "statement": "- Nothing reaches the wire until the outermost middleware returns: a streamed body hasn\u2019t been consumed yet when `next()` resolves, so headers on the returned `Response` are still mutable through the whole unwind.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/middleware-stream-unwind"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L355:2",
@@ -12407,8 +12656,13 @@
     "end_line": 535,
     "section": "Coordinating loading boundaries: `SuspenseList` \u2192 `Reveal`",
     "statement": "A separate `collapsed` boolean covers the former `tail=\"collapsed\"` case; it is only consulted when `order=\"sequential\"` and is ignored otherwise.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/reveal-collapsed-sequential",
+      "03/reveal-collapsed-together",
+      "03/reveal-collapsed-natural",
+      "03/reveal-together"
+    ],
+    "status": "covered"
   },
   {
     "id": "MIGRATION:L568:1",
@@ -12428,8 +12682,13 @@
     "end_line": 568,
     "section": "Coordinating loading boundaries: `SuspenseList` \u2192 `Reveal`",
     "statement": "That prop has been replaced by `order=\"together\"`.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/reveal-collapsed-sequential",
+      "03/reveal-collapsed-together",
+      "03/reveal-collapsed-natural",
+      "03/reveal-together"
+    ],
+    "status": "covered"
   },
   {
     "id": "MIGRATION:L568:3",
@@ -12438,8 +12697,13 @@
     "end_line": 568,
     "section": "Coordinating loading boundaries: `SuspenseList` \u2192 `Reveal`",
     "statement": "`collapsed` still exists; it is a sequential-only knob and has no effect under `order=\"together\"` or `order=\"natural\"`.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/reveal-collapsed-sequential",
+      "03/reveal-collapsed-together",
+      "03/reveal-collapsed-natural",
+      "03/reveal-together"
+    ],
+    "status": "covered"
   },
   {
     "id": "MIGRATION:L570:1",
@@ -12919,8 +13183,13 @@
     "end_line": 750,
     "section": "New in 2.0",
     "statement": "- **`Reveal`** \u2014 coordinates reveal timing of sibling `Loading` boundaries via an `order` prop (`\"sequential\"` | `\"together\"` | `\"natural\"`) plus a sequential-only `collapsed` flag.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/reveal-collapsed-sequential",
+      "03/reveal-collapsed-together",
+      "03/reveal-collapsed-natural",
+      "03/reveal-together"
+    ],
+    "status": "covered"
   },
   {
     "id": "MIGRATION:L750:2",
@@ -13019,8 +13288,10 @@
     "end_line": 756,
     "section": "New in 2.0",
     "statement": "- **`latest(fn)`** \u2014 peek at in-flight values during transitions.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/latest"
+    ],
+    "status": "covered"
   },
   {
     "id": "MIGRATION:L757:1",
@@ -13052,8 +13323,10 @@
     "end_line": 757,
     "section": "New in 2.0",
     "statement": "Safe to ignore for fire-and-forget use.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "06/ignored-refresh-rejection"
+    ],
+    "status": "covered"
   },
   {
     "id": "MIGRATION:L757:4",
@@ -13299,8 +13572,11 @@
     "end_line": 769,
     "section": "New in 2.0",
     "statement": "Unlike `lazy()`, it avoids Suspense entirely and never server-renders, so it participates in no hydration asset manifest; a mount gate keeps hydration mismatch-free.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/client-only-ssr",
+      "tracks/docs/policy.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "MIGRATION:L769:3",
@@ -13309,8 +13585,10 @@
     "end_line": 769,
     "section": "New in 2.0",
     "statement": "`{ lazy: true }` defers the import to first render.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/client-only-import-start"
+    ],
+    "status": "covered"
   },
   {
     "id": "MIGRATION:L770:1",
