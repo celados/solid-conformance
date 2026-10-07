@@ -1,0 +1,30 @@
+bun test v1.4.2 (744846f84)
+
+findings/045-server-optimistic-write-wording/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712","directory":"/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"},"buildMode":"production","solid":"2.0.0-rc.13"}
+1 | import {test,expect} from 'bun:test'
+2 | import {build} from '../../scripts/build'
+3 | import {resolve} from 'node:path'
+4 | import {rm} from 'node:fs/promises'
+5 | // 08-dev-diagnostics.md L635 says a server setter write "landed as inert data".
+6 | test('server optimistic setter lands inert data as the SERVER_WRITE paragraph says',async()=>{const dir=resolve('.build','inert-'+process.pid);await build(dir,(process.env.BUILD_MODE??'development') as any,{client:[],server:['findings/045-server-optimistic-write-wording/server.ts']});try{const{sample}=await import(dir+'/server.js');expect(sample(false)).toEqual({html:'1',updaters:1});expect(sample(true)).toEqual({html:'1',updaters:1})}finally{await rm(dir,{recursive:true,force:true})}})
+                                                                                                                                                                                                                                                                                                                                                                                                                            ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "html": "1",
+-   "updaters": 1,
++   "html": "0",
++   "updaters": 0,
+  }
+
+- Expected  - 2
++ Received  + 2
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance-wave3-router/findings/045-server-optimistic-write-wording/repro.test.ts:6:409)
+(fail) server optimistic setter lands inert data as the SERVER_WRITE paragraph says [14.44ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [22.00ms]
