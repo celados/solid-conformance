@@ -104,9 +104,11 @@ export async function openHarness(variant: BuildMode = (process.env.BUILD_MODE a
 			specs.set(key, spec)
 			const page = await browser.newPage()
 			page.setDefaultTimeout(10000)
+			// The docs page executes many individually bounded statements; a generated tree is one case.
+			const budget = spec.scenario === 'docs' ? 60000 : 15000
 			const deadline = setTimeout(() => {
 				void page.close()
-			}, 15000)
+			}, budget)
 			const messages: string[] = []
 			const started = performance.now()
 			page.on('console', (msg) => {

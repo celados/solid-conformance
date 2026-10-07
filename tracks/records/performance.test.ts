@@ -16,7 +16,7 @@ test('RFC 08 L1204–1226: native Chrome tracks, rich metadata, markers, tasks, 
    expect(result.entries.length).toBeGreaterThan(0);expect(result.after).toBeGreaterThan(result.before);expect(result.cleared).toBe(0)
    expect(result.warnings).toBe(variant==='development'?1:0)
    const tracks=result.entries.map((e:any)=>e.detail.devtools.track)
-   for(const track of ['Interactions','Propagation','Effects','Memos','Async','Navigations'])expect(tracks).toContain(track)
+   for(const track of ['Interactions','Propagation','Effects','Memos','Async','Navigations','Holds'])expect(tracks).toContain(track)
    for(const entry of result.entries){expect(Number.isFinite(entry.start)).toBe(true);expect(entry.duration).toBeGreaterThanOrEqual(0)}
    expect(result.entries.some((e:any)=>e.detail.devtools.dataType==='marker'&&e.name.includes('NO_OWNER_CLEANUP'))).toBe(true)
    if(variant==='development')expect(result.tasks.length).toBeGreaterThan(0);else expect(result.tasks).toEqual([])

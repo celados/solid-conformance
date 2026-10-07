@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-07T16:53:13.683Z",
+  "results": [
+    {
+      "term": "artifact formatVersion",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "artifact formatVersion",
+      "state": "closed",
+      "results": []
+    },
+    {
+      "term": "diagnostics format v7",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "diagnostics format v7",
+      "state": "closed",
+      "results": []
+    }
+  ]
+}
