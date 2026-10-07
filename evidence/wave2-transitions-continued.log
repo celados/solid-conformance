@@ -1,0 +1,72 @@
+bun test v1.4.2 (744846f84)
+
+tracks/transitions/transitions.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712","directory":"/Users/dio/Projects/solid-conformance-wave2/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"},"buildMode":"development","solid":"2.0.0-rc.13"}
+Transition supersede iterable memo true
+Transition reject-before iterable memo true
+Transition reject-after iterable memo true
+Transition reconnect iterable memo true
+Transition remount iterable memo true
+Transition route-shared iterable memo true
+Transition route-other iterable memo true
+Transition action-failure iterable memo true
+Transition reject-after iterable store true
+Transition action-failure promise store false
+Transition reject-before promise store true
+Transition remount promise projection true
+Transition reject-before iterable projection true
+Transition route-shared iterable projection true
+Transition action-failure promise optimistic-store false
+Transition supersede promise memo false
+Transition reject-before iterable memo false
+Transition reject-after promise store true
+Transition supersede promise optimistic-store false
+Transition route-shared promise projection false
+Transition route-other promise projection false
+Transition route-shared iterable optimistic-store false
+Transition route-shared iterable optimistic-store true
+Transition remount iterable optimistic-store false
+Transition reject-after promise optimistic-store false
+Transition reject-before promise optimistic-store false
+Transition route-other iterable store true
+Transition action-failure iterable memo true
+Transition route-shared promise memo true
+Transition action-failure iterable projection false
+Transition route-other promise projection true
+Transition reject-after promise store false
+Transition reconnect promise projection true
+Transition remount iterable projection false
+Transition reconnect iterable projection true
+Transition route-shared iterable store true
+Transition remount promise memo true
+Transition reject-after promise store true
+Transition reconnect promise optimistic-store false
+Transition remount iterable optimistic-store true
+Transition remount promise store true
+Transition route-shared iterable store true
+Transition reject-before iterable optimistic-store false
+Transition route-other iterable projection true
+Transition reject-after iterable optimistic-store false
+Transition supersede promise projection true
+Transition reconnect iterable projection true
+Transition reconnect iterable memo false
+{
+  attempts: 48,
+  browserRuns: 240,
+  counts: {
+    supersede: 4,
+    "reject-before": 6,
+    "reject-after": 7,
+    reconnect: 6,
+    remount: 7,
+    "route-shared": 8,
+    "route-other": 5,
+    "action-failure": 5,
+  },
+  failed: false,
+}
+
+ 1 pass
+ 0 fail
+ 5382 expect() calls
+Ran 1 test across 1 file. [139.31s]

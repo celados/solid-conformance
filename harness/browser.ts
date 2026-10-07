@@ -7,10 +7,10 @@ import type { Spec } from './tree'
 
 import { build, type BuildMode } from '../scripts/build'
 let buildId = 0
-export async function openHarness(variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development') {
+export async function openHarness(variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development', csrOnly = false) {
 	const directory = resolve('.build', `browser-${process.pid}-${buildId++}`)
 	await build(directory, variant)
-	const ssr = (await import(
+	const ssr = (csrOnly ? undefined : await import(
 		resolve(directory, 'server.js')
 	)) as typeof import('./server')
 	const specs = new Map<string, Spec>()
@@ -46,7 +46,7 @@ export async function openHarness(variant: BuildMode = (process.env.BUILD_MODE a
 				return new Response(null, { status: 204 })
 			const spec = specs.get(url.searchParams.get('id')!)!
 			const mode = url.searchParams.get('mode')
-			const prefix = `<!doctype html><html><head>${ssr.generateHydrationScript()}</head><body><script>window.spec=${JSON.stringify(spec).replaceAll('<', '\\u003c')};window.mode=${JSON.stringify(mode)}</script><div id="root">`
+			const prefix = `<!doctype html><html><head>${csrOnly ? '' : ssr.generateHydrationScript()}</head><body><script>window.spec=${JSON.stringify(spec).replaceAll('<', '\\u003c')};window.mode=${JSON.stringify(mode)}</script><div id="root">`
 			if (mode !== 'hydrate')
 				return new Response(
 					prefix +
@@ -97,6 +97,7 @@ export async function openHarness(variant: BuildMode = (process.env.BUILD_MODE a
 		ssr,
 		variant,
 		async run(spec: Spec, mode: 'csr' | 'hydrate') {
+			if (csrOnly && mode !== 'csr') throw new Error('CSR-only harness cannot hydrate')
 			const key = String(id++)
 			specs.set(key, spec)
 			const page = await browser.newPage()

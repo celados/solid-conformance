@@ -23,6 +23,9 @@
     "properties": "bun test tracks/properties",
     "build": "bun run scripts/build.ts",
     "check": "bun x tsc --noEmit",
-    "upstream": "bun run scripts/upstream.ts"
+    "upstream": "bun run scripts/upstream.ts",
+    "transitions": "bun test tracks/transitions",
+    "docs": "bun test tracks/docs",
+    "test:production": "BUILD_MODE=production bun test"
   }
 }

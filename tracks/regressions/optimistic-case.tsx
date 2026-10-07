@@ -1,5 +1,5 @@
 import { captureArtifact } from '@solidjs/diagnostics'
-import { isServer } from '@solidjs/web'
+import { isServer, isDev } from '@solidjs/web'
 import {
 	action,
 	createRoot,
@@ -75,7 +75,9 @@ export function optimisticCase() {
 		async settle() {
 			if (isServer) return
 			for (const source of ['promise', 'iterable'])
-				for (const observed of [false, true])
+				// OBSERVE is intentionally absent in production. Qualify the eight
+				// runtime combinations there; the attribution combinations run in dev.
+				for (const observed of isDev ? [false, true] : [false])
 					for (const nested of [false, true])
 						for (const primitive of ['store', 'signal']) {
 							if (observed)

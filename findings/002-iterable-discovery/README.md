@@ -1,7 +1,7 @@
 ---
 type: Issue
 id: '002'
-status: duplicate
+status: fixed-upstream
 versions: [2.0.0-rc.13]
 area: SSR
 upstream: [https://github.com/solidjs/solid/issues/3734]
@@ -36,5 +36,5 @@ so no transport or elapsed-time ambiguity is needed.
 ## HEAD qualification
 
 The desired-behavior repro passes on the built `next` snapshot
-`53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712`. The status remains duplicate to
-retain deduplication provenance; the named failing release is RC13.
+`53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712`. The status is fixed-upstream; the issue link retains deduplication provenance.
+The named failing release is RC13.

@@ -1,148 +1,75 @@
 ---
 type: Reference
-title: Solid 2 conformance — Wave 1
-description: >
-  Bun-driven client, streaming SSR, Chrome hydration, deterministic async controls,
-  regression families and a shrinkable component-tree property generator.
+title: Solid 2 conformance — Wave 2
+description: Bun、系统 Chrome、HEAD 优先的 CSR／流式 SSR／hydration 与文档契约测试。
 ---
 
 # Solid 2 conformance
 
-This standalone suite tests framework behavior; it does not fix or report upstream bugs.
-Run with Bun and an installed system Google Chrome. No browser binaries are downloaded.
+本项目只验证和记录差异，不修复框架，也不向上游写入。需要 Bun、系统 Google Chrome，以及上游 native compiler 构建要求的 Rust 工具链。
 
-## Commands
+## 运行
 
 ```sh
 bun install --frozen-lockfile
-bun test                         # harness + regressions + 100 generated trees
+bun run upstream                    # 每轮刷新 next tarball，构建并链接 HEAD
+bun test                            # 默认 HEAD、development；findings 不参与默认发现
+bun run test:production              # 选择 production 导出和编译条件
+bun run check
 bun run regressions
-CASES=200 SEED=20261007 bun run properties
-bun run check                    # TypeScript
-bun run build                    # native compiler, separate DOM/SSR bundles
+CASES=100 SEED=20261007 bun run properties
+TRANSITION_CASES=40 SEED=20261008 bun run transitions
+bun run docs
+STRICT_FINDINGS=1 bun run docs        # 文档差异也使宽测试失败
+STRICT_FINDINGS=1 bun run transitions # 004 也使 property 失败，并进行 shrinking
 ```
 
-The default suite asserts the exact signatures of known RC13 defects; it does **not**
-mark an arbitrary exception as success. The desired-behavior repro tests under
-`findings/` are excluded from default discovery and run red independently:
+默认测试识别已记录差异的具体失败签名，同时保存原始失败，独立 repro 保持红色。未知错误、不同失败签名、console／hydration 问题仍使测试失败。默认绿色不表示没有 finding。
+
+## 版本和对照
+
+默认 `TARGET=head` 会拒绝使用未链接的发布包；运行时回执记录真实链接路径、SHA 和构建模式。包的 version 字段仍可能显示 rc.13，判断 HEAD 应使用 `.upstream/active.json`。
 
 ```sh
-bun test ./findings/001-streamed-store-keyed/repro.test.ts
-bun test ./findings/002-iterable-discovery/repro.test.ts
-bun test ./findings/003-tsrx-asi/repro.test.ts
+UPSTREAM_REF=<SHA-or-ref> bun run upstream
+bun run upstream --build-only
+bun run upstream --link-built
+bun run upstream --restore
+TARGET=rc13 bun test ./findings/004-derived-store-rejection/repro.test.ts
+TARGET=rc13 BUILD_MODE=production bun test ./findings/008-production-refresh/repro.test.ts
+bun run upstream --link-built         # 对照结束后恢复 HEAD
 ```
 
-Generated failures save the shrunk tree, fast-check seed/path, attempts, browser-run
-count and primitive histogram in `artifacts/properties.json`. Replay with
-`SEED=<seed> REPLAY_PATH=<counterexamplePath> bun run properties`. Execution logs and
-local builds are ignored; checked-in verification receipts are under `evidence/`.
+`solid-js`、`@solidjs/web`、signals、compiler、diagnostics 的发布基线通过 `bun add --exact` 固定为 rc.13。Router 没有 rc.13 版本，锁定其独立发布线 `2.0.0-next.35`。HEAD 脚本通过 Bun 调用 Rollup、TypeScript、NAPI，下载 tar 快照到 `.upstream/`，不修改上游 checkout。Router 仍使用上述发布版本；本轮没有构建 Router HEAD。
 
-## Version policy
-
-`solid-js`, `@solidjs/web`, `@solidjs/signals`, native compiler and diagnostics are
-exactly RC13, installed with `bun add --exact`. The requested Router RC13 does not
-exist: `bun add @solidjs/router@2.0.0-rc.13` fails. Router's independently versioned
-`next` resolved to **2.0.0-next.35** and is pinned in the lockfile.
-
-Closing an upstream issue is not proof that RC13 includes its fix. [#3734](https://github.com/solidjs/solid/issues/3734),
-[#3764](https://github.com/solidjs/solid/issues/3764) and [#3762](https://github.com/solidjs/solid/issues/3762)
-were fixed on `next` after RC13. See [LEDGER.md](LEDGER.md) for red repros and HEAD qualification.
-
-## Upstream HEAD
+## 每项差异的单命令复现
 
 ```sh
-bun run upstream                  # resolve next to SHA, download tarball, build and link
-EXPECT_FIXED=1 bun run regressions
-bun test ./findings               # desired-behavior repros should now pass
-CASES=200 bun run properties
-bun run upstream --restore        # remove links and restore frozen published packages
+bun test ./findings/004-derived-store-rejection/repro.test.ts
+bun test ./findings/005-keyed-reconcile-identity/repro.test.ts
+bun test ./findings/006-storepath-export/repro.test.ts
+bun test ./findings/007-loading-on-accessor/repro.test.ts
+BUILD_MODE=production bun test ./findings/008-production-refresh/repro.test.ts
 ```
 
-`UPSTREAM_REF=<SHA-or-ref> bun run upstream` selects an immutable revision.
-`--build-only` builds without changing the installed runtime; `--link-built` links
-that completed build. `.upstream/active.json` identifies the linked SHA.
-The build invokes upstream Rollup, TypeScript and NAPI tools through Bun; it
-requires the Rust toolchain specified by upstream's Cargo.toml (currently Rust 1.95).
-No upstream Git checkout is modified. Router remains the pinned published release.
-The script translates workspace setup for Bun and ignores lifecycle scripts that
-would invoke npm/pnpm. The runtime and native compiler are built from the same SHA.
+001–003 在 rc.13 失败，在本轮 HEAD 通过，状态为 fixed-upstream。005 是已有订阅剪枝设计的文档措辞差异，状态为 duplicate。预期、实际、版本、去重和缩减记录见 [LEDGER.md](LEDGER.md)。
 
-## Harness ownership
+## Harness 与轨道
 
-- `harness/timing.ts`: deferred promises, externally pushed async iterators, closure
-  counters, tick stepping and exhaustive permutations (maximum seven inputs).
-- `harness/component.tsx`: interpreter for an immutable test-tree AST. DOM and SSR
-  compile the **same** TSX through `@solidjs/compiler`, with hydration enabled.
-- `harness/server.tsx`: `renderToString`, `renderToStream`, hydration bootstrap and
-  lazy asset manifest. Real chunks are piped into Bun's HTTP response.
-- `harness/browser.ts`: fresh Chrome page per run, CSR or streamed hydration,
-  console warnings/errors, page errors, normalized DOM, iterator teardown and elapsed time.
-- `harness/client.tsx`: settle/unmount controls. Native promises are captured before
-  Solid's hydration replay can substitute its mock Promise constructor.
+同一个 TSX AST 通过 native compiler 分别构建 DOM 和 SSR bundle。CSR 和 hydration 都使用 Playwright `channel: 'chrome'`；不下载浏览器。流式 hydration 的完整 document 由 Solid SSR 生成，使用 HydrationScript、NoHydration 和带 `app` renderId 的 Hydration 区域，让框架安排 payload 与 module 启动顺序。DOM 比较仅移除 hydration 标记、注释及传输 script/template，保留内容与业务属性。
 
-Client/server bundles use package export conditions (`browser`/`node`, development).
-The HTML host owns the document shell, while Solid owns `#root`. Hydration runs from
-an async module after the shell; fragments continue arriving through the open response.
-Lazy assets can delay the shell, so a prefix script can release server gates before
-client boot. The live-source family deliberately delays the server answer past client
-boot. Hydration marker attributes/comments and transport script/template nodes are
-removed from DOM comparisons; text, elements and application attributes are retained.
+- `harness/timing.ts`：deferred promise、多订阅可控 iterable、reject/end/return、开关计数和 tick stepping。
+- `tracks/regressions`：五个历史 issue 家族；生产模式的 optimistic 矩阵只跑 attribution off，因为 OBSERVE 不在生产包中。
+- `tracks/properties`：小树生成、CSR／hydration 等价、settle 排列、内部或根节点 Loading／Show 包装不变、迭代器释放、收敛与 shrink。
+- `tracks/transitions`：八个转换家族、四种 primitive、两种 async source；失败、supersession、pending remount、共享／独立路由源、失败 action 和点击交错。
+- `tracks/docs`：按 RFC 文件与 statement 注册可执行断言；覆盖清单及缺口见 [COVERAGE.md](tracks/docs/COVERAGE.md)。
 
-## Tracks and properties
+回执写入 `artifacts/`。properties 可用 `RECEIPT`、transitions 可用 `TRANSITION_RECEIPT`、docs 可用 `DOC_RECEIPT` 选择输出路径；fast-check 用 `SEED` 和 `REPLAY_PATH` 重放。交付证据保存在 [evidence/](evidence/)。
 
-`regressions` contains the five upstream families:
+## 限制和下一轮
 
-| Issue | Scenario and neighbors |
-| --- | --- |
-| #3764 | root live memo, createStore, createOptimisticStore, optimistic signal, router liveQuery; keyed For |
-| #3734 | compiled function holes, Show, For, Errored; fresh promise vs async iterable, router query/liveQuery |
-| #3687 | 16 cases: signal/store × promise/iterable × attribution off/on × nested/plain action |
-| #3338 | lazy at root, nested Loading, Errored/Loading; missing asset mapping reaches pageerror |
-| #3762 | native DOM/SSR and typecheck projection; function initializer, scalar let, destructuring |
+当前 reconnect 是换源／换 generation，未覆盖真实断线、重连、HTTP backpressure。SSR 只验证初始 async 数据的 hydration，然后在浏览器驱动状态转换；未验证带服务器拒绝的流式错误 takeover。转换生成器从八个事件模板抽样，并非任意操作序列，也未枚举所有事件／yield 交错。tick 是实际 event-loop turns，不是虚拟时钟；每个页面有 15 秒上限，文档单项有 2 秒上限。
 
-`properties` generates depth-bounded trees (depth ≤ 3, branching ≤ 2) over Show,
-non-keyed/keyed For, Switch/Match, Loading, Errored, promise/iterable memo, store,
-optimistic signal/store, actions, effect writes and lazy modules. It checks:
+文档轨道尚未达到逐句全覆盖：09 类型／JSX ownership、11 实验性 server components、08 的大部分 diagnostics／attribution，以及 10 的客户端 live transport 都需要继续补测。全文 statement 总数尚未审计，不能用已登记的 141 个 case ID 声称完成率 100%。Wave 3 优先完成这些缺口，再扩展网络生命周期及任意事件序列。
 
-1. CSR matches an independent expected-DOM projection and SSR→hydrate; all browser
-   warnings/errors/pageerrors and server errors fail the property.
-2. Every settle permutation for up to three sources; six deterministic sampled
-   orders for larger trees. Each order runs in CSR and hydration.
-3. Adding Loading or always-true Show at a sampled **internal or root subtree**
-   preserves the final DOM in both modes.
-4. Every opened client/server iterable has matching closure counts after disposal.
-5. Pending markers disappear within fixed tick budgets; a run exceeding 15 seconds
-   closes its page and fails. fast-check shrinks the tree and insertion position.
-
-## Limits and next wave
-
-The grammar models finite, successful data with fixed branch inputs; it does not yet
-model arbitrary rejected sources, changing list identity/branch conditions, router
-navigation or transport reconnects. Errored is presently an enclosing-boundary case,
-not a generator of server-sanitized error values. Settle permutations vary independent
-sources, not every possible interleaving of yields and user events. Tick stepping uses
-real event-loop turns, not a virtual clock. The generated lazy leaves share one real
-module and do not cover Vite's file-route manifest generation. Iterator disposal while still pending and disconnect/backpressure need a dedicated lifecycle property.
-
-Wave 2 should first turn documented state transitions and lifecycle rules into explicit
-AST operations (writes, branch/list changes, rejection, refresh, dispose while pending),
-then add docs-to-tests with source links. Keep HEAD and RC13 receipts separate and
-qualify production builds as well as this development diagnostic path.
-
-## Verification receipt
-
-Primary runs: 200 initial RC13 trees (1,462 browser runs), 100 strengthened RC13
-trees (722 browser runs), 20 delivery RC13 trees (140 browser runs), and 100 HEAD
-trees (722 browser runs), all using seed 20261007. These are 420 generated-tree
-checks across stages/versions, not 420 distinct trees. See the JSON receipts in
-[evidence/](evidence/). HEAD revision: `53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712`.
-
-The three desired-behavior repros fail on RC13 and pass on that built HEAD.
-The regression suite retains the known RC13 failure signatures. No earlier release
-pair was qualified for #3338/#3687; their published-history baseline remains future work.
-
-Doc claim noted for Wave 2: [RFC 05](https://github.com/solidjs/solid/blob/next/documentation/solid-2.0/05-async-data.md)
-distinguishes server adoption, hybrid first-yield takeover, client-only holes and
-transparent owner slots. Its tracking-run section explicitly describes mocked
-Promise/fetch and advises capturing NativePromise outside replay. Root lazy hydration
-is supported without Loading ([#3338](https://github.com/solidjs/solid/issues/3338)).
+完整 Wave 2 回执见 [evidence/wave2-receipt.md](evidence/wave2-receipt.md)。

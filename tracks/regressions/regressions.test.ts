@@ -47,7 +47,7 @@ test('#3734: compiled holes with promise/iterable sources and For/Show/Errored n
 			const output = await ssr.inRequest(() =>
 				Promise.resolve(
 					ssr.renderToStream(fixture.App, {
-						onError: (e: unknown) => errors.push(String(e)),
+						onError: (e: unknown) => { errors.push(String(e)) },
 					}) as PromiseLike<string>,
 				),
 			)

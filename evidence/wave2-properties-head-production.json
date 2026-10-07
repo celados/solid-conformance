@@ -1,0 +1,42 @@
+{
+  "runtime": {
+    "resolvedSolid": "/Users/dio/Projects/solid-conformance-wave2/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/packages/solid",
+    "upstream": {
+      "ref": "next",
+      "revision": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+      "directory": "/Users/dio/Projects/solid-conformance-wave2/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"
+    },
+    "solid": "2.0.0-rc.13",
+    "signals": "2.0.0-rc.13",
+    "compiler": "2.0.0-rc.13",
+    "label": "head",
+    "buildMode": "production"
+  },
+  "seed": 20261007,
+  "requested": 100,
+  "generated": 100,
+  "attemptsIncludingShrink": 100,
+  "browserRuns": 722,
+  "kinds": {
+    "group": 24,
+    "optimistic-store": 18,
+    "for": 16,
+    "errored": 10,
+    "text": 14,
+    "effect": 15,
+    "store": 23,
+    "keyed-for": 12,
+    "lazy": 17,
+    "optimistic": 14,
+    "action": 14,
+    "switch": 15,
+    "loading": 11,
+    "show": 14,
+    "iterable": 10,
+    "promise": 19
+  },
+  "failed": false,
+  "counterexample": null,
+  "counterexamplePath": null,
+  "error": ""
+}

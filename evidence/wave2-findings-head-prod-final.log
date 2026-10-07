@@ -1,0 +1,103 @@
+bun test v1.4.2 (744846f84)
+
+findings/003-tsrx-asi/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712","directory":"/Users/dio/Projects/solid-conformance-wave2/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"},"buildMode":"production","solid":"2.0.0-rc.13"}
+
+findings/007-loading-on-accessor/repro.test.ts:
+1 | import {test,expect} from 'bun:test'
+2 | import {openHarness} from '../../harness/browser'
+3 | import {leaf} from '../../harness/tree'
+4 | test('05-async-data.md: zero-argument Loading on accessor is tracked',async()=>{
+5 | 	const h=await openHarness(undefined, true)
+6 | 	try{const result=await h.run({tree:leaf(),order:[],scenario:'finding:007'},'csr');expect(result.messages).toEqual([]);expect(result.dom).toBe('<b>fallback</b>')}finally{await h.close()}
+                                                                                                                                              ^
+error: expect(received).toBe(expected)
+
+Expected: "<b>fallback</b>"
+Received: "<span>1</span>"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance-wave2/findings/007-loading-on-accessor/repro.test.ts:6:139)
+(fail) 05-async-data.md: zero-argument Loading on accessor is tracked [8527.28ms]
+
+findings/005-keyed-reconcile-identity/repro.test.ts:
+1 | import {test,expect} from 'bun:test'
+2 | import {createRoot,createStore,reconcile,flush} from '@solidjs/signals'
+3 | test('04-stores.md: keyed reconcile preserves unchanged row identity',()=>{
+4 | 	let dispose!:()=>void
+5 | 	const [store,set]=createRoot(d=>{dispose=d;return createStore([{id:1},{id:2}])})
+6 | 	try {const first=store[0];set(d=>{reconcile([{id:2},{id:1}],'id')(d)});flush();expect(store[1]).toBe(first)}finally{dispose()}
+                                                                                                     ^
+error: expect(received).toBe(expected)
+
+Expected: {
+  v: {
+    id: 1,
+  },
+  ch: false,
+  pb: null,
+  n: null,
+  h: null,
+  k: null,
+  dk: null,
+  u: [],
+  pk: "0",
+  px: [Circular],
+  d: false,
+  a: false,
+  sc: 0,
+  kc: 0,
+  nc: 0,
+  fam: null,
+  s: false,
+  ovl: false,
+  del: null,
+  wk: null,
+}
+Received: serializes to the same string
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance-wave2/findings/005-keyed-reconcile-identity/repro.test.ts:6:98)
+(fail) 04-stores.md: keyed reconcile preserves unchanged row identity [1.88ms]
+
+findings/008-production-refresh/repro.test.ts:
+1 | import { test, expect } from 'bun:test'
+2 | import { openHarness } from '../../harness/browser'
+3 | import { leaf } from '../../harness/tree'
+4 | test('05-async-data.md: production refresh resolves its next value', async () => {
+5 | 	const h = await openHarness(undefined, true)
+6 | 	try { const result = await h.run({ tree: leaf(), order: [], scenario: 'finding:008' }, 'csr'); expect(result.messages).toEqual([]); expect(result.dom).toBe('<span>2</span>') }
+                                                                                                                                                            ^
+error: expect(received).toBe(expected)
+
+Expected: "<span>2</span>"
+Received: "<span>timeout</span>"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance-wave2/findings/008-production-refresh/repro.test.ts:6:153)
+(fail) 05-async-data.md: production refresh resolves its next value [9858.36ms]
+
+findings/004-derived-store-rejection/repro.test.ts:
+1 | import {test,expect} from 'bun:test'
+2 | import {openHarness} from '../../harness/browser'
+3 | import {leaf} from '../../harness/tree'
+4 | test('a rejected derived store request reaches Errored',async()=>{
+5 | 	const h=await openHarness(undefined, true)
+6 | 	try {const result=await h.run({tree:leaf(),order:[],scenario:'finding:004'},'csr');expect(result.messages).toEqual([]);expect(result.dom).toBe('<b>error</b>')}finally{await h.close()}
+                                                                                                                                               ^
+error: expect(received).toBe(expected)
+
+Expected: "<b>error</b>"
+Received: "<span>0</span>"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance-wave2/findings/004-derived-store-rejection/repro.test.ts:6:140)
+(fail) a rejected derived store request reaches Errored [9220.34ms]
+
+findings/006-storepath-export/repro.test.ts:
+3 | import { storePath } from 'solid-js'
+             ^
+error: No matching export in ".upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/packages/solid/dist/solid.js" for import "storePath"
+    at /Users/dio/Projects/solid-conformance-wave2/findings/006-storepath-export/module.ts:3:10
+(fail) 04-stores.md: storePath is exported from the browser core [8.27ms]
+
+ 3 pass
+ 5 fail
+ 12 expect() calls
+Ran 8 tests across 8 files. [36.11s]

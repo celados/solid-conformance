@@ -2,7 +2,7 @@
 type: Issue
 id: '004'
 status: confirmed
-versions: [2.0.0-rc.13, 53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712]
+versions: [53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712]
 area: async/Loading
 upstream: [https://github.com/solidjs/solid/issues/2997, https://github.com/solidjs/solid/issues/3769]
 found_by: transitions
@@ -19,7 +19,7 @@ Actual: the DOM stays `<span>0</span>`; neither the fallback nor a client error 
 bun test ./findings/004-derived-store-rejection/repro.test.ts
 ```
 
-Fails on HEAD in development and production and on RC13. The corresponding memo
+Fails on HEAD in development and production; the minimal test passes on RC13. The corresponding memo
 transition passes. [RFC 05](https://github.com/solidjs/solid/blob/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/documentation/solid-2.0/05-async-data.md)
 makes Promises first-class for derived stores as well as memos; RFC 03 assigns error
 routing to Errored. The runtime appears wrong: the same rejected request reaches the

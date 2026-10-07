@@ -1,0 +1,75 @@
+bun test v1.4.2 (744846f84)
+
+findings/004-derived-store-rejection/repro.test.ts:
+Conformance target: {"target":"rc13","upstream":null,"buildMode":"development","solid":"2.0.0-rc.13"}
+
+findings/005-keyed-reconcile-identity/repro.test.ts:
+1 | import {test,expect} from 'bun:test'
+2 | import {createRoot,createStore,reconcile,flush} from '@solidjs/signals'
+3 | test('04-stores.md: keyed reconcile preserves unchanged row identity',()=>{
+4 | 	let dispose!:()=>void
+5 | 	const [store,set]=createRoot(d=>{dispose=d;return createStore([{id:1},{id:2}])})
+6 | 	try {const first=store[0];set(d=>{reconcile([{id:2},{id:1}],'id')(d)});flush();expect(store[1]).toBe(first)}finally{dispose()}
+                                                                                                     ^
+error: expect(received).toBe(expected)
+
+Expected: {
+  v: {
+    id: 1,
+  },
+  ch: false,
+  pb: null,
+  n: null,
+  h: null,
+  k: null,
+  dk: null,
+  u: [],
+  pk: "0",
+  px: [Circular],
+  d: false,
+  a: false,
+  sc: 0,
+  kc: 0,
+  nc: 0,
+  ab: null,
+  fam: null,
+  s: false,
+  ovl: false,
+  del: null,
+  wk: null,
+  hv: null,
+  ht: null,
+  [Symbol(0)]: [Circular],
+}
+Received: serializes to the same string
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance-wave2/findings/005-keyed-reconcile-identity/repro.test.ts:6:98)
+(fail) 04-stores.md: keyed reconcile preserves unchanged row identity [1.31ms]
+
+findings/006-storepath-export/repro.test.ts:
+3 | import { storePath } from 'solid-js'
+             ^
+error: No matching export in "node_modules/solid-js/dist/solid.js" for import "storePath"
+    at /Users/dio/Projects/solid-conformance-wave2/findings/006-storepath-export/module.ts:3:10
+(fail) 04-stores.md: storePath is exported from the browser core [8.26ms]
+
+findings/007-loading-on-accessor/repro.test.ts:
+1 | import {test,expect} from 'bun:test'
+2 | import {openHarness} from '../../harness/browser'
+3 | import {leaf} from '../../harness/tree'
+4 | test('05-async-data.md: zero-argument Loading on accessor is tracked',async()=>{
+5 | 	const h=await openHarness()
+6 | 	try{const result=await h.run({tree:leaf(),order:[],scenario:'finding:007'},'csr');expect(result.messages).toEqual([]);expect(result.dom).toBe('<b>fallback</b>')}finally{await h.close()}
+                                                                                                                                              ^
+error: expect(received).toBe(expected)
+
+Expected: "<b>fallback</b>"
+Received: "<span>1</span>"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance-wave2/findings/007-loading-on-accessor/repro.test.ts:6:139)
+(fail) 05-async-data.md: zero-argument Loading on accessor is tracked [8493.95ms]
+
+ 2 pass
+ 3 fail
+ 7 expect() calls
+Ran 5 tests across 5 files. [31.63s]

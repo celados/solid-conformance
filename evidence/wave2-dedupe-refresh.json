@@ -1,0 +1,41 @@
+[
+  {
+    "term": "refresh promise",
+    "state": "open",
+    "results": []
+  },
+  {
+    "term": "refresh promise",
+    "state": "closed",
+    "results": [
+      {
+        "number": 3738,
+        "repository": {
+          "name": "solid",
+          "nameWithOwner": "solidjs/solid"
+        },
+        "title": "2.0.0-rc.13: `refresh()` racing an unrelated async write overflows the stack (`recompute` → `runInTransition` → `recompute`)",
+        "url": "https://github.com/solidjs/solid/issues/3738"
+      },
+      {
+        "number": 3178,
+        "repository": {
+          "name": "solid",
+          "nameWithOwner": "solidjs/solid"
+        },
+        "title": "A quiet refresh landing leaks a one-frame isPending=true pulse to render effects",
+        "url": "https://github.com/solidjs/solid/issues/3178"
+      }
+    ]
+  },
+  {
+    "term": "refresh hangs",
+    "state": "open",
+    "results": []
+  },
+  {
+    "term": "refresh hangs",
+    "state": "closed",
+    "results": []
+  }
+]

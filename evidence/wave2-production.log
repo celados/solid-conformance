@@ -1,0 +1,38 @@
+bun test v1.4.2 (744846f84)
+
+tracks/harness/timing.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712","directory":"/Users/dio/Projects/solid-conformance-wave2/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"},"buildMode":"production","solid":"2.0.0-rc.13"}
+
+tracks/properties/properties.test.ts:
+Runtime ready: {"resolvedSolid":"/Users/dio/Projects/solid-conformance-wave2/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/packages/solid","upstream":{"ref":"next","revision":"53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712","directory":"/Users/dio/Projects/solid-conformance-wave2/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"},"solid":"2.0.0-rc.13","signals":"2.0.0-rc.13","compiler":"2.0.0-rc.13","label":"head","buildMode":"production"}
+Generated attempts: 25; browser runs: 168
+Generated attempts: 50; browser runs: 349
+Generated attempts: 75; browser runs: 536
+Generated attempts: 100; browser runs: 715
+{"seed":20261007,"generated":100,"browserRuns":722,"kinds":{"group":24,"optimistic-store":18,"for":16,"errored":10,"text":14,"effect":15,"store":23,"keyed-for":12,"lazy":17,"optimistic":14,"action":14,"switch":15,"loading":11,"show":14,"iterable":10,"promise":19},"failed":false}
+
+tracks/regressions/regressions.test.ts:
+148 | 					serverStats: serverStats.get(key) ?? [],
+149 | 					serverErrors: serverErrors.get(key) ?? [],
+150 | 					milliseconds: performance.now() - started,
+151 | 				}
+152 | 			} catch (error) {
+153 | 				throw new Error(`${error}\n${messages.join('\n')}`)
+                    ^
+error: Error: evaluate: Error: @solidjs/diagnostics requires a development or observe build of @solidjs/signals: the OBSERVE export is undefined in production builds, so there are no diagnostic or attribution channels to capture.
+    at captureArtifact (http://127.0.0.1:62989/client.js:4968:11)
+    at Object.settle (http://127.0.0.1:62989/client.js:5077:23)
+    at async Object.settle (http://127.0.0.1:62989/client.js:7535:5)
+    at async Promise.all (index 1)
+    at async eval (eval at evaluate (:311:30), <anonymous>:3:11)
+    at async <anonymous>:337:30
+
+      at run (/Users/dio/Projects/solid-conformance-wave2/harness/browser.ts:153:15)
+      at async <anonymous> (/Users/dio/Projects/solid-conformance-wave2/tracks/regressions/regressions.test.ts:114:26)
+(fail) #3687: signal/store rollback with attribution off/on, promise/iterable, nested actions [11792.66ms]
+Asset manifest returned no client assets for module "missing.tsx". If this module is a server-rendered lazy() component, its entry will be missing from the serialized hydration asset map, the client will be unable to preload it, and hydration will fail with 'lazy() module "…" was not preloaded before hydration'. This means the integration's asset resolver (dev manifest bridge or build client manifest) failed to answer for this module — check the integration's server logs, restart the dev server, or verify the module is included in the client build.
+
+ 7 pass
+ 1 fail
+ 4585 expect() calls
+Ran 8 tests across 4 files. [352.50s]
