@@ -1,0 +1,33 @@
+bun test v1.4.2 (744846f84)
+
+
+repro.test.ts:
+[LAZY_ASSET_UNMAPPED] lazy() asset resolution failed for "part.tsx": Error: resolver-failed
+  in <Part>
+[LAZY_ASSET_UNMAPPED] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#lazy_asset_unmapped
+10 |     client: [], server: ['./server.tsx'],
+11 |   })
+12 |   try {
+13 |     const { sample } = await import(dir + '/server.js')
+14 |     expect(await sample(false)).toEqual({ rendered: true, error: null })
+15 |     expect(await sample(true)).toEqual({ rendered: true, error: null })
+                                    ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "error": null,
+-   "rendered": true,
++   "error": "resolver-failed",
++   "rendered": false,
+  }
+
+- Expected  - 2
++ Received  + 2
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a-runtime/report/repros/10-sync-asset-resolver/repro.test.ts:15:32)
+(fail) a failed lazy asset resolver preserves server component HTML [29.95ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [40.00ms]

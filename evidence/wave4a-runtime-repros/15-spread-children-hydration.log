@@ -1,0 +1,50 @@
+bun test v1.4.2 (744846f84)
+{
+  ssr: "<div _hk=1><button _hk=0>click</button></div>",
+  samples: [
+    {
+      count: 1,
+      nested: true,
+      text: "click",
+      issues: [],
+    }, {
+      count: 1,
+      nested: true,
+      text: "click",
+      issues: [ "Hydration tag mismatch for key \"0\": expected <div> but found JSHandle@node",
+        "Hydration tag mismatch for key \"1\": expected <button> but found JSHandle@node"
+      ],
+    }
+  ],
+}
+
+
+repro.test.ts:
+2 | import {chromium} from 'playwright'
+3 | import {build} from './build'
+4 | import {resolve} from 'node:path'
+5 | import {rm} from 'node:fs/promises'
+6 | // CSR and SSR->hydrate must produce the same DOM and functioning event handlers.
+7 | test('literal spread children keeps nesting and handler through SSR hydration',async()=>{const dir=resolve('.build','spread-'+process.pid);await build(dir,(process.env.BUILD_MODE??'development') as any,{client:['./client.tsx'],server:['./server.tsx']});const runtime=await import(dir+'/server.js');const server=Bun.serve({port:0,fetch:r=>{const url=new URL(r.url);return url.pathname.endsWith('.js')?new Response(Bun.file(dir+url.pathname),{headers:{'content-type':'text/javascript'}}):new Response((url.search.includes('csr')?'<main id="root"></main>':runtime.html())+'<script type="module" src="/client.js"></script>',{headers:{'content-type':'text/html'}})}});const browser=await chromium.launch({channel:'chrome',headless:true});try{const samples=[];for(const csr of [true,false]){const page=await browser.newPage();const issues:string[]=[];page.on('console',m=>{if(m.type()==='warning'||m.type()==='error')issues.push(m.text())});page.on('pageerror',e=>issues.push(String(e)));await page.goto(server.url+(csr?'?csr':'')
+
+error: expect(received).toEqual(expected)
+
+@@ -2,3 +2,6 @@
+    "count": 1,
+-   "issues": [],
++   "issues": [
++     "Hydration tag mismatch for key "0": expected <div> but found JSHandle@node",
++     "Hydration tag mismatch for key "1": expected <button> but found JSHandle@node",
++   ],
+    "nested": true,
+
+- Expected  - 1
++ Received  + 4
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4a-runtime/report/repros/15-spread-children-hydration/repro.test.ts:7:1405)
+(fail) literal spread children keeps nesting and handler through SSR hydration [11442.75ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [11.60s]

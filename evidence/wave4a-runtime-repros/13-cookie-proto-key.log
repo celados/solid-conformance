@@ -1,0 +1,24 @@
+bun test v1.4.2 (744846f84)
+
+
+repro.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+28 | 
+29 | const SKILLS_URL = "https://github.com/solidjs/solid/blob/main/packages";
+30 | 
+31 | /** Dev-only; the callers gate on their build's dev literal, where `DEV` is defined. */
+32 | export function installConsoleFooter(): void {
+33 |   const guideUrl = DEV!.guideUrl;
+                        ^
+TypeError: undefined is not an object (evaluating 'DEV.guideUrl')
+      at installConsoleFooter (/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/solid/src/console-footer.ts:33:20)
+      at /Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c/packages/solid/src/index.ts:267:13
+-------------------------------
+
+
+ 0 pass
+ 1 fail
+ 1 error
+Ran 1 test across 1 file. [26.00ms]
