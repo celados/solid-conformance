@@ -1167,5 +1167,23 @@
       "tracks/frames/undeclared-source.test.ts"
     ],
     "reason": "真实document scope source保持5.3s，dev唯一ssr/warn afterMs5000；live声明documentfirstonly和standing frame均豁免，三tier producerclosed计数独立。"
+  },
+  {
+    "id": "08-dev-diagnostics:L829:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-invocation-settle-timing"
+    ],
+    "reason": "公开serverreference+订阅正控：sync return前1；pendingpromise gate前0/resolve后1；iterable handoff时at1000 duration100 deferredtrue，chunk延迟5000后仍100。"
+  },
+  {
+    "id": "08-dev-diagnostics:L829:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-invocation-deferred-handoff-clock"
+    ],
+    "reason": "公开serverreference+订阅正控：sync return前1；pendingpromise gate前0/resolve后1；iterable handoff时at1000 duration100 deferredtrue，chunk延迟5000后仍100。"
   }
 ]
