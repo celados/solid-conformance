@@ -1,0 +1,11 @@
+$ bun test ./tracks/regressions
+bun test v1.4.2 (744846f84)
+
+tracks/regressions/regressions.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712","directory":"/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"},"buildMode":"development","solid":"2.0.0-rc.13"}
+Asset manifest returned no client assets for module "missing.tsx". If this module is a server-rendered lazy() component, its entry will be missing from the serialized hydration asset map, the client will be unable to preload it, and hydration will fail with 'lazy() module "…" was not preloaded before hydration'. This means the integration's asset resolver (dev manifest bridge or build client manifest) failed to answer for this module — check the integration's server logs, restart the dev server, or verify the module is included in the client build.
+
+ 5 pass
+ 0 fail
+ 102 expect() calls
+Ran 5 tests across 1 file. [33.02s]

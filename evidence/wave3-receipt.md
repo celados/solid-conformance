@@ -56,7 +56,7 @@ main 的 HEAD 构建已移入自己的 git-ignored .upstream/；Wave 1、Wave 2 
 
 完整 ID、状态、一行说明及 HEAD／rc.13／production 表见 [LEDGER](../LEDGER.md)，机器可读版为 [findings matrix](wave3-findings-matrix.json)。每项 README 给出一个命令、预期／实际、文档或运行时裁定、三仓 open/closed 去重与缩减过程。编号 037、043 是未达到 finding 门槛的保留号，不计发现。
 
-代码及证据随 wave3 快进合并到本地 main；没有上游写入。
+代码及证据已随 wave3 快进合并到本地 main（df231e1）。合并后 main 的 TypeScript 检查通过，五个回归家族 5/0、102 断言；真实依赖路径全部位于 main 自己的 .upstream/，Wave 1／2 worktrees 已移除。没有上游写入。
 
 ## 运行命令
 
