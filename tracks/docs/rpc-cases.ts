@@ -852,3 +852,22 @@ if(isServer){
   }finally{finish("finished");void reader.cancel().catch(()=>{})}
  });
 }
+if(isServer){
+ doc("codec-custom-public-edge", "A plugin authored from public serialization entry round-trips custom data and its OpaqueReference replacement through matching codec options.",async()=>{
+  const {createPlugin,OpaqueReference}=await import("@solidjs/web/serialization");
+  class Box{constructor(public value:number){}}
+  const plugin=createPlugin<Box,{value:any}>({tag:"conformance/Box",test:value=>value instanceof Box,parse:{sync:(value,ctx)=>({value:ctx.parse(new OpaqueReference(()=>"private",value.value))}),stream:(value,ctx)=>({value:ctx.parse(new OpaqueReference(()=>"private",value.value))})},serialize:(node,ctx)=>"({value:"+ctx.serialize(node.value)+"})",deserialize:(node,ctx)=>new Box(ctx.deserialize<number>(node.value))});
+  const fn=reference(()=>new Box(17));const response=await server.handleServerFunctionRequest(request(fn.id),{codec:{plugins:[plugin]}});
+  const body:any=await sf.decodeResponse(response,{plugins:[plugin]});ok(body instanceof Box);equal(body.value,17);equal(Object.keys(body),["value"]);
+ });
+ doc("wrapper-error-intent", "wrapInvocation and transformResult error mappings pass safe/envelope intent but sanitize unbranded replacements.",async()=>{
+  for(const hook of ["wrapInvocation","transformResult"] as const)for(const shape of ["safe","envelope","plain"] as const){
+   const fn=reference(()=>{throw new Error("original secret")});const replacement=Object.assign(new Error("mapped intent"),{code:"INTENT"});
+   const options:any={onError:()=>{}};
+   if(hook==="wrapInvocation")options.wrapInvocation=()=>{throw shape==="envelope"?respond(replacement,{status:400}):shape==="safe"?markSafeError(replacement):replacement};
+   else options.transformResult=()=>shape==="envelope"?respond(replacement,{status:400}):shape==="safe"?markSafeError(replacement):replacement;
+   const response=await server.handleServerFunctionRequest(request(fn.id),options);const error:any=await sf.decodeResponse(response).catch(e=>e);
+   equal(error.message,shape==="plain"&&!isDev?"Internal Server Error":"mapped intent");equal(error.code,shape==="plain"&&!isDev?undefined:"INTENT");
+  }
+ });
+}

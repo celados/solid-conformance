@@ -356,4 +356,11 @@ doc("loading-repull-same-verdict", "Loading re-pulls repeating one source reject
  let html="";const ended=new Promise<void>(resolve=>stream.pipe({write(chunk:any){html+=String(chunk)},end:resolve}));await new Promise(r=>setTimeout(r,5));reject(original);await ended;
  ok(reads>=4, "both boundaries re-pull pending reads");equal(heard.length,1);ok(heard[0].error===original);ok(html.includes("repull mapped"));
 }));
+doc("rpc-body-direct-ambient", "An HTTP body direct-call failure reaches ambient policy, while the outer dispatch local override reuses that verdict.",async()=>hooked(async(heard)=>{
+ const original=new Error("inner direct"),mapped=new Error("ambient inner map"),local:any[]=[];
+ configureServerErrors({onError:(error,site)=>{heard.push({error,site});return mapped}});
+ const inner=reference(()=>{throw original}),outer=reference(()=>inner());
+ const response=await handleServerFunctionRequest(request(outer.id),{onError:(error,site)=>{local.push({error,site});return new Error("wrong outer local")}});
+ const error:any=await decodeResponse(response).catch(e=>e);equal(error.message,"ambient inner map");equal(local.length,0);equal(heard.length,1);ok(heard[0].error===original);equal(heard[0].site.direct,true);equal(heard[0].site.functionId,inner.id);
+}));
 export const run = (external:typeof configureServerErrors) =>{configureExternal=external;return runCases(cases)};
