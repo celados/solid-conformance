@@ -215,5 +215,13 @@
     "coverage": [
       "tracks/frames/server-diagnostics.test.ts#08/server-road-server-function-forward-trace"
     ]
+  },
+  {
+    "id": "12-ssr-http:L248:4",
+    "status": "covered",
+    "coverage": [
+      "08/server-road-cookie-exchange-three-domains"
+    ],
+    "reason": "同一public request Cookie parse+response Set-Cookie append helper在serverfn/SSR/middleware三domain运行：2entries保留、request仍previous、middlewareunwrap前stub未commit而handleredge commit。"
   }
 ]

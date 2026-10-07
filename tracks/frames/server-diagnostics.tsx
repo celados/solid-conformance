@@ -15,6 +15,9 @@ import {
   getTraceContext,
   redirect,
   commitEventResponse,
+  composeMiddleware,
+  parseCookieHeader,
+  serializeCookie,
 } from "@solidjs/web";
 import { AsyncLocalStorage } from "node:async_hooks";
 import {
@@ -536,6 +539,14 @@ doc("invocation-settle-timing", "A synchronous invocation emits before return; a
 doc("invocation-deferred-handoff-clock", "An async-iterable record measures the handoff and never grows while its later chunks wait.",async()=>{
  let clock=1000;const descriptor=Object.getOwnPropertyDescriptor(performance,"now");Object.defineProperty(performance,"now",{configurable:true,value:()=>clock});const rows:any[]=[];const off=OBSERVE?.records.subscribe("invocation",(event,live)=>rows.push({event,live}));let release!:()=>void;const gate=new Promise<void>(r=>release=r);const iterable={async *[Symbol.asyncIterator](){await gate;yield 31}};const fn=createServerReference(registerServerReference("timing-iterable",()=>{clock=1100;return iterable}));
  try{const result=fn() as AsyncIterable<number>;equal(rows.length,OBSERVE?1:0);if(OBSERVE){equal(rows[0].event.at,1000);equal(rows[0].event.durationMs,100);equal(rows[0].event.deferred,true);ok(rows[0].live.result===iterable)}const iterator=result[Symbol.asyncIterator]();const pending=iterator.next();clock=6100;await Promise.resolve();equal(rows.length,OBSERVE?1:0);release();equal(await pending,{value:31,done:false});await iterator.return?.();if(OBSERVE)equal(rows[0].event.durationMs,100);equal(rows.length,OBSERVE?1:0)}finally{release();off?.();if(descriptor)Object.defineProperty(performance,"now",descriptor);else delete(performance as any).now}
+});
+doc("cookie-exchange-three-domains", "The same request-header/read and response-header/append recipe composes in server functions, SSR handlers and middleware.",async()=>{
+ const requestFor=(path:string)=>new Request("http://localhost/"+path,{headers:{cookie:"session=previous"}});
+ function exchange(){const event=getRequestEvent()!;equal(parseCookieHeader(event.request.headers.get("cookie")),{session:"previous"});event.response.headers.append("set-cookie",serializeCookie("session","refreshed",{httpOnly:true}));event.response.headers.append("set-cookie",serializeCookie("csrf","second"));equal(parseCookieHeader(event.request.headers.get("cookie")),{session:"previous"})}
+ const expected=["session=refreshed; Path=/; HttpOnly","csrf=second; Path=/"];
+ registerServerReference("three-domain-cookie",()=>{exchange();return "server-function"});const response=await handleServerFunctionRequest(new Request(requestFor("_server/data/three-domain-cookie"),{method:"POST",body:"[]",headers:{cookie:"session=previous",origin:"http://localhost","content-type":"application/json","X-Server-Function-Format":"8"}}),{createEvent:createRequestEvent});equal(response.headers.getSetCookie(),expected);
+ await scope.run(createRequestEvent(requestFor("ssr")),()=>{const html=renderToString(()=>{exchange();return "ssr"});const response=createSSRResponse(html,getRequestEvent()!);equal(response.headers.getSetCookie(),expected);equal(response.status,200)});
+ await scope.run(createRequestEvent(requestFor("middleware")),async()=>{const run=composeMiddleware([async(_request,next)=>{exchange();const response=await next();equal(getRequestEvent()!.response.committed,false);return response}]);const response=commitEventResponse(await run(getRequestEvent()!.request,()=>new Response("middleware")));equal(response.headers.getSetCookie(),expected);equal(getRequestEvent()!.response.committed,true);equal(await response.text(),"middleware")});
 });
 export const run = () =>
   scope.run(createRequestEvent(new Request("http://test/")), () => runCases(cases));
