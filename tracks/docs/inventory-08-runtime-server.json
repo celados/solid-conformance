@@ -195,12 +195,14 @@
   {
     "id": "08-dev-diagnostics:L606:2",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
       "08/server-road-dynamic-client-function",
-      "08/server-road-dynamic-safe-values"
+      "08/server-road-dynamic-safe-values",
+      "tracks/frames/live-component.test.ts",
+      "tracks/frames/frames.test.ts"
     ],
-    "reason": "async tag/function端已测，server component serialized landing的完整 hydration正控仍需跨轨。"
+    "reason": "client function無encoding三tier拒絕；async tag與sync function正控；realRPC/serverframe async dynamic component landing SSR原nodeadoption且counteractive。"
   },
   {
     "id": "08-dev-diagnostics:L606:5",
@@ -564,21 +566,22 @@
   {
     "id": "08-dev-diagnostics:L896:2",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
       "findings/021-recovery-boundary-outcome/repro.test.ts",
+      "findings/054-prearrived-recovery-wait/repro.test.ts",
       "tracks/frames/recovery.test.ts"
     ],
-    "reason": "id/计时/枚举反例已覆盖，prearrived waitedMs=0精准时序仍需补"
+    "reason": "嚴格server/client boundary ID join與render/waitclock；021 outcome反例；054已全部錯誤HTML解析後fakeclock仍wait100而非0的文檔反例。"
   },
   {
     "id": "08-dev-diagnostics:L896:3",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "untestable",
     "coverage": [
       "tracks/frames/recovery.test.ts"
     ],
-    "reason": "production no-record已测，no-listener clock和byte-identical还需补"
+    "reason": "可執行部分已證：unobserved與production hydrate performance.now讀0；production compiled recovery entry無waitedMs/renderMs分支helper欄位。絕對byte-identical不可測：缺少同HEAD禁用recovery功能的core反事實構建，不能用無record或字段消失宣稱字節完全相同。"
   },
   {
     "id": "08-dev-diagnostics:L727:1",
