@@ -1497,9 +1497,11 @@
   },
   {
     "id": "10-server-functions:L228:4",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/shared-source.test.ts"
+    ],
+    "reason": "一个原始generator同时由serverframe的createMemo直接读取和外部asyncanswer的hydrationserializer读取；serverlive-hole memo完整17/35，实际Chrome hydration payload的iterator也完整17/35，底层opened1closed1。应用不手动消费原始iterator，源码去重符合runtime seats域。"
   },
   {
     "id": "10-server-functions:L228:5",
@@ -2860,9 +2862,13 @@
   },
   {
     "id": "11-server-components:L67:3",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/router.test.ts",
+      "tracks/frames/frames.test.ts",
+      "findings/011-frame-multisite-hydration/repro.test.ts"
+    ],
+    "reason": "router CSR两site共1RPC，preload另一args只增1请求而nav不再增，同site分别随singleFlight更新；SSR multi-site只第一active的实际反例011单独红。intrinsic call地址与args/refetch一般正控来自frames track。"
   },
   {
     "id": "11-server-components:L68:1",
