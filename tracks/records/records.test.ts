@@ -12,6 +12,7 @@ test('RFC 08/10/11: runtime records separate serializable events from live invoc
  const browser=await chromium.launch({channel:'chrome',headless:true})
  try{
   const direct=await serverModule.serverCases();serverModule.reset()
+  const wire=await serverModule.traceWireCases();await Bun.write('artifacts/trace-wire-'+variant+'.json',JSON.stringify(wire,null,2));expect(wire.outside).toBeUndefined()
   const trace=await serverModule.traceCases()
   expect(trace.slotRegistered).toBe(variant!=='production');expect(trace.channelRegistered).toBe(variant!=='production')
   for(const row of trace.cases){
@@ -52,10 +53,19 @@ test('RFC 08/10/11: runtime records separate serializable events from live invoc
    expect(calls[0].event.origin).toMatchObject({kind:'interaction',name:'click',target:'button#records'})
    for(const call of calls){const req=requests.find((r:any)=>r.live.identity===call.live.identity)!;expect(req.event.side).toBe('client');expect(req.event.at).toBeGreaterThanOrEqual(call.event.at);expect(req.event.at).toBeLessThanOrEqual(call.event.at+call.event.durationMs);expect(req.live.request).toBe(true);expect(req.event).not.toHaveProperty('status');expect(call.live.response).toBe(true);expect(call.live.bodyUsed).toBe(false)}
    const remote=http.filter((r:any)=>r.type==='invocation');expect(remote).toHaveLength(3)
+   for(const call of calls){expect(call.live.serverTiming).toContain('solid-invocation');const value=Number(/solid-invocation;dur=([0-9.]+)/.exec(call.live.serverTiming)![1]),invocation=remote.find((r:any)=>r.event.id===call.event.id)!.event;expect(Math.abs(value-invocation.durationMs)).toBeLessThanOrEqual(0.051)}
    for(const r of remote){expect(r.event.direct).toBe(false);expect(r.live.request).toBe(true);expect(r.event).not.toHaveProperty('boundary')}
    const produced=http.find((r:any)=>r.type==='frame')!,consumed=client.records.find((r:any)=>r.type==='frame')!
    for(const key of ['id','version','chunks','fragments','slots','regions','errors'])expect(consumed.event[key]).toEqual(produced.event[key])
    expect(produced.event).toMatchObject({side:'server',outcome:'complete',slots:1,regions:1,errors:0});expect(consumed.event).toMatchObject({side:'client',outcome:'complete'});expect(consumed.live.response).toBe(true)
+  }
+  const artifact=await serverModule.artifactCase()
+  const browserArtifact=await page.evaluate(()=>(window as any).recordsHarness.artifactCase())
+  if(variant==='production'){expect(artifact).toBeNull();expect(browserArtifact).toBeNull()}else{
+   expect(artifact!.records.invocation).toHaveLength(5);expect(artifact!.records.boundary).toHaveLength(1)
+   expect(browserArtifact.artifact.records.call).toHaveLength(3);expect(browserArtifact.artifact.records.frame).toHaveLength(1)
+   for(const a of [artifact,browserArtifact.artifact]){expect(a!.timeOrigin).toBeGreaterThan(0);expect(a!.attribution).not.toBeNull();expect(Object.keys(a!.records).sort()).toEqual(['boundary','call','frame','invocation','recovery']);expect(JSON.stringify(a)).not.toContain('private-argument');expect(JSON.stringify(a)).not.toContain('private-record-error')}
+   expect(browserArtifact.live.feedback).toEqual(browserArtifact.artifact.attribution.feedback)
   }
   await page.evaluate(()=>(window as any).recordsHarness.close())
   const requests=await page.evaluate(()=>(window as any).recordsHarness.requestCases())
@@ -77,6 +87,13 @@ test('RFC 08/10/11: runtime records separate serializable events from live invoc
    if(row.scenario==='duplicate-listener')expect(row.records.filter((r:any)=>r.type==='duplicate')).toHaveLength(1)
    if(row.scenario==='pending-row')expect(row.pendingSnapshot).toEqual([{type:'request',response:false}])
    if(row.scenario==='request-only'){expect(opening[0].result).toBe(7);expect(opening[0].response).toBe(true)}
+   if(row.scenario==='origin'||row.scenario==='origin-async-prepare'){expect(calls[0].originIdentity).toBe(true);expect(opening[0].originIdentity).toBe(true);expect(calls[0].event.origin.kind).toBe('interaction')}
+   if(row.scenario==='after-await')expect(calls[0].event).not.toHaveProperty('origin')
+   if(row.scenario==='body-stream'||row.scenario==='body-iterable'){expect(calls[0].request).toBe(true);expect(calls[0].requestBody).toBe('');expect(row.iterated).toBe(0);expect(row.streamLocked).toBe(false)}
+   if(['body-string','body-blob'].includes(row.scenario))expect(calls[0].requestBody).toBe('fixture')
+   if(row.scenario==='body-search')expect(calls[0].requestBody).toBe('a=b')
+   if(['body-buffer','body-view'].includes(row.scenario))expect(calls[0].requestBody).toBe('AB')
+   if(row.scenario==='body-form'){expect(calls[0].requestBody).toContain('name="a"');expect(calls[0].requestBody).toContain('b')}
   }
  }finally{await browser.close();server.stop(true);serverModule.stop();await rm(directory,{recursive:true,force:true})}
 },60000)

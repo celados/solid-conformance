@@ -25,4 +25,7 @@ export async function serverCases(){
 export async function handle(request:Request){if(new URL(request.url).pathname==='/records/server')return Response.json(snapshot());return handleServerFunctionRequest(request)}
 // Keep frame transforms installed for the HTTP server's component response.
 export {frames}
-export {traceCases} from './trace-cases'
+export {traceCases,traceWireCases} from './trace-cases'
+
+import {captureArtifact} from '@solidjs/diagnostics'
+export async function artifactCase(){if(!OBSERVE)return null;return (await captureArtifact(serverCases,{scenario:'server-actual-runtime',attribution:{log:false,checks:false}})).artifact}

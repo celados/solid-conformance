@@ -117,6 +117,16 @@ add('navigation-declaration-controls','RFC 08 L1169–1173: initial/no-write, ex
   equal(attribution.history('navigation').at(-1)!.to,'/login')
  }finally{release()}
 })
+add('navigation-superseded-contract','RFC08 L1160–1170/L1196: superseded requests, held final route, first-read from/at and late-read names, paths and params.',async()=>{
+ if(!isDev)return
+ const release=attribution.enable({...quiet,holds:{infoMs:10000,warnMs:10000}}),a=deferred<number>(),b=deferred<number>();let dispose!:()=>void
+ try{const [write]=createRoot(d=>{dispose=d;const[r,w]=createSignal(0,{name:'route'});const data=createMemo(()=>r()===0?0:r()===1?a.promise:b.promise,{name:'request'});createRenderEffect(data,()=>{});flush();return[w] as const});const at=performance.now(),ref={kind:'navigation' as const,name:'/coarse',from:'/original',to:'/one',at,params:{id:'one'}};OBSERVE!.attribution.withOrigin(ref,()=>write(1));flush();await ticks(4);ref.name='/exact/:id';ref.to='/exact/one';ref.params.id='exact';ref.from='/mutated';ref.at=999999;OBSERVE!.attribution.withInteraction({type:'click',target:'a#two'},()=>OBSERVE!.attribution.withOrigin({kind:'navigation',name:'/exact/:id',from:'/one',to:'/two',params:{id:'two'}},()=>write(2)));flush();await ticks(4);b.resolve(2);await ticks(8);flush();a.resolve(1);await ticks(8);flush();const events=attribution.history('navigation');equal(events.length,2);equal(events[0]!.outcome,'superseded');equal(events[0]!.from,'/original');equal(events[0]!.at,at);equal(events[0]!.name,'/exact/:id');equal(events[0]!.to,'/exact/one');equal(events[0]!.params,{id:'exact'});equal(events[1]!.outcome,'held');equal(events[1]!.interaction!.target,'a#two');const rows=feedback().navigations;ok(rows.some(r=>r.superseded===1));ok(rows.some(r=>r.held===1));ok(rows.every(r=>r.name==='/exact/:id'),JSON.stringify(rows))}finally{dispose();release()}
+})
+add('interaction-action-navigation','RFC08 L1154/L1160/L1182: action steps preserve the invoking interaction across yields, including a declared navigation.',async()=>{
+ if(!isDev)return
+ const release=attribution.enable(quiet);let dispose!:()=>void
+ try{const mutate=createRoot(d=>{dispose=d;const[r,w]=createSignal(0);createMemo(r);return action(async function*(){yield;OBSERVE!.attribution.withOrigin({kind:'navigation',name:'/after/:id',to:'/after/1'},()=>w(1));yield})});await OBSERVE!.attribution.withInteraction({type:'click',target:'button#action'},()=>mutate());await ticks(8);flush();const nav=attribution.history('navigation').at(-1)!,interaction=attribution.history('interaction').at(-1)!;equal(nav.interaction,interaction.origin);equal(nav.outcome,'held');ok(interaction.writes>=1);equal(interaction.origin.target,'button#action')}finally{dispose();release()}
+})
 add('excluded-owner-attribution','RFC 08 L1127–1129: excluded signals and store writes do not record; nearest include is watched; excluded-only interactions disappear.',()=>{
  if(!isDev)return
  const release=attribution.enable(quiet);let dispose!:()=>void
