@@ -1634,9 +1634,13 @@
   },
   {
     "id": "10-server-functions:L230:12",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/live-hooks.test.ts",
+      "tracks/frames/transport-contracts.test.ts",
+      "10/http-wrap-invocation"
+    ],
+    "reason": "真正built-inlive GET HTTP单连接：asyncprepare返回替换Headers到serverbody、fetch1、capturecontext穿async到handle、resumehave-listheader到server；serverwrap/transform各1；显式enableRichArguments+匹配custom codec把Box7入参/Box42 nestedanswer往返。对应普通directcallhooks已有独立正控。仅测试publictypedhooks，不把内部intercept当应用配置类型。"
   },
   {
     "id": "10-server-functions:L231:1",
