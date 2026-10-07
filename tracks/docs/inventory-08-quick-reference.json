@@ -265,11 +265,11 @@
     {
       "id": "08-dev-diagnostics:L957:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/attribution-warning-hot_scope_fanout"
+        "08/cost-hot-fanout-milestones"
       ],
-      "reason": "root现有低阈值case；默认5/50/500与kind/severity须核实。"
+      "reason": "默认5/50/500固定milestones、kindperf/severitywarn及共享cause全部实际assert。"
     },
     {
       "id": "08-dev-diagnostics:L958:1",

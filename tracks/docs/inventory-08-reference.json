@@ -1597,23 +1597,30 @@
     {
       "id": "08-dev-diagnostics:L433:5",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-graph-growth-routes-subject"
+      ],
+      "reason": "dev/observe/production真实Chrome验证固定milestones、一次scope告警、no subject与graph多个routes/reset/interaction及完整history字段。"
     },
     {
       "id": "08-dev-diagnostics:L433:6",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-graph-growth-default",
+        "08/cost-graph-growth-routes-subject"
+      ],
+      "reason": "dev/observe/production真实Chrome验证固定milestones、一次scope告警、no subject与graph多个routes/reset/interaction及完整history字段。"
     },
     {
       "id": "08-dev-diagnostics:L433:7",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-graph-growth-routes-subject"
+      ],
+      "reason": "dev/observe/production真实Chrome验证固定milestones、一次scope告警、no subject与graph多个routes/reset/interaction及完整history字段。"
     },
     {
       "id": "08-dev-diagnostics:L435:1",
@@ -1627,16 +1634,20 @@
     {
       "id": "08-dev-diagnostics:L435:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-graph-growth-default"
+      ],
+      "reason": "dev/observe/production真实Chrome验证固定milestones、一次scope告警、no subject与graph多个routes/reset/interaction及完整history字段。"
     },
     {
       "id": "08-dev-diagnostics:L435:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-graph-growth-default"
+      ],
+      "reason": "dev/observe/production真实Chrome验证固定milestones、一次scope告警、no subject与graph多个routes/reset/interaction及完整history字段。"
     },
     {
       "id": "08-dev-diagnostics:L437:1",
@@ -1725,9 +1736,11 @@
     {
       "id": "08-dev-diagnostics:L443:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-hot-fanout-milestones"
+      ],
+      "reason": "dev/observe/production真实Chrome验证固定milestones、一次scope告警、no subject与graph多个routes/reset/interaction及完整history字段。"
     },
     {
       "id": "08-dev-diagnostics:L444:1",
@@ -1818,18 +1831,20 @@
     {
       "id": "08-dev-diagnostics:L455:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/attribution-warning-hot_scope_fanout"
+        "08/cost-hot-fanout-milestones"
       ],
-      "reason": "partial: 触发聚合有检查，first warn以及5/10x里程碑、每cause隔离尚未精确断言。"
+      "reason": "dev/observe/production真实Chrome验证固定milestones、一次scope告警、no subject与graph多个routes/reset/interaction及完整history字段。"
     },
     {
       "id": "08-dev-diagnostics:L455:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-hot-fanout-milestones"
+      ],
+      "reason": "dev/observe/production真实Chrome验证固定milestones、一次scope告警、no subject与graph多个routes/reset/interaction及完整history字段。"
     },
     {
       "id": "08-dev-diagnostics:L459:1",
