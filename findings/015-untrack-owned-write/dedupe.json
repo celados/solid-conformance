@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-07T15:22:50.266Z",
+  "results": [
+    {
+      "term": "untrack ownedWrite",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "untrack ownedWrite",
+      "state": "closed",
+      "results": []
+    },
+    {
+      "term": "untrack owned scope",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "untrack owned scope",
+      "state": "closed",
+      "results": []
+    }
+  ]
+}

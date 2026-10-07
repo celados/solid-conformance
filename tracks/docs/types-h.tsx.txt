@@ -1,0 +1,10 @@
+import type { JSX } from '@solidjs/h/jsx-runtime'
+import type { JSX as DevelopmentJSX } from '@solidjs/h/jsx-dev-runtime'
+import type { JSX as WebJSX } from '@solidjs/web'
+const functionElement: JSX.Element = () => 'hello'
+const jsxElement: JSX.Element = <button type="button">hello</button>
+const developmentElement: DevelopmentJSX.Element = functionElement
+// RFC 09: h elements include functions; DOM JSX elements intentionally do not.
+// @ts-expect-error FunctionElement is specific to hyperscript JSX.
+const wrongWebElement: WebJSX.Element = () => 'hello'
+void [jsxElement, developmentElement, wrongWebElement]

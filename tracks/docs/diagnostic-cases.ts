@@ -26,7 +26,7 @@ function check(code:string,severity:'warn'|'error', bad:()=>unknown, good:()=>un
   equal(negative.events.filter(e=>e.code===code),[])
   const positive=await observed(bad)
   const relevant=positive.events.filter(e=>e.code===code)
-  if(isDev){equal(relevant.length,1);equal(relevant[0]!.severity,severity);ok(relevant[0]!.message.length>0);equal(positive.captured,relevant.length===positive.events.length?relevant:positive.events);if(severity==='warn')ok(positive.printed.some(m=>m.includes('['+code+']')),JSON.stringify(positive.events));if(severity==='error')ok(positive.caught,JSON.stringify(positive.events))}
+  if(isDev){equal(relevant.length,1);equal(relevant[0]!.severity,severity);const categories:Record<string,string>={REACTIVE_WRITE_IN_OWNED_SCOPE:'write',ASYNC_STORE_SETTER:'write',PENDING_ASYNC_UNTRACKED_READ:'async',INVALID_REFRESH_TARGET:'write',INVALID_AFFECTS_TARGET:'write',ACTION_CALLED_IN_OWNED_SCOPE:'write',RUN_WITH_DISPOSED_OWNER:'owner',STRICT_READ_UNTRACKED:'strict-read'};equal(relevant[0]!.kind,categories[code]??'lifecycle');ok(relevant[0]!.message.includes('['+code+']'));equal(positive.captured,relevant.length===positive.events.length?relevant:positive.events);if(severity==='warn')ok(positive.printed.some(m=>m.includes('['+code+']')),JSON.stringify(positive.events));if(severity==='error')ok(positive.caught,JSON.stringify(positive.events))}
   else {equal(relevant,[]);ok(!positive.printed.some(m=>m.includes('['+code+']')))}
  }})
 }
