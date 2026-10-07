@@ -2342,8 +2342,11 @@
     "end_line": 187,
     "section": "Dynamic components: the `dynamic` factory",
     "statement": "It is the same primitive, but its shape puts the tag in the same props bag as the element's own props: every instance merges `component` in at the call site (`merge({ component }, rest)`), `omit`s it back out inside, and builds a fresh `dynamic()` factory — with its memo — because a JSX wrapper has nowhere to hoist one.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/dynamic-wrapper-per-instance",
+      "03/dynamic-stable-shared"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L187:4",
@@ -2668,8 +2671,11 @@
     "end_line": 250,
     "section": "Client-only components: `clientOnly`",
     "statement": "Bundler integrations sharpen the load path further: the compiler's module-URL pass (the same one that annotates `lazy()` calls, shipped through @solidjs/vite-plugin) recognizes `clientOnly(() => import(\"...\"))` and injects the wrapped module's resolved URL into the call, which the server half uses to emit an early `modulepreload` hint — the browser starts fetching the component's chunk with the page instead of discovering it when the import first runs after hydration.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/clientonly-compiler.test.ts",
+      "03/client-only-preload"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L254:1",
@@ -5299,8 +5305,13 @@
     "end_line": 151,
     "section": "`latest(fn)` (peek at in-flight values)",
     "statement": "`latest()` escapes the _transaction_, not its own lane.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/latest-lane-lane",
+      "05/latest-lane-plain",
+      "05/latest-lane-unrendered",
+      "findings/029-latest-loading-convergence/repro.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L151:2",
@@ -5309,8 +5320,13 @@
     "end_line": 151,
     "section": "`latest(fn)` (peek at in-flight values)",
     "statement": "Readers of `latest(x)` render ahead of the transition that holds `x`, but they reveal together with any _rendered_ async derived from `latest(x)` — the same rule every lane follows, and the same rule the transaction itself follows: async holds when a render effect reads it and no `Loading` boundary catches it.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/latest-lane-lane",
+      "05/latest-lane-plain",
+      "05/latest-lane-unrendered",
+      "findings/029-latest-loading-convergence/repro.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L151:3",
@@ -5319,8 +5335,13 @@
     "end_line": 151,
     "section": "`latest(fn)` (peek at in-flight values)",
     "statement": "So a `latest()` view is never shown beside a half-computed derivation of itself, while a derivation nobody renders, or one inside a `Loading` that shows its fallback, holds nothing (there is no frame to tear).",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/latest-lane-lane",
+      "05/latest-lane-plain",
+      "05/latest-lane-unrendered",
+      "findings/029-latest-loading-convergence/repro.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L151:4",
@@ -5329,8 +5350,13 @@
     "end_line": 151,
     "section": "`latest(fn)` (peek at in-flight values)",
     "statement": "Routing several rendered async computations through the same `latest(x)` makes them one lane that reveals when the slowest settles; derive with the plain read (`x()` inside the async memo — it is held by the transition anyway) when the display should not wait for it.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/latest-lane-lane",
+      "05/latest-lane-plain",
+      "05/latest-lane-unrendered",
+      "findings/029-latest-loading-convergence/repro.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L155:1",
@@ -6819,8 +6845,11 @@
     "end_line": 58,
     "section": "`refresh()` (explicit recomputation)",
     "statement": "`refresh(x)` requests recomputation for `x` when `x` is a derived signal/store/projection that participates in refresh (e.g. things created via function forms like `createStore(() => ...)` / projections).",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "06/refresh-store-delivery",
+      "06/refresh-projection-delivery"
+    ],
+    "status": "covered"
   },
   {
     "id": "06-actions-optimistic:L75:1",
@@ -9283,8 +9312,10 @@
     "end_line": 37,
     "section": "Consuming the stream: `pipe`, `pipeTo`, `readable`",
     "statement": "- `pipe(writable)` — Node-style writable streams.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "12/stream-node-writable"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L38:1",
@@ -9447,8 +9478,10 @@
     "end_line": 81,
     "section": "The request event",
     "statement": "To affect the outgoing response from inside a call, use the shared `event.response` stub — that channel is shared on purpose.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "08/server-road-live-request-event-identity"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L83:1",
@@ -9773,8 +9806,13 @@
     "end_line": 141,
     "section": "What a render failure looks like from the client",
     "statement": "A render failure reaches the client on several roads: the error an `<Errored>` caught, serialized so the client hydrates the same fallback; a rejected async source serialized into the stream; a `<Loading>` fragment rejecting its `_fr` promise; a frame stream's error chunks.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "08/server-road-sanitize-async-source",
+      "08/server-road-sanitize-frame-root",
+      "08/server-road-sanitize-frame-fragment",
+      "08/server-road-sanitize-frame-live-hole"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L141:2",
@@ -9833,8 +9871,11 @@
     "end_line": 143,
     "section": "What a render failure looks like from the client",
     "statement": "`markSafeError` is the escape hatch on both wires — a branded error passes through with its own properties.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "08/server-road-sanitize-rpc-true",
+      "08/server-road-sanitize-ssr-true"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L143:4",
@@ -9843,8 +9884,10 @@
     "end_line": 143,
     "section": "What a render failure looks like from the client",
     "statement": "An Error reached as a _value_ (never thrown — a form's field errors, say) is data and passes as written.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "08/server-road-error-value-data"
+    ],
+    "status": "covered"
   },
   {
     "id": "12-ssr-http:L145:1",
