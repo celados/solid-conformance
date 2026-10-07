@@ -1120,9 +1120,10 @@
   },
   {
     "id": "10-server-functions:L168:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "findings/036-conditional-cache-format/repro.test.ts"
+    ]
   },
   {
     "id": "10-server-functions:L168:2",
