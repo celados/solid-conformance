@@ -1303,8 +1303,10 @@
   {
     "id": "10-server-functions:L221:2",
     "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "coverage": [
+      "tracks/frames/transport-contracts.test.ts#RFC10 transport awaits the replacement hook and owns one consumer per source"
+    ],
+    "reason": "Partial controls: first-connect HTTP400/404/408/425/429/500 each reject after one request even with Retry-After; return() aborts each independent connected wire. Actual post-connect TCP-drop finding014 remains red; backoff timing/online wake/transient retries need further exact controls."
   },
   {
     "id": "10-server-functions:L221:3",
@@ -1323,9 +1325,11 @@
   },
   {
     "id": "10-server-functions:L221:5",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/transport-contracts.test.ts#RFC10 transport awaits the replacement hook and owns one consumer per source"
+    ],
+    "reason": "Two iterators opened over one live source execute two fetches and receive different fresh values; no implicit sharing or cached value."
   },
   {
     "id": "10-server-functions:L221:6",
@@ -3171,25 +3175,25 @@
   },
   {
     "id": "11-server-components:L169:3",
-    "status": "uncovered",
-    "coverage": [
-      "08/server-diagnostic-write-categories"
-    ],
-    "reason": "development warning\u5df2\u6d4b\uff1ball-server-builds\u539f\u53e5\u4e0eRFC08 dev-only checks\u76f8\u77db\u76fe\uff0c\u7ea2\u6587\u6863repro\u4ecd\u9700\u767b\u8bb0\uff1b\u7981\u6b62\u5199\u7684\u89c4\u8303\u5efa\u8bae\u4e0e\u5f53\u524d\u6682\u65f6\u5bb9\u5fcd\u9700\u533a\u5206"
+    "status": "not-behavioral",
+    "coverage": [],
+    "reason": "Normative server-purity design rule, explicitly followed by current transitional tolerated data-only setter behavior; executable current behavior is tested for L169:5 and diagnostic claim for L169:4/027."
   },
   {
     "id": "11-server-components:L169:4",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "08/server-diagnostic-write-categories"
+      "findings/027-server-write-production/repro.test.ts"
     ],
-    "reason": "development warning\u5df2\u6d4b\uff1ball-server-builds\u539f\u53e5\u4e0eRFC08 dev-only checks\u76f8\u77db\u76fe\uff0c\u7ea2\u6587\u6863repro\u4ecd\u9700\u767b\u8bb0\uff1b\u7981\u6b62\u5199\u7684\u89c4\u8303\u5efa\u8bae\u4e0e\u5f53\u524d\u6682\u65f6\u5bb9\u5fcd\u9700\u533a\u5206"
+    "reason": "Production server write counterexample contradicts claimed all-build warning; development warning positive retained in minimal finding."
   },
   {
     "id": "11-server-components:L169:5",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Current behavior or build integration promise; additional targeted assertions are needed."
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/frame-cases.tsx#11/server-data-only-writes"
+    ],
+    "reason": "Signal/store writes affect subsequent reads while produced markup stays old; optimistic signal/store writes leave baseline unchanged in all three server builds."
   },
   {
     "id": "11-server-components:L169:6",
@@ -3218,9 +3222,11 @@
   },
   {
     "id": "11-server-components:L169:10",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "\u672c\u53e5\u63cf\u8ff0\u5df2\u5b9e\u73b0\u6216\u5f53\u524d\u516c\u5f00\u5408\u540c\uff1b\u4e0d\u80fd\u56e0\u4f4d\u4e8eOpen questions\u5c31\u5f53\u5386\u53f2\u8bbe\u8ba1\u3002\u9700\u8865\u7cbe\u786e\u8de8\u8f68\u65ad\u8a00\u3002"
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/frame-cases.tsx#11/server-store-async-pull"
+    ],
+    "reason": "Actual createStore async iterable consumed once, memo reads first pulled value in SSR; source closes after server render, rather than callback setter writes."
   },
   {
     "id": "11-server-components:L169:11",

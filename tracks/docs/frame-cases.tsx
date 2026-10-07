@@ -1,5 +1,5 @@
-import { isServer, renderToStream } from "@solidjs/web";
-import { Loading, createMemo, Errored } from "solid-js";
+import { isServer, renderToStream, renderToString } from "@solidjs/web";
+import { Loading, createMemo, Errored, createSignal, createStore, createOptimistic, createOptimisticStore } from "solid-js";
 import {
   renderServerComponent,
   asyncArg,
@@ -177,6 +177,19 @@ if (isServer) {
   });
 }
 if(isServer) {
+ doc("server-data-only-writes", "SSR setters affect later reads, never already produced markup; optimistic overlays are hard no-ops.",()=>{
+  let readback:any;const warn=console.warn;console.warn=()=>{};
+  try{const html=renderToString(()=>{
+   const [read,set]=createSignal(1),[store,write]=createStore({n:1});const [optimistic,overlay]=createOptimistic(4),[optimisticStore,overlayStore]=createOptimisticStore({n:5});
+   const before=<p>{read()}:{store.n}:{optimistic()}:{optimisticStore.n}</p>;
+   set(2);write(d=>{d.n=3});overlay(8);overlayStore(d=>{d.n=9});readback=[read(),store.n,optimistic(),optimisticStore.n];return before;
+  });equal(readback,[2,3,4,5]);ok(html.replace(/<!--.*?-->/g,"").includes("1:1:4:5"),html);}finally{console.warn=warn}
+ });
+ doc("server-store-async-pull", "createStore over an async iterable pulls through a memo derivation during server rendering.",async()=>{
+  let opened=0,closed=0;let state:any;async function* source(){opened++;try{await Promise.resolve();yield {n:2};await Promise.resolve();yield {n:3}}finally{closed++}}
+  const stream=renderToStream(()=>{const [store]=createStore(()=>source(),{n:0},{ssrSource:"server"});state=store;const value=createMemo(()=>store.n*2);return <Loading fallback={<b>waiting</b>}><p>{"pulled:"+value()+":end"}</p></Loading>});
+  const html=await new Response(stream.readable).text();equal(opened,1);equal(closed,1);equal(state.n,2);ok(html.includes("pulled:4:end"),html);
+ });
  doc("plain-flight-bytes", "Enabling frame flight transforms leaves data-only envelopes byte-identical to plain transport.",async()=>{
   rpc.registerServerReference("frame-byte-equivalence",()=>({mutated:7}));
   const off=rpc.registerFlightDataSource("byte-cache",()=>({fresh:[1,2]}));
