@@ -430,16 +430,21 @@
     {
       "id": "08-dev-diagnostics:L127:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-root-async-mount",
+        "tracks/router/postmount.test.ts"
+      ],
+      "reason": "逐项实际CSR/SSR/hydrate/Chrome V8及production负控或045红色措辞差异证明；没有用同code推定缺失分支。"
     },
     {
       "id": "08-dev-diagnostics:L127:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "tracks/router/postmount.test.ts"
+      ],
+      "reason": "逐项实际CSR/SSR/hydrate/Chrome V8及production负控或045红色措辞差异证明；没有用同code推定缺失分支。"
     },
     {
       "id": "08-dev-diagnostics:L131:1",
@@ -992,9 +997,14 @@
     {
       "id": "08-dev-diagnostics:L301:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-strict-component-controls",
+        "08/client-diagnostic-after-await",
+        "08/client-diagnostic-loading-outside",
+        "08/cost-engine-warning-gate"
+      ],
+      "reason": "逐项实际CSR/SSR/hydrate/Chrome V8及production负控或045红色措辞差异证明；没有用同code推定缺失分支。"
     },
     {
       "id": "08-dev-diagnostics:L301:2",
@@ -1198,9 +1208,11 @@
     {
       "id": "08-dev-diagnostics:L359:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-after-await-known-misses"
+      ],
+      "reason": "逐项实际CSR/SSR/hydrate/Chrome V8及production负控或045红色措辞差异证明；没有用同code推定缺失分支。"
     },
     {
       "id": "08-dev-diagnostics:L359:4",
@@ -1607,9 +1619,12 @@
     {
       "id": "08-dev-diagnostics:L433:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-graph-series-leak-signatures",
+        "08/cost-graph-growth-default"
+      ],
+      "reason": "逐项实际CSR/SSR/hydrate/Chrome V8及production负控或045红色措辞差异证明；没有用同code推定缺失分支。"
     },
     {
       "id": "08-dev-diagnostics:L433:5",
@@ -2937,9 +2952,15 @@
     {
       "id": "08-dev-diagnostics:L571:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-contained-fallback",
+        "08/server-road-contained-client",
+        "08/server-road-abandoned-consumer",
+        "08/server-road-sanitize-rpc-false",
+        "08/server-road-sanitize-ssr-false"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L571:2",
@@ -2951,16 +2972,28 @@
     {
       "id": "08-dev-diagnostics:L571:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-contained-fallback",
+        "08/server-road-contained-client",
+        "08/server-road-abandoned-consumer",
+        "08/server-road-sanitize-rpc-false",
+        "08/server-road-sanitize-ssr-false"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L571:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-contained-fallback",
+        "08/server-road-contained-client",
+        "08/server-road-abandoned-consumer",
+        "08/server-road-sanitize-rpc-false",
+        "08/server-road-sanitize-ssr-false"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L571:5",
@@ -3021,16 +3054,26 @@
     {
       "id": "08-dev-diagnostics:L582:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-contained-fallback",
+        "08/server-road-contained-client",
+        "08/server-road-initial-failed-hook",
+        "findings/017-initial-render-error-record/repro.test.ts"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L582:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-contained-fallback",
+        "08/server-road-contained-client",
+        "08/server-road-initial-failed-hook",
+        "findings/017-initial-render-error-record/repro.test.ts"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L582:3",
@@ -3042,9 +3085,14 @@
     {
       "id": "08-dev-diagnostics:L582:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-contained-fallback",
+        "08/server-road-contained-client",
+        "08/server-road-initial-failed-hook",
+        "findings/017-initial-render-error-record/repro.test.ts"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L586:1",
@@ -3074,9 +3122,11 @@
     {
       "id": "08-dev-diagnostics:L588:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-subtree-abandoned-fields"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L588:4",
@@ -3113,11 +3163,13 @@
     {
       "id": "08-dev-diagnostics:L594:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/server-diagnostic-stream-abandoned"
+        "08/server-road-abandoned-consumer",
+        "08/server-road-abandoned-sink",
+        "08/server-road-abandoned-signal"
       ],
-      "reason": "partial: consumer cancel正例；sink和signal尚未验证。"
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L594:3",
@@ -3129,9 +3181,13 @@
     {
       "id": "08-dev-diagnostics:L594:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-abandoned-consumer",
+        "08/server-road-abandoned-sink",
+        "08/server-road-abandoned-signal"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L594:5",
@@ -3238,9 +3294,11 @@
     {
       "id": "08-dev-diagnostics:L606:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-dynamic-client-function"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L606:5",
@@ -3252,11 +3310,11 @@
     {
       "id": "08-dev-diagnostics:L606:6",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/server-diagnostic-dynamic-async"
+        "08/server-road-dynamic-safe-values"
       ],
-      "reason": "partial: async tag负对照，不是sync source写record的负对照。"
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L610:1",
@@ -3282,9 +3340,14 @@
     {
       "id": "08-dev-diagnostics:L615:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-sanitize-rpc-false",
+        "08/server-road-sanitize-rpc-true",
+        "08/server-road-sanitize-ssr-false",
+        "08/server-road-sanitize-ssr-true"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L615:2",
@@ -3296,44 +3359,66 @@
     {
       "id": "08-dev-diagnostics:L615:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-sanitize-rpc-false",
+        "08/server-road-sanitize-rpc-true",
+        "08/server-road-sanitize-ssr-false",
+        "08/server-road-sanitize-ssr-true"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L615:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-sanitize-rpc-false",
+        "08/server-road-sanitize-rpc-true",
+        "08/server-road-sanitize-ssr-false",
+        "08/server-road-sanitize-ssr-true"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L617:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-sanitize-rpc-false"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L617:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-sanitize-rpc-false"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L619:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-sanitize-ssr-false",
+        "08/server-road-sanitize-frame-root",
+        "08/server-road-sanitize-frame-fragment",
+        "08/server-road-sanitize-frame-live-hole",
+        "08/server-road-sanitize-async-source"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L619:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-sanitize-ssr-false"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L619:3",
@@ -3352,9 +3437,11 @@
     {
       "id": "08-dev-diagnostics:L619:5",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-error-value-data"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L623:1",
@@ -3366,23 +3453,31 @@
     {
       "id": "08-dev-diagnostics:L625:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "findings/020-observe-frame-corruption/repro.test.ts",
+        "tracks/frames/binding.test.ts:corrupt-marker"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L625:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "findings/020-observe-frame-corruption/repro.test.ts",
+        "tracks/frames/binding.test.ts:corrupt-marker"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L625:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "findings/020-observe-frame-corruption/repro.test.ts:data.slot/end dev control"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L625:4",
@@ -3447,11 +3542,12 @@
     {
       "id": "08-dev-diagnostics:L635:3",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/server-diagnostic-write-categories"
+        "08/server-diagnostic-write-inert-values",
+        "findings/045-server-optimistic-write-wording/repro.test.ts"
       ],
-      "reason": "partial: warning有断言，但未来throw不是本版合同，inert read数据/不rerender需要正文另测。"
+      "reason": "逐项实际CSR/SSR/hydrate/Chrome V8及production负控或045红色措辞差异证明；没有用同code推定缺失分支。"
     },
     {
       "id": "08-dev-diagnostics:L635:4",
@@ -3477,16 +3573,20 @@
     {
       "id": "08-dev-diagnostics:L641:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-client-source-outside-error"
+      ],
+      "reason": "逐项实际CSR/SSR/hydrate/Chrome V8及production负控或045红色措辞差异证明；没有用同code推定缺失分支。"
     },
     {
       "id": "08-dev-diagnostics:L641:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-client-source-outside-error"
+      ],
+      "reason": "逐项实际CSR/SSR/hydrate/Chrome V8及production负控或045红色措辞差异证明；没有用同code推定缺失分支。"
     },
     {
       "id": "08-dev-diagnostics:L645:1",
@@ -3553,9 +3653,11 @@
     {
       "id": "08-dev-diagnostics:L653:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-waterfall-record-identity"
+      ],
+      "reason": "逐项实际CSR/SSR/hydrate/Chrome V8及production负控或045红色措辞差异证明；没有用同code推定缺失分支。"
     },
     {
       "id": "08-dev-diagnostics:L653:3",
@@ -3585,18 +3687,20 @@
     {
       "id": "08-dev-diagnostics:L653:6",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/server-diagnostic-waterfall"
+        "08/server-diagnostic-waterfall-record-identity"
       ],
-      "reason": "partial: passes已验证，boundary/sequentialMs metadata未逐字段断言。"
+      "reason": "逐项实际CSR/SSR/hydrate/Chrome V8及production负控或045红色措辞差异证明；没有用同code推定缺失分支。"
     },
     {
       "id": "08-dev-diagnostics:L653:7",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-waterfall-record-identity"
+      ],
+      "reason": "逐项实际CSR/SSR/hydrate/Chrome V8及production负控或045红色措辞差异证明；没有用同code推定缺失分支。"
     },
     {
       "id": "08-dev-diagnostics:L657:1",
@@ -3766,18 +3870,23 @@
     {
       "id": "08-dev-diagnostics:L674:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/server-diagnostic-lazy-unmapped"
+        "08/server-diagnostic-lazy-resolution-metadata",
+        "tracks/docs/lazy-evidence.test.ts",
+        "findings/032-sync-lazy-resolver/repro.test.ts"
       ],
-      "reason": "partial: no-module-url正例，resolverthrow以及metadata未验证。"
+      "reason": "真实 SSR/Chrome dev/prod 正负对照、编译产物及类型检查精确证明；resolver同步throw仍由最小红 finding032 保留。"
     },
     {
       "id": "08-dev-diagnostics:L674:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "此解释/修复段包含可观测额外合同，仍需专门证明；不能排除为背景文字。"
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/lazy-evidence.test.ts",
+        "findings/032-sync-lazy-resolver/repro.test.ts"
+      ],
+      "reason": "真实 SSR/Chrome dev/prod 正负对照、编译产物及类型检查精确证明；resolver同步throw仍由最小红 finding032 保留。"
     },
     {
       "id": "08-dev-diagnostics:L674:4",
@@ -3860,9 +3969,11 @@
     {
       "id": "08-dev-diagnostics:L686:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-head-duplicate-client"
+      ],
+      "reason": "真实 Chrome dev/prod、精确编译产物与公开类型误用拒绝形成正负控制。"
     },
     {
       "id": "08-dev-diagnostics:L690:1",
@@ -3971,9 +4082,12 @@
     {
       "id": "08-dev-diagnostics:L700:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "此解释/修复段包含可观测额外合同，仍需专门证明；不能排除为背景文字。"
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/compiler-addressability.test.ts",
+        "tracks/docs/unscoped.test.ts"
+      ],
+      "reason": "真实 Chrome dev/prod、精确编译产物与公开类型误用拒绝形成正负控制。"
     },
     {
       "id": "08-dev-diagnostics:L700:4",
@@ -3996,9 +4110,13 @@
     {
       "id": "08-dev-diagnostics:L700:6",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "此解释/修复段包含可观测额外合同，仍需专门证明；不能排除为背景文字。"
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/diagnostic-types.tsx",
+        "tracks/docs/compiler-addressability.test.ts",
+        "tracks/docs/unscoped.test.ts"
+      ],
+      "reason": "真实 Chrome dev/prod、精确编译产物与公开类型误用拒绝形成正负控制。"
     },
     {
       "id": "08-dev-diagnostics:L702:1",
@@ -4096,11 +4214,11 @@
     {
       "id": "08-dev-diagnostics:L708:4",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/server-diagnostic-lowercase-event"
+        "tracks/docs/lowercase.test.ts"
       ],
-      "reason": "partial: spread入口测试，compiledattribute/assign/hydrate未覆盖。"
+      "reason": "逐项实际CSR/SSR/hydrate/Chrome V8及production负控或045红色措辞差异证明；没有用同code推定缺失分支。"
     },
     {
       "id": "08-dev-diagnostics:L708:5",
@@ -4114,9 +4232,12 @@
     {
       "id": "08-dev-diagnostics:L708:6",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "此解释/修复段包含可观测额外合同，仍需专门证明；不能排除为背景文字。"
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/diagnostic-types.tsx",
+        "tracks/docs/lowercase.test.ts"
+      ],
+      "reason": "真实 Chrome dev/prod、精确编译产物与公开类型误用拒绝形成正负控制。"
     },
     {
       "id": "08-dev-diagnostics:L708:7",
@@ -4331,23 +4452,35 @@
     {
       "id": "08-dev-diagnostics:L727:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/binding-server-valid",
+        "08/binding-server-spread",
+        "tracks/frames/binding.test.ts:13 client shapes"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L727:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/binding-server-valid",
+        "08/binding-server-spread",
+        "tracks/frames/binding.test.ts:13 client shapes"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L727:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/binding-server-valid",
+        "08/binding-server-spread",
+        "tracks/frames/binding.test.ts:13 client shapes"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L727:4",
@@ -4373,16 +4506,20 @@
     {
       "id": "08-dev-diagnostics:L727:7",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/binding-truthiness-and-source-order"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L727:8",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/binding-truthiness-and-source-order"
+      ],
+      "reason": "经frames最新实际dev/observe/production字段、kind/severity和位置分支conjunction证明，复用同句精准assertion。"
     },
     {
       "id": "08-dev-diagnostics:L727:9",

@@ -1,0 +1,83 @@
+{
+  "commit": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+  "scope": "08 attribution cost configuration fenced comments C1015–1023",
+  "entries": [
+    {
+      "id": "08-dev-diagnostics:C1015:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-hot-runs-default",
+        "08/cost-engine-warning-gate"
+      ],
+      "statement": "  hotRuns: { count: 120, windowMs: 1000 },   // or false",
+      "reason": "默认边界和单独 false 开关实测 dev/observe/prod；checks:false 仍有原生 rerun records 且六类 cost verdict 全部静默。"
+    },
+    {
+      "id": "08-dev-diagnostics:C1016:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-hot-time-default",
+        "08/cost-engine-warning-gate"
+      ],
+      "statement": "  hotTime: { budgetMs: 8, windowMs: 1000 },  // or false",
+      "reason": "默认边界和单独 false 开关实测 dev/observe/prod；checks:false 仍有原生 rerun records 且六类 cost verdict 全部静默。"
+    },
+    {
+      "id": "08-dev-diagnostics:C1017:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-wide-default-threshold",
+        "08/cost-wide-growth-default",
+        "08/cost-engine-warning-gate"
+      ],
+      "statement": "  wideDeps: 200,                              // or false",
+      "reason": "默认边界和单独 false 开关实测 dev/observe/prod；checks:false 仍有原生 rerun records 且六类 cost verdict 全部静默。"
+    },
+    {
+      "id": "08-dev-diagnostics:C1018:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-unstable-default-and-equality",
+        "08/cost-engine-warning-gate"
+      ],
+      "statement": "  unstableMemos: 4,                           // or false",
+      "reason": "默认边界和单独 false 开关实测 dev/observe/prod；checks:false 仍有原生 rerun records 且六类 cost verdict 全部静默。"
+    },
+    {
+      "id": "08-dev-diagnostics:C1019:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-fanout-engine-handover",
+        "08/cost-fanout-invalidation-kinds",
+        "08/cost-engine-warning-gate"
+      ],
+      "statement": "  fanOut: 250,                                // or false (HUGE_FAN_OUT threshold while enabled)",
+      "reason": "默认边界和单独 false 开关实测 dev/observe/prod；checks:false 仍有原生 rerun records 且六类 cost verdict 全部静默。"
+    },
+    {
+      "id": "08-dev-diagnostics:C1020:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-waterfall-default-duration"
+      ],
+      "statement": "  waterfalls: { minFlightMs: 50 },            // or false",
+      "reason": "默认边界和单独 false 开关实测 dev/observe/prod；checks:false 仍有原生 rerun records 且六类 cost verdict 全部静默。"
+    },
+    {
+      "id": "08-dev-diagnostics:C1023:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-checks-false"
+      ],
+      "statement": "  checks: true                                // false: records only — none of the six cost checks above",
+      "reason": "默认边界和单独 false 开关实测 dev/observe/prod；checks:false 仍有原生 rerun records 且六类 cost verdict 全部静默。"
+    }
+  ]
+}

@@ -24,3 +24,14 @@ test('08-dev-diagnostics.md: primitive naming is a standalone transformSourceNam
   }
   expect(transform('const View=()=> <span>{count()}</span>',{generate:'dom',dev:false}).code).not.toContain('name:')
 })
+test('08 L700: lazy JSX-building child holes reserve scopes; bare function identifiers deliberately do not',()=>{
+ for(const generate of ['dom','ssr'] as const)for(const dev of [false,true]){
+  const bare=transform('function View(props){const f=()=>props.header;return <div>{f}</div>}',{generate,dev,hydratable:true}).code
+  expect(bare).not.toContain('scope as')
+  for(const hole of ['f()','props.header','props.a ? <p/> : <b/>','items.map(item => <p>{item}</p>)']){
+   const code=transform('function View(props){const f=()=>props.header;return <div>{'+hole+'}</div>}',{generate,dev,hydratable:true}).code
+   expect(code).toContain('scope as')
+   expect(code).toContain('_$scope(')
+  }
+ }
+})
