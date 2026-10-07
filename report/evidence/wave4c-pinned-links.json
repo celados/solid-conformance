@@ -1,0 +1,936 @@
+{
+  "verifiedAt": "2026-10-07T23:53:11.033Z",
+  "method": "gh api contents for every unique public reproduction/file path at the pinned commit",
+  "results": [
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/006-storepath-export/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/006-storepath-export/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/007-loading-on-accessor/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/007-loading-on-accessor/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/010-leaf-signal-diagnostic/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/010-leaf-signal-diagnostic/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/012-attribution-audience-gate/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/012-attribution-audience-gate/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/013-pinned-source-retake/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/013-pinned-source-retake/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/015-untrack-owned-write/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/015-untrack-owned-write/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/017-initial-render-error-record/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/017-initial-render-error-record/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/018-nested-refresh-types/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/018-nested-refresh-types/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/019-action-await-origin/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/019-action-await-origin/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/020-observe-frame-corruption/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/020-observe-frame-corruption/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/021-recovery-boundary-outcome/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/021-recovery-boundary-outcome/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/023-returned-helper-diagnostic/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/023-returned-helper-diagnostic/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/024-single-typed-array-encoding/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/024-single-typed-array-encoding/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/025-async-fanout-classification/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/025-async-fanout-classification/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/027-server-write-all-builds/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/027-server-write-all-builds/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/028-artifact-format-version/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/028-artifact-format-version/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/030-effect-error-signature/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/030-effect-error-signature/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/031-direct-error-hook-tier/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/031-direct-error-hook-tier/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/033-symbol-insert-diagnostic/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/033-symbol-insert-diagnostic/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/038-frame-call-state-doc-reset/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/038-frame-call-state-doc-reset/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/039-missing-resource-timing-fallback/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/039-missing-resource-timing-fallback/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/040-initial-binding-console/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/040-initial-binding-console/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/041-dynamic-source-tracking/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/041-dynamic-source-tracking/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/042-malformed-preload-crossorigin/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/042-malformed-preload-crossorigin/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/045-server-optimistic-write-wording/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/045-server-optimistic-write-wording/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/046-held-derived-store-seed/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/046-held-derived-store-seed/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/047-derived-store-accessor-example/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/047-derived-store-accessor-example/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/048-first-loading-held-signal/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/048-first-loading-held-signal/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/051-unnamed-attribution-owner-id/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/051-unnamed-attribution-owner-id/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/052-transparent-ssr-slot/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/052-transparent-ssr-slot/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/054-prearrived-recovery-wait/README.md",
+      "api": "repos/celados/solid-conformance/contents/findings/054-prearrived-recovery-wait/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/01-store-rejection/App.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/01-store-rejection/App.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/01-store-rejection/build.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/01-store-rejection/build.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/01-store-rejection/client.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/01-store-rejection/client.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/01-store-rejection/link-head.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/01-store-rejection/link-head.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/01-store-rejection/README.md",
+      "api": "repos/celados/solid-conformance/contents/report/repros/01-store-rejection/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/01-store-rejection/repro.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/01-store-rejection/repro.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/01-store-rejection/snippet-client.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/01-store-rejection/snippet-client.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/01-store-rejection/snippet.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/01-store-rejection/snippet.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/02-production-refresh/App.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/02-production-refresh/App.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/02-production-refresh/build.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/02-production-refresh/build.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/02-production-refresh/client.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/02-production-refresh/client.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/02-production-refresh/link-head.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/02-production-refresh/link-head.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/02-production-refresh/README.md",
+      "api": "repos/celados/solid-conformance/contents/report/repros/02-production-refresh/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/02-production-refresh/repro.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/02-production-refresh/repro.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/02-production-refresh/snippet-client.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/02-production-refresh/snippet-client.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/02-production-refresh/snippet.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/02-production-refresh/snippet.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/03-multisite-hydration/app.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/03-multisite-hydration/app.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/03-multisite-hydration/build.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/03-multisite-hydration/build.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/03-multisite-hydration/client.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/03-multisite-hydration/client.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/03-multisite-hydration/counter.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/03-multisite-hydration/counter.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/03-multisite-hydration/link-head.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/03-multisite-hydration/link-head.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/03-multisite-hydration/README.md",
+      "api": "repos/celados/solid-conformance/contents/report/repros/03-multisite-hydration/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/03-multisite-hydration/repro.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/03-multisite-hydration/repro.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/03-multisite-hydration/server.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/03-multisite-hydration/server.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/04-live-decoder-stream-lifetime/build.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/04-live-decoder-stream-lifetime/build.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/04-live-decoder-stream-lifetime/link-head.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/04-live-decoder-stream-lifetime/link-head.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/04-live-decoder-stream-lifetime/live-client.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/04-live-decoder-stream-lifetime/live-client.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/04-live-decoder-stream-lifetime/live-server.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/04-live-decoder-stream-lifetime/live-server.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/04-live-decoder-stream-lifetime/live.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/04-live-decoder-stream-lifetime/live.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/04-live-decoder-stream-lifetime/pull.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/04-live-decoder-stream-lifetime/pull.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/04-live-decoder-stream-lifetime/README.md",
+      "api": "repos/celados/solid-conformance/contents/report/repros/04-live-decoder-stream-lifetime/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/04-live-decoder-stream-lifetime/repro.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/04-live-decoder-stream-lifetime/repro.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/04-live-decoder-stream-lifetime/server.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/04-live-decoder-stream-lifetime/server.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/05-production-store-affects/App.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/05-production-store-affects/App.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/05-production-store-affects/build.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/05-production-store-affects/build.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/05-production-store-affects/link-head.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/05-production-store-affects/link-head.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/05-production-store-affects/module.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/05-production-store-affects/module.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/05-production-store-affects/README.md",
+      "api": "repos/celados/solid-conformance/contents/report/repros/05-production-store-affects/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/05-production-store-affects/repro.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/05-production-store-affects/repro.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/05-production-store-affects/snippet-client.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/05-production-store-affects/snippet-client.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/05-production-store-affects/snippet.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/05-production-store-affects/snippet.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/06-loading-nonconvergence/App.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/06-loading-nonconvergence/App.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/06-loading-nonconvergence/build.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/06-loading-nonconvergence/build.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/06-loading-nonconvergence/client.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/06-loading-nonconvergence/client.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/06-loading-nonconvergence/link-head.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/06-loading-nonconvergence/link-head.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/06-loading-nonconvergence/README.md",
+      "api": "repos/celados/solid-conformance/contents/report/repros/06-loading-nonconvergence/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/06-loading-nonconvergence/repro.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/06-loading-nonconvergence/repro.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/06-loading-nonconvergence/snippet-client.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/06-loading-nonconvergence/snippet-client.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/06-loading-nonconvergence/snippet.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/06-loading-nonconvergence/snippet.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/07-document-live-abort/build.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/07-document-live-abort/build.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/07-document-live-abort/document.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/07-document-live-abort/document.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/07-document-live-abort/link-head.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/07-document-live-abort/link-head.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/07-document-live-abort/README.md",
+      "api": "repos/celados/solid-conformance/contents/report/repros/07-document-live-abort/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/07-document-live-abort/repro.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/07-document-live-abort/repro.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/07-document-live-abort/server.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/07-document-live-abort/server.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/08-nested-server-region/build.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/08-nested-server-region/build.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/08-nested-server-region/client.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/08-nested-server-region/client.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/08-nested-server-region/link-head.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/08-nested-server-region/link-head.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/08-nested-server-region/README.md",
+      "api": "repos/celados/solid-conformance/contents/report/repros/08-nested-server-region/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/08-nested-server-region/repro.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/08-nested-server-region/repro.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/08-nested-server-region/server.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/08-nested-server-region/server.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/09-refresh-optimistic-authority/App.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/09-refresh-optimistic-authority/App.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/09-refresh-optimistic-authority/build.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/09-refresh-optimistic-authority/build.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/09-refresh-optimistic-authority/link-head.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/09-refresh-optimistic-authority/link-head.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/09-refresh-optimistic-authority/module.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/09-refresh-optimistic-authority/module.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/09-refresh-optimistic-authority/README.md",
+      "api": "repos/celados/solid-conformance/contents/report/repros/09-refresh-optimistic-authority/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/09-refresh-optimistic-authority/repro.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/09-refresh-optimistic-authority/repro.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/09-refresh-optimistic-authority/snippet-client.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/09-refresh-optimistic-authority/snippet-client.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/09-refresh-optimistic-authority/snippet.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/09-refresh-optimistic-authority/snippet.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/10-sync-asset-resolver/build.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/10-sync-asset-resolver/build.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/10-sync-asset-resolver/link-head.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/10-sync-asset-resolver/link-head.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/10-sync-asset-resolver/README.md",
+      "api": "repos/celados/solid-conformance/contents/report/repros/10-sync-asset-resolver/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/10-sync-asset-resolver/repro.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/10-sync-asset-resolver/repro.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/10-sync-asset-resolver/server.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/10-sync-asset-resolver/server.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/11-conditional-get-format/build.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/11-conditional-get-format/build.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/11-conditional-get-format/client.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/11-conditional-get-format/client.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/11-conditional-get-format/link-head.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/11-conditional-get-format/link-head.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/11-conditional-get-format/read.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/11-conditional-get-format/read.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/11-conditional-get-format/README.md",
+      "api": "repos/celados/solid-conformance/contents/report/repros/11-conditional-get-format/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/11-conditional-get-format/repro.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/11-conditional-get-format/repro.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/11-conditional-get-format/server.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/11-conditional-get-format/server.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/12-async-action-live-ack/App.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/12-async-action-live-ack/App.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/12-async-action-live-ack/build.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/12-async-action-live-ack/build.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/12-async-action-live-ack/link-head.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/12-async-action-live-ack/link-head.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/12-async-action-live-ack/module.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/12-async-action-live-ack/module.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/12-async-action-live-ack/README.md",
+      "api": "repos/celados/solid-conformance/contents/report/repros/12-async-action-live-ack/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/12-async-action-live-ack/repro.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/12-async-action-live-ack/repro.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/12-async-action-live-ack/snippet-client.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/12-async-action-live-ack/snippet-client.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/12-async-action-live-ack/snippet.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/12-async-action-live-ack/snippet.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/13-cookie-proto-key/build.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/13-cookie-proto-key/build.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/13-cookie-proto-key/link-head.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/13-cookie-proto-key/link-head.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/13-cookie-proto-key/module.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/13-cookie-proto-key/module.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/13-cookie-proto-key/README.md",
+      "api": "repos/celados/solid-conformance/contents/report/repros/13-cookie-proto-key/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/13-cookie-proto-key/repro.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/13-cookie-proto-key/repro.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/14-mixed-object-insert/App.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/14-mixed-object-insert/App.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/14-mixed-object-insert/build.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/14-mixed-object-insert/build.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/14-mixed-object-insert/client.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/14-mixed-object-insert/client.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/14-mixed-object-insert/link-head.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/14-mixed-object-insert/link-head.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/14-mixed-object-insert/README.md",
+      "api": "repos/celados/solid-conformance/contents/report/repros/14-mixed-object-insert/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/14-mixed-object-insert/repro.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/14-mixed-object-insert/repro.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/14-mixed-object-insert/snippet-client.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/14-mixed-object-insert/snippet-client.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/14-mixed-object-insert/snippet.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/14-mixed-object-insert/snippet.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/15-spread-children-hydration/build.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/15-spread-children-hydration/build.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/15-spread-children-hydration/client.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/15-spread-children-hydration/client.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/15-spread-children-hydration/link-head.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/15-spread-children-hydration/link-head.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/15-spread-children-hydration/README.md",
+      "api": "repos/celados/solid-conformance/contents/report/repros/15-spread-children-hydration/README.md?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/15-spread-children-hydration/repro.test.ts",
+      "api": "repos/celados/solid-conformance/contents/report/repros/15-spread-children-hydration/repro.test.ts?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/15-spread-children-hydration/server.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/15-spread-children-hydration/server.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/blob/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/15-spread-children-hydration/shape.tsx",
+      "api": "repos/celados/solid-conformance/contents/report/repros/15-spread-children-hydration/shape.tsx?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/006-storepath-export",
+      "api": "repos/celados/solid-conformance/contents/findings/006-storepath-export?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/007-loading-on-accessor",
+      "api": "repos/celados/solid-conformance/contents/findings/007-loading-on-accessor?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/010-leaf-signal-diagnostic",
+      "api": "repos/celados/solid-conformance/contents/findings/010-leaf-signal-diagnostic?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/012-attribution-audience-gate",
+      "api": "repos/celados/solid-conformance/contents/findings/012-attribution-audience-gate?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/013-pinned-source-retake",
+      "api": "repos/celados/solid-conformance/contents/findings/013-pinned-source-retake?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/015-untrack-owned-write",
+      "api": "repos/celados/solid-conformance/contents/findings/015-untrack-owned-write?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/017-initial-render-error-record",
+      "api": "repos/celados/solid-conformance/contents/findings/017-initial-render-error-record?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/018-nested-refresh-types",
+      "api": "repos/celados/solid-conformance/contents/findings/018-nested-refresh-types?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/019-action-await-origin",
+      "api": "repos/celados/solid-conformance/contents/findings/019-action-await-origin?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/020-observe-frame-corruption",
+      "api": "repos/celados/solid-conformance/contents/findings/020-observe-frame-corruption?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/021-recovery-boundary-outcome",
+      "api": "repos/celados/solid-conformance/contents/findings/021-recovery-boundary-outcome?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/023-returned-helper-diagnostic",
+      "api": "repos/celados/solid-conformance/contents/findings/023-returned-helper-diagnostic?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/024-single-typed-array-encoding",
+      "api": "repos/celados/solid-conformance/contents/findings/024-single-typed-array-encoding?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/025-async-fanout-classification",
+      "api": "repos/celados/solid-conformance/contents/findings/025-async-fanout-classification?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/027-server-write-all-builds",
+      "api": "repos/celados/solid-conformance/contents/findings/027-server-write-all-builds?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/028-artifact-format-version",
+      "api": "repos/celados/solid-conformance/contents/findings/028-artifact-format-version?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/030-effect-error-signature",
+      "api": "repos/celados/solid-conformance/contents/findings/030-effect-error-signature?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/031-direct-error-hook-tier",
+      "api": "repos/celados/solid-conformance/contents/findings/031-direct-error-hook-tier?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/033-symbol-insert-diagnostic",
+      "api": "repos/celados/solid-conformance/contents/findings/033-symbol-insert-diagnostic?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/038-frame-call-state-doc-reset",
+      "api": "repos/celados/solid-conformance/contents/findings/038-frame-call-state-doc-reset?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/039-missing-resource-timing-fallback",
+      "api": "repos/celados/solid-conformance/contents/findings/039-missing-resource-timing-fallback?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/040-initial-binding-console",
+      "api": "repos/celados/solid-conformance/contents/findings/040-initial-binding-console?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/041-dynamic-source-tracking",
+      "api": "repos/celados/solid-conformance/contents/findings/041-dynamic-source-tracking?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/042-malformed-preload-crossorigin",
+      "api": "repos/celados/solid-conformance/contents/findings/042-malformed-preload-crossorigin?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/045-server-optimistic-write-wording",
+      "api": "repos/celados/solid-conformance/contents/findings/045-server-optimistic-write-wording?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/046-held-derived-store-seed",
+      "api": "repos/celados/solid-conformance/contents/findings/046-held-derived-store-seed?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/047-derived-store-accessor-example",
+      "api": "repos/celados/solid-conformance/contents/findings/047-derived-store-accessor-example?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/048-first-loading-held-signal",
+      "api": "repos/celados/solid-conformance/contents/findings/048-first-loading-held-signal?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/051-unnamed-attribution-owner-id",
+      "api": "repos/celados/solid-conformance/contents/findings/051-unnamed-attribution-owner-id?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/052-transparent-ssr-slot",
+      "api": "repos/celados/solid-conformance/contents/findings/052-transparent-ssr-slot?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/findings/054-prearrived-recovery-wait",
+      "api": "repos/celados/solid-conformance/contents/findings/054-prearrived-recovery-wait?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/01-store-rejection",
+      "api": "repos/celados/solid-conformance/contents/report/repros/01-store-rejection?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/02-production-refresh",
+      "api": "repos/celados/solid-conformance/contents/report/repros/02-production-refresh?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/03-multisite-hydration",
+      "api": "repos/celados/solid-conformance/contents/report/repros/03-multisite-hydration?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/04-live-decoder-stream-lifetime",
+      "api": "repos/celados/solid-conformance/contents/report/repros/04-live-decoder-stream-lifetime?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/05-production-store-affects",
+      "api": "repos/celados/solid-conformance/contents/report/repros/05-production-store-affects?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/06-loading-nonconvergence",
+      "api": "repos/celados/solid-conformance/contents/report/repros/06-loading-nonconvergence?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/07-document-live-abort",
+      "api": "repos/celados/solid-conformance/contents/report/repros/07-document-live-abort?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/08-nested-server-region",
+      "api": "repos/celados/solid-conformance/contents/report/repros/08-nested-server-region?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/09-refresh-optimistic-authority",
+      "api": "repos/celados/solid-conformance/contents/report/repros/09-refresh-optimistic-authority?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/10-sync-asset-resolver",
+      "api": "repos/celados/solid-conformance/contents/report/repros/10-sync-asset-resolver?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/11-conditional-get-format",
+      "api": "repos/celados/solid-conformance/contents/report/repros/11-conditional-get-format?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/12-async-action-live-ack",
+      "api": "repos/celados/solid-conformance/contents/report/repros/12-async-action-live-ack?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/13-cookie-proto-key",
+      "api": "repos/celados/solid-conformance/contents/report/repros/13-cookie-proto-key?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/14-mixed-object-insert",
+      "api": "repos/celados/solid-conformance/contents/report/repros/14-mixed-object-insert?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    },
+    {
+      "url": "https://github.com/celados/solid-conformance/tree/b739f93a27c1d72c5269e15a7ada7543af9e5dbe/report/repros/15-spread-children-hydration",
+      "api": "repos/celados/solid-conformance/contents/report/repros/15-spread-children-hydration?ref=b739f93a27c1d72c5269e15a7ada7543af9e5dbe",
+      "exitCode": 0
+    }
+  ]
+}

@@ -25,4 +25,4 @@ Filing order and every complete title: [FILING.md](../FILING.md). Source links p
 - [Format validation](wave4c-format-validation.json): 27 proposals cover all 47 cases once, upstream heading order and version titles valid, source excerpts match, automated details remain last. The six template headings increase the maximum visible body to 67 lines; source readability is preserved.
 - [TypeScript](wave4c-typecheck.log) and git diff whitespace check pass. OS: macOS 26.6.2 (25G83); browser: system Chrome 155.0.8059.40; Bun: 1.4.2.
 
-Public pinned path validation is recorded after pushing in [wave4c-pinned-links.json](wave4c-pinned-links.json), using gh api for each unique linked directory/file path.
+186 public pinned directory/file paths resolved successfully via gh api after pushing. Validation is recorded in [wave4c-pinned-links.json](wave4c-pinned-links.json), using gh api for each unique linked directory/file path.
