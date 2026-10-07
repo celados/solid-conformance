@@ -8,7 +8,7 @@ const file = '08-dev-diagnostics.md'
 const observe = OBSERVE!
 async function settled(run:()=>unknown){let dispose!:()=>void;let caught:unknown;createRoot(d=>{dispose=d;onSettled(()=>{try{return run() as (()=>void)|undefined}catch(e){caught=e}})});await ticks(8);dispose();if(caught)throw caught}
 function owned(run: () => unknown) { let dispose!:()=>void; try { return createRoot(d => { dispose=d; return run() }) } finally { dispose?.() } }
-async function observed(run: () => unknown | Promise<unknown>) {
+export async function observed(run: () => unknown | Promise<unknown>) {
  const events: Parameters<Parameters<typeof observe.diagnostics.subscribe>[0]>[0][]=[]
  const printed: string[]=[]
  const warn=console.warn, error=console.error
