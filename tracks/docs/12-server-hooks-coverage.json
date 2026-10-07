@@ -1,0 +1,186 @@
+[
+  {
+    "id": "12-ssr-http:L145:2",
+    "status": "uncovered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-tracks/frames/server-diagnostics.test.ts#08/server-road-sanitize-ssr-false"
+    ],
+    "reason": "SSR sanitizer tests need co-occurring contained-error + wire identity asserted in same road"
+  },
+  {
+    "id": "12-ssr-http:L168:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L168:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-client-source-mapping",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-serialization-road"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L168:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-deferred-channel"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L168:4",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L168:5",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L168:6",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L168:7",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L169:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L169:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-throwing-hook"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L169:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L169:4",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-serialization-road"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L169:5",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-client-source-mapping"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L170:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L170:2",
+    "status": "uncovered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-client-source-mapping"
+    ],
+    "reason": "Repeated Loading re-pulls recurring the same object need an explicit fixture"
+  },
+  {
+    "id": "12-ssr-http:L170:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-direct-observe-multi-road"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L171:1",
+    "status": "uncovered",
+    "coverage": [
+      "findings/031-direct-error-hook-tier/repro.test.ts"
+    ],
+    "reason": "Direct-only tier counterexample is proven; cross-bundle registered-symbol delivery still needs a positive test"
+  },
+  {
+    "id": "12-ssr-http:L171:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-render-override",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L171:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-throwing-hook"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L171:4",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-no-hook-failed-console"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L171:5",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-no-hook-failed-console",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L172:1",
+    "status": "uncovered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-render-override"
+    ],
+    "reason": "renderToStream old single-argument handled failure road needs explicit assertion"
+  },
+  {
+    "id": "12-ssr-http:L172:2",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-throwing-hook"
+    ]
+  }
+]
