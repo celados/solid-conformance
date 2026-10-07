@@ -10,6 +10,8 @@ import {
   escape,
   configureServerErrors,
   renderToString,
+  createSSRResponse,
+  getRequestEvent,
 } from "@solidjs/web";
 import { AsyncLocalStorage } from "node:async_hooks";
 import {
@@ -497,5 +499,10 @@ doc("explicit-component-owner-path", "Explicit public component source names loc
  const result=await observed(()=>{html=renderToString(()=>createComponent(App,{},"App"),{onError(){}})});ok(html.includes("caught"));
  const events=assertFinding(result,"SSR_RENDER_ERROR_CONTAINED");if(OBSERVE){const e=events[0]!;ok(e.data?.error===original);equal(e.ownerPath,["<App>","<Page>","<Boundary>","<Broken>"]);equal(e.data?.boundaryPath,["<App>","<Page>","<Boundary>"]);ok(e.data?.boundary);equal(e.severity,"error")}
 });
+doc("late-head-write", "A post-flush header write loses its value and emits head/error with method, name, and the named late component; dev throws, other tiers log.",async()=>scope.run(createRequestEvent(new Request("http://localhost/")),async()=>{
+ let release!:()=>void;const promise=new Promise<string>(r=>release=()=>r("ready"));const errors:unknown[]=[];let response!:Response;
+ function Late(){const value=createMemo(()=>promise);return <b>{(()=>{const v=value();getRequestEvent()!.response.headers.set("x-late","lost");return v})()}</b>}
+ const result=await observed(async()=>{const stream=renderToStream(()=>createComponent(Loading,{fallback:"waiting",get children(){return createComponent(Late,{},"Late")}},"Loading"),{onError:e=>errors.push(e)});response=await createSSRResponse(stream,getRequestEvent()!);equal(response.headers.get("x-late"),null);release();await response.text()});const events=selected(result,"LATE_HEADER_WRITE");equal(events.length,OBSERVE?1:0);for(const e of events){equal(e.kind,"head");equal(e.severity,"error");equal(e.data?.method,"set");equal(e.data?.name,"x-late");equal(e.ownerPath,["<Loading>","<Late>"])}equal(response.headers.get("x-late"),null);equal(errors.length,isDev?1:0);equal(result.messages.filter(m=>m.startsWith("[LATE_HEADER_WRITE]")).length,1);if(isDev)equal((errors[0] as Error).message,events[0]!.message);
+}));
 export const run = () =>
   scope.run(createRequestEvent(new Request("http://test/")), () => runCases(cases));
