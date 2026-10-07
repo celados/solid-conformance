@@ -1,4 +1,4 @@
-import { createSignal, createMemo, createEffect, createRenderEffect, Show, Loading, flush, OBSERVE, getOwner } from 'solid-js'
+import { createSignal, createMemo, createEffect, createRenderEffect, Show, Loading, flush, OBSERVE, getOwner, DEV } from 'solid-js'
 import { render } from '@solidjs/web'
 import { enablePerformanceTracks } from '@solidjs/web/performance-tracks'
 import { attribution } from 'solid-js/attribution'
@@ -26,7 +26,7 @@ export async function performanceCases(){
   const privacy:any[]=[]
   for(const level of ['labels','none'] as const){const stop=enablePerformanceTracks({rich:true,minMs:0,attribution:{values:level}});try{for(const [n,target] of [[5,'button#save "Control Label"'],[6,'div#cell "Private Cell"']] as const){OBSERVE?.attribution.withInteraction({type:'click',target},()=>set(n));flush();for(let i=0;i<8;i++)await new Promise(r=>setTimeout(r,1));flush()};privacy.push({level,text:JSON.stringify([...performance.getEntriesByType('measure'),...performance.getEntriesByType('mark')].map(e=>(e as PerformanceMeasure).detail))})}finally{stop()}}
   set(4);flush();for(let i=0;i<8;i++)await new Promise(r=>setTimeout(r,1));flush()
-  return {entries,tasks,privacy,tasksWithoutEngine,before,after,cleared,warnings,value:document.querySelector('span')?.textContent,serverSlotKeys:OBSERVE?Object.keys(OBSERVE.server):[]}
+  return {guide:DEV?.guideUrl('NO_OWNER_CLEANUP'),entries,tasks,privacy,tasksWithoutEngine,before,after,cleared,warnings,value:document.querySelector('span')?.textContent,serverSlotKeys:OBSERVE?Object.keys(OBSERVE.server):[]}
  }finally{close();release();extra();(console as any).createTask=originalTask}
 }
 ;(window as any).performanceHarness={run:performanceCases}
