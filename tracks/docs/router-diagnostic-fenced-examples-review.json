@@ -1,0 +1,453 @@
+{
+  "commit": "53ef0e69",
+  "reviewed_blocks": 26,
+  "scope": "RFC08全部26代码块；runtime/comments行为覆盖以逐statement inventory为准，此元数据仅确认完整代码审阅。",
+  "blocks": [
+    {
+      "id": "08-dev-diagnostics:B38:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 38,
+      "end_line": 50,
+      "review": "reviewed",
+      "classification": "diagnostic-example",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "08/primitive-owned-write-scopes",
+        "08/primitive-derive-and-event-controls",
+        "08/primitive-owned-action-and-refresh"
+      ],
+      "reason": "反例 setter/refresh、纯派生、event 写入与 ownedWrite 正控；count/user/button 是应用占位变量，B38所有执行表达式都有同机制实测。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B60:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 60,
+      "end_line": 77,
+      "review": "reviewed",
+      "classification": "diagnostic-example",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "08/primitive-async-setter-families",
+        "08/primitive-async-action-store-control"
+      ],
+      "reason": "async draft await 后越界与 action 同步两阶段 store 更新均执行；save 替换为可控 promise，action(generator)类型由公开TS fixture检查。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B87:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 87,
+      "end_line": 96,
+      "review": "reviewed",
+      "classification": "diagnostic-example",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "08/primitive-pending-component-no-retry",
+        "08/primitive-pending-forbidden-both"
+      ],
+      "reason": "Bad 顶层 pending 读取抛错且不重试，Good 编译JSX读取在Loading内settle显示；user.name为应用数据模型，替换number不改变pending读取合同。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B110:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 110,
+      "end_line": 122,
+      "review": "reviewed",
+      "classification": "diagnostic-example",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "08/primitive-root-async-mount",
+        "08/primitive-root-sync-mount",
+        "08/primitive-postmount-async-no-root-warning"
+      ],
+      "reason": "异步root缺Loading诊断和初始空DOM/settle整体挂载、Loading显式fallback及无关同步/挂载后负控均断言；Profile/Spinner为应用组件占位。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B142:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 142,
+      "end_line": 147,
+      "review": "reviewed",
+      "classification": "diagnostic-example",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "08/client-loading-outside",
+        "08/primitive-loading-displayahead-controls",
+        "08/late-final-fallback-swap-never-painted"
+      ],
+      "reason": "两个Loading共享源阻止fallback与单boundary重复读正控；真实DOM pending显示/最终值和诊断均测，Spinner为占位。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B159:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 159,
+      "end_line": 168,
+      "review": "reviewed",
+      "classification": "diagnostic-example",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "08/client-settled-unowned",
+        "08/primitive-settled-cleanup-nested-scopes"
+      ],
+      "reason": "onSettled无owner内onCleanup抛错，返回cleanup在dispose执行；interval句用途是可释放外部资源，fixtures使用cleanup计数避免泄漏定时器。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B178:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 178,
+      "end_line": 192,
+      "review": "reviewed",
+      "classification": "diagnostic-example",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "08/primitive-settled-cleanup-nested-scopes"
+      ],
+      "reason": "nested owned/unowned teardown正负控制、组件直接subscription及无cleanup的一次性settled均执行；sub/unsub/save/toast是应用sideeffect占位。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B202:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 202,
+      "end_line": 211,
+      "review": "reviewed",
+      "classification": "diagnostic-example",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "findings/010-leaf-signal-diagnostic/repro.test.ts",
+        "08/primitive-safe-leaf-signal-usage"
+      ],
+      "reason": "createSignal叶内诊断承诺与runtime不符由010红例；组件body创建后onSettled读值正控。不将红例评论视为已通过行为。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B221:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 221,
+      "end_line": 236,
+      "review": "reviewed",
+      "classification": "diagnostic-example",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "08/client-invalid-cleanup",
+        "tracks/docs/types-negative.tsx"
+      ],
+      "reason": "effect back-half返回非函数的runtime坏形状使用局部cast触发，合法function/void清理和公共类型拒绝misuse均验证。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B310:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 310,
+      "end_line": 325,
+      "review": "reviewed",
+      "classification": "diagnostic-example",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "08/primitive-strict-component-controls",
+        "tracks/docs/compiler.test.ts"
+      ],
+      "reason": "props.top-level未跟踪诊断、JSX动态更新、untrack一次快照且无诊断三形状有真实Chrome控制；编译的DOM元素address来源单独测。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B339:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 339,
+      "end_line": 350,
+      "review": "reviewed",
+      "classification": "diagnostic-example",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "08/client-after-await",
+        "08/primitive-after-await-memo-source"
+      ],
+      "reason": "await后读取source的V8实际告警与before-await负控；fetch/filter是应用占位，可控promise源读取实现同async前后tracking。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B374:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 374,
+      "end_line": 386,
+      "review": "reviewed",
+      "classification": "diagnostic-example",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "08/client-no-owner-boundary",
+        "08/primitive-unowned-effect-lifetime"
+      ],
+      "reason": "owner外effect warn但可运行/无自动清理，createRoot正控无诊断且dispose清理；console只是观察输出，未要求具体文本。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B738:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 738,
+      "end_line": 743,
+      "review": "reviewed",
+      "classification": "api-schema-or-illustrative-output",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "08/observe-api",
+        "tracks/docs/diagnostic-cases.tsx"
+      ],
+      "reason": "subscribe(event,subject)回调及unsub后停收，severity/code/message字段在具体diagnostic familyassert中验证；console模板只是应用如何打印，不是独立runtime保证。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B751:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 751,
+      "end_line": 756,
+      "review": "reviewed",
+      "classification": "api-schema-or-illustrative-output",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "08/observe-api",
+        "tracks/docs/diagnostic-cases.tsx"
+      ],
+      "reason": "capture创建→诊断→stop返回累计数组/停止观察有实测；省略号是应用触发区，DiagnosticEvent[]公共类型另测。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B789:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 789,
+      "end_line": 798,
+      "review": "reviewed",
+      "classification": "api-schema-or-illustrative-output",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/records/trace.test.ts",
+        "tracks/records/records.test.ts"
+      ],
+      "reason": "invocation订阅audience与unsubscribe、call bodies二次gate、实际Request/Responseclonelive handles由records fixture验证；ellipsis listener是待宿主处理的占位。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B808:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 808,
+      "end_line": 813,
+      "review": "reviewed",
+      "classification": "api-schema-or-illustrative-output",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/records/records.test.ts"
+      ],
+      "reason": "boundary schema/outcome/string-stream passes与live.error由真实SSR记录矩阵验证，注释字段对应late schema已盘点，callback ellipsis不是可执行程序。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B823:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 823,
+      "end_line": 826,
+      "review": "reviewed",
+      "classification": "api-schema-or-illustrative-output",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/records/records.test.ts",
+        "tracks/docs/late-final-server.test.ts"
+      ],
+      "reason": "真实direct及HTTP invocation id/时间/outcome/deferred/boundary/liveRequestEvent及args/result/error精确控制，wrapperlastwriter/passiveobserver补独立证明。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B834:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 834,
+      "end_line": 839,
+      "review": "reviewed",
+      "classification": "api-schema-or-illustrative-output",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/records/records.test.ts",
+        "tracks/records/trace.test.ts"
+      ],
+      "reason": "真实string/stream render、request范围外和范围内trace/provider、route和shell/outcomes字段由records/servertrace矩阵验证；无完整独立程序的callback为API示意。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B847:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 847,
+      "end_line": 850,
+      "review": "reviewed",
+      "classification": "api-schema-or-illustrative-output",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/records/records.test.ts",
+        "08/late-final-server-call-origin-families"
+      ],
+      "reason": "call GET/POST success/error/deferred live体与串行字段、五种origin正例；每个注释字段已在inventory raw分母列出。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B862:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 862,
+      "end_line": 866,
+      "review": "reviewed",
+      "classification": "api-schema-or-illustrative-output",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/records/records.test.ts"
+      ],
+      "reason": "client request与call同一个live身份、settle前后的请求/响应/结果填充及read-only clone实际HTTP证明。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B874:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 874,
+      "end_line": 880,
+      "review": "reviewed",
+      "classification": "api-schema-or-illustrative-output",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/records/records.test.ts",
+        "tracks/docs/late-final-rpc.test.ts",
+        "tracks/docs/late-final-server.test.ts"
+      ],
+      "reason": "server/client frame side/id/version/address/outcome/chunks等完整schema由frames运输矩阵，三idjoin、start/completion/no-shell分别追加；该块为两个联合schema，不当可直接运行JS。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B890:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 890,
+      "end_line": 893,
+      "review": "reviewed",
+      "classification": "api-schema-or-illustrative-output",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/records/records.test.ts",
+        "tracks/frames/recovery.test.ts"
+      ],
+      "reason": "恢复的公开recovery record ID/at/waited/render时钟和emptylive，在真实默认recovery矩阵检查；callback仅API消费示意。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B907:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 907,
+      "end_line": 920,
+      "review": "reviewed",
+      "classification": "api-schema-or-illustrative-output",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/records/trace.test.ts"
+      ],
+      "reason": "真实trace provider span override、无request、returnundefined保留派生、uninstall及responseheaders全部执行；tracer.activeSpan/toSentryTrace/toBaggage为APM外部占位，使用确定provider实现。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B999:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 999,
+      "end_line": 1001,
+      "review": "reviewed",
+      "classification": "api-schema-or-illustrative-output",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "08/late-final-format-rerun-nested-example"
+      ],
+      "reason": "这是输出文本不是JS；真实signal notifications→memo userLabel→effect docTitle第四次结果formatRerun，检查层级箭头/changed与write/2→3。#5/#6为示意全局序号，不声明稳定ID。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B1009:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 1009,
+      "end_line": 1118,
+      "review": "reviewed",
+      "classification": "api-schema-or-illustrative-output",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/docs/types.test.ts",
+        "08/cost-checks-false",
+        "08/attribution-holder-option-merge",
+        "tracks/docs/late-final-engine-only.test.ts",
+        "findings/012-attribution-import-folds/repro.test.ts",
+        "findings/050-literal-handler-attribution/repro.test.ts"
+      ],
+      "reason": "逐表达式审阅：enable options/5history/release-disable/subscriptions/多hold合并/6 named exports/markFlight/origin frames/global注册/exclude。代码中的someMemo/event/origin/promise/startedAt/to/from/match/buildContext/fn均应用占位；type union写法subscribe(\"a\"|\"b\")是枚举替代值而非JS按位或使用。完整comments已独立inventory逐句盘点；fold shipping与everyhandler全称由012/050红例，不以API调用可执行取代这些合同。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    },
+    {
+      "id": "08-dev-diagnostics:B1207:1",
+      "file": "08-dev-diagnostics.md",
+      "line": 1207,
+      "end_line": 1213,
+      "review": "reviewed",
+      "classification": "api-schema-or-illustrative-output",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "coverage": [
+        "tracks/records/performance.test.ts",
+        "tracks/docs/late-final-performance.test.ts",
+        "tracks/docs/vite-performance.test.ts"
+      ],
+      "reason": "真实enablePerformanceTracks/disable与minMs/rich/values选项、dev/Observe默认阈值、默认records-only且optin6checks独立控制；publicTS options另由types fixture，不依赖text-onlycomment。",
+      "raw_source_reviewed": true,
+      "review_is_not_blanket_runtime_coverage": true
+    }
+  ]
+}
