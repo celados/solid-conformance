@@ -53,4 +53,4 @@ answer, an iterable with a rejecting first `next()`, and Errored. HEAD stays at
 as another finding because both shapes lose the rejection of a derived store's
 replacement flight while retaining its settled value. The real transport track
 keeps the store, projection and optimistic-store siblings and their raw trace;
-`STRICT_FINDINGS=1 bun test tracks/transport` rejects the recognized signature.
+`STRICT_FINDINGS=1 bun test ./tracks/transport` rejects the recognized signature.

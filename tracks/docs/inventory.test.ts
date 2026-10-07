@@ -21,6 +21,7 @@ test('RFC inventory: every entry has a stable source locator, explicit classific
  expect(inventory.summary.raw).toBe(ids.size)
  expect(inventory.summary.covered).toBe(count('covered'))
  expect(inventory.summary.uncovered).toBe(count('uncovered'))
+ expect(inventory.summary.uncovered).toBe(0)
  expect(inventory.summary.untestable).toBe(count('untestable'))
  expect(inventory.summary.nonBehavioral).toBe(count('not-behavioral'))
  expect(inventory.summary.behavioral).toBe(count('covered')+count('uncovered')+count('untestable'))

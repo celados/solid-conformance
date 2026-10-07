@@ -382,9 +382,10 @@
       "section": "No writes under owned scope",
       "statement": "// ❌ BAD: using ownedWrite to suppress the write-under-scope error for app state",
       "coverage": [],
-      "status": "uncovered",
+      "status": "not-behavioral",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "not-behavioral",
+      "reason": "对应用状态建模的建议：runtime无法从同一ownedWrite选项推断该状态是internal bookkeeping还是app state；代码中的实际write guard仍由08/owned-write检验，并未把write行为排除。"
     },
     {
       "id": "01-reactivity-batching-effects:C35:1",
@@ -393,8 +394,10 @@
       "end_line": 35,
       "section": "No writes under owned scope",
       "statement": "const [doubled, setDoubled] = createSignal(untrack(count) + 1); // force untracked read to get around other warning",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/primitive-strict-component-controls"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -405,8 +408,10 @@
       "end_line": 36,
       "section": "No writes under owned scope",
       "statement": "createMemo(() => setDoubled(count() + 1)); // feedback loop",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/owned-write"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -417,8 +422,11 @@
       "end_line": 38,
       "section": "No writes under owned scope",
       "statement": "// ✅ GOOD: derive without writing back, or write in an event",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "01/dom-flush-boundary",
+        "01/imperative-write-boundaries"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -3404,8 +3412,11 @@
       "end_line": 187,
       "section": "Dynamic components: the `dynamic` factory",
       "statement": "It is the same primitive, but its shape puts the tag in the same props bag as the element's own props: every instance merges `component` in at the call site (`merge({ component }, rest)`), `omit`s it back out inside, and builds a fresh `dynamic()` factory — with its memo — because a JSX wrapper has nowhere to hoist one.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "03/dynamic-wrapper-per-instance",
+        "03/dynamic-stable-shared"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -3544,8 +3555,11 @@
       "end_line": 204,
       "section": "Async sources and `Loading`",
       "statement": "- **A server component** (`\"use server\"` function returning JSX, called directly or through a wrapper such as a router `query()`): crosses as a reference; the client adopts the frame the server rendered.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/vite-authored.test.ts",
+        "tracks/docs/vite-components.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -3619,8 +3633,10 @@
       "end_line": 209,
       "section": "Async sources and `Loading`",
       "statement": "// A client component chosen by async data: the DATA is async, the source is sync.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "03/dynamic-async-data-sync-components"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -3631,8 +3647,10 @@
       "end_line": 213,
       "section": "Async sources and `Loading`",
       "statement": "// Code-split client component: lazy(), not an async dynamic() source.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/regressions/regressions.test.ts#3338"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -3643,8 +3661,11 @@
       "end_line": 216,
       "section": "Async sources and `Loading`",
       "statement": "// A server component answering an async call: the source may stay async.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/vite-authored.test.ts",
+        "tracks/docs/vite-components.test.ts"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -3819,8 +3840,11 @@
       "end_line": 250,
       "section": "Client-only components: `clientOnly`",
       "statement": "Bundler integrations sharpen the load path further: the compiler's module-URL pass (the same one that annotates `lazy()` calls, shipped through @solidjs/vite-plugin) recognizes `clientOnly(() => import(\"...\"))` and injects the wrapped module's resolved URL into the call, which the server half uses to emit an early `modulepreload` hint — the browser starts fetching the component's chunk with the page instead of discovering it when the import first runs after hydration.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/clientonly-compiler.test.ts",
+        "03/client-only-preload"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -4576,8 +4600,10 @@
       "end_line": 346,
       "section": "SSR behavior",
       "statement": "- `renderToString` fully supports `order=\"sequential\"` without `collapsed`, and `order=\"natural\"`.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/reveal-stream.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -4587,8 +4613,11 @@
       "end_line": 347,
       "section": "SSR behavior",
       "statement": "- `order=\"together\"` and `collapsed` rely on streamed activation and therefore require `renderToStream` to behave correctly.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/reveal-stream.test.ts",
+        "08/server-diagnostic-reveal-sync"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -4599,7 +4628,7 @@
       "section": "SSR behavior",
       "statement": "Using them with `renderToString` inside a nested `Reveal` logs a warning.",
       "coverage": [
-        "08/server-diagnostic-reveal-sync"
+        "tracks/docs/reveal-stream.test.ts"
       ],
       "status": "covered",
       "classification": "behavioral"
@@ -4611,8 +4640,10 @@
       "end_line": 348,
       "section": "SSR behavior",
       "statement": "- Under streaming, the rules above apply identically: held fragments stream their resolved HTML into templates as data arrives, but the swap from fallback to content is deferred until the enclosing `Reveal` releases the slot.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/reveal-stream.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -4622,8 +4653,10 @@
       "end_line": 348,
       "section": "SSR behavior",
       "statement": "Swaps then happen in resolution order within the released group.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/reveal-stream.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -6458,9 +6491,12 @@
       "end_line": 50,
       "section": "`Loading` is the UI boundary",
       "statement": "A `Loading` that has not shown content yet owns what is under it.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "findings/048-first-loading-held-signal/repro.test.ts"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "rationale": "最小literal red：plain held write独立挂载显示旧值；未ready async source fallback与heldchange挂载Show是正控。报告docs domain过宽，不混淆NotReady与error。"
     },
     {
       "id": "05-async-data:L50:2",
@@ -6469,9 +6505,12 @@
       "end_line": 50,
       "section": "`Loading` is the UI boundary",
       "statement": "Content there that reads a value a still-running change holds (a write inside an `action`, data another change is loading) is not part of that change: the boundary shows its fallback now, and the content appears when the change commits.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "findings/048-first-loading-held-signal/repro.test.ts"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "rationale": "最小literal red：plain held write独立挂载显示旧值；未ready async source fallback与heldchange挂载Show是正控。报告docs domain过宽，不混淆NotReady与error。"
     },
     {
       "id": "05-async-data:L50:3",
@@ -6480,9 +6519,12 @@
       "end_line": 50,
       "section": "`Loading` is the UI boundary",
       "statement": "The change does not wait for it.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "findings/048-first-loading-held-signal/repro.test.ts"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "rationale": "最小literal red：plain held write独立挂载显示旧值；未ready async source fallback与heldchange挂载Show是正控。报告docs domain过宽，不混淆NotReady与error。"
     },
     {
       "id": "05-async-data:L50:4",
@@ -6491,9 +6533,12 @@
       "end_line": 50,
       "section": "`Loading` is the UI boundary",
       "statement": "The exception is a boundary mounted by the change itself, for example a `<Show when={x()}>` where `x` is the held write: it appears with that change's commit, with no fallback.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "findings/048-first-loading-held-signal/repro.test.ts"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "rationale": "最小literal red：plain held write独立挂载显示旧值；未ready async source fallback与heldchange挂载Show是正控。报告docs domain过宽，不混淆NotReady与error。"
     },
     {
       "id": "05-async-data:L50:5",
@@ -6502,9 +6547,12 @@
       "end_line": 50,
       "section": "`Loading` is the UI boundary",
       "statement": "While the fallback shows, `isPending()` of the boundary is `false`, as for any first load.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "findings/048-first-loading-held-signal/repro.test.ts"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "rationale": "未readyasyncsource的fallback显示时，在unowned检验isPending(source)确为false。literalplainheldsource红，非泛化所有holds。"
     },
     {
       "id": "05-async-data:L54:1",
@@ -6741,8 +6789,13 @@
       "end_line": 84,
       "section": "`Loading` `on` prop: dependencies that show the fallback again",
       "statement": "One shape shows no fallback at all: when the data the boundary is waiting on is also read outside it (a sibling `<Loading>` over the same `comments(id)`, an `isPending` on it in the header), or the write's `action` stays open until the data lands.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "05/loading-on-shared-sibling",
+        "05/loading-on-shared-pending",
+        "05/loading-on-shared-action-held",
+        "05/loading-on-shared-action-race"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -6752,8 +6805,13 @@
       "end_line": 84,
       "section": "`Loading` `on` prop: dependencies that show the fallback again",
       "statement": "The frame waits on that read, so by the time it commits the content is ready and the fallback was never needed.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "05/loading-on-shared-sibling",
+        "05/loading-on-shared-pending",
+        "05/loading-on-shared-action-held",
+        "05/loading-on-shared-action-race"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -6776,8 +6834,13 @@
       "end_line": 84,
       "section": "`Loading` `on` prop: dependencies that show the fallback again",
       "statement": "The second is a race the fallback may still win (an action that ends first shows it with the commit), and is not reported: during an `action`, show the wait with `isPending()` or an optimistic value, which is what a hold's stale content is for.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "05/loading-on-shared-sibling",
+        "05/loading-on-shared-pending",
+        "05/loading-on-shared-action-held",
+        "05/loading-on-shared-action-race"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -6866,8 +6929,11 @@
       "end_line": 96,
       "section": "`Loading` `on` prop: dependencies that show the fallback again",
       "statement": "Optimistic writes to a dependency notify like any other write.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "05/optimistic-dependency-notify-signal",
+        "05/optimistic-dependency-notify-store"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -7127,8 +7193,13 @@
       "end_line": 151,
       "section": "`latest(fn)` (peek at in-flight values)",
       "statement": "`latest()` escapes the _transaction_, not its own lane.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "05/latest-lane-lane",
+        "05/latest-lane-plain",
+        "05/latest-lane-unrendered",
+        "findings/029-latest-loading-convergence/repro.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -7138,8 +7209,13 @@
       "end_line": 151,
       "section": "`latest(fn)` (peek at in-flight values)",
       "statement": "Readers of `latest(x)` render ahead of the transition that holds `x`, but they reveal together with any _rendered_ async derived from `latest(x)` — the same rule every lane follows, and the same rule the transaction itself follows: async holds when a render effect reads it and no `Loading` boundary catches it.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "05/latest-lane-lane",
+        "05/latest-lane-plain",
+        "05/latest-lane-unrendered",
+        "findings/029-latest-loading-convergence/repro.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -7149,8 +7225,13 @@
       "end_line": 151,
       "section": "`latest(fn)` (peek at in-flight values)",
       "statement": "So a `latest()` view is never shown beside a half-computed derivation of itself, while a derivation nobody renders, or one inside a `Loading` that shows its fallback, holds nothing (there is no frame to tear).",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "05/latest-lane-lane",
+        "05/latest-lane-plain",
+        "05/latest-lane-unrendered",
+        "findings/029-latest-loading-convergence/repro.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -7160,8 +7241,13 @@
       "end_line": 151,
       "section": "`latest(fn)` (peek at in-flight values)",
       "statement": "Routing several rendered async computations through the same `latest(x)` makes them one lane that reveals when the slowest settles; derive with the plain read (`x()` inside the async memo — it is held by the transition anyway) when the display should not wait for it.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "05/latest-lane-lane",
+        "05/latest-lane-plain",
+        "05/latest-lane-unrendered",
+        "findings/029-latest-loading-convergence/repro.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -7469,8 +7555,10 @@
       "end_line": 187,
       "section": "Transitions: built-in, multiple in flight",
       "statement": "Multiple transitions can be in flight; “entangling” determines what should block what.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "05/concurrent-actions-settle-orders"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -7595,8 +7683,10 @@
       "end_line": 196,
       "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
       "statement": "That handoff is the tail of the initial load, not a refetch: the node reads settled through it — `isPending` is `false`, and a `<Loading>` created in that window shows content — until the stream produces something new.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/policy.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -7910,9 +8000,13 @@
       "end_line": 227,
       "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
       "statement": "SSR ignores the option (server-side nodes always allocate their id slot), so only mark nodes the server does not create; outside hydration it is a no-op.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "findings/052-transparent-ssr-slot/repro.test.ts",
+        "05/transparent-csr-noop"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "rationale": "SSRignore选项字面red，CSRno-op positive；源记录与element key为公开wire，不查私有node。"
     },
     {
       "id": "05-async-data:L227:5",
@@ -7921,8 +8015,10 @@
       "end_line": 227,
       "section": "SSR and hydration: `ssrSource`, `deferStream`, and `transparent`",
       "statement": "A node created with no owner (`runWithOwner(null, …)`), or under a root without an `id`, has no id slot to consume and takes this path on its own.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/policy.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -7971,8 +8067,10 @@
       "end_line": 231,
       "section": "The tracking run: known limitations",
       "statement": "Two things escape the window: work that resumes after it, and fake promises kept beyond it.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/policy.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -8072,8 +8170,10 @@
       "end_line": 245,
       "section": "The tracking run: known limitations",
       "statement": "The server-function client awaits before it sends in two cases: when `prepareRequest` is configured (it is awaited even if it returns synchronously), and when the arguments need the codec (`serializeArgs`, installed by `enableRichArguments()`).",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/rpc-tracking.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -8083,8 +8183,10 @@
       "end_line": 245,
       "section": "The tracking run: known limitations",
       "statement": "Calling the server function first in the compute does not help there; the `await` is inside the client.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/rpc-tracking.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -8210,8 +8312,10 @@
       "end_line": 271,
       "section": "The tracking run: known limitations",
       "statement": "const seed = takeHydrationValue(\"mylib:\" + key); // written on the server with getHydrationWriter()",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/policy.test.ts"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -8222,8 +8326,10 @@
       "end_line": 274,
       "section": "The tracking run: known limitations",
       "statement": "// Hydrating with no seed: this may be the tracking run, so don't cache.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/policy.test.ts"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -8660,8 +8766,10 @@
       "end_line": 360,
       "section": "`resource.mutate` → `createOptimisticStore` / `action`",
       "statement": "In 2.0, `createOptimisticStore` + `action` addresses all three: store-backed granular updates, automatic reconciliation on refresh, and transition coordination that prevents race conditions:",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "05/optimistic-store-granular-refresh-race"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -8671,8 +8779,10 @@
       "end_line": 363,
       "section": "`resource.mutate` → `createOptimisticStore` / `action`",
       "statement": "// 2.0 — granular updates, reconciled refresh, race-safe",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "05/optimistic-store-granular-refresh-race"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -8745,9 +8855,10 @@
       "section": "Error handling",
       "statement": "// Path A: inline check (bypasses ErrorBoundary, invisible to SSR)",
       "coverage": [],
-      "status": "uncovered",
+      "status": "not-behavioral",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "not-behavioral",
+      "reason": "该块明确 //1.x 的历史createResource/ErrorBoundary双路径示例；不描述Solid2 API保证，不属于当前runtime行为声明。"
     },
     {
       "id": "05-async-data:C390:1",
@@ -8757,9 +8868,10 @@
       "section": "Error handling",
       "statement": "// Path B: ErrorBoundary",
       "coverage": [],
-      "status": "uncovered",
+      "status": "not-behavioral",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "not-behavioral",
+      "reason": "该块明确 //1.x 的历史createResource/ErrorBoundary双路径示例；不描述Solid2 API保证，不属于当前runtime行为声明。"
     },
     {
       "id": "05-async-data:L396:1",
@@ -9193,8 +9305,11 @@
       "end_line": 58,
       "section": "`refresh()` (explicit recomputation)",
       "statement": "`refresh(x)` requests recomputation for `x` when `x` is a derived signal/store/projection that participates in refresh (e.g. things created via function forms like `createStore(() => ...)` / projections).",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "06/refresh-store-delivery",
+        "06/refresh-projection-delivery"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -9756,8 +9871,10 @@
       "end_line": 156,
       "section": "`until()` (live-source acknowledgment)",
       "statement": "Without a hold, the action settles at the transport ack, the optimistic state reverts, and the confirmed data flickers in a beat later.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "06/optimistic-ack-before-live"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -9841,8 +9958,11 @@
       "end_line": 166,
       "section": "`until()` (live-source acknowledgment)",
       "statement": "await socket.send({ clientId, text });                              // fire-and-forget",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "findings/053-await-send-until-context/repro.test.ts",
+        "06/await-fireforget-before-until"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -10053,8 +10173,12 @@
       "end_line": 184,
       "section": "`until()` (live-source acknowledgment)",
       "statement": "- **Any arrival path confirms.** Live-channel landings, other transactions' commits (they land beneath the hold), and refetches the action itself issued (they land *staged into* the hold, and the predicate reads staged data) all satisfy the predicate the moment they carry the confirming truth.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "06/until-arrival-live",
+        "06/until-arrival-other-action",
+        "06/until-arrival-refetch"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -11557,12 +11681,11 @@
       "section": "Console addressability",
       "statement": "- An `in` line naming the owners enclosing the subject, root first — component roots as `<Name>`, computations by their `name` option or the `effect`/`computed` default (`in <App> › <TodoList> › <TodoRow> › effect`) — a compiled binding effect reads as what it writes (`span.textContent`, `div.class:active`, a hole `div.children`) when the JSX compiler's `sourceNames.bindings` is on (both `@solidjs/babel-plugin` and `@solidjs/compiler` take the same `sourceNames` option, on by default in dev builds alongside `components`); a primitive reads as the identifier it was declared as (`count`, `doubled`, `todos.title`, `createCounter.value` inside a composed primitive) when `@solidjs/compiler`'s standalone `transformSourceNames` pass has run — primitive naming is not a JSX-transform feature: the build tool applies that pass to every module, `.ts`/`.js` and JSX alike, independently of which JSX compiler handles the file (the Vite plugin's `sourceNames.primitives`, on by default in its dev and `observe` postures; solid-vite-plugin #371) — or as its `name` option otherwise.",
       "coverage": [
-        "08/client-diagnostic-binding-address",
-        "tracks/docs/compiler-addressability.test.ts: sourceNames components and bindings / standalone transformSourceNames"
+        "tracks/docs/compiler-addressability.test.ts: JSX/native/Babel sourceNames flags, standalone TS/JS primitive/composed names and explicit names; tracks/docs/owner-path-observe.test.ts: observed compiled owner names; tracks/docs/console-binding.test.ts: actual binding console labels/root-first named App; tracks/docs/vite-performance.test.ts: dev/observe posture options"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "partial: 仅绑定 class 的真实 console 第二参数和 compiler 各名字变换有断言；全 owner 链/各 binding 家族与 Vite posture 未完整验证。"
+      "reason": "独立公开 SSR/Chrome 或严格类型测试完整验证这个合同。"
     },
     {
       "id": "08-dev-diagnostics:L16:2",
@@ -11586,11 +11709,11 @@
       "section": "Console addressability",
       "statement": "A component's name is the tag as written in source when the JSX compiler's `sourceNames.components` is on (`createComponent(Home, props, \"Home\")` — on by default in dev builds; the Vite plugin also enables it for the `observe` posture, so minified observe builds still read `<Home>`), otherwise the function's `.name`, which a minifier rewrites and a `lazy()` wrapper hides.",
       "coverage": [
-        "tracks/docs/compiler-addressability.test.ts: sourceNames components and bindings / standalone transformSourceNames"
+        "tracks/docs/compiler-addressability.test.ts: JSX/native/Babel sourceNames flags, standalone TS/JS primitive/composed names and explicit names; tracks/docs/owner-path-observe.test.ts: observed compiled owner names; tracks/docs/console-binding.test.ts: actual binding console labels/root-first named App; tracks/docs/vite-performance.test.ts: dev/observe posture options"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "partial: compiler components 开关测试，未涵盖 lazy/minified observe/Vite。"
+      "reason": "独立公开 SSR/Chrome 或严格类型测试完整验证这个合同。"
     },
     {
       "id": "08-dev-diagnostics:L16:4",
@@ -11599,10 +11722,12 @@
       "end_line": 16,
       "section": "Console addressability",
       "statement": "Components a library invokes by value rather than by tag (a router rendering a route's `component`) carry only the function name.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/root-responsiveness.test.ts: component-by-value-and-unnamed-owner actual public ownerPath/function name vs explicit source name; tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema named root-first paths"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "真实 owner 的正负控，不反射 private owner internals。"
     },
     {
       "id": "08-dev-diagnostics:L17:1",
@@ -15812,10 +15937,12 @@
       "end_line": 516,
       "section": "Responsiveness (attribution engine)",
       "statement": "The engine measures to the commit, not the paint, so every number is a floor on what the user saw; and dev-time network is usually faster than the field.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/records/input.test.ts: committed DOM sampled when interaction record completes before the next native animation frame; runtime commit clock assertion only"
+      ],
+      "status": "untestable",
       "classification": "behavioral",
-      "reason": "此解释/修复段包含可观测额外合同，仍需专门证明；不能排除为背景文字。"
+      "reason": "runtime commit-clock 部分由 input.test.ts 验证；句子还将开发网络与未指定真实用户网络比较（usually），没有网络样本、负载或分位条件，无法对整句给确定 oracle。不能以某次 loopback 延迟证明现场通常更慢。"
     },
     {
       "id": "08-dev-diagnostics:L520:1",
@@ -15861,11 +15988,11 @@
       "section": "`SILENT_HOLD`",
       "statement": "A signal/store write (or an action's writes) was held because a downstream async source went pending, and for the whole hold no acknowledgement was observed: no `isPending()` or `latest()` companion on the held graph that an effect reads (through however many memos — a memo alone is not the screen, so a router's internal `createMemo(() => isPending(location))` counts only once something renders it), no optimistic overlay, no `affects()` declaration, and no lane effect painted while the hold was open. (Mainline effects are stashed while a hold is open, so the only effects that _can_ paint are readers of optimistic values and companions — the screen changing in response to the hold.",
       "coverage": [
-        "08/attribution-warning-silent_hold"
+        "tracks/docs/root-responsiveness.test.ts: hold-affects-declaration and unrevealed-loading-no-hold; tracks/docs/hold-diagnostic-cases.ts: hold-acknowledgement-paths pending/latest/memo-only/optimistic/unrelated and hold-default-thresholds"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "partial: isPending acknowledgement正负覆盖；latest/optimistic/affects/lane effect、memo不算屏幕等分别未验证。"
+      "reason": "独立公开 SSR/Chrome 或严格类型测试完整验证这个合同。"
     },
     {
       "id": "08-dev-diagnostics:L525:2",
@@ -15888,10 +16015,12 @@
       "end_line": 525,
       "section": "`SILENT_HOLD`",
       "statement": "A `Loading` boundary that has not revealed yet is a different answer — the read never holds, the fallback shows.) Holds shorter than `holds.infoMs` (default 100ms — RAIL's \"feels instant\" ceiling) are recorded silently; from `infoMs` the hold emits `info`; from `holds.warnMs` (default 200ms — the INP \"good\" ceiling) it warns.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/root-responsiveness.test.ts: hold-affects-declaration and unrevealed-loading-no-hold; tracks/docs/hold-diagnostic-cases.ts: hold-acknowledgement-paths pending/latest/memo-only/optimistic/unrelated and hold-default-thresholds"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "独立公开 SSR/Chrome 或严格类型测试完整验证这个合同。"
     },
     {
       "id": "08-dev-diagnostics:L525:4",
@@ -15914,10 +16043,12 @@
       "end_line": 527,
       "section": "`SILENT_HOLD`",
       "statement": "The hold is attributed to its opening interaction when the web runtime can stamp it (`click`, `keydown`, `input` on the element hit), to the effect or action that made the write otherwise.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/hold-diagnostic-cases.ts: hold-effect-action-origin held write origin.kind/name, action flag and no input; hold-acknowledgement-paths opening navigation/interaction"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "省略与显式关闭的默认值、effect/action/public record 路径均有实际断言。"
     },
     {
       "id": "08-dev-diagnostics:L527:2",
@@ -15954,10 +16085,12 @@
       "end_line": 527,
       "section": "`SILENT_HOLD`",
       "statement": "Every hold — reported or not — is queryable via `attribution.history(\"hold\")` and delivered on `OBSERVE.records.subscribe(\"hold\", (event, signal) => …)` as it settles, the held signal beside it; each carries what acknowledged it as `acknowledgements: [{ kind: \"isPending\", source: \"posts\", reader: [\"<App>\", \"<Feed>\", \"spinner\"] }]`, where `reader` is the owner path of the effect the census found painting the affordance — which screen answered, not only that one did.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/hold-diagnostic-cases.ts: hold-acknowledgement-paths reader path, roots and sources; tracks/docs/attribution-cases.ts: timeline-hold-navigation-interaction, held signal live join"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "独立公开 SSR/Chrome 或严格类型测试完整验证这个合同。"
     },
     {
       "id": "08-dev-diagnostics:L527:5",
@@ -16084,10 +16217,12 @@
       "end_line": 535,
       "section": "`LONG_HOLD`",
       "statement": "Past that, the honest UI is a fallback — which a `Loading` boundary provides only when it has not revealed yet or its `on` prop changed; a revealed boundary with no `on` keeps the old content, which _is_ the hold.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/render-cases.tsx: loading-revalidation; tracks/docs/remaining-render-cases.tsx: loading-on-frame comments timing and pending-source lanes; tracks/docs/root-responsiveness.test.ts: initial Loading no hold"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "此解释/修复段包含可观测额外合同，仍需专门证明；不能排除为背景文字。"
+      "reason": "独立公开 SSR/Chrome 或严格类型测试完整验证这个合同。"
     },
     {
       "id": "08-dev-diagnostics:L535:3",
@@ -16468,10 +16603,12 @@
       "end_line": 555,
       "section": "`FALLBACK_FLASH`",
       "statement": "`data`: `shownMs`, `interaction`.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-cases.tsx: fallback-fields-and-fold exact diagnostic shownMs/interaction/subject path and 149/150ms default; tracks/docs/late-final.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
     },
     {
       "id": "08-dev-diagnostics:L555:5",
@@ -16480,10 +16617,12 @@
       "end_line": 555,
       "section": "`FALLBACK_FLASH`",
       "statement": "Subject: the boundary's subtree, so `ownerPath` names the boundary.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-cases.tsx: fallback-fields-and-fold exact diagnostic shownMs/interaction/subject path and 149/150ms default; tracks/docs/late-final.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
     },
     {
       "id": "08-dev-diagnostics:L555:6",
@@ -16704,10 +16843,12 @@
       "end_line": 567,
       "section": "`OPTIMISTIC_REVERTED`",
       "statement": "The runtime's own optimistic nodes are never judged: an `isPending()`/`latest()` companion is an optimistic signal that goes `true` while pending and back to `false` at commit by design — the acknowledgement `SILENT_HOLD` asks for — and a derived override promotes rather than reverts; the check skips them by the same predicate the hold census uses.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/root-responsiveness.test.ts: derived optimistic promotions match/mismatch values never report derived node; tracks/docs/hold-diagnostic-cases.ts: companion pending/latest acknowledgement and no companion OPTIMISTIC_REVERTED"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "跨行注释按其完整合同合并证明；红例记录矛盾，不把负控误记为承诺成立。"
     },
     {
       "id": "08-dev-diagnostics:L567:6",
@@ -16730,10 +16871,12 @@
       "end_line": 567,
       "section": "`OPTIMISTIC_REVERTED`",
       "statement": "`data`: `source`, `shown`, `truth` (previews, 40 characters), `how`.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-cases.tsx: held-and-verdict-value-previews 40-character shown/truth; tracks/docs/hold-diagnostic-cases.ts: optimistic-correction-contract source/how; tracks/docs/late-final.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
     },
     {
       "id": "08-dev-diagnostics:L567:8",
@@ -16834,10 +16977,14 @@
       "end_line": 571,
       "section": "Server rendering (`ssr`, `head`)",
       "statement": "**Checks** are guidance for a developer at a console — a write on the server, an invalid preload descriptor — and exist only in the dev build, where they print like any client warning.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "findings/027-server-write-all-builds/repro.test.ts",
+        "08/server-diagnostic-preload-descriptor",
+        "08/server-diagnostic-preload-all-fields"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "SERVER_WRITE dev-only正控/production反例与全部invalidpreloaddescriptor devwarn且quiet production正控，均在publicAPI真实server构建。"
     },
     {
       "id": "08-dev-diagnostics:L571:6",
@@ -17310,11 +17457,13 @@
       "statement": "An async `dynamic()` instance is an ordinary async memo whose landing is serialized for the client to adopt ([#3666](https://github.com/solidjs/solid/issues/3666)); a server component crosses as a flight reference and a tag name as a value, but a client component _function_ has no encoding — an unguarded record would leave the client's memo pending forever, and the alternative (the client re-running the source and awaiting it under the boundary) is exactly the phantom-fallback bug the adoption fixes.",
       "coverage": [
         "08/server-road-dynamic-client-function",
-        "08/server-road-dynamic-safe-values"
+        "08/server-road-dynamic-safe-values",
+        "tracks/frames/live-component.test.ts",
+        "tracks/frames/frames.test.ts"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "async tag/function端已测，server component serialized landing的完整 hydration正控仍需跨轨。"
+      "reason": "client function無encoding三tier拒絕；async tag與sync function正控；realRPC/serverframe async dynamic component landing SSR原nodeadoption且counteractive。"
     },
     {
       "id": "08-dev-diagnostics:L606:3",
@@ -18313,11 +18462,11 @@
       "section": "`LAZY_ASSET_UNMAPPED`",
       "statement": "The page still renders; the component's chunk is not preloaded and loads late during hydration.",
       "coverage": [
-        "08/server-diagnostic-lazy-resolution-metadata"
+        "tracks/docs/lazy-evidence.test.ts#unmapped lazy assets still render and request the component late in Chrome hydration"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "server markup available 已断言；无 preload 与 hydration late-loading 正控尚待精确测试。"
+      "reason": "SSR有ready无modulepreload；hydration实际请求late-part.js，在release前startedtrue/completedfalse/calls1，release后ready且pageerrors空。"
     },
     {
       "id": "08-dev-diagnostics:L674:4",
@@ -19292,12 +19441,13 @@
       "statement": "`data.reason` says which: `\"spread\"` (`error`, throws) — the slot's whole return spread onto an element, the retired shape (the client would decide what it owns and the template could not show it); `\"stringified\"` (`warn`) — the stand-in was coerced to a string (a template literal, a concatenation, `String()`), so it is not the whole value; `\"coerced\"` (`warn`) — the stand-in was used in an expression (a comparison, arithmetic, `==`; `Symbol.toPrimitive` with a `number`/`default` hint), which the server cannot evaluate because it does not have the value — the decision belongs in the client fill, which returns the decided value; `\"inline\"` (`warn`) — it reached `ssrClassName`/`ssrStyle` inside template quotes, which happens only when the element was compiled without the `serverComponents` compiler option (the option makes a dynamic `class`/`style` a whole-attribute hole); `\"markup\"` (`warn`) — read off a slot whose client fill returned content, not an object (a slot renders markup **or** data); `\"server-local\"` (`warn`) — a `ref`/`on*` position on a server intrinsic received a plain server function, which can never run; `\"tuple\"` (`warn`) — an `on*` position received an array (`onKeyDown={[row.key, 1]}`): a marker names keys, never data, so nothing binds — return the tuple from the fill instead, where the client binds it as client JSX does (only a `ref` position takes an array, whose refs merge); `\"reserved-key\"` (`warn`, document face) — the fill's object used a key the slot's range occupies (beginning with `$` or a digit, `length`, `slice`, `t`/`h`/`p`, `then`, `constructor`/`toString`/`valueOf`/`toJSON` — the explicit set; every other key, `filter` or `map` included, is a property read), so a read of it is the range, not a value; `\"arg\"` (`warn`) — a stand-in was passed in another slot call's argument (`props.child({ parentId: parent.id })`, or nested in plain objects and arrays: `{ nested: { x: row.done } }`, `[row.done]` — a `Map`, `Set` or class instance is not walked), data the server does not have; the arg carries `undefined` at that path on both faces — the record and the document face's t=0 fill (`data.from`/`data.fromKey` name the stand-in, `data.path` the position inside the arg when nested; a stand-in reachable at two paths is reported once, at the first); `\"prop\"` (`warn`) — a stand-in at a `prop:*` key of a runtime spread, a property position the server cannot bind (the compiled form drops `prop:*` as SSR always has, silently); `\"fill-shape\"` (`warn`, kind `render`, client) — the client side has the wrong shape: the fill returned something other than a plain object (`null`, an array, a DOM node, an async value, a primitive — `data.shape`), or the prop the markup reads as data is not a function; nothing binds until it is; `\"text-shape\"` (`warn`, kind `render`, client) — a text position's value is not a string, number, nullish or boolean (an object, an array, a DOM node, a function, an async value — `data.shape`, with `data.key`): a text position renders a primitive as a client insert does, markup belongs in a template slot, and the text clears; `\"orphan\"` (`warn`, kind `render` — from the frame client's slot sync) — an element carries `_s:*` markers for an occurrence whose positions can never bind: `data.why` is `\"fill\"` when no client fill resolves for the prop (the prop was not passed, or its name differs between the sides), or `\"record\"` when a **called** occurrence (`prop#n`) has no args record once records can no longer arrive (the producer emits the record ahead of the markup that reads it, so a missing one is the protocol out of step — a client and server from different builds, or a runtime id mismatch — never a fill mistake; a bare occurrence named by the prop alone has no record by design and never reports); `data.elements` are the marked elements, reported once per occurrence per frame.",
       "coverage": [
         "tracks/frames/binding.test.ts",
-        "08/binding-server-arg",
-        "08/binding-document-reserved-key"
+        "08/binding-reserved-key-set",
+        "08/binding-nested-arg-first-path",
+        "08/binding-arg-nonplain-not-walked"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "全部 reason 与 client shape/key/occurrence/why/elements 已精确断言；reserved-key 全集合、arg 多路径 first-only 与双面 undefined 尚缺，不能整句 covered。"
+      "reason": "所有reason/type/severity/positions字段、reserved完整集/filter-map、firstnestedpathonce/双面undefined、tuple客户端绑定[7,click]、nonfunctionprop fillshape均精确；Map/Set identity及非undefined，class defaultcodec拒绝前arg0，独立5s child退出清理并artifact明确不声称该opaquecontainer编码完成。"
     },
     {
       "id": "08-dev-diagnostics:L727:5",
@@ -19319,11 +19469,11 @@
       "section": "`BINDING_SLOT_POSITION`",
       "statement": "For `stringified`, `coerced` and `inline` **nothing renders at the position on either face**: the document face never shows a t=0 value the stream face could not reproduce, so the misuse is visible on the first render rather than on the first refetch.",
       "coverage": [
-        "tracks/frames/binding.test.ts"
+        "08/binding-coercion-both-faces-empty"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "已测全部reason/多shape；同句话部分fields/双面position/canonical reservedkey全列去重仍需精确断言，不能整句称covered"
+      "reason": "stringified/coerced/inline两面各warn1/ssr，documentfill MUST_NOT_RENDER/count7331从未出现在document或stream位置，与t0值不出现的合同对照。"
     },
     {
       "id": "08-dev-diagnostics:L727:7",
@@ -19361,11 +19511,16 @@
       "section": "`BINDING_SLOT_POSITION`",
       "statement": "`data.occurrence` names the occurrence, `data.key` the property, `data.position` the position where it applies.",
       "coverage": [
-        "tracks/frames/binding.test.ts"
+        "08/binding-server-stringified",
+        "08/binding-server-coerced",
+        "08/binding-server-inline",
+        "08/binding-server-tuple",
+        "08/binding-server-prop",
+        "08/binding-nested-arg-first-path"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "已测全部reason/多shape；同句话部分fields/双面position/canonical reservedkey全列去重仍需精确断言，不能整句称covered"
+      "reason": "stand-in occurrence/key exact fields and prop:value exact position；nested arg occurrence/key/path/from/fromKey及双面firstonly精确验证。"
     },
     {
       "id": "08-dev-diagnostics:L731:1",
@@ -19390,7 +19545,7 @@
       "section": "`OBSERVE.diagnostics.subscribe(listener)`",
       "statement": "Registers a callback that fires for every diagnostic event, with the live node the event is about (when the emitter located one) as its second argument.",
       "coverage": [
-        "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata exact source node/subject, event owner fields, message/data/sequence and JSON shape; tracks/docs/types-positive.tsx: public DiagnosticEvent optional fields"
+        "tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema exact source node/subject, event owner fields, message/data/sequence and JSON shape; tracks/docs/types-positive.tsx: public DiagnosticEvent optional fields"
       ],
       "status": "covered",
       "classification": "behavioral",
@@ -19433,7 +19588,7 @@
       "section": "`OBSERVE.diagnostics.capture()`",
       "statement": "Returns a capture object for collecting diagnostics in a scoped region (useful in tests).",
       "coverage": [
-        "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata exact source node/subject, event owner fields, message/data/sequence and JSON shape; tracks/docs/types-positive.tsx: public DiagnosticEvent optional fields"
+        "tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema exact source node/subject, event owner fields, message/data/sequence and JSON shape; tracks/docs/types-positive.tsx: public DiagnosticEvent optional fields"
       ],
       "status": "covered",
       "classification": "behavioral",
@@ -19531,11 +19686,11 @@
       "section": "`OBSERVE.ownerPath(subject)`",
       "statement": "The owner chain of a live owner or node, root first, as the events carry it (`[\"<App>\", \"<TodoRow>\", \"effect\"]` — `event.ownerPath` on a finding, the `ownerPath` field on a record); `undefined` for `null`/`undefined` and for a subject with no named owner above it.",
       "coverage": [
-        "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata; root-first subject ownerPath, optional string fields, nodeName, object data, JSON record has neither live nor subject; tracks/docs/types-positive.tsx: DiagnosticEvent"
+        "tracks/docs/root-responsiveness.test.ts: component-by-value-and-unnamed-owner actual public ownerPath/function name vs explicit source name; tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema named root-first paths"
       ],
       "status": "covered",
       "classification": "behavioral",
-      "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+      "reason": "真实 owner 的正负控，不反射 private owner internals。"
     },
     {
       "id": "08-dev-diagnostics:L765:2",
@@ -19545,7 +19700,7 @@
       "section": "`OBSERVE.ownerPath(subject)`",
       "statement": "For a consumer holding the live handle the channel passed beside an event — the profiler track labelling a span by the computation it received — rather than a copy that already left the process, which carries the path itself.",
       "coverage": [
-        "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata; root-first subject ownerPath, optional string fields, nodeName, object data, JSON record has neither live nor subject; tracks/docs/types-positive.tsx: DiagnosticEvent"
+        "tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema; root-first subject ownerPath, optional string fields, nodeName, object data, JSON record has neither live nor subject; tracks/docs/types-positive.tsx: DiagnosticEvent"
       ],
       "status": "covered",
       "classification": "behavioral",
@@ -19751,7 +19906,7 @@
       "section": "`OBSERVE.ownerPath(subject)`",
       "statement": "The live node arrives **beside** it instead, as the listener's second argument — `OBSERVE.diagnostics.subscribe((event, subject) => …)` for findings, `OBSERVE.records.subscribe(type, (event, live) => …)` for records — for a consumer that runs in-process: the console reporter uses it to print the DOM element a binding effect writes; devtools use it to go from a record to the scope.",
       "coverage": [
-        "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata subject identity; tracks/docs/console-binding.test.ts: actual DOM console parameter; tracks/records/records.test.ts: live handles beside JSON summaries"
+        "tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema subject identity; tracks/docs/console-binding.test.ts: actual DOM console parameter; tracks/records/records.test.ts: live handles beside JSON summaries"
       ],
       "status": "covered",
       "classification": "behavioral",
@@ -19779,7 +19934,7 @@
       "section": "`OBSERVE.ownerPath(subject)`",
       "statement": "A copy of the event that left the process and came back has no subject: the handle was never on it.",
       "coverage": [
-        "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata; root-first subject ownerPath, optional string fields, nodeName, object data, JSON record has neither live nor subject; tracks/docs/types-positive.tsx: DiagnosticEvent"
+        "tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema; root-first subject ownerPath, optional string fields, nodeName, object data, JSON record has neither live nor subject; tracks/docs/types-positive.tsx: DiagnosticEvent"
       ],
       "status": "covered",
       "classification": "behavioral",
@@ -19924,10 +20079,12 @@
       "end_line": 801,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "This is the seam for tooling that watches the app — APM adapters, devtools — and deliberately not a policy hook: `configureServerFunctionsServer({ wrapInvocation })` remains the single, last-writer-wins wrap around execution for code that must **change** a call, and an observer that installed itself there would either displace the host's policy or be displaced by it.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-server.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
     },
     {
       "id": "08-dev-diagnostics:L801:11",
@@ -20320,9 +20477,13 @@
       "end_line": 820,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "The **`\"invocation\"` record** (from `@solidjs/web`, server) is one server-function execution:",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles",
+        "08/server-road-live-request-event-identity"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "reason": "5 direct invocation及3HTTP invocation分别id/direct/request/outcome/originalerror；Loading id严格join；nestedRequestEvent与render event/trace用===验证。"
     },
     {
       "id": "08-dev-diagnostics:C824:1",
@@ -20347,13 +20508,13 @@
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "// live:  { event: RequestEvent, request?, args, result? | error? }",
       "coverage": [
-        "08/server-road-live-request-event-identity",
-        "tracks/records/records.test.ts"
+        "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles",
+        "08/server-road-live-request-event-identity"
       ],
       "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral",
-      "reason": "live invocation.event严格等于body读到的derived RequestEvent，render.event严格等于原ambient RequestEvent；derived request/response共享身份；trace与ambient对象同身份。"
+      "reason": "5 direct invocation及3HTTP invocation分别id/direct/request/outcome/originalerror；Loading id严格join；nestedRequestEvent与render event/trace用===验证。"
     },
     {
       "id": "08-dev-diagnostics:L829:1",
@@ -20362,9 +20523,12 @@
       "end_line": 829,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "One record per call, delivered when the call **settles** — synchronously for a synchronous direct call, at resolution for a promise.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "08/server-road-invocation-settle-timing"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "reason": "公开serverreference+订阅正控：sync return前1；pendingpromise gate前0/resolve后1；iterable handoff时at1000 duration100 deferredtrue，chunk延迟5000后仍100。"
     },
     {
       "id": "08-dev-diagnostics:L829:2",
@@ -20373,9 +20537,13 @@
       "end_line": 829,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "`id` is the function's registered id; `direct` says whether this was an in-process SSR call (`true`, no `request`) or HTTP dispatch (`false`, `request` is the `Request` the handler dispatched).",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles",
+        "08/server-road-live-request-event-identity"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "reason": "5 direct invocation及3HTTP invocation分别id/direct/request/outcome/originalerror；Loading id严格join；nestedRequestEvent与render event/trace用===验证。"
     },
     {
       "id": "08-dev-diagnostics:L829:3",
@@ -20384,9 +20552,13 @@
       "end_line": 829,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "`outcome: \"error\"` carries the value **as thrown** in `live.error` — the sanitized `Error` the wire gets in production is the client's view, not the observer's.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles",
+        "08/server-road-live-request-event-identity"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "reason": "5 direct invocation及3HTTP invocation分别id/direct/request/outcome/originalerror；Loading id严格join；nestedRequestEvent与render event/trace用===验证。"
     },
     {
       "id": "08-dev-diagnostics:L829:4",
@@ -20395,9 +20567,12 @@
       "end_line": 829,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "`deferred: true` marks a result the caller drives after the record (a stream or async generator): `durationMs` then measures to the handoff, not to the last chunk.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "08/server-road-invocation-deferred-handoff-clock"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "reason": "公开serverreference+订阅正控：sync return前1；pendingpromise gate前0/resolve后1；iterable handoff时at1000 duration100 deferredtrue，chunk延迟5000后仍100。"
     },
     {
       "id": "08-dev-diagnostics:L829:5",
@@ -20406,9 +20581,13 @@
       "end_line": 829,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "For a direct call made during a `<Loading>` boundary's render pass, `boundary` is that boundary's hydration id — the `\"boundary\"` record's `id` — so a boundary's wait reads as the server-function calls it consisted of; absent for a call outside any boundary's pass (the shell) and for HTTP dispatch.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles",
+        "08/server-road-live-request-event-identity"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "reason": "5 direct invocation及3HTTP invocation分别id/direct/request/outcome/originalerror；Loading id严格join；nestedRequestEvent与render event/trace用===验证。"
     },
     {
       "id": "08-dev-diagnostics:L831:1",
@@ -20464,12 +20643,19 @@
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "//          route?: { name?, to?, params? } }",
       "coverage": [
-        "08/boundary-render-render-route-declaration"
+        "08/boundary-render-sync-silent",
+        "08/boundary-render-one-wait",
+        "08/boundary-render-shell-waited",
+        "08/boundary-render-render-only-count",
+        "08/boundary-render-render-initial-failed",
+        "08/boundary-render-render-initial-failed-stream",
+        "08/boundary-render-render-abandoned",
+        "08/boundary-render-preflush-redirect-abandoned"
       ],
       "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral",
-      "reason": "公开 OBSERVE attribution.withOrigin(initial navigation)在当前render声明route，serializable event严格匹配 name/to/params。"
+      "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。"
     },
     {
       "id": "08-dev-diagnostics:C838:1",
@@ -20479,13 +20665,19 @@
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "// live:  { event?: RequestEvent, trace: TraceContext }",
       "coverage": [
-        "08/server-road-live-request-event-identity",
-        "tracks/records/records.test.ts"
+        "08/boundary-render-sync-silent",
+        "08/boundary-render-one-wait",
+        "08/boundary-render-shell-waited",
+        "08/boundary-render-render-only-count",
+        "08/boundary-render-render-initial-failed",
+        "08/boundary-render-render-initial-failed-stream",
+        "08/boundary-render-render-abandoned",
+        "08/boundary-render-preflush-redirect-abandoned"
       ],
       "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral",
-      "reason": "live invocation.event严格等于body读到的derived RequestEvent，render.event严格等于原ambient RequestEvent；derived request/response共享身份；trace与ambient对象同身份。"
+      "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。"
     },
     {
       "id": "08-dev-diagnostics:L842:1",
@@ -20497,11 +20689,16 @@
       "coverage": [
         "08/boundary-render-sync-silent",
         "08/boundary-render-one-wait",
+        "08/boundary-render-shell-waited",
+        "08/boundary-render-render-only-count",
         "08/boundary-render-render-initial-failed",
-        "08/boundary-render-render-abandoned"
+        "08/boundary-render-render-initial-failed-stream",
+        "08/boundary-render-render-abandoned",
+        "08/boundary-render-preflush-redirect-abandoned"
       ],
       "status": "covered",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。"
     },
     {
       "id": "08-dev-diagnostics:L842:2",
@@ -20513,11 +20710,16 @@
       "coverage": [
         "08/boundary-render-sync-silent",
         "08/boundary-render-one-wait",
+        "08/boundary-render-shell-waited",
+        "08/boundary-render-render-only-count",
         "08/boundary-render-render-initial-failed",
-        "08/boundary-render-render-abandoned"
+        "08/boundary-render-render-initial-failed-stream",
+        "08/boundary-render-render-abandoned",
+        "08/boundary-render-preflush-redirect-abandoned"
       ],
       "status": "covered",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。"
     },
     {
       "id": "08-dev-diagnostics:L842:3",
@@ -20527,11 +20729,18 @@
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "`boundaries` counts the `<Loading>` boundaries the shell **waited on** — each also a `\"boundary\"` record with `streamed: false` — and not the ones that streamed after it; it is counted from the boundary records the render filed, so in an observe build it needs a `\"boundary\"` listener too (`0` with a `\"render\"` listener alone).",
       "coverage": [
-        "08/boundary-render-shell-wait",
-        "08/boundary-render-render-only-count"
+        "08/boundary-render-sync-silent",
+        "08/boundary-render-one-wait",
+        "08/boundary-render-shell-waited",
+        "08/boundary-render-render-only-count",
+        "08/boundary-render-render-initial-failed",
+        "08/boundary-render-render-initial-failed-stream",
+        "08/boundary-render-render-abandoned",
+        "08/boundary-render-preflush-redirect-abandoned"
       ],
       "status": "covered",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。"
     },
     {
       "id": "08-dev-diagnostics:L842:4",
@@ -20542,14 +20751,18 @@
       "statement": "`outcome` is `\"complete\"` for a render that ran to its end, `\"abandoned\"` when the consumer left mid-stream (the `SSR_STREAM_ABANDONED` finding is that request's account) or `createSSRResponse` discarded the page for a pre-flush redirect (no finding), `\"error\"` when the render failed (a string render threw; a stream's uncontained failure wound it down).",
       "coverage": [
         "08/boundary-render-sync-silent",
+        "08/boundary-render-one-wait",
+        "08/boundary-render-shell-waited",
+        "08/boundary-render-render-only-count",
+        "08/boundary-render-render-initial-failed",
+        "08/boundary-render-render-initial-failed-stream",
         "08/boundary-render-render-abandoned",
         "08/boundary-render-preflush-redirect-abandoned",
-        "08/boundary-render-render-initial-failed",
-        "08/boundary-render-render-initial-failed-stream"
+        "findings/017-initial-render-error-record/renderrecord-repro.test.ts"
       ],
       "status": "covered",
       "classification": "behavioral",
-      "reason": "complete/error/consumer covered；preflush redirect root HTTPtrack待精准映射"
+      "reason": "string/stream单次完成、shell存在/初始失败absent、deferStream前shellcount1/streamedtruecount0、Observe仅renderlistenercount0、consumerabort和preflushredirect abandoned含cleanup/zero诊断。 Initialfailedstream严格缺errorrecord为017 sibling，broad仅识别此exact raw error，其最小onecommand独立红保留。"
     },
     {
       "id": "08-dev-diagnostics:L842:5",
@@ -20559,10 +20772,12 @@
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "`live.event` is the request the render served, absent for a render outside a request scope; `live.trace` is the render's trace context (what `getTraceContext()` answers during it).",
       "coverage": [
+        "08/server-road-live-request-event-identity",
         "08/boundary-render-sync-silent"
       ],
       "status": "covered",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "ambientrender live.event/trace严格===；outside request live.event absent仍有rendertrace。"
     },
     {
       "id": "08-dev-diagnostics:L842:6",
@@ -20571,9 +20786,12 @@
       "end_line": 842,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "`solid-shell` on the response's `Server-Timing` is this record's `shellMs`, read off the same object at head commit (below, [Chrome Performance panel](#chrome-performance-panel-solidjswebperformance-tracks)).",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "tracks/records/trace.test.ts#RFC12 trace server timing exact record durations"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "reason": "response solid-shell数值与同render record.shellMs差<=0.051；devalways/Observe gated/prodnone，headcommit冻结。"
     },
     {
       "id": "08-dev-diagnostics:L842:7",
@@ -20586,7 +20804,8 @@
         "08/boundary-render-unobserved-clocks"
       ],
       "status": "covered",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "替换performance.now统计：unobserved Loading+render Observe/prod0 clocks，dev正控>0。"
     },
     {
       "id": "08-dev-diagnostics:L842:8",
@@ -20595,9 +20814,13 @@
       "end_line": 842,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "`route` is the route the render resolved to, as the router declared it while building its context under this render (`OBSERVE.attribution.withOrigin` with an `initial` ref — the same call that opens the client's first `\"navigation\"` record): `name` the matched pattern (`/users/:id`), `to` the concrete path, `params` what it bound; read from the router's ref when the render settles, so a match refined during the render is what lands, and absent when no router declared one.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "08/boundary-render-render-route-declaration",
+        "08/boundary-render-sync-silent"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "reason": "initial navigation origin在active render内声明name/to/params，精确record.route；no origin render无route。"
     },
     {
       "id": "08-dev-diagnostics:L842:9",
@@ -20609,7 +20832,7 @@
       "coverage": [],
       "status": "not-behavioral",
       "classification": "not-behavioral",
-      "reason": "标题、展示消息或建议，不是独立外部行为保证；相邻实际码与字段另测。"
+      "reason": "解释http.route匹配模式减少APM名称基数的用途，没有额外运行保证；实际route字段合同是L842:8。"
     },
     {
       "id": "08-dev-diagnostics:L844:1",
@@ -20928,10 +21151,12 @@
       "end_line": 857,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "`origin` is what the call ran for, when the attribution engine is enabled and knows: the interaction whose handler made it (`{ kind: \"interaction\", name: \"click\", target, at }`), the navigation whose data needed it (`{ kind: \"navigation\", name: \"/users/:id\", …, interaction }` — a `createAsync` calling the server inside the recompute the location write caused), an effect or action frame, an async landing's recompute calling again.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/late-final-server-call-origin-families"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
     },
     {
       "id": "08-dev-diagnostics:L857:2",
@@ -21308,12 +21533,17 @@
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "// event: { side: \"server\", id, version, at, durationMs, shellMs?,",
       "coverage": [
-        "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+        "08/server-road-frame-sync-error-original",
+        "08/server-road-frame-fragment-error-boundary",
+        "tracks/frames/frame-record-unions.test.ts",
+        "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+        "tracks/docs/late-final-rpc.test.ts",
+        "tracks/records/records.test.ts"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral",
-      "reason": "真实 server/client complete frame 精确 join id/version/chunks/fragments/slots/regions/errors 与 response；error/truncated live-error 及 optional address/shellMs 的复合句尚未全部精确测。"
+      "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
     },
     {
       "id": "08-dev-diagnostics:C876:1",
@@ -21323,12 +21553,17 @@
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "//          outcome: \"complete\" | \"error\", chunks, fragments, slots, regions, errors }",
       "coverage": [
-        "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+        "08/server-road-frame-sync-error-original",
+        "08/server-road-frame-fragment-error-boundary",
+        "tracks/frames/frame-record-unions.test.ts",
+        "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+        "tracks/docs/late-final-rpc.test.ts",
+        "tracks/records/records.test.ts"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral",
-      "reason": "真实 server/client complete frame 精确 join id/version/chunks/fragments/slots/regions/errors 与 response；error/truncated live-error 及 optional address/shellMs 的复合句尚未全部精确测。"
+      "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
     },
     {
       "id": "08-dev-diagnostics:C877:1",
@@ -21338,12 +21573,17 @@
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "//     or { side: \"client\", id, version, at, durationMs, shellMs?, address?,",
       "coverage": [
-        "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+        "08/server-road-frame-sync-error-original",
+        "08/server-road-frame-fragment-error-boundary",
+        "tracks/frames/frame-record-unions.test.ts",
+        "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+        "tracks/docs/late-final-rpc.test.ts",
+        "tracks/records/records.test.ts"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral",
-      "reason": "真实 server/client complete frame 精确 join id/version/chunks/fragments/slots/regions/errors 与 response；error/truncated live-error 及 optional address/shellMs 的复合句尚未全部精确测。"
+      "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
     },
     {
       "id": "08-dev-diagnostics:C878:1",
@@ -21353,12 +21593,17 @@
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "//          outcome: \"complete\" | \"truncated\" | \"error\", chunks, fragments, slots, regions, errors }",
       "coverage": [
-        "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+        "08/server-road-frame-sync-error-original",
+        "08/server-road-frame-fragment-error-boundary",
+        "tracks/frames/frame-record-unions.test.ts",
+        "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+        "tracks/docs/late-final-rpc.test.ts",
+        "tracks/records/records.test.ts"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral",
-      "reason": "真实 server/client complete frame 精确 join id/version/chunks/fragments/slots/regions/errors 与 response；error/truncated live-error 及 optional address/shellMs 的复合句尚未全部精确测。"
+      "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
     },
     {
       "id": "08-dev-diagnostics:C879:1",
@@ -21368,12 +21613,17 @@
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "// live:  { error?, response? }",
       "coverage": [
-        "tracks/records/records.test.ts#RFC 08/10/11: runtime records separate serializable events from live invocation/call/frame handles"
+        "08/server-road-frame-sync-error-original",
+        "08/server-road-frame-fragment-error-boundary",
+        "tracks/frames/frame-record-unions.test.ts",
+        "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+        "tracks/docs/late-final-rpc.test.ts",
+        "tracks/records/records.test.ts"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral",
-      "reason": "真实 server/client complete frame 精确 join id/version/chunks/fragments/slots/regions/errors 与 response；error/truncated live-error 及 optional address/shellMs 的复合句尚未全部精确测。"
+      "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
     },
     {
       "id": "08-dev-diagnostics:L883:1",
@@ -21396,10 +21646,13 @@
       "end_line": 883,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "`id` is the frame's on the wire: for a server-function response that is a frame stream (`frameTransformResult`), the function's id — the same `id` the call's `\"invocation\"` and `\"call\"` records carry, so all three join by it (the invocation is the execution, the call is the caller's wait, the frame is the response that streamed); for a bare `renderToFrameStream`, what the producer named it or `\"\"`.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-rpc.test.ts",
+        "tracks/docs/late-final-server.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
     },
     {
       "id": "08-dev-diagnostics:L883:3",
@@ -21408,10 +21661,12 @@
       "end_line": 883,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "`at` is `performance.now()` at `start`; `durationMs` runs start → `complete`, the whole stream; `shellMs` runs start → the shell (`html`) chunk — time to first content — and is absent when no shell was produced.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-server.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
     },
     {
       "id": "08-dev-diagnostics:L883:4",
@@ -21434,9 +21689,17 @@
       "end_line": 885,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "The **server half** (`renderServerComponent`, `renderToFrameStream`, the handler path): `version` is what the producer stamped; `outcome` is `\"complete\"` when the render ran to the end, fragment failures included (those are counted in `errors`, each having revealed its fallback and ridden a keyed `error` chunk), and `\"error\"` when the render threw synchronously — the stream then carried the failure as its only content and completed anyway, and `live.error` is the value as thrown.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "08/server-road-frame-sync-error-original",
+        "08/server-road-frame-fragment-error-boundary",
+        "tracks/frames/frame-record-unions.test.ts",
+        "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+        "tracks/docs/late-final-rpc.test.ts",
+        "tracks/records/records.test.ts"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
     },
     {
       "id": "08-dev-diagnostics:L885:2",
@@ -21445,9 +21708,17 @@
       "end_line": 885,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "`<Loading>` boundaries inside the frame emit their own `\"boundary\"` records.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "08/server-road-frame-sync-error-original",
+        "08/server-road-frame-fragment-error-boundary",
+        "tracks/frames/frame-record-unions.test.ts",
+        "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+        "tracks/docs/late-final-rpc.test.ts",
+        "tracks/records/records.test.ts"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
     },
     {
       "id": "08-dev-diagnostics:L885:3",
@@ -21456,9 +21727,17 @@
       "end_line": 885,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "The **client half** (`applyFrameResponse`): `version` is the consumer's restamp — the number the frame's stale-guard saw — and `address` is the local id the chunks were applied under when the consumer remapped the wire id onto its own boundary (the call's address, for the server-component transport), absent when applied under the wire id; `outcome` is `\"complete\"` when the `complete` chunk arrived, `\"truncated\"` when the body ended before it (the connection dropped, the producer abandoned the stream), `\"error\"` when the read failed (a malformed chunk, a body error) with the failure in `live.error`; `live.response` is the response the stream was read from.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "08/server-road-frame-sync-error-original",
+        "08/server-road-frame-fragment-error-boundary",
+        "tracks/frames/frame-record-unions.test.ts",
+        "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+        "tracks/docs/late-final-rpc.test.ts",
+        "tracks/records/records.test.ts"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
     },
     {
       "id": "08-dev-diagnostics:L885:4",
@@ -21467,9 +21746,17 @@
       "end_line": 885,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "A single-flight response carries one stream per frame it refreshed; each is its own record, on both sides.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "08/server-road-frame-sync-error-original",
+        "08/server-road-frame-fragment-error-boundary",
+        "tracks/frames/frame-record-unions.test.ts",
+        "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+        "tracks/docs/late-final-rpc.test.ts",
+        "tracks/records/records.test.ts"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
     },
     {
       "id": "08-dev-diagnostics:L885:5",
@@ -21478,9 +21765,17 @@
       "end_line": 885,
       "section": "`OBSERVE.records` — the runtimes' records channel",
       "statement": "Emitted by the observe and dev artifacts of the frames entry on either platform (`frames/dist/server.observe.js`, `client.observe.js`, and the dev pair).",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "08/server-road-frame-sync-error-original",
+        "08/server-road-frame-fragment-error-boundary",
+        "tracks/frames/frame-record-unions.test.ts",
+        "tracks/docs/late-final-server.test.ts#08 late server policy last writer and passive throwing observers",
+        "tracks/docs/late-final-rpc.test.ts",
+        "tracks/records/records.test.ts"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "reason": "真实server error-only start/error/complete且original===、fragmenterrors complete+boundary；client complete/truncated/bodyerror/malformed严格Response/erroridentity、wireid/address与version7/9 restamp、多帧独立记录；clock/census在nativeHTTP和fakeclock两轨精确join，三tier非prod有/prod无。"
     },
     {
       "id": "08-dev-diagnostics:L887:1",
@@ -21548,11 +21843,12 @@
       "statement": "`id` is the boundary's hydration id — the server record's `id`, so the two sides join: the server says how long it tried and why it gave up (`durationMs`, `outcome: \"client\"`, and the error hook's `handling: \"client\"` has the error), the client says how long the person looked at the fallback while it did (`waitedMs`, from the boundary registering against the fragment to the rejection reaching it — `0` when the rejection had already arrived at hydration) and what the fresh render cost (`renderMs`).",
       "coverage": [
         "findings/021-recovery-boundary-outcome/repro.test.ts",
+        "findings/054-prearrived-recovery-wait/repro.test.ts",
         "tracks/frames/recovery.test.ts"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "id/计时/枚举反例已覆盖，prearrived waitedMs=0精准时序仍需补"
+      "reason": "嚴格server/client boundary ID join與render/waitclock；021 outcome反例；054已全部錯誤HTML解析後fakeclock仍wait100而非0的文檔反例。"
     },
     {
       "id": "08-dev-diagnostics:L896:3",
@@ -21564,9 +21860,9 @@
       "coverage": [
         "tracks/frames/recovery.test.ts"
       ],
-      "status": "uncovered",
+      "status": "untestable",
       "classification": "behavioral",
-      "reason": "production no-record已测，no-listener clock和byte-identical还需补"
+      "reason": "可執行部分已證：unobserved與production hydrate performance.now讀0；production compiled recovery entry無waitedMs/renderMs分支helper欄位。絕對byte-identical不可測：缺少同HEAD禁用recovery功能的core反事實構建，不能用無record或字段消失宣稱字節完全相同。"
     },
     {
       "id": "08-dev-diagnostics:L896:4",
@@ -21674,10 +21970,13 @@
       "end_line": 910,
       "section": "`OBSERVE.server` — the trace-provider slot",
       "statement": "// an APM answering from its active span; `request` is undefined for a",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/server-road-trace-provider-no-request"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "公有provider在requestscope外收到undefined；回答undefined不覆盖W3C traceId/parentId/sampled，scope内收到原event.request identity。"
     },
     {
       "id": "08-dev-diagnostics:C911:1",
@@ -21686,10 +21985,13 @@
       "end_line": 911,
       "section": "`OBSERVE.server` — the trace-provider slot",
       "statement": "// render outside any request scope",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/server-road-trace-provider-no-request"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "公有provider在requestscope外收到undefined；回答undefined不覆盖W3C traceId/parentId/sampled，scope内收到原event.request identity。"
     },
     {
       "id": "08-dev-diagnostics:C913:1",
@@ -21698,10 +22000,13 @@
       "end_line": 913,
       "section": "`OBSERVE.server` — the trace-provider slot",
       "statement": "if (!span) return undefined; // leave the runtime's derivation alone",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/server-road-trace-provider-no-request"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "公有provider在requestscope外收到undefined；回答undefined不覆盖W3C traceId/parentId/sampled，scope内收到原event.request identity。"
     },
     {
       "id": "08-dev-diagnostics:L923:1",
@@ -22337,11 +22642,11 @@
       "section": "Diagnostic codes (quick reference)",
       "statement": "| `SILENT_HOLD`                      | info/warn  | responsiveness | Write held 100ms+/200ms+ by pending async with no on-screen acknowledgement (attribution enabled)                                                                 |",
       "coverage": [
-        "08/attribution-warning-silent_hold"
+        "tracks/docs/hold-diagnostic-cases.ts: hold-default-thresholds actual threshold/kind/severity and negative controls; tracks/docs/docs.test.ts"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "root阈值与所有ack分支还需late精确映射。"
+      "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
     },
     {
       "id": "08-dev-diagnostics:L968:1",
@@ -22351,11 +22656,11 @@
       "section": "Diagnostic codes (quick reference)",
       "statement": "| `LONG_HOLD`                        | info/warn  | responsiveness | Acknowledged hold whose tail (last input → commit) ran 500ms+/1000ms+ (attribution enabled)                                                                       |",
       "coverage": [
-        "08/attribution-warning-long_hold"
+        "tracks/docs/hold-diagnostic-cases.ts: hold-default-thresholds actual threshold/kind/severity and negative controls; tracks/docs/docs.test.ts"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "root默认500/1000与kind/severity须late核实。"
+      "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
     },
     {
       "id": "08-dev-diagnostics:L969:1",
@@ -22365,11 +22670,11 @@
       "section": "Diagnostic codes (quick reference)",
       "statement": "| `UNTRACKED_ASYNC_HANDLER`          | info/warn  | responsiveness | Handler awaited 100ms+/200ms+ past its frame with no write before the `await` and no `action()`: a dead click no hold could judge (attribution enabled)           |",
       "coverage": [
-        "08/attribution-warning-untracked_async_handler"
+        "tracks/records/interaction.test.ts: native clock 99/100/200ms, async reject, pre-await write/action acknowledgements and cap"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "root低阈值case，默认100/200边界未测。"
+      "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
     },
     {
       "id": "08-dev-diagnostics:L970:1",
@@ -22379,11 +22684,11 @@
       "section": "Diagnostic codes (quick reference)",
       "statement": "| `ABANDONED_FLIGHTS`                | warn       | responsiveness | One async source abandoned 3+ flights in 1s, each superseded before landing — the request-per-keystroke signature (attribution enabled)                           |",
       "coverage": [
-        "08/attribution-warning-abandoned_flights"
+        "tracks/docs/hold-diagnostic-cases.ts: abandoned-default-window actual threshold/kind/severity and negative controls; tracks/docs/docs.test.ts"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "rootcount2定制阈值，default3/window1s未测。"
+      "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
     },
     {
       "id": "08-dev-diagnostics:L971:1",
@@ -22407,11 +22712,11 @@
       "section": "Diagnostic codes (quick reference)",
       "statement": "| `STACKED_HOLDS`                    | warn       | responsiveness | 3+ interactions were waiting in one hold when it committed — repeats piled behind the same source (attribution enabled)                                           |",
       "coverage": [
-        "08/attribution-warning-stacked_holds"
+        "tracks/docs/hold-diagnostic-cases.ts: stacked-contract actual threshold/kind/severity and negative controls; tracks/docs/docs.test.ts"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "rootcount3用例；阈值defaults与payload详assert需核实。"
+      "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
     },
     {
       "id": "08-dev-diagnostics:L973:1",
@@ -22421,11 +22726,11 @@
       "section": "Diagnostic codes (quick reference)",
       "statement": "| `OPTIMISTIC_REVERTED`              | info       | responsiveness | An optimistic value the screen showed was replaced by a different one — reverted at settle, or superseded by the truth (attribution enabled)                      |",
       "coverage": [
-        "08/attribution-warning-optimistic_reverted"
+        "tracks/docs/hold-diagnostic-cases.ts: optimistic-correction-contract actual threshold/kind/severity and negative controls; tracks/docs/docs.test.ts"
       ],
-      "status": "uncovered",
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "rootreverted已测；superseded及kind/severity需核实。"
+      "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
     },
     {
       "id": "08-dev-diagnostics:L974:1",
@@ -22434,10 +22739,14 @@
       "end_line": 974,
       "section": "Diagnostic codes (quick reference)",
       "statement": "| `SSR_RENDER_ERROR_CONTAINED`       | error      | ssr            | Server render error routed by a boundary: `data.handling` fallback / client / failed (observe + dev)                                                              |",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/server-road-contained-fallback",
+        "08/server-road-contained-client",
+        "findings/017-initial-render-error-record/repro.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "frames正例severity已测，kind需核实。"
+      "reason": "fallback/client/failed三个handling道路，严格ssr/error与originalerror；initialfailed record缺失是017红。"
     },
     {
       "id": "08-dev-diagnostics:L975:1",
@@ -22446,10 +22755,12 @@
       "end_line": 975,
       "section": "Diagnostic codes (quick reference)",
       "statement": "| `SSR_SUBTREE_ABANDONED`            | warn       | ssr            | A failed fragment's pending descendants were discarded (observe + dev)                                                                                            |",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/server-road-subtree-abandoned-fields"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "warn/ssr与pending descendants已测；observe tier未覆盖。"
+      "reason": "失败fragment丢弃pendingdescendant，ssr/warn与原error/collateralcounts严格字段正控。"
     },
     {
       "id": "08-dev-diagnostics:L976:1",
@@ -22473,10 +22784,13 @@
       "end_line": 977,
       "section": "Diagnostic codes (quick reference)",
       "statement": "| `LATE_HEADER_WRITE`                | error      | head           | Response header written after the head was sent; dropped (observe + dev; dev throws)                                                                              |",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/server-road-late-head-write",
+        "08/server-road-mutation-cookie-thrown-redirect"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "frames late header各tier已有case，kind需核实。"
+      "reason": "head已送后写入strict head/error字段method/name，response/headerstub均无该值，dev抛原诊断其他tier loudlog。"
     },
     {
       "id": "08-dev-diagnostics:L978:1",
@@ -22499,10 +22813,14 @@
       "end_line": 979,
       "section": "Diagnostic codes (quick reference)",
       "statement": "| `SERVER_ERROR_SANITIZED`           | error/info | ssr            | Error replaced with the generic Error on the wire — `data.source` `\"server-function\"` (`error`) or `\"ssr\"` (`info`); `data.error` is the original (observe + dev) |",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/server-road-sanitize-rpc-false",
+        "08/server-road-sanitize-ssr-false",
+        "08/server-road-error-value-data"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "frames真实SSR/RPC sanitization已有cases，kind需核实。"
+      "reason": "server-function/error与ssr/info替换道路、原error===与safe/Error-as-value负控，observe记录dev未替换production无记录。"
     },
     {
       "id": "08-dev-diagnostics:L980:1",
@@ -22511,10 +22829,13 @@
       "end_line": 980,
       "section": "Diagnostic codes (quick reference)",
       "statement": "| `FRAME_MARKER_CORRUPTED`           | error      | ssr            | Frame slot range missing its end marker on the client — nesting or an HTML rewriter (observe + dev)                                                               |",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/frames/binding.test.ts",
+        "findings/020-observe-frame-corruption/repro.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "frames marker contract已有case，kind/severity需核实。"
+      "reason": "真正server slotmarkup删除endmarker，client deverror slot/end正控，Observe文档red在020；productionquiet。"
     },
     {
       "id": "08-dev-diagnostics:L981:1",
@@ -22579,10 +22900,12 @@
       "end_line": 985,
       "section": "Diagnostic codes (quick reference)",
       "statement": "| `SSR_UNDECLARED_LIVE_SOURCE`       | warn       | ssr            | A document render is still pumping an async iterable in server-component scope 5s in — declare the function `live(...)` or bound the source (dev)                 |",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/frames/undeclared-source.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "frames文档live/unbounded正负case，kind/severity需核实。"
+      "reason": "真实document scope source保持5.3s，dev唯一ssr/warn afterMs5000；live声明documentfirstonly和standing frame均豁免，三tier producerclosed计数独立。"
     },
     {
       "id": "08-dev-diagnostics:L986:1",
@@ -22722,10 +23045,12 @@
       "end_line": 1004,
       "section": "Run attribution — \"why did this run\"",
       "statement": "The engine is its own entry, `solid-js/attribution` (re-exporting `@solidjs/signals/attribution`), so a build that never imports it never ships it: the runtime carries only the hook slot the engine installs into (internal to `@solidjs/signals`; `OBSERVE.attribution.installed` says whether an engine is present) and the two declared frames — the interaction frame the web runtime opens around event dispatch (`OBSERVE.attribution.withInteraction`) and the origin frame a router opens around its navigation write (`OBSERVE.attribution.withOrigin`).",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts: real Bun module graph excludes attribution artifacts, imported engine positive graph includes them; installed=false and runtime frames remain callable in dev/observe"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "Attribution entry tree-shaking and runtime-only hooks require isolated bundle evidence."
+      "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
     },
     {
       "id": "08-dev-diagnostics:L1004:2",
@@ -22749,10 +23074,13 @@
       "end_line": 1012,
       "section": "API (`solid-js/attribution`)",
       "statement": "log: true,          // pretty-print each re-run (default true)",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/attribution-cases.ts: default-log-enabled omitted log vs false console controls"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "实际省略选项验证默认值，不用显式 log:true 替代。"
     },
     {
       "id": "08-dev-diagnostics:C1013:1",
@@ -22888,10 +23216,13 @@
       "end_line": 1021,
       "section": "API (`solid-js/attribution`)",
       "statement": "holds: { infoMs: 100, warnMs: 200 },        // or false (disables hold tracking)",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/hold-diagnostic-cases.ts: hold-disabled-options holds false has no record/fold/diagnosis; longHolds false retains acknowledged hold but emits no LONG_HOLD"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "省略与显式关闭的默认值、effect/action/public record 路径均有实际断言。"
     },
     {
       "id": "08-dev-diagnostics:C1022:1",
@@ -22900,10 +23231,13 @@
       "end_line": 1022,
       "section": "API (`solid-js/attribution`)",
       "statement": "longHolds: { infoMs: 500, warnMs: 1000 },   // or false",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/hold-diagnostic-cases.ts: hold-disabled-options holds false has no record/fold/diagnosis; longHolds false retains acknowledged hold but emits no LONG_HOLD"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "省略与显式关闭的默认值、effect/action/public record 路径均有实际断言。"
     },
     {
       "id": "08-dev-diagnostics:C1023:1",
@@ -22942,10 +23276,13 @@
       "end_line": 1027,
       "section": "API (`solid-js/attribution`)",
       "statement": "attribution.history(\"rerun\");       // RerunEvents — kept only while a listener, a fold or the log wants them",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/attribution-cases.ts: attribution-records-queries bounded oldest-first live observer history and default-log-enabled; tracks/docs/late-final-engine-only.test.ts: observe no audience retains no reruns; findings/012-attribution-audience-gate/repro.test.ts: dev fold audience violation"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "API概览中的可选订阅类型按实际类型逐项调用，不把 union 伪签名当可执行 JS recipe。"
     },
     {
       "id": "08-dev-diagnostics:C1028:1",
@@ -22954,10 +23291,13 @@
       "end_line": 1028,
       "section": "API (`solid-js/attribution`)",
       "statement": "attribution.history(\"waterfall\");   // graph-provable sequential flight chains",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/cost-diagnostic-cases.tsx: async-waterfall-tiers and waterfall-default-duration exact link chain/ms/history with slow/fast/false controls"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "API概览中的可选订阅类型按实际类型逐项调用，不把 union 伪签名当可执行 JS recipe。"
     },
     {
       "id": "08-dev-diagnostics:C1029:1",
@@ -23116,10 +23456,13 @@
       "end_line": 1041,
       "section": "API (`solid-js/attribution`)",
       "statement": "OBSERVE.records.subscribe(\"flush\" | \"create\" | \"effect\" | \"flight\" | \"fallback\" | \"graph\", (event, live) => { … }); // timeline records (below)",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-cases.tsx: timeline-audience-and-origin-slot real flush/create/effect/flight/fallback events; tracks/docs/attribution-cases.ts: graph-initial-and-visits real graph subscription/census; tracks/docs/types-positive.tsx: timeline subscribe declarations"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "API概览中的可选订阅类型按实际类型逐项调用，不把 union 伪签名当可执行 JS recipe。"
     },
     {
       "id": "08-dev-diagnostics:C1042:1",
@@ -23368,10 +23711,13 @@
       "end_line": 1060,
       "section": "API (`solid-js/attribution`)",
       "statement": "// The folds over those records, the point queries and the formatters are",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "findings/012-attribution-audience-gate/repro.test.ts: dev public barrel automatically registers unused folds, observe/prod positive controls; tracks/docs/attribution-cases.ts: actual named costs/feedback/why/subscriptions/formatRerun/formatOrigin APIs"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释按其完整合同合并证明；红例记录矛盾，不把负控误记为承诺成立。"
     },
     {
       "id": "08-dev-diagnostics:C1061:1",
@@ -23380,10 +23726,13 @@
       "end_line": 1061,
       "section": "API (`solid-js/attribution`)",
       "statement": "// NAMED EXPORTS, not methods: a fold's module registers its accounting with",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "findings/012-attribution-audience-gate/repro.test.ts: dev public barrel automatically registers unused folds, observe/prod positive controls; tracks/docs/attribution-cases.ts: actual named costs/feedback/why/subscriptions/formatRerun/formatOrigin APIs"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释按其完整合同合并证明；红例记录矛盾，不把负控误记为承诺成立。"
     },
     {
       "id": "08-dev-diagnostics:C1062:1",
@@ -23392,10 +23741,13 @@
       "end_line": 1062,
       "section": "API (`solid-js/attribution`)",
       "statement": "// the engine when it is imported, so a consumer that only subscribes to",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "findings/012-attribution-audience-gate/repro.test.ts: dev public barrel automatically registers unused folds, observe/prod positive controls; tracks/docs/attribution-cases.ts: actual named costs/feedback/why/subscriptions/formatRerun/formatOrigin APIs"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释按其完整合同合并证明；红例记录矛盾，不把负控误记为承诺成立。"
     },
     {
       "id": "08-dev-diagnostics:C1063:1",
@@ -23404,10 +23756,13 @@
       "end_line": 1063,
       "section": "API (`solid-js/attribution`)",
       "statement": "// records (a production adapter) never ships the tables a console or an",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "findings/012-attribution-audience-gate/repro.test.ts: dev public barrel automatically registers unused folds, observe/prod positive controls; tracks/docs/attribution-cases.ts: actual named costs/feedback/why/subscriptions/formatRerun/formatOrigin APIs"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释按其完整合同合并证明；红例记录矛盾，不把负控误记为承诺成立。"
     },
     {
       "id": "08-dev-diagnostics:C1064:1",
@@ -23416,10 +23771,13 @@
       "end_line": 1064,
       "section": "API (`solid-js/attribution`)",
       "statement": "// agent reads — importing `costs` or `feedback` is what turns them on.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "findings/012-attribution-audience-gate/repro.test.ts: dev public barrel automatically registers unused folds, observe/prod positive controls; tracks/docs/attribution-cases.ts: actual named costs/feedback/why/subscriptions/formatRerun/formatOrigin APIs"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释按其完整合同合并证明；红例记录矛盾，不把负控误记为承诺成立。"
     },
     {
       "id": "08-dev-diagnostics:C1067:1",
@@ -23563,10 +23921,14 @@
       "end_line": 1079,
       "section": "API (`solid-js/attribution`)",
       "statement": "// Runtime side (`OBSERVE`, present in dev and observe builds): stamp the",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。"
     },
     {
       "id": "08-dev-diagnostics:C1080:1",
@@ -23575,10 +23937,14 @@
       "end_line": 1080,
       "section": "API (`solid-js/attribution`)",
       "statement": "// writes made synchronously inside `fn` with a user interaction. Compiled",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。"
     },
     {
       "id": "08-dev-diagnostics:C1081:1",
@@ -23587,10 +23953,13 @@
       "end_line": 1081,
       "section": "API (`solid-js/attribution`)",
       "statement": "// event bindings do this for every handler; custom renderers and test",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "findings/050-literal-handler-attribution/repro.test.ts"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。"
     },
     {
       "id": "08-dev-diagnostics:C1082:1",
@@ -23599,10 +23968,14 @@
       "end_line": 1082,
       "section": "API (`solid-js/attribution`)",
       "statement": "// harnesses call it themselves. `fn()` when no engine is enabled.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。"
     },
     {
       "id": "08-dev-diagnostics:C1084:1",
@@ -23656,10 +24029,14 @@
       "end_line": 1093,
       "section": "API (`solid-js/attribution`)",
       "statement": "// And the route the document arrived on, around the work that establishes",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-server.test.ts",
+        "08/navigation-declaration-controls"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。"
     },
     {
       "id": "08-dev-diagnostics:C1094:1",
@@ -23668,10 +24045,14 @@
       "end_line": 1094,
       "section": "API (`solid-js/attribution`)",
       "statement": "// its initial match (there is no location write on a fresh document). On the",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-server.test.ts",
+        "08/navigation-declaration-controls"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。"
     },
     {
       "id": "08-dev-diagnostics:C1095:1",
@@ -23680,10 +24061,14 @@
       "end_line": 1095,
       "section": "API (`solid-js/attribution`)",
       "statement": "// client this is the first \"navigation\" record; on the server it names the",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-server.test.ts",
+        "08/navigation-declaration-controls"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。"
     },
     {
       "id": "08-dev-diagnostics:C1096:1",
@@ -23692,10 +24077,14 @@
       "end_line": 1096,
       "section": "API (`solid-js/attribution`)",
       "statement": "// request's \"render\" record (`RenderEvent.route`). Same call on both sides.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-server.test.ts",
+        "08/navigation-declaration-controls"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。"
     },
     {
       "id": "08-dev-diagnostics:C1103:1",
@@ -23704,10 +24093,14 @@
       "end_line": 1103,
       "section": "API (`solid-js/attribution`)",
       "statement": "// A runtime recording a fact of its own asks what a write here would be",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。"
     },
     {
       "id": "08-dev-diagnostics:C1104:1",
@@ -23716,10 +24109,14 @@
       "end_line": 1104,
       "section": "API (`solid-js/attribution`)",
       "statement": "// stamped with — the engine's own interaction/navigation object, or",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。"
     },
     {
       "id": "08-dev-diagnostics:C1105:1",
@@ -23728,10 +24125,14 @@
       "end_line": 1105,
       "section": "API (`solid-js/attribution`)",
       "statement": "// undefined — and puts it on its record (the web runtime's \"call\" record",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。"
     },
     {
       "id": "08-dev-diagnostics:C1106:1",
@@ -23740,10 +24141,14 @@
       "end_line": 1106,
       "section": "API (`solid-js/attribution`)",
       "statement": "// does this at dispatch); an observer then joins the two by identity.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。"
     },
     {
       "id": "08-dev-diagnostics:C1108:1",
@@ -23752,10 +24157,13 @@
       "end_line": 1108,
       "section": "API (`solid-js/attribution`)",
       "statement": "// Whether an engine is present: OBSERVE.attribution.installed (the hook",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/attribution-cases.ts: attribution-holds last-release installed flag and forced disable; no assertion reaches into opaque hook internals"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释按其完整合同合并证明；红例记录矛盾，不把负控误记为承诺成立。"
     },
     {
       "id": "08-dev-diagnostics:C1109:1",
@@ -23764,10 +24172,13 @@
       "end_line": 1109,
       "section": "API (`solid-js/attribution`)",
       "statement": "// table itself is opaque — the slot is the engine's, not a public seam).",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/attribution-cases.ts: attribution-holds last-release installed flag and forced disable; no assertion reaches into opaque hook internals"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释按其完整合同合并证明；红例记录矛盾，不把负控误记为承诺成立。"
     },
     {
       "id": "08-dev-diagnostics:C1110:1",
@@ -23776,10 +24187,14 @@
       "end_line": 1110,
       "section": "API (`solid-js/attribution`)",
       "statement": "// The installed hooks are also registered on globalThis under",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。"
     },
     {
       "id": "08-dev-diagnostics:C1111:1",
@@ -23788,10 +24203,14 @@
       "end_line": 1111,
       "section": "API (`solid-js/attribution`)",
       "statement": "// Symbol.for(\"@solidjs/signals/observe/attribution\"), the records channel's",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。"
     },
     {
       "id": "08-dev-diagnostics:C1112:1",
@@ -23800,10 +24219,14 @@
       "end_line": 1112,
       "section": "API (`solid-js/attribution`)",
       "statement": "// reach for a layer bundled without a framework import.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-no-engine.test.ts",
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "跨行注释合同联合证明：公开frames/identity/no-engine透传/SSR初始route；fold shipping和everyhandler全称有012/050红例，不标为runtime通过。"
     },
     {
       "id": "08-dev-diagnostics:C1113:1",
@@ -23843,9 +24266,10 @@
       "section": "API (`solid-js/attribution`)",
       "statement": "/* panel */",
       "coverage": [],
-      "status": "uncovered",
+      "status": "not-behavioral",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "not-behavioral",
+      "reason": "示例 panel 函数体省略号，占位注释不陈述独立运行保证；exclude 的合同在 L1127/L1129 独立测试。"
     },
     {
       "id": "08-dev-diagnostics:L1121:1",
@@ -23929,10 +24353,12 @@
       "end_line": 1121,
       "section": "API (`solid-js/attribution`)",
       "statement": "A listener runs inside the engine and must not write signals; hand work off to a microtask.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/late-final-observer-microtask-handoff"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
     },
     {
       "id": "08-dev-diagnostics:L1121:7",
@@ -23971,10 +24397,15 @@
       "end_line": 1123,
       "section": "API (`solid-js/attribution`)",
       "statement": "**Timeline records.** Five further record types describe the work itself rather than its outcome, shaped for a profiler track (`@solidjs/web/performance-tracks`, below) and for the responsiveness findings; they enter no ring buffer and are built only while something is subscribed to them (`OBSERVE.records.observed(type)`), so an app that does not listen pays nothing beyond the hook null-check.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/late-final-timeline-audience-and-origin-slot"
+      ],
+      "status": "untestable",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "公开部分全实测：五timeline observed audience切换、无订阅时emit未调用、每类型正控、unsubscribe与不存在history ring。唯一不可经公开JS API观测子claim是每次零堆分配/精确hook null-check成本；无稳定公开分配计数器，不能以未delivery推断零堆分配。",
+      "untestable_subclaims": [
+        "timeline record allocation counts and the exact hook null-check cost: no public heap allocation counter or stable microbenchmark contract"
+      ]
     },
     {
       "id": "08-dev-diagnostics:L1123:2",
@@ -24056,10 +24487,13 @@
       "end_line": 1123,
       "section": "API (`solid-js/attribution`)",
       "statement": "`at` is the end of the drain that rendered the swap — the boundary's swap is a staged write that lands with its frame ([RFC 05](05-async-data.md#loading-on-prop-dependencies-that-show-the-fallback-again)), and a swap cleared before that (the content landed before the frame did, or the commit's own sweep cleared it ahead of any effect — the `LOADING_ON_OUTSIDE_HOLD` shape) was never on screen and is no record.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/late-final-fallback-swap-never-painted",
+        "08/late-final-fallback-fields-and-fold"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
     },
     {
       "id": "08-dev-diagnostics:L1123:8",
@@ -24111,10 +24545,13 @@
       "end_line": 1127,
       "section": "API (`solid-js/attribution`)",
       "statement": "**Excluding the observer.** `OBSERVE.exclude(owner)` marks an owner subtree as the observer's own: diagnostics whose subject sits under it are built (a throwing site still throws) but never delivered or printed, and the attribution engine records no run for its computations, charges none of them to an interaction, counts no write to its signals or stores toward an interaction, and does not spend a once-per-key slot (`IMMUTABLE_UPDATE_IN_STORE`'s per-path memory) on them.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/excluded-owner-attribution",
+        "08/late-final-excluded-diagnostic-memory-and-throws"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "实际原生 records/HTTP/Chrome时钟与聚合表逐字段断言，跨正负模式的精确join。"
     },
     {
       "id": "08-dev-diagnostics:L1127:2",
@@ -24225,10 +24662,17 @@
       "end_line": 1131,
       "section": "API (`solid-js/attribution`)",
       "statement": "**Values in records — the PII surface.** Records name things (owner paths, `name` options, store paths, route patterns, function ids) and are otherwise numbers, kinds and outcomes; a handful of fields carry _user data_.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/records/records.test.ts",
+        "08/values-full",
+        "08/values-labels",
+        "08/values-none",
+        "08/late-final-event-target-and-preview-limits",
+        "08/late-final-held-and-verdict-value-previews"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "实际原生 records/HTTP/Chrome时钟与聚合表逐字段断言，跨正负模式的精确join。"
     },
     {
       "id": "08-dev-diagnostics:L1131:2",
@@ -24251,10 +24695,16 @@
       "end_line": 1131,
       "section": "API (`solid-js/attribution`)",
       "statement": "The fields the level governs: `ChangeRecord.prev`/`value` and `HeldWrite.prev`/`value` — previews of the written values (`preview()`: strings quoted and cut at 40 characters, numbers/booleans verbatim, everything else a type tag such as `Array(12)` or `[Object]`); `ChangeOrigin.target` (and so `InteractionEvent.target`, `HoldEvent.interaction.target`) — the element hit as the runtime described it, `tag#id \"text\"` with up to 30 characters of `textContent` for anything that is not an `input`/`textarea`/`select`, so a label but also whatever a `<td>` said; and every sentence the engine builds from those — `formatRerun`, `formatOrigin`, the `SILENT_HOLD`/`LONG_HOLD` verdicts (`click on button#next \"Next →\" wrote \"page\" (1 → 2)…`, with `data.interaction.target` structured beside), `OPTIMISTIC_REVERTED` (which quotes the shown and settled values, `data.shown`/`data.truth`).",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/late-final-event-target-and-preview-limits",
+        "08/late-final-held-and-verdict-value-previews",
+        "08/values-full",
+        "08/values-labels",
+        "08/values-none"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
     },
     {
       "id": "08-dev-diagnostics:L1131:4",
@@ -25007,10 +25457,12 @@
       "end_line": 1170,
       "section": "Navigations (`history(\"navigation\")`)",
       "statement": "The engine has no router-specific seam beyond that: a navigation the router abandons before it publishes is the router's to report, and the wait it owns is inside `settledMs` only through `at`. (Making the loader wait itself part of the transition, so the location write is the one to wrap, is router work — planned for the Solid 2 TanStack adapter, not yet done.) Such a router also loses the click: the interaction frame is gone by the time it publishes.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/late-final-navigation-delayed-publish-clock"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
     },
     {
       "id": "08-dev-diagnostics:L1170:4",
@@ -25219,10 +25671,12 @@
       "end_line": 1175,
       "section": "Navigations (`history(\"navigation\")`)",
       "statement": "Known gap: handlers bound through the runtime (delegated events, and non-literal `on*` expressions that route through `addEvent`) are stamped; a _literal_ function handler compiles to a bare `addEventListener` and is not, so its writes read as `external` until the compiler wraps them too.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/late-final-literal-handler-origin-gap"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
     },
     {
       "id": "08-dev-diagnostics:L1179:1",
@@ -25243,10 +25697,14 @@
       "end_line": 1179,
       "section": "Interactions (`history(\"interaction\")`)",
       "statement": "Every downstream fact is already keyed to the interaction frame — writes stamp it, re-runs trace to it through their causes, holds and navigations carry it — and `feedback().interactions` folds those by interaction _name_.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/timeline-hold-navigation-interaction",
+        "08/late-final-derived-cause-node-ids",
+        "08/late-final-feedback-sources-interactions-complete"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "实际原生 records/HTTP/Chrome时钟与聚合表逐字段断言，跨正负模式的精确join。"
     },
     {
       "id": "08-dev-diagnostics:L1179:3",
@@ -25255,10 +25713,15 @@
       "end_line": 1179,
       "section": "Interactions (`history(\"interaction\")`)",
       "statement": "`history(\"interaction\")` keeps one `InteractionEvent` per dispatch instead (delivered on `OBSERVE.records.subscribe(\"interaction\", …)` as it settles), with a start, an end, and the pieces attached, so a consumer building a span per interaction (an APM adapter) neither infers the end from an idle gap nor sums quantized per-run times to approximate the wall clock:",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/timeline-hold-navigation-interaction",
+        "tracks/records/input.test.ts",
+        "08/late-final-feedback-sources-interactions-complete",
+        "08/late-final-interaction-after-fallback-landing"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "实际原生 records/HTTP/Chrome时钟与聚合表逐字段断言，跨正负模式的精确join。"
     },
     {
       "id": "08-dev-diagnostics:L1181:1",
@@ -25387,10 +25850,12 @@
       "end_line": 1188,
       "section": "Interactions (`history(\"interaction\")`)",
       "statement": "Runs are counted while the record is open; an async landing the interaction caused that arrives after its writes committed (a fetch behind a `Loading` boundary that showed its fallback) is attributed to it on the `RerunEvent` but is not the interaction's wait — the boundary answered.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/late-final-interaction-after-fallback-landing"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
     },
     {
       "id": "08-dev-diagnostics:L1192:1",
@@ -25399,10 +25864,15 @@
       "end_line": 1192,
       "section": "Responsiveness tables (`feedback()`)",
       "statement": "`feedback()` is a pure aggregation over `HoldEvent`s and `RerunEvent`s — facts, not verdicts — shaped for an agent to read in one pass:",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/late-final-feedback-sources-interactions-complete",
+        "08/late-final-feedback-navigation-fields-and-ranks",
+        "08/late-final-flight-fields-and-fold",
+        "08/late-final-fallback-fields-and-fold"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "实际原生 records/HTTP/Chrome时钟与聚合表逐字段断言，跨正负模式的精确join。"
     },
     {
       "id": "08-dev-diagnostics:L1194:1",
@@ -25411,10 +25881,12 @@
       "end_line": 1194,
       "section": "Responsiveness tables (`feedback()`)",
       "statement": "- `sources`: per set of async sources waited on, `holds`, `heldMs`/`worstMs`, the `silent` subset (no acknowledgement at any duration) with its `silentMs`, `latestOnly` (the only acknowledgement was a `latest()` shadow — the input showed, nothing said \"loading\"), `long`/`longMs` (holds whose tail reached `longHolds.infoMs`, acknowledged or not — the `LONG_HOLD` shape; `longMs` sums the tails), `acknowledgedBy` ranked by affordance (`isPending:`, `latest:`, `optimistic:`, `affects:` prefixed with the node), the `interactions` and root `writes` that were held, and how many holds an `action` opened or joined.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/late-final-feedback-sources-interactions-complete"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
     },
     {
       "id": "08-dev-diagnostics:L1195:1",
@@ -25423,10 +25895,12 @@
       "end_line": 1195,
       "section": "Responsiveness tables (`feedback()`)",
       "statement": "- `interactions`: per opening interaction (`click on button#next \"Next →\"`), `dispatches` folded together, the re-`runs` traced back to it with summed `selfMs` and `worstDispatchMs` (the long-flush hazard) beside `holds`, `heldMs`, `silentMs`, and `worstHoldMs` (the silent-hold hazard) — the two INP failure modes as columns of one row.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/late-final-feedback-sources-interactions-complete"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
     },
     {
       "id": "08-dev-diagnostics:L1196:1",
@@ -25435,10 +25909,12 @@
       "end_line": 1196,
       "section": "Responsiveness tables (`feedback()`)",
       "statement": "- `navigations`: per route pattern (`/users/:id`), `navigations` settled, summed `settledMs` and `worstMs`, the `held` subset with its `heldMs` and how many of those were `silent`, `superseded` — navigations the user moved on from before they landed — and `redirected` — navigations a guard or loader sent elsewhere on the way (keyed by where they ended up).",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/late-final-feedback-navigation-fields-and-ranks"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "实际原生 records/HTTP/Chrome时钟与聚合表逐字段断言，跨正负模式的精确join。"
     },
     {
       "id": "08-dev-diagnostics:L1196:2",
@@ -25499,10 +25975,13 @@
       "end_line": 1200,
       "section": "Responsiveness tables (`feedback()`)",
       "statement": "All tables are sorted worst-first.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/late-final-feedback-navigation-fields-and-ranks",
+        "08/late-final-fallback-fields-and-fold"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "实际原生 records/HTTP/Chrome时钟与聚合表逐字段断言，跨正负模式的精确join。"
     },
     {
       "id": "08-dev-diagnostics:L1200:2",
@@ -25511,10 +25990,12 @@
       "end_line": 1200,
       "section": "Responsiveness tables (`feedback()`)",
       "statement": "The `@solidjs/diagnostics` artifact includes `holds` and `feedback` alongside diagnostics and costs, and the browser bridge exposes both as live queries.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-rpc.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
     },
     {
       "id": "08-dev-diagnostics:L1204:1",
@@ -25552,10 +26033,14 @@
       "end_line": 1210,
       "section": "Chrome Performance panel (`@solidjs/web/performance-tracks`)",
       "statement": "minMs: 0, // floor for run spans; 0 in dev, 0.05 in observe builds",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-default-tracks.test.ts",
+        "tracks/docs/late-final-performance.test.ts"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "nativeChrome default、richtrue、richfalse、文档完整三options组合四模式。默认dev0/Observe.05ms精确0.01/.049/.051ms对照，真实measure vs timeStamp、4模式logquiet、tier default/full与explicitlabels隐私；默认records-only六cost family另实测。ordered8seed亦明确断言。"
     },
     {
       "id": "08-dev-diagnostics:C1211:1",
@@ -25564,10 +26049,14 @@
       "end_line": 1211,
       "section": "Chrome Performance panel (`@solidjs/web/performance-tracks`)",
       "statement": "rich: true, // performance.measure with tooltips/properties (dev default) vs console.timeStamp",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-default-tracks.test.ts",
+        "tracks/docs/late-final-performance.test.ts"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "nativeChrome default、richtrue、richfalse、文档完整三options组合四模式。默认dev0/Observe.05ms精确0.01/.049/.051ms对照，真实measure vs timeStamp、4模式logquiet、tier default/full与explicitlabels隐私；默认records-only六cost family另实测。ordered8seed亦明确断言。"
     },
     {
       "id": "08-dev-diagnostics:C1212:1",
@@ -25576,10 +26065,14 @@
       "end_line": 1212,
       "section": "Chrome Performance panel (`@solidjs/web/performance-tracks`)",
       "statement": "attribution: { values: \"labels\" } // options for the engine hold it takes (log: false, checks: false; values: the tier's default)",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-default-tracks.test.ts",
+        "tracks/docs/late-final-performance.test.ts"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "reason": "nativeChrome default、richtrue、richfalse、文档完整三options组合四模式。默认dev0/Observe.05ms精确0.01/.049/.051ms对照，真实measure vs timeStamp、4模式logquiet、tier default/full与explicitlabels隐私；默认records-only六cost family另实测。ordered8seed亦明确断言。"
     },
     {
       "id": "08-dev-diagnostics:L1216:1",
@@ -25662,10 +26155,15 @@
       "end_line": 1220,
       "section": "Chrome Performance panel (`@solidjs/web/performance-tracks`)",
       "statement": "Group `Solid`, tracks in order: **Interactions** — the input delay, the handler, then the settle to `committed`/`held` (a silent hold as a warning); **Propagation** — one span per scheduler drain labelled by the writes that started it and what they reached (`count 0 → 1 — click on button#next · 5 runs, 1 unchanged`), with every run inside it beneath, labelled by what made it run (`<TodoRow> › effect ← doubled`) — the write's path through the graph as a flame; **Effects** and **Memos** — one span per re-run, creation run (`· create`) and effect callback (`· callback`), coloured by self time, `warning` for a run that changed nothing; **Async** — flights kickoff → landing (abandoned ones as warnings) and fallbacks shown → hidden; **Holds** — each wait labelled by its blockers, `warning` when silent, `error` when long; **Navigations** — request → settle by route pattern; **Server** — server-function calls and frame streams.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/late-final-native.test.ts",
+        "tracks/docs/late-final-rpc.test.ts",
+        "tracks/records/server-performance.test.ts",
+        "tracks/docs/late-final-default-tracks.test.ts"
+      ],
+      "status": "untestable",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "八family原生条目、rich属性、时钟、propagation写入/因果/嵌套、creation/callback、未变化warning、abandoned warning、fallback、silent warning/long error、native HTTP call/frame和ServerTiming均实际执行断言。default/rich/stamp/documented四模式还精确断言native measure或timeStamp最先创建八个ordered seed：[Interactions,Propagation,Effects,Memos,Async,Holds,Navigations,Server]，排序输入与机制不是缺口。唯一不可公开机器断言的子claim为Chrome DevTools Performance面板最终视觉布局；实际system Chrome headed devtools:true+CDP Target.getTargets仅暴露应用page/omnibox browser_ui而无Performance frontend target，证据tracks/docs/late-final-devtools-targets.json。"
     },
     {
       "id": "08-dev-diagnostics:L1220:2",
@@ -25957,10 +26455,12 @@
       "end_line": 1234,
       "section": "Architecture",
       "statement": "Unnamed nodes fall back to their owner id.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "findings/051-unnamed-attribution-owner-id/repro.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral",
-      "reason": "本句完整合同尚需补充独立断言。"
+      "reason": "051最小红例：显式name正控通过，省略和空name都不回退公开owner.id；三仓排重，倾向docs-wrong。"
     },
     {
       "id": "09-typescript-jsx:L3:1",
@@ -26960,9 +27460,11 @@
       "end_line": 41,
       "section": "The directive and the compiler contract",
       "statement": "One asymmetry to know: client-transport declarations like `GET` are meaningless _inside_ a module-level file (they are client-side API — there is no client side of a module-level file to declare); they apply at the consumption site or with function-level directives.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/frames/directive-get.test.ts"
+      ],
+      "status": "covered",
+      "reason": "public native transformDirectives dev/prod两组：module客户端仅bareproxy/无GET，server GET在注册initializer内；functionlevelclient仍GET(reference)；消费site GET(reference)methodGET且id不变，bareproxy无GETmetadata。",
       "classification": "behavioral"
     },
     {
@@ -28392,9 +28894,11 @@
       "end_line": 138,
       "section": "No-JS and progressive enhancement",
       "statement": "- **Router:** the flash-cookie convention **and** the SSR submission seeding.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/router/contract.test.ts"
+      ],
+      "status": "covered",
+      "reason": "真实system Chrome/Bun HTTP；metadata GET handed callable具有抛错旧.GET getter，GET请求/meta保持，单flight POST header自动注册且缓存5→6无第二次GET，服务异常进入submission（dev原文/非dev脱敏）。noJS是显式server integration：handleNoJS可计数hook→core加密cookie helper→303→integration等待decode并提供event.router.submission seed→router useSubmissions SSR显示success/error→清cookie后reload空。GET consumer-only/servergraph三tier405→200由framesfixture交叉证明；liveQuery共享连接/两消费更新/最后关闭有CSR/hydrate spine。",
       "classification": "behavioral"
     },
     {
@@ -28404,9 +28908,11 @@
       "end_line": 138,
       "section": "No-JS and progressive enhancement",
       "statement": "The router is the only consumer of both sides — submissions are its vocabulary — so its server integration supplies the `handleNoJS` implementation and the seed format.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/router/contract.test.ts"
+      ],
+      "status": "covered",
+      "reason": "真实system Chrome/Bun HTTP；metadata GET handed callable具有抛错旧.GET getter，GET请求/meta保持，单flight POST header自动注册且缓存5→6无第二次GET，服务异常进入submission（dev原文/非dev脱敏）。noJS是显式server integration：handleNoJS可计数hook→core加密cookie helper→303→integration等待decode并提供event.router.submission seed→router useSubmissions SSR显示success/error→清cookie后reload空。GET consumer-only/servergraph三tier405→200由framesfixture交叉证明；liveQuery共享连接/两消费更新/最后关闭有CSR/hydrate spine。",
       "classification": "behavioral"
     },
     {
@@ -28773,9 +29279,12 @@
       "end_line": 186,
       "section": "`GET(fn)`, `withMeta(fn, meta)`, and the metadata channel",
       "statement": "- **Routers detect from metadata, not properties:** `query()`’s current `if ((fn as any).GET) fn = fn.GET` sniffing goes away — a `GET(fn)` reference _already calls over GET_; the router reads metadata only where it needs to _know_ (preload URLs, cacheability decisions).",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/router/metadata.test.ts",
+        "tracks/router/preload-metadata.test.ts"
+      ],
+      "status": "covered",
+      "reason": "metadata.test验证query不读旧.GET属性、GET声明及single-flight；preload-metadata.test通过真实Chrome/HTTP验证公共serverFunctionUrl只为metadata GET引用生成精确cacheable URL（普通POST引用拒绝），route preload发出该GET，导航采用预载缓存不增请求，显式revalidate才再次发出相同URL。这里preload URL/cacheability是公共metadata消费能力及路由实际预载缓存行为，不声称router自动发HTML preload link或按任意meta字段选择缓存TTL。",
       "classification": "behavioral"
     },
     {
@@ -29139,9 +29648,11 @@
       "end_line": 223,
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "**`live` claims the whole response.**",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/frames/nested-live.test.ts"
+      ],
+      "status": "covered",
+      "reason": "真实内建live HTTP source同步返回；首answer含pendingPromise，top-level iterator.next保持pending直到nested42兑现，随后closed/EOF；全程一请求一原handlercall，三tier无pageerror。",
       "classification": "behavioral"
     },
     {
@@ -29206,8 +29717,10 @@
       "end_line": 225,
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "Nothing new is added to the wire for this.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/server-road-live-nested-wire-identical: ordinary length-prefixed codec nodes equal SSE payload nodes exactly; both nested producers close"
+      ],
+      "status": "covered",
       "reason": "Executable coverage for this precise behavior is not yet implemented.",
       "classification": "behavioral"
     },
@@ -29246,9 +29759,9 @@
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "And because a death reaches the server after the client has already reconnected, a `finally` releases only what its own connection acquired — the entry it joined, the handle it opened — never \"the resource for this id\".",
       "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
-      "classification": "behavioral"
+      "status": "not-behavioral",
+      "reason": "作者finally资源归属指导：要求应用关闭其本连接取得的handle，而不是按业务id关闭其他连接资源；不是runtime替应用执行任意finally的保证。",
+      "classification": "not-behavioral"
     },
     {
       "id": "10-server-functions:L227:1",
@@ -29326,9 +29839,13 @@
       "end_line": 228,
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "- **Nested sources are bounded; the standing answer is the top-level one.** The persistent thing is the live source itself — the iterable the function returns, or the component it returns.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "10/live-inprocess-top-only-brand",
+        "10/live-nested-response-lifetime",
+        "tracks/frames/nested-live.test.ts"
+      ],
+      "status": "covered",
+      "reason": "top iterable与component带LiveSourcebrand；valueanswer/nestedpromise/nestediterable均不带brand；真实内建live answer包含boundedPromise且EOF等其结束。",
       "classification": "behavioral"
     },
     {
@@ -29338,9 +29855,13 @@
       "end_line": 228,
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "The promises and iterables nested in a value answer are not assumed persistent: they are bounded traces that end on their own, which is what lets the loop count them (a completion is every one of them done) and what lets a document render carry them — its serialization pumps each to its end, as it does any streamed answer; a standing stream nested in a value would hold the document open, and is misuse the frames' safety cap and diagnostic cover.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "10/live-nested-response-lifetime",
+        "tracks/frames/shared-source.test.ts",
+        "tracks/frames/undeclared-source.test.ts"
+      ],
+      "status": "covered",
+      "reason": "nestedpromise与nestediterable分别controlled完成后response才end；documentSSR与hydratedclient共享完整17/35nested序列；真实document standing source 5.3s仍open触发cap诊断、live/frame exemption。",
       "classification": "behavioral"
     },
     {
@@ -29363,9 +29884,11 @@
       "end_line": 228,
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "What a nested source needs under SSR is not a handoff but **sharing**: a generator yields to one reader, and the serializer pumping the answer to the client and a memo reading `answer().progress` are two — so every read the runtime makes on the server goes through a seat on a shared multicast of the source (`shareAsyncIterable`; the serializer takes its seat through the border walk at `context.serialize`), and both see the whole sequence off one pump.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/frames/shared-source.test.ts"
+      ],
+      "status": "covered",
+      "reason": "一个原始generator同时由serverframe的createMemo直接读取和外部asyncanswer的hydrationserializer读取；serverlive-hole memo完整17/35，实际Chrome hydration payload的iterator也完整17/35，底层opened1closed1。应用不手动消费原始iterator，源码去重符合runtime seats域。",
       "classification": "behavioral"
     },
     {
@@ -29390,10 +29913,12 @@
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "- **Undeclared death is an error.** An undeclared streaming answer that dies mid-stream rejects the consumer's pull like any transport failure — `<Errored>` catches it, nothing resumes.",
       "coverage": [
-        "findings/014-live-drop-completes/repro.test.ts"
+        "tracks/frames/death-boundary.test.ts",
+        "findings/035-decoder-iterator-body-death/repro.test.ts",
+        "findings/035-decoder-iterator-body-death/eof.test.ts"
       ],
-      "status": "uncovered",
-      "reason": "Declared reconnect failure 014 does not exercise the undeclared rejection path.",
+      "status": "covered",
+      "reason": "普通真实HTTP nestedpromise bodydeath触发nearestErrored恰1/outer0且请求仍1，无auto resume；iterator error/EOF openpull合同由035最小红覆盖（不把promise成功泛盖iterator）。",
       "classification": "behavioral"
     },
     {
@@ -29459,9 +29984,11 @@
       "end_line": 230,
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "A buffering proxy that ignores `X-Accel-Buffering` is silent until the stream dies.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/frames/death-boundary.test.ts"
+      ],
+      "status": "covered",
+      "reason": "真实BunHTTP SSE代理忽略上游XAccelno并保留codecchunks、只前送comment让HTTP连通；上游已产生字节而应用DOMwaiting/inner0，testownedbodydeath后nearesterror1、请求仍1，三tier。",
       "classification": "behavioral"
     },
     {
@@ -29483,9 +30010,13 @@
       "end_line": 230,
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "Nothing an app wrote against today's `live` changes: a live call _is_ a direct call, so every client and server hook applies as it does to one.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/frames/live-hooks.test.ts",
+        "tracks/frames/transport-contracts.test.ts",
+        "10/http-wrap-invocation"
+      ],
+      "status": "covered",
+      "reason": "真正built-inlive GET HTTP单连接：asyncprepare返回替换Headers到serverbody、fetch1、capturecontext穿async到handle、resumehave-listheader到server；serverwrap/transform各1；显式enableRichArguments+匹配custom codec把Box7入参/Box42 nestedanswer往返。对应普通directcallhooks已有独立正控。仅测试publictypedhooks，不把内部intercept当应用配置类型。",
       "classification": "behavioral"
     },
     {
@@ -29495,9 +30026,14 @@
       "end_line": 230,
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "It is the same connection with the same timeouts as today's streamed answer; what differs is what is listed here — the content type and two headers, the event envelope, the heartbeat, `Last-Event-ID` on reconnect — and the content type is one middleboxes are trained to pass through unbuffered and uncompressed (the reason SvelteKit moved `query.live` off ndjson).",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/frames/live-wire.test.ts",
+        "tracks/frames/transport-contracts.test.ts",
+        "tracks/frames/live-component-drop.test.ts",
+        "08/server-road-live-nested-wire-identical"
+      ],
+      "status": "covered",
+      "reason": "同fetch载体；真实SSE精确3headers/codecdata、20sheartbeat、LastEventID重连、synthetic multiline重组。middlebox惯例和历史选择为理由，不是任何外部proxy都遵守的runtime保证。",
       "classification": "behavioral"
     },
     {
@@ -29520,9 +30056,13 @@
       "end_line": 230,
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "A third caller kind receiving a third shape gets a third path, for the reason the data address exists (#3094): shared caches key on the URL, not on request headers nothing tells them to vary by, and a read carries no header of the transport's own (#3406).",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/frames/cancel.test.ts",
+        "tracks/frames/transport-contracts.test.ts",
+        "08/server-road-live-nested-wire-identical"
+      ],
+      "status": "covered",
+      "reason": "普通GET真实HTTP无任何x-transportheader；data/live独立address、nativeSSEcodec与data节点相同而framing不同。sharedcache理由为架构解释，不承诺第三方cache实现。",
       "classification": "behavioral"
     },
     {
@@ -29574,9 +30114,11 @@
       "end_line": 230,
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "The precondition is a backend that holds connections, over HTTP/2 (six connections per origin under HTTP/1.1; the Vite dev server speaks HTTP/2 with `server.https`, and dev warns past five live connections without it) — the precondition LiveView, Datastar, and `query.live` all share, and there is nothing to configure.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/frames/live-connection-count.test.ts"
+      ],
+      "status": "covered",
+      "reason": "真实systemChrome loopbackHTTP1.1 navigation timing正控；公开live subscriptions count1–5静默、第6一次警告、第7不重复；Observe/prod全静默，return每signalabort。fetch hook返回受控值以独立于035/014；HTTP2后端是这里明说的部署前置条件，不宣称测试证明所有宿主HTTP2支持。",
       "classification": "behavioral"
     },
     {
@@ -29586,8 +30128,11 @@
       "end_line": 230,
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "A platform that kills a response at a ceiling kills each live response there; the loop reads it as a death, reconnects with its position, and `onstatus` shows the cycle — `query.live`'s behavior on the same platform.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/frames/live-component-drop.test.ts: forced connection death, new real request with positive Last-Event-ID, exact onstatus cycle",
+        "findings/014-live-drop-completes/repro.test.ts: nested answer death reconnect discrepancy"
+      ],
+      "status": "covered",
       "reason": "Executable coverage for this precise behavior is not yet implemented.",
       "classification": "behavioral"
     },
@@ -29769,8 +30314,11 @@
       "end_line": 249,
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "The client's binding reconnects on death through `live`'s loop; the document render takes first values from the component's sources and hands off (the brand on the component marks the frame's scope); hydration adopts the document's markup and the loop reconnects from there.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/frames/live-component.test.ts: SSR takes first source value and closes producer; hydration adopts original node, client source updates, unmount cleans",
+        "tracks/frames/live-component-drop.test.ts: native live component real TCP death reconnects, retains adopted node, carries Last-Event-ID and reports connected/reconnecting/connected"
+      ],
+      "status": "covered",
       "reason": "Executable coverage for this precise behavior is not yet implemented.",
       "classification": "behavioral"
     },
@@ -29805,9 +30353,14 @@
       "end_line": 251,
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "**Routers.** A data layer may apply `live` (and `GET`) on the author's behalf — a live query is \"`live` + shared\" — but the core spelling is the documented one, and the reliable site for `GET` is the definition: the has-method grant arms when the module that applies `GET` is loaded on the server, and the function's own module always is.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/router/metadata.test.ts",
+        "router/live-key-has-one-connection",
+        "router/live-both-consumers-update",
+        "08/server-road-get-server-graph-topology"
+      ],
+      "status": "covered",
+      "reason": "真实system Chrome/Bun HTTP；metadata GET handed callable具有抛错旧.GET getter，GET请求/meta保持，单flight POST header自动注册且缓存5→6无第二次GET，服务异常进入submission（dev原文/非dev脱敏）。noJS是显式server integration：handleNoJS可计数hook→core加密cookie helper→303→integration等待decode并提供event.router.submission seed→router useSubmissions SSR显示success/error→清cookie后reload空。GET consumer-only/servergraph三tier405→200由framesfixture交叉证明；liveQuery共享连接/两消费更新/最后关闭有CSR/hydrate spine。",
       "classification": "behavioral"
     },
     {
@@ -29817,9 +30370,11 @@
       "end_line": 251,
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "A `GET` applied at a consumer site arms only if that module is also in the server graph — the topology caveat — and a layer that applies declarations on the author's behalf owns it.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "08/server-road-get-server-graph-topology"
+      ],
+      "status": "covered",
+      "reason": "真实system Chrome/Bun HTTP；metadata GET handed callable具有抛错旧.GET getter，GET请求/meta保持，单flight POST header自动注册且缓存5→6无第二次GET，服务异常进入submission（dev原文/非dev脱敏）。noJS是显式server integration：handleNoJS可计数hook→core加密cookie helper→303→integration等待decode并提供event.router.submission seed→router useSubmissions SSR显示success/error→清cookie后reload空。GET consumer-only/servergraph三tier405→200由framesfixture交叉证明；liveQuery共享连接/两消费更新/最后关闭有CSR/hydrate spine。",
       "classification": "behavioral"
     },
     {
@@ -29844,9 +30399,13 @@
       "end_line": 253,
       "section": "`live(fn)`: a standing answer, for the response's lifetime (shipped over the top-level iterable; extended 2026-09-22/23, extension built — Stage 8 Phase A, plan in `documentation/plans/stage8-connection-transport.md`)",
       "statement": "Three behavior changes, all to shipped `live`, each flagged: over nested-async answers it claims the response; its post-hydration takeover fires per scope instead of at page-wide hydration end; a digest-equal reconnect yields nothing.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/frames/nested-live.test.ts",
+        "tracks/frames/live-scopes.test.ts",
+        "10/live-digest-skip"
+      ],
+      "status": "covered",
+      "reason": "nestedwholeanswer EOF绑定全部nested完成；per-scope nativehydrationtakenover含slow sibling；Last-Event-ID真实serverresponse suppress matchingfirstdigest但laterframes继续且handlerargs为空。",
       "classification": "behavioral"
     },
     {
@@ -29958,8 +30517,10 @@
       "end_line": 269,
       "section": "`prepareRequest`: client-side transport middleware",
       "statement": "So once either is in play, a server function called from a compute that adopts a serialized value during hydration sends a real, discarded duplicate request (see [RFC 05 — the tracking run](05-async-data.md#the-tracking-run-known-limitations)).",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/rpc-tracking.test.ts: plain hydrate 0 POST versus sync prepareRequest or enableRichArguments 1 real duplicate POST; response99 received but adopted DOM7 unchanged"
+      ],
+      "status": "covered",
       "reason": "Executable coverage for this precise behavior is not yet implemented.",
       "classification": "behavioral"
     },
@@ -30148,9 +30709,17 @@
       "end_line": 289,
       "section": "`invoke`: the per-call invocator",
       "statement": "The three are not peers: `signal` is **contract** — every transport a reference's invoker adapts to must honor cancel (it is also the teardown handle for connection-shaped responses, scoped to the subscription across reconnects, per `live`) — while `keepalive` and `priority` are **carrier hints** in today's fetch vocabulary.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "10/direct-invoke-abort",
+        "10/invoke-direct",
+        "10/invoke-options-no-residue",
+        "tracks/frames/cancel.test.ts",
+        "tracks/frames/transport-contracts.test.ts",
+        "tracks/frames/live-loop.test.ts",
+        "tracks/frames/live-component-drop.test.ts"
+      ],
+      "status": "covered",
+      "reason": "publicserverinprocess callerabort而work完成/hintsnoop；Chrome native fetch callerreason===且真实serverrequest.abort1；browser opts forward hints、live迭代器return abort fetch与caller abort结束重连订阅，realSCdrop/unmount closes，公有transport三类覆盖。",
       "classification": "behavioral"
     },
     {
@@ -30284,9 +30853,11 @@
       "end_line": 302,
       "section": "`invoke`: the per-call invocator",
       "statement": "Inside Solid's own reactive model there is no consumer by design: cancellation there is implicit — a superseded computation abandons its promise, the fetch completes anyway and warms whatever cache holds it — and no reactive API hands out controllers.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/frames/superseded-call.test.ts"
+      ],
+      "status": "covered",
+      "reason": "真实Chrome native memo pending args1→2，两个serverfunction fetch signal均未abort；先settle2 DOM/effecthistory只2，再settle1 appcache两key都warm且DOM仍2/history不添加1，无手工controller/取消API，三tier。fetch控制hook实际走公共protocol JSON8解码。",
       "classification": "behavioral"
     },
     {
@@ -30596,9 +31167,12 @@
       "end_line": 321,
       "section": "Layering",
       "statement": "| **Router**                            | Metadata detection in `query()`, single-flight via `subscribeFlightData` registration, errors landing in submission state (already true), the flash-cookie convention and SSR submission seeding via `handleNoJS`                                                                                                                                                                                                          |",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/router/metadata.test.ts",
+        "tracks/router/contract.test.ts"
+      ],
+      "status": "covered",
+      "reason": "真实system Chrome/Bun HTTP；metadata GET handed callable具有抛错旧.GET getter，GET请求/meta保持，单flight POST header自动注册且缓存5→6无第二次GET，服务异常进入submission（dev原文/非dev脱敏）。noJS是显式server integration：handleNoJS可计数hook→core加密cookie helper→303→integration等待decode并提供event.router.submission seed→router useSubmissions SSR显示success/error→清cookie后reload空。GET consumer-only/servergraph三tier405→200由framesfixture交叉证明；liveQuery共享连接/两消费更新/最后关闭有CSR/hydrate spine。",
       "classification": "behavioral"
     },
     {
@@ -30944,9 +31518,11 @@
       "end_line": 356,
       "section": "Migration / replacement",
       "statement": "| Router `query()` `.GET` sniffing                              | metadata detection via `getServerFunctionMetadata` (mostly: nothing — the callable is already the right transport)                                                                                                                          |",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Executable coverage for this precise behavior is not yet implemented.",
+      "coverage": [
+        "tracks/router/metadata.test.ts"
+      ],
+      "status": "covered",
+      "reason": "真实system Chrome/Bun HTTP；metadata GET handed callable具有抛错旧.GET getter，GET请求/meta保持，单flight POST header自动注册且缓存5→6无第二次GET，服务异常进入submission（dev原文/非dev脱敏）。noJS是显式server integration：handleNoJS可计数hook→core加密cookie helper→303→integration等待decode并提供event.router.submission seed→router useSubmissions SSR显示success/error→清cookie后reload空。GET consumer-only/servergraph三tier405→200由framesfixture交叉证明；liveQuery共享连接/两消费更新/最后关闭有CSR/hydrate spine。",
       "classification": "behavioral"
     },
     {
@@ -31627,9 +32203,11 @@
       "end_line": 15,
       "section": "Enabling server components",
       "statement": "In a Vite app this is now one line: `serverFunctions: { components: true }` on `@solidjs/vite-plugin` (any release; the option shipped in `vite-plugin-solid` ≥ 3.0.0-next.16 before the package was renamed) (experimental, same caveats as this RFC).",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Current behavior or build integration promise; additional targeted assertions are needed.",
+      "coverage": [
+        "tracks/docs/vite-components.test.ts"
+      ],
+      "status": "covered",
+      "reason": "root实际Vite HEADplugin generateddev/prod SSR inlineframe+Chromehydratecounter；componentstransforms/生成entriesbootstrap/install与use server functiondirective剥离同contract。",
       "classification": "behavioral"
     },
     {
@@ -31639,9 +32217,11 @@
       "end_line": 15,
       "section": "Enabling server components",
       "statement": "The option installs the server result transforms and serves component responses through the same dev middleware and production handler as server functions.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Current behavior or build integration promise; additional targeted assertions are needed.",
+      "coverage": [
+        "tracks/docs/vite-components.test.ts"
+      ],
+      "status": "covered",
+      "reason": "root实际Vite HEADplugin generateddev/prod SSR inlineframe+Chromehydratecounter；componentstransforms/生成entriesbootstrap/install与use server functiondirective剥离同contract。",
       "classification": "behavioral"
     },
     {
@@ -31651,9 +32231,11 @@
       "end_line": 15,
       "section": "Enabling server components",
       "statement": "When the plugin generates your entries, the document wiring rides along automatically — the render plugin, the placeholder bootstrap, and the client `installServerComponents()` call.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Current behavior or build integration promise; additional targeted assertions are needed.",
+      "coverage": [
+        "tracks/docs/vite-components.test.ts"
+      ],
+      "status": "covered",
+      "reason": "root实际Vite HEADplugin generateddev/prod SSR inlineframe+Chromehydratecounter；componentstransforms/生成entriesbootstrap/install与use server functiondirective剥离同contract。",
       "classification": "behavioral"
     },
     {
@@ -31663,9 +32245,11 @@
       "end_line": 15,
       "section": "Enabling server components",
       "statement": "When you author your own entries, the plugin still owns the server side; the client install and the document-SSR pieces below stay app-side.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Current behavior or build integration promise; additional targeted assertions are needed.",
+      "coverage": [
+        "tracks/docs/vite-authored.test.ts"
+      ],
+      "status": "covered",
+      "reason": "root实际hand-authoredentries dev/prod：servermarkers inline/客户端显式install hydrateclick/startup0RPC，插件仍servertransform而document/clientowned wiring。",
       "classification": "behavioral"
     },
     {
@@ -31687,9 +32271,11 @@
       "end_line": 15,
       "section": "Enabling server components",
       "statement": "All additive to the server-functions setup from RFC 10; the compiler contract is unchanged — the same `\"use server\"` directive pass, nothing new to recognize.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Current behavior or build integration promise; additional targeted assertions are needed.",
+      "coverage": [
+        "tracks/docs/vite-components.test.ts"
+      ],
+      "status": "covered",
+      "reason": "root实际Vite HEADplugin generateddev/prod SSR inlineframe+Chromehydratecounter；componentstransforms/生成entriesbootstrap/install与use server functiondirective剥离同contract。",
       "classification": "behavioral"
     },
     {
@@ -32048,9 +32634,13 @@
       "end_line": 67,
       "section": "Motivation",
       "statement": "Boundary identity is **derived, never declared** — the call’s intrinsic (function, arguments) address keys the boundary, mirroring a data layer’s cache keys by construction, so panes over different calls are independent with nothing annotated and multi-instance mounting fans one stream out to every mounted frame.",
-      "coverage": [],
-      "status": "uncovered",
-      "reason": "Current behavior or build integration promise; additional targeted assertions are needed.",
+      "coverage": [
+        "tracks/frames/router.test.ts",
+        "tracks/frames/frames.test.ts",
+        "findings/011-frame-multisite-hydration/repro.test.ts"
+      ],
+      "status": "covered",
+      "reason": "router CSR两site共1RPC，preload另一args只增1请求而nav不再增，同site分别随singleFlight更新；SSR multi-site只第一active的实际反例011单独红。intrinsic call地址与args/refetch一般正控来自frames track。",
       "classification": "behavioral"
     },
     {
@@ -32365,10 +32955,10 @@
       "section": "What it costs",
       "statement": "Apps that import none of this pay **zero bytes**.",
       "coverage": [
-        "tracks/frames/zero-bytes.test.ts#optional machinery absence / enabled positive"
+        "tracks/frames/zero-bytes.test.ts"
       ],
-      "status": "uncovered",
-      "reason": "Optional full frame machinery is excluded; exact zero-byte cost versus core interop symbols has no proven measurement baseline yet",
+      "status": "untestable",
+      "reason": "absolute zero feature bytes需要没有此features的反事实core构建基准；现core原生JSX已有framecompat，无独立no-feature export可比较。现no-import graph positive只能证明framesentry machinery未入图，不能把core已内嵌支持误称绝对0byte。",
       "classification": "behavioral"
     },
     {
@@ -33059,7 +33649,7 @@
       "section": "Render entry points",
       "statement": "- `renderToStream(() => <App />, options?)` — the streaming renderer: the shell flushes first, and each async boundary streams its resolved fragment plus the activation script that swaps it in.",
       "coverage": [
-        "tracks/harness/harness.test.ts",
+        "tracks/docs/policy.test.ts",
         "05/defer-stream"
       ],
       "status": "covered",
@@ -33073,7 +33663,7 @@
       "section": "Render entry points",
       "statement": "A primitive marked `deferStream: true` (RFC 05) holds the shell flush until its first value resolves instead of letting the enclosing `<Loading>` fallback into the HTML.",
       "coverage": [
-        "tracks/harness/harness.test.ts",
+        "tracks/docs/policy.test.ts",
         "05/defer-stream"
       ],
       "status": "covered",
@@ -33114,7 +33704,7 @@
       "section": "Render entry points",
       "statement": "In a hand-built document the render output ends with the serialized hydration records (`_$HY.r`), written by a classic inline `<script>`.",
       "coverage": [
-        "tracks/harness/harness.test.ts",
+        "tracks/docs/policy.test.ts",
         "tracks/docs/policy.test.ts"
       ],
       "status": "covered",
@@ -33127,8 +33717,10 @@
       "end_line": 31,
       "section": "Render entry points",
       "statement": "The client entry must execute after that script: make it a deferred `<script type=\"module\">` (or a `defer` classic script), or place it after the render output — never `async`, which may run before the records have been parsed and hydrate against an empty document.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/bootstrap-order.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -33139,7 +33731,7 @@
       "section": "Render entry points",
       "statement": "`<HydrationScript />` documents handle the ordering themselves: the records script is spliced immediately after the bootstrap, so the entry may be `async` there.",
       "coverage": [
-        "tracks/harness/harness.test.ts",
+        "tracks/docs/policy.test.ts",
         "tracks/docs/policy.test.ts"
       ],
       "status": "covered",
@@ -33165,8 +33757,10 @@
       "end_line": 37,
       "section": "Consuming the stream: `pipe`, `pipeTo`, `readable`",
       "statement": "- `pipe(writable)` — Node-style writable streams.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "12/stream-node-writable"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -33348,7 +33942,8 @@
       ],
       "status": "covered",
       "reason": "nested direct-call RequestEvent !==parent，request和response分别===parent；live.event===bodygetRequestEvent。",
-      "classification": "behavioral"
+      "classification": "behavioral",
+      "rationale": "nested direct-call RequestEvent !==parent，request和response分别===parent；live.event===bodygetRequestEvent。"
     },
     {
       "id": "12-ssr-http:L83:1",
@@ -33624,9 +34219,13 @@
       "end_line": 133,
       "section": "The response head from the render tree: `httpStatus` / `httpHeader`",
       "statement": "An error boundary that renders a 500 fallback, declares a status, and later recovers retracts its write instead of stomping to defaults; a 404 page whose inner boundary recovers stays a 404.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "12/ssr-reset-static-model",
+        "12/declaration-restoration"
+      ],
+      "status": "untestable",
+      "classification": "behavioral",
+      "reason": "条件 later recovers 在当前公开SSR静态模型中无可构造的head提交前恢复路径：public Errored reset回调在packages/solid/src/server/signals.ts L3610为noop；11-server-components.md L169明确setter仅数据写入不rerender，05异步iterable SSR只取首值。public reset静态对照确认原分支不再运行、head已committed、500仍500；公开scope声明撤回恢复surviving404另有partial proof，但不冒称完整覆盖真正boundary恢复。"
     },
     {
       "id": "12-ssr-http:L133:3",
@@ -33729,8 +34328,13 @@
       "end_line": 141,
       "section": "What a render failure looks like from the client",
       "statement": "A render failure reaches the client on several roads: the error an `<Errored>` caught, serialized so the client hydrates the same fallback; a rejected async source serialized into the stream; a `<Loading>` fragment rejecting its `_fr` promise; a frame stream's error chunks.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/server-road-sanitize-async-source",
+        "08/server-road-sanitize-frame-root",
+        "08/server-road-sanitize-frame-fragment",
+        "08/server-road-sanitize-frame-live-hole"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -33794,8 +34398,11 @@
       "end_line": 143,
       "section": "What a render failure looks like from the client",
       "statement": "`markSafeError` is the escape hatch on both wires — a branded error passes through with its own properties.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/server-road-sanitize-rpc-true",
+        "08/server-road-sanitize-ssr-true"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -33805,8 +34412,10 @@
       "end_line": 143,
       "section": "What a render failure looks like from the client",
       "statement": "An Error reached as a _value_ (never thrown — a form's field errors, say) is data and passes as written.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "08/server-road-error-value-data"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -33879,8 +34488,10 @@
       "end_line": 159,
       "section": "The server error hook: `configureServerErrors` / `onError`",
       "statement": "// return nothing: the default wire policy applies",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/frames/server-diagnostics.test.ts#08/server-road-sanitize-ssr-false"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -33891,8 +34502,11 @@
       "end_line": 160,
       "section": "The server error hook: `configureServerErrors` / `onError`",
       "statement": "// return new Error(\"Something went wrong\"): the client receives this instead",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+        "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -33903,8 +34517,10 @@
       "end_line": 163,
       "section": "The server error hook: `configureServerErrors` / `onError`",
       "statement": "// per request, winning over the ambient hook:",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -34270,8 +34886,10 @@
       "end_line": 182,
       "section": "The trace the request belongs to: `getTraceContext()`",
       "statement": "// in a server function: forward the trace to the service it calls",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/frames/server-diagnostics.test.ts#08/server-road-server-function-forward-trace"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -34372,8 +34990,11 @@
       "end_line": 197,
       "section": "The trace the request belongs to: `getTraceContext()`",
       "statement": "entries: Record<string, string>; // what the browser is handed — `traceparent`, plus a provider's",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "12/trace-verbatim-fields",
+        "tracks/records/trace.test.ts"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -34441,9 +35062,14 @@
       "end_line": 203,
       "section": "The trace the request belongs to: `getTraceContext()`",
       "statement": "The runtime also hands the trace **down to the browser**, which cannot send a header on the initial document request and has to learn the server's trace from the response: `entries` are emitted as `Server-Timing` metrics (`traceparent;desc=\"00-…\"`) on the response head when it commits — every exit, so frames, server-function responses and redirects carry it too — and, for HTML documents, as `<meta name=\"traceparent\" content=\"…\">` in the shell head (the `</head>` splice or the `onHead` string; a headless fragment ships only the header).",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "08/server-road-trace-every-response-face",
+        "tracks/records/trace.test.ts#RFC08 L801/L902 and RFC12 L201–205: pre-runtime subscriptions cross bundled copies; real response trace and metric gates"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "reason": "sampled真实HTML </head>splice、headlesshost onHead、无onHead fragment仅header、publicframe RPC transform、preflush bodylessredirect均精确当前traceparent value；plainRPC在records.trace真实responseheader，三tier。",
+      "rationale": "sampled真实HTML </head>splice、headlesshost onHead、无onHead fragment仅header、publicframe RPC transform、preflush bodylessredirect均精确当前traceparent value；plainRPC在records.trace真实responseheader，三tier。"
     },
     {
       "id": "12-ssr-http:L203:2",
@@ -34860,9 +35486,14 @@
       "end_line": 242,
       "section": "Cookies: the codec + native `Headers`",
       "statement": "That is the portability contract across Node/undici, workerd, and Deno; integrations merging headers themselves should follow the same rule.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "12/commit-cookies",
+        "12/cookie-expiry-serialization",
+        "tracks/frames/server-diagnostics.test.ts#08/server-road-mutation-cookie-thrown-redirect"
+      ],
+      "status": "untestable",
+      "classification": "behavioral",
+      "reason": "合同横跨Node/undici、workerd、Deno。用户明确bun-only，因此不能启动这些独立runtime测它们的原生Headers portability。Bun平台真实两cookie含Expires逗号与serverfn/SSR/middleware合并保留已测；该partial proof不代表其余平台。"
     },
     {
       "id": "12-ssr-http:L244:1",
@@ -34871,8 +35502,10 @@
       "end_line": 244,
       "section": "Cookies: the codec + native `Headers`",
       "statement": "During a server function the handler folds the event’s response stub onto the outgoing response as the head freezes — cookies appended by the mutation ride whatever leaves, thrown redirects included (the set-session-then-`throw redirect()` login flow works by construction) — and commits the stub, so a straggling write after the response is on the wire fails loudly instead of vanishing.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/frames/server-diagnostics.test.ts#08/server-road-mutation-cookie-thrown-redirect"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -34918,9 +35551,13 @@
       "end_line": 248,
       "section": "Sessions (recipe)",
       "statement": "What core guarantees instead is the seam: anything that can read `event.request.headers` and append to `event.response.headers` composes, in server functions, SSR handlers, and middleware alike.",
-      "coverage": [],
-      "status": "uncovered",
-      "classification": "behavioral"
+      "coverage": [
+        "08/server-road-cookie-exchange-three-domains"
+      ],
+      "status": "covered",
+      "classification": "behavioral",
+      "reason": "同一public request Cookie parse+response Set-Cookie append helper在serverfn/SSR/middleware三domain运行：2entries保留、request仍previous、middlewareunwrap前stub未commit而handleredge commit。",
+      "rationale": "同一public request Cookie parse+response Set-Cookie append helper在serverfn/SSR/middleware三domain运行：2entries保留、request仍previous、middlewareunwrap前stub未commit而handleredge commit。"
     },
     {
       "id": "12-ssr-http:L250:1",
@@ -35113,8 +35750,10 @@
       "end_line": 302,
       "section": "Sessions (recipe)",
       "statement": "- **The stub is the commit step.** No `commitSession`: `event.response` _is_ the uncommitted response head, so appends ride whatever leaves — including thrown redirects in server functions (the set-session-then-`throw redirect()` login flow works by construction), and a post-commit write fails loudly per the stub contract above.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/frames/server-diagnostics.test.ts#08/server-road-mutation-cookie-thrown-redirect"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -35379,8 +36018,10 @@
       "end_line": 335,
       "section": "The response-head lifecycle: `createRequestEvent` / `createSSRResponse` / `commitEventResponse`",
       "statement": "An event **without** a `response` stub (the server-function handler's default event, a bare integration) still hands the request's trace on: the response is rebuilt with the `Server-Timing` entries when there is something to say, and comes back untouched otherwise.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/frames/server-diagnostics.test.ts#08/server-road-bare-event-trace-commit"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -37009,8 +37650,11 @@
       "end_line": 270,
       "section": "“Write inside reactive scope” (owned scope)",
       "statement": "// ✅ derive instead of writing back",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "01/dom-flush-boundary",
+        "01/imperative-write-boundaries"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -37112,8 +37756,10 @@
       "end_line": 286,
       "section": "`/*@once*/` JSX marker",
       "statement": "// 2.0: keep reactive values reactive",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "07/once-marker-reactivity"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -39066,8 +39712,13 @@
       "end_line": 757,
       "section": "New in 2.0",
       "statement": "Returns a promise for the target's next quiescent state: accessors resolve with the settled value, stores with the node passed; a failed re-ask rejects (in an action, `yield refresh(x)` throws back at the yield point); superseded flights fold onto whatever finally lands.",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "05/refresh-delivery",
+        "05/refresh-quiescence",
+        "06/refresh-store-delivery",
+        "06/refresh-rejection-action"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -39444,8 +40095,10 @@
       "end_line": 771,
       "section": "New in 2.0",
       "statement": "- **`ssrSource` option** (`\"server\"` | `\"hybrid\"` | `\"client\"`) — per-primitive hydration policy on memos, function-form signals/stores, projections, and effects: whether the client seeds from the serialized server value (`\"server\"`, default), seeds then continues an async-iterable compute's stream from it (`\"hybrid\"` — identical to `\"server\"` for sync/promise computes), or skips the server value and computes only after hydration (`\"client\"` — the compute never runs on the server).",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "tracks/docs/policy.test.ts"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -40289,8 +40942,10 @@
       "end_line": 1012,
       "section": "`from` / `observable` → async iterators / effects",
       "statement": "// 2.0 — use an effect to push changes outward",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "01/dom-flush-boundary"
+      ],
+      "status": "covered",
       "unit": "fenced-comment",
       "classification": "behavioral"
     },
@@ -40730,8 +41385,10 @@
       "end_line": 1059,
       "section": "Removals",
       "statement": "- **`resetErrorBoundaries`** → no longer needed (error boundaries heal automatically)",
-      "coverage": [],
-      "status": "uncovered",
+      "coverage": [
+        "03/errored-source-autoheal"
+      ],
+      "status": "covered",
       "classification": "behavioral"
     },
     {
@@ -41096,10 +41753,10 @@
   ],
   "summary": {
     "raw": 3070,
-    "behavioral": 2107,
-    "covered": 1884,
-    "uncovered": 210,
-    "untestable": 13,
-    "nonBehavioral": 963
+    "behavioral": 2102,
+    "covered": 2082,
+    "uncovered": 0,
+    "untestable": 20,
+    "nonBehavioral": 968
   }
 }
