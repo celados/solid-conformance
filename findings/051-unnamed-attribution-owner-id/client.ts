@@ -1,0 +1,3 @@
+import {OBSERVE,createRoot,createSignal,createMemo,getOwner,flush} from 'solid-js'
+import {attribution} from 'solid-js/attribution'
+const rows=[];for(const name of ['named','',undefined]){const release=attribution.enable({log:false,checks:false});let close!:()=>void,write!:(n:number)=>void,ownerId:string|undefined;createRoot(d=>{close=d;const[r,w]=createSignal(0);write=w;createMemo(()=>{ownerId=getOwner()?.id;return r()},name===undefined?{}:{name})},{id:'named-owner'});write(1);flush();rows.push({name,ownerId,nodeName:attribution.history('rerun').at(-1)?.nodeName});close();release()};(window as any).finding051=rows
