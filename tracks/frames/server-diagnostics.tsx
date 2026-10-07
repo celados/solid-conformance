@@ -13,6 +13,8 @@ import {
   createSSRResponse,
   getRequestEvent,
   getTraceContext,
+  redirect,
+  commitEventResponse,
 } from "@solidjs/web";
 import { AsyncLocalStorage } from "node:async_hooks";
 import {
@@ -20,6 +22,7 @@ import {
   createServerReference,
   handleServerFunctionRequest,
   decodeResponse,
+  REDIRECT_HEADER,
 } from "@solidjs/web/server-functions/server";
 import { renderServerComponent } from "@solidjs/web/frames/server";
 import { equal, ok, type DocCase, runCases } from "../docs/registry";
@@ -508,6 +511,23 @@ doc("late-head-write", "A post-flush header write loses its value and emits head
 doc("live-request-event-identity", "Invocation and render records carry the original ambient RequestEvent and trace beside serializable events.",async()=>{
  const event=createRequestEvent(new Request("http://localhost/identity"));const result={value:17};const invocations:any[]=[],renders:any[]=[];const offI=OBSERVE?.records.subscribe("invocation",(event,live)=>invocations.push({event,live}));const offR=OBSERVE?.records.subscribe("render",(event,live)=>renders.push({event,live}));let trace:unknown,invocationEvent:any;
  try{await scope.run(event,()=>{trace=getTraceContext();const fn=createServerReference(registerServerReference("live-event-identity",(n:number)=>{invocationEvent=getRequestEvent();equal(n,3);return result}));const html=renderToString(()=>{ok(fn(3)===result);return "rendered"});equal(html,"rendered")});equal(invocations.length,OBSERVE?1:0);equal(renders.length,OBSERVE?1:0);if(OBSERVE){const i=invocations[0];ok(i.live.event===invocationEvent,"invocation own event identity");ok(invocationEvent!==event);ok(invocationEvent.request===event.request);ok(invocationEvent.response===event.response);equal(i.live.args,[3]);ok(i.live.result===result,"invocation result identity");equal(i.live.request,undefined);equal(i.event.outcome,"ok");ok(renders[0].live.event===event,"render event identity");ok(renders[0].live.trace===trace,"render trace identity")}}finally{offI?.();offR?.()}
+});
+doc("mutation-cookie-thrown-redirect", "A server mutation response carries staged cookies through a thrown redirect, commits its shared stub, and makes later writes loud.",async()=>{
+ let current:any;const id="cookie-redirect";registerServerReference(id,()=>{current=getRequestEvent();current.response.headers.append("set-cookie","a=1; Path=/");current.response.headers.append("set-cookie","b=2; Path=/");current.response.headers.set("x-stub","shared");throw redirect("/next",{status:303})});
+ const request=new Request("http://localhost/_server/data/"+id,{method:"POST",body:"[]",headers:{origin:"http://localhost","content-type":"application/json","X-Server-Function-Format":"8"}});const response=await handleServerFunctionRequest(request,{createEvent:createRequestEvent});equal(response.status,200);equal(response.headers.get(REDIRECT_HEADER),"303 http://localhost/next");equal(response.headers.getSetCookie(),["a=1; Path=/","b=2; Path=/"]);equal(response.headers.get("x-stub"),"shared");equal(current.response.committed,true);
+ let caught:unknown;const result=await observed(()=>{try{current.response.headers.set("x-after","lost")}catch(e){caught=e}});equal(!!caught,isDev);equal(response.headers.get("x-after"),null);equal(current.response.headers.get("x-after"),null);const events=selected(result,"LATE_HEADER_WRITE");equal(events.length,OBSERVE?1:0);for(const e of events){equal(e.kind,"head");equal(e.severity,"error");equal(e.data,{method:"set",name:"x-after"})}equal(result.messages.filter(m=>m.startsWith("[LATE_HEADER_WRITE]")).length,isDev?0:1);
+});
+doc("bare-event-trace-commit", "A response-less event adds sampled trace metrics while an unrecorded event returns the original Response untouched.", async()=>{
+ for(const sampled of [true,false]){
+  const parent="00-1234567890abcdef1234567890abcdef-1234567890abcdef-"+(sampled?"01":"00");
+  const event={request:new Request("http://localhost/bare",{headers:{traceparent:parent}}),locals:{}};
+  await scope.run(event,async()=>{const original=new Response("body",{status:201,headers:{"x-own":"preserved","server-timing":"app;dur=3"}});const trace=getTraceContext()!;equal(trace.traceId,"1234567890abcdef1234567890abcdef");const response=commitEventResponse(original,event as any);equal(response.status,201);equal(response.headers.get("x-own"),"preserved");equal(await response.text(),"body");equal(original.headers.get("server-timing"),"app;dur=3");if(sampled){ok(response!==original);ok(response.headers.get("server-timing")!.includes('traceparent;desc="'+trace.entries.traceparent+'"'));ok(response.headers.get("server-timing")!.includes("app;dur=3"))}else{ok(response===original);equal(response.headers.get("server-timing"),"app;dur=3")}});
+ }
+});
+doc("server-function-forward-trace", "The public server-function recipe forwards the current request span as W3C traceparent to a real downstream HTTP service in every tier.",async()=>{
+ let received="";const downstream=Bun.serve({hostname:"127.0.0.1",port:0,fetch(request){received=request.headers.get("traceparent")??"";return new Response("downstream")}});
+ let current:any;registerServerReference("forward-trace",async()=>{const trace=getTraceContext()!;current=trace;const response=await fetch(downstream.url,{headers:trace?{traceparent:trace.entries.traceparent!}:{}});return response.text()});
+ try{const parent="00-1234567890abcdef1234567890abcdef-1234567890abcdef-00";const request=new Request("http://localhost/_server/data/forward-trace",{method:"POST",body:"[]",headers:{origin:"http://localhost","content-type":"application/json","X-Server-Function-Format":"8",traceparent:parent}});const response=await handleServerFunctionRequest(request,{createEvent:createRequestEvent});equal(response.status,200);ok((await response.text()).includes("downstream"));equal(received,current.entries.traceparent);equal(received,"00-1234567890abcdef1234567890abcdef-"+current.spanId+"-00");equal(current.parentId,"1234567890abcdef");ok(current.spanId!==current.parentId);ok(!response.headers.get("server-timing")?.includes("traceparent"));}finally{await downstream.stop(true)}
 });
 export const run = () =>
   scope.run(createRequestEvent(new Request("http://test/")), () => runCases(cases));

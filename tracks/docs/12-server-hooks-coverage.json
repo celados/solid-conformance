@@ -187,5 +187,33 @@
       "08/server-road-live-request-event-identity"
     ],
     "reason": "nested direct-call RequestEvent !==parent，request和response分别===parent；live.event===bodygetRequestEvent。"
+  },
+  {
+    "id": "12-ssr-http:L244:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-diagnostics.test.ts#08/server-road-mutation-cookie-thrown-redirect"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L302:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-diagnostics.test.ts#08/server-road-mutation-cookie-thrown-redirect"
+    ]
+  },
+  {
+    "id": "12-ssr-http:L335:3",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-diagnostics.test.ts#08/server-road-bare-event-trace-commit"
+    ]
+  },
+  {
+    "id": "12-ssr-http:C182:1",
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/server-diagnostics.test.ts#08/server-road-server-function-forward-trace"
+    ]
   }
 ]
