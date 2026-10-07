@@ -24,6 +24,7 @@ export async function traceCases(){
 
 import {createMemo,Loading} from 'solid-js'
 import {renderToStream,commitEventResponse} from '@solidjs/web'
+import {registerServerReference,handleServerFunctionRequest} from '@solidjs/web/server-functions/server'
 export async function traceWireCases(){
  const rows:any[]=[]
  for(const listener of [false,true])for(const deferred of [false,true]){
@@ -32,14 +33,21 @@ export async function traceWireCases(){
   try{await provideRequestEvent(event,async()=>{
    event.response.headers.set('Server-Timing','app;dur=1')
    function Métric(){const value=createMemo(()=>new Promise<string>(resolve=>setTimeout(()=>resolve('ready'),5)),{deferStream:deferred});return <b>{value()}</b>}
-   const stream=renderToStream(()=> <html><head/><body><Loading fallback={<i>pending</i>}><Métric/></Loading></body></html>)
+   function Page汉(){return <Loading fallback={<i>pending</i>}><Métric/></Loading>}
+   const stream=renderToStream(()=> <html><head/><body><Page汉/></body></html>)
    const response=await createSSRResponse(stream,event),html=await response.text()
    rows.push({listener,deferred,html,header:response.headers.get('server-timing'),records:seen})
   })}finally{offs.forEach(off=>off?.())}
  }
  const event=createRequestEvent(new Request('http://trace.test/',{headers:{traceparent:'00-11111111111111111111111111111111-2222222222222222-01'}}))
  await provideRequestEvent(event,()=>{event.response.headers.set('Server-Timing','app;dur=1, traceparent;desc="application"');const response=commitEventResponse(new Response(null,{status:302,headers:{location:'/next'}}),event);rows.push({scenario:'redirect',header:response.headers.get('server-timing')})})
- return {outside:getTraceContext(),rows}
+ const rpc:any[]=[]
+ for(const listener of [false,true]){
+  const records:any[]=[],off=listener?OBSERVE?.records.subscribe('invocation',event=>records.push(event)):undefined
+  const id='trace-wire-'+String(listener);registerServerReference(id,()=>17)
+  try{const response=await handleServerFunctionRequest(new Request('http://trace.test/_server/data/'+id,{method:'POST',headers:{origin:'http://trace.test','content-type':'application/json','X-Server-Function-Format':'8',traceparent:'00-11111111111111111111111111111111-2222222222222222-01'},body:'[]'}));rpc.push({listener,header:response.headers.get('server-timing'),status:response.status,body:await response.text(),records})}finally{off?.()}
+ }
+ return {outside:getTraceContext(),rows,rpc}
 }
 export function channel(){return OBSERVE?.records}
 export function serverSlot(){return OBSERVE?.server}

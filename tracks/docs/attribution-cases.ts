@@ -138,5 +138,16 @@ add('excluded-owner-attribution','RFC 08 L1127–1129: excluded signals and stor
   equal(attribution.history('interaction').length,1);ok(attribution.history('rerun').some(r=>r.nodeName==='included'))
  }finally{dispose();release()}
 })
+add('default-history-and-stacks','RFC08 C1013/C1014/L1137: default history holds 200 oldest-first reruns; write stacks are opt-in and contain source frames rather than values.',()=>{
+ if(!isDev)return
+ for(const stacks of [undefined,false,true]){const release=attribution.enable({...quiet,...(stacks===undefined?{}:{stacks})});let dispose!:()=>void
+  try{const write=createRoot(d=>{dispose=d;const[r,w]=createSignal(0,{name:'stack-source'});createMemo(r,{name:'stack-reader'});return w});for(let i=1;i<=201;i++){write(i);flush()};const rows=attribution.history('rerun');equal(rows.length,200);equal(rows[0]!.causes[0]!.value,'2');equal(rows.at(-1)!.causes[0]!.value,'201');ok(rows.every((r,i)=>i===0||r.at>=rows[i-1]!.at));const cause=rows.at(-1)!.causes[0]!;equal(!!cause.stack,stacks===true);if(stacks){ok(cause.stack!.length>0);ok(cause.stack!.every(frame=>typeof frame==='string'));ok(cause.stack!.some(frame=>frame.includes('.js')||frame.includes('.tsx')||frame.includes('.ts')))}}finally{dispose();release()}
+ }
+})
+add('interaction-exact-counts','RFC08 L1183: per-interaction runs and creations are exact counts, and runMs sums their self-time.',()=>{
+ if(!isDev)return
+ const release=attribution.enable(quiet);let dispose!:()=>void;const rows:any[]=[];const offs=['rerun','create','interaction'].map(type=>OBSERVE!.records.subscribe(type as any,e=>rows.push({type,event:e})))
+ try{const write=createRoot(d=>{dispose=d;const[r,w]=createSignal(0);createMemo(()=>{const n=r();if(n)for(let i=0;i<4;i++)createMemo(()=>n+i);return n},{name:'creator'});return w});OBSERVE!.attribution.withInteraction({type:'click',target:'button#rows'},()=>{write(1);flush()});const interaction=rows.find(r=>r.type==='interaction').event;const reruns=rows.filter(r=>r.type==='rerun'&&r.event.interaction===interaction.origin),created=rows.filter(r=>r.type==='create'&&r.event.interaction===interaction.origin);equal(interaction.runs,reruns.length);equal(interaction.created,created.length);equal(created.length,4);const sum=[...reruns,...created].reduce((n,r)=>n+r.event.selfMs,0);ok(Math.abs(interaction.runMs-sum)<0.001,JSON.stringify({interaction,sum,rows}))}finally{dispose();offs.forEach(off=>off());release()}
+})
 }
 export const attributionCases=cases

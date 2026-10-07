@@ -22,7 +22,7 @@ test('RFC 08/10/11: runtime records separate serializable events from live invoc
    expect(row.same).toBe(true)
    if(row.scenario==='throw'||row.scenario==='absent'){expect(row.trace.traceId).toBe('11111111111111111111111111111111');expect(row.errors).toBe(row.scenario==='throw'?1:0)}else{expect(row.trace).toMatchObject({traceId:'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',spanId:'cccccccccccccccc',parentId:'dddddddddddddddd',sampled:true});expect(row.header).toContain('vendor-entry');expect(row.trace.entries.vendor).toBe('vendor-entry')}
   }
-  const page=await browser.newPage();await page.goto(String(server.url));await page.waitForFunction(()=>!!(window as any).recordsHarness)
+  serverModule.reset();const page=await browser.newPage();await page.goto(String(server.url));await page.waitForFunction(()=>!!(window as any).recordsHarness)
   const client=await page.evaluate(()=>(window as any).recordsHarness.run());const http=serverModule.snapshot()
   await Bun.write(process.env.RECORD_RECEIPT??'artifacts/records-'+variant+'.json',JSON.stringify({runtime:await runtimeReceipt(),direct,client,http},null,2))
   expect(client.response).toEqual({value:'private-argument'});expect(client.dom).toContain('story-1-generation-0');expect(direct.result).toBe(3)
@@ -53,7 +53,7 @@ test('RFC 08/10/11: runtime records separate serializable events from live invoc
    expect(calls[0].event.origin).toMatchObject({kind:'interaction',name:'click',target:'button#records'})
    for(const call of calls){const req=requests.find((r:any)=>r.live.identity===call.live.identity)!;expect(req.event.side).toBe('client');expect(req.event.at).toBeGreaterThanOrEqual(call.event.at);expect(req.event.at).toBeLessThanOrEqual(call.event.at+call.event.durationMs);expect(req.live.request).toBe(true);expect(req.event).not.toHaveProperty('status');expect(call.live.response).toBe(true);expect(call.live.bodyUsed).toBe(false)}
    const remote=http.filter((r:any)=>r.type==='invocation');expect(remote).toHaveLength(3)
-   for(const call of calls){expect(call.live.serverTiming).toContain('solid-invocation');const value=Number(/solid-invocation;dur=([0-9.]+)/.exec(call.live.serverTiming)![1]),invocation=remote.find((r:any)=>r.event.id===call.event.id)!.event;expect(Math.abs(value-invocation.durationMs)).toBeLessThanOrEqual(0.051)}
+   for(const call of calls){expect(call.live.serverTiming).toContain('solid-invocation');expect(call.live.serverTiming).toContain('traceparent;desc="00-11111111111111111111111111111111-');const value=Number(/solid-invocation;dur=([0-9.]+)/.exec(call.live.serverTiming)![1]),invocation=remote.find((r:any)=>r.event.id===call.event.id)!.event;expect(Math.abs(value-invocation.durationMs)).toBeLessThanOrEqual(0.051)}
    for(const r of remote){expect(r.event.direct).toBe(false);expect(r.live.request).toBe(true);expect(r.event).not.toHaveProperty('boundary')}
    const produced=http.find((r:any)=>r.type==='frame')!,consumed=client.records.find((r:any)=>r.type==='frame')!
    for(const key of ['id','version','chunks','fragments','slots','regions','errors'])expect(consumed.event[key]).toEqual(produced.event[key])
@@ -95,5 +95,23 @@ test('RFC 08/10/11: runtime records separate serializable events from live invoc
    if(['body-buffer','body-view'].includes(row.scenario))expect(calls[0].requestBody).toBe('AB')
    if(row.scenario==='body-form'){expect(calls[0].requestBody).toContain('name="a"');expect(calls[0].requestBody).toContain('b')}
   }
+  const gates=await page.evaluate(()=>(window as any).recordsHarness.requestGateCases())
+  await Bun.write('artifacts/request-gates-'+variant+'.json',JSON.stringify(gates,null,2))
+  for(const row of gates){
+   if(row.scenario==='intercept'){expect(row.send).toBe(0);expect(row.records).toEqual([]);continue}
+   expect(row.result).toBe(7);expect(row.send).toBe(1)
+   if(variant==='production'||row.scenario==='clock-off'){expect(row.records).toEqual([]);expect(row.clocks).toBe(0);continue}
+   expect(row.identity).toBe(true)
+   const call=row.records.find((r:any)=>r.type==='call'),request=row.records.find((r:any)=>r.type==='request')
+   if(row.scenario==='late-request'){expect(request).toBeDefined();expect(call).toBeUndefined()}
+   else if(row.scenario==='late-call'){expect(call).toBeDefined();expect(request).toBeUndefined()}
+   else{expect(call).toBeDefined();expect(request).toBeDefined()}
+   if(row.scenario==='mixed-bodies'){expect(call.request).toBe(true);expect(call.bodyUsed).toBe(true)}
+   if(row.scenario==='shared-request'){expect(call.fixture).toBe('from request');expect(row.sharedBody).toBe('body-fixture');expect(row.afterDirectUsed).toBe(true)}
+   if(row.scenario==='slow-listener'){expect(row.sentAt).toBe(35);expect(call.event.durationMs).toBe(30);expect(request.event.at).toBe(10)}
+   if(row.scenario==='explicit-name')expect(call.event.name).toBe('stable label')
+   if(row.scenario==='anonymous')expect(call.event).not.toHaveProperty('name')
+  }
+  const stream=await page.evaluate(()=>(window as any).recordsHarness.streamCase());await Bun.write('artifacts/stream-record-'+variant+'.json',JSON.stringify(stream,null,2));expect(stream.first).toEqual({done:false,value:1});if(variant==='production')expect(stream.records).toEqual([]);else{expect(stream.atHandoff).toBe(2);expect(stream.sameLive).toBe(true);const call=stream.records.find((r:any)=>r.type==='call');expect(call.event.deferred).toBe(true);expect(call.sameResponse).toBe(true);expect(call.bodyUsed).toBe(true)}
  }finally{await browser.close();server.stop(true);serverModule.stop();await rm(directory,{recursive:true,force:true})}
 },60000)
