@@ -766,9 +766,12 @@
   },
   {
     "id": "08-dev-diagnostics:L1004:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Attribution entry tree-shaking and runtime-only hooks require isolated bundle evidence."
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/late-final-no-engine.test.ts: real Bun module graph excludes attribution artifacts, imported engine positive graph includes them; installed=false and runtime frames remain callable in dev/observe"
+    ],
+    "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
   },
   {
     "id": "08-dev-diagnostics:L765:1",
@@ -1190,5 +1193,113 @@
       "tracks/docs/hold-diagnostic-cases.ts: hold-effect-action-origin held write origin.kind/name, action flag and no input; hold-acknowledgement-paths opening navigation/interaction"
     ],
     "reason": "省略与显式关闭的默认值、effect/action/public record 路径均有实际断言。"
+  },
+  {
+    "id": "08-dev-diagnostics:L555:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/late-final-cases.tsx: fallback-fields-and-fold exact diagnostic shownMs/interaction/subject path and 149/150ms default; tracks/docs/late-final.test.ts"
+    ],
+    "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
+  },
+  {
+    "id": "08-dev-diagnostics:L555:5",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/late-final-cases.tsx: fallback-fields-and-fold exact diagnostic shownMs/interaction/subject path and 149/150ms default; tracks/docs/late-final.test.ts"
+    ],
+    "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
+  },
+  {
+    "id": "08-dev-diagnostics:L567:7",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/late-final-cases.tsx: held-and-verdict-value-previews 40-character shown/truth; tracks/docs/hold-diagnostic-cases.ts: optimistic-correction-contract source/how; tracks/docs/late-final.test.ts"
+    ],
+    "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
+  },
+  {
+    "id": "08-dev-diagnostics:L967:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-default-thresholds actual threshold/kind/severity and negative controls; tracks/docs/docs.test.ts"
+    ],
+    "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
+  },
+  {
+    "id": "08-dev-diagnostics:L968:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-default-thresholds actual threshold/kind/severity and negative controls; tracks/docs/docs.test.ts"
+    ],
+    "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
+  },
+  {
+    "id": "08-dev-diagnostics:L970:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: abandoned-default-window actual threshold/kind/severity and negative controls; tracks/docs/docs.test.ts"
+    ],
+    "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
+  },
+  {
+    "id": "08-dev-diagnostics:L972:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: stacked-contract actual threshold/kind/severity and negative controls; tracks/docs/docs.test.ts"
+    ],
+    "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
+  },
+  {
+    "id": "08-dev-diagnostics:L973:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: optimistic-correction-contract actual threshold/kind/severity and negative controls; tracks/docs/docs.test.ts"
+    ],
+    "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
+  },
+  {
+    "id": "08-dev-diagnostics:L969:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/records/interaction.test.ts: native clock 99/100/200ms, async reject, pre-await write/action acknowledgements and cap"
+    ],
+    "reason": "完整合同的公开graph/事件数据/字段正负控制已执行。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1027:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: attribution-records-queries bounded oldest-first live observer history and default-log-enabled; tracks/docs/late-final-engine-only.test.ts: observe no audience retains no reruns; findings/012-attribution-audience-gate/repro.test.ts: dev fold audience violation"
+    ],
+    "reason": "API概览中的可选订阅类型按实际类型逐项调用，不把 union 伪签名当可执行 JS recipe。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1028:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/cost-diagnostic-cases.tsx: async-waterfall-tiers and waterfall-default-duration exact link chain/ms/history with slow/fast/false controls"
+    ],
+    "reason": "API概览中的可选订阅类型按实际类型逐项调用，不把 union 伪签名当可执行 JS recipe。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1041:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/late-final-cases.tsx: timeline-audience-and-origin-slot real flush/create/effect/flight/fallback events; tracks/docs/attribution-cases.ts: graph-census-initial-navigation real graph subscription/census; tracks/docs/types-positive.tsx: timeline subscribe declarations"
+    ],
+    "reason": "API概览中的可选订阅类型按实际类型逐项调用，不把 union 伪签名当可执行 JS recipe。"
   }
 ]
