@@ -1,0 +1,3525 @@
+{
+  "runtime": {
+    "target": "head",
+    "upstream": {
+      "ref": "next",
+      "revision": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+      "directory": "/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"
+    },
+    "buildMode": "development",
+    "solid": "2.0.0-rc.13"
+  },
+  "checked": 60,
+  "cases": [
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 2
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>2</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 3,
+          "closed": 3
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "mount",
+          "visible": false
+        },
+        {
+          "kind": "mount",
+          "visible": true
+        },
+        {
+          "kind": "push",
+          "value": 3
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "mount",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "mount",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>3</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "argument",
+          "value": 1
+        },
+        {
+          "kind": "push",
+          "value": 4
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "argument",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>4</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 2
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>2</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 3,
+          "closed": 3
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "mount",
+          "visible": false
+        },
+        {
+          "kind": "mount",
+          "visible": true
+        },
+        {
+          "kind": "push",
+          "value": 3
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "mount",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "mount",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>3</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "argument",
+          "value": 1
+        },
+        {
+          "kind": "push",
+          "value": 4
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "argument",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>4</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "store",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 2
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>2</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 3,
+          "closed": 3
+        }
+      ]
+    },
+    {
+      "primitive": "store",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "mount",
+          "visible": false
+        },
+        {
+          "kind": "mount",
+          "visible": true
+        },
+        {
+          "kind": "push",
+          "value": 3
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "mount",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "mount",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>3</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "store",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "argument",
+          "value": 1
+        },
+        {
+          "kind": "push",
+          "value": 4
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "argument",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>4</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "store",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 2
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>2</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 3,
+          "closed": 3
+        }
+      ]
+    },
+    {
+      "primitive": "store",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "mount",
+          "visible": false
+        },
+        {
+          "kind": "mount",
+          "visible": true
+        },
+        {
+          "kind": "push",
+          "value": 3
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "mount",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "mount",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>3</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "store",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "argument",
+          "value": 1
+        },
+        {
+          "kind": "push",
+          "value": 4
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "argument",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>4</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "projection",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 2
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>2</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 3,
+          "closed": 3
+        }
+      ]
+    },
+    {
+      "primitive": "projection",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "mount",
+          "visible": false
+        },
+        {
+          "kind": "mount",
+          "visible": true
+        },
+        {
+          "kind": "push",
+          "value": 3
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "mount",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "mount",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>3</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "projection",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "argument",
+          "value": 1
+        },
+        {
+          "kind": "push",
+          "value": 4
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "argument",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>4</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "projection",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 2
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>2</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 3,
+          "closed": 3
+        }
+      ]
+    },
+    {
+      "primitive": "projection",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "mount",
+          "visible": false
+        },
+        {
+          "kind": "mount",
+          "visible": true
+        },
+        {
+          "kind": "push",
+          "value": 3
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "mount",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "mount",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>3</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "projection",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "argument",
+          "value": 1
+        },
+        {
+          "kind": "push",
+          "value": 4
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "argument",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>4</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "optimistic-store",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 2
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>2</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 3,
+          "closed": 3
+        }
+      ]
+    },
+    {
+      "primitive": "optimistic-store",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "mount",
+          "visible": false
+        },
+        {
+          "kind": "mount",
+          "visible": true
+        },
+        {
+          "kind": "push",
+          "value": 3
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "mount",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "mount",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>3</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "optimistic-store",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "argument",
+          "value": 1
+        },
+        {
+          "kind": "push",
+          "value": 4
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "argument",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>4</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "optimistic-store",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "push",
+          "value": 2
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>2</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 3,
+          "closed": 3
+        }
+      ]
+    },
+    {
+      "primitive": "optimistic-store",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "mount",
+          "visible": false
+        },
+        {
+          "kind": "mount",
+          "visible": true
+        },
+        {
+          "kind": "push",
+          "value": 3
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "mount",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "mount",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>3</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "optimistic-store",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "argument",
+          "value": 1
+        },
+        {
+          "kind": "push",
+          "value": 4
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "argument",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>4</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><b>terminal-source-error</b>",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><b>terminal-source-error</b>",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><b>terminal-source-error</b>",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><b>terminal-source-error</b>",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "store",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><b>terminal-source-error</b>",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "store",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><b>terminal-source-error</b>",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "store",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "finding": "004"
+    },
+    {
+      "primitive": "store",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><b>terminal-source-error</b>",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "projection",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><b>terminal-source-error</b>",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "projection",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><b>terminal-source-error</b>",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "projection",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "finding": "004"
+    },
+    {
+      "primitive": "projection",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><b>terminal-source-error</b>",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "optimistic-store",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><b>terminal-source-error</b>",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "optimistic-store",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><b>terminal-source-error</b>",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "optimistic-store",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "finding": "004"
+    },
+    {
+      "primitive": "optimistic-store",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "error"
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "error",
+          "dom": "<button>click</button><em>0</em><b>terminal-source-error</b>",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 1,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 3
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 4
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>3</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>3</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>3</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>4</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 8
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>8</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 4
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 5
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 6
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>4</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>4</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>4</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>5</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>5</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>2</em><span>5</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>2</em><span>6</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 3,
+          "closed": 3
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 2
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>2</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "push",
+          "value": 8
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 9
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 10
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>8</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>8</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>8</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>9</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>9</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>2</em><span>9</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>2</em><span>10</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 3,
+          "closed": 3
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 8
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 9
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 10
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>8</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>8</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>8</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>9</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>9</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>2</em><span>9</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>2</em><span>10</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 3,
+          "closed": 3
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "push",
+          "value": 2
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 3
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>2</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>2</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>2</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>3</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 2
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 3
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>2</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>2</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>2</em><span>2</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>2</em><span>3</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 3,
+          "closed": 3
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 3
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 4
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 5
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 6
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>3</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>3</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>3</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>4</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>4</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>2</em><span>4</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>2</em><span>5</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>2</em><span>5</span>",
+          "errors": 0,
+          "opened": 4,
+          "closed": 3
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>3</em><span>5</span>",
+          "errors": 0,
+          "opened": 4,
+          "closed": 3
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>3</em><span>6</span>",
+          "errors": 0,
+          "opened": 4,
+          "closed": 3
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 4,
+          "closed": 4
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "push",
+          "value": 9
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 10
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>9</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>9</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>9</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>10</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 8
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 9
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>8</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>8</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>8</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>9</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 7
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>7</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "push",
+          "value": 7
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 8
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 9
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>7</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>7</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>7</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>8</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>8</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>2</em><span>8</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>2</em><span>9</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 3,
+          "closed": 3
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 3
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>3</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 1,
+          "closed": 1
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "hydrate",
+      "events": [
+        {
+          "kind": "push",
+          "value": 1
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 2
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 3
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 4
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><span>0</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>1</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>2</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>2</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>2</em><span>2</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>2</em><span>3</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>2</em><span>3</span>",
+          "errors": 0,
+          "opened": 4,
+          "closed": 3
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>3</em><span>3</span>",
+          "errors": 0,
+          "opened": 4,
+          "closed": 3
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>3</em><span>4</span>",
+          "errors": 0,
+          "opened": 4,
+          "closed": 3
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 4,
+          "closed": 4
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 3
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 4
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>3</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>3</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>3</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>4</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 9
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 10
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>9</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>9</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>9</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>10</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 2,
+          "closed": 2
+        }
+      ]
+    },
+    {
+      "primitive": "memo",
+      "mode": "csr",
+      "events": [
+        {
+          "kind": "push",
+          "value": 8
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 9
+        },
+        {
+          "kind": "drop"
+        },
+        {
+          "kind": "click"
+        },
+        {
+          "kind": "push",
+          "value": 10
+        }
+      ],
+      "trace": [
+        {
+          "kind": "initial",
+          "dom": "<button>click</button><em>0</em><i>pending</i>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>0</em><span>8</span>",
+          "errors": 0,
+          "opened": 1,
+          "closed": 0
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>0</em><span>8</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>1</em><span>8</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>1</em><span>9</span>",
+          "errors": 0,
+          "opened": 2,
+          "closed": 1
+        },
+        {
+          "kind": "drop",
+          "dom": "<button>click</button><em>1</em><span>9</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "click",
+          "dom": "<button>click</button><em>2</em><span>9</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "push",
+          "dom": "<button>click</button><em>2</em><span>10</span>",
+          "errors": 0,
+          "opened": 3,
+          "closed": 2
+        },
+        {
+          "kind": "disposed",
+          "dom": "",
+          "errors": 0,
+          "opened": 3,
+          "closed": 3
+        }
+      ]
+    }
+  ]
+}

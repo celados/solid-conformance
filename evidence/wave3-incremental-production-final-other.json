@@ -1,0 +1,45 @@
+{
+  "mode": "production",
+  "results": [
+    {
+      "file": "tracks/docs/late-final-default-tracks.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/router/contract.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/router/metadata.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/router/preload-metadata.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/docs/inventory.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 2,
+      "fail": 0,
+      "skip": 0
+    }
+  ]
+}

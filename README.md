@@ -1,6 +1,6 @@
 ---
 type: Reference
-title: Solid 2 conformance — Wave 2
+title: Solid 2 conformance — Wave 3
 description: Bun、系统 Chrome、HEAD 优先的 CSR／流式 SSR／hydration 与文档契约测试。
 ---
 
@@ -13,16 +13,23 @@ description: Bun、系统 Chrome、HEAD 优先的 CSR／流式 SSR／hydration �
 ```sh
 bun install --frozen-lockfile
 bun run upstream                    # 每轮刷新 next tarball，构建并链接 HEAD
-bun test                            # 默认 HEAD、development；findings 不参与默认发现
+bun run vite:upstream                # 构建文档所需的 Vite companion next 快照
+bun test                            # HEAD development；每文件一个独立、有时限的 Bun host
 bun run test:production              # 选择 production 导出和编译条件
 bun run check
 bun run regressions
-CASES=100 SEED=20261007 bun run properties
-TRANSITION_CASES=40 SEED=20261008 bun run transitions
+CASES=200 SEED=20261007 bun run properties
+TRANSITION_CASES=80 SEED=20261008 bun run transitions
+ROUTER_TRANSITION_CASES=20 SEED=20261010 bun run router:transitions
+TRANSPORT_CASES=20 SEED=20261009 bun test ./tracks/transport/transport.test.ts
+bun run coverage                    # 合并逐句证据，更新 inventory/COVERAGE
+bun test ./tracks/docs/inventory.test.ts
 bun run docs
 STRICT_FINDINGS=1 bun run docs        # 文档差异也使宽测试失败
 STRICT_FINDINGS=1 bun run transitions # 004 也使 property 失败，并进行 shrinking
 ```
+
+默认 suite 逐文件运行全部 tracks，保持 intentional 多 bundle 用例在同一个 host 内；其余文件不共享进程级 SSR 插件、观察器和事件存储。每文件外部预算默认 600000ms，可用 SUITE_FILE_BUDGET_MS 调整，超时终止该文件拥有的进程组。每文件原始日志和计数在 artifacts/suite-<mode>/ 与 suite-<mode>.json。单文件命令保留 `bun test ./tracks/...test.ts`，findings 不参与默认发现。
 
 默认测试识别已记录差异的具体失败签名，同时保存原始失败，独立 repro 保持红色。未知错误、不同失败签名、console／hydration 问题仍使测试失败。默认绿色不表示没有 finding。
 
@@ -62,14 +69,18 @@ BUILD_MODE=production bun test ./findings/008-production-refresh/repro.test.ts
 - `tracks/regressions`：五个历史 issue 家族；生产模式的 optimistic 矩阵只跑 attribution off，因为 OBSERVE 不在生产包中。
 - `tracks/properties`：小树生成、CSR／hydration 等价、settle 排列、内部或根节点 Loading／Show 包装不变、迭代器释放、收敛与 shrink。
 - `tracks/transitions`：八个转换家族、四种 primitive、两种 async source；失败、supersession、pending remount、共享／独立路由源、失败 action 和点击交错。
-- `tracks/docs`：按 RFC 文件与 statement 注册可执行断言；覆盖清单及缺口见 [COVERAGE.md](tracks/docs/COVERAGE.md)。
+- `tracks/docs`：全文逐句及代码合同 inventory；221 个完整代码块另有 source review，覆盖表与不可测试原因见 [COVERAGE.md](tracks/docs/COVERAGE.md)。类型、diagnostics、真实 Vite dev／production 集成使用独立测试。
+- `tracks/router`：next.35 的匹配、导航、preload、query/liveQuery、action/submission、redirect；`tracks/transitions/router-transitions.test.ts` 再验证 settle 顺序、SSR/hydration 与透明包装。
+- `tracks/frames`：server functions/components 的真实 HTTP wire、SSR heads、slot/ref、生命周期、取消和 reconnect。
+- `tracks/transport`：测试控制的真实 SSE server，包括慢首值、断线、重连、拒绝和 teardown。
+- `tracks/records`：公开观察通道、invocation/render/call/frame/trace 的身份与计时、真实 Chrome performance entries。
 
 回执写入 `artifacts/`。properties 可用 `RECEIPT`、transitions 可用 `TRANSITION_RECEIPT`、docs 可用 `DOC_RECEIPT` 选择输出路径；fast-check 用 `SEED` 和 `REPLAY_PATH` 重放。交付证据保存在 [evidence/](evidence/)。
 
-## 限制和下一轮
+## 交付与限制
 
-当前 reconnect 是换源／换 generation，未覆盖真实断线、重连、HTTP backpressure。SSR 只验证初始 async 数据的 hydration，然后在浏览器驱动状态转换；未验证带服务器拒绝的流式错误 takeover。转换生成器从八个事件模板抽样，并非任意操作序列，也未枚举所有事件／yield 交错。tick 是实际 event-loop turns，不是虚拟时钟；每个页面有 15 秒上限，文档单项有 2 秒上限。
+[LEDGER.md](LEDGER.md) 给出每项差异、版本矩阵及单命令 repro；[Wave 2](evidence/wave2-receipt.md) 与 [Wave 3](evidence/wave3-receipt.md) 保留轮次证据。默认绿色表示没有未知错误；已经登记的原始红例没有改写成通过断言。
 
-文档轨道尚未达到逐句全覆盖：09 类型／JSX ownership、11 实验性 server components、08 的大部分 diagnostics／attribution，以及 10 的客户端 live transport 都需要继续补测。全文 statement 总数尚未审计，不能用已登记的 141 个 case ID 声称完成率 100%。Wave 3 优先完成这些缺口，再扩展网络生命周期及任意事件序列。
+HEAD 构建与 Vite 快照都保存在当前 checkout 的 git-ignored .upstream/，不依赖已经结束的 Wave 1／2 worktree。Vite plugin 独立 next 快照的 SHA 在 .upstream/vite-built.json；Router 使用 npm next 发布线，没有声称验证 Router HEAD。系统 Chrome 的版本记录在运行时浏览器证据，既不下载内核也不替换用户的日常 Chrome profile。
 
-完整 Wave 2 回执见 [evidence/wave2-receipt.md](evidence/wave2-receipt.md)。
+按句测试不等于穷举所有树或所有 async 排列：每棵树使用全排列或有界采样，生成器与 shrinker 保留 seed／replay。Bun-only 下未实测 Node、workerd、Deno；HTTP/1.1 local wire 不代表 HTTP/2 carrier。不可到达的公开 SSR 恢复条件、缺少反事实基准的绝对成本保证和不可公开计数的内部零分配等，逐项列为 untestable，而不是算已覆盖。SolidStart 尚无可在本轮构建的 Solid 2 发布版；核心/Vite server functions/components 的实际公共 API 已独立测试。

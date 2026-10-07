@@ -1,0 +1,29 @@
+{
+  "mode": "production",
+  "results": [
+    {
+      "file": "tracks/docs/docs.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/docs/policy.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 2,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/docs/inventory.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 2,
+      "fail": 0,
+      "skip": 0
+    }
+  ]
+}

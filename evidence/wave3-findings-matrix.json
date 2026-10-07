@@ -1,0 +1,692 @@
+{
+  "head": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+  "legend": {
+    "head": "HEAD development，另标 observe",
+    "baseline": "rc.13 development，另标 production",
+    "production": "HEAD production；dev-only 检查记不适用"
+  },
+  "findings": [
+    {
+      "id": "001",
+      "status": "fixed-upstream",
+      "title": "Streamed createStore with a keyed For",
+      "path": "findings/001-streamed-store-keyed/README.md",
+      "outcomes": [
+        "绿",
+        "红",
+        "绿"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3764"
+      ]
+    },
+    {
+      "id": "002",
+      "status": "fixed-upstream",
+      "title": "Child with a setup async read",
+      "path": "findings/002-iterable-discovery/README.md",
+      "outcomes": [
+        "绿",
+        "红",
+        "绿"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3734"
+      ]
+    },
+    {
+      "id": "003",
+      "status": "fixed-upstream",
+      "title": "Native TSRX scalar setup declaration before markup",
+      "path": "findings/003-tsrx-asi/README.md",
+      "outcomes": [
+        "绿",
+        "红",
+        "绿"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3762"
+      ]
+    },
+    {
+      "id": "004",
+      "status": "confirmed",
+      "title": "Derived store drops a replacement request's rejection",
+      "path": "findings/004-derived-store-rejection/README.md",
+      "outcomes": [
+        "红",
+        "绿（开发／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/2997",
+        "https://github.com/solidjs/solid/issues/3769"
+      ]
+    },
+    {
+      "id": "005",
+      "status": "duplicate",
+      "title": "Reconcile identity wording omits the subscription boundary",
+      "path": "findings/005-keyed-reconcile-identity/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/2902"
+      ]
+    },
+    {
+      "id": "006",
+      "status": "confirmed",
+      "title": "Documented storePath helper is absent from browser solid-js",
+      "path": "findings/006-storepath-export/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3092"
+      ]
+    },
+    {
+      "id": "007",
+      "status": "confirmed",
+      "title": "Loading's documented zero-argument on accessor never rearms",
+      "path": "findings/007-loading-on-accessor/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3728",
+        "https://github.com/solidjs/solid/issues/3524"
+      ]
+    },
+    {
+      "id": "008",
+      "status": "confirmed",
+      "title": "Production refresh returns a promise that never settles",
+      "path": "findings/008-production-refresh/README.md",
+      "outcomes": [
+        "绿",
+        "绿（开发／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3738",
+        "https://github.com/solidjs/solid/issues/3178"
+      ]
+    },
+    {
+      "id": "009",
+      "status": "confirmed",
+      "title": "Nested server regions stay stale after a same-arguments refetch",
+      "path": "findings/009-frame-nested-region-stale/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/2965",
+        "https://github.com/solidjs/solid/issues/2974",
+        "https://github.com/solidjs/solid/issues/2966"
+      ]
+    },
+    {
+      "id": "010",
+      "status": "confirmed",
+      "title": "onSettled 内普通 createSignal 没有文档承诺的诊断",
+      "path": "findings/010-leaf-signal-diagnostic/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "不适用：dev 检查"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "011",
+      "status": "confirmed",
+      "title": "共享服务端组件引用的第二个挂载无法水合",
+      "path": "findings/011-frame-multisite-hydration/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "012",
+      "status": "confirmed",
+      "title": "Attribution 的公开入口自动启用 folds",
+      "path": "findings/012-attribution-audience-gate/README.md",
+      "outcomes": [
+        "红；observe 正控绿",
+        "红",
+        "不适用：生产无观测"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/2883",
+        "https://github.com/solidjs/solid/issues/3754"
+      ]
+    },
+    {
+      "id": "013",
+      "status": "confirmed",
+      "title": "pinned writable signal 的文档示例清标记后无法重新跟随 source",
+      "path": "findings/013-pinned-source-retake/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3612"
+      ]
+    },
+    {
+      "id": "014",
+      "status": "confirmed",
+      "title": "A connected live source completes after a dropped TCP connection",
+      "path": "findings/014-live-drop-completes/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3819"
+      ]
+    },
+    {
+      "id": "015",
+      "status": "confirmed",
+      "title": "untrack 不能按文档所说放行 owned-scope 写入",
+      "path": "findings/015-untrack-owned-write/README.md",
+      "outcomes": [
+        "红",
+        "红；生产绿",
+        "绿"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "016",
+      "status": "confirmed",
+      "title": "production 的 store affects 注册在 tree shaking 中丢失",
+      "path": "findings/016-production-store-affects/README.md",
+      "outcomes": [
+        "绿",
+        "绿（开发／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/2887"
+      ]
+    },
+    {
+      "id": "017",
+      "status": "confirmed",
+      "title": "Initial render failure is absent from the structured diagnostics channel",
+      "path": "findings/017-initial-render-error-record/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "正控缺 hook；非同缺陷",
+        "不适用：观测记录"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3723"
+      ]
+    },
+    {
+      "id": "018",
+      "status": "confirmed",
+      "title": "文档允许 refresh nested store，但公共类型拒绝",
+      "path": "findings/018-nested-refresh-types/README.md",
+      "outcomes": [
+        "类型红",
+        "类型红",
+        "不适用：类型"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "019",
+      "status": "confirmed",
+      "title": "action 在 await 后的写入标记为 external",
+      "path": "findings/019-action-await-origin/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红",
+        "不适用：dev 归因"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3754"
+      ]
+    },
+    {
+      "id": "020",
+      "status": "confirmed",
+      "title": "Observe frames do not report a missing slot end marker",
+      "path": "findings/020-observe-frame-corruption/README.md",
+      "outcomes": [
+        "dev 绿／observe 红",
+        "dev 绿／observe 红",
+        "不适用：观测检查"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "021",
+      "status": "confirmed",
+      "title": "Recovery documentation names the wrong server boundary outcome",
+      "path": "findings/021-recovery-boundary-outcome/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红",
+        "不适用：观测记录"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "022",
+      "status": "confirmed",
+      "title": "action 中 refresh 返回自身 optimistic guess",
+      "path": "findings/022-refresh-optimistic-authority/README.md",
+      "outcomes": [
+        "红",
+        "绿（开发／生产）",
+        "红"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "023",
+      "status": "confirmed",
+      "title": "返回 async helper 的诊断排除声明过窄",
+      "path": "findings/023-returned-helper-diagnostic/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "绿"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "024",
+      "status": "confirmed",
+      "title": "A lone typed array does not require the documented rich-arguments opt-in",
+      "path": "findings/024-single-typed-array-encoding/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "025",
+      "status": "confirmed",
+      "title": "async landing 的 fan-out 诊断错误标为普通写入",
+      "path": "findings/025-async-fanout-classification/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红",
+        "绿"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "026",
+      "status": "confirmed",
+      "title": "Cookie parser 丢失合法的 __proto__ 名称",
+      "path": "findings/026-cookie-proto-key/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3239"
+      ]
+    },
+    {
+      "id": "027",
+      "status": "confirmed",
+      "title": "Server-write warnings are development-only despite the all-builds claim",
+      "path": "findings/027-server-write-all-builds/README.md",
+      "outcomes": [
+        "dev 绿",
+        "dev 绿／生产红",
+        "红"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "028",
+      "status": "confirmed",
+      "title": "artifact 格式版本说明落后",
+      "path": "findings/028-artifact-format-version/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红",
+        "不适用：artifact"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "029",
+      "status": "confirmed",
+      "title": "latest 驱动的 Loading 在共享源落地后仍保留 fallback",
+      "path": "findings/029-latest-loading-convergence/README.md",
+      "outcomes": [
+        "红",
+        "绿（开发／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/2706",
+        "https://github.com/solidjs/solid/issues/2829",
+        "https://github.com/solidjs/solid/issues/3524"
+      ]
+    },
+    {
+      "id": "030",
+      "status": "confirmed",
+      "title": "文档把 effect error handler 写成第三个参数",
+      "path": "findings/030-effect-error-signature/README.md",
+      "outcomes": [
+        "类型红",
+        "类型红",
+        "不适用：类型"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "031",
+      "status": "confirmed",
+      "title": "Direct invocation error hook tier",
+      "path": "findings/031-direct-error-hook-tier/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "032",
+      "status": "confirmed",
+      "title": "同步 asset resolver 异常终止 SSR",
+      "path": "findings/032-sync-lazy-resolver/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "红"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "033",
+      "status": "confirmed",
+      "title": "Symbol 的服务端 insert 缺少 documented warning",
+      "path": "findings/033-symbol-insert-diagnostic/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "绿"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "034",
+      "status": "confirmed",
+      "title": "相邻文本使不可渲染 object 从 skip 变为 DOM 异常",
+      "path": "findings/034-mixed-insert-object/README.md",
+      "outcomes": [
+        "红",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "035",
+      "status": "confirmed",
+      "title": "Dying response leaves an iterator pull pending",
+      "path": "findings/035-decoder-iterator-body-death/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "036",
+      "status": "confirmed",
+      "title": "Conditional GET replaces cached data's format with Void",
+      "path": "findings/036-conditional-cache-format/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3101",
+        "https://github.com/solidjs/solid/issues/3134"
+      ]
+    },
+    {
+      "id": "038",
+      "status": "confirmed",
+      "title": "Per-call reset text contradicts consumption-site mount identity",
+      "path": "findings/038-frame-call-state-doc-reset/README.md",
+      "outcomes": [
+        "红",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "039",
+      "status": "confirmed",
+      "title": "039-missing-resource-timing-fallback",
+      "path": "findings/039-missing-resource-timing-fallback/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "dev 红／生产绿",
+        "绿"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "040",
+      "status": "confirmed",
+      "title": "040-initial-binding-console",
+      "path": "findings/040-initial-binding-console/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "不适用：dev console"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "041",
+      "status": "confirmed",
+      "title": "Async dynamic 的 source callback 仍执行一次 hydration tracking",
+      "path": "findings/041-dynamic-source-tracking/README.md",
+      "outcomes": [
+        "红",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "042",
+      "status": "confirmed",
+      "title": "非字符串 preload crossorigin 没有诊断",
+      "path": "findings/042-malformed-preload-crossorigin/README.md",
+      "outcomes": [
+        "红",
+        "dev 红／生产绿",
+        "绿"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "044",
+      "status": "confirmed",
+      "title": "literal spread children 的 hydration id 顺序不一致",
+      "path": "findings/044-literal-spread-hydration/README.md",
+      "outcomes": [
+        "红",
+        "dev 红／生产绿",
+        "绿"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3313"
+      ]
+    },
+    {
+      "id": "045",
+      "status": "confirmed",
+      "title": "SERVER_WRITE 段落将 optimistic no-op 写成落地数据",
+      "path": "findings/045-server-optimistic-write-wording/README.md",
+      "outcomes": [
+        "红",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "046",
+      "status": "confirmed",
+      "title": "Held derived store 的外部 draft 写入读取 pending seed",
+      "path": "findings/046-held-derived-store-seed/README.md",
+      "outcomes": [
+        "红",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3612"
+      ]
+    },
+    {
+      "id": "047",
+      "status": "confirmed",
+      "title": "Migration 代码把 derived store 当作 accessor 调用",
+      "path": "findings/047-derived-store-accessor-example/README.md",
+      "outcomes": [
+        "运行时／类型红",
+        "运行时／类型红（开发／生产）",
+        "红"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "048",
+      "status": "confirmed",
+      "title": "首次 Loading 读取 held plain signal 时显示旧值",
+      "path": "findings/048-first-loading-held-signal/README.md",
+      "outcomes": [
+        "红",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "049",
+      "status": "confirmed",
+      "title": "Aborted document closes its live-hole channel twice",
+      "path": "findings/049-document-live-channel-abort/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红（开发／observe／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3768"
+      ]
+    },
+    {
+      "id": "050",
+      "status": "duplicate",
+      "title": "编译出的字面量原生 handler 没有 interaction 归因",
+      "path": "findings/050-literal-handler-attribution/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红",
+        "不适用：dev 归因"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3754"
+      ]
+    },
+    {
+      "id": "051",
+      "status": "confirmed",
+      "title": "未命名节点的诊断名称不回退到 owner id",
+      "path": "findings/051-unnamed-attribution-owner-id/README.md",
+      "outcomes": [
+        "红",
+        "红",
+        "不适用：dev 名称"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3063"
+      ]
+    },
+    {
+      "id": "052",
+      "status": "confirmed",
+      "title": "transparent 在 SSR 也会跳过 hydration 源记录与 slot",
+      "path": "findings/052-transparent-ssr-slot/README.md",
+      "outcomes": [
+        "红",
+        "红（开发／生产）",
+        "红"
+      ],
+      "upstream": [
+        "https://github.com/solidjs/solid/issues/3012",
+        "https://github.com/solidjs/solid/issues/3609"
+      ]
+    },
+    {
+      "id": "053",
+      "status": "confirmed",
+      "title": "Live-send 示例 await 后需要先恢复 action 上下文",
+      "path": "findings/053-await-send-until-context/README.md",
+      "outcomes": [
+        "红",
+        "绿（开发／生产）",
+        "红"
+      ],
+      "upstream": []
+    },
+    {
+      "id": "054",
+      "status": "confirmed",
+      "title": "已到达的服务端拒绝仍计入恢复等待时间",
+      "path": "findings/054-prearrived-recovery-wait/README.md",
+      "outcomes": [
+        "红（observe 也红）",
+        "红",
+        "不适用：观测记录"
+      ],
+      "upstream": []
+    }
+  ]
+}

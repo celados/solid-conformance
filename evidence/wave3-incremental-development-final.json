@@ -1,0 +1,53 @@
+{
+  "mode": "development",
+  "results": [
+    {
+      "file": "tracks/frames/cancel.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 3,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/frames/binding.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 6,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/frames/recovery.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 3,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/router/preload-metadata.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/frames/death-boundary.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 3,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/docs/inventory.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 2,
+      "fail": 0,
+      "skip": 0
+    }
+  ]
+}

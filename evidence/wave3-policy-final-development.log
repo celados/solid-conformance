@@ -1,0 +1,9 @@
+bun test v1.4.2 (744846f84)
+
+tracks/docs/policy.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712","directory":"/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"},"buildMode":"development","solid":"2.0.0-rc.13"}
+
+ 2 pass
+ 0 fail
+ 325 expect() calls
+Ran 2 tests across 1 file. [33.24s]

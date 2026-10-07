@@ -1,0 +1,393 @@
+{
+  "runtime": {
+    "target": "head",
+    "upstream": {
+      "ref": "next",
+      "revision": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+      "directory": "/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"
+    },
+    "buildMode": "development",
+    "solid": "2.0.0-rc.13"
+  },
+  "spine": 9,
+  "generated": 20,
+  "posts": 6,
+  "browserRuns": 58,
+  "results": [
+    {
+      "scenario": "preload",
+      "mode": "csr",
+      "dom": "<a aria-current=\"page\" data-active=\"\" href=\"/item/1\">next</a><em>0</em><small>0</small><output>/item/1</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>7</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [],
+      "serverErrors": [],
+      "contracts": 6
+    },
+    {
+      "scenario": "preload",
+      "mode": "hydrate",
+      "dom": "<a aria-current=\"page\" data-active=\"\" href=\"/item/1\">next</a><em>0</em><small>0</small><output>/item/1</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>7</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverErrors": [],
+      "contracts": 6
+    },
+    {
+      "scenario": "supersession",
+      "mode": "csr",
+      "dom": "<a href=\"/item/1\">next</a><em>0</em><small>0</small><output>/item/2</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>7</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [],
+      "serverErrors": [],
+      "contracts": 4
+    },
+    {
+      "scenario": "supersession",
+      "mode": "hydrate",
+      "dom": "<a href=\"/item/1\">next</a><em>0</em><small>0</small><output>/item/2</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>7</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverErrors": [],
+      "contracts": 4
+    },
+    {
+      "scenario": "action-failure",
+      "mode": "csr",
+      "dom": "<a href=\"/item/1\">next</a><em>0</em><small>1</small><output>/</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>0</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [],
+      "serverErrors": [],
+      "contracts": 9
+    },
+    {
+      "scenario": "action-failure",
+      "mode": "hydrate",
+      "dom": "<a href=\"/item/1\">next</a><em>0</em><small>1</small><output>/</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>0</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverErrors": [],
+      "contracts": 9
+    },
+    {
+      "scenario": "action-success",
+      "mode": "csr",
+      "dom": "<a href=\"/item/1\">next</a><em>0</em><small>1</small><output>/</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>7</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [],
+      "serverErrors": [],
+      "contracts": 10
+    },
+    {
+      "scenario": "action-success",
+      "mode": "hydrate",
+      "dom": "<a href=\"/item/1\">next</a><em>0</em><small>1</small><output>/</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>7</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverErrors": [],
+      "contracts": 10
+    },
+    {
+      "scenario": "redirect",
+      "mode": "csr",
+      "dom": "<a href=\"/item/1\">next</a><em>0</em><small>0</small><output>/item/0</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>0</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 2,
+          "closed": 2
+        }
+      ],
+      "serverStats": [],
+      "serverErrors": [],
+      "contracts": 4
+    },
+    {
+      "scenario": "redirect",
+      "mode": "hydrate",
+      "dom": "<a href=\"/item/1\">next</a><em>0</em><small>0</small><output>/item/0</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>0</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 2,
+          "closed": 2
+        }
+      ],
+      "serverStats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverErrors": [],
+      "contracts": 4
+    },
+    {
+      "scenario": "live",
+      "mode": "csr",
+      "dom": "<a href=\"/item/1\">next</a><em>0</em><small>0</small><output>/</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>14</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [],
+      "serverErrors": [],
+      "contracts": 4
+    },
+    {
+      "scenario": "live",
+      "mode": "hydrate",
+      "dom": "<a href=\"/item/1\">next</a><em>0</em><small>0</small><output>/</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>14</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverErrors": [],
+      "contracts": 4
+    },
+    {
+      "scenario": "query-error",
+      "mode": "csr",
+      "dom": "<a aria-current=\"page\" data-active=\"\" href=\"/item/1\">next</a><em>0</em><small>0</small><output>/item/1</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><b>query-error</b>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [],
+      "serverErrors": [],
+      "contracts": 4
+    },
+    {
+      "scenario": "query-error",
+      "mode": "hydrate",
+      "dom": "<a aria-current=\"page\" data-active=\"\" href=\"/item/1\">next</a><em>0</em><small>0</small><output>/item/1</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><b>query-error</b>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverErrors": [],
+      "contracts": 4
+    },
+    {
+      "scenario": "form-success",
+      "mode": "csr",
+      "dom": "<a href=\"/item/1\">next</a><em>0</em><small>1</small><output>/</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>7</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [],
+      "serverErrors": [],
+      "contracts": 12
+    },
+    {
+      "scenario": "form-success",
+      "mode": "hydrate",
+      "dom": "<a href=\"/item/1\">next</a><em>0</em><small>1</small><output>/</output><form action=\"https://action/wave3-mutation?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>7</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverErrors": [],
+      "contracts": 12
+    },
+    {
+      "scenario": "server-action",
+      "mode": "csr",
+      "dom": "<a href=\"/item/1\">next</a><em>0</em><small>1</small><output>/</output><form action=\"/_server/wave3-router-action?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>0</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [],
+      "serverErrors": [],
+      "contracts": 9
+    },
+    {
+      "scenario": "server-action",
+      "mode": "hydrate",
+      "dom": "<a href=\"/item/1\">next</a><em>0</em><small>1</small><output>/</output><form action=\"/_server/wave3-router-action?args=%5B7%5D\" method=\"post\"><button type=\"submit\">save</button></form><span>0</span>",
+      "messages": [],
+      "stats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverStats": [
+        {
+          "opened": 1,
+          "closed": 1
+        }
+      ],
+      "serverErrors": [],
+      "contracts": 9
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    },
+    {
+      "contracts": 0
+    }
+  ]
+}

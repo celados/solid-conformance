@@ -1,0 +1,2075 @@
+{
+  "head": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+  "method": "Latest per-file checks combine initial complete suite and explicit incremental reruns; raw initial failures are retained. Multitier frame files execute each artifact internally.",
+  "development": {
+    "files": 93,
+    "tracks": {
+      "docs": {
+        "files": 36,
+        "pass": 45,
+        "fail": 0,
+        "skip": 0
+      },
+      "frames": {
+        "files": 36,
+        "pass": 97,
+        "fail": 0,
+        "skip": 0
+      },
+      "harness": {
+        "files": 2,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0
+      },
+      "properties": {
+        "files": 1,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      "records": {
+        "files": 6,
+        "pass": 6,
+        "fail": 0,
+        "skip": 0
+      },
+      "regressions": {
+        "files": 1,
+        "pass": 5,
+        "fail": 0,
+        "skip": 0
+      },
+      "router": {
+        "files": 8,
+        "pass": 8,
+        "fail": 0,
+        "skip": 0
+      },
+      "transitions": {
+        "files": 2,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0
+      },
+      "transport": {
+        "files": 1,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      }
+    },
+    "pass": 167,
+    "fail": 0,
+    "results": [
+      {
+        "file": "tracks/docs/attribution-isolation.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 101.91458399999999,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-attribution-isolation.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/bootstrap-order.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/docs/clientonly-compiler.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 14.959333,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-clientonly-compiler.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/compiler-addressability.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 189.279875,
+        "pass": 4,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-compiler-addressability.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/console-binding.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 11060.891125,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-console-binding.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/console.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 33.59791700000096,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-console.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/cookie-bundle.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 31.083792000001267,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-cookie-bundle.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/cost-overlay.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 11827.12825,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-cost-overlay.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/diagnostics-package.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 22.115458000000217,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-diagnostics-package.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/docs.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/docs/graph-gc.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 10247.387125000001,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-graph-gc.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/inventory.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/docs/late-final-default-tracks.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/docs/late-final-engine-only.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 10753.698040999996,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-late-final-engine-only.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/late-final-native.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/docs/late-final-no-engine.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/docs/late-final-performance.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 10462.736417000007,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-late-final-performance.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/late-final-rpc.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 9463.627166999999,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-late-final-rpc.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/late-final-server.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 47.066124999997555,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-late-final-server.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/late-final.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 9706.328957999998,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-late-final.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/lazy-evidence.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8482.142332999996,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-lazy-evidence.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/lowercase.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8093.102291999996,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-lowercase.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/owner-path-observe.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 7990.349457999982,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-owner-path-observe.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/policy.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/docs/primitive-diagnostics.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 17469.080917000014,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-primitive-diagnostics.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/reveal-stream.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8670.574250000005,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-reveal-stream.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/root-responsiveness.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 9040.385708999995,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-root-responsiveness.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/rpc-tracking.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/docs/session-recipe.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 18.042583000002196,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-session-recipe.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/types-custom.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 597.8580829999992,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-types-custom.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/types-http.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 493.3332919999957,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-types-http.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/types.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 458.3889999999956,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-types.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/unscoped.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8804.210707999999,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-unscoped.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/vite-authored.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 24287.793416,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-vite-authored.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/vite-components.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 19525.46212499999,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-vite-components.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/vite-performance.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 561.7811670000083,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-docs-vite-performance.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/applied-events.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 27921.25775000002,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-applied-events.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/binding.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 6,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/frames/boundary-records.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/frames/cancel.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/frames/client-codec.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 31957.903374999994,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-client-codec.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/codec-edge.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 83.54570899996907,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-codec-edge.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/collapsed.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8839.472875000036,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-collapsed.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/compiler.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 15.692999999970198,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-compiler.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/death-boundary.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/frames/directive-get.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 15.742542000021785,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-directive-get.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/frame-record-unions.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/frames/frames.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 12086.181166999973,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-frames.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/invoke-types.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 270.89670799998567,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-invoke-types.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-adoption.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 25120.669790999964,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-live-adoption.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-chaos.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 280.23574999999255,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-live-chaos.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-component-drop.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/frames/live-component.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/frames/live-connection-count.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 24596.01120800001,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-live-connection-count.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-hidden.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 6942.471250000002,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-live-hidden.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-hooks.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/frames/live-loop.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 39975.126624999975,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-live-loop.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-scopes.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 27014.599832999986,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-live-scopes.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-wire.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 60071.985999999975,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-live-wire.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/nested-live.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 27526.22216699994,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-nested-live.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/recovery.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/frames/router.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 13944.870208999957,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-router.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/rpc-docs.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 569.0338749999646,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-rpc-docs.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/server-diagnostics.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/frames/server-hooks.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 552.4275419999612,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-server-hooks.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/shared-source.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 28925.612500000047,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-shared-source.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/start-public.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 683.8164169999072,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-start-public.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/strict-fill.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 11196.941708000028,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-strict-fill.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/superseded-call.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/frames/transport-contracts.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 25212.954541999963,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-transport-contracts.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/undeclared-source.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 16087.983750000014,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-undeclared-source.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/zero-bytes.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 94.72970799996983,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-frames-zero-bytes.test.ts.log"
+      },
+      {
+        "file": "tracks/harness/render.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 110.94087499997113,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-harness-render.test.ts.log"
+      },
+      {
+        "file": "tracks/harness/timing.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 12.551834000041708,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-harness-timing.test.ts.log"
+      },
+      {
+        "file": "tracks/properties/properties.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 243669.7238749999,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-properties-properties.test.ts.log"
+      },
+      {
+        "file": "tracks/records/input.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8162.080624999944,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-records-input.test.ts.log"
+      },
+      {
+        "file": "tracks/records/interaction.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 9054.22112500004,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-records-interaction.test.ts.log"
+      },
+      {
+        "file": "tracks/records/performance.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 9244.581708999933,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-records-performance.test.ts.log"
+      },
+      {
+        "file": "tracks/records/records.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8455.147499999963,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-records-records.test.ts.log"
+      },
+      {
+        "file": "tracks/records/server-performance.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8796.35412500007,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-records-server-performance.test.ts.log"
+      },
+      {
+        "file": "tracks/records/trace.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 82.29083400010131,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-records-trace.test.ts.log"
+      },
+      {
+        "file": "tracks/regressions/regressions.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 42445.59287500009,
+        "pass": 5,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-regressions-regressions.test.ts.log"
+      },
+      {
+        "file": "tracks/router/contract.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/router/invocation.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 38.81691699998919,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-router-invocation.test.ts.log"
+      },
+      {
+        "file": "tracks/router/matching.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 614.9536249999655,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-router-matching.test.ts.log"
+      },
+      {
+        "file": "tracks/router/metadata.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/router/postmount.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 10646.294999999925,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-router-postmount.test.ts.log"
+      },
+      {
+        "file": "tracks/router/preload-metadata.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/router/reload.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 9198.70933299989,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-router-reload.test.ts.log"
+      },
+      {
+        "file": "tracks/router/router.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 35614.95416700002,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-router-router.test.ts.log"
+      },
+      {
+        "file": "tracks/transitions/router-transitions.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 75157.59233299992,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-transitions-router-transitions.test.ts.log"
+      },
+      {
+        "file": "tracks/transitions/transitions.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 113147.32816600008,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-transitions-transitions.test.ts.log"
+      },
+      {
+        "file": "tracks/transport/transport.test.ts",
+        "mode": "development",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 29658.662959000096,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-development/tracks-transport-transport.test.ts.log"
+      }
+    ]
+  },
+  "production": {
+    "files": 93,
+    "tracks": {
+      "docs": {
+        "files": 36,
+        "pass": 45,
+        "fail": 0,
+        "skip": 0
+      },
+      "frames": {
+        "files": 36,
+        "pass": 97,
+        "fail": 0,
+        "skip": 0
+      },
+      "harness": {
+        "files": 2,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0
+      },
+      "properties": {
+        "files": 1,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      "records": {
+        "files": 6,
+        "pass": 6,
+        "fail": 0,
+        "skip": 0
+      },
+      "regressions": {
+        "files": 1,
+        "pass": 5,
+        "fail": 0,
+        "skip": 0
+      },
+      "router": {
+        "files": 8,
+        "pass": 8,
+        "fail": 0,
+        "skip": 0
+      },
+      "transitions": {
+        "files": 2,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0
+      },
+      "transport": {
+        "files": 1,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      }
+    },
+    "pass": 167,
+    "fail": 0,
+    "results": [
+      {
+        "file": "tracks/docs/attribution-isolation.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 101.37599999999999,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-attribution-isolation.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/bootstrap-order.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8202.295333,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-bootstrap-order.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/clientonly-compiler.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 15.213042000001224,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-clientonly-compiler.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/compiler-addressability.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 230.75575000000026,
+        "pass": 4,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-compiler-addressability.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/console-binding.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8172.873875000001,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-console-binding.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/console.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 33.486667000001034,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-console.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/cookie-bundle.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 34.44829199999731,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-cookie-bundle.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/cost-overlay.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 10633.974166,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-cost-overlay.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/diagnostics-package.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 27.992707999997947,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-diagnostics-package.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/docs.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/docs/graph-gc.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8848.767707999992,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-graph-gc.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/inventory.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/docs/late-final-default-tracks.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/docs/late-final-engine-only.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8912.165792,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-late-final-engine-only.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/late-final-native.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 9557.446458999999,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-late-final-native.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/late-final-no-engine.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8778.646999999997,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-late-final-no-engine.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/late-final-performance.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8415.086875000008,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-late-final-performance.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/late-final-rpc.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8419.468540999995,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-late-final-rpc.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/late-final-server.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 39.193874999997206,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-late-final-server.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/late-final.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8379.979707999999,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-late-final.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/lazy-evidence.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8148.359207999994,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-lazy-evidence.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/lowercase.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8422.819542000012,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-lowercase.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/owner-path-observe.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8551.154666000017,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-owner-path-observe.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/policy.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/docs/primitive-diagnostics.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 17777.627624999994,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-primitive-diagnostics.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/reveal-stream.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8678.957332999998,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-reveal-stream.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/root-responsiveness.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8668.414541000006,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-root-responsiveness.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/rpc-tracking.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8809.791582999984,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-rpc-tracking.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/session-recipe.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 18.619292000017595,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-session-recipe.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/types-custom.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 590.7991249999905,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-types-custom.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/types-http.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 460.7923329999903,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-types-http.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/types.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 460.55695900000865,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-types.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/unscoped.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8634.298999999999,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-unscoped.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/vite-authored.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 18628.842542,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-vite-authored.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/vite-components.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 19327.795333000016,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-vite-components.test.ts.log"
+      },
+      {
+        "file": "tracks/docs/vite-performance.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 574.9295840000268,
+        "pass": 2,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-docs-vite-performance.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/applied-events.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 24460.249167,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-applied-events.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/binding.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 6,
+        "fail": 0,
+        "skip": 0,
+        "proof": "One file run explicitly loops development, observe and production."
+      },
+      {
+        "file": "tracks/frames/boundary-records.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "proof": "One file run explicitly loops development, observe and production."
+      },
+      {
+        "file": "tracks/frames/cancel.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "proof": "One file run explicitly loops development, observe and production."
+      },
+      {
+        "file": "tracks/frames/client-codec.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 26932.124375000014,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-client-codec.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/codec-edge.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 82.5916669999715,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-codec-edge.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/collapsed.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8289.015542000008,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-collapsed.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/compiler.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 14.689333999995142,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-compiler.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/death-boundary.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "proof": "One file run explicitly loops development, observe and production."
+      },
+      {
+        "file": "tracks/frames/directive-get.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 15.850625000020955,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-directive-get.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/frame-record-unions.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "proof": "One file run explicitly loops development, observe and production."
+      },
+      {
+        "file": "tracks/frames/frames.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 12590.425875000015,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-frames.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/invoke-types.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 278.0322080000187,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-invoke-types.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-adoption.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 26315.523125000007,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-live-adoption.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-chaos.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 282.4078750000335,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-live-chaos.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-component-drop.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 29948.934750000015,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-live-component-drop.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-component.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 27296.64504199999,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-live-component.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-connection-count.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 28989.19991699996,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-live-connection-count.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-hidden.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 6952.330458000011,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-live-hidden.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-hooks.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 26760.227249999996,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-live-hooks.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-loop.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 39820.50112500007,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-live-loop.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-scopes.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 28366.37262499996,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-live-scopes.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/live-wire.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 60112.95429200004,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-live-wire.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/nested-live.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 30786.90095899999,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-nested-live.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/recovery.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "proof": "One file run explicitly loops development, observe and production."
+      },
+      {
+        "file": "tracks/frames/router.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 13510.533000000054,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-router.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/rpc-docs.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 580.173833000008,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-rpc-docs.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/server-diagnostics.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "proof": "One file run explicitly loops development, observe and production."
+      },
+      {
+        "file": "tracks/frames/server-hooks.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 563.1821670000209,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-server-hooks.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/shared-source.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 33154.62370899995,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-shared-source.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/start-public.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 940.8704999999609,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-start-public.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/strict-fill.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 10752.962042000028,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-strict-fill.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/superseded-call.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 32339.36808299995,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-superseded-call.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/transport-contracts.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 32089.28933300008,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-transport-contracts.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/undeclared-source.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 16136.963709000032,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-undeclared-source.test.ts.log"
+      },
+      {
+        "file": "tracks/frames/zero-bytes.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 99.16395800001919,
+        "pass": 3,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-frames-zero-bytes.test.ts.log"
+      },
+      {
+        "file": "tracks/harness/render.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 108.69083300000057,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-harness-render.test.ts.log"
+      },
+      {
+        "file": "tracks/harness/timing.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 13.028874999959953,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-harness-timing.test.ts.log"
+      },
+      {
+        "file": "tracks/properties/properties.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 239204.66566699988,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-properties-properties.test.ts.log"
+      },
+      {
+        "file": "tracks/records/input.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8853.249249999877,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-records-input.test.ts.log"
+      },
+      {
+        "file": "tracks/records/interaction.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 8164.689749999903,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-records-interaction.test.ts.log"
+      },
+      {
+        "file": "tracks/records/performance.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 7817.86400000006,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-records-performance.test.ts.log"
+      },
+      {
+        "file": "tracks/records/records.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 7239.878666999983,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-records-records.test.ts.log"
+      },
+      {
+        "file": "tracks/records/server-performance.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 7302.50462500006,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-records-server-performance.test.ts.log"
+      },
+      {
+        "file": "tracks/records/trace.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 72.11274999985471,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-records-trace.test.ts.log"
+      },
+      {
+        "file": "tracks/regressions/regressions.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 32704.56520900014,
+        "pass": 5,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-regressions-regressions.test.ts.log"
+      },
+      {
+        "file": "tracks/router/contract.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/router/invocation.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 29.9867090000771,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-router-invocation.test.ts.log"
+      },
+      {
+        "file": "tracks/router/matching.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 516.2204170001205,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-router-matching.test.ts.log"
+      },
+      {
+        "file": "tracks/router/metadata.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/router/postmount.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 7629.297332999995,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-router-postmount.test.ts.log"
+      },
+      {
+        "file": "tracks/router/preload-metadata.test.ts",
+        "code": 0,
+        "timedOut": false,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "file": "tracks/router/reload.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 7391.557833000086,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-router-reload.test.ts.log"
+      },
+      {
+        "file": "tracks/router/router.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 33487.83579099993,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-router-router.test.ts.log"
+      },
+      {
+        "file": "tracks/transitions/router-transitions.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 73162.96837500017,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-transitions-router-transitions.test.ts.log"
+      },
+      {
+        "file": "tracks/transitions/transitions.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 116518.43333300017,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-transitions-transitions.test.ts.log"
+      },
+      {
+        "file": "tracks/transport/transport.test.ts",
+        "mode": "production",
+        "exitCode": 0,
+        "timedOut": false,
+        "ms": 26067.87945899996,
+        "pass": 1,
+        "fail": 0,
+        "skip": 0,
+        "log": "/Users/dio/Projects/solid-conformance-wave3/artifacts/suite-production/tracks-transport-transport.test.ts.log"
+      }
+    ]
+  }
+}

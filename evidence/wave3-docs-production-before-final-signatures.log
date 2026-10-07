@@ -1,0 +1,177 @@
+bun test v1.4.2 (744846f84)
+
+tracks/docs/docs.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712","directory":"/Users/dio/Projects/solid-conformance/.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712"},"buildMode":"production","solid":"2.0.0-rc.13"}
+RequestEvent is missing. This is most likely due to accessing `getRequestEvent` non-managed async scope in a partially polyfilled environment. Try moving it above all `await` calls.
+Doc cases: 477 [
+  {
+    "id": "05/transparent-ssr-ignored",
+    "file": "05-async-data.md",
+    "statement": "SSR allocates the same hydration slots whether a source declares transparent true or false.",
+    "error": "Error: Expected \"1000\", received \"0000\"",
+    "platform": "server"
+  },
+  {
+    "id": "12/cookie-proto-key",
+    "file": "12-ssr-http.md",
+    "statement": "Any valid cookie name round-trips, including __proto__.",
+    "error": "Error: Expected true, received false",
+    "platform": "server"
+  },
+  {
+    "id": "04/keyed-reconcile",
+    "file": "04-stores.md",
+    "statement": "reconcile preserves identity for unchanged entries.",
+    "error": "Error: Expected true, received false",
+    "platform": "client"
+  },
+  {
+    "id": "04/store-path",
+    "file": "04-stores.md",
+    "statement": "storePath supports indices, filters, ranges and a delete sentinel.",
+    "error": "TypeError: storePath2 is not a function",
+    "platform": "client"
+  },
+  {
+    "id": "05/refresh-delivery",
+    "file": "05-async-data.md",
+    "statement": "Accessor targets resolve with the settled value.",
+    "error": "Error: Statement did not settle within 1500ms",
+    "platform": "client"
+  },
+  {
+    "id": "05/refresh-quiet",
+    "file": "05-async-data.md",
+    "statement": "A bare refresh is quiet: isPending stays false.",
+    "error": "Error: Statement did not settle within 1500ms",
+    "platform": "client"
+  },
+  {
+    "id": "05/refresh-quiescence",
+    "file": "05-async-data.md",
+    "statement": "If a second refresh supersedes this one mid-flight the promise waits for whatever finally lands.",
+    "error": "Error: Statement did not settle within 1500ms",
+    "platform": "client"
+  },
+  {
+    "id": "05/loading-on-constant",
+    "file": "05-async-data.md",
+    "statement": "The value returned by on is never compared; only the notification matters.",
+    "error": "Error: Expected \"fallback\", received \"1\"",
+    "platform": "client"
+  },
+  {
+    "id": "05/loading-on-frame-comments-first-ahead",
+    "file": "05-async-data.md",
+    "statement": "Loading on fallback commits with the held shell; comments arriving before the shell avoid fallback, children stay mounted, and latest(on) explicitly displays fallback ahead.",
+    "error": "Error: Expected \"1Bb\", received \"1Bspinner\"",
+    "platform": "client"
+  },
+  {
+    "id": "02/held-derive-external-write-store",
+    "file": "02-signals-derived-ownership.md",
+    "statement": "An external write joins a held derivation as prev rather than replacing its derived result; the revealed frame is derived from the changed input.",
+    "error": "Error: Expected \"103:103\", received \"105:105\"",
+    "platform": "client"
+  },
+  {
+    "id": "12/cookie-proto-key",
+    "file": "12-ssr-http.md",
+    "statement": "Any valid cookie name round-trips, including __proto__.",
+    "error": "Error: Expected true, received false",
+    "platform": "client"
+  },
+  {
+    "id": "02/pinned-derived-signal",
+    "file": "02-signals-derived-ownership.md",
+    "statement": "A local flag preserved by the derive keeps a manual value until the flag is cleared, including a same-update source change.",
+    "error": "Error: Expected {\"n\":3,\"pinned\":false}, received {\"n\":99,\"pinned\":false}",
+    "platform": "client"
+  },
+  {
+    "id": "06/affects-key-granularity",
+    "file": "06-actions-optimistic.md",
+    "statement": "affects(record,key) marks only that slot pending and keeps siblings readable and not pending.",
+    "error": "Error: Expected true, received false",
+    "platform": "client"
+  },
+  {
+    "id": "06/affects-nested-record",
+    "file": "06-actions-optimistic.md",
+    "statement": "affects(nested record) marks descendants pending but not siblings.",
+    "error": "Error: Expected true, received false",
+    "platform": "client"
+  },
+  {
+    "id": "06/refresh-staged-authority",
+    "file": "06-actions-optimistic.md",
+    "statement": "An action awaiting refresh receives authoritative staged data rather than its own optimistic override; until can read that staged truth without deadlock.",
+    "error": "Error: Expected 2, received 99",
+    "platform": "client"
+  },
+  {
+    "id": "06/until-staged-source",
+    "file": "06-actions-optimistic.md",
+    "statement": "until inside an action observes authoritative data staged by the action refresh while the action continues holding.",
+    "error": "Error: Refresh completion stalled before until (finding008)",
+    "platform": "client"
+  },
+  {
+    "id": "06/until-arrival-refetch",
+    "file": "06-actions-optimistic.md",
+    "statement": "until accepts authoritative live landings, other action commits beneath its hold, and the action own staged refetch; its own optimistic row never confirms it.",
+    "error": "Error: Own staged refetch did not deliver (finding008)",
+    "platform": "client"
+  },
+  {
+    "id": "05/optimistic-store-granular-refresh-race",
+    "file": "05-async-data.md",
+    "statement": "An optimistic store reconciles refresh data without notifying unchanged fields; superseded refresh arrivals cannot overwrite the final truth after the action overlay ends.",
+    "error": "Error: Statement did not settle within 2000ms",
+    "platform": "client"
+  }
+]
+30 | 			'05/refresh-quiet': /did not settle within/,
+31 | 			'05/refresh-quiescence': /did not settle within/,
+32 | 		}
+33 | 		for (const result of results) if (result.error && known.has(result.id)) expect(result.error).toMatch(signatures[result.id]!)
+34 | 		// Raw failures stay in the receipt and findings/005–007 remain red.
+35 | 		expect(results.filter(r=>r.error && (process.env.STRICT_FINDINGS || !known.has(r.id)))).toEqual([])
+                                                                                               ^
+error: expect(received).toEqual(expected)
+
+- []
++ [
++   {
++     "error": "Error: Expected "1000", received "0000"",
++     "file": "05-async-data.md",
++     "id": "05/transparent-ssr-ignored",
++     "platform": "server",
++     "statement": "SSR allocates the same hydration slots whether a source declares transparent true or false.",
++   },
++   {
++     "error": "Error: Own staged refetch did not deliver (finding008)",
++     "file": "06-actions-optimistic.md",
++     "id": "06/until-arrival-refetch",
++     "platform": "client",
++     "statement": "until accepts authoritative live landings, other action commits beneath its hold, and the action own staged refetch; its own optimistic row never confirms it.",
++   },
++   {
++     "error": "Error: Statement did not settle within 2000ms",
++     "file": "05-async-data.md",
++     "id": "05/optimistic-store-granular-refresh-race",
++     "platform": "client",
++     "statement": "An optimistic store reconciles refresh data without notifying unchanged fields; superseded refresh arrivals cannot overwrite the final truth after the action overlay ends.",
++   },
++ ]
+
+- Expected  - 1
++ Received  + 23
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance-wave3/tracks/docs/docs.test.ts:35:91)
+(fail) RFC chapters: behavioral statements execute in the selected client/server artifacts [32522.47ms]
+
+ 0 pass
+ 1 fail
+ 17 expect() calls
+Ran 1 test across 1 file. [32.68s]

@@ -1,0 +1,141 @@
+{
+  "mode": "development",
+  "results": [
+    {
+      "file": "tracks/docs/bootstrap-order.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/docs/late-final-default-tracks.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/docs/late-final-native.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/docs/rpc-tracking.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/frames/frame-record-unions.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 3,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/frames/live-component-drop.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 3,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/frames/live-component.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 3,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/frames/live-hooks.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 3,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/frames/superseded-call.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 3,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/router/contract.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/router/metadata.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/docs/docs.test.ts",
+      "code": 1,
+      "timedOut": false,
+      "pass": 0,
+      "fail": 1,
+      "skip": 0
+    },
+    {
+      "file": "tracks/docs/policy.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 2,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/docs/inventory.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 2,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/docs/late-final-no-engine.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/frames/server-diagnostics.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 3,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "file": "tracks/frames/boundary-records.test.ts",
+      "code": 0,
+      "timedOut": false,
+      "pass": 3,
+      "fail": 0,
+      "skip": 0
+    }
+  ]
+}

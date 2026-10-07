@@ -34221,7 +34221,7 @@
       "statement": "An error boundary that renders a 500 fallback, declares a status, and later recovers retracts its write instead of stomping to defaults; a 404 page whose inner boundary recovers stays a 404.",
       "coverage": [
         "12/ssr-reset-static-model",
-        "12/declaration-restoration"
+        "12/head-retraction"
       ],
       "status": "untestable",
       "classification": "behavioral",
