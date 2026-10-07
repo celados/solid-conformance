@@ -2,7 +2,7 @@
 type: Issue
 id: '052'
 status: confirmed
-versions: [HEAD-53ef0e69-development, HEAD-53ef0e69-production]
+versions: [HEAD-53ef0e69-development, HEAD-53ef0e69-production, rc.13-development, rc.13-production]
 area: documentation/SSR/hydration
 upstream: [https://github.com/solidjs/solid/issues/3012, https://github.com/solidjs/solid/issues/3609]
 found_by: docs
@@ -27,3 +27,5 @@ BUILD_MODE=production bun test ./findings/052-transparent-ssr-slot/repro.test.ts
 缩减：一个 async memo、一个 Loading、一个 span，SSR only，不需要 Chrome、setter、第二个源、async iterable、router、action 或外部 transport。读取的是输出 HTML 的公开 _hk 和执行公开 records script 得到的 hydration registry，不读取私有 owner/node 字段。false 正控确证记录存在且值为 42，true 比较保留红。
 
 去重：三仓 open/closed 搜索 transparent SSR hydration slot、transparent server serialization、transparent createMemo SSR；另宽搜 transparent 并核对 #3012 和 #3609。#3012 记录的是 rc.0 真实 hydration namespace 偏移与失活的 runtime 错误；#3609 是 null owner 时异常。本例无需 hydration，报告当前 HEAD 文档仍声称忽略 SSR 选项，属于新文档复现形状。搜索证据在 dedupe.json。没有上游写入。
+
+rc.13 对照：开发和生产都在同一断言失败，false 正控有 0=42，true 缺记录且 key 1000→0000。日志见 evidence/wave3-finding052-rc13*.log。

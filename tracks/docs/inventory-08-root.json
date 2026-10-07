@@ -1298,7 +1298,7 @@
     "classification": "behavioral",
     "status": "covered",
     "coverage": [
-      "tracks/docs/late-final-cases.tsx: timeline-audience-and-origin-slot real flush/create/effect/flight/fallback events; tracks/docs/attribution-cases.ts: graph-census-initial-navigation real graph subscription/census; tracks/docs/types-positive.tsx: timeline subscribe declarations"
+      "tracks/docs/late-final-cases.tsx: timeline-audience-and-origin-slot real flush/create/effect/flight/fallback events; tracks/docs/attribution-cases.ts: graph-initial-and-visits real graph subscription/census; tracks/docs/types-positive.tsx: timeline subscribe declarations"
     ],
     "reason": "API概览中的可选订阅类型按实际类型逐项调用，不把 union 伪签名当可执行 JS recipe。"
   }
