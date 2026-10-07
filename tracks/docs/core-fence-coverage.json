@@ -3499,7 +3499,7 @@
     "statement": "status and headers can no longer change. */",
     "unit": "fenced-comment",
     "coverage": [
-      "12/committed-stub-writes",
+      "12/committed-status-wire-frozen",
       "12/committed-header-mutation"
     ],
     "status": "covered",
@@ -3567,5 +3567,18 @@
       "03/reveal-matrix-sequential-natural"
     ],
     "status": "covered"
+  },
+  {
+    "id": "MIGRATION:S462:1",
+    "file": "MIGRATION.md",
+    "line": 462,
+    "end_line": 469,
+    "section": "Derived signals and stores (function forms)",
+    "statement": "const [items] = createStore(() => api.listItems(), []);\n\nconst [cache] = createStore(\n  draft => {\n    draft.total = items().length;\n  },\n  { total: 0 }\n);",
+    "coverage": [
+      "findings/047-derived-store-accessor-example/repro.test.ts"
+    ],
+    "status": "covered",
+    "rationale": "独立纯代码合同：明确声明 items=createStore 返回值后以 items() 调用。prose/comments均未表达 callable store，因此另计一条；runtime/types最小红与正确属性读取正控。"
   }
 ]

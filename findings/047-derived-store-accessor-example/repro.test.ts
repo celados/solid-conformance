@@ -1,0 +1,9 @@
+import {test,expect} from 'bun:test'
+import {realpath} from 'node:fs/promises'
+import {resolve} from 'node:path'
+
+test('MIGRATION.md B462: a derived store is consumed as items() in the literal example',async()=>{
+ const packages=new Map<string,{path:string,exports:Record<string,any>}>();for(const name of ['solid-js','@solidjs/signals']){const path=await realpath(resolve('node_modules',name));packages.set(name,{path,exports:(await Bun.file(path+'/package.json').json()).exports})}
+ const dir=resolve('.build/finding047');const build=await Bun.build({entrypoints:[resolve('findings/047-derived-store-accessor-example/module.ts')],outdir:dir,target:'bun',plugins:[{name:'actual-client-artifact',setup(builder){builder.onResolve({filter:/^(solid-js|@solidjs\/signals)$/},args=>{const pkg=packages.get(args.path)!,entry=pkg.exports['.'],browser=entry.browser??entry,selected=browser[process.env.BUILD_MODE??'development']??browser.default;return{path:resolve(pkg.path,typeof selected==='string'?selected:selected.import??selected.default)}})}}]});expect(build.success).toBe(true);const runtime=await import(dir+'/module.js');expect(runtime.run()).toBe(2);expect(runtime.run(true)).toBe(2)
+})
+test('MIGRATION.md B462: the literal derived-store usage compiles against public declarations',async()=>{const dir=resolve('.build/finding047/types');await Bun.write(dir+'/usage.ts',Bun.file('findings/047-derived-store-accessor-example/usage.ts.txt'));await Bun.write(dir+'/tsconfig.json',JSON.stringify({compilerOptions:{target:'ESNext',module:'Preserve',moduleResolution:'bundler',strict:true,noEmit:true,skipLibCheck:true,lib:['ESNext'],types:[]},files:[dir+'/usage.ts']}));const child=Bun.spawn(['bun','x','tsc','--project',dir+'/tsconfig.json'],{stdout:'pipe',stderr:'pipe'});const output=await new Response(child.stdout).text()+await new Response(child.stderr).text();expect({exitCode:await child.exited,output}).toEqual({exitCode:0,output:''})},30000)

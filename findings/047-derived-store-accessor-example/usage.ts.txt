@@ -1,0 +1,4 @@
+import {createStore} from 'solid-js'
+const [items]=createStore(()=>[1,2],[])
+const [cache]=createStore(draft=>{draft.total=items().length},{total:0})
+void cache

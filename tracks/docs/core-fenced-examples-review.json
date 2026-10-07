@@ -1,0 +1,2233 @@
+{
+  "commit": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+  "reviewed_blocks": 181,
+  "blocks": [
+    {
+      "id": "01-reactivity-batching-effects:B23:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 23,
+      "end_line": 27,
+      "review": "reviewed",
+      "comment_units": [
+        "01-reactivity-batching-effects:C23:1",
+        "01-reactivity-batching-effects:C26:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "01-reactivity-batching-effects:B33:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 33,
+      "end_line": 40,
+      "review": "reviewed",
+      "comment_units": [
+        "01-reactivity-batching-effects:C33:1",
+        "01-reactivity-batching-effects:C35:1",
+        "01-reactivity-batching-effects:C36:1",
+        "01-reactivity-batching-effects:C38:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "01-reactivity-batching-effects:B48:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 48,
+      "end_line": 61,
+      "review": "reviewed",
+      "comment_units": [
+        "01-reactivity-batching-effects:C48:1",
+        "01-reactivity-batching-effects:C50:1",
+        "01-reactivity-batching-effects:C54:1",
+        "01-reactivity-batching-effects:C58:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "01-reactivity-batching-effects:B67:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 67,
+      "end_line": 76,
+      "review": "reviewed",
+      "comment_units": [
+        "01-reactivity-batching-effects:C67:1",
+        "01-reactivity-batching-effects:C75:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "01-reactivity-batching-effects:B88:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 88,
+      "end_line": 92,
+      "review": "reviewed",
+      "comment_units": [
+        "01-reactivity-batching-effects:C90:1",
+        "01-reactivity-batching-effects:C91:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "01-reactivity-batching-effects:B100:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 100,
+      "end_line": 103,
+      "review": "reviewed",
+      "comment_units": [
+        "01-reactivity-batching-effects:C103:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "01-reactivity-batching-effects:B113:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 113,
+      "end_line": 119,
+      "review": "reviewed",
+      "comment_units": [
+        "01-reactivity-batching-effects:C114:1",
+        "01-reactivity-batching-effects:C115:1",
+        "01-reactivity-batching-effects:C117:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "01-reactivity-batching-effects:B125:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 125,
+      "end_line": 129,
+      "review": "reviewed",
+      "comment_units": [
+        "01-reactivity-batching-effects:C125:1",
+        "01-reactivity-batching-effects:C127:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "01-reactivity-batching-effects:B139:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 139,
+      "end_line": 146,
+      "review": "reviewed",
+      "comment_units": [
+        "01-reactivity-batching-effects:C144:1",
+        "01-reactivity-batching-effects:C145:1",
+        "01-reactivity-batching-effects:C146:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "01-reactivity-batching-effects:B158:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 158,
+      "end_line": 169,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "01-reactivity-batching-effects:B181:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 181,
+      "end_line": 191,
+      "review": "reviewed",
+      "comment_units": [
+        "01-reactivity-batching-effects:C181:1",
+        "01-reactivity-batching-effects:C184:1",
+        "01-reactivity-batching-effects:C187:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "01-reactivity-batching-effects:B197:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 197,
+      "end_line": 200,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "01-reactivity-batching-effects:B206:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 206,
+      "end_line": 212,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "01-reactivity-batching-effects:B224:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 224,
+      "end_line": 233,
+      "review": "reviewed",
+      "comment_units": [
+        "01-reactivity-batching-effects:C224:1",
+        "01-reactivity-batching-effects:C226:1",
+        "01-reactivity-batching-effects:C227:1",
+        "01-reactivity-batching-effects:C229:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "01-reactivity-batching-effects:B241:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 241,
+      "end_line": 252,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "01-reactivity-batching-effects:B260:1",
+      "file": "01-reactivity-batching-effects.md",
+      "line": 260,
+      "end_line": 264,
+      "review": "reviewed",
+      "comment_units": [
+        "01-reactivity-batching-effects:C261:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "02-signals-derived-ownership:B22:1",
+      "file": "02-signals-derived-ownership.md",
+      "line": 22,
+      "end_line": 30,
+      "review": "reviewed",
+      "comment_units": [
+        "02-signals-derived-ownership:C30:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "02-signals-derived-ownership:B42:1",
+      "file": "02-signals-derived-ownership.md",
+      "line": 42,
+      "end_line": 46,
+      "review": "reviewed",
+      "comment_units": [
+        "02-signals-derived-ownership:C42:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "02-signals-derived-ownership:B56:1",
+      "file": "02-signals-derived-ownership.md",
+      "line": 56,
+      "end_line": 70,
+      "review": "reviewed",
+      "comment_units": [
+        "02-signals-derived-ownership:C56:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "02-signals-derived-ownership:B78:1",
+      "file": "02-signals-derived-ownership.md",
+      "line": 78,
+      "end_line": 88,
+      "review": "reviewed",
+      "comment_units": [
+        "02-signals-derived-ownership:C78:1",
+        "02-signals-derived-ownership:C86:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "02-signals-derived-ownership:B106:1",
+      "file": "02-signals-derived-ownership.md",
+      "line": 106,
+      "end_line": 110,
+      "review": "reviewed",
+      "comment_units": [
+        "02-signals-derived-ownership:C106:1",
+        "02-signals-derived-ownership:C108:1",
+        "02-signals-derived-ownership:C110:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "02-signals-derived-ownership:B118:1",
+      "file": "02-signals-derived-ownership.md",
+      "line": 118,
+      "end_line": 129,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "02-signals-derived-ownership:B145:1",
+      "file": "02-signals-derived-ownership.md",
+      "line": 145,
+      "end_line": 151,
+      "review": "reviewed",
+      "comment_units": [
+        "02-signals-derived-ownership:C145:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "02-signals-derived-ownership:B159:1",
+      "file": "02-signals-derived-ownership.md",
+      "line": 159,
+      "end_line": 167,
+      "review": "reviewed",
+      "comment_units": [
+        "02-signals-derived-ownership:C159:1",
+        "02-signals-derived-ownership:C164:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B27:1",
+      "file": "03-control-flow.md",
+      "line": 27,
+      "end_line": 45,
+      "review": "reviewed",
+      "comment_units": [
+        "03-control-flow:C27:1",
+        "03-control-flow:C32:1",
+        "03-control-flow:C37:1",
+        "03-control-flow:C42:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B61:1",
+      "file": "03-control-flow.md",
+      "line": 61,
+      "end_line": 64,
+      "review": "reviewed",
+      "comment_units": [
+        "03-control-flow:C61:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B68:1",
+      "file": "03-control-flow.md",
+      "line": 68,
+      "end_line": 79,
+      "review": "reviewed",
+      "comment_units": [
+        "03-control-flow:C68:1",
+        "03-control-flow:C71:1",
+        "03-control-flow:C76:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B87:1",
+      "file": "03-control-flow.md",
+      "line": 87,
+      "end_line": 94,
+      "review": "reviewed",
+      "comment_units": [
+        "03-control-flow:C91:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B102:1",
+      "file": "03-control-flow.md",
+      "line": 102,
+      "end_line": 109,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B117:1",
+      "file": "03-control-flow.md",
+      "line": 117,
+      "end_line": 119,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B133:1",
+      "file": "03-control-flow.md",
+      "line": 133,
+      "end_line": 143,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B151:1",
+      "file": "03-control-flow.md",
+      "line": 151,
+      "end_line": 160,
+      "review": "reviewed",
+      "comment_units": [
+        "03-control-flow:C159:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B176:1",
+      "file": "03-control-flow.md",
+      "line": 176,
+      "end_line": 184,
+      "review": "reviewed",
+      "comment_units": [
+        "03-control-flow:C178:1",
+        "03-control-flow:C182:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B190:1",
+      "file": "03-control-flow.md",
+      "line": 190,
+      "end_line": 195,
+      "review": "reviewed",
+      "comment_units": [
+        "03-control-flow:C190:1",
+        "03-control-flow:C193:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B209:1",
+      "file": "03-control-flow.md",
+      "line": 209,
+      "end_line": 217,
+      "review": "reviewed",
+      "comment_units": [
+        "03-control-flow:C209:1",
+        "03-control-flow:C213:1",
+        "03-control-flow:C216:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B225:1",
+      "file": "03-control-flow.md",
+      "line": 225,
+      "end_line": 225,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B237:1",
+      "file": "03-control-flow.md",
+      "line": 237,
+      "end_line": 241,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B265:1",
+      "file": "03-control-flow.md",
+      "line": 265,
+      "end_line": 281,
+      "review": "reviewed",
+      "comment_units": [
+        "03-control-flow:C265:1",
+        "03-control-flow:C271:1",
+        "03-control-flow:C277:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B321:1",
+      "file": "03-control-flow.md",
+      "line": 321,
+      "end_line": 339,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B355:1",
+      "file": "03-control-flow.md",
+      "line": 355,
+      "end_line": 365,
+      "review": "reviewed",
+      "comment_units": [
+        "03-control-flow:C355:1",
+        "03-control-flow:C361:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B371:1",
+      "file": "03-control-flow.md",
+      "line": 371,
+      "end_line": 379,
+      "review": "reviewed",
+      "comment_units": [
+        "03-control-flow:C371:1",
+        "03-control-flow:C376:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B385:1",
+      "file": "03-control-flow.md",
+      "line": 385,
+      "end_line": 393,
+      "review": "reviewed",
+      "comment_units": [
+        "03-control-flow:C385:1",
+        "03-control-flow:C390:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B399:1",
+      "file": "03-control-flow.md",
+      "line": 399,
+      "end_line": 407,
+      "review": "reviewed",
+      "comment_units": [
+        "03-control-flow:C399:1",
+        "03-control-flow:C404:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "03-control-flow:B413:1",
+      "file": "03-control-flow.md",
+      "line": 413,
+      "end_line": 426,
+      "review": "reviewed",
+      "comment_units": [
+        "03-control-flow:C413:1",
+        "03-control-flow:C417:1",
+        "03-control-flow:C422:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "04-stores:B22:1",
+      "file": "04-stores.md",
+      "line": 22,
+      "end_line": 27,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "04-stores:B35:1",
+      "file": "04-stores.md",
+      "line": 35,
+      "end_line": 40,
+      "review": "reviewed",
+      "comment_units": [
+        "04-stores:C38:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "04-stores:B48:1",
+      "file": "04-stores.md",
+      "line": 48,
+      "end_line": 54,
+      "review": "reviewed",
+      "comment_units": [
+        "04-stores:C48:1",
+        "04-stores:C53:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "04-stores:B60:1",
+      "file": "04-stores.md",
+      "line": 60,
+      "end_line": 61,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "04-stores:B69:1",
+      "file": "04-stores.md",
+      "line": 69,
+      "end_line": 73,
+      "review": "reviewed",
+      "comment_units": [
+        "04-stores:C73:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "04-stores:B81:1",
+      "file": "04-stores.md",
+      "line": 81,
+      "end_line": 85,
+      "review": "reviewed",
+      "comment_units": [
+        "04-stores:C84:1",
+        "04-stores:C85:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "04-stores:B102:1",
+      "file": "04-stores.md",
+      "line": 102,
+      "end_line": 110,
+      "review": "reviewed",
+      "comment_units": [
+        "04-stores:C102:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "04-stores:B114:1",
+      "file": "04-stores.md",
+      "line": 114,
+      "end_line": 117,
+      "review": "reviewed",
+      "comment_units": [
+        "04-stores:C114:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "04-stores:B123:1",
+      "file": "04-stores.md",
+      "line": 123,
+      "end_line": 129,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "04-stores:B139:1",
+      "file": "04-stores.md",
+      "line": 139,
+      "end_line": 144,
+      "review": "reviewed",
+      "comment_units": [
+        "04-stores:C143:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "04-stores:B154:1",
+      "file": "04-stores.md",
+      "line": 154,
+      "end_line": 160,
+      "review": "reviewed",
+      "comment_units": [
+        "04-stores:C154:1",
+        "04-stores:C157:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "04-stores:B172:1",
+      "file": "04-stores.md",
+      "line": 172,
+      "end_line": 175,
+      "review": "reviewed",
+      "comment_units": [
+        "04-stores:C174:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "04-stores:B187:1",
+      "file": "04-stores.md",
+      "line": 187,
+      "end_line": 189,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "04-stores:B205:1",
+      "file": "04-stores.md",
+      "line": 205,
+      "end_line": 208,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "04-stores:B218:1",
+      "file": "04-stores.md",
+      "line": 218,
+      "end_line": 224,
+      "review": "reviewed",
+      "comment_units": [
+        "04-stores:C221:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B22:1",
+      "file": "05-async-data.md",
+      "line": 22,
+      "end_line": 31,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C25:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B43:1",
+      "file": "05-async-data.md",
+      "line": 43,
+      "end_line": 45,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B57:1",
+      "file": "05-async-data.md",
+      "line": 57,
+      "end_line": 70,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C57:1",
+        "05-async-data:C62:1",
+        "05-async-data:C67:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B78:1",
+      "file": "05-async-data.md",
+      "line": 78,
+      "end_line": 79,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B91:1",
+      "file": "05-async-data.md",
+      "line": 91,
+      "end_line": 91,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B107:1",
+      "file": "05-async-data.md",
+      "line": 107,
+      "end_line": 117,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C114:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B125:1",
+      "file": "05-async-data.md",
+      "line": 125,
+      "end_line": 127,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B133:1",
+      "file": "05-async-data.md",
+      "line": 133,
+      "end_line": 134,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C133:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B144:1",
+      "file": "05-async-data.md",
+      "line": 144,
+      "end_line": 148,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C147:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B158:1",
+      "file": "05-async-data.md",
+      "line": 158,
+      "end_line": 162,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C158:1",
+        "05-async-data:C161:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B172:1",
+      "file": "05-async-data.md",
+      "line": 172,
+      "end_line": 174,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B202:1",
+      "file": "05-async-data.md",
+      "line": 202,
+      "end_line": 222,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C202:1",
+        "05-async-data:C205:1",
+        "05-async-data:C213:1",
+        "05-async-data:C214:1",
+        "05-async-data:C220:1",
+        "05-async-data:C221:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B236:1",
+      "file": "05-async-data.md",
+      "line": 236,
+      "end_line": 240,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C237:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B250:1",
+      "file": "05-async-data.md",
+      "line": 250,
+      "end_line": 257,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C254:1",
+        "05-async-data:C257:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B263:1",
+      "file": "05-async-data.md",
+      "line": 263,
+      "end_line": 279,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C266:1",
+        "05-async-data:C271:1",
+        "05-async-data:C274:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B289:1",
+      "file": "05-async-data.md",
+      "line": 289,
+      "end_line": 293,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C289:1",
+        "05-async-data:C292:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B303:1",
+      "file": "05-async-data.md",
+      "line": 303,
+      "end_line": 312,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C303:1",
+        "05-async-data:C307:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B324:1",
+      "file": "05-async-data.md",
+      "line": 324,
+      "end_line": 330,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C324:1",
+        "05-async-data:C328:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B338:1",
+      "file": "05-async-data.md",
+      "line": 338,
+      "end_line": 341,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C339:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B353:1",
+      "file": "05-async-data.md",
+      "line": 353,
+      "end_line": 357,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C353:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B363:1",
+      "file": "05-async-data.md",
+      "line": 363,
+      "end_line": 372,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C363:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B382:1",
+      "file": "05-async-data.md",
+      "line": 382,
+      "end_line": 393,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C382:1",
+        "05-async-data:C385:1",
+        "05-async-data:C390:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "05-async-data:B399:1",
+      "file": "05-async-data.md",
+      "line": 399,
+      "end_line": 402,
+      "review": "reviewed",
+      "comment_units": [
+        "05-async-data:C399:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "06-actions-optimistic:B26:1",
+      "file": "06-actions-optimistic.md",
+      "line": 26,
+      "end_line": 37,
+      "review": "reviewed",
+      "comment_units": [
+        "06-actions-optimistic:C29:1",
+        "06-actions-optimistic:C32:1",
+        "06-actions-optimistic:C35:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "06-actions-optimistic:B43:1",
+      "file": "06-actions-optimistic.md",
+      "line": 43,
+      "end_line": 49,
+      "review": "reviewed",
+      "comment_units": [
+        "06-actions-optimistic:C46:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "06-actions-optimistic:B61:1",
+      "file": "06-actions-optimistic.md",
+      "line": 61,
+      "end_line": 62,
+      "review": "reviewed",
+      "comment_units": [
+        "06-actions-optimistic:C61:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "06-actions-optimistic:B66:1",
+      "file": "06-actions-optimistic.md",
+      "line": 66,
+      "end_line": 72,
+      "review": "reviewed",
+      "comment_units": [
+        "06-actions-optimistic:C66:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "06-actions-optimistic:B84:1",
+      "file": "06-actions-optimistic.md",
+      "line": 84,
+      "end_line": 90,
+      "review": "reviewed",
+      "comment_units": [
+        "06-actions-optimistic:C87:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "06-actions-optimistic:B110:1",
+      "file": "06-actions-optimistic.md",
+      "line": 110,
+      "end_line": 121,
+      "review": "reviewed",
+      "comment_units": [
+        "06-actions-optimistic:C111:1",
+        "06-actions-optimistic:C112:1",
+        "06-actions-optimistic:C118:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "06-actions-optimistic:B131:1",
+      "file": "06-actions-optimistic.md",
+      "line": 131,
+      "end_line": 136,
+      "review": "reviewed",
+      "comment_units": [
+        "06-actions-optimistic:C134:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "06-actions-optimistic:B144:1",
+      "file": "06-actions-optimistic.md",
+      "line": 144,
+      "end_line": 151,
+      "review": "reviewed",
+      "comment_units": [
+        "06-actions-optimistic:C149:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "06-actions-optimistic:B161:1",
+      "file": "06-actions-optimistic.md",
+      "line": 161,
+      "end_line": 170,
+      "review": "reviewed",
+      "comment_units": [
+        "06-actions-optimistic:C165:1",
+        "06-actions-optimistic:C166:1",
+        "06-actions-optimistic:C167:1",
+        "06-actions-optimistic:C169:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "07-dom:B32:1",
+      "file": "07-dom.md",
+      "line": 32,
+      "end_line": 34,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "07-dom:B43:1",
+      "file": "07-dom.md",
+      "line": 43,
+      "end_line": 48,
+      "review": "reviewed",
+      "comment_units": [
+        "07-dom:C43:1",
+        "07-dom:C47:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "07-dom:B73:1",
+      "file": "07-dom.md",
+      "line": 73,
+      "end_line": 79,
+      "review": "reviewed",
+      "comment_units": [
+        "07-dom:C73:1",
+        "07-dom:C77:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "07-dom:B85:1",
+      "file": "07-dom.md",
+      "line": 85,
+      "end_line": 85,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "07-dom:B91:1",
+      "file": "07-dom.md",
+      "line": 91,
+      "end_line": 93,
+      "review": "reviewed",
+      "comment_units": [
+        "07-dom:C92:1",
+        "07-dom:C93:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "07-dom:B104:1",
+      "file": "07-dom.md",
+      "line": 104,
+      "end_line": 120,
+      "review": "reviewed",
+      "comment_units": [
+        "07-dom:C105:1",
+        "07-dom:C106:1",
+        "07-dom:C110:1",
+        "07-dom:C114:1",
+        "07-dom:C115:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "07-dom:B126:1",
+      "file": "07-dom.md",
+      "line": 126,
+      "end_line": 126,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "07-dom:B132:1",
+      "file": "07-dom.md",
+      "line": 132,
+      "end_line": 135,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "09-typescript-jsx:B12:1",
+      "file": "09-typescript-jsx.md",
+      "line": 12,
+      "end_line": 17,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "09-typescript-jsx:B27:1",
+      "file": "09-typescript-jsx.md",
+      "line": 27,
+      "end_line": 30,
+      "review": "reviewed",
+      "comment_units": [
+        "09-typescript-jsx:C27:1",
+        "09-typescript-jsx:C28:1",
+        "09-typescript-jsx:C29:1",
+        "09-typescript-jsx:C30:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "09-typescript-jsx:B40:1",
+      "file": "09-typescript-jsx.md",
+      "line": 40,
+      "end_line": 43,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "09-typescript-jsx:B53:1",
+      "file": "09-typescript-jsx.md",
+      "line": 53,
+      "end_line": 56,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "09-typescript-jsx:B66:1",
+      "file": "09-typescript-jsx.md",
+      "line": 66,
+      "end_line": 71,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "12-ssr-http:B42:1",
+      "file": "12-ssr-http.md",
+      "line": 42,
+      "end_line": 49,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "12-ssr-http:B59:1",
+      "file": "12-ssr-http.md",
+      "line": 59,
+      "end_line": 66,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "12-ssr-http:B72:1",
+      "file": "12-ssr-http.md",
+      "line": 72,
+      "end_line": 76,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "12-ssr-http:B94:1",
+      "file": "12-ssr-http.md",
+      "line": 94,
+      "end_line": 99,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "12-ssr-http:B105:1",
+      "file": "12-ssr-http.md",
+      "line": 105,
+      "end_line": 112,
+      "review": "reviewed",
+      "comment_units": [
+        "12-ssr-http:C109:1",
+        "12-ssr-http:C110:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "12-ssr-http:B120:1",
+      "file": "12-ssr-http.md",
+      "line": 120,
+      "end_line": 126,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "12-ssr-http:B152:1",
+      "file": "12-ssr-http.md",
+      "line": 152,
+      "end_line": 165,
+      "review": "reviewed",
+      "comment_units": [
+        "12-ssr-http:C159:1",
+        "12-ssr-http:C160:1",
+        "12-ssr-http:C163:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "12-ssr-http:B180:1",
+      "file": "12-ssr-http.md",
+      "line": 180,
+      "end_line": 186,
+      "review": "reviewed",
+      "comment_units": [
+        "12-ssr-http:C182:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "12-ssr-http:B190:1",
+      "file": "12-ssr-http.md",
+      "line": 190,
+      "end_line": 198,
+      "review": "reviewed",
+      "comment_units": [
+        "12-ssr-http:C191:1",
+        "12-ssr-http:C192:1",
+        "12-ssr-http:C193:1",
+        "12-ssr-http:C194:1",
+        "12-ssr-http:C195:1",
+        "12-ssr-http:C196:1",
+        "12-ssr-http:C197:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "12-ssr-http:B212:1",
+      "file": "12-ssr-http.md",
+      "line": 212,
+      "end_line": 231,
+      "review": "reviewed",
+      "comment_units": [
+        "12-ssr-http:C214:1",
+        "12-ssr-http:C215:1",
+        "12-ssr-http:C218:1",
+        "12-ssr-http:C230:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "12-ssr-http:B253:1",
+      "file": "12-ssr-http.md",
+      "line": 253,
+      "end_line": 296,
+      "review": "reviewed",
+      "comment_units": [
+        "12-ssr-http:C260:1",
+        "12-ssr-http:C263:1",
+        "12-ssr-http:C264:1",
+        "12-ssr-http:C266:1",
+        "12-ssr-http:C274:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "12-ssr-http:B311:1",
+      "file": "12-ssr-http.md",
+      "line": 311,
+      "end_line": 322,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "12-ssr-http:B340:1",
+      "file": "12-ssr-http.md",
+      "line": 340,
+      "end_line": 349,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B27:1",
+      "file": "MIGRATION.md",
+      "line": 27,
+      "end_line": 31,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C27:1",
+        "MIGRATION:C30:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B35:1",
+      "file": "MIGRATION.md",
+      "line": 35,
+      "end_line": 39,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C35:1",
+        "MIGRATION:C38:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B43:1",
+      "file": "MIGRATION.md",
+      "line": 43,
+      "end_line": 47,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C43:1",
+        "MIGRATION:C46:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B51:1",
+      "file": "MIGRATION.md",
+      "line": 51,
+      "end_line": 55,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C51:1",
+        "MIGRATION:C54:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B59:1",
+      "file": "MIGRATION.md",
+      "line": 59,
+      "end_line": 63,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C59:1",
+        "MIGRATION:C62:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B73:1",
+      "file": "MIGRATION.md",
+      "line": 73,
+      "end_line": 78,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B84:1",
+      "file": "MIGRATION.md",
+      "line": 84,
+      "end_line": 88,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C84:1",
+        "MIGRATION:C87:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B94:1",
+      "file": "MIGRATION.md",
+      "line": 94,
+      "end_line": 96,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B106:1",
+      "file": "MIGRATION.md",
+      "line": 106,
+      "end_line": 112,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C109:1",
+        "MIGRATION:C112:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B125:1",
+      "file": "MIGRATION.md",
+      "line": 125,
+      "end_line": 136,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C125:1",
+        "MIGRATION:C130:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B142:1",
+      "file": "MIGRATION.md",
+      "line": 142,
+      "end_line": 154,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C142:1",
+        "MIGRATION:C148:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B160:1",
+      "file": "MIGRATION.md",
+      "line": 160,
+      "end_line": 164,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C160:1",
+        "MIGRATION:C163:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B170:1",
+      "file": "MIGRATION.md",
+      "line": 170,
+      "end_line": 183,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C170:1",
+        "MIGRATION:C176:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B189:1",
+      "file": "MIGRATION.md",
+      "line": 189,
+      "end_line": 200,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C189:1",
+        "MIGRATION:C194:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B208:1",
+      "file": "MIGRATION.md",
+      "line": 208,
+      "end_line": 220,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C208:1",
+        "MIGRATION:C214:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B234:1",
+      "file": "MIGRATION.md",
+      "line": 234,
+      "end_line": 243,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C234:1",
+        "MIGRATION:C240:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B247:1",
+      "file": "MIGRATION.md",
+      "line": 247,
+      "end_line": 255,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C247:1",
+        "MIGRATION:C252:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B267:1",
+      "file": "MIGRATION.md",
+      "line": 267,
+      "end_line": 271,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C267:1",
+        "MIGRATION:C270:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B283:1",
+      "file": "MIGRATION.md",
+      "line": 283,
+      "end_line": 287,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C283:1",
+        "MIGRATION:C286:1",
+        "MIGRATION:C284:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B293:1",
+      "file": "MIGRATION.md",
+      "line": 293,
+      "end_line": 297,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C293:1",
+        "MIGRATION:C296:1",
+        "MIGRATION:C294:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B303:1",
+      "file": "MIGRATION.md",
+      "line": 303,
+      "end_line": 303,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B313:1",
+      "file": "MIGRATION.md",
+      "line": 313,
+      "end_line": 321,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C313:1",
+        "MIGRATION:C318:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B329:1",
+      "file": "MIGRATION.md",
+      "line": 329,
+      "end_line": 333,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C329:1",
+        "MIGRATION:C332:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B337:1",
+      "file": "MIGRATION.md",
+      "line": 337,
+      "end_line": 339,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B359:1",
+      "file": "MIGRATION.md",
+      "line": 359,
+      "end_line": 364,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C362:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B370:1",
+      "file": "MIGRATION.md",
+      "line": 370,
+      "end_line": 370,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B376:1",
+      "file": "MIGRATION.md",
+      "line": 376,
+      "end_line": 377,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C376:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B389:1",
+      "file": "MIGRATION.md",
+      "line": 389,
+      "end_line": 401,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C393:1",
+        "MIGRATION:C396:1",
+        "MIGRATION:C399:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B409:1",
+      "file": "MIGRATION.md",
+      "line": 409,
+      "end_line": 415,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C409:1",
+        "MIGRATION:C414:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B421:1",
+      "file": "MIGRATION.md",
+      "line": 421,
+      "end_line": 422,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B428:1",
+      "file": "MIGRATION.md",
+      "line": 428,
+      "end_line": 432,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C428:1",
+        "MIGRATION:C431:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B438:1",
+      "file": "MIGRATION.md",
+      "line": 438,
+      "end_line": 439,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C439:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B443:1",
+      "file": "MIGRATION.md",
+      "line": 443,
+      "end_line": 447,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C443:1",
+        "MIGRATION:C446:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B455:1",
+      "file": "MIGRATION.md",
+      "line": 455,
+      "end_line": 456,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B462:1",
+      "file": "MIGRATION.md",
+      "line": 462,
+      "end_line": 469,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [
+        "MIGRATION:S462:1"
+      ],
+      "reason": "两次createStore与callable读取是纯代码独立合同，新增S462。"
+    },
+    {
+      "id": "MIGRATION:B485:1",
+      "file": "MIGRATION.md",
+      "line": 485,
+      "end_line": 493,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C485:1",
+        "MIGRATION:C490:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B503:1",
+      "file": "MIGRATION.md",
+      "line": 503,
+      "end_line": 509,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B517:1",
+      "file": "MIGRATION.md",
+      "line": 517,
+      "end_line": 524,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C517:1",
+        "MIGRATION:C521:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B538:1",
+      "file": "MIGRATION.md",
+      "line": 538,
+      "end_line": 565,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C538:1",
+        "MIGRATION:C544:1",
+        "MIGRATION:C550:1",
+        "MIGRATION:C556:1",
+        "MIGRATION:C560:1",
+        "MIGRATION:C561:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B583:1",
+      "file": "MIGRATION.md",
+      "line": 583,
+      "end_line": 587,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C586:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B593:1",
+      "file": "MIGRATION.md",
+      "line": 593,
+      "end_line": 596,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C593:1",
+        "MIGRATION:C595:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B604:1",
+      "file": "MIGRATION.md",
+      "line": 604,
+      "end_line": 606,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B623:1",
+      "file": "MIGRATION.md",
+      "line": 623,
+      "end_line": 629,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C623:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B637:1",
+      "file": "MIGRATION.md",
+      "line": 637,
+      "end_line": 644,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C637:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B650:1",
+      "file": "MIGRATION.md",
+      "line": 650,
+      "end_line": 665,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B673:1",
+      "file": "MIGRATION.md",
+      "line": 673,
+      "end_line": 678,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C673:1",
+        "MIGRATION:C676:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B684:1",
+      "file": "MIGRATION.md",
+      "line": 684,
+      "end_line": 697,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C685:1",
+        "MIGRATION:C686:1",
+        "MIGRATION:C692:1",
+        "MIGRATION:C693:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B703:1",
+      "file": "MIGRATION.md",
+      "line": 703,
+      "end_line": 707,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C703:1",
+        "MIGRATION:C706:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B715:1",
+      "file": "MIGRATION.md",
+      "line": 715,
+      "end_line": 721,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C715:1",
+        "MIGRATION:C719:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B729:1",
+      "file": "MIGRATION.md",
+      "line": 729,
+      "end_line": 739,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C729:1",
+        "MIGRATION:C737:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B783:1",
+      "file": "MIGRATION.md",
+      "line": 783,
+      "end_line": 796,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C783:1",
+        "MIGRATION:C789:1",
+        "MIGRATION:C793:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B806:1",
+      "file": "MIGRATION.md",
+      "line": 806,
+      "end_line": 810,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C806:1",
+        "MIGRATION:C809:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B816:1",
+      "file": "MIGRATION.md",
+      "line": 816,
+      "end_line": 826,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C816:1",
+        "MIGRATION:C822:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B832:1",
+      "file": "MIGRATION.md",
+      "line": 832,
+      "end_line": 837,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C832:1",
+        "MIGRATION:C836:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B845:1",
+      "file": "MIGRATION.md",
+      "line": 845,
+      "end_line": 858,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C845:1",
+        "MIGRATION:C852:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B862:1",
+      "file": "MIGRATION.md",
+      "line": 862,
+      "end_line": 873,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C862:1",
+        "MIGRATION:C869:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B879:1",
+      "file": "MIGRATION.md",
+      "line": 879,
+      "end_line": 897,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C879:1",
+        "MIGRATION:C890:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B907:1",
+      "file": "MIGRATION.md",
+      "line": 907,
+      "end_line": 915,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C907:1",
+        "MIGRATION:C912:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B921:1",
+      "file": "MIGRATION.md",
+      "line": 921,
+      "end_line": 935,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C921:1",
+        "MIGRATION:C929:1",
+        "MIGRATION:C932:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B943:1",
+      "file": "MIGRATION.md",
+      "line": 943,
+      "end_line": 956,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C943:1",
+        "MIGRATION:C952:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B962:1",
+      "file": "MIGRATION.md",
+      "line": 962,
+      "end_line": 962,
+      "review": "reviewed",
+      "comment_units": [],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B970:1",
+      "file": "MIGRATION.md",
+      "line": 970,
+      "end_line": 980,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C970:1",
+        "MIGRATION:C975:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B992:1",
+      "file": "MIGRATION.md",
+      "line": 992,
+      "end_line": 1001,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C992:1",
+        "MIGRATION:C996:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    },
+    {
+      "id": "MIGRATION:B1007:1",
+      "file": "MIGRATION.md",
+      "line": 1007,
+      "end_line": 1015,
+      "review": "reviewed",
+      "comment_units": [
+        "MIGRATION:C1007:1",
+        "MIGRATION:C1012:1"
+      ],
+      "additional_code_only_units": [],
+      "reason": "逐块检查执行表达式、签名、参数/返回类型、owned lifetime、客户端/server边界与迁移新旧区分。独立行为已列在该章prose合同或本块comment_units；旧1.x片段仅作历史对照，外部api/Sentry/helpers为用户提供占位，不凭未import判runtime合同。该audit不是覆盖断言，不能用块数量计行为声明。"
+    }
+  ]
+}
