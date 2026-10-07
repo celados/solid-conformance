@@ -1,0 +1,31 @@
+{
+  "target": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+  "query": "HUGE_FAN_OUT",
+  "repos": [
+    "solidjs/solid",
+    "solidjs/solid-router",
+    "solidjs/solid-start"
+  ],
+  "states": "open and closed (no state filter)",
+  "candidates": [
+    {
+      "number": 3543,
+      "title": "rc.9: deferred child recomputation loses REACTIVE_ZOMBIE and leaks subscriptions",
+      "url": "https://github.com/solidjs/solid/issues/3543",
+      "state": "CLOSED"
+    },
+    {
+      "number": 3304,
+      "title": "[2.0 RC] WIDE_WRITE / HOT_SCOPE_FANOUT diagnostics prescribe createSelector, which is not exported in 2.0.0-rc.6",
+      "url": "https://github.com/solidjs/solid/issues/3304",
+      "state": "CLOSED"
+    },
+    {
+      "number": 3350,
+      "title": "2.0.0-rc.7: mounting N rows is O(N²) when each row creates an effect over a signal written during its own creation — markHeap re-walks the whole pure heap on every memo pull",
+      "url": "https://github.com/solidjs/solid/issues/3350",
+      "state": "CLOSED"
+    }
+  ],
+  "distinctMechanism": "asyncEnd reclassification happens after fanout warning has emitted write kind; unrelated to subscriptions, missing repair API, or heap-walk perf"
+}
