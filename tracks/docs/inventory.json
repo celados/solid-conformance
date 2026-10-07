@@ -1,5 +1,5 @@
 {
-  "commit": "documentation",
+  "commit": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
   "method": "Exhaustive prose sentence and table-row inventory, including migration duplicates. Code fences are usage examples rather than additional prose statements. Uncovered entries are retained explicitly; never inferred covered from a keyword match.",
   "statements": [
     {
@@ -61,7 +61,8 @@
       "section": "Motivation",
       "statement": "- **Writes under scope:** Writing to a signal inside a tracked context (e.g. inside an effect or component body) can cause subtle bugs and makes the graph harder to reason about.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "01-reactivity-batching-effects:L11:2",
@@ -71,7 +72,8 @@
       "section": "Motivation",
       "statement": "Split effects make it safe to disallow this by default.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "01-reactivity-batching-effects:L12:1",
@@ -81,7 +83,8 @@
       "section": "Motivation",
       "statement": "- **Strict top-level access (new):** Top-level reactive reads in component body can accidentally capture dependencies and re-run in async situations; in 2.0 we warn in dev unless the read is inside createMemo/createEffect or explicit `untrack`.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "01-reactivity-batching-effects:L13:1",
@@ -91,7 +94,8 @@
       "section": "Motivation",
       "statement": "- **Batching:** Synchronous batching with `batch()` is replaced by default microtask batching.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "01-reactivity-batching-effects:L13:2",
@@ -101,7 +105,8 @@
       "section": "Motivation",
       "statement": "Setters queue work; reads (and DOM/effects) reflect the update after the batch flushes (next microtask, or via `flush()`).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "01-reactivity-batching-effects:L13:3",
@@ -111,7 +116,8 @@
       "section": "Motivation",
       "statement": "This aligns with Vue/Svelte and simplifies the model; `batch` is no longer needed.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "01-reactivity-batching-effects:L14:1",
@@ -121,7 +127,8 @@
       "section": "Motivation",
       "statement": "- **Split effects:** Running all \u201ctracking\u201d (compute) halves of effects before any \u201ceffect\u201d (callback) halves gives a clear dependency picture before side effects run, which is required for async, Loading, and Errored boundaries.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "01-reactivity-batching-effects:L20:1",
@@ -591,7 +598,8 @@
       "section": "Stores in the compute phase",
       "statement": "See [RFC 04 \u2014 Stores](04-stores.md) for full details.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Navigation or debugging recommendation without an additional behavioral guarantee."
     },
     {
       "id": "01-reactivity-batching-effects:L219:1",
@@ -751,7 +759,8 @@
       "section": "Removals",
       "statement": "| Removed | Replacement / notes |",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Table column labels, not a behavioral assertion."
     },
     {
       "id": "01-reactivity-batching-effects:L280:1",
@@ -791,7 +800,8 @@
       "section": "Alternatives considered",
       "statement": "- Keeping `batch` as an alias for \u201crun updates now\u201d was considered; unifying on `flush` reduces API surface and matches the mental model (drain queue).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "01-reactivity-batching-effects:L287:1",
@@ -801,7 +811,8 @@
       "section": "Alternatives considered",
       "statement": "- Keeping a single-callback effect as the default was rejected in favor of split effects for async and boundary semantics.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "01-reactivity-batching-effects:L291:1",
@@ -811,7 +822,8 @@
       "section": "Open questions",
       "statement": "(None remaining \u2014 write-under-scope is now an error.)",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "02-signals-derived-ownership:L3:1",
@@ -852,7 +864,8 @@
       "section": "Motivation",
       "statement": "- **Ownership as the default:** In 1.x it\u2019s easy to accidentally create unowned reactive graphs (especially in library code), which leads to leaks and confusing cleanup.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "02-signals-derived-ownership:L11:2",
@@ -862,7 +875,8 @@
       "section": "Motivation",
       "statement": "In 2.0 we want ownership to be the default and detaching to be explicit.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "02-signals-derived-ownership:L12:1",
@@ -872,7 +886,8 @@
       "section": "Motivation",
       "statement": "- **Context ergonomics:** `Context.Provider` is boilerplate and a special-case surface.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "02-signals-derived-ownership:L12:2",
@@ -882,7 +897,8 @@
       "section": "Motivation",
       "statement": "Using the context value directly as the provider component reduces ceremony and aligns with how it\u2019s used.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "02-signals-derived-ownership:L13:1",
@@ -892,7 +908,8 @@
       "section": "Motivation",
       "statement": "- **Derived primitives:** Patterns that previously relied on `createComputed` (or ad-hoc \u201cwrite-back\u201d computations) should move to primitives that are composable with async and with split effects. \u201cFunction-form\u201d `createSignal` / `createStore` offer a single consistent place for \u201cderived but writable\u201d shapes.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "02-signals-derived-ownership:L19:1",
@@ -1312,7 +1329,8 @@
       "section": "Removals",
       "statement": "| Removed            | Replacement                                                                         |",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Table column labels, not a behavioral assertion."
     },
     {
       "id": "02-signals-derived-ownership:L187:1",
@@ -1342,7 +1360,8 @@
       "section": "Alternatives considered",
       "statement": "- Keeping `createRoot` detached by default: rejected because it makes leaks and \u201cforever lifetime\u201d accidental.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "02-signals-derived-ownership:L193:1",
@@ -1352,7 +1371,8 @@
       "section": "Alternatives considered",
       "statement": "- Keeping `Context.Provider`: rejected as needless boilerplate and special casing.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "02-signals-derived-ownership:L194:1",
@@ -1362,7 +1382,8 @@
       "section": "Alternatives considered",
       "statement": "- Keeping `createComputed`: rejected because \u201cwrite-back computations\u201d are harder to reason about in an async/split-effects model.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "02-signals-derived-ownership:L198:1",
@@ -1372,7 +1393,8 @@
       "section": "Open questions",
       "statement": "- Should we provide an explicit \u201cdetached root\u201d helper (sugar over `runWithOwner(null, ...)`) for readability?",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "03-control-flow:L3:1",
@@ -1413,7 +1435,8 @@
       "section": "Motivation",
       "statement": "- **One list primitive:** Having both `For` and `Index` encourages bikeshedding and accidental misuse.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "03-control-flow:L11:2",
@@ -1423,7 +1446,8 @@
       "section": "Motivation",
       "statement": "A single `For` that can be keyed or index-based is easier to teach and document.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "03-control-flow:L12:1",
@@ -1433,7 +1457,8 @@
       "section": "Motivation",
       "statement": "- **Ranges without diffing:** Rendering \u201ccount-based\u201d lists (skeletons, ranges, windowing) shouldn\u2019t require list diffing; `Repeat` expresses this directly.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "03-control-flow:L13:1",
@@ -1443,7 +1468,8 @@
       "section": "Motivation",
       "statement": "- **Async and error UX:** Names like Suspense and ErrorBoundary are long and carry baggage.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "03-control-flow:L13:2",
@@ -1453,7 +1479,8 @@
       "section": "Motivation",
       "statement": "`Loading` and `Errored` are concise and align better with their actual role in the 2.0 async model.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "03-control-flow:L14:1",
@@ -1463,7 +1490,8 @@
       "section": "Motivation",
       "statement": "- **Dynamic components as values:** A factory that returns a stable `Component<P>` composes cleanly with JSX (reactive props, children, refs) and with the async-computation model \u2014 async sources flow through `Loading` via the same `NotReadyError` path as any other not-ready reactive read.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "03-control-flow:L20:1",
@@ -1713,7 +1741,8 @@
       "section": "Async boundary: `Loading`",
       "statement": "See [RFC 05](05-async-data.md#loading-on-prop-dependencies-that-show-the-fallback-again) for the product-page walkthrough and the `LOADING_ON_OUTSIDE_HOLD` diagnostic.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Navigation or debugging recommendation without an additional behavioral guarantee."
     },
     {
       "id": "03-control-flow:L128:1",
@@ -2723,7 +2752,8 @@
       "section": "Removals",
       "statement": "| Removed                        | Replacement               |",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Table column labels, not a behavioral assertion."
     },
     {
       "id": "03-control-flow:L435:1",
@@ -2803,7 +2833,8 @@
       "section": "Alternatives considered",
       "statement": "- Keeping both `For` and `Index`: rejected in favor of one API with explicit keying.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "03-control-flow:L450:1",
@@ -2813,7 +2844,8 @@
       "section": "Alternatives considered",
       "statement": "- Adding a separate \u201crange\u201d mode to `For`: rejected in favor of a dedicated `Repeat` that makes \u201cno diffing\u201d obvious.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "04-stores:L3:1",
@@ -2864,7 +2896,8 @@
       "section": "Motivation",
       "statement": "- **Ergonomics without losing granularity:** Draft-mutation is the most ergonomic way to express updates; the store system can still keep fine-grained reactivity under the hood.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "04-stores:L12:1",
@@ -2874,7 +2907,8 @@
       "section": "Motivation",
       "statement": "- **Fewer special-case helpers:** `merge` and `omit` apply broadly (props and stores) and avoid surprising `undefined` semantics.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "04-stores:L13:1",
@@ -2884,7 +2918,8 @@
       "section": "Motivation",
       "statement": "- **Derived stores that scale:** `createSelector`-style APIs solve one pattern; `createProjection` generalizes it and can be used for selection, derived caches, and async-derived store values.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "04-stores:L19:1",
@@ -3524,7 +3559,8 @@
       "section": "`deep(store)` helper",
       "statement": "See [RFC 01 \u2014 Stores in the compute phase](01-reactivity-batching-effects.md#stores-in-the-compute-phase) for the full pattern comparison.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Navigation or debugging recommendation without an additional behavioral guarantee."
     },
     {
       "id": "04-stores:L233:1",
@@ -3594,7 +3630,8 @@
       "section": "Removals",
       "statement": "| Removed | Replacement |",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Table column labels, not a behavioral assertion."
     },
     {
       "id": "04-stores:L253:1",
@@ -3644,7 +3681,8 @@
       "section": "Alternatives considered",
       "statement": "- Keeping `splitProps`: rejected due to allocation/proxy-deopt costs and because `omit` is sufficient.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "04-stores:L261:1",
@@ -3654,7 +3692,8 @@
       "section": "Alternatives considered",
       "statement": "- Keeping `createSelector`: rejected as too narrow; `createProjection` is a more general tool.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "05-async-data:L3:1",
@@ -3715,7 +3754,8 @@
       "section": "Motivation",
       "statement": "- **One model:** Async shouldn\u2019t require a parallel set of primitives (resources vs signals).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "05-async-data:L11:2",
@@ -3725,7 +3765,8 @@
       "section": "Motivation",
       "statement": "If computations can be async, the rest of the system (effects, boundaries, SSR/hydration) can treat async consistently.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "05-async-data:L12:1",
@@ -3735,7 +3776,8 @@
       "section": "Motivation",
       "statement": "- **Better types:** Async values can be represented without pervasive `T | undefined` \u201cloading holes\u201d.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "05-async-data:L12:2",
@@ -3745,7 +3787,8 @@
       "section": "Motivation",
       "statement": "UI should be expressed via `Loading` boundaries rather than nullable types.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "05-async-data:L13:1",
@@ -3755,7 +3798,8 @@
       "section": "Motivation",
       "statement": "- **Composability:** When async is part of computations, derived values can combine sync + async naturally without bespoke resource combinators.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "05-async-data:L19:1",
@@ -5355,7 +5399,8 @@
       "section": "Removals",
       "statement": "| Removed                             | Replacement                                                                   |",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Table column labels, not a behavioral assertion."
     },
     {
       "id": "05-async-data:L413:1",
@@ -5385,7 +5430,8 @@
       "section": "Alternatives considered",
       "statement": "- Keeping `createResource`: rejected to avoid parallel async models and duplicated surface area.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "05-async-data:L419:1",
@@ -5395,7 +5441,8 @@
       "section": "Alternatives considered",
       "statement": "- Keeping explicit transition wrappers: rejected because transitions are a scheduling concern that should be inferred and managed by the runtime.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "06-actions-optimistic:L3:1",
@@ -5446,7 +5493,8 @@
       "section": "Motivation",
       "statement": "- **Mutations are not reads:** Async data reads can be modeled as computations (RFC 05).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "06-actions-optimistic:L11:2",
@@ -5456,7 +5504,8 @@
       "section": "Motivation",
       "statement": "Mutations need a different tool: they should coordinate optimistic writes, async side effects, and follow-up refreshes.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "06-actions-optimistic:L12:1",
@@ -5466,7 +5515,8 @@
       "section": "Motivation",
       "statement": "- **Optimism should compose:** Optimistic UI should reuse the signal/store mental model, and should integrate with transitions rather than forking the reactive graph.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "06-actions-optimistic:L13:1",
@@ -5476,7 +5526,8 @@
       "section": "Motivation",
       "statement": "- **Ergonomics:** A generator-based API provides a simple \u201cdo optimistic update \u2192 await \u2192 refresh\u201d workflow without needing ambient async context features.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "06-actions-optimistic:L19:1",
@@ -6206,7 +6257,8 @@
       "section": "Alternatives considered",
       "statement": "- AsyncContext-based mutation scope: rejected for now (not widely available/portable).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "06-actions-optimistic:L201:1",
@@ -6216,7 +6268,8 @@
       "section": "Alternatives considered",
       "statement": "- React-style `startTransition` wrappers: rejected in favor of built-in transitions and structured actions.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "06-actions-optimistic:L202:1",
@@ -6226,7 +6279,8 @@
       "section": "Alternatives considered",
       "statement": "- Manually passing in a resume function to call after await instead of using generators.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "06-actions-optimistic:L203:1",
@@ -6236,7 +6290,8 @@
       "section": "Alternatives considered",
       "statement": "- For live-source acknowledgment: waiting on channel *messages* (edge-triggered `waitForMessage(...)`) \u2014 rejected as racy (the ack can arrive before the wait starts), transport-coupled, and correlation-protocol-specific.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "06-actions-optimistic:L203:2",
@@ -6246,7 +6301,8 @@
       "section": "Alternatives considered",
       "statement": "Holding the *overlay* until the source's next delivery instead of holding the action \u2014 rejected because \"next delivery\" is not \"my ack\" on a busy channel, and fixing that requires a predicate anyway; it converges to `until` with worse failure semantics.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "07-dom:L3:1",
@@ -6297,7 +6353,8 @@
       "section": "Motivation",
       "statement": "- **HTML standards:** Supporting multiple ways to set attributes/properties by type makes it harder to build on Solid (e.g. custom elements, SSR).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "07-dom:L11:2",
@@ -6307,7 +6364,8 @@
       "section": "Motivation",
       "statement": "Favoring attributes and lowercase aligns with the platform and removes special cases; `attr:` and `bool:` namespaces are no longer needed.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "07-dom:L12:1",
@@ -6317,7 +6375,8 @@
       "section": "Motivation",
       "statement": "- **class:** Merging `classList` into `class` and supporting array/object (clsx-style) reduces API surface and supports composition without extra helpers.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "07-dom:L13:1",
@@ -6327,7 +6386,8 @@
       "section": "Motivation",
       "statement": "- **events:** Keeping camelCase event handlers as the only JSX event syntax preserves Solid's delegated event path, while native `addEventListener` options move to ref callbacks where they compose with other DOM directives.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "07-dom:L19:1",
@@ -6917,7 +6977,8 @@
       "section": "Removals",
       "statement": "| Removed                      | Replacement / notes                                                                                          |",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Table column labels, not a behavioral assertion."
     },
     {
       "id": "07-dom:L149:1",
@@ -6987,7 +7048,8 @@
       "section": "Alternatives considered",
       "statement": "- Keeping `classList` alongside `class` was rejected to avoid two ways to do the same thing and to simplify the compiler/runtime.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "07-dom:L159:1",
@@ -6997,7 +7059,8 @@
       "section": "Alternatives considered",
       "statement": "- Keeping camelCase for attributes was rejected in favor of HTML alignment and web component compatibility.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "07-dom:L163:1",
@@ -7007,7 +7070,8 @@
       "section": "Open questions",
       "statement": "- Exact list of \"default\" props that stay as props (`input.value`, `input.defaultValue`, `input.checked`, `input.defaultChecked`, `select.value`, `option.value`, `option.selected`, `option.defaultSelected`, `textarea.value`, `textarea.defaultValue`, `video.muted`, `video.defaultMuted`, `audio.muted`, `audio.defaultMuted`, \u2026).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "07-dom:L163:2",
@@ -7017,7 +7081,8 @@
       "section": "Open questions",
       "statement": "Generally, stateful DOM properties should be considered on this list.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "08-dev-diagnostics:L3:1",
@@ -7508,7 +7573,8 @@
       "section": "`ASYNC_OUTSIDE_LOADING_BOUNDARY`",
       "statement": "**Debugging tip:** if your app doesn't mount, check the console for `ASYNC_OUTSIDE_LOADING_BOUNDARY` \u2014 it names the render effect whose pending async is holding the root.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Navigation or debugging recommendation without an additional behavioral guarantee."
     },
     {
       "id": "08-dev-diagnostics:L127:1",
@@ -7678,7 +7744,8 @@
       "section": "`LOADING_ON_OUTSIDE_HOLD`",
       "statement": "See [RFC 05](05-async-data.md#loading-on-prop-dependencies-that-show-the-fallback-again).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Navigation or debugging recommendation without an additional behavioral guarantee."
     },
     {
       "id": "08-dev-diagnostics:L154:1",
@@ -12638,7 +12705,8 @@
       "section": "`OBSERVE.ownerPath(subject)`",
       "statement": "| Field       | Type                          | Description                                                                                                                   |",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Table column labels, not a behavioral assertion."
     },
     {
       "id": "08-dev-diagnostics:L771:1",
@@ -13908,7 +13976,8 @@
       "section": "Diagnostic codes (quick reference)",
       "statement": "| Code                               | Severity   | Category       | Trigger                                                                                                                                                           |",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Table column labels, not a behavioral assertion."
     },
     {
       "id": "08-dev-diagnostics:L929:1",
@@ -16079,7 +16148,8 @@
       "section": "Motivation",
       "statement": "`solid-js` is the renderer-neutral UI core, but its old TypeScript surface implicitly depended on DOM JSX types.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "09-typescript-jsx:L22:2",
@@ -16089,7 +16159,8 @@
       "section": "Motivation",
       "statement": "That made non-web renderers and DOM-free TypeScript environments inherit web types even when they did not import `@solidjs/web`.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "09-typescript-jsx:L24:1",
@@ -16099,7 +16170,8 @@
       "section": "Motivation",
       "statement": "Renderer-owned JSX keeps the dependency direction aligned with runtime ownership:",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "09-typescript-jsx:L37:1",
@@ -16209,7 +16281,8 @@
       "section": "Custom renderers provide their own JSX runtime types",
       "statement": "See [`@solidjs/universal`](../../packages/universal/README.md#typescript-jsx) for a minimal template.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Navigation or debugging recommendation without an additional behavioral guarantee."
     },
     {
       "id": "09-typescript-jsx:L80:1",
@@ -16229,7 +16302,8 @@
       "section": "Migration / replacement",
       "statement": "| 1.x / earlier 2.0 betas                    | Replacement                                     |",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Table column labels, not a behavioral assertion."
     },
     {
       "id": "09-typescript-jsx:L86:1",
@@ -16299,7 +16373,8 @@
       "section": "Removals",
       "statement": "| Removed from `solid-js`            | Replacement / notes                                              |",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Table column labels, not a behavioral assertion."
     },
     {
       "id": "09-typescript-jsx:L97:1",
@@ -16359,7 +16434,8 @@
       "section": "Alternatives considered",
       "statement": "- Keeping a renderer-neutral `JSX` namespace in `solid-js` was rejected because TypeScript's JSX namespace still becomes the source of renderer-specific intrinsic element and element-type behavior.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "09-typescript-jsx:L106:1",
@@ -16369,7 +16445,8 @@
       "section": "Alternatives considered",
       "statement": "- Keeping `solid-js/jsx-runtime` as a compatibility re-export was rejected because it would continue to make `solid-js` look like the JSX owner and hide incorrect `jsxImportSource` configuration.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L3:1",
@@ -16500,7 +16577,8 @@
       "section": "Motivation",
       "statement": "- **Server functions belong to core, not the metaframework:** In 1.x, `\"use server\"` lived in SolidStart (via vinxi). 2.0 collapses the runtime into core so any Vite app \u2014 with or without Start \u2014 gets typed RPC, streaming returns, progressive enhancement, and custom serialization.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L16:1",
@@ -16510,7 +16588,8 @@
       "section": "Motivation",
       "statement": "- **Mechanisms vs. policy:** Every prior era (Start 0.x `server$`, the v1 proxy) grew an ad-hoc extension surface \u2014 per-call `fetch(init)`, `withOptions`, registry mutation, compiler-recognized wrappers.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L16:2",
@@ -16520,7 +16599,8 @@
       "section": "Motivation",
       "statement": "Sorting those concerns by _lifetime_ (declaration-static, session-dynamic, call-scoped) yields a much smaller surface.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L16:3",
@@ -16530,7 +16610,8 @@
       "section": "Motivation",
       "statement": "The call-scoped slot was initially empty; a concrete consumer (data-layer cancellation, [#3057](https://github.com/solidjs/solid/issues/3057)) later filled it with `invoke` \u2014 a bounded per-call invocator, not the `RequestInit` passthrough the old surfaces grew.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L17:1",
@@ -16540,7 +16621,8 @@
       "section": "Motivation",
       "statement": "- **The boundary is security-critical:** The handler decodes whatever an attacker sends \u2014 the codec reconstructs rich types \u2014 and hands it positionally to your function.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L17:2",
@@ -16550,7 +16632,8 @@
       "section": "Motivation",
       "statement": "TypeScript types are fiction at this boundary; treat arguments as untrusted input and check them in the function body.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L18:1",
@@ -16560,7 +16643,8 @@
       "section": "Motivation",
       "statement": "- **Avoiding the `server$` mistake:** Start 0.x\u2019s `server$` was a compiler-recognized function whose every capability grew compiler knowledge.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L18:2",
@@ -16570,7 +16654,8 @@
       "section": "Motivation",
       "statement": "The directive model exists to avoid that; this design keeps the compiler\u2019s contract at exactly one thing: `\"use server\"`.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L24:1",
@@ -19770,7 +19855,8 @@
       "section": "Alternatives considered",
       "statement": "Recorded so they don\u2019t reopen:",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L369:1",
@@ -19780,7 +19866,8 @@
       "section": "Alternatives considered",
       "statement": "- **`decorateServerFunction` (registry-swap decoration)** \u2014 rejected outright, not even as a documented escape hatch.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L369:2",
@@ -19790,7 +19877,8 @@
       "section": "Alternatives considered",
       "statement": "Action-at-a-distance magic (module evaluation mutating dispatch for an id), it contradicts the body-is-the-extension-point model, and it had no concrete consumer once validation moved into the body.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L370:1",
@@ -19800,7 +19888,8 @@
       "section": "Alternatives considered",
       "statement": "- **`callServerFunction(fn, init, ...args)` (per-call escape hatch)** \u2014 cut from the first draft for lack of a consumer; the cut was explicitly conditional (\"revisit only with a concrete use case in hand\"), and the consumer arrived (#3057: data-layer cancellation).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L370:2",
@@ -19810,7 +19899,8 @@
       "section": "Alternatives considered",
       "statement": "The shape returned as **`invoke(fn, options, ...args)`** with one decisive difference: a bounded, admission-tested options bag instead of raw `RequestInit` \u2014 the passthrough remains rejected (see the invoke section's redirect table).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L370:3",
@@ -19820,7 +19910,8 @@
       "section": "Alternatives considered",
       "statement": "A curried form (`invoke(fn, options)` returning a callable) was considered for ergonomics and rejected: it is structurally a `bind`, indistinguishable from the declaration wrappers, and would quietly revive `withOptions`.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L370:4",
@@ -19830,7 +19921,8 @@
       "section": "Alternatives considered",
       "statement": "An ambient form (options set in a stack-scoped window around a plain call) was rejected for action-at-a-distance and async-boundary fragility.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L371:1",
@@ -19840,7 +19932,8 @@
       "section": "Alternatives considered",
       "statement": "- **General `extend`/`transport(meta, fn)` options bag** \u2014 originally deferred, not designed-in: method was the only declaration-static capability, and a one-key options bag is worse API than one named function.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L371:2",
@@ -19850,7 +19943,8 @@
       "section": "Alternatives considered",
       "statement": "A narrowed form returned as **`withMeta(fn, meta)`** \u2014 transport/declaration metadata only, function-first, never behavior \u2014 because the declare-on-function, react-in-hook pattern needed a public writer to the channel (`prepareRequest`\u2019s `meta` was otherwise unreachable for user declarations).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L371:3",
@@ -19860,7 +19954,8 @@
       "section": "Alternatives considered",
       "statement": "The metadata channel remains the stable contract.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L372:1",
@@ -19870,7 +19965,8 @@
       "section": "Alternatives considered",
       "statement": "- **Per-function static `headers` metadata** \u2014 cut; every concrete use case (bearer tokens, tracing) is session-dynamic and uniform \u2192 `prepareRequest`.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L373:1",
@@ -19880,7 +19976,8 @@
       "section": "Alternatives considered",
       "statement": "- **Compiler recognition of framework functions** (schema-stripping, `extend` as a compiler convention) \u2014 rejected; repeats the `server$` mistake of growing compiler knowledge per capability.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L373:2",
@@ -19890,7 +19987,8 @@
       "section": "Alternatives considered",
       "statement": "Dead, not deferred: body-scoped DCE removes the motivation, since schemas never reach the client in the first place.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L374:1",
@@ -19900,7 +19998,8 @@
       "section": "Alternatives considered",
       "statement": "- **Transplanting wrapped module-level exports to the client build** (briefly landed, then reversed) \u2014 the compiler extracted the inner function from `export const x = wrap(async () => ...)` in a module-level directive file, replaced it with the reference, and cloned the wrapper call plus its reachable local dependencies into the client output.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L374:2",
@@ -19910,7 +20009,8 @@
       "section": "Alternatives considered",
       "statement": "Rejected on three grounds: it executes server-module code on the client (module-level files promise the opposite), the wrapper never applied to HTTP dispatch (it registered the inner function, then wrapped only what the client saw), and deciding which call argument \u201cis\u201d the function reintroduces the pattern-matching that the positional directive exists to avoid.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L375:1",
@@ -19920,7 +20020,8 @@
       "section": "Alternatives considered",
       "statement": "- **Forbidding wrapped module-level exports outright** (the immediate replacement for the transplant; also briefly landed, then reversed) \u2014 a compile error on any module-level export whose initializer wrapped a function in a call expression, on the theory that exports must be _syntactically_ the functions.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L375:2",
@@ -19930,7 +20031,8 @@
       "section": "Alternatives considered",
       "statement": "Superseded by export-value registration (the compiler contract above), which keeps the sound part of the rule \u2014 the export \u2261 registered function invariant, no client-side wrapper lies, no argument pattern-matching \u2014 while making the natural composition pattern (`withValidation(schema, fn)`, `withDelay(fn, 400)` mocks) simply work on every call path, because the _evaluated value_ is what registers.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L375:3",
@@ -19940,7 +20042,8 @@
       "section": "Alternatives considered",
       "statement": "The error threw away wrappers\u2019 one honest home (server-side, inside the registration) to enforce a syntactic reading of an invariant that was always about values.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L375:4",
@@ -19950,7 +20053,8 @@
       "section": "Alternatives considered",
       "statement": "A recognized-wrapper allowlist (`GET`/`withMeta` only) was considered along the way and rejected as the same pattern-matching problem with a shorter list.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L376:1",
@@ -19960,7 +20064,8 @@
       "section": "Alternatives considered",
       "statement": "- **Validation in core (or the router)** \u2014 rejected: a validation helper touches zero privileged surface, so it lives outside both (see the decision record above).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L376:2",
@@ -19970,7 +20075,8 @@
       "section": "Alternatives considered",
       "statement": "Core ships mechanisms; the router ships what it consumes; sugar that needs neither lives outside both.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L377:1",
@@ -19980,7 +20086,8 @@
       "section": "Alternatives considered",
       "statement": "- **Validation API variants** \u2014 a throwing/auto-400 `validate` (bakes the failure-plane choice into the helper), an error class with a `Symbol.for` brand + codec plugin + rehydration (plain data plus a structural guard needs no machinery), and per-position `validateArgs(schemas, args)` (tuple schemas already cover multi-arg) \u2014 all cut.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L378:1",
@@ -19990,7 +20097,8 @@
       "section": "Alternatives considered",
       "statement": "- **Schema-first router overloads** (`action(schema, fn)`, SvelteKit-style) \u2014 dead: validation is preflight or in-body, so router primitives don\u2019t take schemas.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L379:1",
@@ -20000,7 +20108,8 @@
       "section": "Alternatives considered",
       "statement": "- **Validation as wrapper/signature metadata** (`withValidation(schema, fn)`) \u2014 rejected _as a core/compiler-recognized convention_: at function level wrappers can\u2019t reach the HTTP dispatch path without registry mutation, and schemas would ship to the client or require compiler stripping.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L379:2",
@@ -20010,7 +20119,8 @@
       "section": "Alternatives considered",
       "statement": "Note this rejection is about core blessing the pattern, not the pattern itself: in module-level directive files, export-value registration means a userland `withValidation` wrapper composes onto every call path with schemas server-only by construction \u2014 no core recognition involved.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L380:1",
@@ -20020,7 +20130,8 @@
       "section": "Alternatives considered",
       "statement": "- **A live transport decision (2026-09-22/23)** \u2014 argued through in one night and dissolved.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L380:2",
@@ -20030,7 +20141,8 @@
       "section": "Alternatives considered",
       "statement": "A shared per-page event-stream channel carrying every live source would fix the connection count, but an SSE response is a fixed set at request time: adding a source to an open stream needs the add to reach the instance holding it and thread a new iteration into a writer another request owns (a mailbox on the channel handler; an adapter across instances) \u2014 a subscription protocol with a socket's requirements and none of its carrier, fighting a client where every subscription is fine-grained.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L380:3",
@@ -20040,7 +20152,8 @@
       "section": "Alternatives considered",
       "statement": "A `transport: \"polling\" | \"sse\"` enum with a server-side default was a distinction without a difference: the \"poll\" was the same seroval stream ended at a deadline, and the deadline (`hold`) was a ramp for platforms outside the feature's precondition.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L380:4",
@@ -20050,7 +20163,8 @@
       "section": "Alternatives considered",
       "statement": "What survives is a framing note on `live` and nothing to configure.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L380:5",
@@ -20060,7 +20174,8 @@
       "section": "Alternatives considered",
       "statement": "`hold` (one optional number that cycles live responses under a ceiling) and a socket carrier (where subscribe/unsubscribe are native) are recorded as future if asked for.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L380:6",
@@ -20070,7 +20185,8 @@
       "section": "Alternatives considered",
       "statement": "Also withdrawn unbuilt on the way: `SSE(fn)`, `enableEventStream()`, `Accept: text/event-stream` as a client declaration, and a rule that framing follows the request method.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L381:1",
@@ -20080,7 +20196,8 @@
       "section": "Alternatives considered",
       "statement": "- **Middleware chains** (client hook chains, per-function server middleware stacks) \u2014 single hooks + userland composition instead.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L381:2",
@@ -20090,7 +20207,8 @@
       "section": "Alternatives considered",
       "statement": "The server side of that single hook is `wrapInvocation` (added since first draft): one wrap around the execution with the invocation identity available, on which frameworks build per-function middleware in userland; core still ships no chain, and per-function server concerns remain body code first.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L385:1",
@@ -20100,7 +20218,8 @@
       "section": "Open questions",
       "statement": "1.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L385:2",
@@ -20110,7 +20229,8 @@
       "section": "Open questions",
       "statement": "**Unvalidated-function encouragement.** With validation never mandatory, is encouraging it a docs concern, a lint rule, or a future form-layer dev heuristic?",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L386:1",
@@ -20120,7 +20240,8 @@
       "section": "Open questions",
       "statement": "2.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L386:2",
@@ -20130,7 +20251,8 @@
       "section": "Open questions",
       "statement": "**Form-layer scope.** The router/Start form layer (typed field accessors, `aria-invalid` wiring, flash-cookie repopulation, FormData coercion) is out of scope here.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L387:1",
@@ -20140,7 +20262,8 @@
       "section": "Open questions",
       "statement": "3.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "10-server-functions:L387:2",
@@ -20150,7 +20273,8 @@
       "section": "Open questions",
       "statement": "**Upgrade-style capabilities** (0.x had a WebSocket 101 pass-through): out of scope; if runtimes ever make it portable, it would be the second declaration-static tenant that justifies revisiting a general transport form.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L3:1",
@@ -20521,7 +20645,8 @@
       "section": "Motivation",
       "statement": "- **Islands fall apart on navigation; RSC ships everything twice.** Islands architectures give a lean initial page but degenerate to full-page loads or bespoke protocols when you navigate.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L66:2",
@@ -20531,7 +20656,8 @@
       "section": "Motivation",
       "statement": "RSC-style server components keep rich composition but serialize the rendered tree alongside the HTML \u2014 every piece of server content pays twice.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L66:3",
@@ -20541,7 +20667,8 @@
       "section": "Motivation",
       "statement": "This design \u2014 _lakes, not islands_ \u2014 keeps one copy: the server owns and streams content, the client owns islands of interactivity **inside** it, and neither re-sends what the other has.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L67:1",
@@ -20551,7 +20678,8 @@
       "section": "Motivation",
       "statement": "- **No new API surface.** Every prior server-components design grew a parallel component model.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L67:2",
@@ -20561,7 +20689,8 @@
       "section": "Motivation",
       "statement": "Here the entire client surface is `dynamic` + server functions (RFC 10) plus one `installServerComponents()` call.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L67:3",
@@ -20571,7 +20700,8 @@
       "section": "Motivation",
       "statement": "Boundary identity is **derived, never declared** \u2014 the call\u2019s intrinsic (function, arguments) address keys the boundary, mirroring a data layer\u2019s cache keys by construction, so panes over different calls are independent with nothing annotated and multi-instance mounting fans one stream out to every mounted frame.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L68:1",
@@ -20581,7 +20711,8 @@
       "section": "Motivation",
       "statement": "- **Client state must survive server updates.** The failure mode that kills server-driven UIs is the refetch that blows away a half-typed reply.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L68:2",
@@ -20591,7 +20722,8 @@
       "section": "Motivation",
       "statement": "Policy here is structural: refetching into the same boundary morphs server content in place; teardown is disposal, never a version bump.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L95:1",
@@ -20871,7 +21003,8 @@
       "section": "Alternatives considered",
       "statement": "- **`createServerComponent()` / any declared API** \u2014 rejected; `dynamic` + call-address identity covers it with zero new surface.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L138:2",
@@ -20881,7 +21014,8 @@
       "section": "Alternatives considered",
       "statement": "Deleted during design. (An intermediate owner/observer-captured identity \u2014 one boundary per call _site_, morphing across argument changes \u2014 was implemented and then replaced: it broke one-to-one with per-args caches, so a fresh cache hit for one args-variant could resolve a component mounted showing another.)",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L139:1",
@@ -20891,7 +21025,8 @@
       "section": "Alternatives considered",
       "statement": "- **`\"use client\"`** \u2014 rejected; the hydration-once rule plus marked client positions make the annotation unnecessary.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L140:1",
@@ -20901,7 +21036,8 @@
       "section": "Alternatives considered",
       "statement": "- **Serialized component trees (RSC-style flight data)** \u2014 rejected on the single-copy invariant; templates never ship as data.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L140:2",
@@ -20911,7 +21047,8 @@
       "section": "Alternatives considered",
       "statement": "The claim _is_ the transfer at t = 0.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L141:1",
@@ -20921,7 +21058,8 @@
       "section": "Alternatives considered",
       "statement": "- **Event-based router integration instead of element claims** \u2014 rejected: `frame:applied` alone loses claim-time owner scoping and morph-precision, and would split anchors into two mechanisms depending on who rendered them.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L145:1",
@@ -21001,7 +21139,8 @@
       "section": "Open questions",
       "statement": "1.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L165:2",
@@ -21011,7 +21150,8 @@
       "section": "Open questions",
       "statement": "**Template/block payload mode** \u2014 the wire supports send-markup-once/instantiate-many; the producer doesn\u2019t emit it yet.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L165:3",
@@ -21021,7 +21161,8 @@
       "section": "Open questions",
       "statement": "Post-stabilization optimization.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L166:1",
@@ -21031,7 +21172,8 @@
       "section": "Open questions",
       "statement": "2.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L166:2",
@@ -21041,7 +21183,8 @@
       "section": "Open questions",
       "statement": "**Reverse-templating** \u2014 recovering more t = 0 slot args from rendered content (the current recoverability check is a conservative interim). _Constrained by the derivation:_ async args always ship as typed records (DR-3); recoverability applies to settled plain values only.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L167:1",
@@ -21051,7 +21194,8 @@
       "section": "Open questions",
       "statement": "3.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L167:2",
@@ -21061,7 +21205,8 @@
       "section": "Open questions",
       "statement": "**Router retention semantics** \u2014 _resolved, now structurally_: content stores are keyed per `(function, arguments)` and outlive mounts, so a fresh cache hit re-materializes from the warm store with no request and no snapshot mechanism; single-flight mutations ship multi-frame envelopes (invalidated regions addressed by call, the `{ value, data }` outcome riding the same response, component entries as references).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L167:3",
@@ -21071,7 +21216,8 @@
       "section": "Open questions",
       "statement": "What remains router-side is composition only: `query` wrapping, preload wiring, revalidation bookkeeping.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L168:1",
@@ -21081,7 +21227,8 @@
       "section": "Open questions",
       "statement": "4.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L168:2",
@@ -21091,7 +21238,8 @@
       "section": "Open questions",
       "statement": "**Stabilization criteria** \u2014 what graduates this from experimental: completion of the derivation pass (principles doc stages 2\u20134), wire-format freeze, router integration shipping, and the `enableHydration` granularity work.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L169:1",
@@ -21101,7 +21249,8 @@
       "section": "Open questions",
       "statement": "5.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L169:2",
@@ -21111,7 +21260,8 @@
       "section": "Open questions",
       "statement": "**Server mutation policy ahead of persistence** \u2014 recorded now so the line is drawn before persistent server components exist.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L169:3",
@@ -21121,7 +21271,8 @@
       "section": "Open questions",
       "statement": "The rule is **blanket: no server write is legitimate.** Server render is pure \u2014 change enters server state only through async sources and RPC-mediated mutation (server functions writing to the actual source of truth, state re-derived), never through setter calls.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L169:4",
@@ -21131,7 +21282,8 @@
       "section": "Open questions",
       "statement": "No ownership-scoped carve-out is needed: discriminating writes by owning scope is already the _client_ dev guards\u2019 job, and isomorphic code that misplaces a write screams there regardless of which side it runs on.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L169:5",
@@ -21141,7 +21293,8 @@
       "section": "Open questions",
       "statement": "Today setter writes are tolerated as _data-only_ operations (they update state for subsequent reads and serialization; nothing re-renders \u2014 see #3064), with optimistic writes hard no-ops since server output is settled state \u2014 but that tolerance is transitional, not contractual.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L169:6",
@@ -21151,7 +21304,8 @@
       "section": "Open questions",
       "statement": "The enforcement is staged: this release ships a `[SERVER_WRITE]` deprecation warning on every setter category (signal, store, optimistic; once per process per category) in all server builds, giving the ecosystem a loud migration window; the throw follows once it clears.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L169:7",
@@ -21161,7 +21315,8 @@
       "section": "Open questions",
       "statement": "The audit backing the stage plan: the runtime itself never writes through public setters (verified by making them throw under the full test surface \u2014 zero scenario failures), solid-router has two small fixes (the redirect `setSource` becomes a plain box, the lazy-tree version bump gets a server guard), the solid-query rewrite needs `isServer` guards on its three observer hooks, and TanStack Router/Start are already clean \u2014 their server store factory hands out non-reactive plain boxes by construction.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L169:8",
@@ -21171,7 +21326,8 @@
       "section": "Open questions",
       "statement": "The guard should land before any server scope can outlive a request, where an in-place write stops being an impurity and becomes a cross-request data race or cross-user leak.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L169:9",
@@ -21181,7 +21337,8 @@
       "section": "Open questions",
       "statement": "The concrete shape to reject: long-lived shared state fed by a subscription callback (`subscription.on(msg => setStore(...))`) \u2014 idiomatic on the client, a data race on the server.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L169:10",
@@ -21191,7 +21348,8 @@
       "section": "Open questions",
       "statement": "The subscription must instead _be_ the async source (`createStore(asyncIterable)`, derivations over it), so change is pulled through derivation rather than pushed by whatever thread the callback fires on.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "11-server-components:L169:11",
@@ -21201,7 +21359,8 @@
       "section": "Open questions",
       "statement": "The rc-era habit of \u201csetters work on the server\u201d must not be allowed to generalize.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L3:1",
@@ -21272,7 +21431,8 @@
       "section": "Motivation",
       "statement": "Peer ecosystems park Request/Response handling in a metaframework (React\u2192Next/Remix, Vue\u2192Nuxt, Svelte\u2192SvelteKit).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L13:2",
@@ -21282,7 +21442,8 @@
       "section": "Motivation",
       "statement": "Solid 2.0 collapses that layer: the exchange vocabulary lives in core, per the decision record in [RFC 10 \u2014 What belongs in `@solidjs/web`](10-server-functions.md#what-belongs-in-solidjsweb-decision-record).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L13:3",
@@ -21292,7 +21453,8 @@
       "section": "Motivation",
       "statement": "The boundary rule is **own the exchange, not the application semantics above it** \u2014 status, headers, redirects, and streaming commitment are core\u2019s; caching policy, routing, sessions, and data layers belong to the layer above.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L19:1",
@@ -23132,7 +23294,8 @@
       "section": "Alternatives considered",
       "statement": "- **Leaving the exchange to metaframeworks** \u2014 rejected; see the decision record in [RFC 10](10-server-functions.md#what-belongs-in-solidjsweb-decision-record).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L381:1",
@@ -23142,7 +23305,8 @@
       "section": "Alternatives considered",
       "statement": "- **`set`-verb naming (`setHttpStatus`)** \u2014 rejected: the primitives declare for a scope\u2019s lifetime and retract on disposal; `set*` is reserved for event-time mutation that owns no scope.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L382:1",
@@ -23152,7 +23316,8 @@
       "section": "Alternatives considered",
       "statement": "- **Ambient cookie conveniences (`getCookie`/`setCookie`/`deleteCookie`)** \u2014 the final ruling, after the position moved twice.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L382:2",
@@ -23162,7 +23327,8 @@
       "section": "Alternatives considered",
       "statement": "Originally declined as sugar over `httpHeader`; then briefly **added** during the C6 round (ambient helpers riding `getRequestEvent()`, committed-aware writes) on the correctness argument; then **cut before release** with the line redrawn where it stays: cookies are not core API \u2014 core owns the exchange and the codec, nothing ambient.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L382:3",
@@ -23172,7 +23338,8 @@
       "section": "Alternatives considered",
       "statement": "The parts of C6 with a correctness story core alone can tell survive it (the codec\u2019s round-trip grammar, the committed-stub loudness, the multi-`Set-Cookie` merge guarantee); the ambient _reading and writing_ did not \u2014 it is convenience, and convenience over the exchange is middleware\u2019s job.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L382:4",
@@ -23182,7 +23349,8 @@
       "section": "Alternatives considered",
       "statement": "This matches the Remix/React Router precedent: the codec lives in core, ambience ships as router middleware.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L383:1",
@@ -23192,7 +23360,8 @@
       "section": "Alternatives considered",
       "statement": "- **A first-party session primitive (`@solidjs/web/session`)** \u2014 designed, built to working code, and retired before shipping.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L383:2",
@@ -23202,7 +23371,8 @@
       "section": "Alternatives considered",
       "statement": "The build: a `createSessionCookie(options)` factory over an HMAC-SHA256 WebCrypto codec with a version-prefixed wire format (`v1.<base64url JSON payload>.<base64url MAC>`, MAC covering the version tag), server-side expiry in the payload, and Remix-style `secrets`-array rotation \u2014 unit-tested for round-trip, tamper, expiry, and rotation.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L383:3",
@@ -23212,7 +23382,8 @@
       "section": "Alternatives considered",
       "statement": "Retired on the standards-vs-opinion line: `parseCookieHeader`/`serializeCookie` transcribe RFC 6265 (a standard core may own), but a signed-session wire format is an _invented_ protocol serving one architecture choice \u2014 exactly the opinion tier the RFC 10 decision record says to decline.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L383:4",
@@ -23222,7 +23393,8 @@
       "section": "Alternatives considered",
       "statement": "The survey that settled it: h3 v2 chose to vendor-and-harden the iron algorithm rather than depend on `iron-webcrypto` (whose defaults leave password entropy as the entire security boundary); Remix ships sessions as standalone packages rather than in router core; and `@remix-run/cookie` already provides signed-with-rotation on pure WebCrypto \u2014 there is no gap a core primitive would fill that an app-layer dependency does not.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L383:5",
@@ -23232,7 +23404,8 @@
       "section": "Alternatives considered",
       "statement": "The sessions recipe above is that composition.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L384:1",
@@ -23242,7 +23415,8 @@
       "section": "Alternatives considered",
       "statement": "- **Throw-through-boundaries for response control flow** \u2014 rejected: letting redirects/`notFound` be thrown during render and caught by `<Loading>`/`<Errored>` boundaries as the way to answer them.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L384:2",
@@ -23252,7 +23426,8 @@
       "section": "Alternatives considered",
       "statement": "After the shell flush the status is frozen and a boundary may already have streamed fallback HTML, so a boundary-caught response throw has no coherent post-commit meaning \u2014 there is nothing left it could truthfully do to the exchange.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L384:3",
@@ -23262,7 +23437,8 @@
       "section": "Alternatives considered",
       "statement": "The stub + data-layer model answers every case explicitly instead: pre-flush `Location` becomes a real redirect, post-flush `Location` becomes the client-side script fallback, and server functions carry thrown `Response`s to the client transport whole.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "12-ssr-http:L384:4",
@@ -23272,7 +23448,8 @@
       "section": "Alternatives considered",
       "statement": "A thrown `Response` is control flow for the _integration_, never an error for a boundary to swallow.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Design rationale, historical comparison, or explicitly future/open proposal rather than a present runtime contract."
     },
     {
       "id": "MIGRATION:L3:1",
@@ -23542,7 +23719,8 @@
       "section": "TypeScript JSX: `solid-js` \u2192 renderer package",
       "statement": "See [RFC 09 \u2014 TypeScript and JSX ownership](09-typescript-jsx.md) for the full design.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Navigation or debugging recommendation without an additional behavioral guarantee."
     },
     {
       "id": "MIGRATION:L103:1",
@@ -23712,7 +23890,8 @@
       "section": "Nested `createRoot` is owned by its parent",
       "statement": "See [RFC 02 \u2014 Ownership: `createRoot` is owned by the parent by default](02-signals-derived-ownership.md#ownership-createroot-is-owned-by-the-parent-by-default).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Navigation or debugging recommendation without an additional behavioral guarantee."
     },
     {
       "id": "MIGRATION:L227:1",
@@ -23742,7 +23921,8 @@
       "section": "Dev warnings you\u2019ll likely see (and how to fix them)",
       "statement": "See [RFC 08](08-dev-diagnostics.md) for the full reference.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Navigation or debugging recommendation without an additional behavioral guarantee."
     },
     {
       "id": "MIGRATION:L231:1",
@@ -23932,7 +24112,8 @@
       "section": "`createResource` \u2192 async computations + `Loading`",
       "statement": "| 1.x resource feature | 2.0 replacement                                                                                                                                                                                                |",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Table column labels, not a behavioral assertion."
     },
     {
       "id": "MIGRATION:L346:1",
@@ -23982,7 +24163,8 @@
       "section": "`createResource` \u2192 async computations + `Loading`",
       "statement": "See [RFC 05 \u2014 createResource migration](05-async-data.md#createresource--async-computations--loading) for detailed before/after examples of each pattern.",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Navigation or debugging recommendation without an additional behavioral guarantee."
     },
     {
       "id": "MIGRATION:L355:1",
@@ -24862,7 +25044,8 @@
       "section": "New in 2.0",
       "statement": "See [RFC 06](06-actions-optimistic.md).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Navigation or debugging recommendation without an additional behavioral guarantee."
     },
     {
       "id": "MIGRATION:L758:1",
@@ -24922,7 +25105,8 @@
       "section": "New in 2.0",
       "statement": "See [RFC 06](06-actions-optimistic.md).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Navigation or debugging recommendation without an additional behavioral guarantee."
     },
     {
       "id": "MIGRATION:L761:1",
@@ -25142,7 +25326,8 @@
       "section": "New in 2.0",
       "statement": "See [RFC 05](05-async-data.md).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Navigation or debugging recommendation without an additional behavioral guarantee."
     },
     {
       "id": "MIGRATION:L772:1",
@@ -25162,7 +25347,8 @@
       "section": "New in 2.0",
       "statement": "See [RFC 12](12-ssr-http.md).",
       "coverage": [],
-      "status": "uncovered"
+      "status": "not-behavioral",
+      "reason": "Navigation or debugging recommendation without an additional behavioral guarantee."
     },
     {
       "id": "MIGRATION:L776:1",
