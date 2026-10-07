@@ -1,0 +1,571 @@
+{
+  "commit": "53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712",
+  "scope": "08 quick-reference L927–992; category/severity/trigger conjunction, explicit partial rows remain uncovered",
+  "entries": [
+    {
+      "id": "08-dev-diagnostics:L927:1",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
+      "coverage": [],
+      "reason": "快速参考表引导/列名，没有独立runtime合同。"
+    },
+    {
+      "id": "08-dev-diagnostics:L929:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-owned-write-scopes",
+        "08/primitive-owned-action-and-refresh"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L930:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-async-setter-families"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L931:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-pending-untracked-callback"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L932:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-root-async-mount"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L933:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-cleanup-forbidden-both"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L934:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-settled-unowned"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L935:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/primitive-leaf-owner-families"
+      ],
+      "reason": "静态 signal 不报告对应 finding010；memo/effect 与2种leaf scope 完整正例。"
+    },
+    {
+      "id": "08-dev-diagnostics:L936:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-owned-action-and-refresh"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L937:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-missing_effect_fn"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L938:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-sync-node-async-kinds"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L939:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-invalid_refresh_target"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L940:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-affects-extra-key",
+        "08/diagnostic-invalid_affects_target"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L941:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-halt-lifecycle"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L942:1",
+      "classification": "behavioral",
+      "status": "untestable",
+      "coverage": [],
+      "reason": "内部状态一致性诊断，合法公共API无法刻意触发；需破坏私有图结构。"
+    },
+    {
+      "id": "08-dev-diagnostics:L943:1",
+      "classification": "behavioral",
+      "status": "untestable",
+      "coverage": [],
+      "reason": "内部状态一致性诊断，合法公共API无法刻意触发；需破坏私有图结构。"
+    },
+    {
+      "id": "08-dev-diagnostics:L944:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-strict-component-controls",
+        "08/primitive-effect-backhalf-store-proxy"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L945:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-after-await",
+        "08/primitive-after-await-memo-source"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L946:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-pending-forbidden-both"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L947:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-loading-outside"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L948:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-no_owner_effect"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L949:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-unowned-cleanup-never-runs"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L950:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-no-owner-boundary"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L951:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/diagnostic-run_with_disposed_owner"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L952:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/primitive-flush-callback-drain"
+      ],
+      "reason": "code/category/severity 与触发/负对照、默认阈值或 drain 顺序均有明确断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:L953:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-fanout-core-threshold",
+        "08/cost-fanout-engine-handover"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L954:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-fanin-core-threshold"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L955:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-graph-growth-default"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L956:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-hot-runs-default"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L957:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-hot_scope_fanout"
+      ],
+      "reason": "root现有低阈值case；默认5/50/500与kind/severity须核实。"
+    },
+    {
+      "id": "08-dev-diagnostics:L958:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-hot-time-default"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L959:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-wide-default-threshold",
+        "08/cost-wide-growth-default"
+      ],
+      "reason": "code/category/severity 与触发/负对照、默认阈值或 drain 顺序均有明确断言。"
+    },
+    {
+      "id": "08-dev-diagnostics:L960:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-async-waterfall-tiers"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L961:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-unstable-default-and-equality"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L962:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-wasted-default-and-output"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L963:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-effect_writes_own_source"
+      ],
+      "reason": "root direct feedback已测；multi-effect info ring未测。"
+    },
+    {
+      "id": "08-dev-diagnostics:L964:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-effect_relay_tear"
+      ],
+      "reason": "warn/singlewriter identity正例已测；info变换/otherwriters未测。"
+    },
+    {
+      "id": "08-dev-diagnostics:L965:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L966:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L967:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-silent_hold"
+      ],
+      "reason": "root阈值与所有ack分支还需late精确映射。"
+    },
+    {
+      "id": "08-dev-diagnostics:L968:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-long_hold"
+      ],
+      "reason": "root默认500/1000与kind/severity须late核实。"
+    },
+    {
+      "id": "08-dev-diagnostics:L969:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-untracked_async_handler"
+      ],
+      "reason": "root低阈值case，默认100/200边界未测。"
+    },
+    {
+      "id": "08-dev-diagnostics:L970:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-abandoned_flights"
+      ],
+      "reason": "rootcount2定制阈值，default3/window1s未测。"
+    },
+    {
+      "id": "08-dev-diagnostics:L971:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/cost-fallback-flash-default"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L972:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-stacked_holds"
+      ],
+      "reason": "rootcount3用例；阈值defaults与payload详assert需核实。"
+    },
+    {
+      "id": "08-dev-diagnostics:L973:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-optimistic_reverted"
+      ],
+      "reason": "rootreverted已测；superseded及kind/severity需核实。"
+    },
+    {
+      "id": "08-dev-diagnostics:L974:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "frames正例severity已测，kind需核实。"
+    },
+    {
+      "id": "08-dev-diagnostics:L975:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "warn/ssr与pending descendants已测；observe tier未覆盖。"
+    },
+    {
+      "id": "08-dev-diagnostics:L976:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "consumer cancel已测；sink failure是单独分支未测。"
+    },
+    {
+      "id": "08-dev-diagnostics:L977:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "frames late header各tier已有case，kind需核实。"
+    },
+    {
+      "id": "08-dev-diagnostics:L978:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [
+        "08/attribution-warning-dynamic_async_component"
+      ],
+      "reason": "error/ssr各tierreject已测；observetier未测。"
+    },
+    {
+      "id": "08-dev-diagnostics:L979:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "frames真实SSR/RPC sanitization已有cases，kind需核实。"
+    },
+    {
+      "id": "08-dev-diagnostics:L980:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "frames marker contract已有case，kind/severity需核实。"
+    },
+    {
+      "id": "08-dev-diagnostics:L981:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-write-categories"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L982:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-reveal-sync"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L983:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-waterfall"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L984:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-client-masked"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L985:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "frames文档live/unbounded正负case，kind/severity需核实。"
+    },
+    {
+      "id": "08-dev-diagnostics:L986:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-lazy-unmapped"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L987:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-preload-descriptor"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L988:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-head-invalid"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L989:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-unrecognized-value"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L990:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-unscoped-hole"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L991:1",
+      "classification": "behavioral",
+      "status": "covered",
+      "coverage": [
+        "08/server-diagnostic-lowercase-event"
+      ],
+      "reason": "code、category、severity与本行触发在列举正例/负对照中显式断言；默认阈值使用原默认配置。"
+    },
+    {
+      "id": "08-dev-diagnostics:L992:1",
+      "classification": "behavioral",
+      "status": "uncovered",
+      "coverage": [],
+      "reason": "frames binding suite覆盖多个reason，类别/severity与本行所列reason需核实。"
+    }
+  ]
+}

@@ -11,10 +11,10 @@
     },
     {
       "id": "08-dev-diagnostics:L7:1",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L7:2",
@@ -63,10 +63,10 @@
     },
     {
       "id": "08-dev-diagnostics:L13:1",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L15:1",
@@ -162,10 +162,10 @@
     },
     {
       "id": "08-dev-diagnostics:L26:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L30:1",
@@ -205,18 +205,19 @@
     {
       "id": "08-dev-diagnostics:L35:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/diagnostic-reactive_write_in_owned_scope"
+        "08/primitive-owned-write-scopes",
+        "08/primitive-owned-action-and-refresh"
       ],
-      "reason": "partial: 正例覆盖一个入口，句子还列出其他 scope/target 或同步提交时序；需要进一步精确断言。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L35:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L55:1",
@@ -228,9 +229,14 @@
     {
       "id": "08-dev-diagnostics:L55:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-async-setter-families",
+        "08/primitive-store-transaction-once",
+        "08/primitive-derived-async-compute-valid",
+        "08/primitive-signal-promise-valid"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L55:3",
@@ -242,48 +248,74 @@
     {
       "id": "08-dev-diagnostics:L57:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-async-setter-families",
+        "08/primitive-store-transaction-once",
+        "08/primitive-derived-async-compute-valid",
+        "08/primitive-signal-promise-valid"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L57:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-async-setter-families",
+        "08/primitive-store-transaction-once",
+        "08/primitive-derived-async-compute-valid",
+        "08/primitive-signal-promise-valid"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L57:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-async-setter-families",
+        "08/primitive-store-transaction-once",
+        "08/primitive-derived-async-compute-valid",
+        "08/primitive-signal-promise-valid"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L57:4",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/diagnostic-async_store_setter"
+        "08/primitive-async-setter-families",
+        "08/primitive-store-transaction-once",
+        "08/primitive-derived-async-compute-valid",
+        "08/primitive-signal-promise-valid"
       ],
-      "reason": "partial: 正例覆盖一个入口，句子还列出其他 scope/target 或同步提交时序；需要进一步精确断言。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L57:5",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/diagnostic-async_store_setter"
+        "08/primitive-async-setter-families",
+        "08/primitive-store-transaction-once",
+        "08/primitive-derived-async-compute-valid",
+        "08/primitive-signal-promise-valid"
       ],
-      "reason": "partial: 只验证 createStore setter，optimisticStore/derived setter 尚未覆盖。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L57:6",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-async-setter-families",
+        "08/primitive-store-transaction-once",
+        "08/primitive-derived-async-compute-valid",
+        "08/primitive-signal-promise-valid"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L82:1",
@@ -302,11 +334,11 @@
     {
       "id": "08-dev-diagnostics:L84:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/diagnostic-pending_async_untracked_read"
+        "08/primitive-pending-untracked-callback"
       ],
-      "reason": "partial: 正例覆盖一个入口，句子还列出其他 scope/target 或同步提交时序；需要进一步精确断言。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L84:2",
@@ -332,51 +364,66 @@
     {
       "id": "08-dev-diagnostics:L103:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-root-async-mount",
+        "08/primitive-root-sync-mount"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L105:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-root-async-mount",
+        "08/primitive-root-sync-mount"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L105:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-root-async-mount",
+        "08/primitive-root-sync-mount"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L105:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-root-async-mount",
+        "08/primitive-root-sync-mount"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L107:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-root-async-mount",
+        "08/primitive-root-sync-mount"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L107:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L125:1",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L127:1",
@@ -409,9 +456,12 @@
     {
       "id": "08-dev-diagnostics:L133:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-root-async-mount",
+        "08/primitive-root-sync-mount"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L135:1",
@@ -443,11 +493,11 @@
     {
       "id": "08-dev-diagnostics:L135:4",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
         "08/client-diagnostic-loading-outside"
       ],
-      "reason": "partial: 一次触发已断言，data.source 未断言。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L137:1",
@@ -493,17 +543,17 @@
     },
     {
       "id": "08-dev-diagnostics:L150:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L150:3",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L154:1",
@@ -517,9 +567,9 @@
       "classification": "behavioral",
       "status": "covered",
       "coverage": [
-        "08/diagnostic-cleanup_in_forbidden_scope"
+        "08/primitive-cleanup-forbidden-both"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L173:1",
@@ -572,11 +622,11 @@
     {
       "id": "08-dev-diagnostics:L199:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/diagnostic-primitive_in_forbidden_scope"
+        "08/primitive-leaf-owner-families"
       ],
-      "reason": "partial: onSettled 创建 memo有测试，trackedEffect以及 signal/effect 家族未穷举。"
+      "reason": "memo/effect 与 tracked/onSettled 正例均断言；静态 signal 的缺失已由 finding010 红测试记录，不能将当前安静行为解释为符合文档。"
     },
     {
       "id": "08-dev-diagnostics:L216:1",
@@ -628,10 +678,10 @@
     },
     {
       "id": "08-dev-diagnostics:L243:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L247:1",
@@ -649,10 +699,10 @@
     },
     {
       "id": "08-dev-diagnostics:L249:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L253:1",
@@ -673,16 +723,16 @@
       "classification": "behavioral",
       "status": "covered",
       "coverage": [
-        "08/diagnostic-action_called_in_owned_scope"
+        "08/primitive-owned-action-and-refresh"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L255:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L259:1",
@@ -733,18 +783,20 @@
     {
       "id": "08-dev-diagnostics:L267:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/diagnostic-sync_node_received_async"
+        "08/primitive-sync-node-async-kinds"
       ],
-      "reason": "partial: Promise 正例，async iterable 尚未验证。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L267:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-sync-node-async-kinds"
+      ],
+      "reason": "真实 Chrome dev/prod 的针对性正例/负对照显式断言该合同。"
     },
     {
       "id": "08-dev-diagnostics:L271:1",
@@ -786,11 +838,12 @@
     {
       "id": "08-dev-diagnostics:L279:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
+        "08/primitive-affects-extra-key",
         "08/diagnostic-invalid_affects_target"
       ],
-      "reason": "partial: accessor key 正例，额外key path未覆盖。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L279:2",
@@ -818,16 +871,16 @@
     {
       "id": "08-dev-diagnostics:L285:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "untestable",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "内部一致性失败/从未初始化 source 的 settle walk 没有合法公共 API 触发；制造此事件需要破坏 runtime 私有图状态，不是 documented usage 的可运行 conformance 测试。"
     },
     {
       "id": "08-dev-diagnostics:L285:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "untestable",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "内部 invariant 无合法公共API刻意触发；tier/throw分支只能通过破坏私有图或__TEST__内部测试构建，不编造应用误用。"
     },
     {
       "id": "08-dev-diagnostics:L289:1",
@@ -853,37 +906,45 @@
     {
       "id": "08-dev-diagnostics:L291:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-halt-lifecycle"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L291:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-halt-lifecycle"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L291:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-halt-lifecycle"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L291:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-halt-lifecycle"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L291:5",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L295:1",
@@ -895,23 +956,23 @@
     {
       "id": "08-dev-diagnostics:L297:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "untestable",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "内部一致性失败/从未初始化 source 的 settle walk 没有合法公共 API 触发；制造此事件需要破坏 runtime 私有图状态，不是 documented usage 的可运行 conformance 测试。"
     },
     {
       "id": "08-dev-diagnostics:L297:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "untestable",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "内部 invariant 无合法公共API刻意触发；tier/throw分支只能通过破坏私有图或__TEST__内部测试构建，不编造应用误用。"
     },
     {
       "id": "08-dev-diagnostics:L297:3",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "内部错误解释或报告建议，无额外公开输出保证。"
     },
     {
       "id": "08-dev-diagnostics:L301:1",
@@ -922,10 +983,10 @@
     },
     {
       "id": "08-dev-diagnostics:L301:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "内部错误解释或报告建议，无额外公开输出保证。"
     },
     {
       "id": "08-dev-diagnostics:L305:1",
@@ -936,35 +997,46 @@
     },
     {
       "id": "08-dev-diagnostics:L305:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L307:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/diagnostic-strict_read_untracked"
+        "08/primitive-strict-component-controls",
+        "08/primitive-effect-backhalf-store-proxy",
+        "08/primitive-after-await-memo-source",
+        "08/client-diagnostic-after-await"
       ],
-      "reason": "partial: effect callback signal有触发；component props/store 尚未全部验证。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L307:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/diagnostic-strict_read_untracked"
+        "08/primitive-strict-component-controls",
+        "08/primitive-effect-backhalf-store-proxy",
+        "08/primitive-after-await-memo-source",
+        "08/client-diagnostic-after-await"
       ],
-      "reason": "partial: 警告有测试，值一次捕获与后写永不更新尚无针对断言。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L328:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-strict-component-controls",
+        "08/primitive-effect-backhalf-store-proxy",
+        "08/primitive-after-await-memo-source",
+        "08/client-diagnostic-after-await"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L330:1",
@@ -983,9 +1055,14 @@
     {
       "id": "08-dev-diagnostics:L334:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-strict-component-controls",
+        "08/primitive-effect-backhalf-store-proxy",
+        "08/primitive-after-await-memo-source",
+        "08/client-diagnostic-after-await"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L334:2",
@@ -999,18 +1076,24 @@
       "classification": "behavioral",
       "status": "covered",
       "coverage": [
+        "08/primitive-strict-component-controls",
+        "08/primitive-effect-backhalf-store-proxy",
+        "08/primitive-after-await-memo-source",
         "08/client-diagnostic-after-await"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L336:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
+        "08/primitive-strict-component-controls",
+        "08/primitive-effect-backhalf-store-proxy",
+        "08/primitive-after-await-memo-source",
         "08/client-diagnostic-after-await"
       ],
-      "reason": "partial: signal/store Chrome 正例；memo afterawait 尚无专门断言。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L353:1",
@@ -1040,9 +1123,13 @@
     {
       "id": "08-dev-diagnostics:L355:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-after-await-imperative-exclusions",
+        "08/primitive-pending-forbidden-both",
+        "08/primitive-unowned-cleanup-never-runs"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L357:1",
@@ -1054,9 +1141,11 @@
     {
       "id": "08-dev-diagnostics:L357:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-after-await-indirect-contexts"
+      ],
+      "reason": "真实 Chrome dev/prod 的针对性正例/负对照显式断言该合同。"
     },
     {
       "id": "08-dev-diagnostics:L357:3",
@@ -1114,18 +1203,20 @@
     {
       "id": "08-dev-diagnostics:L365:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/client-diagnostic-pending-forbidden"
+        "08/primitive-after-await-imperative-exclusions",
+        "08/primitive-pending-forbidden-both",
+        "08/primitive-unowned-cleanup-never-runs"
       ],
-      "reason": "partial: trackedEffect pending throw测试；onSettled尚未覆盖。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L365:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L369:1",
@@ -1137,25 +1228,27 @@
     {
       "id": "08-dev-diagnostics:L371:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/diagnostic-no_owner_effect"
+        "08/primitive-unowned-effect-lifetime"
       ],
-      "reason": "partial: createEffect 正例；trackedEffect未独立验证。"
+      "reason": "真实 Chrome dev/prod 的针对性正例/负对照显式断言该合同。"
     },
     {
       "id": "08-dev-diagnostics:L371:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-unowned-effect-lifetime"
+      ],
+      "reason": "真实 Chrome dev/prod 的针对性正例/负对照显式断言该合同。"
     },
     {
       "id": "08-dev-diagnostics:L371:3",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L391:1",
@@ -1169,16 +1262,20 @@
       "classification": "behavioral",
       "status": "covered",
       "coverage": [
-        "08/diagnostic-no_owner_cleanup"
+        "08/primitive-after-await-imperative-exclusions",
+        "08/primitive-pending-forbidden-both",
+        "08/primitive-unowned-cleanup-never-runs"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L393:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-unowned-cleanup-never-runs"
+      ],
+      "reason": "真实 Chrome dev/prod 的针对性正例/负对照显式断言该合同。"
     },
     {
       "id": "08-dev-diagnostics:L397:1",
@@ -1243,12 +1340,12 @@
     {
       "id": "08-dev-diagnostics:L411:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/diagnostic-flush_in_effect_callback",
+        "08/primitive-flush-callback-drain",
         "08/client-diagnostic-flush-forbidden"
       ],
-      "reason": "partial: warning/no throw有检查，callback writes同flush continuation 精确时序未断言。"
+      "reason": "真实 Chrome dev/prod 的针对性正例/负对照显式断言该合同。"
     },
     {
       "id": "08-dev-diagnostics:L415:1",
@@ -1275,31 +1372,39 @@
     },
     {
       "id": "08-dev-diagnostics:L417:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L417:3",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L419:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-fanout-core-threshold",
+        "08/cost-fanout-engine-handover",
+        "08/cost-checks-false"
+      ],
+      "reason": "默认 core2000/engine250、重复写不报告、增长500重报、disposed不计、core接管及关闭cost明确断言；内部字段分配描述不是新增 public 行为。"
     },
     {
       "id": "08-dev-diagnostics:L419:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-fanout-core-threshold",
+        "08/cost-fanout-engine-handover",
+        "08/cost-checks-false"
+      ],
+      "reason": "默认 core2000/engine250、重复写不报告、增长500重报、disposed不计、core接管及关闭cost明确断言；内部字段分配描述不是新增 public 行为。"
     },
     {
       "id": "08-dev-diagnostics:L419:3",
@@ -1313,37 +1418,57 @@
     {
       "id": "08-dev-diagnostics:L419:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-fanout-core-threshold",
+        "08/cost-fanout-engine-handover",
+        "08/cost-checks-false"
+      ],
+      "reason": "默认 core2000/engine250、重复写不报告、增长500重报、disposed不计、core接管及关闭cost明确断言；内部字段分配描述不是新增 public 行为。"
     },
     {
       "id": "08-dev-diagnostics:L419:5",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-fanout-core-threshold",
+        "08/cost-fanout-engine-handover",
+        "08/cost-checks-false"
+      ],
+      "reason": "默认 core2000/engine250、重复写不报告、增长500重报、disposed不计、core接管及关闭cost明确断言；内部字段分配描述不是新增 public 行为。"
     },
     {
       "id": "08-dev-diagnostics:L419:6",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-fanout-core-threshold",
+        "08/cost-fanout-engine-handover",
+        "08/cost-checks-false"
+      ],
+      "reason": "默认 core2000/engine250、重复写不报告、增长500重报、disposed不计、core接管及关闭cost明确断言；内部字段分配描述不是新增 public 行为。"
     },
     {
       "id": "08-dev-diagnostics:L419:7",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-fanout-core-threshold",
+        "08/cost-fanout-engine-handover",
+        "08/cost-checks-false"
+      ],
+      "reason": "默认 core2000/engine250、重复写不报告、增长500重报、disposed不计、core接管及关闭cost明确断言；内部字段分配描述不是新增 public 行为。"
     },
     {
       "id": "08-dev-diagnostics:L419:8",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-fanout-core-threshold",
+        "08/cost-fanout-engine-handover",
+        "08/cost-checks-false"
+      ],
+      "reason": "默认 core2000/engine250、重复写不报告、增长500重报、disposed不计、core接管及关闭cost明确断言；内部字段分配描述不是新增 public 行为。"
     },
     {
       "id": "08-dev-diagnostics:L423:1",
@@ -1364,23 +1489,23 @@
       "classification": "behavioral",
       "status": "covered",
       "coverage": [
-        "08/attribution-warning-huge_fan_in"
+        "08/cost-fanin-core-threshold"
       ],
-      "reason": "逐句由列出的用例显式断言；诊断章节的 dev 条件按各条明确 tier 限定解释。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L425:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L425:3",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L427:1",
@@ -1420,25 +1545,29 @@
     {
       "id": "08-dev-diagnostics:L433:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-graph-growth-default"
+      ],
+      "reason": "真实 navigation-origin settle 默认3次/ratio1.25，initial豁免、稳定图负对照及history长度明确断言。"
     },
     {
       "id": "08-dev-diagnostics:L433:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-graph-growth-default"
+      ],
+      "reason": "真实 navigation-origin settle 默认3次/ratio1.25，initial豁免、稳定图负对照及history长度明确断言。"
     },
     {
       "id": "08-dev-diagnostics:L433:3",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/graph-initial-and-visits"
+        "08/cost-graph-growth-default"
       ],
-      "reason": "partial: 有 graph record/graphSize断言，route settle各次 history未完整验证。"
+      "reason": "真实 navigation-origin settle 默认3次/ratio1.25，initial豁免、稳定图负对照及history长度明确断言。"
     },
     {
       "id": "08-dev-diagnostics:L433:4",
@@ -1471,11 +1600,11 @@
     {
       "id": "08-dev-diagnostics:L435:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/graph-initial-and-visits"
+        "08/cost-graph-growth-default"
       ],
-      "reason": "partial: initial emits graph有断言；GRAPH_GROWTH history豁免未测试。"
+      "reason": "真实 navigation-origin settle 默认3次/ratio1.25，initial豁免、稳定图负对照及history长度明确断言。"
     },
     {
       "id": "08-dev-diagnostics:L435:2",
@@ -1552,16 +1681,24 @@
     {
       "id": "08-dev-diagnostics:L443:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-hot-runs-default",
+        "08/cost-hot-time-default",
+        "08/cost-wide-default-threshold"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L443:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-hot-runs-default",
+        "08/cost-hot-time-default",
+        "08/cost-wide-default-threshold"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L443:3",
@@ -1573,23 +1710,34 @@
     {
       "id": "08-dev-diagnostics:L444:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-hot-runs-default",
+        "08/cost-hot-time-default",
+        "08/cost-wide-default-threshold"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L444:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-hot-runs-default",
+        "08/cost-hot-time-default",
+        "08/cost-wide-default-threshold"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L445:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-wide-default-threshold",
+        "08/cost-wide-growth-default"
+      ],
+      "reason": "真实 Chrome dev/prod 的针对性正例/负对照显式断言该合同。"
     },
     {
       "id": "08-dev-diagnostics:L445:2",
@@ -1601,9 +1749,13 @@
     {
       "id": "08-dev-diagnostics:L445:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-hot-runs-default",
+        "08/cost-hot-time-default",
+        "08/cost-wide-default-threshold"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L447:1",
@@ -1711,16 +1863,20 @@
     {
       "id": "08-dev-diagnostics:L463:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-async-waterfall-tiers"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L463:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-async-waterfall-tiers"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L463:4",
@@ -1732,9 +1888,11 @@
     {
       "id": "08-dev-diagnostics:L463:5",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-async-waterfall-tiers"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L465:1",
@@ -1769,25 +1927,26 @@
     {
       "id": "08-dev-diagnostics:L471:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/attribution-warning-unstable_memo_output"
+        "08/cost-unstable-default-and-equality",
+        "08/cost-wasted-default-and-output"
       ],
-      "reason": "partial: 自定义连续2run测试；default4和array形状未验证。"
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L471:3",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L471:4",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L475:1",
@@ -1838,9 +1997,12 @@
     {
       "id": "08-dev-diagnostics:L477:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-unstable-default-and-equality",
+        "08/cost-wasted-default-and-output"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L477:5",
@@ -1852,9 +2014,12 @@
     {
       "id": "08-dev-diagnostics:L477:6",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-unstable-default-and-equality",
+        "08/cost-wasted-default-and-output"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L477:7",
@@ -1897,10 +2062,10 @@
     },
     {
       "id": "08-dev-diagnostics:L483:3",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L483:4",
@@ -1951,23 +2116,29 @@
     {
       "id": "08-dev-diagnostics:L494:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-effect-relay-tear"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L494:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-effect-relay-tear"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L494:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-effect-relay-tear"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L494:4",
@@ -1979,9 +2150,11 @@
     {
       "id": "08-dev-diagnostics:L496:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-effect-relay-tear"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L497:1",
@@ -1999,10 +2172,10 @@
     },
     {
       "id": "08-dev-diagnostics:L498:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L502:1",
@@ -2038,17 +2211,17 @@
     },
     {
       "id": "08-dev-diagnostics:L504:3",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L504:4",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L504:5",
@@ -2084,10 +2257,10 @@
     },
     {
       "id": "08-dev-diagnostics:L510:3",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L510:4",
@@ -2107,10 +2280,10 @@
     },
     {
       "id": "08-dev-diagnostics:L514:1",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L514:2",
@@ -2145,7 +2318,7 @@
       "classification": "behavioral",
       "status": "uncovered",
       "coverage": [],
-      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+      "reason": "此解释/修复段包含可观测额外合同，仍需专门证明；不能排除为背景文字。"
     },
     {
       "id": "08-dev-diagnostics:L520:1",
@@ -2296,7 +2469,7 @@
       "classification": "behavioral",
       "status": "uncovered",
       "coverage": [],
-      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+      "reason": "此解释/修复段包含可观测额外合同，仍需专门证明；不能排除为背景文字。"
     },
     {
       "id": "08-dev-diagnostics:L535:3",
@@ -2421,10 +2594,10 @@
     },
     {
       "id": "08-dev-diagnostics:L549:1",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L549:2",
@@ -2480,23 +2653,29 @@
     {
       "id": "08-dev-diagnostics:L555:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-fallback-flash-default"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L555:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-fallback-flash-default"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L555:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-fallback-flash-default"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L555:4",
@@ -2515,9 +2694,11 @@
     {
       "id": "08-dev-diagnostics:L555:6",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-fallback-flash-default"
+      ],
+      "reason": "逐句由真实 Chrome dev/prod 与 SSR 用例显式断言；仅使用对应合同的断言，不由相同 code 推定其他分支。"
     },
     {
       "id": "08-dev-diagnostics:L559:1",
@@ -2544,10 +2725,10 @@
     },
     {
       "id": "08-dev-diagnostics:L561:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L561:3",
@@ -2660,10 +2841,10 @@
     },
     {
       "id": "08-dev-diagnostics:L567:9",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L571:1",
@@ -2820,10 +3001,10 @@
     },
     {
       "id": "08-dev-diagnostics:L588:5",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L592:1",
@@ -2866,10 +3047,10 @@
     },
     {
       "id": "08-dev-diagnostics:L594:5",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L598:1",
@@ -2908,10 +3089,10 @@
     },
     {
       "id": "08-dev-diagnostics:L600:4",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L604:1",
@@ -2975,10 +3156,10 @@
     },
     {
       "id": "08-dev-diagnostics:L606:5",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L606:6",
@@ -3078,7 +3259,7 @@
       "classification": "behavioral",
       "status": "uncovered",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "此解释/修复段包含可观测额外合同，仍需专门证明；不能排除为背景文字。"
     },
     {
       "id": "08-dev-diagnostics:L619:5",
@@ -3117,10 +3298,10 @@
     },
     {
       "id": "08-dev-diagnostics:L625:4",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L629:1",
@@ -3186,10 +3367,10 @@
     },
     {
       "id": "08-dev-diagnostics:L635:4",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L639:1",
@@ -3244,10 +3425,10 @@
     },
     {
       "id": "08-dev-diagnostics:L647:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L647:3",
@@ -3288,10 +3469,10 @@
     },
     {
       "id": "08-dev-diagnostics:L653:3",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L653:4",
@@ -3361,10 +3542,10 @@
     },
     {
       "id": "08-dev-diagnostics:L659:3",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L659:4",
@@ -3405,10 +3586,10 @@
     },
     {
       "id": "08-dev-diagnostics:L665:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L665:3",
@@ -3503,14 +3684,14 @@
       "classification": "behavioral",
       "status": "uncovered",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "此解释/修复段包含可观测额外合同，仍需专门证明；不能排除为背景文字。"
     },
     {
       "id": "08-dev-diagnostics:L674:4",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L678:1",
@@ -3562,10 +3743,10 @@
     },
     {
       "id": "08-dev-diagnostics:L686:2",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L686:3",
@@ -3624,10 +3805,10 @@
     },
     {
       "id": "08-dev-diagnostics:L692:4",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L696:1",
@@ -3687,7 +3868,7 @@
       "classification": "behavioral",
       "status": "uncovered",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "此解释/修复段包含可观测额外合同，仍需专门证明；不能排除为背景文字。"
     },
     {
       "id": "08-dev-diagnostics:L700:4",
@@ -3703,14 +3884,14 @@
       "classification": "behavioral",
       "status": "uncovered",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "此解释/修复段包含可观测额外合同，仍需专门证明；不能排除为背景文字。"
     },
     {
       "id": "08-dev-diagnostics:L700:6",
       "classification": "behavioral",
       "status": "uncovered",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "此解释/修复段包含可观测额外合同，仍需专门证明；不能排除为背景文字。"
     },
     {
       "id": "08-dev-diagnostics:L702:1",
@@ -3753,10 +3934,10 @@
     },
     {
       "id": "08-dev-diagnostics:L702:6",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L706:1",
@@ -3820,14 +4001,14 @@
       "classification": "behavioral",
       "status": "uncovered",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "此解释/修复段包含可观测额外合同，仍需专门证明；不能排除为背景文字。"
     },
     {
       "id": "08-dev-diagnostics:L708:7",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L712:1",
@@ -4062,10 +4243,10 @@
     },
     {
       "id": "08-dev-diagnostics:L727:5",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L727:6",
@@ -4159,10 +4340,10 @@
     },
     {
       "id": "08-dev-diagnostics:L761:4",
-      "classification": "behavioral",
-      "status": "uncovered",
+      "classification": "not-behavioral",
+      "status": "not-behavioral",
       "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "reason": "解释原因、建议修复、历史背景、示例诊断文案或实现成本；实际可观察触发、字段、阈值及输出合同分别保留。"
     },
     {
       "id": "08-dev-diagnostics:L765:1",
