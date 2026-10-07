@@ -7,9 +7,10 @@
       "dependencies": {
         "@solidjs/compiler": "2.0.0-rc.13",
         "@solidjs/diagnostics": "2.0.0-rc.13",
-        "@solidjs/h": "2.0.0-rc.13",
+        "@solidjs/html": "2.0.0-rc.13",
         "@solidjs/router": "2.0.0-next.35",
         "@solidjs/signals": "2.0.0-rc.13",
+        "@solidjs/universal": "2.0.0-rc.13",
         "@solidjs/web": "2.0.0-rc.13",
         "solid-js": "2.0.0-rc.13",
       },
@@ -189,11 +190,13 @@
 
     "@solidjs/diagnostics": ["@solidjs/diagnostics@2.0.0-rc.13", "", { "dependencies": { "@solidjs/signals": "^2.0.0-rc.13" }, "peerDependencies": { "@solidjs/web": "^2.0.0-rc.13", "solid-js": "^2.0.0-rc.13", "vitest": ">=2.0.0" }, "optionalPeers": ["vitest"] }, "sha512-lwuigQY5dRkF+3IZe1cWmJmXRCYXWlO8jVHlO7cRGI7STHoE2B64tAaonVCdVnAd/bKoT+91WO9/PcbQ4xJ3Jw=="],
 
-    "@solidjs/h": ["@solidjs/h@2.0.0-rc.13", "", { "peerDependencies": { "@solidjs/web": "^2.0.0-rc.13" } }, "sha512-8iF6bVRNjOIf/3rVsqokT66gs1yGVPTGDkghdGDWEE2ol3vd+uTyZdq3Vj87nfmpmDPX9jadlZPB86Z5zn/whg=="],
+    "@solidjs/html": ["@solidjs/html@2.0.0-rc.13", "", { "peerDependencies": { "@solidjs/web": "^2.0.0-rc.13" } }, "sha512-ZmxLbK2s3jtgfwHwq10HWqcBMaa8IBRNAJh+/gEvxjZvrDoIpni5iA5ecANhJjI7DoJJvW68qMbrvkWkIu3r6w=="],
 
     "@solidjs/router": ["@solidjs/router@2.0.0-next.35", "", { "peerDependencies": { "@solidjs/web": "^2.0.0-rc.13", "filesystem-routing": ">=0.4.0", "solid-js": "^2.0.0-rc.13" }, "optionalPeers": ["filesystem-routing"] }, "sha512-6+frAz9M2vrLSz+2hr51++nzGyxt3+nCo08dY3PkdieSOwDutAXdfSXj681FqTOvffv8kPDF5tdRqPUoLbKhlQ=="],
 
     "@solidjs/signals": ["@solidjs/signals@2.0.0-rc.13", "", {}, "sha512-4+pRdrAHtfyE9BUJWBup3TpzJojJjgW2mV1vm/Jik4tWa5epxXB/YrLkwqP1v8+S9XjyKKZu5BSLqmcpswMYeQ=="],
+
+    "@solidjs/universal": ["@solidjs/universal@2.0.0-rc.13", "", { "peerDependencies": { "solid-js": "^2.0.0-rc.13" } }, "sha512-d3RbUw4yioMKBp6+79yPk+UWrPEemLie7GnuI2tqrSHKdauae2FRvg7SfTZ75ZsFyQ1Au6pLEuXshdFSr3HBPw=="],
 
     "@solidjs/web": ["@solidjs/web@2.0.0-rc.13", "", { "dependencies": { "seroval": "~1.6.7", "seroval-plugins": "~1.6.7" }, "peerDependencies": { "solid-js": "^2.0.0-rc.13" } }, "sha512-vI/7v/XM8B/3U/oKAzCW2VjTLFkM5IArB2DFnrjxyPRYD3FX9KAXg9QuAnPIPQHC/xvg/LgxmvoVfZUfJ96gOQ=="],
 

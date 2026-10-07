@@ -15,6 +15,8 @@ async function link(directory: string, revision: string, ref: string) {
 		['@solidjs/babel-plugin', 'babel-plugin'],
 		['@solidjs/diagnostics', 'diagnostics'],
 		['@solidjs/h', 'h'],
+		['@solidjs/html', 'html'],
+		['@solidjs/universal', 'universal'],
 	]) {
 		const destination = resolve('node_modules', name!)
 		await rm(destination, { recursive: true, force: true })
@@ -41,6 +43,8 @@ if (process.argv.includes('--link-built')) {
 		'@solidjs/babel-plugin',
 		'@solidjs/diagnostics',
 		'@solidjs/h',
+		'@solidjs/html',
+		'@solidjs/universal',
 	])
 		await rm(resolve('node_modules', name), { recursive: true, force: true })
 	await run(['bun', 'install', '--frozen-lockfile'])
@@ -120,6 +124,11 @@ if (process.argv.includes('--link-built')) {
 	await run(['bun', 'x', '--no-install', 'tsc', '-p', 'tsconfig.json'], h)
 	await run(['bun', 'x', '--no-install', 'tsc', '-p', 'jsx-runtime/tsconfig.json'], h)
 	await run(['bun', 'x', '--no-install', 'rollup', '-c'], h)
+	for (const name of ['html', 'universal']) {
+		const cwd = `${directory}/packages/${name}`
+		await run(['bun', 'x', '--no-install', 'tsc', '-p', 'tsconfig.json'], cwd)
+		await run(['bun', 'x', '--no-install', 'rollup', '-c'], cwd)
+	}
 	await run(
 		['bun', 'x', '--no-install', 'rollup', '-c', '--bundleConfigAsCjs'],
 		`${directory}/packages/babel-plugin`,
