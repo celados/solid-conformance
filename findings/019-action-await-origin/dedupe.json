@@ -1,0 +1,143 @@
+{
+  "date": "2026-10-08",
+  "queries": [
+    {
+      "repository": "solidjs/solid",
+      "query": "attribution action async origin",
+      "state": "open-and-closed",
+      "hits": []
+    },
+    {
+      "repository": "solidjs/solid",
+      "query": "\"external\" attribution",
+      "state": "open-and-closed",
+      "hits": []
+    },
+    {
+      "repository": "solidjs/solid-router",
+      "query": "attribution action async origin",
+      "state": "open-and-closed",
+      "hits": []
+    },
+    {
+      "repository": "solidjs/solid-router",
+      "query": "\"external\" attribution",
+      "state": "open-and-closed",
+      "hits": []
+    },
+    {
+      "repository": "solidjs/solid-start",
+      "query": "attribution action async origin",
+      "state": "open-and-closed",
+      "hits": []
+    },
+    {
+      "repository": "solidjs/solid-start",
+      "query": "\"external\" attribution",
+      "state": "open-and-closed",
+      "hits": []
+    }
+  ],
+  "broadSolidResults": [
+    {
+      "number": 3739,
+      "state": "closed",
+      "title": "Dev diagnostics: attribution cost checks (WIDE_SCOPE_DEPS at 30) now on by default via performance tracks, and count HMR plumbing",
+      "url": "https://github.com/solidjs/solid/issues/3739"
+    },
+    {
+      "number": 3687,
+      "state": "closed",
+      "title": "createOptimisticStore overlay is not reverted after a failed action while attribution is enabled (rc.10 regression)",
+      "url": "https://github.com/solidjs/solid/issues/3687"
+    },
+    {
+      "number": 3754,
+      "state": "open",
+      "title": "Observe: open one interaction frame per event, so listeners outside the runtime can join it",
+      "url": "https://github.com/solidjs/solid/issues/3754"
+    },
+    {
+      "number": 3715,
+      "state": "closed",
+      "title": "2.0.0-rc.11 (diagnostics): WASTED_RECOMPUTE reports every createProjection re-run as unchanged, including runs that changed the store",
+      "url": "https://github.com/solidjs/solid/issues/3715"
+    },
+    {
+      "number": 2138,
+      "state": "open",
+      "title": "Cannot use istanbul ignore comments for generated code",
+      "url": "https://github.com/solidjs/solid/issues/2138"
+    },
+    {
+      "number": 3735,
+      "state": "closed",
+      "title": "[2.0.0-rc.13] GRAPH_GROWTH treats the pre-content initial route declaration as a completed visit",
+      "url": "https://github.com/solidjs/solid/issues/3735"
+    },
+    {
+      "number": 3063,
+      "state": "closed",
+      "title": "Expose diagnostic names for renderer-owned effects in @solidjs/universal",
+      "url": "https://github.com/solidjs/solid/issues/3063"
+    },
+    {
+      "number": 3038,
+      "state": "closed",
+      "title": "2.0.0-rc.1 | flush cost scales with total materialized store signals (async-companion walk in sync-only apps)",
+      "url": "https://github.com/solidjs/solid/issues/3038"
+    },
+    {
+      "number": 3089,
+      "state": "closed",
+      "title": "Projection/derived-store recomputes are lane-captured by unrelated in-flight transitions (committed rail serves torn state)",
+      "url": "https://github.com/solidjs/solid/issues/3089"
+    },
+    {
+      "number": 2860,
+      "state": "closed",
+      "title": "2.0.0-beta.16: streaming SSR — a root-level `lazy()` after a pending `<Loading>` renders HTML but never hydrates",
+      "url": "https://github.com/solidjs/solid/issues/2860"
+    },
+    {
+      "number": 2977,
+      "state": "closed",
+      "title": "isPending(source) drops while a server component's streamed content is still in flight — frame fill is not attributed to the source transition",
+      "url": "https://github.com/solidjs/solid/issues/2977"
+    },
+    {
+      "number": 2975,
+      "state": "closed",
+      "title": "SSR streaming: async head-tag props (`<Title>{asyncValue()}</Title>` in `<Loading>`) never suspend the boundary and are dropped with a NotReadyError warning",
+      "url": "https://github.com/solidjs/solid/issues/2975"
+    },
+    {
+      "number": 3389,
+      "state": "closed",
+      "title": "Perf tracker: Solid primitives vs the hand-rolled `@yak/solid` runtime",
+      "url": "https://github.com/solidjs/solid/issues/3389"
+    },
+    {
+      "number": 2883,
+      "state": "closed",
+      "title": "Bundle size audit: pay-for-use tree-shaking for @solidjs/signals subsystems",
+      "url": "https://github.com/solidjs/solid/issues/2883"
+    },
+    {
+      "number": 2958,
+      "state": "closed",
+      "title": "Streamed <Loading> boundary silently dies when the trailing `_fr` resolution chunk is lost (host truncates stream) — plus `_$HY.fe` is never implemented",
+      "url": "https://github.com/solidjs/solid/issues/2958"
+    },
+    {
+      "number": 3350,
+      "state": "closed",
+      "title": "2.0.0-rc.7: mounting N rows is O(N²) when each row creates an effect over a signal written during its own creation — markHeap re-walks the whole pure heap on every memo pull",
+      "url": "https://github.com/solidjs/solid/issues/3350"
+    }
+  ],
+  "reviewed": {
+    "issue": 3754,
+    "reason": "One event spread across multiple listener interaction frames; not post-await action-origin classification"
+  }
+}

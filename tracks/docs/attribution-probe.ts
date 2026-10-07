@@ -1,4 +1,4 @@
-import { OBSERVE, createRoot, createSignal, createMemo, flush, untrack } from 'solid-js'
+import { OBSERVE, createRoot, createSignal, createMemo, createStore, createEffect, action, flush, untrack } from 'solid-js'
 import { attribution, formatOrigin } from 'solid-js/attribution'
 export function probe() {
 	const release=attribution.enable({log:false,checks:false,holds:false,graphGrowth:false})
@@ -28,4 +28,22 @@ export function privacy(level?:'full'|'labels'|'none',second?:'full'|'labels'|'n
 		further();OBSERVE?.attribution.withInteraction({type:'click',target:'div#card "Personal note"'},()=>{write('after release');flush()})
 		return records
 	}finally{dispose();off?.();further();release()}
+}
+export async function contracts(){
+ const release=attribution.enable({log:false,checks:false,holds:false,values:'full'});let dispose!:()=>void
+ const records:any[]=[];const off=OBSERVE?.records.subscribe('rerun',event=>records.push(event))
+ try{
+  const [write,writeRelay,set,mutate,land]=createRoot(d=>{
+   dispose=d;const[r,w]=createSignal<unknown>(0,{name:'previews'});createMemo(r,{name:'preview-reader'})
+   const[relay,relayWrite]=createSignal(0,{name:'relay'}),[output,setOutput]=createSignal(0,{name:'output'})
+   createEffect(relay,n=>{if(n)setOutput(n)});createMemo(output,{name:'output-reader'})
+   const[s,set]=createStore({user:{name:'first'}});createMemo(()=>s.user.name,{name:'store-reader'})
+   const mutate=action(async function* namedAction(){w('action-value');await Promise.resolve();w('escaped-action');yield})
+   let resolve!:(n:number)=>void;const flight=new Promise<number>(r=>resolve=r);const value=createMemo(()=>flight,{name:'async-value'});createMemo(value,{name:'async-reader'})
+   flush();return[w,relayWrite,set,mutate,resolve] as const
+  })
+  for(const value of ['x'.repeat(60),true,12,[1,2],{secret:'value'}]){write(value);flush()}
+  writeRelay(2);flush();set(s=>{s.user.name='changed'});flush();await mutate();flush();land(3);for(let i=0;i<8;i++)await Promise.resolve();flush()
+  return records.map(r=>({name:r.nodeName,nodeId:r.nodeId,at:r.at,causes:r.causes}))
+ }finally{dispose();off?.();release()}
 }
