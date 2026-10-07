@@ -25,9 +25,10 @@
       "classification": "behavioral",
       "status": "covered",
       "coverage": [
-        "tracks/router/metadata.test.ts"
+        "tracks/router/metadata.test.ts",
+        "tracks/router/preload-metadata.test.ts"
       ],
-      "reason": "真实system Chrome/Bun HTTP；metadata GET handed callable具有抛错旧.GET getter，GET请求/meta保持，单flight POST header自动注册且缓存5→6无第二次GET，服务异常进入submission（dev原文/非dev脱敏）。noJS是显式server integration：handleNoJS可计数hook→core加密cookie helper→303→integration等待decode并提供event.router.submission seed→router useSubmissions SSR显示success/error→清cookie后reload空。GET consumer-only/servergraph三tier405→200由framesfixture交叉证明；liveQuery共享连接/两消费更新/最后关闭有CSR/hydrate spine。"
+      "reason": "metadata.test验证query不读旧.GET属性、GET声明及single-flight；preload-metadata.test通过真实Chrome/HTTP验证公共serverFunctionUrl只为metadata GET引用生成精确cacheable URL（普通POST引用拒绝），route preload发出该GET，导航采用预载缓存不增请求，显式revalidate才再次发出相同URL。这里preload URL/cacheability是公共metadata消费能力及路由实际预载缓存行为，不声称router自动发HTML preload link或按任意meta字段选择缓存TTL。"
     },
     {
       "id": "10-server-functions:L321:1",
