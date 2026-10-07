@@ -1,0 +1,965 @@
+{
+  "at": "2026-10-07T15:12:10.571Z",
+  "results": [
+    {
+      "term": "pinned",
+      "state": "open",
+      "results": [
+        {
+          "number": 3712,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Store adoption hold: a row first read after a held adoption, inside a deriving memo, still holds the reader (#3706 follow-up)",
+          "url": "https://github.com/solidjs/solid/issues/3712"
+        },
+        {
+          "number": 2313,
+          "repository": {
+            "name": "solid-start",
+            "nameWithOwner": "solidjs/solid-start"
+          },
+          "title": "[Bug]: Client-side navigation during hydration causes hydration issue.",
+          "url": "https://github.com/solidjs/solid-start/issues/2313"
+        }
+      ]
+    },
+    {
+      "term": "pinned",
+      "state": "closed",
+      "results": [
+        {
+          "number": 3735,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "[2.0.0-rc.13] GRAPH_GROWTH treats the pre-content initial route declaration as a completed visit",
+          "url": "https://github.com/solidjs/solid/issues/3735"
+        },
+        {
+          "number": 3662,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Card disappears from keyed <For> during overlapping optimistic actions with an empty <Show>",
+          "url": "https://github.com/solidjs/solid/issues/3662"
+        },
+        {
+          "number": 3659,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "[2.0 SSR] Derived async computations over an ssrSource: \"client\" hole hang the response (async memo, projection, dynamic deferStream)",
+          "url": "https://github.com/solidjs/solid/issues/3659"
+        },
+        {
+          "number": 3672,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Chained optimistic store ignores a move back to the previous value after an action settles",
+          "url": "https://github.com/solidjs/solid/issues/3672"
+        },
+        {
+          "number": 3726,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Solid 2: presence read on async derived store stays blank after resolution",
+          "url": "https://github.com/solidjs/solid/issues/3726"
+        },
+        {
+          "number": 3409,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.8 combined isPending reports false while both individual reads report true during an optimistic update",
+          "url": "https://github.com/solidjs/solid/issues/3409"
+        },
+        {
+          "number": 3609,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "hydration: treat a null owner like `transparent` in `hydratedCreateMemo` / `hydratedCreateSignal`",
+          "url": "https://github.com/solidjs/solid/issues/3609"
+        },
+        {
+          "number": 3268,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "A returned Error's non-enumerable slots ship unsanitized — the #3235 guard walks Object.keys but seroval encodes getOwnPropertyNames",
+          "url": "https://github.com/solidjs/solid/issues/3268"
+        },
+        {
+          "number": 3648,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "SETTLE_WALK_UNINITIALIZED_SOURCE fires on navigation into a lazy route that reads a query, and only its footer prints",
+          "url": "https://github.com/solidjs/solid/issues/3648"
+        },
+        {
+          "number": 3743,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Solid 2: reconcile repeats unchanged presence and holds unrelated updates",
+          "url": "https://github.com/solidjs/solid/issues/3743"
+        },
+        {
+          "number": 3461,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Async conditional memo stops reflecting its still-published branch",
+          "url": "https://github.com/solidjs/solid/issues/3461"
+        },
+        {
+          "number": 3165,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "SSR stream never closes when a rejected fragment abandons a pending serialized sibling",
+          "url": "https://github.com/solidjs/solid/issues/3165"
+        },
+        {
+          "number": 3543,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "rc.9: deferred child recomputation loses REACTIVE_ZOMBIE and leaks subscriptions",
+          "url": "https://github.com/solidjs/solid/issues/3543"
+        },
+        {
+          "number": 3462,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Repeating a pending signal write publishes it before its conditional content",
+          "url": "https://github.com/solidjs/solid/issues/3462"
+        },
+        {
+          "number": 3494,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Remaining publication and observer-release regressions from #3473",
+          "url": "https://github.com/solidjs/solid/issues/3494"
+        },
+        {
+          "number": 3459,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Resetting Loading reveals stale content while async work is still pending",
+          "url": "https://github.com/solidjs/solid/issues/3459"
+        },
+        {
+          "number": 3457,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Memo-wrapped isPending disagrees with a direct read",
+          "url": "https://github.com/solidjs/solid/issues/3457"
+        },
+        {
+          "number": 3641,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Single-flight responses for server components send an empty `X-Frame-Stream`: frames' bundled copy of `INVOCATIONS` is never written",
+          "url": "https://github.com/solidjs/solid/issues/3641"
+        },
+        {
+          "number": 3567,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "[2.0 rc.9] JSX passed through a non-`children` prop fails hydration when another id-allocating hole follows it",
+          "url": "https://github.com/solidjs/solid/issues/3567"
+        },
+        {
+          "number": 3414,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "[2.0.0-rc.8] Errored fallback rendered during initial SSR has an unresponsive counter",
+          "url": "https://github.com/solidjs/solid/issues/3414"
+        },
+        {
+          "number": 3173,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Revisit #3087: a 2xx the client cannot decode resolves as undefined, and a captive portal is indistinguishable from a void result",
+          "url": "https://github.com/solidjs/solid/issues/3173"
+        },
+        {
+          "number": 3698,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Reading a visible optimistic value in Show holds an independent signal update",
+          "url": "https://github.com/solidjs/solid/issues/3698"
+        },
+        {
+          "number": 3335,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.7 optimistic lanes don't entangle properly",
+          "url": "https://github.com/solidjs/solid/issues/3335"
+        },
+        {
+          "number": 3442,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Adding combined isPending breaks atomic publication",
+          "url": "https://github.com/solidjs/solid/issues/3442"
+        },
+        {
+          "number": 3147,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "deep()/snapshot readers and per-key readers disagree while a transaction holds store landings",
+          "url": "https://github.com/solidjs/solid/issues/3147"
+        },
+        {
+          "number": 3664,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "rc.9 (performance): `Object.keys` / spread of a store object materializes a presence node per key for the reader — O(keys) memory per reader, retained on the store; rc.8 subscribed to one key-set node",
+          "url": "https://github.com/solidjs/solid/issues/3664"
+        },
+        {
+          "number": 3330,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.7 Optimitstic set after short delay in action doesn't propagate through memo",
+          "url": "https://github.com/solidjs/solid/issues/3330"
+        },
+        {
+          "number": 3170,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "createEvent is never awaited, so an async one answers 200 while discarding every cookie and header the integration set",
+          "url": "https://github.com/solidjs/solid/issues/3170"
+        },
+        {
+          "number": 3336,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.7 spooky action at a distance because of lazy latest computed creation",
+          "url": "https://github.com/solidjs/solid/issues/3336"
+        },
+        {
+          "number": 3313,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.7 SSR: `ssrElement` reads `props.children` twice for a spread, skipping a hydration id — every later element hydrates onto the wrong node",
+          "url": "https://github.com/solidjs/solid/issues/3313"
+        },
+        {
+          "number": 3120,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Recent server-function fixes landed without tests that pin what they established",
+          "url": "https://github.com/solidjs/solid/issues/3120"
+        },
+        {
+          "number": 3323,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.7: deep() over a createOptimisticStore view never re-runs on base-store writes (per-key reads do) — regression since rc.1",
+          "url": "https://github.com/solidjs/solid/issues/3323"
+        },
+        {
+          "number": 3426,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.8 optimistic update keeps waiting after its last async reader unmounts",
+          "url": "https://github.com/solidjs/solid/issues/3426"
+        },
+        {
+          "number": 3241,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "A generator or stream returned inside a container is scoped to no request",
+          "url": "https://github.com/solidjs/solid/issues/3241"
+        },
+        {
+          "number": 3444,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "latest inside Show stays stale while removal is pending",
+          "url": "https://github.com/solidjs/solid/issues/3444"
+        },
+        {
+          "number": 3248,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "A falsy outcome is no outcome: a committed submission reports nothing to the next render",
+          "url": "https://github.com/solidjs/solid/issues/3248"
+        },
+        {
+          "number": 3706,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Confirming one overlapping optimistic-store action holds an independent signal update",
+          "url": "https://github.com/solidjs/solid/issues/3706"
+        },
+        {
+          "number": 3089,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Projection/derived-store recomputes are lane-captured by unrelated in-flight transitions (committed rail serves torn state)",
+          "url": "https://github.com/solidjs/solid/issues/3089"
+        },
+        {
+          "number": 3372,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc Signal update lost when a suspending reader is unmounted",
+          "url": "https://github.com/solidjs/solid/issues/3372"
+        },
+        {
+          "number": 3334,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.7 Issue 3305 can still happen for optimistic and latest values while fixed for normal signals",
+          "url": "https://github.com/solidjs/solid/issues/3334"
+        },
+        {
+          "number": 3134,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "A defaulted Cache-Control: no-store on a 304 evicts the entry the revalidation just confirmed",
+          "url": "https://github.com/solidjs/solid/issues/3134"
+        },
+        {
+          "number": 3411,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.8 onSettled reads inconsistent values during an optimistic revert",
+          "url": "https://github.com/solidjs/solid/issues/3411"
+        },
+        {
+          "number": 3267,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "A colliding PromiseConstructor ref id orphans a decoder-minted promise, crashing the process — a gap in #3232's own fix",
+          "url": "https://github.com/solidjs/solid/issues/3267"
+        },
+        {
+          "number": 3373,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc Async memo chain publishes a stale result alongside a newer signal value",
+          "url": "https://github.com/solidjs/solid/issues/3373"
+        },
+        {
+          "number": 3133,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "flattenArray drops needsUnwrap when a fragment follows an accessor, universal renderers receive a raw memo in insertNode",
+          "url": "https://github.com/solidjs/solid/issues/3133"
+        },
+        {
+          "number": 3331,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.7 async downstream of optimistic delays reveal of final result",
+          "url": "https://github.com/solidjs/solid/issues/3331"
+        },
+        {
+          "number": 3129,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "A `GET()` declaration outlives the function it was made about",
+          "url": "https://github.com/solidjs/solid/issues/3129"
+        },
+        {
+          "number": 3137,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "The no-JS flash cookie has no size bound — an outcome past the browser's ceiling vanishes silently",
+          "url": "https://github.com/solidjs/solid/issues/3137"
+        },
+        {
+          "number": 3529,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.8 | createLoadingBoundary - does not reset with cross deps and pending check",
+          "url": "https://github.com/solidjs/solid/issues/3529"
+        },
+        {
+          "number": 3284,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "[P1] 2.0.0-rc.6: A nested derived-store write disconnects ancestor property observers",
+          "url": "https://github.com/solidjs/solid/issues/3284"
+        },
+        {
+          "number": 3738,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.13: `refresh()` racing an unrelated async write overflows the stack (`recompute` → `runInTransition` → `recompute`)",
+          "url": "https://github.com/solidjs/solid/issues/3738"
+        },
+        {
+          "number": 3443,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Memoized sum disagrees with its async inputs during overlapping updates",
+          "url": "https://github.com/solidjs/solid/issues/3443"
+        },
+        {
+          "number": 3122,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "isPending defers superseded async-iterable flight teardown (stale iterator runs to completion)",
+          "url": "https://github.com/solidjs/solid/issues/3122"
+        },
+        {
+          "number": 3407,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.8 shared render effect entangles a synchronous action with an unrelated pending update",
+          "url": "https://github.com/solidjs/solid/issues/3407"
+        },
+        {
+          "number": 3315,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "server functions: decode from buffered bytes instead of rebuilding a Request",
+          "url": "https://github.com/solidjs/solid/issues/3315"
+        },
+        {
+          "number": 3131,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "The redirect and revalidate headers are unbounded, so a successful mutation can answer with a network error",
+          "url": "https://github.com/solidjs/solid/issues/3131"
+        },
+        {
+          "number": 3534,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "test-integration: solid-query gate must pack the workspace compiler, not just the runtime",
+          "url": "https://github.com/solidjs/solid/issues/3534"
+        },
+        {
+          "number": 3338,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "[2.0] lazy() hydration outside <Loading> silently halts reactivity",
+          "url": "https://github.com/solidjs/solid/issues/3338"
+        },
+        {
+          "number": 3161,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "`<For>` followed by siblings desyncs hydration in 2.0.0-rc.4",
+          "url": "https://github.com/solidjs/solid/issues/3161"
+        },
+        {
+          "number": 3114,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "A GET-declared read is invocable cross-site, and nothing enforces that it is a read",
+          "url": "https://github.com/solidjs/solid/issues/3114"
+        },
+        {
+          "number": 3125,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "A stream nested inside the result is neither demand-gated nor torn down on cancel",
+          "url": "https://github.com/solidjs/solid/issues/3125"
+        },
+        {
+          "number": 3010,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Hydration mismatch when a client-only sibling precedes a suspending route in a top-level fragment",
+          "url": "https://github.com/solidjs/solid/issues/3010"
+        },
+        {
+          "number": 3141,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.4 | optimistic store, read in an effect, changes the visible rendering. and has inconsistent value when logged and when rendered.",
+          "url": "https://github.com/solidjs/solid/issues/3141"
+        },
+        {
+          "number": 3108,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.5 until breaks optimistic store",
+          "url": "https://github.com/solidjs/solid/issues/3108"
+        },
+        {
+          "number": 3215,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.5  | `isPending(a) != latest(isPending(a))`  `isPending` in `latest` returns false instead of true",
+          "url": "https://github.com/solidjs/solid/issues/3215"
+        },
+        {
+          "number": 3127,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "babel-plugin: universal renderer HTML-escapes static text (`<` becomes `&lt;`) and leaves JSX entities undecoded",
+          "url": "https://github.com/solidjs/solid/issues/3127"
+        },
+        {
+          "number": 3000,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Hydration effects orphaned when hydrating a component rendered through props.children",
+          "url": "https://github.com/solidjs/solid/issues/3000"
+        },
+        {
+          "number": 3004,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Component is inserted after trailing static text in 2.0.0-rc.0",
+          "url": "https://github.com/solidjs/solid/issues/3004"
+        },
+        {
+          "number": 3164,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc until doesnt entangle the update resolving it with the action update",
+          "url": "https://github.com/solidjs/solid/issues/3164"
+        },
+        {
+          "number": 3070,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "X-Server-Function-Id overrides the id in the URL, making it an unkeyed input to a cacheable response",
+          "url": "https://github.com/solidjs/solid/issues/3070"
+        },
+        {
+          "number": 3033,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "A conditional in a JSX prop mints a hydration id at read time, so a keyed `children` template fails its claim",
+          "url": "https://github.com/solidjs/solid/issues/3033"
+        },
+        {
+          "number": 3221,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Stack-trace policy defaults from ambient NODE_ENV, so a production build leaks install paths on every error when NODE_ENV=development",
+          "url": "https://github.com/solidjs/solid/issues/3221"
+        },
+        {
+          "number": 3482,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "until() inside an action deadlocks when the confirming frame was staged before until() was called (regression from #3451)",
+          "url": "https://github.com/solidjs/solid/issues/3482"
+        },
+        {
+          "number": 3276,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.6 | an ternary condition  using `latest()` in the condition, will render an unresolved dependency in the truthy branch.",
+          "url": "https://github.com/solidjs/solid/issues/3276"
+        },
+        {
+          "number": 2989,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Parked retry on an errored loadingValue node replaces the settled error with a NotReadyError",
+          "url": "https://github.com/solidjs/solid/issues/2989"
+        },
+        {
+          "number": 3168,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Decoded arguments keep __proto__ as an own key, so an ordinary Object.assign merge in a handler re-prototypes the result",
+          "url": "https://github.com/solidjs/solid/issues/3168"
+        },
+        {
+          "number": 3665,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "rc.9: inside an action, an optimistic store's second setter sees a hole where the first setter pushed a row",
+          "url": "https://github.com/solidjs/solid/issues/3665"
+        },
+        {
+          "number": 2898,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.19: Optimistic write of literal `undefined` collides with the no-override sentinel",
+          "url": "https://github.com/solidjs/solid/issues/2898"
+        },
+        {
+          "number": 2831,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.15: `isPending(() => latest(x))` is inconsistent across node shapes",
+          "url": "https://github.com/solidjs/solid/issues/2831"
+        },
+        {
+          "number": 2897,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.19 | a pending optimistic store, \"initial value\" is readable in untracked part of the component, but throw NotReady in render part.",
+          "url": "https://github.com/solidjs/solid/issues/2897"
+        },
+        {
+          "number": 2899,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.19: createOptimisticStore: first-settling action wipes other in-flight actions' overrides",
+          "url": "https://github.com/solidjs/solid/issues/2899"
+        },
+        {
+          "number": 2922,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.20: `latest()` only works once on memos",
+          "url": "https://github.com/solidjs/solid/issues/2922"
+        },
+        {
+          "number": 2900,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.19: SSR: async retry paths re-run computes without resetting owner child state — hydration id drift (4 sites)",
+          "url": "https://github.com/solidjs/solid/issues/2900"
+        },
+        {
+          "number": 3291,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-rc.6: a signal written from a ref is never observed when the element is rendered via <Dynamic> inside a <Portal>",
+          "url": "https://github.com/solidjs/solid/issues/3291"
+        },
+        {
+          "number": 2902,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.19: reconcile() never descends into plain-object records without signal nodes",
+          "url": "https://github.com/solidjs/solid/issues/2902"
+        },
+        {
+          "number": 2857,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.16: SSR treats falsy async rejections as resolved, but serializes them as rejected",
+          "url": "https://github.com/solidjs/solid/issues/2857"
+        },
+        {
+          "number": 2912,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.19: Optimistic lanes: a shared subscriber merges lanes across transactions",
+          "url": "https://github.com/solidjs/solid/issues/2912"
+        },
+        {
+          "number": 2840,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.15: bundle `error` handler receives internal `StatusError` wrapper instead of the thrown error",
+          "url": "https://github.com/solidjs/solid/issues/2840"
+        },
+        {
+          "number": 2930,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.21: resolve() created inside action() never settles, deadlocking the action",
+          "url": "https://github.com/solidjs/solid/issues/2930"
+        },
+        {
+          "number": 2913,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.19: action(): writes after an internal `await` escape the transaction and commit mid-flight",
+          "url": "https://github.com/solidjs/solid/issues/2913"
+        },
+        {
+          "number": 2903,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.19: mapArray: updateKeyedMap is not exception-safe under NotReadyError",
+          "url": "https://github.com/solidjs/solid/issues/2903"
+        },
+        {
+          "number": 2860,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.16: streaming SSR — a root-level `lazy()` after a pending `<Loading>` renders HTML but never hydrates",
+          "url": "https://github.com/solidjs/solid/issues/2860"
+        },
+        {
+          "number": 2877,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.17: `$df` fragment swap stops at the first comment node instead of the matching `<!--pl-X-->` — permanent fallback debris when a `<Loading>` fallback contains dynamic text",
+          "url": "https://github.com/solidjs/solid/issues/2877"
+        },
+        {
+          "number": 2893,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "# `affects()`:  Fable audit - 4 bugs",
+          "url": "https://github.com/solidjs/solid/issues/2893"
+        },
+        {
+          "number": 2843,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.15: `isPending(() => latest(x))` in a user effect loops the scheduler — dev throws \"Potential Infinite Loop Detected\", prod spins forever",
+          "url": "https://github.com/solidjs/solid/issues/2843"
+        },
+        {
+          "number": 2927,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.21 | unstable reactivity, depending on order of reading memo with latest `latest(m); m()` vs `m(); latest(m)`  + equals:false",
+          "url": "https://github.com/solidjs/solid/issues/2927"
+        },
+        {
+          "number": 2821,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.15 | Error  thrown by async read in <Loading> is not captured by a wrapping  <Errored>",
+          "url": "https://github.com/solidjs/solid/issues/2821"
+        },
+        {
+          "number": 3110,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "A stale server-function id is an undistinguishable 404, so version skew cannot be recovered",
+          "url": "https://github.com/solidjs/solid/issues/3110"
+        },
+        {
+          "number": 2829,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.15: A few latest() bugs",
+          "url": "https://github.com/solidjs/solid/issues/2829"
+        },
+        {
+          "number": 2910,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "2.0.0-beta.19 |  derived  store `createOptimisticStore` and `affects` does not reflect in a derived store that is actually pending too.",
+          "url": "https://github.com/solidjs/solid/issues/2910"
+        }
+      ]
+    },
+    {
+      "term": "derived signal dependency",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "derived signal dependency",
+      "state": "closed",
+      "results": []
+    },
+    {
+      "term": "writable memo",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "writable memo",
+      "state": "closed",
+      "results": [
+        {
+          "number": 3612,
+          "repository": {
+            "name": "solid",
+            "nameWithOwner": "solidjs/solid"
+          },
+          "title": "Derived signals/stores can create inconsistent views",
+          "url": "https://github.com/solidjs/solid/issues/3612"
+        }
+      ]
+    }
+  ]
+}
