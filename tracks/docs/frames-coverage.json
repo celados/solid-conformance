@@ -305,7 +305,8 @@
     "id": "10-server-functions:L47:6",
     "status": "covered",
     "coverage": [
-      "10/codec-custom-public-edge"
+      "10/codec-custom-public-edge",
+      "tracks/frames/codec-edge.test.ts#independent foreign instance rejects / runtime public instance succeeds"
     ]
   },
   {
@@ -2229,7 +2230,8 @@
     "id": "10-server-functions:L353:1",
     "status": "covered",
     "coverage": [
-      "10/codec-custom-public-edge"
+      "10/codec-custom-public-edge",
+      "tracks/frames/codec-edge.test.ts#independent foreign instance rejects / runtime public instance succeeds"
     ]
   },
   {
