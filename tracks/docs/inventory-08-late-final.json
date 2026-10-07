@@ -108,7 +108,7 @@
       "classification": "behavioral",
       "status": "covered",
       "coverage": [
-        "tracks/docs/late-final-server.test.ts#last-writer execution policy"
+        "tracks/docs/late-final-server.test.ts"
       ],
       "statement": "This is the seam for tooling that watches the app — APM adapters, devtools — and deliberately not a policy hook: `configureServerFunctionsServer({ wrapInvocation })` remains the single, last-writer-wins wrap around execution for code that must **change** a call, and an observer that installed itself there would either displace the host's policy or be displaced by it.",
       "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
@@ -182,7 +182,9 @@
       "coverage": [
         "08/late-final-event-target-and-preview-limits",
         "08/late-final-held-and-verdict-value-previews",
-        "08/attribution-values-levels"
+        "08/values-full",
+        "08/values-labels",
+        "08/values-none"
       ],
       "statement": "The fields the level governs: `ChangeRecord.prev`/`value` and `HeldWrite.prev`/`value` — previews of the written values (`preview()`: strings quoted and cut at 40 characters, numbers/booleans verbatim, everything else a type tag such as `Array(12)` or `[Object]`); `ChangeOrigin.target` (and so `InteractionEvent.target`, `HoldEvent.interaction.target`) — the element hit as the runtime described it, `tag#id \"text\"` with up to 30 characters of `textContent` for anything that is not an `input`/`textarea`/`select`, so a label but also whatever a `<td>` said; and every sentence the engine builds from those — `formatRerun`, `formatOrigin`, the `SILENT_HOLD`/`LONG_HOLD` verdicts (`click on button#next \"Next →\" wrote \"page\" (1 → 2)…`, with `data.interaction.target` structured beside), `OPTIMISTIC_REVERTED` (which quotes the shown and settled values, `data.shown`/`data.truth`).",
       "reason": "全部公开运行时字段、正负模式及原始记录到 fold/artifact 的精确断言；开发/Observe 有记录，production quiet 控制。"
@@ -277,7 +279,9 @@
       "status": "covered",
       "coverage": [
         "tracks/records/records.test.ts",
-        "08/attribution-values-levels",
+        "08/values-full",
+        "08/values-labels",
+        "08/values-none",
         "08/late-final-event-target-and-preview-limits",
         "08/late-final-held-and-verdict-value-previews"
       ],
