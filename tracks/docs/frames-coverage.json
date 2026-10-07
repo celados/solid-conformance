@@ -54,7 +54,7 @@
     "id": "10-server-functions:L9:2",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L9:3",
@@ -71,7 +71,7 @@
     "id": "10-server-functions:L11:1",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L11:2",
@@ -84,7 +84,7 @@
     "id": "10-server-functions:L15:1",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L16:1",
@@ -223,7 +223,7 @@
     "id": "10-server-functions:L41:3",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L41:4",
@@ -313,7 +313,7 @@
     "id": "10-server-functions:L47:7",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L49:1",
@@ -363,7 +363,7 @@
     "id": "10-server-functions:L63:4",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L63:5",
@@ -390,7 +390,7 @@
     "id": "10-server-functions:L63:8",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L64:1",
@@ -439,7 +439,7 @@
     "id": "10-server-functions:L65:6",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L66:1",
@@ -601,7 +601,7 @@
     "id": "10-server-functions:L78:2",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L82:1",
@@ -610,7 +610,7 @@
       "10/redirect-control",
       "10/response-envelope-body"
     ],
-    "reason": "server返回helper已测，client action helper整体部分需router精准mapping"
+    "reason": "server\u8fd4\u56dehelper\u5df2\u6d4b\uff0cclient action helper\u6574\u4f53\u90e8\u5206\u9700router\u7cbe\u51c6mapping"
   },
   {
     "id": "10-server-functions:L97:1",
@@ -703,7 +703,7 @@
     "id": "10-server-functions:L105:2",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L105:3",
@@ -890,7 +890,7 @@
     "id": "10-server-functions:L127:3",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L129:1",
@@ -987,7 +987,7 @@
     "id": "10-server-functions:L137:2",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L138:1",
@@ -1059,7 +1059,7 @@
     "id": "10-server-functions:L155:1",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L166:1",
@@ -1176,7 +1176,7 @@
     "id": "10-server-functions:L184:3",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L186:1",
@@ -1270,7 +1270,7 @@
     "id": "10-server-functions:L200:1",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L204:1",
@@ -1351,7 +1351,7 @@
     "id": "10-server-functions:L223:3",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L223:4",
@@ -1625,19 +1625,19 @@
     "id": "10-server-functions:L232:2",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L232:3",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L232:4",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L234:1",
@@ -1650,7 +1650,7 @@
     "id": "10-server-functions:L234:2",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L249:1",
@@ -1662,13 +1662,13 @@
     "id": "10-server-functions:L249:2",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L249:3",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L251:1",
@@ -1712,19 +1712,19 @@
     "id": "10-server-functions:L253:5",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L253:6",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L257:1",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L267:1",
@@ -1736,7 +1736,7 @@
     "id": "10-server-functions:L267:2",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L269:1",
@@ -1754,19 +1754,19 @@
     "id": "10-server-functions:L269:3",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L273:1",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L273:2",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L281:1",
@@ -1779,25 +1779,27 @@
     "id": "10-server-functions:L281:2",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L281:3",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/invoke-types.test.ts#RFC10 invoke public types require options and retain argument tuples"
+    ],
+    "reason": "Public declaration compiles documented options call; @ts-expect-error requires no-options misuse to fail."
   },
   {
     "id": "10-server-functions:L283:1",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L283:2",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L285:1",
@@ -1816,9 +1818,11 @@
   },
   {
     "id": "10-server-functions:L285:3",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/invoke-types.test.ts#RFC10 invoke public types require options and retain argument tuples"
+    ],
+    "reason": "AbortSignal.any and timeout compose in signal; no invented priority accepted."
   },
   {
     "id": "10-server-functions:L286:1",
@@ -1831,7 +1835,7 @@
     "id": "10-server-functions:L286:2",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L287:1",
@@ -1850,7 +1854,7 @@
     "id": "10-server-functions:L289:2",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L291:1",
@@ -1890,7 +1894,7 @@
     "id": "10-server-functions:L298:1",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L300:1",
@@ -1908,7 +1912,7 @@
     "id": "10-server-functions:L302:1",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L302:2",
@@ -1920,7 +1924,7 @@
     "id": "10-server-functions:L302:3",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L304:1",
@@ -1942,19 +1946,19 @@
     "id": "10-server-functions:L304:3",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L304:4",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L304:5",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L304:6",
@@ -1973,19 +1977,19 @@
     "id": "10-server-functions:L304:8",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L304:9",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L304:10",
     "status": "not-behavioral",
     "coverage": [],
-    "reason": "设计动机、扩展建议、历史/未来方案或引导片段，没有独立当前外部行为；相邻具体合同另列。"
+    "reason": "\u8bbe\u8ba1\u52a8\u673a\u3001\u6269\u5c55\u5efa\u8bae\u3001\u5386\u53f2/\u672a\u6765\u65b9\u6848\u6216\u5f15\u5bfc\u7247\u6bb5\uff0c\u6ca1\u6709\u72ec\u7acb\u5f53\u524d\u5916\u90e8\u884c\u4e3a\uff1b\u76f8\u90bb\u5177\u4f53\u5408\u540c\u53e6\u5217\u3002"
   },
   {
     "id": "10-server-functions:L306:1",
@@ -2145,9 +2149,11 @@
   },
   {
     "id": "10-server-functions:L336:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/http-cases.tsx#12/head-retraction"
+    ],
+    "reason": "Status/header scoped snapshots retract on owner teardown."
   },
   {
     "id": "10-server-functions:L338:1",
@@ -2279,9 +2285,9 @@
   },
   {
     "id": "10-server-functions:L363:1",
-    "status": "uncovered",
+    "status": "not-behavioral",
     "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "reason": "Design removal of decorateServerFunction registry-swap extension API; alternatives explicitly reject documenting the pattern, not a runtime prohibition on the exported integration registration primitive."
   },
   {
     "id": "10-server-functions:L367:1",
@@ -2901,9 +2907,11 @@
   },
   {
     "id": "11-server-components:L118:2",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/applied-events.test.ts#RFC11 frame:applied is a bubbling post-apply document event"
+    ],
+    "reason": "Three builds: materialize/morph details and post-apply DOM; ordinary client render emits none; public dispose ignores late writes."
   },
   {
     "id": "11-server-components:L118:3",
@@ -3150,7 +3158,7 @@
     "coverage": [
       "08/server-diagnostic-write-categories"
     ],
-    "reason": "development warning已测；all-server-builds原句与RFC08 dev-only checks相矛盾，红文档repro仍需登记；禁止写的规范建议与当前暂时容忍需区分"
+    "reason": "development warning\u5df2\u6d4b\uff1ball-server-builds\u539f\u53e5\u4e0eRFC08 dev-only checks\u76f8\u77db\u76fe\uff0c\u7ea2\u6587\u6863repro\u4ecd\u9700\u767b\u8bb0\uff1b\u7981\u6b62\u5199\u7684\u89c4\u8303\u5efa\u8bae\u4e0e\u5f53\u524d\u6682\u65f6\u5bb9\u5fcd\u9700\u533a\u5206"
   },
   {
     "id": "11-server-components:L169:4",
@@ -3158,7 +3166,7 @@
     "coverage": [
       "08/server-diagnostic-write-categories"
     ],
-    "reason": "development warning已测；all-server-builds原句与RFC08 dev-only checks相矛盾，红文档repro仍需登记；禁止写的规范建议与当前暂时容忍需区分"
+    "reason": "development warning\u5df2\u6d4b\uff1ball-server-builds\u539f\u53e5\u4e0eRFC08 dev-only checks\u76f8\u77db\u76fe\uff0c\u7ea2\u6587\u6863repro\u4ecd\u9700\u767b\u8bb0\uff1b\u7981\u6b62\u5199\u7684\u89c4\u8303\u5efa\u8bae\u4e0e\u5f53\u524d\u6682\u65f6\u5bb9\u5fcd\u9700\u533a\u5206"
   },
   {
     "id": "11-server-components:L169:5",
@@ -3195,7 +3203,7 @@
     "id": "11-server-components:L169:10",
     "status": "uncovered",
     "coverage": [],
-    "reason": "本句描述已实现或当前公开合同；不能因位于Open questions就当历史设计。需补精确跨轨断言。"
+    "reason": "\u672c\u53e5\u63cf\u8ff0\u5df2\u5b9e\u73b0\u6216\u5f53\u524d\u516c\u5f00\u5408\u540c\uff1b\u4e0d\u80fd\u56e0\u4f4d\u4e8eOpen questions\u5c31\u5f53\u5386\u53f2\u8bbe\u8ba1\u3002\u9700\u8865\u7cbe\u786e\u8de8\u8f68\u65ad\u8a00\u3002"
   },
   {
     "id": "11-server-components:L169:11",

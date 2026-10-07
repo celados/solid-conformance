@@ -1,0 +1,14 @@
+import {invoke,GET,withMeta,type ServerFunction} from '@solidjs/web/server-functions/client';
+declare const fn:ServerFunction<[number],number>;
+const controller=new AbortController();
+const result=invoke(fn,{signal:AbortSignal.any([controller.signal,AbortSignal.timeout(100)]),keepalive:true,priority:'low'},1);
+const typed:Promise<number>=result;
+invoke(GET(withMeta(fn,{read:true})),{},1);
+fn(1);
+// @ts-expect-error RFC10 L281:3 requires an options object.
+invoke(fn);
+// @ts-expect-error The argument tuple survives declaration wrappers.
+invoke(GET(fn),{},'wrong');
+// @ts-expect-error The hints use fetch priorities, not invented values.
+invoke(fn,{priority:'invented'},1);
+void typed;
