@@ -1,0 +1,46 @@
+bun test v1.4.2 (744846f84)
+
+findings/017-initial-render-error-record/renderrecord-repro.test.ts:
+Conformance target: {"target":"rc13","upstream":null,"buildMode":"development","solid":"2.0.0-rc.13"}
+2 | import {resolve} from 'node:path';
+3 | import {rm} from 'node:fs/promises';
+4 | import {build,type BuildMode} from '../../scripts/build';
+5 | (process.env.BUILD_MODE==='production'?test.skip:test)('Initial stream render failure emits its render record after a normal-render positive control',async()=>{
+6 |  const directory=resolve('.build','finding017-render-'+process.pid);
+7 |  try{await build(directory,(process.env.BUILD_MODE??'development') as BuildMode,{client:[],server:['findings/017-initial-render-error-record/renderrecord-server.ts']});const module=await import(directory+'/renderrecord-server.js');const result=await module.run();expect(result.positive).toHaveLength(1);expect(result.positive[0].outcome).toBe('complete');expect(result.sameError).toBe(true);expect(result.records).toHaveLength(1);expect(result.records[0].outcome).toBe('error')}finally{await rm(directory,{recursive:true,force:true})}
+
+error: expect(received).toHaveLength(expected)
+
+Expected length: 1
+Received length: 0
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/017-initial-render-error-record/renderrecord-repro.test.ts:7:415)
+(fail) Initial stream render failure emits its render record after a normal-render positive control [24.34ms]
+
+findings/051-unnamed-attribution-owner-id/repro.test.ts:
+2 | import {chromium} from 'playwright'
+3 | import {build,type BuildMode} from '../../scripts/build'
+4 | import {resolve} from 'node:path'
+5 | import {rm} from 'node:fs/promises'
+6 | // RFC08 L1234: Unnamed nodes fall back to their owner id.
+7 | test('051 unnamed attribution nodes fall back to owner id',async()=>{const mode=(process.env.BUILD_MODE??'development') as BuildMode,dir=resolve('.build','finding051-'+process.pid);await build(dir,mode,{client:['findings/051-unnamed-attribution-owner-id/client.ts'],server:[]});const server=Bun.serve({port:0,fetch:r=>new URL(r.url).pathname.endsWith('.js')?new Response(Bun.file(dir+new URL(r.url).pathname),{headers:{'content-type':'text/javascript'}}):new Response('<script type="module" src="/client.js"></script>',{headers:{'content-type':'text/html'}})}),browser=await chromium.launch({channel:'chrome',headless:true});try{const page=await browser.newPage();await page.goto(String(server.url));await page.waitForFunction(()=>!!(window as any).finding051);const row=await page.evaluate(()=>(window as any).finding051);expect(row[0].nodeName).toBe('named');expect(typeof row[1].ownerId).toBe('string');expect([row[1].nodeName,row[2].nodeName]).toEqual([row[1].ownerId,row[2].ownerId])}finally{await browser.close();serve
+
+error: expect(received).toEqual(expected)
+
+  [
+-   "named-owner0",
+-   "named-owner0",
++   "",
++   "computed",
+  ]
+
+- Expected  - 2
++ Received  + 2
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/051-unnamed-attribution-owner-id/repro.test.ts:7:949)
+(fail) 051 unnamed attribution nodes fall back to owner id [11176.92ms]
+
+ 0 pass
+ 2 fail
+ 7 expect() calls
+Ran 2 tests across 2 files. [11.37s]
