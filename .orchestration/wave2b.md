@@ -1,0 +1,1 @@
+Continue wave 2 from where you stopped. Your uncommitted work is in /Users/dio/Projects/solid-conformance-wave2 (branch wave2), including findings/004-derived-store-rejection. Finish verifying 004 and the documentation discrepancies you listed, commit, merge the branch into main, and write the wave 2 receipt as requested earlier.
