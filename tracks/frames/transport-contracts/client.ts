@@ -1,7 +1,9 @@
+import {action} from "solid-js";
+import {respond,redirect,reload,isResponseEnvelope} from "@solidjs/web";
 import {configureServerFunctionsClient,createServerReference,subscribeFlightData,decodeResponse,invoke,GET,live,EventStreamReader,createEventChunk,EVENT_STREAM_HEARTBEAT} from '@solidjs/web/server-functions/client';
 const sent:any[]=[];let release!:()=>void;const gate=new Promise<void>(r=>release=r);const hooks:string[]=[];
 const response=()=>new Response(JSON.stringify({value:7,data:{owned:{answer:9}}}),{headers:{'X-Server-Function-Format':'8','X-Single-Flight':'owned'}});
-configureServerFunctionsClient({endpoint:'/fixture',prepareRequest:async(init)=>{hooks.push('obsolete');return init},fetch:async(address,init)=>{sent.push({address:String(address),headers:[...new Headers(init?.headers)],argc:2,signal:!!init?.signal,priority:(init as any)?.priority,keepalive:init?.keepalive,body:init?.body});return response()}});
+configureServerFunctionsClient({endpoint:'/fixture',prepareRequest:async(init)=>{hooks.push('obsolete');return init},fetch:async(...passed:[string,RequestInit])=>{const [address,init]=passed;sent.push({address:String(address),headers:[...new Headers(init?.headers)],argc:passed.length,signal:!!init?.signal,priority:(init as any)?.priority,keepalive:init?.keepalive,body:init?.body});return response()}});
 configureServerFunctionsClient({prepareRequest:async(init)=>{hooks.push('replacement');await gate;return {...init,headers:{...init.headers,'X-Fixture':'ready'}}}});
 const events:any[]=[];
 const old=subscribeFlightData('owned',slice=>{events.push(['obsolete',slice])});
@@ -24,4 +26,7 @@ const initialFailures:any[]=[];for(const status of [400,404,408,425,429,500]){le
 const wire:any={};const parts=[': heartbeat\r','\n\r\nid: digest\r\ndata: {"value":\r','\ndata: 17}\r\n\r\n'];
 const parser=new EventStreamReader(new ReadableStream({start(controller){for(const part of parts)controller.enqueue(new TextEncoder().encode(part));controller.close()}}),wire);
 const parsed=await parser.next(),ended=await parser.next();const framed=new TextDecoder().decode(createEventChunk('{"n":1}','frame-id'));const heartbeat=new TextDecoder().decode(EVENT_STREAM_HEARTBEAT);
-(window as any).result={before,hooks,sent,value,events,passthrough,envelope,encodingStarted,encodingBefore,liveValues,statuses,closed,liveAddresses,longLive,initialFailures,parsed,ended,position:wire.position,framed,heartbeat};
+const authored=await action(function*(){return respond(9,{status:201,headers:{'x-fixture':'client'},revalidate:'items'})})();
+const moved=await action(function*(){return redirect('/client-target',{revalidate:'session'})})();const refreshed=await action(function*(){return reload({revalidate:'todos'})})();
+const helpers={envelope:isResponseEnvelope(authored),value:authored.value,status:authored.response!.status,json:await authored.response!.json(),header:authored.response!.headers.get('x-fixture'),revalidate:authored.response!.headers.get('X-Revalidate'),redirect:{status:moved.status,location:moved.headers.get('location'),revalidate:moved.headers.get('X-Revalidate')},reload:{status:refreshed.status,text:await refreshed.text(),revalidate:refreshed.headers.get('X-Revalidate')}};
+(window as any).result={before,hooks,sent,value,events,passthrough,envelope,encodingStarted,encodingBefore,liveValues,statuses,closed,liveAddresses,longLive,initialFailures,parsed,ended,position:wire.position,framed,heartbeat,helpers};

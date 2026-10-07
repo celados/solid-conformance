@@ -268,9 +268,15 @@
   },
   {
     "id": "10-server-functions:L47:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/transport-contracts.test.ts",
+      "tracks/frames/client-codec.test.ts",
+      "tracks/frames/live-scopes.test.ts",
+      "tracks/frames/live-loop.test.ts",
+      "tracks/frames/frames.test.ts"
+    ],
+    "reason": "Custom endpoint/custom fetch receives exactly2 args; default/_server actual hydration requests; codec matching public plugins yieldsBox17, missing clientplugin rejects; middleware/encoder awaited; public responseHandler handle integration owns response value and frames installation uses same config seam."
   },
   {
     "id": "10-server-functions:L47:2",
@@ -605,12 +611,14 @@
   },
   {
     "id": "10-server-functions:L82:1",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
-      "10/redirect-control",
-      "10/response-envelope-body"
+      "tracks/frames/transport-contracts.test.ts",
+      "tracks/docs/rpc-cases.ts#10/response-envelope-body",
+      "tracks/docs/rpc-cases.ts#10/redirect-carrier",
+      "tracks/docs/rpc-cases.ts#10/reload-scopes"
     ],
-    "reason": "server\u8fd4\u56dehelper\u5df2\u6d4b\uff0cclient action helper\u6574\u4f53\u90e8\u5206\u9700router\u7cbe\u51c6mapping"
+    "reason": "CSR generator actions return actual authored response envelopes/redirects/reload carrying value/body/status/Location/revalidate; server handlers and in-process helper cases assert same semantics."
   },
   {
     "id": "10-server-functions:L97:1",
@@ -2903,9 +2911,13 @@
   },
   {
     "id": "11-server-components:L98:2",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/frame-cases.tsx#11/render-prop-slots",
+      "tracks/docs/frame-cases.tsx#11/keyed-slots",
+      "tracks/frames/frames.test.ts"
+    ],
+    "reason": "Positional default emitsrow#0/#1; explicit sibling keysrow#a/#b plus stable keyed client state acrossmorph. Sibling placement is supported author domain, not an independently stated runtime rejection of arbitrary illegal ancestor placement."
   },
   {
     "id": "11-server-components:L99:1",
