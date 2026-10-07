@@ -3343,8 +3343,10 @@
     "end_line": 346,
     "section": "SSR behavior",
     "statement": "- `renderToString` fully supports `order=\"sequential\"` without `collapsed`, and `order=\"natural\"`.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/reveal-stream.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L347:1",
@@ -3353,8 +3355,11 @@
     "end_line": 347,
     "section": "SSR behavior",
     "statement": "- `order=\"together\"` and `collapsed` rely on streamed activation and therefore require `renderToStream` to behave correctly.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/reveal-stream.test.ts",
+      "08/server-diagnostic-reveal-sync"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L347:2",
@@ -3364,7 +3369,7 @@
     "section": "SSR behavior",
     "statement": "Using them with `renderToString` inside a nested `Reveal` logs a warning.",
     "coverage": [
-      "08/server-diagnostic-reveal-sync"
+      "tracks/docs/reveal-stream.test.ts"
     ],
     "status": "covered"
   },
@@ -3375,8 +3380,10 @@
     "end_line": 348,
     "section": "SSR behavior",
     "statement": "- Under streaming, the rules above apply identically: held fragments stream their resolved HTML into templates as data arrives, but the swap from fallback to content is deferred until the enclosing `Reveal` releases the slot.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/reveal-stream.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L348:2",
@@ -3385,8 +3392,10 @@
     "end_line": 348,
     "section": "SSR behavior",
     "statement": "Swaps then happen in resolution order within the released group.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "tracks/docs/reveal-stream.test.ts"
+    ],
+    "status": "covered"
   },
   {
     "id": "03-control-flow:L429:1",
@@ -4818,8 +4827,11 @@
     "end_line": 50,
     "section": "`Loading` is the UI boundary",
     "statement": "While the fallback shows, `isPending()` of the boundary is `false`, as for any first load.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "findings/048-first-loading-held-signal/repro.test.ts"
+    ],
+    "status": "covered",
+    "rationale": "未readyasyncsource的fallback显示时，在unowned检验isPending(source)确为false。literalplainheldsource红，非泛化所有holds。"
   },
   {
     "id": "05-async-data:L54:1",
@@ -5115,8 +5127,11 @@
     "end_line": 96,
     "section": "`Loading` `on` prop: dependencies that show the fallback again",
     "statement": "Optimistic writes to a dependency notify like any other write.",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "05/optimistic-dependency-notify-signal",
+      "05/optimistic-dependency-notify-store"
+    ],
+    "status": "covered"
   },
   {
     "id": "05-async-data:L96:3",
@@ -9230,7 +9245,7 @@
     "section": "Render entry points",
     "statement": "- `renderToStream(() => <App />, options?)` — the streaming renderer: the shell flushes first, and each async boundary streams its resolved fragment plus the activation script that swaps it in.",
     "coverage": [
-      "tracks/harness/harness.test.ts",
+      "tracks/docs/policy.test.ts",
       "05/defer-stream"
     ],
     "status": "covered"
@@ -9243,7 +9258,7 @@
     "section": "Render entry points",
     "statement": "A primitive marked `deferStream: true` (RFC 05) holds the shell flush until its first value resolves instead of letting the enclosing `<Loading>` fallback into the HTML.",
     "coverage": [
-      "tracks/harness/harness.test.ts",
+      "tracks/docs/policy.test.ts",
       "05/defer-stream"
     ],
     "status": "covered"
@@ -9281,7 +9296,7 @@
     "section": "Render entry points",
     "statement": "In a hand-built document the render output ends with the serialized hydration records (`_$HY.r`), written by a classic inline `<script>`.",
     "coverage": [
-      "tracks/harness/harness.test.ts",
+      "tracks/docs/policy.test.ts",
       "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
@@ -9304,7 +9319,7 @@
     "section": "Render entry points",
     "statement": "`<HydrationScript />` documents handle the ordering themselves: the records script is spliced immediately after the bootstrap, so the entry may be `async` there.",
     "coverage": [
-      "tracks/harness/harness.test.ts",
+      "tracks/docs/policy.test.ts",
       "tracks/docs/policy.test.ts"
     ],
     "status": "covered"
@@ -14684,8 +14699,10 @@
     "end_line": 1059,
     "section": "Removals",
     "statement": "- **`resetErrorBoundaries`** → no longer needed (error boundaries heal automatically)",
-    "coverage": [],
-    "status": "uncovered"
+    "coverage": [
+      "03/errored-source-autoheal"
+    ],
+    "status": "covered"
   },
   {
     "id": "MIGRATION:L1060:1",

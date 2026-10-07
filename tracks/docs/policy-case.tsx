@@ -1,10 +1,11 @@
 import {dynamicTrackingCase} from '../../findings/041-dynamic-source-tracking/component'
-import { createMemo, createSignal, isPending, Loading, onCleanup, flush } from 'solid-js'
-import { isServer, clientOnly, dynamic } from '@solidjs/web'
+import { createMemo, createSignal, Show, isHydrating, isPending, Loading, onCleanup, flush } from 'solid-js'
+import { isServer, clientOnly, dynamic, takeHydrationValue, getHydrationWriter } from '@solidjs/web'
 import type { Spec } from '../../harness/tree'
 import { controlledIterable, deferred, ticks } from '../../harness/timing'
 import { equal, type DocResult } from './registry'
 
+const NativePromise=Promise
 export function policyCase(spec:Spec){
  const kind=spec.scenario!.split(':')[1]!
  if(kind==='dynamic-count-only')return dynamicTrackingCase()
@@ -16,8 +17,9 @@ export function policyCase(spec:Spec){
  const streams=[controlledIterable<number>(),controlledIterable<number>()]
  const iterables=streams.map(stream=>({[Symbol.asyncIterator]:()=>stream.iterable[Symbol.asyncIterator]()}))
  const docs:(DocResult & {observations:Record<string,unknown>})[]=[]
- let write!:(v:number)=>void,read!:()=>number,requests=0,calls=0,cached:Promise<number>|undefined
- const fetchKinds=['tracking-fetch','tracking-await','cached-fake']
+ let showExtra!:(v:boolean)=>void,write!:(v:number)=>void,read!:()=>number,requests=0,calls=0,cached:Promise<number>|undefined
+ const cache=new Map<number,Promise<number>>()
+ const fetchKinds=['tracking-fetch','tracking-await','cached-fake','cached-safe','cached-safe-seed']
  const originalFetch=globalThis.fetch
  if(!isServer&&fetchKinds.includes(kind))globalThis.fetch=((input:RequestInfo|URL,init?:RequestInit)=>{
   if(String(input).includes('/doc-policy-source')){requests++;return Promise.resolve(new Response(window.mode==='hydrate'?'99':'7'))}
@@ -26,28 +28,31 @@ export function policyCase(spec:Spec){
  function App(){
   onCleanup(()=>{if(!isServer&&fetchKinds.includes(kind))globalThis.fetch=originalFetch})
   if(!isServer&&kind==='transparent')createMemo(()=>42,{transparent:true})
-  const [argument,setArgument]=createSignal(0);write=setArgument
+  const [argument,setArgument]=createSignal(0),[extra,setExtra]=createSignal(false);write=setArgument;showExtra=setExtra
   read=createMemo(()=>{
    const id=argument();calls++
-   if(isServer)return iterable?iterables[id]!:gates[id]!.promise
+   if(isServer){if(kind==='cached-safe-seed')getHydrationWriter()!.write('mylib:'+id,gates[id]!.promise);return iterable?iterables[id]!:gates[id]!.promise}
    if(kind==='tracking-fetch')return fetch('/doc-policy-source').then(response=>response.json()) as Promise<number>
    if(kind==='tracking-await')return(async()=>{await 0;return(await fetch('/doc-policy-source')).json() as Promise<number>})()
+   if(kind.startsWith('cached-safe')){const fetcher=()=>fetch('/doc-policy-source').then(response=>response.json())as Promise<number>;if(!cache.has(id)){const seed=takeHydrationValue<number>('mylib:'+id);if(seed?.status==='resolved')cache.set(id,NativePromise.resolve(seed.value));else if(seed?.status==='pending')cache.set(id,seed.promise);else if(isHydrating())return fetcher();else cache.set(id,fetcher())}return cache.get(id)!}
    if(kind==='cached-fake')return cached??=(fetch('/doc-policy-source').then(response=>response.json()) as Promise<number>)
    return iterable?iterables[id]!:gates[id]!.promise
   },{ssrSource:policy,...(kind==='declared-client'?{loadingValue:3}: {})})
-  return<Loading fallback={<b>fallback</b>}><span>{read()}</span></Loading>
+  return<><Loading fallback={<b>fallback</b>}><span>{read()}</span></Loading><Show when={extra()}><Loading fallback={<i>extra-fallback</i>}><span>{read()}</span></Loading></Show></>
  }
  const content=()=>document.getElementById('root')!.textContent
  const statements:Record<string,string>={server:'The client adopts the serialized initial server value and recomputes on a dependency change.', 'hybrid-promise':'For promise computes hybrid is identical to server.', 'hybrid-iterable':'The server consumes one yield; hybrid continues the client iterable and discards its duplicate first yield.', client:'The client source never computes on the server and mounts fresh after hydration.', 'declared-client':'A declared client loadingValue renders the same first paint during SSR and hydration.', transparent:'A transparent client-only memo consumes no hydration ID slot.', 'tracking-fetch':'The fake fetch sends nothing during the tracking run.', 'tracking-await':'A non-fake await before fetch resumes after the tracking window and sends a duplicate.', 'cached-fake':'A fake fetch promise cached during the tracking run never settles for later readers.'}
- const record=(name:string)=>docs.push({id:'05/policy-'+name,file:'05-async-data.md',statement:statements[name]!,observations:{kind,calls,requests,policy,dom:isServer?null:content()}})
+ const record=(name:string)=>docs.push({id:'05/policy-'+name,file:'05-async-data.md',statement:statements[name]??'A NativePromise cache uses server hydration seeds and does not retain fake promises from a seedless tracking run.',observations:{kind,calls,requests,policy,dom:isServer?null:content()}})
  return{App,streams:iterable?streams:[],docs,async settle(){
   if(isServer){equal(calls,policy==='client'?0:1);if(policy!=='client'){if(iterable)streams[0]!.push(7);else gates[0]!.resolve(7);await ticks(8)}return}
   const hydrating=window.mode==='hydrate'
   if(fetchKinds.includes(kind)){
    await ticks(8);equal(content(),'7');equal(requests,hydrating?(kind==='tracking-await'?1:0):1)
+   if(kind.startsWith('cached-safe')){write(1);flush();await ticks(8);equal(requests,hydrating?1:2);equal(content(),hydrating?'99':'7');equal(isPending(read),false)}
    if(kind==='cached-fake'&&hydrating){write(1);flush();await ticks(8);equal(requests,0);equal(content(),'7');equal(isPending(read),true)}
    record(kind);return
   }
+  if(hydrating&&iterable){equal(isPending(read),false);showExtra(true);flush();await ticks(4);equal(content(),'77');equal(isPending(read),false);showExtra(false);flush()}
   if(hydrating&&policy!=='client')equal(content(),'7')
   else if(kind==='declared-client')equal(content(),'3')
   else equal(content(),'fallback')

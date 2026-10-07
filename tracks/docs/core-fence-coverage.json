@@ -33,8 +33,9 @@
     "section": "No writes under owned scope",
     "statement": "// ❌ BAD: using ownedWrite to suppress the write-under-scope error for app state",
     "coverage": [],
-    "status": "uncovered",
-    "unit": "fenced-comment"
+    "status": "not-behavioral",
+    "unit": "fenced-comment",
+    "reason": "对应用状态建模的建议：runtime无法从同一ownedWrite选项推断该状态是internal bookkeeping还是app state；代码中的实际write guard仍由08/owned-write检验，并未把write行为排除。"
   },
   {
     "id": "01-reactivity-batching-effects:C35:1",
@@ -43,8 +44,10 @@
     "end_line": 35,
     "section": "No writes under owned scope",
     "statement": "const [doubled, setDoubled] = createSignal(untrack(count) + 1); // force untracked read to get around other warning",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "08/primitive-strict-component-controls"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
@@ -54,8 +57,10 @@
     "end_line": 36,
     "section": "No writes under owned scope",
     "statement": "createMemo(() => setDoubled(count() + 1)); // feedback loop",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "08/owned-write"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
@@ -65,8 +70,11 @@
     "end_line": 38,
     "section": "No writes under owned scope",
     "statement": "// ✅ GOOD: derive without writing back, or write in an event",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "01/dom-flush-boundary",
+      "01/imperative-write-boundaries"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
@@ -709,8 +717,10 @@
     "end_line": 209,
     "section": "Async sources and `Loading`",
     "statement": "// A client component chosen by async data: the DATA is async, the source is sync.",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "03/dynamic-async-data-sync-components"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
@@ -720,8 +730,10 @@
     "end_line": 213,
     "section": "Async sources and `Loading`",
     "statement": "// Code-split client component: lazy(), not an async dynamic() source.",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "tracks/regressions/regressions.test.ts#3338"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
@@ -1319,8 +1331,10 @@
     "end_line": 271,
     "section": "The tracking run: known limitations",
     "statement": "const seed = takeHydrationValue(\"mylib:\" + key); // written on the server with getHydrationWriter()",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "tracks/docs/policy.test.ts"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
@@ -1330,8 +1344,10 @@
     "end_line": 274,
     "section": "The tracking run: known limitations",
     "statement": "// Hydrating with no seed: this may be the tracking run, so don't cache.",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "tracks/docs/policy.test.ts"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
@@ -1462,8 +1478,9 @@
     "section": "Error handling",
     "statement": "// Path A: inline check (bypasses ErrorBoundary, invisible to SSR)",
     "coverage": [],
-    "status": "uncovered",
-    "unit": "fenced-comment"
+    "status": "not-behavioral",
+    "unit": "fenced-comment",
+    "reason": "该块明确 //1.x 的历史createResource/ErrorBoundary双路径示例；不描述Solid2 API保证，不属于当前runtime行为声明。"
   },
   {
     "id": "05-async-data:C390:1",
@@ -1473,8 +1490,9 @@
     "section": "Error handling",
     "statement": "// Path B: ErrorBoundary",
     "coverage": [],
-    "status": "uncovered",
-    "unit": "fenced-comment"
+    "status": "not-behavioral",
+    "unit": "fenced-comment",
+    "reason": "该块明确 //1.x 的历史createResource/ErrorBoundary双路径示例；不描述Solid2 API保证，不属于当前runtime行为声明。"
   },
   {
     "id": "05-async-data:C399:1",
@@ -1921,8 +1939,10 @@
     "end_line": 159,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "// return nothing: the default wire policy applies",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "tracks/frames/server-diagnostics.test.ts#08/server-road-sanitize-ssr-false"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
@@ -1932,8 +1952,11 @@
     "end_line": 160,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "// return new Error(\"Something went wrong\"): the client receives this instead",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
@@ -1943,8 +1966,10 @@
     "end_line": 163,
     "section": "The server error hook: `configureServerErrors` / `onError`",
     "statement": "// per request, winning over the ambient hook:",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
@@ -2049,8 +2074,11 @@
     "end_line": 197,
     "section": "The trace the request belongs to: `getTraceContext()`",
     "statement": "entries: Record<string, string>; // what the browser is handed — `traceparent`, plus a provider's",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "12/trace-verbatim-fields",
+      "tracks/records/trace.test.ts"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
@@ -2565,8 +2593,11 @@
     "end_line": 270,
     "section": "“Write inside reactive scope” (owned scope)",
     "statement": "// ✅ derive instead of writing back",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "01/dom-flush-boundary",
+      "01/imperative-write-boundaries"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
@@ -2588,8 +2619,10 @@
     "end_line": 286,
     "section": "`/*@once*/` JSX marker",
     "statement": "// 2.0: keep reactive values reactive",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "07/once-marker-reactivity"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
@@ -3460,8 +3493,10 @@
     "end_line": 1012,
     "section": "`from` / `observable` → async iterators / effects",
     "statement": "// 2.0 — use an effect to push changes outward",
-    "coverage": [],
-    "status": "uncovered",
+    "coverage": [
+      "01/dom-flush-boundary"
+    ],
+    "status": "covered",
     "unit": "fenced-comment"
   },
   {
