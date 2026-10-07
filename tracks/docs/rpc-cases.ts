@@ -871,3 +871,13 @@ if(isServer){
   }
  });
 }
+if(isServer){
+ doc("scripted-304-warning", "Only dev warns for a scripted 304; ordinary 200 and unscripted 304 produce no such warning.",async()=>{
+  for(const [status,scripted] of [[200,true],[304,true],[304,false]] as const){
+   const fn=reference(()=>status===304?new Response(null,{status:304}):7),messages:string[]=[];const old=console.warn;
+   console.warn=(...args)=>messages.push(args.map(String).join(" "));
+   try{const response=await server.handleServerFunctionRequest(scripted?request(fn.id):new Request("http://conformance.test/_server/"+fn.id,{method:"POST",body:new FormData(),headers:{origin:"http://conformance.test"}}));equal(response.status,status)}finally{console.warn=old}
+   equal(messages.filter(m=>m.includes("answered a scripted call with 304")).length,isDev&&scripted&&status===304?1:0);
+  }
+ });
+}

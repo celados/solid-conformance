@@ -8,6 +8,6 @@ for(const mode of ["development","observe","production"] as BuildMode[])test("RF
   await build(dir,mode,{client:[],server:["tracks/frames/server.tsx"],serverComponents:true});
   const module=await import(dir+"/server.js"),results=await module.documents();
   await Bun.write("artifacts/rpc-docs-"+mode+".json",JSON.stringify(results,null,2));
-  expect(results.length).toBe(70);expect(results.filter((x:any)=>x.error)).toEqual([]);
+  expect(results.length).toBe(71);expect(results.filter((x:any)=>x.error)).toEqual([]);
  }finally{await rm(dir,{recursive:true,force:true})}
 },30000);
