@@ -2,7 +2,7 @@ import { test, expect } from "bun:test";
 import { chromium } from "playwright";
 import { resolve } from "node:path";
 import { rm } from "node:fs/promises";
-import { buildFrames } from './build';
+import { buildFrames } from "./build";
 test("A connected live source must reconnect after a real TCP drop", async () => {
   const dir = resolve(".build", "finding014-" + process.pid);
   await buildFrames(dir, (process.env.BUILD_MODE ?? "development") as any, {

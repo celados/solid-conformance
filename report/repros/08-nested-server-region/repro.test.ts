@@ -2,7 +2,7 @@ import { test, expect } from "bun:test";
 import { chromium } from "playwright";
 import { resolve } from "node:path";
 import { rm } from "node:fs/promises";
-import { buildFrames } from './build';
+import { buildFrames } from "./build";
 test("A new server-function argument must replace nested server slot content", async () => {
   const directory = resolve(".build", "finding009-" + process.pid);
   await buildFrames(directory, (process.env.BUILD_MODE ?? "development") as any, {

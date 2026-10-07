@@ -18,6 +18,7 @@ render(
   ),
   document.getElementById("root")!,
 );
+// First call refetch(), then change(): the nested span stays at 1.
 (window as any).refetch = () => {
   setVersion(1);
   flush();
