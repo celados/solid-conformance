@@ -1,0 +1,22 @@
+{
+  "queries": [
+    {
+      "repository": "solidjs/solid",
+      "query": "symbol insert",
+      "state": "all",
+      "results": []
+    },
+    {
+      "repository": "solidjs/solid-router",
+      "query": "symbol insert",
+      "state": "all",
+      "results": []
+    },
+    {
+      "repository": "solidjs/solid-start",
+      "query": "symbol insert",
+      "state": "all",
+      "results": []
+    }
+  ]
+}

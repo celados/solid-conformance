@@ -1,5 +1,5 @@
 import {OBSERVE,createSignal,createStore,createOptimistic,createOptimisticStore,createMemo,Loading,Errored,Reveal,lazy} from 'solid-js'
-import {isServer,isDev,render,renderToString,renderToStream,dynamic,useHead,type JSX} from '@solidjs/web'
+import {isServer,isDev,render,hydrate,renderToString,renderToStream,dynamic,useHead,type JSX} from '@solidjs/web'
 import {equal,ok,type DocCase} from './registry'
 import {ticks,deferred} from '../../harness/timing'
 const cases: DocCase[] = []
@@ -13,6 +13,7 @@ async function capture(code:string,positive:boolean,run:()=>unknown|Promise<unkn
   finally {session?.stop(); console.warn=warn;console.error=error;console.info=info}
 }
 if(isServer) {
+  doc('head-outside','L686: outside-render ignored registrations outside any server render.',async()=>{const events=await capture('HEAD_TAG_INVALID',true,()=>useHead({tag:'title',props:{children:'ignored'}}));if(isDev){equal(events[0]!.data?.reason,'outside-render');equal(events[0]!.data?.detail,undefined)}})
   doc('write-categories','Check (`warn`, dev only; once per process per `data.category`). A setter ran during a server render.',async()=>{
     await capture('SERVER_WRITE',false,()=>renderToString(()=>{createSignal(0);createStore({n:0});createOptimistic(0);return <span/>}))
     const writes=await capture('SERVER_WRITE',true,()=>renderToString(()=>{const [,signal]=createSignal(0);const [,store]=createStore({n:0});const [,optimistic]=createOptimistic(0);const [,optimisticStore]=createOptimisticStore({n:0});signal(1);signal(2);store(d=>{d.n=1});store(d=>{d.n=2});optimistic(1);optimisticStore(d=>{d.n=1});return <span/>}),3)
@@ -66,6 +67,19 @@ if(isServer) {
     await capture('HEAD_TAG_INVALID',true,()=>renderToString(()=>{useHead([{tag:'title',props:{children:'one'}},{tag:'title',props:{children:'two'}}]);return <span/>}))
     await capture('HEAD_TAG_INVALID',false,()=>renderToString(()=>{useHead({tag:'title',props:{children:'valid'}});return <span/>}))
   })
+  doc('head-reasons','L686: HEAD_TAG_INVALID supplies each reason and offending detail; ignored registrations leave valid HTML.',async()=>{
+    const propsError=new Error('head-props'),groupError=new Error('head-group');
+    const rows:[string,unknown,()=>unknown][]=[
+      ['non-head-tag',{tag:'div',props:{}},()=>renderToString(()=>{useHead({tag:'div',props:{}} as any);return <html><head/><body>valid</body></html>})],
+      ['invalid-attribute','bad name',()=>renderToString(()=>{useHead({tag:'meta',props:{'bad name':'x'}} as any);return <html><head/><body>valid</body></html>})],
+      ['props-error',propsError,()=>renderToString(()=>{useHead({tag:'title',props:{children:()=>{throw propsError}}});return <html><head/><body>valid</body></html>})],
+      ['group-error',groupError,()=>renderToString(()=>{useHead(()=>{throw groupError});return <html><head/><body>valid</body></html>})],
+      ['duplicate-title',2,()=>renderToString(()=>{useHead([{tag:'title',props:{children:'first'}},{tag:'title',props:{children:'last'}}]);return <html><head/><body>valid</body></html>})]
+
+    ];
+    for(const [reason,detail,run] of rows){let output:unknown;let events:Awaited<ReturnType<typeof capture>>;try{events=await capture('HEAD_TAG_INVALID',true,()=>{output=run()})}catch(e){throw new Error(reason+': '+String(e))};if(isDev){equal(events[0]!.data?.reason,reason);equal(events[0]!.data?.detail,detail)};if(typeof output==='string'){ok(output.includes('valid'));if(reason==='duplicate-title'){ok(/<title[^>]*>last<\/title>/.test(output),output);ok(!/<title[^>]*>first<\/title>/.test(output),output)}}}
+    let html='';const events=await capture('HEAD_TAG_INVALID',true,async()=>{const gate=deferred<number>();function Delayed(){const value=createMemo(()=>gate.promise);const settled=value();useHead({tag:'base',props:{href:'/base-'+settled}});return <span>{settled}</span>};const out=renderToStream(()=><html><head/><body><Loading fallback={<i>waiting</i>}><Delayed/></Loading></body></html>);const reader=out.readable.getReader();const decoder=new TextDecoder();const first=await reader.read();html=decoder.decode(first.value);gate.resolve(1);for(;;){const chunk=await reader.read();if(chunk.done)break;html+=decoder.decode(chunk.value)}});ok(html.includes('1'));ok(!html.includes('<base'),html);if(isDev){equal(events[0]!.data?.reason,'after-shell-flush');equal(events[0]!.data?.detail,'base')}
+  })
   doc('dynamic-async','A source may stay async when it resolves to a server component or a serializable value (a tag name).',async()=>{
     await capture('DYNAMIC_ASYNC_COMPONENT',true,async()=>{const Part=dynamic(()=>Promise.resolve(()=> <b>forbidden</b>));const errors:unknown[]=[];const html=await renderToStream(()=><Loading fallback={<i/>}><Errored fallback={(_e)=><b>caught</b>}><Part/></Errored></Loading>,{onError(e){errors.push(e)}});ok(!html.includes('forbidden'));ok(errors.some(e=>String(e).includes('DYNAMIC_ASYNC_COMPONENT')))})
     await capture('DYNAMIC_ASYNC_COMPONENT',false,async()=>{const Part=dynamic(()=>Promise.resolve('article'));const html=await renderToStream(()=><Loading fallback={<i/>}><Part>valid</Part></Loading>);ok(html.includes('article'))})
@@ -79,12 +93,15 @@ if(isServer) {
     await capture('UNSCOPED_HOLE_ALLOCATED_IDS',false,()=>renderToString(()=><Good header={<span>header</span>}><b>child</b></Good>))
   })
 }
-doc('unrecognized-value','Value at an insert position the renderer cannot render; skipped (dev; server and client)',async()=>{
-  async function view(invalid:boolean){const App=()=> <div>{invalid?({bad:true} as any):'valid'}</div>;if(isServer){renderToString(App);return}const el=document.createElement('div');const dispose=render(App,el);dispose()}
-  await capture('UNRECOGNIZED_INSERT_VALUE',true,()=>view(true));await capture('UNRECOGNIZED_INSERT_VALUE',false,()=>view(false))
+doc('unrecognized-value','L692: plain object and symbol insertions are skipped on both faces with type/value metadata.',async()=>{
+  for(const value of [{bad:true},Symbol('bad')]){let html='';const App=()=> <div>{value as any}</div>;const events=await capture('UNRECOGNIZED_INSERT_VALUE',!(isServer&&typeof value==='symbol'),()=>{if(isServer){html=renderToString(App);return}const el=document.createElement('div');const dispose=render(App,el);html=el.innerHTML;dispose()});ok(!html.includes('[object Object]'));if(isDev&&!(isServer&&typeof value==='symbol')){equal(events[0]!.data?.type,typeof value);equal(events[0]!.data?.value,value)}}
+  await capture('UNRECOGNIZED_INSERT_VALUE',false,()=>{const App=()=> <div>valid{42}{false}{null}</div>;if(isServer){renderToString(App);return}const el=document.createElement('div');const dispose=render(App,el);dispose()})
 })
-if(!isServer) doc('lowercase-event','Check (`warn`, dev only; kind render; client, once per attribute name).',async()=>{
-  await capture('LOWERCASE_EVENT_ATTRIBUTE',true,()=>{const el=document.createElement('div');const dispose=render(()=><button {...{onclick:()=>{}} as any}/>,el);dispose()})
-  await capture('LOWERCASE_EVENT_ATTRIBUTE',false,()=>{const el=document.createElement('div');const dispose=render(()=><button onClick={()=>{}}/>,el);dispose()})
+if(!isServer) doc('lowercase-event','L708: compiled, spread and hydrated lowercase callback attributes stringify rather than bind; warn once per name.',async()=>{
+  // @ts-expect-error Deliberate documented JavaScript-only lowercase JSX attribute misuse.
+  for(const [name,App] of [['onclick',()=> <button {...{onclick:()=>{throw new Error('not an event')}} as any}/>],['onmousedown',()=> <button onmousedown={(()=>{throw new Error('not an event')}) as any}/>],['on:click',()=> <button {...{'on:click':()=>{throw new Error('not an event')}} as any}/>]] as const){const el=document.createElement('div');const events=await capture('LOWERCASE_EVENT_ATTRIBUTE',true,()=>{const dispose=render(App,el);const button=el.firstElementChild!;ok(button.getAttribute(name)?.includes('not an event'));button.dispatchEvent(new Event(name.includes('mousedown')?'mousedown':'click'));dispose()});if(isDev){equal(events[0]!.data?.name,name);equal(events[0]!.data?.handler,name==='onmousedown'?'onMousedown':'onClick');equal(events[0]!.data?.tag,'button')}}
+  await capture('LOWERCASE_EVENT_ATTRIBUTE',false,()=>{const el=document.createElement('div');const dispose=render(()=><button {...{onclick:()=>{}} as any}/>,el);dispose()})
+  await capture('LOWERCASE_EVENT_ATTRIBUTE',false,()=>{let ran=0;const el=document.createElement('div');const dispose=render(()=><button onClick={()=>ran++}/>,el);el.querySelector('button')!.click();equal(ran,1);dispose()})
+  await capture('LOWERCASE_EVENT_ATTRIBUTE',false,()=>{const el=document.createElement('div');const dispose=render(()=><button {...{onkeyup:'void 0'} as any}/>,el);equal(el.firstElementChild!.getAttribute('onkeyup'),'void 0');dispose()})
 })
 export const serverDiagnosticCases=cases
