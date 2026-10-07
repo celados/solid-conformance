@@ -1,0 +1,39 @@
+bun test v1.4.2 (744846f84)
+
+findings/023-returned-helper-diagnostic/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"dafad1db34626feb5f154e98e599f65be1802c6c","directory":"/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c"},"buildMode":"development","solid":"2.0.0-rc.13"}
+{
+  direct: {
+    value: 1,
+    warnings: 1,
+  },
+  helper: {
+    value: 1,
+    warnings: 1,
+  },
+}
+17 |     await page.goto(server.url.toString())
+18 |     await page.waitForFunction(() => !!(window as any).result)
+19 |     const result = await page.evaluate(() => (window as any).result)
+20 |     console.log(result)
+21 |     expect(result.direct).toEqual({ value: 1, warnings: mode === 'development' ? 1 : 0 })
+22 |     expect(result.helper).toEqual({ value: 1, warnings: 0 })
+                               ^
+error: expect(received).toEqual(expected)
+
+@@ -2,3 +2,3 @@
+    "value": 1,
+-   "warnings": 0,
++   "warnings": 1,
+  }
+
+- Expected  - 1
++ Received  + 1
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4b/findings/023-returned-helper-diagnostic/repro.test.ts:22:27)
+(fail) 08:L359:2 helper returned without await is excluded from async-read warnings [9855.84ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [10.01s]

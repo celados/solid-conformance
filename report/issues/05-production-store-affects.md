@@ -6,94 +6,72 @@ tier: A
 severity: high
 findings: ['016']
 target: dafad1db34626feb5f154e98e599f65be1802c6c
+snippet: App.tsx
+snippet_kind: component
 ---
 
 # Production tree shaking removes store affects registration
 
-affects(store, key) inside an action should not throw. A production consumer bundle rejects when calling a removed registration hook; disabling tree shaking and ignoring DCE annotations passes. This is consistent with a dropped registration side effect, not a stable contract for any mangled property name.
+Declaring an affected store slot inside an action rejects in a tree-shaken production bundle.
 
-## Reproduction
+```tsx
+import { action, affects, createSignal, createStore } from "solid-js";
+export default function App() {
+  const [store] = createStore({ n: 1 });
+  const [result, setResult] = createSignal("idle");
+  const save = action(function* () {
+    affects(store, "n");
+  });
+  function run() {
+    save().then(
+      () => setResult("ok"),
+      (error) => setResult(String(error)),
+    );
+  }
+  return (
+    <>
+      <button id="trigger" onClick={run}>
+        Declare pending slot
+      </button>
+      <output id="answer">{result()}</output>
+    </>
+  ); // In a tree-shaken production bundle: a registration-hook error.
+}
+```
 
-Use a built Solid checkout at `dafad1db34626feb5f154e98e599f65be1802c6c` (all five package distributions, including the native compiler). Copy these files into an empty Bun project. The commands below explicitly link that HEAD build; omit the link command only to run the rc.13 comparison. HEAD-only cases pass on rc.13. Browser tests use system Google Chrome.
+Paste this App into a fresh Solid 2 app using the Bun bundler setup below. Build for production and click **Declare pending slot**.
+
+**Expected:** The output becomes ok.
+**Actual:** The output displays a missing registration-hook TypeError.
+
+**Versions/builds:** HEAD `dafad1db34626feb5f154e98e599f65be1802c6c`; production fail. rc.13 passes in both builds.
+
+Disabling tree shaking and ignoring DCE annotations passes; the private mangled hook name is not a stable API.
+
+Related: [#2887](https://github.com/solidjs/solid/issues/2887)
+
+<details>
+<summary>Full automated reproduction</summary>
+
+Copy [the standalone files](../repros/05-production-store-affects/) into a fresh Bun project. The displayed snippet is executed by snippet.test.ts. The original automated case is also retained.
+
+- [App.tsx](../repros/05-production-store-affects/App.tsx)
+- [build.ts](../repros/05-production-store-affects/build.ts)
+- [link-head.ts](../repros/05-production-store-affects/link-head.ts)
+- [module.ts](../repros/05-production-store-affects/module.ts)
+- [repro.test.ts](../repros/05-production-store-affects/repro.test.ts)
+- [snippet-client.tsx](../repros/05-production-store-affects/snippet-client.tsx)
+- [snippet.test.ts](../repros/05-production-store-affects/snippet.test.ts)
 
 ```sh
 bun init -y
 bun add solid-js@2.0.0-rc.13 @solidjs/web@2.0.0-rc.13 @solidjs/signals@2.0.0-rc.13 @solidjs/compiler@2.0.0-rc.13 @solidjs/diagnostics@2.0.0-rc.13
 bun add -d playwright
 bun run link-head.ts /absolute/path/to/built/solid
-BUILD_MODE=production bun test ./repro.test.ts
-# Passing control on the same HEAD:
+BUILD_MODE=production bun test ./snippet.test.ts
 NO_TREE_SHAKE=1 BUILD_MODE=production bun test ./repro.test.ts
 ```
 
-### `module.ts`
+The five linked packages must come from the same built HEAD checkout. Omitting the link step selects the rc.13 comparison. Chrome runs use the system installation.
 
-```ts
-import { action, affects, createRoot, createStore } from 'solid-js'
-export async function run() {
- let dispose!:()=>void
- const save=createRoot(d=>{dispose=d;const [store]=createStore({n:1});return action(function*(){affects(store,'n')})})
- try {await save()} finally {dispose()}
-}
-```
-
-### `repro.test.ts`
-
-```ts
-import { test, expect } from 'bun:test'
-import { realpath } from 'node:fs/promises'
-import { resolve } from 'node:path'
-
-test('RFC 06 production affects(store,key) must not throw',async()=>{
- const packages=new Map<string,{path:string,exports:Record<string,any>}>()
- for(const name of ['solid-js','@solidjs/signals']){const path=await realpath(resolve('node_modules',name));packages.set(name,{path,exports:(await Bun.file(path+'/package.json').json()).exports})}
- const outdir=resolve('.build/finding016')
- const result=await Bun.build({entrypoints:[resolve('./module.ts')],outdir,target:'bun',treeShaking:process.env.NO_TREE_SHAKE!=='1',ignoreDCEAnnotations:process.env.NO_TREE_SHAKE==='1',plugins:[{name:'actual-browser-development',setup(builder){builder.onResolve({filter:/^(solid-js|@solidjs\/signals)$/},args=>{const pkg=packages.get(args.path)!;const entry=pkg.exports['.'];const browser=entry.browser??entry;const dev=browser[process.env.BUILD_MODE??'production']??browser.default;return{path:resolve(pkg.path,typeof dev==='string'?dev:dev.import??dev.default)}})}}]})
- expect(result.success).toBe(true)
- const runtime=await import(outdir+'/module.js')
- const pending=runtime.run();pending.catch((error:unknown)=>console.log('Observed rejection:',String(error)));await expect(pending).resolves.toBeUndefined()
-})
-```
-
-## Expected versus actual
-
-affects(store, key) inside an action should not throw. A production consumer bundle rejects when calling a removed registration hook; disabling tree shaking and ignoring DCE annotations passes. This is consistent with a dropped registration side effect, not a stable contract for any mangled property name.
-
-## Versions and builds
-
-Verified on Solid HEAD `dafad1db34626feb5f154e98e599f65be1802c6c`: 016: production.
-
-Comparison: 016: rc.13 passes the same case. The original snapshot was `53ef0e69`; rc.13 results come from the versioned baseline evidence. No refreshed confirmed case passed.
-
-## Related issues
-
-[#2887](https://github.com/solidjs/solid/issues/2887)
-
-Local validation (review only; omit when filing): [finding 016](../../findings/016-production-store-affects/README.md).
-
-### `link-head.ts`
-
-```ts
-import { mkdir, realpath, rm, symlink } from 'node:fs/promises'
-import { resolve } from 'node:path'
-
-const source = process.argv[2]
-if (!source) throw new Error('Pass the path to the built Solid HEAD checkout.')
-const root = await realpath(source)
-for (const [name, folder] of [
- ['solid-js', 'solid'], ['@solidjs/signals', 'signals'],
- ['@solidjs/web', 'web'], ['@solidjs/compiler', 'compiler'],
- ['@solidjs/diagnostics', 'diagnostics'],
-]) {
- const packagePath = resolve(root, 'packages', folder!)
- if (!await Bun.file(resolve(packagePath, 'package.json')).exists())
-  throw new Error('Missing built package: ' + packagePath)
- const destination = resolve('node_modules', name!)
- await rm(destination, { recursive: true, force: true })
- await mkdir(resolve(destination, '..'), { recursive: true })
- await symlink(packagePath, destination, 'dir')
-}
-console.log('Linked the five matching HEAD packages from ' + root)
-```
-
-Local baseline validation (review only): [rc.13 016 logs](../evidence/016-rc13-development-supplement.log), plus the corresponding production log.
+</details>

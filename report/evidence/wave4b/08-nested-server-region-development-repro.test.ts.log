@@ -1,0 +1,22 @@
+bun test v1.4.2 (744846f84)
+
+repro.test.ts:
+31 |     await page.waitForFunction(() => document.querySelector("section")?.textContent === "1");
+32 |     await page.evaluate(() => (window as any).refetch());
+33 |     await page.waitForTimeout(300);
+34 |     await page.evaluate(() => (window as any).change());
+35 |     await page.waitForTimeout(300);
+36 |     expect(await page.locator("section").textContent()).toBe("2");
+                                                             ^
+error: expect(received).toBe(expected)
+
+Expected: "2"
+Received: "1"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4b/.scratch/report-standalone-verification/08-nested-server-region/repro.test.ts:36:57)
+(fail) A new server-function argument must replace nested server slot content [8283.09ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [8.43s]

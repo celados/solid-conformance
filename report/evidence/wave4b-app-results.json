@@ -1,0 +1,53 @@
+{
+  "results": [
+    {
+      "name": "02-production-refresh",
+      "mode": "production",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "name": "01-store-rejection",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "name": "05-production-store-affects",
+      "mode": "production",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "name": "06-loading-nonconvergence",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "name": "12-async-action-live-ack",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "name": "09-refresh-optimistic-authority",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "name": "14-mixed-object-insert",
+      "mode": "development",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    }
+  ]
+}

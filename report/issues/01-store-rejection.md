@@ -6,202 +6,72 @@ tier: A
 severity: high
 findings: ['004']
 target: dafad1db34626feb5f154e98e599f65be1802c6c
+snippet: App.tsx
+snippet_kind: component
 ---
 
 # Replacement derived-store rejection never reaches Errored
 
-A replacement request rejecting should reach the nearest Errored; instead the old 0 remains visible without an error.
+A derived store can lose the rejection of a replacement request instead of routing it to the surrounding error boundary.
 
-## Reproduction
+```tsx
+import { createSignal, createStore, Errored, Loading } from "solid-js";
+export default function App() {
+  let reject!: (error: Error) => void;
+  const replacement = new Promise<{ value: number }>((_, fail) => {
+    reject = fail;
+  });
+  const [id, setId] = createSignal(0);
+  const [store] = createStore(() => (id() ? replacement : { value: 0 }), { value: 0 });
+  function replace() {
+    setId(1); // Start a replacement request.
+    setTimeout(() => reject(new Error("replacement failed")), 20);
+  }
+  return (
+    <>
+      <button id="trigger" onClick={replace}>
+        Replace and reject
+      </button>
+      <Errored fallback={() => <b id="answer">error</b>}>
+        <Loading fallback={<i>pending</i>}>
+          <span id="answer">{store.value}</span>
+        </Loading>
+      </Errored>
+    </>
+  ); // After the click: still 0, instead of the error fallback.
+}
+```
 
-Use a built Solid checkout at `dafad1db34626feb5f154e98e599f65be1802c6c` (all five package distributions, including the native compiler). Copy these files into an empty Bun project. The commands below explicitly link that HEAD build; omit the link command only to run the rc.13 comparison. HEAD-only cases pass on rc.13. Browser tests use system Google Chrome.
+Paste this App into a Solid 2 playground. Click **Replace and reject**, then wait.
+
+**Expected:** The error fallback displays error.
+**Actual:** The previous value 0 remains visible.
+
+**Versions/builds:** HEAD `dafad1db34626feb5f154e98e599f65be1802c6c`; development and production fail. rc.13 passes in both builds.
+
+Related: [#2997](https://github.com/solidjs/solid/issues/2997), [#3769](https://github.com/solidjs/solid/issues/3769)
+
+<details>
+<summary>Full automated reproduction</summary>
+
+Copy [the standalone files](../repros/01-store-rejection/) into a fresh Bun project. The displayed snippet is executed by snippet.test.ts. The original automated case is also retained.
+
+- [App.tsx](../repros/01-store-rejection/App.tsx)
+- [build.ts](../repros/01-store-rejection/build.ts)
+- [client.tsx](../repros/01-store-rejection/client.tsx)
+- [link-head.ts](../repros/01-store-rejection/link-head.ts)
+- [repro.test.ts](../repros/01-store-rejection/repro.test.ts)
+- [snippet-client.tsx](../repros/01-store-rejection/snippet-client.tsx)
+- [snippet.test.ts](../repros/01-store-rejection/snippet.test.ts)
 
 ```sh
 bun init -y
 bun add solid-js@2.0.0-rc.13 @solidjs/web@2.0.0-rc.13 @solidjs/signals@2.0.0-rc.13 @solidjs/compiler@2.0.0-rc.13 @solidjs/diagnostics@2.0.0-rc.13
 bun add -d playwright
 bun run link-head.ts /absolute/path/to/built/solid
-BUILD_MODE=development bun test ./repro.test.ts
+BUILD_MODE=development bun test ./snippet.test.ts
 ```
 
-### `client.tsx`
+The five linked packages must come from the same built HEAD checkout. Omitting the link step selects the rc.13 comparison. Chrome runs use the system installation.
 
-```tsx
-import { createStore, createSignal, Errored, Loading } from 'solid-js'
-const ticks = async () => { for (let i = 0; i < 12; i++) await new Promise(r => setTimeout(r, 0)) }
-function deferred<T>() { let resolve!: (v:T)=>void, reject!: (e:unknown)=>void; const promise=new Promise<T>((a,b)=>{resolve=a;reject=b}); return {promise,resolve,reject} }
-export function storeRejectionCase() {
-	const second=deferred<{value:number}>()
-	let change!:(n:number)=>void
-	function App() {
-		const [id,set]=createSignal(0);change=set
-		const [store]=createStore(()=>id()===0?{value:0}:second.promise,{value:0})
-		return <Errored fallback={(_error)=><b>error</b>}><Loading fallback={<i>pending</i>}><span>{store.value}</span></Loading></Errored>
-	}
-	return { App, streams:[], async settle(){change(1);await ticks();second.reject(new Error('expected'));await ticks()} }
-}
-
-import {render} from '@solidjs/web'
-const sample=storeRejectionCase()
-render(sample.App,document.getElementById('root')!)
-;(window as any).result=(async()=>{await sample.settle();return document.getElementById('root')!.innerHTML})()
-```
-
-### `repro.test.ts`
-
-```ts
-import {test,expect} from 'bun:test'
-import {chromium} from 'playwright'
-import {resolve} from 'node:path'
-import {build} from './build'
-test("Replacement derived-store rejection never reaches Errored",async()=>{
- const dir=resolve('dist');await build(dir,(process.env.BUILD_MODE??'development') as any,{client:['client.tsx'],server:[]})
- const server=Bun.serve({port:0,fetch:r=>new URL(r.url).pathname==='/client.js'?new Response(Bun.file(dir+'/client.js'),{headers:{'content-type':'text/javascript'}}):new Response('<div id="root"></div><script type="module" src="/client.js"></script>',{headers:{'content-type':'text/html'}})})
- const browser=await chromium.launch({channel:'chrome',headless:true})
- try{const page=await browser.newPage();await page.goto(String(server.url));await page.waitForFunction(()=>!!(window as any).result);expect(await page.evaluate(()=>(window as any).result)).toBe("<b>error</b>")}finally{await browser.close();server.stop(true)}
-},30000)
-```
-
-### `build.ts`
-
-```ts
-import { transform } from '@solidjs/compiler'
-import { realpath } from 'node:fs/promises'
-import { resolve } from 'node:path'
-
-type ExportValue = string | Record<string, unknown>
-function selectExport(
-	value: unknown,
-	conditions: Set<string>,
-): string | undefined {
-	if (typeof value === 'string') return value
-	if (!value || typeof value !== 'object') return undefined
-	for (const [key, child] of Object.entries(value))
-		if (conditions.has(key)) {
-			const selected = selectExport(child, conditions)
-			if (selected) return selected
-		}
-}
-export type BuildMode = 'development' | 'production' | 'observe'
-export async function build(outdir = '.build', variant: BuildMode, entries: { client: string[]; server: string[]; serverComponents?: boolean }) {
-	const packages = new Map<
-		string,
-		{ directory: string; exports: Record<string, ExportValue> }
-	>()
-	for (const name of [
-		'solid-js',
-		'@solidjs/signals',
-		'@solidjs/web',
-		'@solidjs/diagnostics',
-	]) {
-		const directory = await realpath(resolve('node_modules', name))
-		const pkg = await Bun.file(`${directory}/package.json`).json()
-		packages.set(name, { directory, exports: pkg.exports })
-	}
-	for (const mode of ['client', 'server'] as const) {
-		if (entries?.[mode].length === 0) continue
-		const conditions = new Set([
-			mode === 'client' ? 'browser' : 'node',
-			variant,
-			'import',
-			'default',
-		])
-		const result = await Bun.build({
-			metafile: true,
-			entrypoints: entries![mode],
-			outdir,
-			naming: '[name].js',
-			splitting: mode === 'client',
-			target: mode === 'client' ? 'browser' : 'bun',
-			conditions: [variant],
-			define: { 'process.env.NODE_ENV': JSON.stringify(variant) },
-			
-			plugins: [
-				{
-					name: 'solid',
-					setup(builder) {
-						// Pin consumer imports to one built package graph. Upstream's internal tsconfig
-						// aliases point at source and otherwise mix source with distribution exports.
-						builder.onResolve(
-							{
-								filter:
-									/^(solid-js|@solidjs\/(signals|web|diagnostics))(\/.*)?$/,
-							},
-							(args) => {
-								const name = args.path.startsWith('@')
-									? args.path.split('/').slice(0, 2).join('/')
-									: 'solid-js'
-								const pkg = packages.get(name)!
-								const subpath = args.path.slice(name.length)
-								const key = subpath ? '.' + subpath : '.'
-								const file = selectExport(pkg.exports[key], conditions)
-								if (!file)
-									throw new Error(
-										`Missing runtime export: ${args.path} (${mode})`,
-									)
-								return { path: resolve(pkg.directory, file) }
-							},
-						)
-						builder.onLoad({ filter: /\.tsx$/ }, async (args) => ({
-							contents: transform(await Bun.file(args.path).text(), {
-								filename: args.path,
-								generate: mode === 'client' ? 'dom' : 'ssr',
-								hydratable: true,
-								dev: variant === 'development',
-								...(entries?.serverComponents ? { serverComponents: true } : {}),
-							}).code,
-							loader: 'ts',
-						}))
-					},
-				},
-			],
-		})
-		if (!result.success)
-			throw new AggregateError(result.logs, `Build failed: ${mode}`)
-		await Bun.write(resolve(outdir, `${mode}-metafile.json`), JSON.stringify(result.metafile, null, 2))
-	}
-}
-```
-
-## Expected versus actual
-
-A replacement request rejecting should reach the nearest Errored; instead the old 0 remains visible without an error.
-
-The same missing-error route also occurs for a derived LiveSource after SSR hydration handoff: the first client iterable rejection leaves the last value visible. That sibling is separately rechecked in both builds; the CSR replacement above is the smaller public reproduction. This report does not claim that every server-component reconnect path fails.
-
-## Versions and builds
-
-Verified on Solid HEAD `dafad1db34626feb5f154e98e599f65be1802c6c`: 004: development, production.
-
-Comparison: 004: rc.13 passes the same case. The original snapshot was `53ef0e69`; rc.13 results come from the versioned baseline evidence. No refreshed confirmed case passed.
-
-## Related issues
-
-[#2997](https://github.com/solidjs/solid/issues/2997), [#3769](https://github.com/solidjs/solid/issues/3769)
-
-Local validation (review only; omit when filing): [finding 004](../../findings/004-derived-store-rejection/README.md).
-
-### `link-head.ts`
-
-```ts
-import { mkdir, realpath, rm, symlink } from 'node:fs/promises'
-import { resolve } from 'node:path'
-
-const source = process.argv[2]
-if (!source) throw new Error('Pass the path to the built Solid HEAD checkout.')
-const root = await realpath(source)
-for (const [name, folder] of [
- ['solid-js', 'solid'], ['@solidjs/signals', 'signals'],
- ['@solidjs/web', 'web'], ['@solidjs/compiler', 'compiler'],
- ['@solidjs/diagnostics', 'diagnostics'],
-]) {
- const packagePath = resolve(root, 'packages', folder!)
- if (!await Bun.file(resolve(packagePath, 'package.json')).exists())
-  throw new Error('Missing built package: ' + packagePath)
- const destination = resolve('node_modules', name!)
- await rm(destination, { recursive: true, force: true })
- await mkdir(resolve(destination, '..'), { recursive: true })
- await symlink(packagePath, destination, 'dir')
-}
-console.log('Linked the five matching HEAD packages from ' + root)
-```
+</details>

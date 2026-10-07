@@ -1,0 +1,22 @@
+bun test v1.4.2 (744846f84)
+
+repro.test.ts:
+22 |   const browser = await chromium.launch({ channel: "chrome", headless: true });
+23 |   try {
+24 |     const page = await browser.newPage();
+25 |     await page.goto(String(server.url));
+26 |     await page.waitForFunction(() => !!(window as any).result);
+27 |     expect(await page.evaluate(() => (window as any).result)).toBe("<b>error</b>");
+                                                                   ^
+error: expect(received).toBe(expected)
+
+Expected: "<b>error</b>"
+Received: "<span>0</span>"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4b/.scratch/report-standalone-verification/01-store-rejection/repro.test.ts:27:63)
+(fail) Replacement derived-store rejection never reaches Errored [9270.84ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [9.42s]

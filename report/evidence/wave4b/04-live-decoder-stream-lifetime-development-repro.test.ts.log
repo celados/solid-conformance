@@ -1,0 +1,36 @@
+bun test v1.4.2 (744846f84)
+
+repro.test.ts:
+14 |         });
+15 |         const module = await import(dir + "/server.js"),
+16 |           result = await module.run(death);
+17 |         expect(result.first).toEqual({ done: false, value: "first" });
+18 |         expect(result.transportFailed).toBe(true);
+19 |         expect(result.outcome.outcome).toBe("rejected");
+                                            ^
+error: expect(received).toBe(expected)
+
+Expected: "rejected"
+Received: "pending"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4b/.scratch/report-standalone-verification/04-live-decoder-stream-lifetime/repro.test.ts:19:40)
+(fail) RFC10 dying body rejects an open iterator pull: error [327.76ms]
+14 |         });
+15 |         const module = await import(dir + "/server.js"),
+16 |           result = await module.run(death);
+17 |         expect(result.first).toEqual({ done: false, value: "first" });
+18 |         expect(result.transportFailed).toBe(true);
+19 |         expect(result.outcome.outcome).toBe("rejected");
+                                            ^
+error: expect(received).toBe(expected)
+
+Expected: "rejected"
+Received: "pending"
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4b/.scratch/report-standalone-verification/04-live-decoder-stream-lifetime/repro.test.ts:19:40)
+(fail) RFC10 dying body rejects an open iterator pull: eof [315.61ms]
+
+ 0 pass
+ 2 fail
+ 6 expect() calls
+Ran 2 tests across 1 file. [651.00ms]

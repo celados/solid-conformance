@@ -1,0 +1,22 @@
+bun test v1.4.2 (744846f84)
+
+repro.test.ts:
+30 |       },
+31 |     ],
+32 |   });
+33 |   expect(result.success).toBe(true);
+34 |   const runtime = await import(outdir + "/module.js");
+35 |   expect(await runtime.run()).toBe(2);
+                                   ^
+error: expect(received).toBe(expected)
+
+Expected: 2
+Received: 99
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4b/.scratch/report-standalone-verification/09-refresh-optimistic-authority/repro.test.ts:35:31)
+(fail) 06-actions-optimistic.md: refresh delivers source truth, never the caller optimistic override [12.21ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [17.00ms]

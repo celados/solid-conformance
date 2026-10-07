@@ -1,0 +1,90 @@
+{
+  "head": "dafad1db34626feb5f154e98e599f65be1802c6c",
+  "method": "Each B/C usage fragment is retained from its original minimal case; the complete original executable context is rerun rather than falsely calling partial type/diagnostic usage a playground app.",
+  "results": [
+    {
+      "id": "007",
+      "file": "findings/007-loading-on-accessor/repro.test.ts",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "013",
+      "file": "findings/013-pinned-source-retake/repro.test.ts",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "047",
+      "file": "findings/047-derived-store-accessor-example/repro.test.ts",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 2
+    },
+    {
+      "id": "010",
+      "file": "findings/010-leaf-signal-diagnostic/repro.test.ts",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "012",
+      "file": "findings/012-attribution-audience-gate/repro.test.ts",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "023",
+      "file": "findings/023-returned-helper-diagnostic/repro.test.ts",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "042",
+      "file": "findings/042-malformed-preload-crossorigin/repro.test.ts",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "006",
+      "file": "findings/006-storepath-export/repro.test.ts",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "015",
+      "file": "findings/015-untrack-owned-write/repro.test.ts",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "018",
+      "file": "findings/018-nested-refresh-types/repro.test.ts",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "030",
+      "file": "findings/030-effect-error-signature/repro.test.ts",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    },
+    {
+      "id": "041",
+      "file": "findings/041-dynamic-source-tracking/repro.test.ts",
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1
+    }
+  ]
+}

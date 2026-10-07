@@ -1,0 +1,24 @@
+bun test v1.4.2 (744846f84)
+
+repro.test.ts:
+{
+  ssr: "<div _hk=1><button _hk=0>click</button></div>",
+  samples: [
+    {
+      count: 1,
+      nested: true,
+      text: "click",
+      issues: [],
+    }, {
+      count: 1,
+      nested: true,
+      text: "click",
+      issues: [],
+    }
+  ],
+}
+
+ 1 pass
+ 0 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [8.61s]

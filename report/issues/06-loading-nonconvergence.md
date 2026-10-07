@@ -6,239 +6,75 @@ tier: A
 severity: high
 findings: ['029']
 target: dafad1db34626feb5f154e98e599f65be1802c6c
+snippet: App.tsx
+snippet_kind: component
 ---
 
 # Loading on latest remains in fallback after a shared source settles
 
-After the shared memo resolves to 2 both boundaries should display 22. The latest boundary remains A while its sibling displays 2.
+A Loading boundary using latest(id) keeps its fallback after the source shared by both boundaries has resolved.
 
-## Reproduction
+```tsx
+import { createMemo, createSignal, latest, Loading } from "solid-js";
+export default function App() {
+  let finish!: (value: number) => void;
+  const replacement = new Promise<number>((resolve) => {
+    finish = resolve;
+  });
+  const [id, setId] = createSignal(0);
+  const data = createMemo(() => (id() ? replacement : Promise.resolve(1)));
+  function load() {
+    setId(1); // Replace the source shared by both boundaries.
+    setTimeout(() => finish(2), 20); // Every async source is now settled.
+  }
+  return (
+    <>
+      <button id="trigger" onClick={load}>
+        Load 2
+      </button>
+      <div id="answer">
+        <Loading on={latest(id)} fallback="A">
+          <span>{data()}</span>
+        </Loading>
+        <Loading fallback="B">
+          <b>{data()}</b>
+        </Loading>
+      </div>
+    </>
+  ); // Wait for 11, then click: it stays A2 rather than becoming 22.
+}
+```
 
-Use a built Solid checkout at `dafad1db34626feb5f154e98e599f65be1802c6c` (all five package distributions, including the native compiler). Copy these files into an empty Bun project. The commands below explicitly link that HEAD build; omit the link command only to run the rc.13 comparison. HEAD-only cases pass on rc.13. Browser tests use system Google Chrome.
+Paste into a Solid 2 playground. Wait for **11**, then click **Load 2** and wait.
+
+**Expected:** Both boundaries display the final value: 22.
+**Actual:** The first boundary keeps its fallback: A2.
+
+**Versions/builds:** HEAD `dafad1db34626feb5f154e98e599f65be1802c6c`; development and production fail. rc.13 passes in both builds.
+
+Related: [#2706](https://github.com/solidjs/solid/issues/2706), [#2829](https://github.com/solidjs/solid/issues/2829), [#3524](https://github.com/solidjs/solid/issues/3524)
+
+<details>
+<summary>Full automated reproduction</summary>
+
+Copy [the standalone files](../repros/06-loading-nonconvergence/) into a fresh Bun project. The displayed snippet is executed by snippet.test.ts. The original automated case is also retained.
+
+- [App.tsx](../repros/06-loading-nonconvergence/App.tsx)
+- [build.ts](../repros/06-loading-nonconvergence/build.ts)
+- [client.tsx](../repros/06-loading-nonconvergence/client.tsx)
+- [link-head.ts](../repros/06-loading-nonconvergence/link-head.ts)
+- [repro.test.ts](../repros/06-loading-nonconvergence/repro.test.ts)
+- [snippet-client.tsx](../repros/06-loading-nonconvergence/snippet-client.tsx)
+- [snippet.test.ts](../repros/06-loading-nonconvergence/snippet.test.ts)
 
 ```sh
 bun init -y
 bun add solid-js@2.0.0-rc.13 @solidjs/web@2.0.0-rc.13 @solidjs/signals@2.0.0-rc.13 @solidjs/compiler@2.0.0-rc.13 @solidjs/diagnostics@2.0.0-rc.13
 bun add -d playwright
 bun run link-head.ts /absolute/path/to/built/solid
-BUILD_MODE=development bun test ./repro.test.ts
+BUILD_MODE=development bun test ./snippet.test.ts
 ```
 
-### `repro.test.ts`
+The five linked packages must come from the same built HEAD checkout. Omitting the link step selects the rc.13 comparison. Chrome runs use the system installation.
 
-```ts
-import { expect, test } from 'bun:test'
-import { chromium } from 'playwright'
-import { resolve } from 'node:path'
-import { rm } from 'node:fs/promises'
-import { build } from './build'
-
-test('Loading on latest(id) converges after its shared source lands', async () => {
-  const mode = (process.env.BUILD_MODE ?? 'development') as 'development' | 'production'
-  const dir = resolve('.build', 'latest-loading-' + process.pid)
-  await build(dir, mode, { client: ['./client.tsx'], server: [] })
-  const server = Bun.serve({ port: 0, fetch: request => new URL(request.url).pathname === '/client.js'
-    ? new Response(Bun.file(dir + '/client.js'), { headers: { 'content-type': 'text/javascript' } })
-    : new Response('<script type="module" src="/client.js"></script>', { headers: { 'content-type': 'text/html' } }) })
-  const browser = await chromium.launch({ channel: 'chrome', headless: true })
-  try {
-    const page = await browser.newPage()
-    await page.goto(server.url.toString())
-    await page.waitForFunction(() => !!(window as any).result)
-    const result = await page.evaluate(() => (window as any).result)
-    console.log(result)
-    expect(result.normal.final).toBe('22')
-    expect(result.latest.initial).toBe('11')
-    expect(result.latest.waiting).toBe('A1')
-    expect(result.latest.source).toBe(2)
-    expect(result.latest.final).toBe('22')
-  } finally {
-    await browser.close()
-    server.stop(true)
-    await rm(dir, { recursive: true, force: true })
-  }
-}, 30000)
-```
-
-### `client.tsx`
-
-```tsx
-import { createSignal, createMemo, latest, Loading, flush, untrack } from 'solid-js'
-import { render } from '@solidjs/web'
-
-const tick = () => new Promise(resolve => setTimeout(resolve, 20))
-async function sample(ahead: boolean) {
-  const target = document.createElement('div')
-  let change!: (value: number) => void
-  let settle!: (value: number) => void
-  let source!: () => number
-  let warm!: (value:number)=>void
-  const first = new Promise<number>(resolve=>{warm=resolve})
-  const pending = new Promise<number>(resolve => { settle = resolve })
-  const dispose = render(() => {
-    const [id, set] = createSignal(0)
-    change = set
-    const data = createMemo(() => id() ? pending : first)
-    source=data
-    return <><Loading on={ahead ? latest(id) : id()} fallback='A'><span>{data()}</span></Loading><Loading fallback="B"><b>{data()}</b></Loading></>
-  }, target)
-  try {
-    warm(1)
-    await tick()
-    const initial = target.textContent
-    change(1)
-    flush()
-    await tick()
-    const waiting = target.textContent
-    settle(2)
-    for(let i=0;i<30;i++) await tick()
-    flush()
-    return { initial, waiting, final: target.textContent, source: untrack(source) }
-  } finally { dispose() }
-}
-;(window as any).result = (async () => ({ normal: await sample(false), latest: await sample(true) }))()
-```
-
-### `build.ts`
-
-```ts
-import { transform } from '@solidjs/compiler'
-import { realpath } from 'node:fs/promises'
-import { resolve } from 'node:path'
-
-type ExportValue = string | Record<string, unknown>
-function selectExport(
-	value: unknown,
-	conditions: Set<string>,
-): string | undefined {
-	if (typeof value === 'string') return value
-	if (!value || typeof value !== 'object') return undefined
-	for (const [key, child] of Object.entries(value))
-		if (conditions.has(key)) {
-			const selected = selectExport(child, conditions)
-			if (selected) return selected
-		}
-}
-export type BuildMode = 'development' | 'production' | 'observe'
-export async function build(outdir = '.build', variant: BuildMode, entries: { client: string[]; server: string[]; serverComponents?: boolean }) {
-	const packages = new Map<
-		string,
-		{ directory: string; exports: Record<string, ExportValue> }
-	>()
-	for (const name of [
-		'solid-js',
-		'@solidjs/signals',
-		'@solidjs/web',
-		'@solidjs/diagnostics',
-	]) {
-		const directory = await realpath(resolve('node_modules', name))
-		const pkg = await Bun.file(`${directory}/package.json`).json()
-		packages.set(name, { directory, exports: pkg.exports })
-	}
-	for (const mode of ['client', 'server'] as const) {
-		if (entries?.[mode].length === 0) continue
-		const conditions = new Set([
-			mode === 'client' ? 'browser' : 'node',
-			variant,
-			'import',
-			'default',
-		])
-		const result = await Bun.build({
-			metafile: true,
-			entrypoints: entries![mode],
-			outdir,
-			naming: '[name].js',
-			splitting: mode === 'client',
-			target: mode === 'client' ? 'browser' : 'bun',
-			conditions: [variant],
-			define: { 'process.env.NODE_ENV': JSON.stringify(variant) },
-			
-			plugins: [
-				{
-					name: 'solid',
-					setup(builder) {
-						// Pin consumer imports to one built package graph. Upstream's internal tsconfig
-						// aliases point at source and otherwise mix source with distribution exports.
-						builder.onResolve(
-							{
-								filter:
-									/^(solid-js|@solidjs\/(signals|web|diagnostics))(\/.*)?$/,
-							},
-							(args) => {
-								const name = args.path.startsWith('@')
-									? args.path.split('/').slice(0, 2).join('/')
-									: 'solid-js'
-								const pkg = packages.get(name)!
-								const subpath = args.path.slice(name.length)
-								const key = subpath ? '.' + subpath : '.'
-								const file = selectExport(pkg.exports[key], conditions)
-								if (!file)
-									throw new Error(
-										`Missing runtime export: ${args.path} (${mode})`,
-									)
-								return { path: resolve(pkg.directory, file) }
-							},
-						)
-						builder.onLoad({ filter: /\.tsx$/ }, async (args) => ({
-							contents: transform(await Bun.file(args.path).text(), {
-								filename: args.path,
-								generate: mode === 'client' ? 'dom' : 'ssr',
-								hydratable: true,
-								dev: variant === 'development',
-								...(entries?.serverComponents ? { serverComponents: true } : {}),
-							}).code,
-							loader: 'ts',
-						}))
-					},
-				},
-			],
-		})
-		if (!result.success)
-			throw new AggregateError(result.logs, `Build failed: ${mode}`)
-		await Bun.write(resolve(outdir, `${mode}-metafile.json`), JSON.stringify(result.metafile, null, 2))
-	}
-}
-```
-
-## Expected versus actual
-
-After the shared memo resolves to 2 both boundaries should display 22. The latest boundary remains A while its sibling displays 2.
-
-## Versions and builds
-
-Verified on Solid HEAD `dafad1db34626feb5f154e98e599f65be1802c6c`: 029: development, production.
-
-Comparison: 029: rc.13 passes the same case. The original snapshot was `53ef0e69`; rc.13 results come from the versioned baseline evidence. No refreshed confirmed case passed.
-
-## Related issues
-
-[#2706](https://github.com/solidjs/solid/issues/2706), [#2829](https://github.com/solidjs/solid/issues/2829), [#3524](https://github.com/solidjs/solid/issues/3524)
-
-Local validation (review only; omit when filing): [finding 029](../../findings/029-latest-loading-convergence/README.md).
-
-### `link-head.ts`
-
-```ts
-import { mkdir, realpath, rm, symlink } from 'node:fs/promises'
-import { resolve } from 'node:path'
-
-const source = process.argv[2]
-if (!source) throw new Error('Pass the path to the built Solid HEAD checkout.')
-const root = await realpath(source)
-for (const [name, folder] of [
- ['solid-js', 'solid'], ['@solidjs/signals', 'signals'],
- ['@solidjs/web', 'web'], ['@solidjs/compiler', 'compiler'],
- ['@solidjs/diagnostics', 'diagnostics'],
-]) {
- const packagePath = resolve(root, 'packages', folder!)
- if (!await Bun.file(resolve(packagePath, 'package.json')).exists())
-  throw new Error('Missing built package: ' + packagePath)
- const destination = resolve('node_modules', name!)
- await rm(destination, { recursive: true, force: true })
- await mkdir(resolve(destination, '..'), { recursive: true })
- await symlink(packagePath, destination, 'dir')
-}
-console.log('Linked the five matching HEAD packages from ' + root)
-```
-
-Local baseline validation (review only): [rc.13 029 logs](../evidence/029-rc13-development-supplement.log), plus the corresponding production log.
+</details>

@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+findings/012-attribution-audience-gate/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"dafad1db34626feb5f154e98e599f65be1802c6c","directory":"/Users/dio/Projects/solid-conformance/.upstream/dafad1db34626feb5f154e98e599f65be1802c6c"},"buildMode":"development","solid":"2.0.0-rc.13"}
+ 6 | 	const directory=resolve('.build','finding012-'+process.pid)
+ 7 | 	try{
+ 8 | 		await build(directory,(process.env.BUILD_MODE??'development') as BuildMode,{client:['findings/012-attribution-audience-gate/module.ts'],server:[]})
+ 9 | 		const child=Bun.spawn(['bun','-e','const m=await import(process.argv[1]);console.log(m.run())',directory+'/module.js'],{stdout:'pipe',stderr:'pipe'})
+10 | 		const output=await new Response(child.stdout).text(),error=await new Response(child.stderr).text()
+11 | 		expect(await child.exited).toBe(0);expect(error).toBe('');expect(Number(output.trim())).toBe(0)
+                                                                                               ^
+error: expect(received).toBe(expected)
+
+Expected: 0
+Received: 1
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.agents/worktrees/wave4b/findings/012-attribution-audience-gate/repro.test.ts:11:91)
+(fail) RFC 08: no listener, fold import or log means empty rerun history [27.14ms]
+
+ 0 pass
+ 1 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [36.00ms]

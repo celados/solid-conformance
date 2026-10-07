@@ -39,12 +39,12 @@ Review **27 proposals** covering **47 findings**: 15 runtime issues (16 A findin
 - [TRIAGE.md](TRIAGE.md): impact, severity, HEAD-only flag, exact failing builds and grouping rationale.
 - [Independent review resolutions](evidence/review-resolution.md): corrections, supplementary baseline checks and scope decisions.
 - [Recheck results](evidence/recheck-results.json): every current build execution, including green controls.
-- Runtime drafts contain every source file inline. Matching executable copies are in [repros/](repros/), independent of the conformance harness. Infrastructure/build code is included to avoid mixing SSR, browser and production exports or compiling JSX as React.
+- Runtime drafts lead with readable source, steps, expected/actual and version scope. Full standalone files remain in [repros/](repros/), linked from the final collapsed section. The displayed source is used by the automated tests; client-only App snippets can be pasted into a Solid 2 playground. HTTP/SSR/hydration examples state their additional requirements.
 - 014/035 are grouped on a suspected shared classifier; no runtime patch was applied to prove causality. Other A items are intentionally separate.
 - Some B/C items likely require documentation corrections; each states the proposed side and actual behavior rather than prescribing a runtime change without a contract.
 
 ## Local validation
 
-`bun run scripts/recheck-findings.ts` reruns the original confirmed findings after a HEAD refresh. Assertion failures are expected and are saved for inspection; the script itself finishes after collecting them. See each proposal for the standalone command and correct artifact condition. A passing rc.13 control is not a HEAD repro.
+`bun run scripts/recheck-findings.ts` reruns the original confirmed findings after a HEAD refresh. Assertion failures are expected and are saved for inspection; the script itself finishes after collecting them. `bun run scripts/verify-report-repros.ts` checks each displayed A snippet against the source actually executed, copies the full folder into a fresh host, and runs development/production; `bun run scripts/validate-report.ts` checks the 60-line first view and final collapsed section. See each proposal for the standalone command and correct artifact condition. A passing rc.13 control is not a HEAD repro.
 
 Approval and filing are a later human action. These files are review material, not authorization to submit anything.
