@@ -1,0 +1,68 @@
+{
+  "queries": [
+    {
+      "repo": "solidjs/solid",
+      "query": "FRAME_MARKER_CORRUPTED",
+      "output": "[]\n",
+      "exit_code": 0
+    },
+    {
+      "repo": "solidjs/solid",
+      "query": "frame marker corruption",
+      "output": "[]\n",
+      "exit_code": 0
+    },
+    {
+      "repo": "solidjs/solid",
+      "query": "observe slot markers",
+      "output": "[{\"number\":2830,\"state\":\"CLOSED\",\"title\":\"2.0.0-beta.15: adjacent expression slots destroy each other's DOM nodes when a node migrates between them\",\"url\":\"https://github.com/solidjs/solid/issues/2830\"},{\"number\":2871,\"state\":\"CLOSED\",\"title\":\"2.0.0-beta.17: streaming SSR/client asymmetry — a nested `<Loading>` joins the ancestor `<Reveal>` group and delays its direct slots\",\"url\":\"https://github.com/solidjs/solid/issues/2871\"}]\n",
+      "exit_code": 0
+    },
+    {
+      "repo": "solidjs/solid-router",
+      "query": "FRAME_MARKER_CORRUPTED",
+      "output": "[]\n",
+      "exit_code": 0
+    },
+    {
+      "repo": "solidjs/solid-router",
+      "query": "frame marker corruption",
+      "output": "[]\n",
+      "exit_code": 0
+    },
+    {
+      "repo": "solidjs/solid-router",
+      "query": "observe slot markers",
+      "output": "[]\n",
+      "exit_code": 0
+    },
+    {
+      "repo": "solidjs/solid-start",
+      "query": "FRAME_MARKER_CORRUPTED",
+      "output": "[]\n",
+      "exit_code": 0
+    },
+    {
+      "repo": "solidjs/solid-start",
+      "query": "frame marker corruption",
+      "output": "[]\n",
+      "exit_code": 0
+    },
+    {
+      "repo": "solidjs/solid-start",
+      "query": "observe slot markers",
+      "output": "[]\n",
+      "exit_code": 0
+    }
+  ],
+  "reviewed": [
+    {
+      "issue": 2830,
+      "conclusion": "DOM slot migration differs from Observe frame marker diagnostics"
+    },
+    {
+      "issue": 2871,
+      "conclusion": "Reveal SSR membership differs from Observe frame marker diagnostics"
+    }
+  ]
+}
