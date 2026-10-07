@@ -479,13 +479,14 @@
   {
     "id": "08-dev-diagnostics:L842:4",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
       "08/boundary-render-sync-silent",
+      "08/boundary-render-render-abandoned",
+      "08/boundary-render-preflush-redirect-abandoned",
       "08/boundary-render-render-initial-failed",
-      "08/boundary-render-render-abandoned"
-    ],
-    "reason": "complete/error/consumer covered；preflush redirect root HTTPtrack待精准映射"
+      "08/boundary-render-render-initial-failed-stream"
+    ]
   },
   {
     "id": "08-dev-diagnostics:L842:5",
@@ -1020,5 +1021,13 @@
       "08/boundary-render-waterfall-record-join"
     ],
     "reason": "实际macrotask顺序3次asyncwait→4passes，warning字段/data.boundary严格joinrecord.id且namedLoading owner；masked client-only handoff另road同idjoin。"
+  },
+  {
+    "id": "08-dev-diagnostics:L594:3",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "08/boundary-render-preflush-redirect-abandoned"
+    ]
   }
 ]

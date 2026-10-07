@@ -1,5 +1,5 @@
-import { OBSERVE, Loading, Reveal, createMemo, createComponent } from "solid-js";
-import { isDev, renderToString, renderToStream } from "@solidjs/web";
+import { OBSERVE, Loading, Reveal, createMemo, createComponent, onCleanup } from "solid-js";
+import { isDev, renderToString, renderToStream, createSSRResponse, createRequestEvent } from "@solidjs/web";
 import { equal, ok, runCases, type DocCase } from "../docs/registry";
 const cases: DocCase[] = [];
 const snapshots: any[] = [];
@@ -234,15 +234,15 @@ doc(
     if (OBSERVE) equal(result.render[0].event.boundaries, isDev ? 1 : 0);
   },
 );
-doc(
-  "render-initial-failed",
+for(const mode of ["string","stream"] as const) doc(
+  mode === "string" ? "render-initial-failed" : "render-initial-failed-stream",
   "A string render throwing before its shell records error outcome and no shellMs, while the caller gets its original throw.",
   async () => {
     const original = new Error("initial failed");
     let thrown: unknown;
     const result = await records(() => {
       try {
-        renderToString(
+        (mode === "string" ? renderToString : renderToStream)(
           () => {
             throw original;
           },
@@ -328,6 +328,10 @@ doc("waterfall-record-join", "Three sequential async waits use four passes and t
 doc("masked-record-join", "A masked client-only source diagnostic names the boundary record whose client handoff paid a prior server wait.",async()=>{
  const gate=new Promise<number>(r=>setTimeout(()=>r(1),10));function Part(){const server=createMemo(()=>gate);const client=createMemo(()=>Promise.resolve(2),{ssrSource:"client"});server();return <b>{client()}</b>}
  const session=OBSERVE?.diagnostics.capture();const old=console.warn;console.warn=()=>{};try{const result=await records(()=>consumed(renderToStream(()=>createComponent(Loading,{fallback:"pending",get children(){return createComponent(Part,{},"Part")}},"Loading"))));const events=session?.events.filter(e=>e.code==="SSR_CLIENT_CONTENT_MASKED")??[];equal(events.length,isDev?1:0);if(OBSERVE)equal(result.boundary[0].event.outcome,"client");if(isDev){equal(events[0]!.data?.boundary,result.boundary[0].event.id);equal(events[0]!.kind,"ssr");equal(events[0]!.severity,"warn");ok(Number(events[0]!.data?.passes)>=2)}}finally{session?.stop();console.warn=old}
+});
+doc("preflush-redirect-abandoned", "A pre-flush HTTP redirect silently discards the page, tears its pending component down and records abandoned render outcome.",async()=>{
+ const event=createRequestEvent(new Request("http://localhost/redirect"));event.response.headers.set("location","/next");let cleanups=0;function Part(){onCleanup(()=>cleanups++);const value=createMemo(()=>new Promise<string>(()=>{}));return <b>{value()}</b>}
+ const session=OBSERVE?.diagnostics.capture();try{const result=await records(async()=>{const stream=renderToStream(()=><Loading fallback="pending"><Part/></Loading>,{onError(){}});const response=await createSSRResponse(stream,event);equal(response.status,302);equal(response.body,null);equal(response.headers.get("location"),"/next")});equal(cleanups,1);equal(session?.events.filter(e=>e.code==="SSR_STREAM_ABANDONED")??[],[]);if(OBSERVE){equal(result.render.length,1);equal(result.render[0].event.outcome,"abandoned");measure(result.render[0].event)}}finally{session?.stop()}
 });
 export const run = () => runCases(cases);
 export const evidence = snapshots;
