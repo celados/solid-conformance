@@ -21,7 +21,7 @@ test('RFC chapters: behavioral statements execute in the selected client/server 
 			'04/keyed-reconcile': /Expected true, received false/,
 			'04/store-path': /storePath.*not a function/,
 			'05/loading-on-constant': /Expected "fallback", received "1"/,
-			'06/until-staged-source': /^Error: Expected true, received false$/,
+			'06/until-staged-source': /^Error: Refresh completion stalled before until \(finding008\)$/,
 			'06/affects-key-granularity': /^Error: Expected true, received false$/,
 			'06/affects-nested-record': /^Error: Expected true, received false$/,
 			'05/refresh-delivery': /did not settle within/,

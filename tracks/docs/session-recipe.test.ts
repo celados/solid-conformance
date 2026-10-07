@@ -40,3 +40,12 @@ test('12-ssr-http.md: session recipe validates integrity, secret rotation, serve
  expect(cleared).toContain('Max-Age=0')
  expect(await current.read(asRequest(cleared))).toBeNull()
 },30000)
+
+test('12-ssr-http.md C266/L299: the signed recipe uses HMAC-SHA256 and ordinary cookie defaults do not force security flags',async()=>{
+ const imports:unknown[]=[]
+ const original=crypto.subtle.importKey
+ Object.defineProperty(crypto.subtle,'importKey',{configurable:true,value:(...args:unknown[])=>{imports.push(args[2]);return Reflect.apply(original,crypto.subtle,args)}})
+ try{const signed=createCookie('session',{secrets:['test-only-secret']});const header=await signed.serialize('visible');expect(await signed.parse(header.split(';')[0]!)).toBe('visible');expect(imports).toEqual([{name:'HMAC',hash:'SHA-256'},{name:'HMAC',hash:'SHA-256'}])}finally{Object.defineProperty(crypto.subtle,'importKey',{configurable:true,value:original})}
+ const plain=await createCookie('ordinary').serialize('x')
+ expect(plain).not.toContain('HttpOnly');expect(plain).not.toContain('Secure')
+})

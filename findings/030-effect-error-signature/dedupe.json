@@ -1,0 +1,32 @@
+[
+  {
+    "term": "createEffect onError signature",
+    "state": "open",
+    "results": []
+  },
+  {
+    "term": "createEffect onError signature",
+    "state": "closed",
+    "results": []
+  },
+  {
+    "term": "createEffect error third argument",
+    "state": "open",
+    "results": []
+  },
+  {
+    "term": "createEffect error third argument",
+    "state": "closed",
+    "results": []
+  },
+  {
+    "term": "EffectOptions error callback",
+    "state": "open",
+    "results": []
+  },
+  {
+    "term": "EffectOptions error callback",
+    "state": "closed",
+    "results": []
+  }
+]
