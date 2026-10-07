@@ -76,5 +76,47 @@ add('graph-initial-and-visits','Initial navigations emit graph records but do no
  const release=attribution.enable({...quiet,graphGrowth:{visits:3,ratio:1.1}});const records:unknown[]=[];const off=OBSERVE!.records.subscribe('graph',e=>records.push(e));let dispose!:()=>void
  try{createRoot(d=>{dispose=d;const[r]=createSignal(0);createMemo(r)});const size=graphSize();ok(size.owners>0&&size.computations>0&&size.signals>0&&size.edges>0);OBSERVE!.attribution.withOrigin({kind:'navigation',initial:true,name:'/root',to:'/root'},()=>{});equal(records.length,1);equal(attribution.history('navigation').at(-1)!.initial,true);dispose();const smaller=graphSize();ok(smaller.owners<size.owners)}finally{dispose();off();release()}
 })
+add('timeline-hold-navigation-interaction','RFC 08 L1121/L1123/L1162/L1184: timeline clocks, stable ids, bottom-up delivery and live identity joins.',async()=>{
+ if(!isDev)return
+ const release=attribution.enable({...quiet,holds:{infoMs:10000,warnMs:10000}});const records:{type:string,event:any}[]=[]
+ const offs=['create','effect','flush','flight','hold','navigation','interaction'].map(type=>OBSERVE!.records.subscribe(type as any,event=>records.push({type,event})))
+ let dispose!:()=>void;const pending=deferred<number>()
+ try{
+  const[write]=createRoot(d=>{dispose=d;const[r,w]=createSignal(0,{name:'page'});const data=createMemo(()=>r()?pending.promise:0,{name:'data'});createRenderEffect(data,()=>{});flush();return[w] as const})
+  OBSERVE!.attribution.withInteraction({type:'click',target:'button#next',at:performance.now()-1},()=>OBSERVE!.attribution.withOrigin({kind:'navigation',name:'/items/:id',to:'/items/2',params:{id:'2'}},()=>write(1)))
+  flush();await ticks(4);pending.resolve(2);await ticks(8);flush()
+  const last=(type:string)=>records.filter(r=>r.type===type).at(-1)!.event
+  const hold=last('hold'),nav=last('navigation'),interaction=last('interaction')
+  equal(nav.outcome,'held');equal(interaction.outcome,'held');equal(nav.origin,hold.origin);equal(nav.interaction,interaction.origin)
+  ok(nav.hold===hold);ok(interaction.holds.includes(hold));ok(interaction.navigations.includes(nav))
+  ok(records.findIndex(r=>r.event===hold)<records.findIndex(r=>r.event===nav));ok(records.findIndex(r=>r.event===nav)<records.findIndex(r=>r.event===interaction))
+  equal(attribution.history('hold').at(-1)===hold,true);equal(attribution.history('navigation').at(-1)===nav,true);equal(attribution.history('interaction').at(-1)===interaction,true)
+  for(const type of ['create','effect','flush','flight']){ok(records.some(r=>r.type===type),type);for(const {event} of records.filter(r=>r.type===type)){ok(Number.isFinite(event.at));ok(event.at>=0);ok(JSON.stringify(event));if('durationMs'in event)ok(event.durationMs>=0)}}
+  ok(interaction.inputDelayMs>=0);ok(interaction.handlerMs>=0);ok(interaction.settledMs>=interaction.handlerMs)
+ }finally{dispose();offs.forEach(off=>off());release()}
+})
+add('navigation-declaration-controls','RFC 08 L1169–1173: initial/no-write, explicit interaction beats ambient, params undefined, late refs and origins.',()=>{
+ if(!isDev)return
+ const release=attribution.enable(quiet);try{
+  const origin=OBSERVE!.attribution
+  origin.withOrigin({kind:'navigation',initial:true,name:'/users/:id',to:'/users/42',params:{optional:undefined}},()=>{})
+  const initial=attribution.history('navigation').at(-1)!;equal(initial.initial,true);equal(initial.at,0);equal(initial.writes,0);equal(initial.from,undefined);equal(initial.outcome,'committed');equal(formatOrigin(initial.origin),'initial navigation to /users/:id (/users/42)');equal(feedback().navigations,[])
+  origin.withInteraction({type:'click',target:'button#ambient'},()=>origin.withOrigin({kind:'navigation',name:'/quiet',to:'/quiet',interaction:undefined},()=>{}))
+  const explicit=attribution.history('navigation').at(-1)!;equal(explicit.writes,0);equal(explicit.interaction,undefined)
+  origin.withOrigin({kind:'navigation',redirect:1,name:'/login',to:'/login'},()=>{})
+  equal(attribution.history('navigation').at(-1)!.to,'/login')
+ }finally{release()}
+})
+add('excluded-owner-attribution','RFC 08 L1127–1129: excluded signals and store writes do not record; nearest include is watched; excluded-only interactions disappear.',()=>{
+ if(!isDev)return
+ const release=attribution.enable(quiet);let dispose!:()=>void
+ try{
+  const[hide,show,set]=createRoot(d=>{dispose=d;OBSERVE!.exclude(getOwner()!);const[r,w]=createSignal(0);createMemo(r);const[s,set]=createStore({n:0});createMemo(()=>s.n);let included!:(n:number)=>void;createRoot(()=>{OBSERVE!.include(getOwner()!);const[read,write]=createSignal(0,{name:'included'});included=write;createMemo(read,{name:"included"})});return[w,included,set] as const})
+  OBSERVE!.attribution.withInteraction({type:'click',target:'button#observer'},()=>{hide(1);set(s=>{s.n=1});flush()})
+  equal(attribution.history('interaction'),[]);equal(attribution.history('rerun'),[])
+  OBSERVE!.attribution.withInteraction({type:'click',target:'button#app'},()=>{show(1);flush()})
+  equal(attribution.history('interaction').length,1);ok(attribution.history('rerun').some(r=>r.nodeName==='included'))
+ }finally{dispose();release()}
+})
 }
 export const attributionCases=cases

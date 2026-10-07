@@ -12,6 +12,15 @@ test('RFC 08/10/11: runtime records separate serializable events from live invoc
  const browser=await chromium.launch({channel:'chrome',headless:true})
  try{
   const direct=await serverModule.serverCases();serverModule.reset()
+  const trace=await serverModule.traceCases()
+  expect(trace.slotRegistered).toBe(variant!=='production');expect(trace.channelRegistered).toBe(variant!=='production')
+  for(const row of trace.cases){
+   if(variant==='production'){expect(row.calls).toBe(0);continue}
+   expect(row.calls).toBe(1);expect(row.previous).toBe(0)
+   if(row.scenario==='no-request'){expect(row.html).toContain('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb');continue}
+   expect(row.same).toBe(true)
+   if(row.scenario==='throw'||row.scenario==='absent'){expect(row.trace.traceId).toBe('11111111111111111111111111111111');expect(row.errors).toBe(row.scenario==='throw'?1:0)}else{expect(row.trace).toMatchObject({traceId:'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',spanId:'cccccccccccccccc',parentId:'dddddddddddddddd',sampled:true});expect(row.header).toContain('vendor-entry');expect(row.trace.entries.vendor).toBe('vendor-entry')}
+  }
   const page=await browser.newPage();await page.goto(String(server.url));await page.waitForFunction(()=>!!(window as any).recordsHarness)
   const client=await page.evaluate(()=>(window as any).recordsHarness.run());const http=serverModule.snapshot()
   await Bun.write(process.env.RECORD_RECEIPT??'artifacts/records-'+variant+'.json',JSON.stringify({runtime:await runtimeReceipt(),direct,client,http},null,2))
@@ -49,5 +58,25 @@ test('RFC 08/10/11: runtime records separate serializable events from live invoc
    expect(produced.event).toMatchObject({side:'server',outcome:'complete',slots:1,regions:1,errors:0});expect(consumed.event).toMatchObject({side:'client',outcome:'complete'});expect(consumed.live.response).toBe(true)
   }
   await page.evaluate(()=>(window as any).recordsHarness.close())
+  const requests=await page.evaluate(()=>(window as any).recordsHarness.requestCases())
+  await Bun.write('artifacts/requests-'+variant+'.json',JSON.stringify(requests,null,2))
+  for(const row of requests){
+   if(variant==='production'){expect(row.records).toEqual([]);continue}
+   const calls=row.records.filter((r:any)=>r.type==='call'),opening=row.records.filter((r:any)=>r.type==='request')
+   if(['prepare-throw','serialize-throw'].includes(row.scenario)){expect(opening).toHaveLength(0);expect(calls).toHaveLength(1);expect(row.sends).toBe(0);expect(calls[0].event.outcome).toBe('error');continue}
+   expect(opening).toHaveLength(1);expect(row.sends).toBe(1)
+   expect(calls).toHaveLength(['request-only','late-listener'].includes(row.scenario)?0:1)
+   expect(opening[0].atSend.response).toBe(false)
+   if(calls.length){expect(calls[0].identity).toBe(opening[0].identity);expect(calls[0].event.at+calls[0].event.durationMs).toBeGreaterThanOrEqual(opening[0].event.at)}
+   if(row.scenario==='fetch-throw'){expect(calls[0].event.outcome).toBe('error');expect(calls[0].event).not.toHaveProperty('status');expect(calls[0].response).toBe(false);continue}
+   expect(row.result).toBe(row.scenario==='handler-claimed'?9:7)
+   if(row.scenario==='no-bodies'){expect(calls[0].request).toBe(false);expect(calls[0].bodyUsed).toBe(true)}
+   if(row.scenario==='bodies'){expect(calls[0].header).toBe('final');expect(calls[0].requestBody).toBe('[3]');expect(calls[0].responseBody).toBe('7')}
+   if(row.scenario==='reconstruction-failed'){expect(opening[0].request).toBe(false);expect(row.errors).toBe(0)}
+   if(row.scenario==='listener-throw')expect(row.errors).toBe(1)
+   if(row.scenario==='duplicate-listener')expect(row.records.filter((r:any)=>r.type==='duplicate')).toHaveLength(1)
+   if(row.scenario==='pending-row')expect(row.pendingSnapshot).toEqual([{type:'request',response:false}])
+   if(row.scenario==='request-only'){expect(opening[0].result).toBe(7);expect(opening[0].response).toBe(true)}
+  }
  }finally{await browser.close();server.stop(true);serverModule.stop();await rm(directory,{recursive:true,force:true})}
 },60000)
