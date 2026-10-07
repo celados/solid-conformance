@@ -64,3 +64,6 @@ export { iterableDiscoveryCase } from '../findings/002-iterable-discovery/compon
 
 export { isDev } from '@solidjs/web'
 export { runDocCases } from '../tracks/docs/cases'
+export {runRouterMatching} from '../tracks/router/matching'
+
+export {handleRouterRPC,releaseRouterRPC} from '../tracks/router/server-rpc'
