@@ -20,3 +20,6 @@ export const scenarios = fc.record({
 	value: fc.integer({ min: 1, max: 9 }), reverse: fc.boolean(),
 }).map(s => ({ ...s, spec: { source: s.source, primitive: s.primitive, events: sequence(s.family, s.value, s.reverse) } satisfies TransitionSpec }))
 export { fc }
+
+// The same router operation algebra drives the functional track and transition invariants.
+export {routerOperations as routerTransitions} from '../router/generator'

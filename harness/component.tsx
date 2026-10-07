@@ -35,7 +35,12 @@ import { transitionCase } from '../tracks/transitions/component'
 import { deferred, controlledIterable, ticks } from './timing'
 export function createCase(spec: Spec) {
 	if (spec.transport) return transportCase(spec.transport)
-	if (spec.scenario?.startsWith('router:')) return routerCase(spec.scenario.slice(7) as import('../tracks/router/router-case').RouterScenario, spec.tree.value, spec.order[0] === 1)
+	if (spec.scenario?.startsWith('router:')) {
+  let leaf=spec.tree;while(leaf.children.length)leaf=leaf.children[0]!
+  const fixture=routerCase(spec.scenario.slice(7) as import('../tracks/router/router-case').RouterScenario, leaf.value, spec.order[0] === 1)
+  function Wrapped(props:{node:Tree}){const n=untrack(()=>props.node);if(!n.children.length)return <fixture.App/>;return n.kind==='loading'?<Loading fallback={<i>pending</i>}><Wrapped node={n.children[0]!}/></Loading>:<Show when={true}><Wrapped node={n.children[0]!}/></Show>}
+  return {...fixture,App:spec.tree.children.length?()=> <Wrapped node={spec.tree}/>:fixture.App}
+ }
 	if (spec.scenario === 'finding:004-live') return liveStoreRejectionCase()
 	if (spec.scenario === 'finding:004') return storeRejectionCase()
 	if (spec.scenario === 'finding:007') return loadingAccessorCase()
