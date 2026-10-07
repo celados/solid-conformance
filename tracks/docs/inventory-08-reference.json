@@ -343,9 +343,11 @@
     {
       "id": "08-dev-diagnostics:L84:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/primitive-pending-component-no-retry"
+      ],
+      "reason": "逐项真实 Chrome / SSR dev、production、独立 observe 测试精确证明；042 为红色文档差异证明。"
     },
     {
       "id": "08-dev-diagnostics:L101:1",
@@ -502,23 +504,31 @@
     {
       "id": "08-dev-diagnostics:L137:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-loading-outside"
+      ],
+      "reason": "逐项真实 Chrome / SSR dev、production、独立 observe 测试精确证明；042 为红色文档差异证明。"
     },
     {
       "id": "08-dev-diagnostics:L137:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-loading-other-flight-race",
+        "08/client-diagnostic-loading-open-action-race"
+      ],
+      "reason": "逐项真实 Chrome / SSR dev、production、独立 observe 测试精确证明；042 为红色文档差异证明。"
     },
     {
       "id": "08-dev-diagnostics:L137:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/client-diagnostic-loading-other-flight-race",
+        "08/client-diagnostic-loading-open-action-race"
+      ],
+      "reason": "逐项真实 Chrome / SSR dev、production、独立 observe 测试精确证明；042 为红色文档差异证明。"
     },
     {
       "id": "08-dev-diagnostics:L139:1",
@@ -764,11 +774,12 @@
     {
       "id": "08-dev-diagnostics:L261:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/diagnostic-missing_effect_fn"
+        "tracks/docs/types-negative.tsx",
+        "tracks/docs/types.test.ts"
       ],
-      "reason": "partial: 错误检查覆盖；public overload由 types track单独映射。"
+      "reason": "实际 public type拒绝singlearg Effect；或真实SSR/Chrome hydration无following-hole及memo/children/For/Errored零参fallback/spread/Portal六种controls安静，所有可见handlers成功。"
     },
     {
       "id": "08-dev-diagnostics:L265:1",
@@ -1045,16 +1056,20 @@
     {
       "id": "08-dev-diagnostics:L330:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "tracks/frames/strict-fill.test.ts"
+      ],
+      "reason": "真实公开 HMR runtime + renderer child-resolution正负；或真实HTTP server-component fills命名context、once快照、getter/JSX reactive controls，dev/prod均完整断言。"
     },
     {
       "id": "08-dev-diagnostics:L330:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "tracks/frames/strict-fill.test.ts"
+      ],
+      "reason": "真实公开 HMR runtime + renderer child-resolution正负；或真实HTTP server-component fills命名context、once快照、getter/JSX reactive controls，dev/prod均完整断言。"
     },
     {
       "id": "08-dev-diagnostics:L334:1",
@@ -1535,9 +1550,11 @@
     {
       "id": "08-dev-diagnostics:L427:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-renderer-and-hmr-width"
+      ],
+      "reason": "真实公开 HMR runtime + renderer child-resolution正负；或真实HTTP server-component fills命名context、once快照、getter/JSX reactive controls，dev/prod均完整断言。"
     },
     {
       "id": "08-dev-diagnostics:L431:1",
@@ -1652,9 +1669,12 @@
     {
       "id": "08-dev-diagnostics:L437:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "graphSize/dispose相关已测试但未完整验证 weak-root GC 与 ownerless subscription reachability；不得用 nondeterminism 代替覆盖。"
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/graph-gc.test.ts",
+        "08/cost-graph-reachability-disposal"
+      ],
+      "reason": "逐项真实 Chrome / SSR dev、production、独立 observe 测试精确证明；042 为红色文档差异证明。"
     },
     {
       "id": "08-dev-diagnostics:L437:2",
@@ -1700,9 +1720,11 @@
     {
       "id": "08-dev-diagnostics:L441:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "此条包含可观测合同，不能因为位于示例/解释段落而排除。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-engine-warning-gate"
+      ],
+      "reason": "逐项真实 Chrome / SSR dev、production、独立 observe 测试精确证明；042 为红色文档差异证明。"
     },
     {
       "id": "08-dev-diagnostics:L441:2",
@@ -1777,9 +1799,11 @@
     {
       "id": "08-dev-diagnostics:L445:2",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-renderer-and-hmr-width"
+      ],
+      "reason": "真实公开 HMR runtime + renderer child-resolution正负；或真实HTTP server-component fills命名context、once快照、getter/JSX reactive controls，dev/prod均完整断言。"
     },
     {
       "id": "08-dev-diagnostics:L445:3",
@@ -1893,9 +1917,11 @@
     {
       "id": "08-dev-diagnostics:L463:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-waterfall-default-duration"
+      ],
+      "reason": "逐项真实 Chrome / SSR dev、production、独立 observe 测试精确证明；042 为红色文档差异证明。"
     },
     {
       "id": "08-dev-diagnostics:L463:2",
@@ -1918,9 +1944,11 @@
     {
       "id": "08-dev-diagnostics:L463:4",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "08/cost-waterfall-node-growth"
+      ],
+      "reason": "逐项真实 Chrome / SSR dev、production、独立 observe 测试精确证明；042 为红色文档差异证明。"
     },
     {
       "id": "08-dev-diagnostics:L463:5",
@@ -3777,11 +3805,12 @@
     {
       "id": "08-dev-diagnostics:L680:2",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/server-diagnostic-preload-descriptor"
+        "08/server-diagnostic-preload-all-fields",
+        "findings/042-malformed-preload-crossorigin/repro.test.ts"
       ],
-      "reason": "partial: missinghref/as测试；nonobject/crossorigin/srcset/sizes全部其他字段未覆盖。"
+      "reason": "逐项真实 Chrome / SSR dev、production、独立 observe 测试精确证明；042 为红色文档差异证明。"
     },
     {
       "id": "08-dev-diagnostics:L680:3",
@@ -3974,11 +4003,11 @@
     {
       "id": "08-dev-diagnostics:L702:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/server-diagnostic-unscoped-hole"
+        "tracks/docs/unscoped.test.ts"
       ],
-      "reason": "partial: 无followingscopedhole control已验证；Errored0arityfallback全路径未验证。"
+      "reason": "实际 public type拒绝singlearg Effect；或真实SSR/Chrome hydration无following-hole及memo/children/For/Errored零参fallback/spread/Portal六种controls安静，所有可见handlers成功。"
     },
     {
       "id": "08-dev-diagnostics:L702:2",
@@ -3992,9 +4021,11 @@
     {
       "id": "08-dev-diagnostics:L702:3",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "尚无针对本句完整合同的断言；不能从同 code 的触发用例推定全部字段、阈值或生命周期已覆盖。"
+      "status": "covered",
+      "coverage": [
+        "tracks/docs/unscoped.test.ts"
+      ],
+      "reason": "实际 public type拒绝singlearg Effect；或真实SSR/Chrome hydration无following-hole及memo/children/For/Errored零参fallback/spread/Portal六种controls安静，所有可见handlers成功。"
     },
     {
       "id": "08-dev-diagnostics:L702:4",
@@ -4008,11 +4039,11 @@
     {
       "id": "08-dev-diagnostics:L702:5",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/server-diagnostic-unscoped-hole"
+        "tracks/docs/unscoped.test.ts"
       ],
-      "reason": "partial: calledfunction+noallocation controls，children/For/spread/Portal全部豁免未验证。"
+      "reason": "实际 public type拒绝singlearg Effect；或真实SSR/Chrome hydration无following-hole及memo/children/For/Errored零参fallback/spread/Portal六种controls安静，所有可见handlers成功。"
     },
     {
       "id": "08-dev-diagnostics:L702:6",

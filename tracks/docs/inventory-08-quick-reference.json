@@ -67,11 +67,12 @@
     {
       "id": "08-dev-diagnostics:L935:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/primitive-leaf-owner-families"
+        "08/primitive-leaf-owner-families",
+        "findings/010-leaf-signal-diagnostic/repro.test.ts"
       ],
-      "reason": "静态 signal 不报告对应 finding010；memo/effect 与2种leaf scope 完整正例。"
+      "reason": "frames明确kind/severity/code/位置分支conjunction；或primitive矩阵及010的红色诊断合同反例。"
     },
     {
       "id": "08-dev-diagnostics:L936:1",
@@ -434,9 +435,12 @@
     {
       "id": "08-dev-diagnostics:L976:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "consumer cancel已测；sink failure是单独分支未测。"
+      "status": "covered",
+      "coverage": [
+        "08/server-road-abandoned-consumer",
+        "08/server-road-abandoned-sink"
+      ],
+      "reason": "frames明确kind/severity/code/位置分支conjunction；或primitive矩阵及010的红色诊断合同反例。"
     },
     {
       "id": "08-dev-diagnostics:L977:1",
@@ -448,11 +452,11 @@
     {
       "id": "08-dev-diagnostics:L978:1",
       "classification": "behavioral",
-      "status": "uncovered",
+      "status": "covered",
       "coverage": [
-        "08/attribution-warning-dynamic_async_component"
+        "08/server-road-dynamic-client-function"
       ],
-      "reason": "error/ssr各tierreject已测；observetier未测。"
+      "reason": "frames明确kind/severity/code/位置分支conjunction；或primitive矩阵及010的红色诊断合同反例。"
     },
     {
       "id": "08-dev-diagnostics:L979:1",
@@ -568,9 +572,13 @@
     {
       "id": "08-dev-diagnostics:L992:1",
       "classification": "behavioral",
-      "status": "uncovered",
-      "coverage": [],
-      "reason": "frames binding suite覆盖多个reason，类别/severity与本行所列reason需核实。"
+      "status": "covered",
+      "coverage": [
+        "08/binding-server-spread",
+        "08/binding-server-coerced",
+        "tracks/frames/binding.test.ts"
+      ],
+      "reason": "frames明确kind/severity/code/位置分支conjunction；或primitive矩阵及010的红色诊断合同反例。"
     }
   ]
 }

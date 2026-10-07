@@ -1,0 +1,7 @@
+import {OBSERVE,createSignal,Loading,flush} from 'solid-js'
+import {dynamic,render,isDev} from '@solidjs/web'
+import {installServerComponents} from '@solidjs/web/frames'
+import {GET,createServerReference} from '@solidjs/web/server-functions/client'
+installServerComponents()
+const read=GET(createServerReference('strict-fill'))
+;(window as any).strictFill={async run(family:string,direct:boolean){const capture=OBSERVE?.diagnostics.capture();let calls=0,write!:(n:number)=>void;const target=document.getElementById('root')!;const C=dynamic(()=>read(family) as any);const stop=render(()=>{const[count,set]=createSignal(1,{name:'fill-source'});write=set;const fill=()=>{calls++;if(family==='binding'){if(direct){const value=count();return{title:value}}return{get title(){return count()}}};if(direct){const value=count();return <span>{value}</span>}return <span>{count()}</span>};return <Loading fallback='loading'><C {...{[family==='binding'?'row':'comment']:fill}}/></Loading>},target);try{for(let n=0;n<100&&target.textContent==='loading';n++)await new Promise(r=>setTimeout(r,10));const initial=target.textContent;write(2);flush();await new Promise(r=>setTimeout(r,20));return{dev:isDev,initial,text:target.textContent,calls,events:capture?.events.filter(e=>e.code==='STRICT_READ_UNTRACKED').map(e=>({kind:e.kind,severity:e.severity,message:e.message,data:e.data}))??[]}}finally{stop();capture?.stop();target.replaceChildren()}}}
