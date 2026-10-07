@@ -83,7 +83,7 @@ for (const variant of ["development", "observe", "production"] as BuildMode[])
                   ? "text-shape"
                   : "fill-shape",
             );
-            expect(events[0].severity).toBe("warn");
+            expect(events[0].severity).toBe("warn");expect(events[0].kind).toBe("render");
           }
           expect(result.remaining).toBe("");
           if (shape === "valid") {
@@ -97,7 +97,7 @@ for (const variant of ["development", "observe", "production"] as BuildMode[])
         const orphan = missing.events.filter((e: any) => e.code === "BINDING_SLOT_POSITION");
         expect(orphan.length).toBe(variant === "development" ? 1 : 0);
         if (orphan.length) {
-          expect(orphan[0].data.reason).toBe("orphan");
+          expect(orphan[0].data.reason).toBe("orphan");expect(orphan[0].kind).toBe("render");expect(orphan[0].severity).toBe("warn");
           expect(orphan[0].data.why).toBe("record");
           expect(orphan[0].data.elements.length).toBe(1);
         }

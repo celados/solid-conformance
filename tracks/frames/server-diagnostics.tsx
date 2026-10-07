@@ -240,6 +240,7 @@ doc(
     });
     const events = assertFinding(result, "DYNAMIC_ASYNC_COMPONENT");
     if (OBSERVE) {
+      equal(events[0]!.severity,"error");
       equal(events[0]!.data?.component, "ClientOnly");
       equal(events[0]!.ownerPath, undefined);
     }
