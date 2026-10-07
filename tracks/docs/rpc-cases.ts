@@ -1,4 +1,12 @@
-import { isServer, isDev, getRequestEvent, redirect, respond } from "@solidjs/web";
+import {
+  isServer,
+  isDev,
+  getRequestEvent,
+  redirect,
+  respond,
+  markSafeError,
+  isSafeError,
+} from "@solidjs/web";
 import * as sf from "@solidjs/web/server-functions";
 import { equal, ok, throws, type DocCase } from "./registry";
 const cases: DocCase[] = [];
@@ -485,6 +493,159 @@ if (isServer) {
       );
       equal(response.status, 404);
       equal(response.headers.has(sf.UNKNOWN_HEADER), false);
+    },
+  );
+}
+if (isServer) {
+  doc(
+    "response-envelope-body",
+    "respond carries a real JSON Response body for unscripted consumers.",
+    async () => {
+      const envelope = respond({ answer: 7 }, { status: 201, headers: { "x-answer": "yes" } });
+      equal(envelope.response!.status, 201);
+      equal(await envelope.response!.json(), { answer: 7 });
+      equal(envelope.response!.headers.get("x-answer"), "yes");
+    },
+  );
+  doc(
+    "redirect-masking",
+    "Scripted redirect statuses are masked to 200 and Location is replaced by an absolute redirect carrier.",
+    async () => {
+      const fn = reference(() => redirect("/target"));
+      const response = await server.handleServerFunctionRequest(request(fn.id));
+      equal(response.status, 200);
+      equal(response.headers.get("location"), null);
+      ok(response.headers.get(sf.REDIRECT_HEADER));
+      const plain = await server.handleServerFunctionRequest(
+        new Request("http://conformance.test/_server/" + fn.id, {
+          method: "POST",
+          body: new FormData(),
+          headers: { origin: "http://conformance.test" },
+        }),
+      );
+      equal(plain.status, 302);
+      equal(plain.headers.get("location"), "http://conformance.test/target");
+    },
+  );
+  doc(
+    "created-location",
+    "An authored Location on a non-redirect 201 response remains response data.",
+    async () => {
+      const fn = reference(() => respond(7, { status: 201, headers: { location: "/created" } }));
+      const response = await server.handleServerFunctionRequest(request(fn.id));
+      equal(response.status, 201);
+      equal(response.headers.get("location"), "/created");
+      equal(response.headers.has(sf.REDIRECT_HEADER), false);
+    },
+  );
+  doc(
+    "rich-result-codec",
+    "Results always travel through the codec, independent of rich-argument opt-in.",
+    async () => {
+      const fn = reference(() => ({
+        date: new Date("2020-01-01"),
+        map: new Map([["n", 1]]),
+        set: new Set([2]),
+        bytes: new Uint8Array([3]),
+      }));
+      const response = await server.handleServerFunctionRequest(request(fn.id));
+      const result = await sf.decodeResponse<any>(response);
+      ok(result.date instanceof Date);
+      ok(result.map instanceof Map);
+      ok(result.set instanceof Set);
+      ok(result.bytes instanceof Uint8Array);
+      equal(result.bytes[0], 3);
+    },
+  );
+  doc(
+    "single-flight-after-transform",
+    "collectFlightData receives the transformed outcome with id, request, value, response and thrown fields.",
+    async () => {
+      const fn = reference(() => 7);
+      const req = request(fn.id);
+      req.headers.set(sf.SINGLE_FLIGHT_HEADER, "true");
+      let outcome: any;
+      const response = await server.handleServerFunctionRequest(req, {
+        transformResult: () => 9,
+        collectFlightData: (event, o) => {
+          ok(event.request instanceof Request);
+          outcome = o;
+          return { cached: o.value };
+        },
+      });
+      equal(outcome.id, fn.id);
+      equal(outcome.value, 9);
+      equal(outcome.thrown, false);
+      ok(outcome.request instanceof Request);
+      equal(await sf.decodeResponse(response), { value: 9, data: { true: { cached: 9 } } });
+    },
+  );
+  doc(
+    "per-request-transform-override",
+    "Per-handler transformResult overrides server-wide configuration.",
+    async () => {
+      const fn = reference(() => 7);
+      server.configureServerFunctionsServer({ transformResult: () => 8 });
+      try {
+        equal(
+          await sf.decodeResponse(
+            await server.handleServerFunctionRequest(request(fn.id), { transformResult: () => 9 }),
+          ),
+          9,
+        );
+      } finally {
+        server.configureServerFunctionsServer({ transformResult: (_event, result) => result });
+      }
+    },
+  );
+  doc(
+    "nonfunction-metadata",
+    "getServerFunctionMetadata answers undefined for an unbranded function.",
+    () => {
+      equal(
+        sf.getServerFunctionMetadata(() => 7),
+        undefined,
+      );
+      equal(sf.getServerFunctionMetadata(null), undefined);
+    },
+  );
+  doc(
+    "invoke-options-no-residue",
+    "invoke applies transport hints to one call without changing the reference metadata.",
+    async () => {
+      const fn = reference((n: number) => n);
+      const before = sf.getServerFunctionMetadata(fn);
+      equal(await sf.invoke(fn, { priority: "low", keepalive: true }, 1), 1);
+      equal(await fn(2), 2);
+      equal(sf.getServerFunctionMetadata(fn), before);
+    },
+  );
+}
+
+if (isServer) {
+  doc(
+    "safe-error",
+    "markSafeError preserves intentional Error properties while its registered-symbol brand is non-enumerable.",
+    async () => {
+      const error = markSafeError(
+        Object.assign(new Error("intentional-message"), { code: "SAFE" }),
+      );
+      equal(isSafeError(error), true);
+      equal(
+        Object.getOwnPropertySymbols(error).filter(
+          (s) => Object.getOwnPropertyDescriptor(error, s)?.enumerable,
+        ).length,
+        0,
+      );
+      const fn = reference(() => {
+        throw error;
+      });
+      const response = await server.handleServerFunctionRequest(request(fn.id), {
+        onError: () => {},
+      });
+      const decoded: any = await sf.decodeResponse(response).catch((e) => e);
+      equal(decoded.message, "intentional-message");
+      equal(decoded.code, "SAFE");
     },
   );
 }

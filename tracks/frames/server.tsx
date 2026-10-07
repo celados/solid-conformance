@@ -170,7 +170,15 @@ export function documentStream() {
   );
 }
 export async function documents() {
-  return scope.run(createRequestEvent(new Request("http://localhost/")), () =>
-    runCases([...rpcCases, ...frameCases]),
-  );
+  try {
+    return await scope.run(createRequestEvent(new Request("http://localhost/")), () =>
+      runCases([...rpcCases, ...frameCases]),
+    );
+  } finally {
+    configureServerFunctionsServer({
+      transformResult: frameTransformResult,
+      transformDirectResult: frameTransformDirectResult,
+      transformFlightResult: frameTransformFlightResult,
+    });
+  }
 }
