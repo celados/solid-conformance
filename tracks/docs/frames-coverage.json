@@ -1438,9 +1438,9 @@
   },
   {
     "id": "10-server-functions:L226:3",
-    "status": "uncovered",
+    "status": "not-behavioral",
     "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "reason": "作者finally资源归属指导：要求应用关闭其本连接取得的handle，而不是按业务id关闭其他连接资源；不是runtime替应用执行任意finally的保证。"
   },
   {
     "id": "10-server-functions:L227:1",
@@ -1566,9 +1566,14 @@
   },
   {
     "id": "10-server-functions:L230:2",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/live-wire.test.ts",
+      "tracks/frames/transport-contracts.test.ts",
+      "tracks/frames/live-component-drop.test.ts",
+      "08/server-road-live-nested-wire-identical"
+    ],
+    "reason": "同fetch载体；真实SSE精确3headers/codecdata、20sheartbeat、LastEventID重连、synthetic multiline重组。middlebox惯例和历史选择为理由，不是任何外部proxy都遵守的runtime保证。"
   },
   {
     "id": "10-server-functions:L230:3",
@@ -1579,9 +1584,13 @@
   },
   {
     "id": "10-server-functions:L230:4",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "tracks/frames/cancel.test.ts",
+      "tracks/frames/transport-contracts.test.ts",
+      "08/server-road-live-nested-wire-identical"
+    ],
+    "reason": "普通GET真实HTTP无任何x-transportheader；data/live独立address、nativeSSEcodec与data节点相同而framing不同。sharedcache理由为架构解释，不承诺第三方cache实现。"
   },
   {
     "id": "10-server-functions:L230:5",
@@ -1933,9 +1942,17 @@
   },
   {
     "id": "10-server-functions:L289:1",
-    "status": "uncovered",
-    "coverage": [],
-    "reason": "Executable coverage for this precise behavior is not yet implemented."
+    "status": "covered",
+    "coverage": [
+      "10/direct-invoke-abort",
+      "10/invoke-direct",
+      "10/invoke-options-no-residue",
+      "tracks/frames/cancel.test.ts",
+      "tracks/frames/transport-contracts.test.ts",
+      "tracks/frames/live-loop.test.ts",
+      "tracks/frames/live-component-drop.test.ts"
+    ],
+    "reason": "publicserverinprocess callerabort而work完成/hintsnoop；Chrome native fetch callerreason===且真实serverrequest.abort1；browser opts forward hints、live迭代器return abort fetch与caller abort结束重连订阅，realSCdrop/unmount closes，公有transport三类覆盖。"
   },
   {
     "id": "10-server-functions:L289:2",

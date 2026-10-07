@@ -10,8 +10,10 @@ installServerComponents();
 configureServerFunctionsClient({
   fetch: (address, init) => {
     const headers = new Headers(init.headers);
-    if (location.search.includes("omit-record")) headers.set("x-omit-slot-record", "true");
-    if (location.search.includes("corrupt")) headers.set("x-corrupt-markers", "true");
+    if (location.search.includes("omit-record"))
+      headers.set("x-omit-slot-record", "true");
+    if (location.search.includes("corrupt"))
+      headers.set("x-corrupt-markers", "true");
     return fetch(address, { ...init, headers });
   },
 });
@@ -27,6 +29,15 @@ const shapes: Record<string, () => any> = {
   "text-array": () => ({ title: [] }),
   "text-function": () => ({ title: () => 7 }),
   "text-async": () => ({ title: Promise.resolve(7) }),
+  tuple: () => ({
+    title: "tupleworks",
+    click: [
+      (data: unknown, event: Event) => {
+        (window as any).tupleArgs = [data, event.type];
+      },
+      7,
+    ],
+  }),
   valid: () => ({
     title: "works",
     hidden: false,
@@ -50,7 +61,9 @@ const shapes: Record<string, () => any> = {
         ? { children: "client-fill" }
         : shape === "missing-fill"
           ? {}
-          : { row: shapes[shape] };
+          : shape === "nonfunction"
+            ? { row: 7 }
+            : { row: shapes[shape] };
     const unmount = render(
       () => (
         <Loading fallback="loading">
@@ -59,7 +72,11 @@ const shapes: Record<string, () => any> = {
       ),
       target,
     );
-    for (let i = 0; i < 20 && !target.querySelector(shape === "corrupt" ? "main" : "button"); i++)
+    for (
+      let i = 0;
+      i < 20 && !target.querySelector(shape === "corrupt" ? "main" : "button");
+      i++
+    )
       await delay();
     await delay();
     const events =
@@ -72,8 +89,14 @@ const shapes: Record<string, () => any> = {
     capture?.stop();
     const button = target.querySelector("button")!;
     const text = button?.textContent;
-    if (shape === "valid") button.click();
+    if (shape === "valid" || shape === "tuple") button.click();
     unmount();
-    return { events, text, clicked: (window as any).clicked, remaining: target.textContent };
+    return {
+      events,
+      text,
+      tupleArgs: (window as any).tupleArgs,
+      clicked: (window as any).clicked,
+      remaining: target.textContent,
+    };
   },
 };

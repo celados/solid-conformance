@@ -632,24 +632,23 @@
   {
     "id": "08-dev-diagnostics:L727:4",
     "classification": "behavioral",
-    "status": "uncovered",
+    "status": "covered",
     "coverage": [
       "tracks/frames/binding.test.ts",
-      "08/binding-server-arg",
-      "08/binding-document-reserved-key",
       "08/binding-reserved-key-set",
-      "08/binding-nested-arg-first-path"
+      "08/binding-nested-arg-first-path",
+      "08/binding-arg-nonplain-not-walked"
     ],
-    "reason": "所有reason已测，完整reservedkey显式集且filter/map正控、nestedarg同standinfirstpathonce及双面undefined已补；Map/Set/class不遍历与nonfunctionprop/tupleclientfill仍需精确补，不称整句covered。"
+    "reason": "所有reason/type/severity/positions字段、reserved完整集/filter-map、firstnestedpathonce/双面undefined、tuple客户端绑定[7,click]、nonfunctionprop fillshape均精确；Map/Set identity及非undefined，class defaultcodec拒绝前arg0，独立5s child退出清理并artifact明确不声称该opaquecontainer编码完成。"
   },
   {
     "id": "08-dev-diagnostics:L727:6",
-    "status": "uncovered",
+    "status": "covered",
     "classification": "behavioral",
     "coverage": [
-      "tracks/frames/binding.test.ts"
+      "08/binding-coercion-both-faces-empty"
     ],
-    "reason": "已测全部reason/多shape；同句话部分fields/双面position/canonical reservedkey全列去重仍需精确断言，不能整句称covered"
+    "reason": "stringified/coerced/inline两面各warn1/ssr，documentfill MUST_NOT_RENDER/count7331从未出现在document或stream位置，与t0值不出现的合同对照。"
   },
   {
     "id": "08-dev-diagnostics:L727:9",
