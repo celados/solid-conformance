@@ -23,4 +23,4 @@ bun test ./findings/051-unnamed-attribution-owner-id/repro.test.ts
 
 三仓 open/closed 排重的完整结果见 `evidence/dedupe.json`。相关 closed #3063 要求 Universal 公共 API 接受显式诊断名称，不涉及未命名节点的 owner id 回退，正文见 `evidence/issue3063.json`；其他命中为 HMR 阈值、hydration id 或性能对比，不是同一合同。生产构建没有 attribution 记录，不在本合同范围内。
 
-rc.13 的独立 dev 对照同签名失败，原始日志见 evidence/wave3-finding050-rc13.log 或 evidence/wave3-finding017051-rc13.log。production 不保留这个观测 API，记为不适用。
+rc.13 的独立 dev 对照同签名失败，原始日志见 evidence/wave3-finding017051-rc13.log。production 不保留这个观测 API，记为不适用。

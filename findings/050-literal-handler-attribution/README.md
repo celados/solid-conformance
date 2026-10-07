@@ -26,4 +26,4 @@ bun test ./findings/050-literal-handler-attribution/repro.test.ts
 
 收缩至一个信号、一个订阅读取和两个按钮：literal 按钮保留红 oracle，accessor 按钮是同事件类型的正控。移除网络、actions、Loading、路由、异步 settle；生产构建没有 attribution 记录，不属于此 dev/observe 合同。
 
-rc.13 的独立 dev 对照同签名失败，原始日志见 evidence/wave3-finding050-rc13.log 或 evidence/wave3-finding017051-rc13.log。production 不保留这个观测 API，记为不适用。
+rc.13 的独立 dev 对照同签名失败，原始日志见 evidence/wave3-finding050-rc13.log。production 不保留这个观测 API，记为不适用。

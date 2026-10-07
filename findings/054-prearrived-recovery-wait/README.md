@@ -1,8 +1,11 @@
 ---
+type: Issue
+title: 已到达的服务端拒绝仍计入恢复等待时间
 id: '054'
 status: confirmed
 versions:
   - 'HEAD 53ef0e69 (development and observe)'
+  - 'rc.13 development'
 area: diagnostics/recovery
 upstream: []
 found_by: docs
@@ -13,10 +16,10 @@ found_by: docs
 文档 RFC08 L896 将 `waitedMs` 描述为从注册到拒绝到达的等待，并明确称拒绝在 hydration 前到达时为 0。完整服务端错误输出在 hydration 前已经解析，实际记录仍测量注册到客户端恢复微任务执行之间的时间；控制时钟得到 100，而非 0。
 
 ```sh
-bun test findings/054-prearrived-recovery-wait/repro.test.ts
+bun test ./findings/054-prearrived-recovery-wait/repro.test.ts
 ```
 
-`BUILD_MODE=observe` 同样失败；production 无记录，测试明确 skip。rc.13 由主分支隔离 baseline 补验。
+`BUILD_MODE=observe` 同样失败；production 无记录，测试明确 skip。rc.13 独立 baseline 同签名失败（四条前置断言通过，Expected 0 / received 100），日志见 evidence/wave3-finding054-rc13.log。
 
 倾向文档错误：运行时测量的是客户端恢复调度等待，不只网络上的拒绝到达等待。不是微秒舍入差异；公有 `performance.now` 测试时钟让三个读数分别为 1000、1100、1200。
 
