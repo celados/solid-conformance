@@ -1,0 +1,151 @@
+bun test v1.4.2 (744846f84)
+
+findings/039-missing-resource-timing-fallback/repro.test.ts:
+Conformance target: {"target":"rc13","upstream":null,"buildMode":"production","solid":"2.0.0-rc.13"}
+
+findings/045-server-optimistic-write-wording/repro.test.ts:
+1 | import {test,expect} from 'bun:test'
+2 | import {build} from '../../scripts/build'
+3 | import {resolve} from 'node:path'
+4 | import {rm} from 'node:fs/promises'
+5 | // 08-dev-diagnostics.md L635 says a server setter write "landed as inert data".
+6 | test('server optimistic setter lands inert data as the SERVER_WRITE paragraph says',async()=>{const dir=resolve('.build','inert-'+process.pid);await build(dir,(process.env.BUILD_MODE??'development') as any,{client:[],server:['findings/045-server-optimistic-write-wording/server.ts']});try{const{sample}=await import(dir+'/server.js');expect(sample(false)).toEqual({html:'1',updaters:1});expect(sample(true)).toEqual({html:'1',updaters:1})}finally{await rm(dir,{recursive:true,force:true})}})
+                                                                                                                                                                                                                                                                                                                                                                                                                            ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "html": "1",
+-   "updaters": 1,
++   "html": "0",
++   "updaters": 0,
+  }
+
+- Expected  - 2
++ Received  + 2
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/045-server-optimistic-write-wording/repro.test.ts:6:409)
+(fail) server optimistic setter lands inert data as the SERVER_WRITE paragraph says [13.31ms]
+
+findings/047-derived-store-accessor-example/repro.test.ts:
+1769 |     setPendingError(e, t.values().next().value);
+1770 |   } else
+1771 |     clearStatus(e, n);
+1772 | }
+1773 | function notifyStatus(e, n, t, r, i) {
+1774 |     t = new StatusError(e, t);
+               ^
+error: items is not a function. (In 'items()', 'items' is an instance of ProxyObject)
+ source: {
+  id: undefined,
+  C: 0,
+  xe: [Function: isEqual],
+  qe: null,
+  T: [Object ...],
+  Je: [Object ...],
+  En: 0,
+  he: [Function],
+  ce: undefined,
+  rn: 0,
+  Pn: undefined,
+  Fn: [Circular],
+  Ie: null,
+  Nn: null,
+  Ye: 1,
+  u: null,
+  mn: null,
+  _parent: [Object ...],
+  un: [Object ...],
+  gn: [Circular],
+  tn: null,
+  oe: 64,
+  h: 2,
+  be: 0,
+  _e: [Object ...],
+  we: null,
+  vn: -1,
+  ve: false,
+  o: [Object ...],
+},
+
+      at notifyStatus (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:1774:9)
+      at recompute (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:1974:19)
+      at setupComputedNode (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:2220:24)
+      at computed (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:2174:20)
+      at createProjectionNextInternal (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:4508:21)
+      at createStoreDerivedNext (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:4521:61)
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:4597:35)
+      at runWithOwner (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:2643:13)
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/047-derived-store-accessor-example/repro.test.ts:7:686)
+
+4593 | // findings/047-derived-store-accessor-example/module.ts
+4594 | function run(literal = false) {
+4595 |   return createRoot2((dispose) => {
+4596 |     try {
+4597 |       const [items] = createStore2(() => [1, 2], []);
+4598 |         draft.total = literal ? items().length : items.length;
+                                            ^
+TypeError: items is not a function. (In 'items()', 'items' is an instance of ProxyObject)
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:4598:38)
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:4541:10)
+      at storeSetterNext (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:4058:10)
+      at runProjectionComputedNext (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:4540:18)
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:4511:30)
+      at recompute (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:1947:21)
+      at setupComputedNode (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:2220:24)
+      at computed (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:2174:20)
+      at createProjectionNextInternal (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:4508:21)
+      at createStoreDerivedNext (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:4521:61)
+(fail) MIGRATION.md B462: a derived store is consumed as items() in the literal example [9.83ms]
+4 | 
+5 | test('MIGRATION.md B462: a derived store is consumed as items() in the literal example',async()=>{
+6 |  const packages=new Map<string,{path:string,exports:Record<string,any>}>();for(const name of ['solid-js','@solidjs/signals']){const path=await realpath(resolve('node_modules',name));packages.set(name,{path,exports:(await Bun.file(path+'/package.json').json()).exports})}
+7 |  const dir=resolve('.build/finding047');const build=await Bun.build({entrypoints:[resolve('findings/047-derived-store-accessor-example/module.ts')],outdir:dir,target:'bun',plugins:[{name:'actual-client-artifact',setup(builder){builder.onResolve({filter:/^(solid-js|@solidjs\/signals)$/},args=>{const pkg=packages.get(args.path)!,entry=pkg.exports['.'],browser=entry.browser??entry,selected=browser[process.env.BUILD_MODE??'development']??browser.default;return{path:resolve(pkg.path,typeof selected==='string'?selected:selected.import??selected.default)}})}}]});expect(build.success).toBe(true);const runtime=await import(dir+'/module.js');expect(runtime.run()).toBe(2);expect(runtime.run(true)).toBe(2)
+8 | })
+9 | test('MIGRATION.md B462: the literal derived-store usage compiles against public declarations',async()=>{const dir=resolve('.build/finding047/types');await Bun.write(dir+'/usage.ts',Bun.file('findings/047-derived-store-accessor-example/usage.ts.txt'));await Bun.write(dir+'/tsconfig.json',JSON.stringify({compilerOptions:{target:'ESNext',module:'Preserve',moduleResolution:'bundler',strict:true,noEmit:true,skipLibCheck:true,lib:['ESNext'],types:[]},files:[dir+'/usage.ts']}));const child=Bun.spawn(['bun','x','tsc','--project',dir+'/tsconfig.json'],{stdout:'pipe',stderr:'pipe'});const output=await new Response(child.stdout).text()+await new Response(child.stderr).text();expect({exitCode:await child.exited,output}).toEqual({exitCode:0,output:''})},30000)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "exitCode": 0,
+-   "output": "",
++   "exitCode": 1,
++   "output": 
++ ".build/finding047/types/usage.ts(3,47): error TS2349: This expression is not callable.
++   Type 'number[] & { readonly [$REFRESH]: any; }' has no call signatures.
++ "
++ ,
+  }
+
+- Expected  - 2
++ Received  + 6
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/047-derived-store-accessor-example/repro.test.ts:9:720)
+(fail) MIGRATION.md B462: the literal derived-store usage compiles against public declarations [129.91ms]
+
+findings/048-first-loading-held-signal/repro.test.ts:
+1 | import {test,expect} from 'bun:test'
+2 | import {chromium} from 'playwright'
+3 | import {resolve} from 'node:path'
+4 | import {build} from '../../scripts/build'
+5 | test('05-async-data.md L50: a first Loading falls back when reading a plain write held by another action',async()=>{const dir=resolve('.build/finding048');await build(dir,(process.env.BUILD_MODE??'development')as 'development'|'production',{client:['findings/048-first-loading-held-signal/client.tsx'],server:[]});const server=Bun.serve({hostname:'127.0.0.1',port:0,fetch(request){return new URL(request.url).pathname==='/client.js'?new Response(Bun.file(dir+'/client.js'),{headers:{'content-type':'text/javascript'}}):new Response('<!doctype html><script type="module" src="/client.js"></script>',{headers:{'content-type':'text/html'}})}});const browser=await chromium.launch({channel:'chrome',headless:true});try{const page=await browser.newPage();await page.goto(String(server.url));await page.waitForFunction(()=>typeof(window as any).firstLoadingCheck==='function');expect(await page.evaluate(()=>(window as any).firstLoadingCheck(true))).toEqual({before:'0waiting',after:'11:false',fallbacks:1});expect(await page.eval
+
+error: expect(received).toEqual(expected)
+
+@@ -2,4 +2,4 @@
+    "after": "11:false",
+-   "before": "0waiting",
+-   "fallbacks": 1,
++   "before": "00:true",
++   "fallbacks": 0,
+  }
+
+- Expected  - 2
++ Received  + 2
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/048-first-loading-held-signal/repro.test.ts:5:1202)
+(fail) 05-async-data.md L50: a first Loading falls back when reading a plain write held by another action [7458.82ms]
+
+ 1 pass
+ 4 fail
+ 13 expect() calls
+Ran 5 tests across 4 files. [15.56s]

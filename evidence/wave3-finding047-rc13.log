@@ -1,0 +1,105 @@
+bun test v1.4.2 (744846f84)
+
+findings/047-derived-store-accessor-example/repro.test.ts:
+Conformance target: {"target":"rc13","upstream":null,"buildMode":"development","solid":"2.0.0-rc.13"}
+2485 |     setPendingError(el, sources.values().next().value);
+2486 |   } else
+2487 |     clearStatus(el, clearUninitialized);
+2488 | }
+2489 | function notifyStatus(el, status, error, blockStatus, lane) {
+2490 |     error = new StatusError(el, error);
+                   ^
+error: items is not a function. (In 'items()', 'items' is an instance of ProxyObject)
+ source: {
+  id: undefined,
+  _config: 0,
+  _equals: [Function: isEqual],
+  _disposal: null,
+  _queue: [Object ...],
+  _context: [Object ...],
+  _childCount: 0,
+  _fn: [Function],
+  _value: undefined,
+  _height: 0,
+  _nextHeap: undefined,
+  _prevHeap: [Circular],
+  _deps: null,
+  _depsTail: null,
+  _depGen: 1,
+  _subs: null,
+  _subsTail: null,
+  _parent: [Object ...],
+  _nextSibling: [Object ...],
+  _prevSibling: [Circular],
+  _firstChild: null,
+  _flags: 64,
+  _statusFlags: 2,
+  _time: 0,
+  _pendingValue: [Object ...],
+  _transition: null,
+  _notifiedAt: -1,
+  _loading: false,
+  _x: [Object ...],
+  _name: "computed",
+  _signals: undefined,
+},
+
+      at notifyStatus (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:2490:13)
+      at recompute (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:2705:19)
+      at setupComputedNode (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:2987:30)
+      at computed (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:2926:20)
+      at createProjectionNextInternal (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:6319:24)
+      at createStoreDerivedNext (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:6329:55)
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:6425:35)
+      at runWithOwner (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:3543:14)
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/047-derived-store-accessor-example/repro.test.ts:7:686)
+
+6421 | // findings/047-derived-store-accessor-example/module.ts
+6422 | function run(literal = false) {
+6423 |   return createRoot2((dispose) => {
+6424 |     try {
+6425 |       const [items] = createStore2(() => [1, 2], []);
+6426 |         draft.total = literal ? items().length : items.length;
+                                            ^
+TypeError: items is not a function. (In 'items()', 'items' is an instance of ProxyObject)
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:6426:38)
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:6347:16)
+      at storeSetterNext (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:5856:16)
+      at runProjectionComputedNext (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:6346:18)
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:6322:30)
+      at recompute (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:2678:30)
+      at setupComputedNode (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:2987:30)
+      at computed (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:2926:20)
+      at createProjectionNextInternal (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:6319:24)
+      at createStoreDerivedNext (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/.build/finding047/module.js:6329:55)
+(fail) MIGRATION.md B462: a derived store is consumed as items() in the literal example [17.44ms]
+4 | 
+5 | test('MIGRATION.md B462: a derived store is consumed as items() in the literal example',async()=>{
+6 |  const packages=new Map<string,{path:string,exports:Record<string,any>}>();for(const name of ['solid-js','@solidjs/signals']){const path=await realpath(resolve('node_modules',name));packages.set(name,{path,exports:(await Bun.file(path+'/package.json').json()).exports})}
+7 |  const dir=resolve('.build/finding047');const build=await Bun.build({entrypoints:[resolve('findings/047-derived-store-accessor-example/module.ts')],outdir:dir,target:'bun',plugins:[{name:'actual-client-artifact',setup(builder){builder.onResolve({filter:/^(solid-js|@solidjs\/signals)$/},args=>{const pkg=packages.get(args.path)!,entry=pkg.exports['.'],browser=entry.browser??entry,selected=browser[process.env.BUILD_MODE??'development']??browser.default;return{path:resolve(pkg.path,typeof selected==='string'?selected:selected.import??selected.default)}})}}]});expect(build.success).toBe(true);const runtime=await import(dir+'/module.js');expect(runtime.run()).toBe(2);expect(runtime.run(true)).toBe(2)
+8 | })
+9 | test('MIGRATION.md B462: the literal derived-store usage compiles against public declarations',async()=>{const dir=resolve('.build/finding047/types');await Bun.write(dir+'/usage.ts',Bun.file('findings/047-derived-store-accessor-example/usage.ts.txt'));await Bun.write(dir+'/tsconfig.json',JSON.stringify({compilerOptions:{target:'ESNext',module:'Preserve',moduleResolution:'bundler',strict:true,noEmit:true,skipLibCheck:true,lib:['ESNext'],types:[]},files:[dir+'/usage.ts']}));const child=Bun.spawn(['bun','x','tsc','--project',dir+'/tsconfig.json'],{stdout:'pipe',stderr:'pipe'});const output=await new Response(child.stdout).text()+await new Response(child.stderr).text();expect({exitCode:await child.exited,output}).toEqual({exitCode:0,output:''})},30000)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "exitCode": 0,
+-   "output": "",
++   "exitCode": 1,
++   "output": 
++ ".build/finding047/types/usage.ts(3,47): error TS2349: This expression is not callable.
++   Type 'number[] & { readonly [$REFRESH]: any; }' has no call signatures.
++ "
++ ,
+  }
+
+- Expected  - 2
++ Received  + 6
+
+      at <anonymous> (/Users/dio/Projects/solid-conformance/.scratch/wave3-rc13/findings/047-derived-store-accessor-example/repro.test.ts:9:720)
+(fail) MIGRATION.md B462: the literal derived-store usage compiles against public declarations [164.66ms]
+
+ 0 pass
+ 2 fail
+ 3 expect() calls
+Ran 2 tests across 1 file. [187.00ms]

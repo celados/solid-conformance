@@ -3,6 +3,7 @@ type: Issue
 id: '042'
 status: confirmed
 versions:
+  - "rc.13 development"
   - HEAD 53ef0e69 development
 area: diagnostics/SSR/head
 upstream: []
@@ -23,3 +24,5 @@ BUILD_MODE=production bun test ./findings/042-malformed-preload-crossorigin/repr
 ## 缩减与去重
 
 一个 lazy 页面注册一个 font preload；没有状态、actions、客户端或异步时序竞争。保留 missing 正控与合法字符串负控，避免误将 disabled 检测当失败。三仓 open/closed 搜索 `crossorigin preload` 均无结果，现有 findings 无同机制。证据在 `evidence/wave3-finding042-*`；rc.13 由主线程统一比较。
+
+Wave 3 独立版本对照：rc.13 development 仍红；原始运行日志见仓库 evidence/ 中对应的 rc13 日志（其中 new-baseline-production 同时运行 039/045/047/048）。

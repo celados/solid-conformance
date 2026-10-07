@@ -364,7 +364,7 @@
     "classification": "behavioral",
     "status": "covered",
     "coverage": [
-      "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata exact source node/subject, event owner fields, message/data/sequence and JSON shape; tracks/docs/types-positive.tsx: public DiagnosticEvent optional fields"
+      "tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema exact source node/subject, event owner fields, message/data/sequence and JSON shape; tracks/docs/types-positive.tsx: public DiagnosticEvent optional fields"
     ],
     "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
   },
@@ -373,7 +373,7 @@
     "classification": "behavioral",
     "status": "covered",
     "coverage": [
-      "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata exact source node/subject, event owner fields, message/data/sequence and JSON shape; tracks/docs/types-positive.tsx: public DiagnosticEvent optional fields"
+      "tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema exact source node/subject, event owner fields, message/data/sequence and JSON shape; tracks/docs/types-positive.tsx: public DiagnosticEvent optional fields"
     ],
     "reason": "本句的公有行为由指向的精确断言验证；红反例独立保留。"
   },
@@ -775,16 +775,16 @@
     "classification": "behavioral",
     "status": "covered",
     "coverage": [
-      "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata; root-first subject ownerPath, optional string fields, nodeName, object data, JSON record has neither live nor subject; tracks/docs/types-positive.tsx: DiagnosticEvent"
+      "tracks/docs/root-responsiveness.test.ts: component-by-value-and-unnamed-owner actual public ownerPath/function name vs explicit source name; tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema named root-first paths"
     ],
-    "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
+    "reason": "真实 owner 的正负控，不反射 private owner internals。"
   },
   {
     "id": "08-dev-diagnostics:L765:2",
     "classification": "behavioral",
     "status": "covered",
     "coverage": [
-      "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata; root-first subject ownerPath, optional string fields, nodeName, object data, JSON record has neither live nor subject; tracks/docs/types-positive.tsx: DiagnosticEvent"
+      "tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema; root-first subject ownerPath, optional string fields, nodeName, object data, JSON record has neither live nor subject; tracks/docs/types-positive.tsx: DiagnosticEvent"
     ],
     "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
   },
@@ -838,7 +838,7 @@
     "classification": "behavioral",
     "status": "covered",
     "coverage": [
-      "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata; root-first subject ownerPath, optional string fields, nodeName, object data, JSON record has neither live nor subject; tracks/docs/types-positive.tsx: DiagnosticEvent"
+      "tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema; root-first subject ownerPath, optional string fields, nodeName, object data, JSON record has neither live nor subject; tracks/docs/types-positive.tsx: DiagnosticEvent"
     ],
     "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
   },
@@ -847,7 +847,7 @@
     "classification": "behavioral",
     "status": "covered",
     "coverage": [
-      "tracks/docs/diagnostic-cases.tsx: diagnostics-live-metadata subject identity; tracks/docs/console-binding.test.ts: actual DOM console parameter; tracks/records/records.test.ts: live handles beside JSON summaries"
+      "tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema subject identity; tracks/docs/console-binding.test.ts: actual DOM console parameter; tracks/records/records.test.ts: live handles beside JSON summaries"
     ],
     "reason": "完整字段/身份/生命周期合同有具体断言；自然触发与独立公共类型用法并测。"
   },
@@ -1036,7 +1036,7 @@
     "classification": "behavioral",
     "status": "covered",
     "coverage": [
-      "tracks/docs/core-cases.ts: loading-retains/rearms; tracks/docs/remaining-render-cases.tsx: loading-on-frame comments timing and pending-source lanes; tracks/docs/root-responsiveness.test.ts: initial Loading no hold"
+      "tracks/docs/render-cases.tsx: loading-revalidation; tracks/docs/remaining-render-cases.tsx: loading-on-frame comments timing and pending-source lanes; tracks/docs/root-responsiveness.test.ts: initial Loading no hold"
     ],
     "reason": "独立公开 SSR/Chrome 或严格类型测试完整验证这个合同。"
   },
@@ -1145,5 +1145,50 @@
       "tracks/records/input.test.ts: committed DOM sampled when interaction record completes before the next native animation frame; runtime commit clock assertion only"
     ],
     "reason": "runtime commit-clock 部分由 input.test.ts 验证；句子还将开发网络与未指定真实用户网络比较（usually），没有网络样本、负载或分位条件，无法对整句给确定 oracle。不能以某次 loopback 延迟证明现场通常更慢。"
+  },
+  {
+    "id": "08-dev-diagnostics:L16:4",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/root-responsiveness.test.ts: component-by-value-and-unnamed-owner actual public ownerPath/function name vs explicit source name; tracks/docs/diagnostic-cases.tsx: live-diagnostic-schema named root-first paths"
+    ],
+    "reason": "真实 owner 的正负控，不反射 private owner internals。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1012:1",
+    "status": "covered",
+    "classification": "behavioral",
+    "coverage": [
+      "tracks/docs/attribution-cases.ts: default-log-enabled omitted log vs false console controls"
+    ],
+    "reason": "实际省略选项验证默认值，不用显式 log:true 替代。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1021:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-disabled-options holds false has no record/fold/diagnosis; longHolds false retains acknowledged hold but emits no LONG_HOLD"
+    ],
+    "reason": "省略与显式关闭的默认值、effect/action/public record 路径均有实际断言。"
+  },
+  {
+    "id": "08-dev-diagnostics:C1022:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-disabled-options holds false has no record/fold/diagnosis; longHolds false retains acknowledged hold but emits no LONG_HOLD"
+    ],
+    "reason": "省略与显式关闭的默认值、effect/action/public record 路径均有实际断言。"
+  },
+  {
+    "id": "08-dev-diagnostics:L527:1",
+    "classification": "behavioral",
+    "status": "covered",
+    "coverage": [
+      "tracks/docs/hold-diagnostic-cases.ts: hold-effect-action-origin held write origin.kind/name, action flag and no input; hold-acknowledgement-paths opening navigation/interaction"
+    ],
+    "reason": "省略与显式关闭的默认值、effect/action/public record 路径均有实际断言。"
   }
 ]

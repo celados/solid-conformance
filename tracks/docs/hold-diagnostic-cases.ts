@@ -5,10 +5,10 @@ import {deferred,ticks} from '../../harness/timing'
 import {observed} from './diagnostic-cases'
 import {equal,ok,type DocCase} from './registry'
 const cases:DocCase[]=[]
-async function hold(wait:number,ack:'none'|'pending'|'latest'|'memo-only'|'optimistic'|'unrelated'='none',long=true){
+async function hold(wait:number,ack:'none'|'pending'|'latest'|'memo-only'|'optimistic'|'unrelated'='none',long=true,tracking=true){
  const descriptor=Object.getOwnPropertyDescriptor(performance,'now'),native=performance.now.bind(performance);let clock=native()
  Object.defineProperty(performance,'now',{configurable:true,value:()=>clock})
- const release=attribution.enable({log:false,checks:false,graphGrowth:false,...(long?{}:{longHolds:false}),waterfalls:false,stackedHolds:false,abandonedFlights:false,fallbackFlashes:false,optimisticReverts:false})
+ const release=attribution.enable({log:false,checks:false,graphGrowth:false,...(long?{}:{longHolds:false}),...(tracking?{}:{holds:false}),waterfalls:false,stackedHolds:false,abandonedFlights:false,fallbackFlashes:false,optimisticReverts:false})
  let dispose!:()=>void;const gate=deferred<number>(),records:any[]=[]
  const off=OBSERVE!.records.subscribe('hold',e=>records.push(e))
  try{
@@ -17,11 +17,24 @@ async function hold(wait:number,ack:'none'|'pending'|'latest'|'memo-only'|'optim
    OBSERVE!.attribution.withInteraction({type:'click',target:'button#next'},()=>OBSERVE!.attribution.withOrigin({kind:'navigation',name:'/posts/:id',to:'/posts/1',params:{id:'1'}},()=>write(1)))
    flush();await ticks(4);clock+=wait;gate.resolve(2);await ticks(8);flush()
   })
+  if(ack==='pending'||ack==='latest')equal(result.events.filter(e=>e.code==='OPTIMISTIC_REVERTED'),[])
   return {events:result.events,record:records.at(-1),rows:feedback().sources}
  }finally{dispose();off();release();if(descriptor)Object.defineProperty(performance,'now',descriptor);else delete (performance as any).now}
 }
 function doc(id:string,statement:string,run:DocCase['run']){cases.push({id:'08/'+id,file:'08-dev-diagnostics.md',statement,run})}
 if(!isServer){
+ doc('hold-effect-action-origin','L527: writes without a stamped input retain their effect/action origin on the opening hold.',async()=>{
+  if(!isDev)return
+  for(const kind of ['effect','action']as const){const release=attribution.enable({log:false,checks:false,holds:{infoMs:100000,warnMs:100000},waterfalls:false,abandonedFlights:false,stackedHolds:false});let dispose!:()=>void;const gate=deferred<number>(),records:any[]=[];const off=OBSERVE!.records.subscribe('hold',event=>records.push(event))
+   try{const run=createRoot(d=>{dispose=d;const[source,write]=createSignal(0,{name:'request'});const answer=createMemo(()=>source()?gate.promise:0,{name:'answer'});createRenderEffect(answer,()=>{});const[trigger,set]=createSignal(0);createEffect(trigger,v=>{if(v)write(1)},{name:'load-effect'});const save=action(function* loadAction(){write(1);yield gate.promise});flush();return kind==='effect'?()=>{set(1);flush()}:()=>save()});const done=run();flush();await ticks(4);gate.resolve(2);await done;await ticks(8);flush();ok(records.length>0);const held=records[0].heldWrites.find((w:any)=>w.name==='request');ok(held);equal(held.origin.kind,kind);equal(records[0].interaction,undefined);if(kind==='effect')equal(held.origin.name,'load-effect');equal(records[0].action,kind==='action')}
+   finally{dispose?.();off();release()}
+  }
+ })
+ doc('hold-disabled-options','C1021/C1022: holds false disables hold tracking; longHolds false suppresses long diagnosis while retaining acknowledged hold records.',async()=>{
+  if(!isDev)return
+  const disabled=await hold(1500,'none',true,false);equal(disabled.record,undefined);equal(disabled.rows,[]);equal(disabled.events.filter(e=>['SILENT_HOLD','LONG_HOLD'].includes(e.code)),[])
+  const longDisabled=await hold(1500,'pending',false);ok(longDisabled.record);equal(longDisabled.record.holdMs,1500);equal(longDisabled.record.silent,false);equal(longDisabled.events.filter(e=>['SILENT_HOLD','LONG_HOLD'].includes(e.code)),[])
+ })
  doc('hold-default-thresholds','L525/L531: silent default 100ms info/200ms warn, acknowledged long 500ms info/1000ms warn; a silent long hold reports only SILENT_HOLD.',async()=>{
   if(!isDev)return
   for(const [duration,ack,code,severity] of [[99,'none',null,null],[100,'none','SILENT_HOLD','info'],[199,'none','SILENT_HOLD','info'],[200,'none','SILENT_HOLD','warn'],[499,'pending',null,null],[500,'pending','LONG_HOLD','info'],[1000,'pending','LONG_HOLD','warn'],[1000,'none','SILENT_HOLD','warn']] as const){const result=await hold(duration,ack);const events=result.events.filter(e=>['SILENT_HOLD','LONG_HOLD'].includes(e.code));equal({duration,ack,codes:events.map(e=>e.code)}, {duration,ack,codes:code?[code]:[]});if(code){equal(events[0]!.code,code);equal(events[0]!.kind,'responsiveness');equal(events[0]!.severity,severity)}equal(result.record.silent,ack==='none');equal(result.record.long,duration>=500);equal(result.record.holdMs,duration);equal(result.record.tailMs,duration);if(duration===1000&&ack==='none')equal((events[0]!.data as any).long,true)}

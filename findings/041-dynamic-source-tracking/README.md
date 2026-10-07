@@ -2,7 +2,7 @@
 type: Issue
 id: '041'
 status: confirmed
-versions: [HEAD-53ef0e69-development, HEAD-53ef0e69-production]
+versions: [HEAD-53ef0e69-development, HEAD-53ef0e69-production, "rc.13 development", "rc.13 production"]
 area: documentation/hydration
 upstream: []
 found_by: docs
@@ -29,3 +29,5 @@ BUILD_MODE=production bun test ./findings/041-dynamic-source-tracking/repro.test
 缩减：去掉 argument、setters、另一个 sibling、props/ref、stream controls、deferStream、server function、fetch 和 async iterable，仅一个 promise tag source、计数器和必要的 Loading。CSR 调用一次为计数正控；hydrate 断言零次保持红。
 
 去重：三仓 open/closed 搜索 dynamic hydration source rerun、dynamic hydration tracking、dynamic callback server 均无结果。#3734 的 streaming holes 与 #3338 的 lazy hydration 都需要本例已去掉的机制；本例仅 callback invocation 的文档声明。没有上游写入。
+
+Wave 3 独立版本对照：rc.13 development、rc.13 production 仍红；原始运行日志见仓库 evidence/ 中对应的 rc13 日志（其中 new-baseline-production 同时运行 039/045/047/048）。

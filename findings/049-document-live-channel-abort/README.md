@@ -3,6 +3,9 @@ type: finding
 id: '049'
 status: confirmed
 versions:
+  - "rc.13 production"
+  - "rc.13 observe"
+  - "rc.13 development"
   - 'upstream next 53ef0e69: development, observe, production'
 area: SSR/server-components/teardown
 upstream:
@@ -20,4 +23,6 @@ The test first runs the identical component and source to normal completion, ass
 
 The repro contains one server component, one memo, one iterable yielding one value, one pending gate and one abort. It uses the public `frameTransformDirectResult` helper to supply the document server-component face. No router, HTTP server, browser, slots, reconnect, streaming `Loading`, second yield, or five-second timer is needed. The pending gate is released for test-owned cleanup; the normally completed control passes before the failing lifecycle.
 
-Open and closed issues in solidjs/solid, solidjs/solid-router and solidjs/solid-start were searched for `"Controller is already closed"`, `SSR abort stream close`, and `"live hole" abort`. Solid #3768 concerns a response-body cancel/pre-flush redirect that fails to stop rendering; this repro uses the existing signal abort and stops its generator, but the document live-hole channel subsequently closes twice. #035 in this suite is a client decoder pull left pending after body death, a different failure. The rc.13 comparison remains to be run independently.
+Open and closed issues in solidjs/solid, solidjs/solid-router and solidjs/solid-start were searched for `"Controller is already closed"`, `SSR abort stream close`, and `"live hole" abort`. Solid #3768 concerns a response-body cancel/pre-flush redirect that fails to stop rendering; this repro uses the existing signal abort and stops its generator, but the document live-hole channel subsequently closes twice. #035 in this suite is a client decoder pull left pending after body death, a different failure. The independent rc.13 comparison fails with the same uncaught close error in development, observe and production.
+
+Wave 3 独立版本对照：rc.13 development、rc.13 observe、rc.13 production 仍红；原始运行日志见仓库 evidence/ 中对应的 rc13 日志（其中 new-baseline-production 同时运行 039/045/047/048）。

@@ -2,7 +2,7 @@
 type: Issue
 id: '048'
 status: confirmed
-versions: [HEAD-53ef0e69-development, HEAD-53ef0e69-production]
+versions: [HEAD-53ef0e69-development, HEAD-53ef0e69-production, "rc.13 development", "rc.13 production"]
 area: documentation/Loading/action
 upstream: []
 found_by: docs
@@ -27,3 +27,5 @@ BUILD_MODE=production bun test ./findings/048-first-loading-held-signal/repro.te
 缩减：一个 held signal write、一个手动 promise gate、一个外部 Show 挂载事件和一个 Loading。未就绪 async source 正控证明 Loading 能进入 fallback；由同一 held write 挂载 Show 的正控证明其直到 commit 都不显示 fallback。没有 SSR、router、live source、optimistic、refresh 或依赖用户计时顺序的网络。
 
 去重：三仓 open/closed 搜索 Loading first mount held signal、Loading action stale new boundary、Loading first read transaction hold 均无结果（dedupe.json）。029 是已显示内容后的 latest(on) 重入不收敛；本例首次独立挂载、没有 on/latest，并会在 action 完成后收敛。没有上游写入。
+
+Wave 3 独立版本对照：rc.13 development、rc.13 production 仍红；原始运行日志见仓库 evidence/ 中对应的 rc13 日志（其中 new-baseline-production 同时运行 039/045/047/048）。

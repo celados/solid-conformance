@@ -143,6 +143,10 @@ add('holder-option-merge','RFC08 C1044–1058: demand unions ignore holder order
  for(const reverse of [false,true]){let dispose!:()=>void;const releases:(()=>void)[]=[];const options=[{...quiet,log:true,hotRuns:{count:2,windowMs:10000},historyLimit:2},{...quiet,log:false,hotRuns:{count:100,windowMs:10000},historyLimit:6}];let logs=0;const native=console.log;console.log=()=>{logs++}
  try{for(const option of reverse?options.reverse():options)releases.push(attribution.enable(option));const [write]=createRoot(d=>{dispose=d;const[r,w]=createSignal(0);createMemo(r);return[w] as const});const result=await observed(()=>{for(let i=1;i<=8;i++){write(i);flush()}});ok(result.events.some(e=>e.code==='HOT_SCOPE_RERUNS'));equal(attribution.history('rerun').length,6);ok(logs>0);const demanding=reverse?1:0;releases[demanding]!();const after=await observed(()=>{write(9);flush();write(10);flush()});equal(after.events.some(e=>e.code==='HOT_SCOPE_RERUNS'),false);equal(attribution.history('rerun').length,6);const fresh=attribution.enable({...quiet,historyLimit:9});releases.push(fresh);equal(attribution.history('rerun'),[]);equal(costs(),{scopes:[],writes:[]});equal(feedback().sources,[])}finally{dispose?.();releases.forEach(off=>off());console.log=native}}
 })
+add('default-log-enabled','RFC08 C1012: omitting log pretty-prints reruns by default; false retains no console entry.',()=>{
+ if(!isDev)return
+ for(const enabled of [true,false]){const {log,...withoutLog}=quiet;const release=attribution.enable(enabled?withoutLog:quiet);let dispose!:()=>void;let count=0;const native=console.log;console.log=()=>{count++};try{const write=createRoot(d=>{dispose=d;const[r,w]=createSignal(0);createMemo(r);return w});write(1);flush();equal(count>0,enabled)}finally{dispose?.();console.log=native;release()}}
+})
 add('default-history-and-stacks','RFC08 C1013/C1014/L1137: default history holds 200 oldest-first reruns; write stacks are opt-in and contain source frames rather than values.',()=>{
  if(!isDev)return
  for(const stacks of [undefined,false,true]){const release=attribution.enable({...quiet,...(stacks===undefined?{}:{stacks})});let dispose!:()=>void

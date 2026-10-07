@@ -3,6 +3,8 @@ type: Issue
 id: '045'
 status: confirmed
 versions:
+  - "rc.13 production"
+  - "rc.13 development"
   - HEAD 53ef0e69 development
   - HEAD 53ef0e69 production
 area: docs/SSR/optimistic
@@ -24,3 +26,5 @@ BUILD_MODE=production bun test ./findings/045-server-optimistic-write-wording/re
 ## 缩减与去重
 
 无 JSX、组件嵌套、effects、Loading、action、async 或浏览器；renderToString 中一个 setter updater 和一次 read。普通 signal 使用同一路径，证明 server render 在运行。独立 broader track 另外证实 store 更新 inert data、optimisticStore updater/no-op，组件均仅运行一次。三仓 open/closed 查询 `server optimistic setter` 无结果；现有027是deprecationwarning tier，不是optimistic数据落地措辞。日志和查询在 `evidence/wave3-finding045-*`；rc.13 由主线程统一比较。
+
+Wave 3 独立版本对照：rc.13 development、rc.13 production 仍红；原始运行日志见仓库 evidence/ 中对应的 rc13 日志（其中 new-baseline-production 同时运行 039/045/047/048）。

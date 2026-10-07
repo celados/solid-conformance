@@ -4,6 +4,7 @@ type: Finding
 title: Resource-less calls lose the documented centred server span
 status: confirmed
 versions:
+  - "rc.13 development"
   - HEAD 53ef0e69 development
   - HEAD 53ef0e69 observe
 area: diagnostics/performance
@@ -22,3 +23,5 @@ bun test ./findings/039-missing-resource-timing-fallback/repro.test.ts
 缩减到公有 `configureServerFunctionsClient({ fetch })` 返回一个已知结果及 Server-Timing、一条 `createServerReference` 调用和性能轨道。无组件、SSR、router、reactivity 或私有 API；系统 Chrome 的原生 observer 保留，Playwright clock 只推动公有计时器/时钟过期，另发一个无关真实请求触发资源 observer 扫描。删掉等待或 observer 后不再是同一过期路径，关闭 observer 的正控排除 header 解析失败。
 
 三仓 open/closed 搜索和相关 issue 阅读在 dedupe.json：solid#3385/#2879/#2929/#3107 与 router#649/#616 分别涉及 SSR disposal/Reveal/affects/redirect、submission commit 和重复 runtime；均非资源计时缺失时的 span 放置。未写上游。
+
+Wave 3 独立版本对照：rc.13 development 仍红；原始运行日志见仓库 evidence/ 中对应的 rc13 日志（其中 new-baseline-production 同时运行 039/045/047/048）。

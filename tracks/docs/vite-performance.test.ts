@@ -20,3 +20,10 @@ test('RFC 08 L1216: Vite dev injects tracks before the app; options pass through
   await Bun.write('artifacts/vite-performance.json',JSON.stringify({manifest,results},null,2))
  }finally{await rm(root,{recursive:true,force:true})}
 },60000)
+test('08 L16: Vite carries component, binding and plain-module primitive names in dev/observe; explicit false and production omit them',async()=>{
+ const manifest=await Bun.file('.upstream/vite-built.json').json(),solid=(await import(manifest.directory+'/dist/esm/index.mjs')).default
+ const root=resolve('.scratch','vite-names-'+process.pid);await mkdir(root,{recursive:true});await Bun.write(root+'/index.html','<script type="module" src="/main.tsx"></script>')
+ await Bun.write(root+'/main.tsx','import {createSignal} from "solid-js";const Home=()=>null;const [count]=createSignal(0);export const Page=()=> <><Home/><section title={String(count())}>{count()}</section></>')
+ await Bun.write(root+'/state.ts','import {createSignal} from "solid-js";export const [plainCount]=createSignal(0)')
+ try{for(const [options,names] of [[{},true],[{dev:false,observe:true},true],[{dev:false},false],[{solid:{sourceNames:false}},false]] as const){const server=await createServer({root,configFile:false,plugins:solid({...options,diagnostics:false,performanceTracks:false,hot:false}),server:{middlewareMode:true},logLevel:'silent',optimizeDeps:{noDiscovery:true}});try{const jsx=(await server.transformRequest('/main.tsx'))!.code,plain=(await server.transformRequest('/state.ts'))!.code;expect(jsx.includes('"Home"')).toBe(names);expect(jsx.includes('name: "section.title"')).toBe(names);expect(jsx.includes('name: "count"')).toBe(names);expect(plain.includes('name: "plainCount"')).toBe(names)}finally{await server.close()}}}finally{await rm(root,{recursive:true,force:true})}
+},60000)

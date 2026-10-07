@@ -1,4 +1,4 @@
-import {createRoot,createSignal,createMemo,createEffect,createRenderEffect,createOptimistic,action,affects,Loading,OBSERVE,flush,getOwner,untrack} from 'solid-js'
+import {createRoot,createSignal,createMemo,createEffect,createRenderEffect,createOptimistic,createComponent,action,affects,Loading,OBSERVE,flush,getOwner,untrack} from 'solid-js'
 import {isDev,render} from '@solidjs/web'
 import {attribution} from 'solid-js/attribution'
 import {deferred,ticks} from '../../harness/timing'
@@ -11,5 +11,6 @@ const cases:DocCase[]=[{id:'08/hold-affects-declaration',file:'08-dev-diagnostic
  try{flush();await ticks(4);equal(root.textContent,'pending');equal(attribution.history('hold'),[]);gate.resolve(17);await ticks(8);flush();equal(root.textContent,'17');equal(attribution.history('hold'),[])}finally{close();root.remove();release()}}},
 {id:'08/optimistic-companion-exemptions',file:'08-dev-diagnostics.md',statement:'L567: pending/latest companions and derived optimistic promotion are not corrective guesses.',async run(){if(!isDev)return;for(const answer of [2,5]){const release=attribution.enable(options),gate=deferred<number>();let dispose!:()=>void;const seen:number[]=[]
  try{const [write]=createRoot(d=>{dispose=d;const[r,w]=createSignal(0);const m=createMemo(()=>r()?gate.promise:0,{name:'answer'});const[overlay,setOverlay]=createOptimistic(()=>m(),{name:'guess'});const doubled=createMemo(()=>overlay()*2);createRenderEffect(doubled,v=>{seen.push(v)});flush();return[(n:number)=>{w(n);setOverlay(5)}] as const});const result=await observed(async()=>{write(1);flush();await ticks(4);gate.resolve(answer);await ticks(8);flush()});equal(seen.at(-1),answer*2);const corrections=result.events.filter(e=>e.code==='OPTIMISTIC_REVERTED');equal(corrections.length,answer===5?0:1);if(corrections.length)equal((corrections[0]!.data as any).source,'guess')}finally{dispose?.();release()}}}},
+{id:'08/component-by-value-and-unnamed-owner',file:'08-dev-diagnostics.md',statement:'L16/L765: by-value component names use the function name; explicit source-tag names override it; an unnamed owner has no path.',run(){if(!isDev)return;createRoot(dispose=>{try{equal(OBSERVE!.ownerPath(getOwner()),undefined);let path:unknown;function a(){path=OBSERVE!.ownerPath(getOwner());return null};createComponent(a,{});equal(path,["<a>"]);createComponent(a,{},"Home");equal(path,["<Home>"])}finally{dispose()}})}},
 ]
 ;(window as any).rootResponsiveness=runCases(cases)
