@@ -9,45 +9,54 @@ export function deferred<T>() {
 	return { promise, resolve, reject }
 }
 export function controlledIterable<T>() {
-	const queue: IteratorResult<T>[] = []
-	const waiters: ReturnType<typeof deferred<IteratorResult<T>>>[] = []
+	type Delivery = { kind: 'value'; value: T } | { kind: 'error'; error: unknown } | { kind: 'end' }
+	const history: Delivery[] = []
+	const listeners = new Set<() => void>()
 	const stats = { opened: 0, closed: 0 }
+	function deliver(item: Delivery) {
+		history.push(item)
+		for (const wake of [...listeners]) wake()
+	}
 	const iterable: AsyncIterable<T> = {
-		// LiveSource enables takeover after hydration; the cast preserves the public iterable type.
 		...{ [Symbol.for('solid.LiveSource')]: true },
 		[Symbol.asyncIterator]() {
 			stats.opened++
-			let closed = false
+			let cursor = 0, closed = false
+			let pending: ReturnType<typeof deferred<IteratorResult<T>>> | undefined
+			function close() {
+				if (!closed) { closed = true; stats.closed++ }
+				listeners.delete(wake)
+			}
+			function wake() {
+				if (!pending || (!closed && cursor === history.length)) return
+				const waiter = pending
+				pending = undefined
+				const item = history[cursor++]
+				if (closed || item?.kind === 'end') {
+					close(); waiter.resolve({ done: true, value: undefined })
+				} else if (item?.kind === 'error') {
+					close(); waiter.reject(item.error)
+				} else if (item?.kind === 'value') waiter.resolve({ done: false, value: item.value })
+			}
+			listeners.add(wake)
 			return {
 				next() {
-					if (closed)
-						return NativePromise.resolve({ done: true, value: undefined })
-					if (queue.length) return NativePromise.resolve(queue.shift()!)
+					if (pending) throw new Error('Concurrent next() is unsupported')
 					const waiter = deferred<IteratorResult<T>>()
-					waiters.push(waiter)
-					return waiter.promise
+					pending = waiter; wake(); return waiter.promise
 				},
 				async return() {
-					if (!closed) {
-						closed = true
-						stats.closed++
-					}
-					for (const waiter of waiters.splice(0))
-						waiter.resolve({ done: true, value: undefined })
+					close(); wake()
 					return { done: true as const, value: undefined }
 				},
 			}
 		},
 	}
 	return {
-		iterable,
-		stats,
-		push(value: T) {
-			const item = { done: false as const, value }
-			const waiter = waiters.shift()
-			if (waiter) waiter.resolve(item)
-			else queue.push(item)
-		},
+		iterable, stats,
+		push(value: T) { deliver({ kind: 'value', value }) },
+		fail(error: unknown) { deliver({ kind: 'error', error }) },
+		end() { deliver({ kind: 'end' }) },
 	}
 }
 export function permutations<T>(items: T[]): T[][] {

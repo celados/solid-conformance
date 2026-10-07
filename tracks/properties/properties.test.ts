@@ -26,11 +26,14 @@ test('generated trees preserve DOM, settle order, wrappers and iterator cleanup'
 		compiler: await Bun.file('node_modules/@solidjs/compiler/package.json')
 			.json()
 			.then((p) => p.version),
-		label: process.env.RUNTIME_LABEL ?? 'rc13',
+		label: process.env.TARGET ?? 'head',
+		buildMode: harness.variant,
 	}
 	console.log(`Runtime ready: ${JSON.stringify(runtime)}`)
 	const count = Number(process.env.CASES ?? 100)
 	function check(result: Awaited<ReturnType<typeof harness.run>>) {
+		expect(result.runtime.isDev).toBe(harness.variant === 'development')
+		expect(harness.ssr.isDev).toBe(harness.variant === 'development')
 		expect(result.messages).toEqual([])
 		expect(result.serverErrors).toEqual([])
 		expect(result.dom).not.toContain('pending')

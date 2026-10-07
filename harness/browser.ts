@@ -5,11 +5,11 @@ import { chromium, type Browser } from 'playwright'
 import type {} from './client-api'
 import type { Spec } from './tree'
 
-import { build } from '../scripts/build'
+import { build, type BuildMode } from '../scripts/build'
 let buildId = 0
-export async function openHarness() {
+export async function openHarness(variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development') {
 	const directory = resolve('.build', `browser-${process.pid}-${buildId++}`)
-	await build(directory)
+	await build(directory, variant)
 	const ssr = (await import(
 		resolve(directory, 'server.js')
 	)) as typeof import('./server')
@@ -53,7 +53,7 @@ export async function openHarness() {
 						'</div><script type="module" async src="/client.js"></script></body></html>',
 					{ headers: { 'content-type': 'text/html' } },
 				)
-			const run = ssr.stream(spec, request.signal)
+			const run = ssr.stream(spec, request.signal, url.searchParams.get('id')!)
 			const streamStart = performance.now()
 			const chunkTimes: { at: number; bytes: number }[] = []
 			chunks.set(url.searchParams.get('id')!, chunkTimes)
@@ -64,13 +64,6 @@ export async function openHarness() {
 			)
 			const stream = new ReadableStream({
 				start(controller) {
-					controller.enqueue(
-						new TextEncoder().encode(
-							prefix +
-								`<script>fetch('/settle?id=${url.searchParams.get('id')}')</script>`,
-						),
-					)
-					let first = true
 					run.output.pipe({
 						write(chunk: string) {
 							chunkTimes.push({
@@ -78,21 +71,15 @@ export async function openHarness() {
 								bytes: new TextEncoder().encode(chunk).byteLength,
 							})
 							controller.enqueue(new TextEncoder().encode(chunk))
-							if (first) {
-								first = false
-								controller.enqueue(
-									new TextEncoder().encode(
-										'</div><script type="module" async src="/client.js"></script>',
-									),
-								)
-							}
+
 						},
 						end() {
-							controller.enqueue(new TextEncoder().encode('</body></html>'))
 							controller.close()
 						},
 					})
 					pending.set(url.searchParams.get('id')!, run.settle)
+					if (!spec.scenario?.startsWith('live:') && spec.scenario !== 'minimal-store')
+						releases.set(url.searchParams.get('id')!, run.settle())
 				},
 			})
 			return new Response(stream, { headers: { 'content-type': 'text/html' } })
@@ -108,6 +95,7 @@ export async function openHarness() {
 	let id = 0
 	return {
 		ssr,
+		variant,
 		async run(spec: Spec, mode: 'csr' | 'hydrate') {
 			const key = String(id++)
 			specs.set(key, spec)
@@ -142,11 +130,17 @@ export async function openHarness() {
 				await page.evaluate(
 					() => new Promise((resolve) => setTimeout(resolve, 30)),
 				)
+				const docs = await page.evaluate(() => window.harness.docs)
+				const runtime = await page.evaluate(() => window.harness.runtime)
+				const trace = await page.evaluate(() => window.harness.trace ?? [])
 				const events = await page.evaluate(() => window.harness.events)
 				const dom = await page.evaluate(() => window.harness.dom())
 				const stats = await page.evaluate(() => window.harness.unmount())
 				return {
 					dom,
+					docs,
+					runtime,
+					trace,
 					events,
 					serverChunks: chunks.get(key) ?? [],
 					messages,

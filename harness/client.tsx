@@ -1,4 +1,5 @@
-import { render, hydrate } from '@solidjs/web'
+import { normalizedDOM } from './dom'
+import { render, hydrate, isDev } from '@solidjs/web'
 
 import type {} from './client-api'
 import type { Spec } from './tree'
@@ -9,7 +10,7 @@ const fixture = createCase(window.spec)
 const events = [{ phase: 'module', at: performance.now() }]
 const dispose =
 	window.mode === 'hydrate'
-		? hydrate(fixture.App, document.getElementById('root')!)
+		? hydrate(fixture.App, document.getElementById('root')!, { renderId: 'app' })
 		: render(fixture.App, document.getElementById('root')!)
 events.push({ phase: 'mounted', at: performance.now() })
 if (window.mode === 'hydrate')
@@ -18,6 +19,9 @@ if (window.mode === 'hydrate')
 	)
 window.harness = {
 	events,
+	docs: 'docs' in fixture ? fixture.docs as import('../tracks/docs/registry').DocResult[] : [],
+	runtime: { isDev },
+	trace: 'trace' in fixture ? fixture.trace as import('./transitions').Trace[] : [],
 	async settle() {
 		events.push({ phase: 'settle-start', at: performance.now() })
 		await fixture.settle()
@@ -29,17 +33,6 @@ window.harness = {
 		return fixture.streams.map((s) => s.stats)
 	},
 	dom() {
-		const root = document.getElementById('root')!.cloneNode(true) as HTMLElement
-		root.querySelectorAll('script,template').forEach((el) => el.remove())
-		root.querySelectorAll('*').forEach((el) => {
-			for (const attr of [...el.attributes])
-				if (attr.name === '_hk' || attr.name === 'data-hk')
-					el.removeAttribute(attr.name)
-		})
-		const walker = document.createTreeWalker(root, NodeFilter.SHOW_COMMENT)
-		const comments: Node[] = []
-		while (walker.nextNode()) comments.push(walker.currentNode)
-		comments.forEach((n) => n.parentNode?.removeChild(n))
-		return root.innerHTML
+		return normalizedDOM(document.getElementById('root')!)
 	},
 }

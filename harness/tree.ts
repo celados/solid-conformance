@@ -16,7 +16,7 @@ export type Kind =
 	| 'errored'
 	| 'group'
 export type Tree = { kind: Kind; value: number; children: Tree[] }
-export type Spec = { tree: Tree; order: number[]; scenario?: string }
+export type Spec = { tree: Tree; order: number[]; scenario?: string; transition?: import('./transitions').TransitionSpec }
 export function leaf(kind: Kind = 'text', value = 1): Tree {
 	return { kind, value, children: [] }
 }
