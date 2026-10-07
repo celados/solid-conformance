@@ -64,3 +64,11 @@ observe.records.subscribe('call', (e,live) => { const method: 'GET' | 'POST' = e
 observe.records.subscribe('request', (e,live) => { const side: 'client' = e.side; void [side,live.request] },{bodies:true})
 observe.records.subscribe('frame', e => { const count: number = e.slots; void count })
 observe.server.trace.provide(request => ({ sampled: !!request, entries: { vendor: 'trace' } }))
+
+// MIGRATION.md import ownership: old subpaths became independent renderer packages.
+import h from '@solidjs/h'
+import html from '@solidjs/html'
+import { createRenderer } from '@solidjs/universal'
+void [h, html, createRenderer]
+createMemo(() => 1, { transparent: true })
+createEffect(() => 1, () => {}, { transparent: true })

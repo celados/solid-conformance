@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-07T16:06:47.455Z",
+  "results": [
+    {
+      "term": "refresh nested types",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "refresh nested types",
+      "state": "closed",
+      "results": []
+    },
+    {
+      "term": "Refreshable nested",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "Refreshable nested",
+      "state": "closed",
+      "results": []
+    },
+    {
+      "term": "refresh TypeScript",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "refresh TypeScript",
+      "state": "closed",
+      "results": []
+    }
+  ]
+}

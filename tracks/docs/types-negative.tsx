@@ -123,3 +123,13 @@ import { OBSERVE } from 'solid-js'
 OBSERVE!.records.subscribe('invented-conformance-record', () => {})
 // @ts-expect-error timing is numeric, not a string
 OBSERVE!.records.subscribe('call', e => { const timing: string = e.durationMs; void timing })
+
+// 07-dom.md: removed namespaces are not public JSX attributes.
+// @ts-expect-error attr: is not a special JSX namespace.
+const oldAttr = <div attr:title="hello" />
+// @ts-expect-error bool: is not a special JSX namespace.
+const oldBool = <div bool:hidden={true} />
+// @ts-expect-error class: is not a special JSX namespace.
+const oldClassNamespace = <div class:active={true} />
+// @ts-expect-error style: is not a special JSX namespace.
+const oldStyleNamespace = <div style:color="red" />

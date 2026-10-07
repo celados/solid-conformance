@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-07T16:26:19.611Z",
+  "results": [
+    {
+      "term": "refresh optimistic override",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "refresh optimistic override",
+      "state": "closed",
+      "results": []
+    },
+    {
+      "term": "refresh authority",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "refresh authority",
+      "state": "closed",
+      "results": []
+    },
+    {
+      "term": "refresh staged",
+      "state": "open",
+      "results": []
+    },
+    {
+      "term": "refresh staged",
+      "state": "closed",
+      "results": []
+    }
+  ]
+}

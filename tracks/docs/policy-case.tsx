@@ -10,12 +10,13 @@ export function policyCase(spec:Spec){
  const policy=kind==='client'||kind==='declared-client'?'client':kind.startsWith('hybrid')?'hybrid':'server'
  const gates=[deferred<number>(),deferred<number>()]
  const streams=[controlledIterable<number>(),controlledIterable<number>()]
+ const iterables=streams.map(stream=>({[Symbol.asyncIterator]:()=>stream.iterable[Symbol.asyncIterator]()}))
  const docs:(DocResult & {observations:Record<string,unknown>})[]=[]
  let write!:(v:number)=>void,read!:()=>number,requests=0,calls=0,cached:Promise<number>|undefined
  const fetchKinds=['tracking-fetch','tracking-await','cached-fake']
  const originalFetch=globalThis.fetch
  if(!isServer&&fetchKinds.includes(kind))globalThis.fetch=((input:RequestInfo|URL,init?:RequestInit)=>{
-  if(String(input).includes('/doc-policy-source')){requests++;return Promise.resolve(new Response('7'))}
+  if(String(input).includes('/doc-policy-source')){requests++;return Promise.resolve(new Response(window.mode==='hydrate'?'99':'7'))}
   return originalFetch(input,init)
  }) as typeof fetch
  function App(){
@@ -24,11 +25,11 @@ export function policyCase(spec:Spec){
   const [argument,setArgument]=createSignal(0);write=setArgument
   read=createMemo(()=>{
    const id=argument();calls++
-   if(isServer)return iterable?streams[id]!.iterable:gates[id]!.promise
+   if(isServer)return iterable?iterables[id]!:gates[id]!.promise
    if(kind==='tracking-fetch')return fetch('/doc-policy-source').then(response=>response.json()) as Promise<number>
    if(kind==='tracking-await')return(async()=>{await 0;return(await fetch('/doc-policy-source')).json() as Promise<number>})()
    if(kind==='cached-fake')return cached??=(fetch('/doc-policy-source').then(response=>response.json()) as Promise<number>)
-   return iterable?streams[id]!.iterable:gates[id]!.promise
+   return iterable?iterables[id]!:gates[id]!.promise
   },{ssrSource:policy,...(kind==='declared-client'?{loadingValue:3}: {})})
   return<Loading fallback={<b>fallback</b>}><span>{read()}</span></Loading>
  }
@@ -46,7 +47,7 @@ export function policyCase(spec:Spec){
   if(hydrating&&policy!=='client')equal(content(),'7')
   else if(kind==='declared-client')equal(content(),'3')
   else equal(content(),'fallback')
-  if(iterable)streams[0]!.push(7);else gates[0]!.resolve(7)
+  if(iterable)streams[0]!.push(hydrating?99:7);else gates[0]!.resolve(hydrating&&policy!=='client'?99:7)
   await ticks(8);equal(content(),'7')
   if(iterable){streams[0]!.push(8);await ticks(8);equal(content(),'8')}
   else if(policy==='server'||policy==='hybrid'){
