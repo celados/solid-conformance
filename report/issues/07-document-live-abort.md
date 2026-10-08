@@ -1,13 +1,14 @@
 ---
 type: "Issue"
 title: "[2.0 rc.13 + next] Aborted document closes a live-hole channel twice"
-status: "draft"
+status: "filed"
 tier: "A"
 severity: "high"
 findings: ["049"]
 target: "3086f1b77cd7b0431d3a7f768c2984c335758633"
 snippet: "document.tsx"
 repro_commit: "b739f93a27c1d72c5269e15a7ada7543af9e5dbe"
+filed: "https://github.com/solidjs/solid/issues/3893"
 ---
 
 ### Describe the bug

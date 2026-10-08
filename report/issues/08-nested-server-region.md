@@ -1,13 +1,14 @@
 ---
 type: "Issue"
 title: "[2.0 rc.13 + next] Nested server region stays stale after refetch then argument change"
-status: "draft"
+status: "filed"
 tier: "A"
 severity: "med"
 findings: ["009"]
 target: "3086f1b77cd7b0431d3a7f768c2984c335758633"
 snippet: "client.tsx"
 repro_commit: "b739f93a27c1d72c5269e15a7ada7543af9e5dbe"
+filed: "https://github.com/solidjs/solid/issues/3894"
 ---
 
 ### Describe the bug

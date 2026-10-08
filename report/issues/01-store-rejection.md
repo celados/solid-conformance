@@ -1,7 +1,7 @@
 ---
 type: "Issue"
 title: "[2.0 next, regressed after rc.13] Replacement derived-store rejection never reaches Errored"
-status: "draft"
+status: "filed"
 tier: "A"
 severity: "high"
 findings: ["004"]
@@ -9,6 +9,7 @@ target: "3086f1b77cd7b0431d3a7f768c2984c335758633"
 snippet: "App.tsx"
 snippet_kind: "component"
 repro_commit: "b739f93a27c1d72c5269e15a7ada7543af9e5dbe"
+filed: "https://github.com/solidjs/solid/issues/3887"
 ---
 
 ### Describe the bug

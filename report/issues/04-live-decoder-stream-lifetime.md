@@ -1,13 +1,14 @@
 ---
 type: "Issue"
 title: "[2.0 rc.13 + next] Open decoded iterators are missed when a response dies"
-status: "draft"
+status: "filed"
 tier: "A"
 severity: "high"
 findings: ["014","035"]
 target: "3086f1b77cd7b0431d3a7f768c2984c335758633"
 snippet: "pull.ts"
 repro_commit: "b739f93a27c1d72c5269e15a7ada7543af9e5dbe"
+filed: "https://github.com/solidjs/solid/issues/3890"
 ---
 
 ### Describe the bug
