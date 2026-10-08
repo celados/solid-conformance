@@ -8,7 +8,11 @@ repro_commit: b739f93a27c1d72c5269e15a7ada7543af9e5dbe
 
 # Filing list
 
-Nothing filed. These are ready-to-copy drafts for human review; the YAML frontmatter is local metadata and is not part of the upstream issue body.
+Tier A filed 2026-10-07 as solidjs/solid#3887–#3901. On 2026-10-08, #3896, #3899, #3900 and #3901 (drafts 10, 13, 14, 15) were withdrawn and closed upstream. Each draft's frontmatter records its status.
+
+## Filing bar
+
+Report only defects that a real app, written by a person or an agent, could plausibly hit. Do not file a defect that needs a type bypass (`as any`, `@ts-*`), a construct nobody writes in practice, or an integration-author-only failure path. Keep such defects in this repo as findings. Apply this bar to drafts 16–27 before filing them.
 
 | Proposal | Tier | Title |
 | --- | --- | --- |
@@ -21,12 +25,12 @@ Nothing filed. These are ready-to-copy drafts for human review; the YAML frontma
 | [07](issues/07-document-live-abort.md) | A | [2.0 rc.13 + next] Aborted document closes a live-hole channel twice |
 | [08](issues/08-nested-server-region.md) | A | [2.0 rc.13 + next] Nested server region stays stale after refetch then argument change |
 | [09](issues/09-refresh-optimistic-authority.md) | A | [2.0 next, regressed after rc.13] Awaited refresh returns the caller optimistic override |
-| [10](issues/10-sync-asset-resolver.md) | A | [2.0 rc.13 + next] Synchronous lazy asset resolver failure aborts SSR |
+| [10](issues/10-sync-asset-resolver.md) | A (withdrawn) | [2.0 rc.13 + next] Synchronous lazy asset resolver failure aborts SSR |
 | [11](issues/11-conditional-get-format.md) | A | [2.0 rc.13 + next] 304 format header overwrites cached GET representation |
 | [12](issues/12-async-action-live-ack.md) | A | [2.0 next, regressed after rc.13] Async-generator action times out on its authoritative live echo |
-| [13](issues/13-cookie-proto-key.md) | A | [2.0 rc.13 + next] Cookie parser loses the valid __proto__ cookie name |
-| [14](issues/14-mixed-object-insert.md) | A | [2.0 rc.13 + next] Unrenderable object beside text throws instead of being skipped |
-| [15](issues/15-spread-children-hydration.md) | A | [2.0 rc.13 + next] Literal spread children allocate hydration IDs in a different order |
+| [13](issues/13-cookie-proto-key.md) | A (withdrawn) | [2.0 rc.13 + next] Cookie parser loses the valid __proto__ cookie name |
+| [14](issues/14-mixed-object-insert.md) | A (withdrawn) | [2.0 rc.13 + next] Unrenderable object beside text throws instead of being skipped |
+| [15](issues/15-spread-children-hydration.md) | A (withdrawn) | [2.0 rc.13 + next] Literal spread children allocate hydration IDs in a different order |
 | [16](issues/16-docs-01-errata.md) | B | [2.0 rc.13 + next] Solid 2 documentation errata — 01-reactivity-batching-effects.md |
 | [17](issues/17-docs-02-errata.md) | B | [2.0 rc.13 + next] Solid 2 documentation errata — 02-signals-derived-ownership.md |
 | [18](issues/18-docs-03-errata.md) | B | [2.0 rc.13 + next] Solid 2 documentation errata — 03-control-flow.md |

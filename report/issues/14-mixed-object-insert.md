@@ -1,7 +1,8 @@
 ---
 type: "Issue"
 title: "[2.0 rc.13 + next] Unrenderable object beside text throws instead of being skipped"
-status: "filed"
+status: "withdrawn"
+withdrawn: "2026-10-08: low real-world impact (unusual construct or type bypass)"
 tier: "A"
 severity: "low"
 findings: ["034"]

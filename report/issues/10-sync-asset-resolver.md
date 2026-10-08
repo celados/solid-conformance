@@ -1,7 +1,8 @@
 ---
 type: "Issue"
 title: "[2.0 rc.13 + next] Synchronous lazy asset resolver failure aborts SSR"
-status: "filed"
+status: "withdrawn"
+withdrawn: "2026-10-08: low real-world impact (unusual construct or type bypass)"
 tier: "A"
 severity: "med"
 findings: ["032"]
