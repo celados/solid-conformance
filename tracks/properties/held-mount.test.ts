@@ -17,5 +17,5 @@ test('compiled Show child forms preserve boundary world and converge after held 
   await Bun.write('artifacts/held-mount.json',JSON.stringify({runtime:await runtimeReceipt(),seed,observations,known,failed:result.failed,counterexample:result.counterexample,counterexamplePath:result.counterexamplePath,error:String(result.errorInstance??'')},null,2))
   expect(messages).toEqual([])
   if(result.failed)throw result.errorInstance
- })
+ }, undefined, 150000)
 },180000)

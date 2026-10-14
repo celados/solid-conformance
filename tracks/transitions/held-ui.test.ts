@@ -33,5 +33,5 @@ test('held UI: delayed feedback, nested mounts, reordered optimism and derived a
   await Bun.write('artifacts/held-ui.json',JSON.stringify({runtime:await runtimeReceipt(),seed,known,observations,failed:details.failed,counterexample:details.counterexample,counterexamplePath:details.counterexamplePath,error:String(details.errorInstance??'')},null,2))
   expect(messages).toEqual([])
   if(details.failed)throw details.errorInstance
- })
+ }, undefined, 150000)
 }, 180000)

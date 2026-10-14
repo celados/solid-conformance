@@ -16,7 +16,7 @@ function selectExport(
 		}
 }
 export type BuildMode = 'development' | 'production' | 'observe'
-export async function build(outdir = '.build', variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development', entries?: { client: string[]; server: string[]; serverComponents?: boolean }) {
+export async function build(outdir = '.build', variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development', entries?: { client: string[]; server: string[]; serverComponents?: boolean; routerSource?: boolean }) {
 	const packages = new Map<
 		string,
 		{ directory: string; exports: Record<string, ExportValue> }
@@ -49,7 +49,7 @@ export async function build(outdir = '.build', variant: BuildMode = (process.env
 			naming: '[name].js',
 			splitting: mode === 'client',
 			target: mode === 'client' ? 'browser' : 'bun',
-			conditions: [variant],
+			conditions: [...(entries?.routerSource ? ['solid'] : []), variant],
 			define: { 'process.env.NODE_ENV': JSON.stringify(variant) },
 			tsconfig: 'tsconfig.json',
 			plugins: [
@@ -78,7 +78,7 @@ export async function build(outdir = '.build', variant: BuildMode = (process.env
 								return { path: resolve(pkg.directory, file) }
 							},
 						)
-						builder.onLoad({ filter: /\.tsx$/ }, async (args) => ({
+						builder.onLoad({ filter: /\.[jt]sx$/ }, async (args) => ({
 							contents: transform(await Bun.file(args.path).text(), {
 								filename: args.path,
 								generate: mode === 'client' ? 'dom' : 'ssr',
