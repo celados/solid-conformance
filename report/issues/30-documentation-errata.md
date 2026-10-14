@@ -1,6 +1,7 @@
 ---
 type: Issue
-status: draft
+status: filed
+filed: https://github.com/solidjs/solid/issues/4053
 filing: fileable
 repo: solidjs/solid
 target: solidjs/solid
