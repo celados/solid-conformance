@@ -1,0 +1,32 @@
+bun test v1.4.2 (744846f84)
+[{"hydration":false,"order":["A","B","C"],"messages":[]},{"hydration":true,"order":["A","C","B"],"messages":[]}]
+$ bun test ./repro.test.ts
+
+repro.test.ts:
+29 |         } finally {await page.close()}
+30 |       }
+31 |       console.log(JSON.stringify(results))
+32 |       expect(results.map(result => result.messages)).toEqual([[], []])
+33 |       expect(results[0]!.order).toEqual(['A', 'B', 'C'])
+34 |       expect(results[1]!.order).toEqual(['A', 'B', 'C'])
+                                     ^
+error: expect(received).toEqual(expected)
+
+@@ -2,4 +2,4 @@
+    "A",
+-   "B",
+    "C",
++   "B",
+  ]
+
+- Expected  - 1
++ Received  + 1
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-29-loading-lazy-hydration-order-MlSzm7/repro.test.ts:34:33)
+(fail) Loading preserves static and lazy child order during hydration [15041.30ms]
+
+ 0 pass
+ 1 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [15.97s]
+error: script "repro" exited with code 1

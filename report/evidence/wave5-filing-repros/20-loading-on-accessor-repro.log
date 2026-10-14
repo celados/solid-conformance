@@ -1,0 +1,25 @@
+bun test v1.4.2 (744846f84)
+[{"control":true,"text":"Resolve firstReplacepending","messages":[]},{"control":false,"text":"Resolve firstReplace\n\n1","messages":[]}]
+$ bun test ./repro.test.ts
+
+repro.test.ts:
+29 |         } finally {await page.close()}
+30 |       }
+31 |       console.log(JSON.stringify(outcomes))
+32 |       expect(outcomes.map(outcome => outcome.messages)).toEqual([[], []])
+33 |       expect(outcomes[0]!.text).toContain('pending')
+34 |       expect(outcomes[1]!.text).toContain('pending')
+                                     ^
+error: expect(received).toContain(expected)
+
+Expected to contain: "pending"
+Received: "Resolve firstReplace\n\n1"
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-20-loading-on-accessor-CFqs4N/repro.test.ts:34:33)
+(fail) Loading on accessor rearms fallback like its value-form control [9853.87ms]
+
+ 0 pass
+ 1 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [10.46s]
+error: script "repro" exited with code 1

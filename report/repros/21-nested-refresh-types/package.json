@@ -1,0 +1,19 @@
+{
+  "name": "solid-repro-21-nested-refresh-types",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "repro": "bun test ./repro.test.ts",
+    "next": "bun run use-next.ts"
+  },
+  "dependencies": {
+    "@solidjs/diagnostics": "2.0.0-rc.15",
+    "@solidjs/signals": "2.0.0-rc.15",
+    "@solidjs/web": "2.0.0-rc.15",
+    "solid-js": "2.0.0-rc.15"
+  },
+  "devDependencies": {
+    "@types/bun": "1.4.2",
+    "typescript": "7.0.2"
+  }
+}

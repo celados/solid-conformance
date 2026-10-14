@@ -1,0 +1,26 @@
+bun test v1.4.2 (744846f84)
+{"file":".build/control.ts","exitCode":0,"output":""}
+{"file":"usage.ts","exitCode":1,"output":"usage.ts(3,14): error TS2345: Argument of type '{ n: number; }' is not assignable to parameter of type 'Refreshable<{ n: number; }>'.\n  Property '[$REFRESH]' is missing in type '{ n: number; }' but required in type '{ readonly [$REFRESH]: any; }'.\n"}
+$ bun test ./repro.test.ts
+
+repro.test.ts:
+ 9 |       await Bun.write('.build/check.json', JSON.stringify({...config, files: ['../' + file]}))
+10 |       const child = Bun.spawn([process.execPath, 'x', '--no-install', 'tsc', '-p', '.build/check.json'], {stdout: 'pipe', stderr: 'pipe'})
+11 |       const [stdout, stderr] = await Promise.all([new Response(child.stdout).text(), new Response(child.stderr).text()])
+12 |       const result = {file, exitCode: await child.exited, output: stdout + stderr}
+13 |       console.log(JSON.stringify(result))
+14 |       expect(result.exitCode).toBe(0)
+                                   ^
+error: expect(received).toBe(expected)
+
+Expected: 0
+Received: 1
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-21-nested-refresh-types-mPWfzv/repro.test.ts:14:31)
+(fail) documented nested derived-store refresh typechecks [1077.69ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [1112.00ms]
+error: script "repro" exited with code 1

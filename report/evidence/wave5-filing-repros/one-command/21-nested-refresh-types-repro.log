@@ -1,0 +1,39 @@
+Started PID 148: /opt/homebrew/Cellar/bun/1.3.14/bin/bun install --frozen-lockfile
+bun install v1.4.2 (744846f84)
+
++ @types/bun@1.4.2
++ typescript@7.0.2
++ @solidjs/diagnostics@2.0.0-rc.15
++ @solidjs/signals@2.0.0-rc.15
++ @solidjs/web@2.0.0-rc.15
++ solid-js@2.0.0-rc.15
+
+13 packages installed [22.00ms]
+Target: rc15; build: development
+Started PID 150: /opt/homebrew/Cellar/bun/1.3.14/bin/bun run repro
+bun test v1.4.2 (744846f84)
+{"file":".build/control.ts","exitCode":0,"output":""}
+{"file":"usage.ts","exitCode":1,"output":"usage.ts(3,14): error TS2345: Argument of type '{ n: number; }' is not assignable to parameter of type 'Refreshable<{ n: number; }>'.\n  Property '[$REFRESH]' is missing in type '{ n: number; }' but required in type '{ readonly [$REFRESH]: any; }'.\n"}
+$ bun test ./repro.test.ts
+
+repro.test.ts:
+ 9 |       await Bun.write('.build/check.json', JSON.stringify({...config, files: ['../' + file]}))
+10 |       const child = Bun.spawn([process.execPath, 'x', '--no-install', 'tsc', '-p', '.build/check.json'], {stdout: 'pipe', stderr: 'pipe'})
+11 |       const [stdout, stderr] = await Promise.all([new Response(child.stdout).text(), new Response(child.stderr).text()])
+12 |       const result = {file, exitCode: await child.exited, output: stdout + stderr}
+13 |       console.log(JSON.stringify(result))
+14 |       expect(result.exitCode).toBe(0)
+                                   ^
+error: expect(received).toBe(expected)
+
+Expected: 0
+Received: 1
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-standalone-repro-uZTE6V/repro.test.ts:14:31)
+(fail) documented nested derived-store refresh typechecks [994.42ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [1026.00ms]
+error: script "repro" exited with code 1

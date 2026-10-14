@@ -1,0 +1,108 @@
+Started PID 170: /opt/homebrew/Cellar/bun/1.3.14/bin/bun install --frozen-lockfile
+bun install v1.4.2 (744846f84)
+
++ @types/bun@1.4.2
++ typescript@7.0.2
++ @solidjs/compiler@2.0.0-rc.15
++ @solidjs/diagnostics@2.0.0-rc.15
++ @solidjs/signals@2.0.0-rc.15
++ @solidjs/web@2.0.0-rc.15
++ solid-js@2.0.0-rc.15
+
+22 packages installed [22.00ms]
+Target: rc15; build: development
+Started PID 171: /opt/homebrew/Cellar/bun/1.3.14/bin/bun run repro
+bun test v1.4.2 (744846f84)
+{"pinned":{"n":99,"pinned":false}}
+{"file":"corrections","exitCode":0,"output":""}
+{"file":"effect-error","exitCode":1,"output":"fixtures/effect-error.ts(2,33): error TS2559: Type '() => void' has no properties in common with type 'EffectOptions'.\n"}
+{"file":"corrections","exitCode":0,"output":""}
+{"file":"store-path","exitCode":1,"output":"fixtures/store-path.ts(1,10): error TS2305: Module '\"solid-js\"' has no exported member 'storePath'.\n"}
+{"file":"corrections","exitCode":0,"output":""}
+{"file":"migration","exitCode":1,"output":"fixtures/migration.ts(3,53): error TS2349: This expression is not callable.\n  Type 'number[] & { readonly [$REFRESH]: any; }' has no call signatures.\n"}
+$ bun test ./repro.test.ts
+
+repro.test.ts:
+[REACTIVE_WRITE_IN_OWNED_SCOPE] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#reactive_write_in_owned_scope
+ 6 | afterAll(async () => {await rm('.build', {recursive: true, force: true})})
+ 7 | 
+ 8 | test('untrack permits writes as the documentation suggests', async () => {
+ 9 |   const runtime = await import('./.build/' + 'untrack.js') as typeof import('./untrack')
+10 |   expect(runtime.ownedWriteControl).not.toThrow()
+11 |   expect(runtime.untrackWrite).not.toThrow()
+                                        ^
+error: expect(received).not.toThrow()
+
+Error name: "Error"
+Error message: "[REACTIVE_WRITE_IN_OWNED_SCOPE] Writing to reactive state inside an owned scope (component, computation) is not allowed. Move the write outside or set the `ownedWrite` option if this is intentional."
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-standalone-repro-qUbpif/repro.test.ts:11:36)
+(fail) untrack permits writes as the documentation suggests [7.35ms]
+14 | test('documented pinned derivation retakes its source on same-tick unpin', async () => {
+15 |   const runtime = await import('./.build/' + 'pinned.js') as typeof import('./pinned')
+16 |   expect(runtime.pinnedDerivation(true)).toEqual({n: 3, pinned: false})
+17 |   const result = runtime.pinnedDerivation()
+18 |   console.log(JSON.stringify({pinned: result}))
+19 |   expect(result).toEqual({n: 3, pinned: false})
+                      ^
+error: expect(received).toEqual(expected)
+
+@@ -1,3 +1,3 @@
+  {
+-   "n": 3,
++   "n": 99,
+    "pinned": false,
+
+- Expected  - 1
++ Received  + 1
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-standalone-repro-qUbpif/repro.test.ts:19:18)
+(fail) documented pinned derivation retakes its source on same-tick unpin [1.50ms]
+30 | }
+31 | 
+32 | for (const file of ['effect-error', 'store-path', 'migration']) {
+33 |   test('documented ' + file + ' example typechecks', async () => {
+34 |     expect((await typecheck('corrections')).exitCode).toBe(0)
+35 |     expect((await typecheck(file)).exitCode).toBe(0)
+                                                  ^
+error: expect(received).toBe(expected)
+
+Expected: 0
+Received: 1
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-standalone-repro-qUbpif/repro.test.ts:35:46)
+(fail) documented effect-error example typechecks [1399.45ms]
+30 | }
+31 | 
+32 | for (const file of ['effect-error', 'store-path', 'migration']) {
+33 |   test('documented ' + file + ' example typechecks', async () => {
+34 |     expect((await typecheck('corrections')).exitCode).toBe(0)
+35 |     expect((await typecheck(file)).exitCode).toBe(0)
+                                                  ^
+error: expect(received).toBe(expected)
+
+Expected: 0
+Received: 1
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-standalone-repro-qUbpif/repro.test.ts:35:46)
+(fail) documented store-path example typechecks [570.14ms]
+30 | }
+31 | 
+32 | for (const file of ['effect-error', 'store-path', 'migration']) {
+33 |   test('documented ' + file + ' example typechecks', async () => {
+34 |     expect((await typecheck('corrections')).exitCode).toBe(0)
+35 |     expect((await typecheck(file)).exitCode).toBe(0)
+                                                  ^
+error: expect(received).toBe(expected)
+
+Expected: 0
+Received: 1
+
+      at <anonymous> (/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-standalone-repro-qUbpif/repro.test.ts:35:46)
+(fail) documented migration example typechecks [384.96ms]
+
+ 0 pass
+ 5 fail
+ 10 expect() calls
+Ran 5 tests across 1 file. [2.77s]
+error: script "repro" exited with code 1

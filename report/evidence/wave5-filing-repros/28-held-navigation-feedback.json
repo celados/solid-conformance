@@ -1,0 +1,56 @@
+{
+  "name": "28-held-navigation-feedback",
+  "host": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-28-held-navigation-feedback-PPaXED",
+  "startedAt": "2026-10-14T08:25:01.794Z",
+  "freshNodeModules": true,
+  "commands": [
+    {
+      "command": [
+        "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+        "install",
+        "--frozen-lockfile"
+      ],
+      "pid": 96804,
+      "startedAt": "2026-10-14T08:25:01.817Z"
+    },
+    {
+      "command": [
+        "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+        "run",
+        "repro"
+      ],
+      "pid": 96807,
+      "startedAt": "2026-10-14T08:25:01.860Z"
+    }
+  ],
+  "installExitCode": 0,
+  "packages": {
+    "@solidjs/compiler": {
+      "version": "2.0.0-rc.15",
+      "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-28-held-navigation-feedback-PPaXED/node_modules/@solidjs/compiler"
+    },
+    "@solidjs/diagnostics": {
+      "version": "2.0.0-rc.15",
+      "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-28-held-navigation-feedback-PPaXED/node_modules/@solidjs/diagnostics"
+    },
+    "@solidjs/router": {
+      "version": "2.0.0-next.39",
+      "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-28-held-navigation-feedback-PPaXED/node_modules/@solidjs/router"
+    },
+    "@solidjs/signals": {
+      "version": "2.0.0-rc.15",
+      "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-28-held-navigation-feedback-PPaXED/node_modules/@solidjs/signals"
+    },
+    "@solidjs/web": {
+      "version": "2.0.0-rc.15",
+      "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-28-held-navigation-feedback-PPaXED/node_modules/@solidjs/web"
+    },
+    "solid-js": {
+      "version": "2.0.0-rc.15",
+      "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-28-held-navigation-feedback-PPaXED/node_modules/solid-js"
+    }
+  },
+  "testExitCode": 1,
+  "finishedAt": "2026-10-14T08:25:12.856Z",
+  "hostRemoved": true
+}

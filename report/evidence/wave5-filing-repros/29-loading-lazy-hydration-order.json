@@ -1,0 +1,52 @@
+{
+  "name": "29-loading-lazy-hydration-order",
+  "host": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-29-loading-lazy-hydration-order-MlSzm7",
+  "startedAt": "2026-10-14T08:24:45.529Z",
+  "freshNodeModules": true,
+  "commands": [
+    {
+      "command": [
+        "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+        "install",
+        "--frozen-lockfile"
+      ],
+      "pid": 96620,
+      "startedAt": "2026-10-14T08:24:45.538Z"
+    },
+    {
+      "command": [
+        "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+        "run",
+        "repro"
+      ],
+      "pid": 96621,
+      "startedAt": "2026-10-14T08:24:45.576Z"
+    }
+  ],
+  "installExitCode": 0,
+  "packages": {
+    "@solidjs/compiler": {
+      "version": "2.0.0-rc.15",
+      "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-29-loading-lazy-hydration-order-MlSzm7/node_modules/@solidjs/compiler"
+    },
+    "@solidjs/diagnostics": {
+      "version": "2.0.0-rc.15",
+      "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-29-loading-lazy-hydration-order-MlSzm7/node_modules/@solidjs/diagnostics"
+    },
+    "@solidjs/signals": {
+      "version": "2.0.0-rc.15",
+      "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-29-loading-lazy-hydration-order-MlSzm7/node_modules/@solidjs/signals"
+    },
+    "@solidjs/web": {
+      "version": "2.0.0-rc.15",
+      "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-29-loading-lazy-hydration-order-MlSzm7/node_modules/@solidjs/web"
+    },
+    "solid-js": {
+      "version": "2.0.0-rc.15",
+      "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-29-loading-lazy-hydration-order-MlSzm7/node_modules/solid-js"
+    }
+  },
+  "testExitCode": 1,
+  "finishedAt": "2026-10-14T08:25:01.704Z",
+  "hostRemoved": true
+}

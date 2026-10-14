@@ -1,0 +1,21 @@
+{
+  "name": "solid-repro-29-loading-lazy-hydration-order",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "repro": "bun test ./repro.test.ts",
+    "next": "bun run use-next.ts"
+  },
+  "dependencies": {
+    "@solidjs/compiler": "2.0.0-rc.15",
+    "@solidjs/diagnostics": "2.0.0-rc.15",
+    "@solidjs/signals": "2.0.0-rc.15",
+    "@solidjs/web": "2.0.0-rc.15",
+    "solid-js": "2.0.0-rc.15"
+  },
+  "devDependencies": {
+    "@types/bun": "1.4.2",
+    "playwright": "1.63.0",
+    "typescript": "7.0.2"
+  }
+}
