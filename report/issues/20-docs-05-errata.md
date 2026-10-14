@@ -5,9 +5,9 @@ filing: fileable
 repo: solidjs/solid
 target: solidjs/solid
 head: e3716454129f8438b65257c95db5c383622494ba
-title: "[2.0 rc.15 + next] Documented Loading on accessor never rearms the fallback"
+title: '[2.0 rc.15 + next] Documented Loading on accessor never rearms the fallback'
 findings: ['007']
-repro_commit: f929e4fcc4f08a89c2f236e236fdfc6520cb123d
+repro_commit: 44683a4dba3bd8d9f87c30e5cecb8b2ad4f94759
 ---
 
 ### Describe the bug
@@ -20,22 +20,26 @@ repro_commit: f929e4fcc4f08a89c2f236e236fdfc6520cb123d
 
 ### Your Example Website or App
 
-[Pinned failing test](https://github.com/celados/solid-conformance/blob/f929e4fcc4f08a89c2f236e236fdfc6520cb123d/findings/007-loading-on-accessor/repro.test.ts).
+[Standalone source, one-command setup and README](https://github.com/celados/solid-conformance/tree/44683a4dba3bd8d9f87c30e5cecb8b2ad4f94759/report/repros/20-loading-on-accessor).
 
 ### Steps to Reproduce the Bug or Issue
 
-Let the first request settle, then change id while the replacement request stays unresolved.
-Run `TARGET=rc15 bun test ./findings/007-loading-on-accessor/repro.test.ts` after restoring the published graph; omit TARGET after linking HEAD.
+```sh
+cd report/repros/20-loading-on-accessor
+bun install
+bun run repro
+```
+
+The test resolves the first request, then changes id while the replacement request remains unresolved. It compares the accessor form with on={id()}. The README also supplies a one-command clean setup and a next-tag switch.
 
 ### Expected behavior
 
-The documented zero-argument accessor should rearm Loading. Old content stays instead; on={id()} does rearm it.
+The documented accessor rearms Loading and shows pending. Instead it retains 1; the value-form control shows pending. Both error channels are quiet.
 
 ### Platform
 
-Solid rc.15 and next `e3716454129f`; development/public types as applicable; Bun 1.4.2, system Chrome.
+Solid rc.15 and next e3716454129f; Bun 1.4.2, system Chrome; development and production.
 
 ### Additional context
 
-App loading feedback is affected by the documented prop form. Correct the accessor claim/example or implement its promised unwrapping. Boundary-scope 048 and internal hydration-slot 052 are excluded.
-Current [documentation](https://github.com/solidjs/solid/blob/e3716454129f8438b65257c95db5c383622494ba/documentation/solid-2.0/05-async-data.md#L96).
+Correct the zero-argument accessor claim/example, or implement the promised unwrapping. [Documentation](https://github.com/solidjs/solid/blob/e3716454129f8438b65257c95db5c383622494ba/documentation/solid-2.0/05-async-data.md#L96).

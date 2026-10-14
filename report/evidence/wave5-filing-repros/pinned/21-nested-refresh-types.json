@@ -1,0 +1,49 @@
+{
+  "name": "21-nested-refresh-types",
+  "host": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-21-nested-refresh-types-sGi1FC",
+  "sourceCommit": "44683a4dba3bd8d9f87c30e5cecb8b2ad4f94759",
+  "startedAt": "2026-10-14T08:39:33.901Z",
+  "freshNodeModules": true,
+  "commands": [
+    {
+      "command": [
+        "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+        "install",
+        "--frozen-lockfile"
+      ],
+      "pid": 13751,
+      "startedAt": "2026-10-14T08:39:34.004Z"
+    },
+    {
+      "command": [
+        "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+        "run",
+        "repro"
+      ],
+      "pid": 13752,
+      "startedAt": "2026-10-14T08:39:34.034Z"
+    }
+  ],
+  "installExitCode": 0,
+  "packages": {
+    "@solidjs/diagnostics": {
+      "version": "2.0.0-rc.15",
+      "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-21-nested-refresh-types-sGi1FC/node_modules/@solidjs/diagnostics"
+    },
+    "@solidjs/signals": {
+      "version": "2.0.0-rc.15",
+      "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-21-nested-refresh-types-sGi1FC/node_modules/@solidjs/signals"
+    },
+    "@solidjs/web": {
+      "version": "2.0.0-rc.15",
+      "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-21-nested-refresh-types-sGi1FC/node_modules/@solidjs/web"
+    },
+    "solid-js": {
+      "version": "2.0.0-rc.15",
+      "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-21-nested-refresh-types-sGi1FC/node_modules/solid-js"
+    }
+  },
+  "testExitCode": 1,
+  "finishedAt": "2026-10-14T08:39:35.151Z",
+  "hostRemoved": true
+}

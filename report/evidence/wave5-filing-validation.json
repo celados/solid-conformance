@@ -1,0 +1,32 @@
+{
+  "head": "e3716454129f8438b65257c95db5c383622494ba",
+  "fileable": [
+    "report/issues/29-loading-lazy-hydration-order.md",
+    "report/issues/28-held-navigation-feedback.md",
+    "report/issues/20-docs-05-errata.md",
+    "report/issues/21-docs-06-errata.md",
+    "report/issues/30-documentation-errata.md"
+  ],
+  "findings": [
+    "007",
+    "018",
+    "055",
+    "057",
+    "015",
+    "013",
+    "030",
+    "006",
+    "047"
+  ],
+  "visibleLines": {
+    "20": 33,
+    "21": 33,
+    "28": 40,
+    "29": 36,
+    "30": 45
+  },
+  "pinnedObjects": 5,
+  "standaloneChecks": true,
+  "linkVerification": "local pinned Git files; remote links await orchestrator push",
+  "valid": true
+}

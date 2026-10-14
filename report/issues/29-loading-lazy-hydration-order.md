@@ -7,7 +7,7 @@ target: solidjs/solid
 head: e3716454129f8438b65257c95db5c383622494ba
 title: '[2.0 rc.15 + next] Hydration reverses static and lazy children in Loading after a sibling'
 findings: ['057']
-repro_commit: a2b739680e8b616e1973884e8f1d78eca5b6704e
+repro_commit: 44683a4dba3bd8d9f87c30e5cecb8b2ad4f94759
 ---
 
 ### Describe the bug
@@ -18,26 +18,31 @@ const Lazy = lazy(() => import("./part"));
 export function App() {
   return <><span>A</span><Loading fallback="pending"><span>B</span><Lazy /></Loading></>;
 }
-// part's default component returns <span>C</span>.
+// part exports a component returning <span>C</span>.
 ```
 
 ### Your Example Website or App
 
-[Pinned complete streaming SSR/Chrome reproduction](https://github.com/celados/solid-conformance/tree/a2b739680e8b616e1973884e8f1d78eca5b6704e/findings/057-loading-lazy-hydration-order).
+[Standalone source, one-command setup and README](https://github.com/celados/solid-conformance/tree/44683a4dba3bd8d9f87c30e5cecb8b2ad4f94759/report/repros/29-loading-lazy-hydration-order).
 
 ### Steps to Reproduce the Bug or Issue
 
-Render the app to a stream with the lazy module mapped in the asset manifest, then hydrate it with the matching renderId. Let the module settle.
-Run `TARGET=rc15 bun test ./findings/057-loading-lazy-hydration-order/repro.test.ts` after restoring the published graph; omit TARGET after linking HEAD.
+```sh
+cd report/repros/29-loading-lazy-hydration-order
+bun install
+bun run repro
+```
+
+The test streams this app, hydrates with the matching renderId, and lets the lazy module settle. It also renders the same source in CSR. The README also supplies a one-command clean setup and a next-tag switch.
 
 ### Expected behavior
 
-The span order stays A/B/C, matching CSR and the source. Hydration instead produces A/C/B. The console and pageerror channel remain quiet.
+Span order stays A/B/C. CSR does; hydration produces A/C/B, with no console or page errors.
 
 ### Platform
 
-Solid rc.15 / next `e3716454129f`; development and production; Bun 1.4.2, system Chrome. rc.13 also fails, so no rc.15 regression is claimed.
+Solid rc.15 and next e3716454129f; Bun 1.4.2, system Chrome; development and production.
 
 ### Additional context
 
-Removing the preceding A makes B/C hydrate correctly. No Show, action, timer, router, type bypass or hand-written SSR hole is needed. The fixture supplies the module URL metadata normally injected by a bundler and uses HydrationScript with a NoHydration document shell. Found by generated rendering-order/hydration invariants; the pinned test retains a CSR control and quiet-channel checks.
+Removing the preceding A makes B/C hydrate correctly. The repro uses HydrationScript and a NoHydration document shell; its lazy module identity is mapped to the generated asset in the manifest. rc.13 also fails.

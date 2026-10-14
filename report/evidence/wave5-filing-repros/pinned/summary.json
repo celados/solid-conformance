@@ -1,0 +1,267 @@
+[
+  {
+    "name": "29-loading-lazy-hydration-order",
+    "host": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-29-loading-lazy-hydration-order-GA3oVc",
+    "sourceCommit": "44683a4dba3bd8d9f87c30e5cecb8b2ad4f94759",
+    "startedAt": "2026-10-14T08:38:58.989Z",
+    "freshNodeModules": true,
+    "commands": [
+      {
+        "command": [
+          "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+          "install",
+          "--frozen-lockfile"
+        ],
+        "pid": 13417,
+        "startedAt": "2026-10-14T08:38:59.136Z"
+      },
+      {
+        "command": [
+          "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+          "run",
+          "repro"
+        ],
+        "pid": 13418,
+        "startedAt": "2026-10-14T08:38:59.240Z"
+      }
+    ],
+    "installExitCode": 0,
+    "packages": {
+      "@solidjs/compiler": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-29-loading-lazy-hydration-order-GA3oVc/node_modules/@solidjs/compiler"
+      },
+      "@solidjs/diagnostics": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-29-loading-lazy-hydration-order-GA3oVc/node_modules/@solidjs/diagnostics"
+      },
+      "@solidjs/signals": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-29-loading-lazy-hydration-order-GA3oVc/node_modules/@solidjs/signals"
+      },
+      "@solidjs/web": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-29-loading-lazy-hydration-order-GA3oVc/node_modules/@solidjs/web"
+      },
+      "solid-js": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-29-loading-lazy-hydration-order-GA3oVc/node_modules/solid-js"
+      }
+    },
+    "testExitCode": 1,
+    "finishedAt": "2026-10-14T08:39:11.462Z",
+    "hostRemoved": true
+  },
+  {
+    "name": "28-held-navigation-feedback",
+    "host": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-28-held-navigation-feedback-hIhtae",
+    "sourceCommit": "44683a4dba3bd8d9f87c30e5cecb8b2ad4f94759",
+    "startedAt": "2026-10-14T08:39:11.553Z",
+    "freshNodeModules": true,
+    "commands": [
+      {
+        "command": [
+          "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+          "install",
+          "--frozen-lockfile"
+        ],
+        "pid": 13629,
+        "startedAt": "2026-10-14T08:39:11.659Z"
+      },
+      {
+        "command": [
+          "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+          "run",
+          "repro"
+        ],
+        "pid": 13630,
+        "startedAt": "2026-10-14T08:39:11.744Z"
+      }
+    ],
+    "installExitCode": 0,
+    "packages": {
+      "@solidjs/compiler": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-28-held-navigation-feedback-hIhtae/node_modules/@solidjs/compiler"
+      },
+      "@solidjs/diagnostics": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-28-held-navigation-feedback-hIhtae/node_modules/@solidjs/diagnostics"
+      },
+      "@solidjs/router": {
+        "version": "2.0.0-next.39",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-28-held-navigation-feedback-hIhtae/node_modules/@solidjs/router"
+      },
+      "@solidjs/signals": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-28-held-navigation-feedback-hIhtae/node_modules/@solidjs/signals"
+      },
+      "@solidjs/web": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-28-held-navigation-feedback-hIhtae/node_modules/@solidjs/web"
+      },
+      "solid-js": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-28-held-navigation-feedback-hIhtae/node_modules/solid-js"
+      }
+    },
+    "testExitCode": 1,
+    "finishedAt": "2026-10-14T08:39:23.997Z",
+    "hostRemoved": true
+  },
+  {
+    "name": "20-loading-on-accessor",
+    "host": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-20-loading-on-accessor-pBn3ZV",
+    "sourceCommit": "44683a4dba3bd8d9f87c30e5cecb8b2ad4f94759",
+    "startedAt": "2026-10-14T08:39:24.081Z",
+    "freshNodeModules": true,
+    "commands": [
+      {
+        "command": [
+          "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+          "install",
+          "--frozen-lockfile"
+        ],
+        "pid": 13668,
+        "startedAt": "2026-10-14T08:39:24.196Z"
+      },
+      {
+        "command": [
+          "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+          "run",
+          "repro"
+        ],
+        "pid": 13669,
+        "startedAt": "2026-10-14T08:39:24.236Z"
+      }
+    ],
+    "installExitCode": 0,
+    "packages": {
+      "@solidjs/compiler": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-20-loading-on-accessor-pBn3ZV/node_modules/@solidjs/compiler"
+      },
+      "@solidjs/diagnostics": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-20-loading-on-accessor-pBn3ZV/node_modules/@solidjs/diagnostics"
+      },
+      "@solidjs/signals": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-20-loading-on-accessor-pBn3ZV/node_modules/@solidjs/signals"
+      },
+      "@solidjs/web": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-20-loading-on-accessor-pBn3ZV/node_modules/@solidjs/web"
+      },
+      "solid-js": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-20-loading-on-accessor-pBn3ZV/node_modules/solid-js"
+      }
+    },
+    "testExitCode": 1,
+    "finishedAt": "2026-10-14T08:39:33.815Z",
+    "hostRemoved": true
+  },
+  {
+    "name": "21-nested-refresh-types",
+    "host": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-21-nested-refresh-types-sGi1FC",
+    "sourceCommit": "44683a4dba3bd8d9f87c30e5cecb8b2ad4f94759",
+    "startedAt": "2026-10-14T08:39:33.901Z",
+    "freshNodeModules": true,
+    "commands": [
+      {
+        "command": [
+          "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+          "install",
+          "--frozen-lockfile"
+        ],
+        "pid": 13751,
+        "startedAt": "2026-10-14T08:39:34.004Z"
+      },
+      {
+        "command": [
+          "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+          "run",
+          "repro"
+        ],
+        "pid": 13752,
+        "startedAt": "2026-10-14T08:39:34.034Z"
+      }
+    ],
+    "installExitCode": 0,
+    "packages": {
+      "@solidjs/diagnostics": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-21-nested-refresh-types-sGi1FC/node_modules/@solidjs/diagnostics"
+      },
+      "@solidjs/signals": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-21-nested-refresh-types-sGi1FC/node_modules/@solidjs/signals"
+      },
+      "@solidjs/web": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-21-nested-refresh-types-sGi1FC/node_modules/@solidjs/web"
+      },
+      "solid-js": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-21-nested-refresh-types-sGi1FC/node_modules/solid-js"
+      }
+    },
+    "testExitCode": 1,
+    "finishedAt": "2026-10-14T08:39:35.151Z",
+    "hostRemoved": true
+  },
+  {
+    "name": "30-documentation-errata",
+    "host": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-30-documentation-errata-gOBTlo",
+    "sourceCommit": "44683a4dba3bd8d9f87c30e5cecb8b2ad4f94759",
+    "startedAt": "2026-10-14T08:39:35.216Z",
+    "freshNodeModules": true,
+    "commands": [
+      {
+        "command": [
+          "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+          "install",
+          "--frozen-lockfile"
+        ],
+        "pid": 13774,
+        "startedAt": "2026-10-14T08:39:35.376Z"
+      },
+      {
+        "command": [
+          "/opt/homebrew/Cellar/bun/1.3.14/bin/bun",
+          "run",
+          "repro"
+        ],
+        "pid": 13775,
+        "startedAt": "2026-10-14T08:39:35.408Z"
+      }
+    ],
+    "installExitCode": 0,
+    "packages": {
+      "@solidjs/compiler": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-30-documentation-errata-gOBTlo/node_modules/@solidjs/compiler"
+      },
+      "@solidjs/diagnostics": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-30-documentation-errata-gOBTlo/node_modules/@solidjs/diagnostics"
+      },
+      "@solidjs/signals": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-30-documentation-errata-gOBTlo/node_modules/@solidjs/signals"
+      },
+      "@solidjs/web": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-30-documentation-errata-gOBTlo/node_modules/@solidjs/web"
+      },
+      "solid-js": {
+        "version": "2.0.0-rc.15",
+        "directory": "/private/var/folders/hc/8h0qs5r95zn74xtmkl9b1ll80000gn/T/solid-filing-30-documentation-errata-gOBTlo/node_modules/solid-js"
+      }
+    },
+    "testExitCode": 1,
+    "finishedAt": "2026-10-14T08:39:37.401Z",
+    "hostRemoved": true
+  }
+]

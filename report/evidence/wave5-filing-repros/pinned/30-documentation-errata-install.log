@@ -1,0 +1,11 @@
+bun install v1.4.2 (744846f84)
+
++ @types/bun@1.4.2
++ typescript@7.0.2
++ @solidjs/compiler@2.0.0-rc.15
++ @solidjs/diagnostics@2.0.0-rc.15
++ @solidjs/signals@2.0.0-rc.15
++ @solidjs/web@2.0.0-rc.15
++ solid-js@2.0.0-rc.15
+
+22 packages installed [24.00ms]
