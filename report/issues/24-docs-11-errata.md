@@ -1,7 +1,10 @@
 ---
 type: "Issue"
 title: "[2.0 rc.13 + next] Solid 2 documentation errata — 11-server-components.md"
-status: "draft"
+status: held
+filing: held
+held_reason: >
+  Server-write warnings and frame mount identity are diagnostic/integration contracts, not ordinary app defects.
 tier: "B"
 findings: ["027","038"]
 head: "3086f1b77cd7b0431d3a7f768c2984c335758633"

@@ -1,7 +1,10 @@
 ---
 type: "Issue"
 title: "[2.0 rc.13 + next] Solid 2 documentation errata — 08-dev-diagnostics.md"
-status: "draft"
+status: held
+filing: held
+held_reason: >
+  Server-setter wording concerns an intentionally invalid SSR write; no app-observable malfunction.
 tier: "B"
 findings: ["045"]
 head: "3086f1b77cd7b0431d3a7f768c2984c335758633"

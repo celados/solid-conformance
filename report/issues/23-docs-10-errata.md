@@ -1,7 +1,10 @@
 ---
 type: "Issue"
 title: "[2.0 rc.13 + next] Solid 2 documentation errata — 10-server-functions.md"
-status: "draft"
+status: held
+filing: held
+held_reason: >
+  Typed-array transport works; the discrepancy is an opt-in requirement that is unnecessarily broad.
 tier: "B"
 findings: ["024"]
 head: "3086f1b77cd7b0431d3a7f768c2984c335758633"

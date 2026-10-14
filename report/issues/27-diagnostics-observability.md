@@ -1,7 +1,10 @@
 ---
 type: "Issue"
 title: "[2.0 rc.13 + next] Solid 2 diagnostics and observability contract discrepancies"
-status: "draft"
+status: held
+filing: held
+held_reason: >
+  Diagnostic metadata and tooling omissions lack a demonstrated ordinary app failure; some also require malformed inputs.
 tier: "C"
 findings: ["010","012","017","019","020","021","023","025","028","033","039","040","042","051","054"]
 code_cases: ["010","012","023","042"]

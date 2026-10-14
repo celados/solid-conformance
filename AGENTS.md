@@ -1,7 +1,8 @@
 # solid-conformance
 
 A conformance and property-based test suite for the Solid 2 UI framework
-(currently `2.0.0-rc.13` on npm `next`, and upstream HEAD). We write tests that
+(published baseline and built upstream HEAD; see [RUNNING.md](RUNNING.md)
+for the selected versions and commands). We write tests that
 check the documented behavior and general invariants of rendering, SSR,
 hydration and async data. Where the framework behaves differently from its
 documentation or an invariant, we keep a minimal failing test so the

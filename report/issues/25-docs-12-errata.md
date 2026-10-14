@@ -1,7 +1,10 @@
 ---
 type: "Issue"
 title: "[2.0 rc.13 + next] Solid 2 documentation errata — 12-ssr-http.md"
-status: "draft"
+status: held
+filing: held
+held_reason: >
+  Direct invocation error-hook tier is an integration-author-only path.
 tier: "B"
 findings: ["031"]
 head: "3086f1b77cd7b0431d3a7f768c2984c335758633"
