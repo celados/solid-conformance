@@ -23,3 +23,12 @@ export { fc }
 
 // The same router operation algebra drives the functional track and transition invariants.
 export {routerOperations as routerTransitions} from '../router/generator'
+
+// Display-ahead mounts and server-echo permutations introduced in Wave 5.
+export const heldUiScenarios = fc.record({
+ family: fc.constantFrom('latest-mount' as const, 'held-navigation' as const, 'core-feedback' as const, 'optimistic-reorder' as const, 'refresh-derived' as const, 'until-derived' as const),
+ value: fc.integer({min: 1, max: 9}),
+ nested: fc.boolean(),
+ reverse: fc.boolean(),
+ delay: fc.integer({min: 0, max: 40}),
+})
