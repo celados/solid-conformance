@@ -6,6 +6,7 @@
       "name": "solid-conformance-wave1",
       "dependencies": {
         "@remix-run/cookie": "1.0.0",
+        "@solidjs/babel-plugin": "2.0.0-rc.15",
         "@solidjs/compiler": "2.0.0-rc.15",
         "@solidjs/diagnostics": "2.0.0-rc.15",
         "@solidjs/h": "2.0.0-rc.15",
