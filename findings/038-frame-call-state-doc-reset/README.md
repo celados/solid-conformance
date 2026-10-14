@@ -21,3 +21,11 @@ The repro has one server heading proving the new argument rendered, one client c
 Open and closed searches across solidjs/solid, solid-router and solid-start for frame/state/arguments were reviewed. The closest issues are solid#2974 (stale SSR payload after remount) and #3540 (Loading `on` keyed boundary swaps/hold); neither reports this conflicting documentation. Existing finding009 concerns stale nested content and is a different mechanism. The rc.13 comparison is recorded by the subsequent Wave 3 verification paragraph and its raw baseline logs; the old pending note is superseded.
 
 rc.13 开发／生产独立对照仍红，原始结果：evidence/solid-wave3-033035-rc13.log、solid-wave3-036038-rc13.log、solid-wave3-034044-rc13-prod.log。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Integration frame-call identity wording; no app-visible incorrect state.

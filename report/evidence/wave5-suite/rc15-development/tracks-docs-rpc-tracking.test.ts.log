@@ -1,0 +1,21 @@
+bun test v1.4.2 (744846f84)
+
+tracks/docs/rpc-tracking.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+1 | import {test,expect} from 'bun:test'
+2 | import {resolve} from 'node:path'
+3 | import {chromium} from 'playwright'
+4 | import {build} from '../../scripts/build'
+5 | test('05-async-data.md L245 / 10-server-functions.md L269: prepareRequest and rich serialization await past the tracking window and send real discarded duplicate POSTs',async()=>{const dir=resolve('.build/rpc-tracking');await build(dir,(process.env.BUILD_MODE??'development')as 'development'|'production',{client:['tracks/docs/rpc-tracking/client.tsx'],server:['tracks/docs/rpc-tracking/server.tsx']});const runtime=await import(dir+'/server.js'),browser=await chromium.launch({channel:'chrome',headless:true});try{for(const mode of ['plain','prepare','rich']){const html=await runtime.document(mode),requests:{method:string,path:string}[]=[];const server=Bun.serve({hostname:'127.0.0.1',port:0,async fetch(request){const path=new URL(request.url).pathname;if(path.startsWith('/_server/')){requests.push({method:request.method,path});return runtime.handle(request)}if(path.endsWith('.js'))return new Response(Bun.file(dir+path),{headers:{'content-type':'text/javascript'}});if(path!=='/')return new Response(null,{status:204
+
+TimeoutError: waitForFunction: Timeout 30000ms exceeded.
+  log: [],
+
+      at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/docs/rpc-tracking.test.ts:5:1428
+      at processTicksAndRejections (native:7:39)
+(fail) 05-async-data.md L245 / 10-server-functions.md L269: prepareRequest and rich serialization await past the tracking window and send real discarded duplicate POSTs [43287.08ms]
+
+ 0 pass
+ 1 fail
+ 8 expect() calls
+Ran 1 test across 1 file. [43.45s]

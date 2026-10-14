@@ -1,0 +1,10 @@
+bun test v1.4.2 (744846f84)
+
+.scratch/order-app.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+[{"hydrate":false,"text":"ABC","messages":[]},{"hydrate":true,"text":"ABC","messages":[]}]
+
+ 1 pass
+ 0 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [14.94s]

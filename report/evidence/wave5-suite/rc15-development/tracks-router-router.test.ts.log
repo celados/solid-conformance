@@ -1,0 +1,27 @@
+bun test v1.4.2 (744846f84)
+
+tracks/router/router.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+Router preload csr
+Router preload hydrate
+Router supersession csr
+Router supersession hydrate
+Router action-failure csr
+Router action-failure hydrate
+Router action-success csr
+Router action-success hydrate
+Router redirect csr
+Router redirect hydrate
+Router live csr
+Router live hydrate
+Router query-error csr
+Router query-error hydrate
+Router form-success csr
+Router form-success hydrate
+Router server-action csr
+Router server-action hydrate
+
+ 1 pass
+ 0 fail
+ 282 expect() calls
+Ran 1 test across 1 file. [48.03s]

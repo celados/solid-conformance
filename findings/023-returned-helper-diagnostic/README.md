@@ -4,6 +4,8 @@ id: '023'
 status: confirmed
 versions:
   - HEAD 53ef0e69 development
+  - "rc.15 development"
+  - "HEAD e371645 development"
 area: diagnostics/documentation
 upstream: []
 found_by: docs-to-tests
@@ -25,3 +27,11 @@ BUILD_MODE=production bun test ./findings/023-returned-helper-diagnostic/repro.t
 移除了 DOM、组件、Loading、effect、deferred gate、写入与后续更新；剩余 root 内的一个 signal、一个 memo、返回的 async helper 和 Promise microtask。直接 async memo 是同一 signal/await 机制的正对照；不是缺失的 warning 基建导致安静。
 
 对 solid、solid-router、solid-start 分别查询精确 code 和 `read after await`，未限定 issue state，因此同时检查 open/closed；精确 code 均无结果。阅读 solid#2987 与 #2802 后排除：前者是未初始化 async memo 的异常丢失，后者是依赖错误传播，本例读取同步 signal 且正确发出开发诊断。保存查询摘要于 evidence/wave3-finding023-dedupe.json。rc.13 比较由主线程统一切换依赖后运行，尚未声称其结果。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Warning-exclusion wording for a returned async helper; runtime warning is useful.

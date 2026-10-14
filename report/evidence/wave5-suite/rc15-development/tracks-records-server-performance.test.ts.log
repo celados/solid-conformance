@@ -1,0 +1,13 @@
+bun test v1.4.2 (744846f84)
+
+tracks/records/server-performance.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+155 | import { renderServerComponent, asyncArg, frameTransformDirectResult, frameTransformResul
+               ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.dev.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/docs/frame-cases.tsx:155:10
+(fail) RFC08 L1222: Server-Timing spans use native navigation and resource responseStart [32.27ms]
+
+ 0 pass
+ 1 fail
+Ran 1 test across 1 file. [202.00ms]

@@ -6,6 +6,10 @@ status: confirmed
 versions:
   - "rc.13 development"
   - HEAD 53ef0e69 development
+  - "rc.15 development"
+  - "rc.15 production"
+  - "HEAD e371645 development"
+  - "HEAD e371645 production"
 area: diagnostics
 upstream: []
 found_by: tracks/docs
@@ -24,3 +28,11 @@ bun test ./findings/040-initial-binding-console/repro.test.ts
 三仓 open/closed 搜索保存在 dedupe.json。另读 solid#3739（HMR 依赖被计入的阈值问题）与 #3351（projection 叶信号保留），机制不同；未发现首次绑定 console DOM 参数的问题。未写上游。
 
 Wave 3 独立版本对照：rc.13 development 仍红；原始运行日志见仓库 evidence/ 中对应的 rc13 日志（其中 new-baseline-production 同时运行 039/045/047/048）。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Diagnostic console element metadata only.

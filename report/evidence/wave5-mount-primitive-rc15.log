@@ -1,0 +1,9 @@
+bun test v1.4.2 (744846f84)
+
+.scratch/mount-layer.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+{"before":{"outer":0,"slot":"pending"},"after":{"outer":1,"slot":1}}
+
+ 1 pass
+ 0 fail
+Ran 1 test across 1 file. [122.00ms]

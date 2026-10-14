@@ -1,0 +1,1328 @@
+{
+  "runtime": {
+    "target": "head",
+    "upstream": {
+      "ref": "next",
+      "revision": "e3716454129f8438b65257c95db5c383622494ba",
+      "directory": "/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"
+    },
+    "buildMode": "production",
+    "solid": "2.0.0-rc.15",
+    "router": "2.0.0-next.39",
+    "routerHead": {
+      "ref": "next",
+      "revision": "4a1685ec8f1ab045843b2ae590c7afe821f73d90",
+      "directory": "/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"
+    }
+  },
+  "seed": 20261007,
+  "observations": [
+    {
+      "scenario": {
+        "value": 6,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 8,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "08",
+        "after": "88",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 4,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 4,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 9,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "09",
+        "after": "99",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 3,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "03",
+        "after": "33",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 2,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "02",
+        "after": "22",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 6,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 7,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "07",
+        "after": "77",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 4,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 9,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "09",
+        "after": "99",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": false,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 3,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "03",
+        "after": "33",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 2,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "02",
+        "after": "22",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 5,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "05",
+        "after": "55",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 3,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "03",
+        "after": "33",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 4,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 2,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "02",
+        "after": "22",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 9,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "09",
+        "after": "99",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 3,
+        "nested": false,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "03",
+        "after": "33",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 9,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "09",
+        "after": "99",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 6,
+        "nested": false,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 4,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 4,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 7,
+        "nested": false,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "07",
+        "after": "77",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 4,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 7,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "07",
+        "after": "77",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 9,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "09",
+        "after": "99",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": false,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 4,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 2,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "02",
+        "after": "22",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 7,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "07",
+        "after": "77",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 7,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "07",
+        "after": "77",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 6,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 9,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "09",
+        "after": "99",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 3,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "03",
+        "after": "33",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 5,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "05",
+        "after": "55",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 8,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "08",
+        "after": "88",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 8,
+        "nested": false,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "08",
+        "after": "88",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 5,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "05",
+        "after": "55",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 2,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "02",
+        "after": "22",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 6,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 3,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "03",
+        "after": "33",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 7,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "07",
+        "after": "77",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 9,
+        "nested": false,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "09",
+        "after": "99",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 6,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 9,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "09",
+        "after": "99",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 9,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "09",
+        "after": "99",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 6,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 6,
+        "nested": false,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 2,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "02",
+        "after": "22",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 6,
+        "nested": false,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 3,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "03",
+        "after": "33",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 4,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 9,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "09",
+        "after": "99",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 8,
+        "nested": false,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "08",
+        "after": "88",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 3,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "03",
+        "after": "33",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 6,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 8,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "08",
+        "after": "88",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 2,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "02",
+        "after": "22",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 9,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "09",
+        "after": "99",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 3,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "03",
+        "after": "33",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 4,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": false,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 2,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "02",
+        "after": "22",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 8,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "08",
+        "after": "88",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 7,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "07",
+        "after": "77",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 6,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 3,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "03",
+        "after": "33",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 3,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "03",
+        "after": "33",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 6,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 7,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "07",
+        "after": "77",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 1,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 6,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 5,
+        "nested": true,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "05",
+        "after": "55",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 6,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 4,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 7,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "07",
+        "after": "77",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 4,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 4,
+        "nested": true,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 9,
+        "nested": true,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "09",
+        "after": "99",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 8,
+        "nested": false,
+        "shape": "keyed"
+      },
+      "probe": {
+        "before": "08",
+        "after": "88",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 7,
+        "nested": false,
+        "shape": "function"
+      },
+      "probe": {
+        "before": "07",
+        "after": "77",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "value": 3,
+        "nested": false,
+        "shape": "static"
+      },
+      "probe": {
+        "before": "03",
+        "after": "33",
+        "pending": true,
+        "fired": true
+      }
+    }
+  ],
+  "known": {
+    "056": 100
+  },
+  "failed": false,
+  "counterexample": null,
+  "counterexamplePath": null,
+  "error": ""
+}

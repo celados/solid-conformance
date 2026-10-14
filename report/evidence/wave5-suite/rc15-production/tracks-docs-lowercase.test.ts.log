@@ -1,0 +1,41 @@
+bun test v1.4.2 (744846f84)
+
+tracks/docs/lowercase.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+compiled false {
+  count: 0,
+  attribute: "() => {\n    count++;\n  }",
+  events: [],
+}
+compiled true {
+  count: 0,
+  attribute: "() => {}",
+  events: [],
+}
+spread false {
+  count: 0,
+  attribute: "() => {\n    count++;\n  }",
+  events: [],
+}
+spread true {
+  count: 0,
+  attribute: "() => {}",
+  events: [],
+}
+assign false {
+  count: 0,
+  attribute: "() => {\n    count++;\n  }",
+  events: [],
+}
+assign true {
+  count: 0,
+  attribute: null,
+  events: [],
+}
+(fail) lowercase warning catches compiled spread assign across CSR and hydration [30083.44ms]
+  ^ this test timed out after 30000ms.
+
+ 0 pass
+ 1 fail
+ 23 expect() calls
+Ran 1 test across 1 file. [30.72s]

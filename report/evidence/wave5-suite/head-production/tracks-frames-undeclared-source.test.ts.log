@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/undeclared-source.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"e3716454129f8438b65257c95db5c383622494ba","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"},"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":{"ref":"next","revision":"4a1685ec8f1ab045843b2ae590c7afe821f73d90","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"}}
+13 | import { renderServerComponent, frameTransformDirectResult, frameTransformResult, ServerC
+              ^
+error: No matching export in "../../.upstream/e3716454129f8438b65257c95db5c383622494ba/packages/web/frames/dist/server.dev.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/frames/undeclared-source.tsx:13:10
+(fail) RFC08 undeclared document source five-second check and live/frame exemptions development [28.47ms]
+13 | import { renderServerComponent, frameTransformDirectResult, frameTransformResult, ServerC
+              ^
+error: No matching export in "../../.upstream/e3716454129f8438b65257c95db5c383622494ba/packages/web/frames/dist/server.observe.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/frames/undeclared-source.tsx:13:10
+(fail) RFC08 undeclared document source five-second check and live/frame exemptions observe [14.23ms]
+13 | import { renderServerComponent, frameTransformDirectResult, frameTransformResult, ServerC
+              ^
+error: No matching export in "../../.upstream/e3716454129f8438b65257c95db5c383622494ba/packages/web/frames/dist/server.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/frames/undeclared-source.tsx:13:10
+(fail) RFC08 undeclared document source five-second check and live/frame exemptions production [26.86ms]
+
+ 0 pass
+ 3 fail
+Ran 3 tests across 1 file. [94.00ms]

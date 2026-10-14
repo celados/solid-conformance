@@ -1,0 +1,13 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/frames.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+150 | import { renderServerComponent, asyncArg, frameTransformDirectResult, frameTransformResul
+               ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/docs/frame-cases.tsx:150:10
+(fail) RFC 10/11 real HTTP references and frame CSR/document adoption/state/slots [37.11ms]
+
+ 0 pass
+ 1 fail
+Ran 1 test across 1 file. [362.00ms]

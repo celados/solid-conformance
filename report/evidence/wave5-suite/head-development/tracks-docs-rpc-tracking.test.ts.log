@@ -1,0 +1,21 @@
+bun test v1.4.2 (744846f84)
+
+tracks/docs/rpc-tracking.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"e3716454129f8438b65257c95db5c383622494ba","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"},"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":{"ref":"next","revision":"4a1685ec8f1ab045843b2ae590c7afe821f73d90","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"}}
+1 | import {test,expect} from 'bun:test'
+2 | import {resolve} from 'node:path'
+3 | import {chromium} from 'playwright'
+4 | import {build} from '../../scripts/build'
+5 | test('05-async-data.md L245 / 10-server-functions.md L269: prepareRequest and rich serialization await past the tracking window and send real discarded duplicate POSTs',async()=>{const dir=resolve('.build/rpc-tracking');await build(dir,(process.env.BUILD_MODE??'development')as 'development'|'production',{client:['tracks/docs/rpc-tracking/client.tsx'],server:['tracks/docs/rpc-tracking/server.tsx']});const runtime=await import(dir+'/server.js'),browser=await chromium.launch({channel:'chrome',headless:true});try{for(const mode of ['plain','prepare','rich']){const html=await runtime.document(mode),requests:{method:string,path:string}[]=[];const server=Bun.serve({hostname:'127.0.0.1',port:0,async fetch(request){const path=new URL(request.url).pathname;if(path.startsWith('/_server/')){requests.push({method:request.method,path});return runtime.handle(request)}if(path.endsWith('.js'))return new Response(Bun.file(dir+path),{headers:{'content-type':'text/javascript'}});if(path!=='/')return new Response(null,{status:204
+
+TimeoutError: waitForFunction: Timeout 30000ms exceeded.
+  log: [],
+
+      at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/tracks/docs/rpc-tracking.test.ts:5:1428
+      at processTicksAndRejections (native:7:39)
+(fail) 05-async-data.md L245 / 10-server-functions.md L269: prepareRequest and rich serialization await past the tracking window and send real discarded duplicate POSTs [43055.48ms]
+
+ 0 pass
+ 1 fail
+ 8 expect() calls
+Ran 1 test across 1 file. [43.24s]

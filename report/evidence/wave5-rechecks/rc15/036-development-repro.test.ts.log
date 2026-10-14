@@ -1,0 +1,10 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+
+findings/036-conditional-cache-format/repro.test.ts:
+Server function "conditional" answered a scripted call with 304 Not Modified. The client transport sends no conditional headers, so nothing was asked to be revalidated: the call resolves to undefined, not "unchanged". For conditional reads, declare the function GET and set ETag/Cache-Control response headers - the browser owns that exchange and replays its cached answer on a 304.
+
+ 1 pass
+ 0 fail
+ 6 expect() calls
+Ran 1 test across 1 file. [10.77s]

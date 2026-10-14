@@ -1,0 +1,8 @@
+bun test v1.4.2 (744846f84)
+
+tracks/properties/properties.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+Runtime ready: {"resolvedSolid":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/node_modules/solid-js","upstream":null,"solid":"2.0.0-rc.15","signals":"2.0.0-rc.15","compiler":"2.0.0-rc.15","label":"rc15","buildMode":"production"}
+Generated attempts: 25; browser runs: 168
+Generated attempts: 50; browser runs: 349
+Generated attempts: 75; browser runs: 536

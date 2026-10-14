@@ -1,0 +1,46 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"e3716454129f8438b65257c95db5c383622494ba","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"},"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":{"ref":"next","revision":"4a1685ec8f1ab045843b2ae590c7afe821f73d90","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"}}
+
+findings/005-keyed-reconcile-identity/repro.test.ts:
+1 | import {test,expect} from 'bun:test'
+2 | import {createRoot,createStore,reconcile,flush} from '@solidjs/signals'
+3 | test('04-stores.md: keyed reconcile preserves unchanged row identity',()=>{
+4 | 	let dispose!:()=>void
+5 | 	const [store,set]=createRoot(d=>{dispose=d;return createStore([{id:1},{id:2}])})
+6 | 	try {const first=store[0];set(d=>{reconcile([{id:2},{id:1}],'id')(d)});flush();expect(store[1]).toBe(first)}finally{dispose()}
+                                                                                                     ^
+error: expect(received).toBe(expected)
+
+Expected: {
+  v: {
+    id: 1,
+  },
+  ch: false,
+  pb: null,
+  n: null,
+  h: null,
+  k: null,
+  dk: null,
+  u: [],
+  pk: "0",
+  px: [Circular],
+  d: false,
+  a: false,
+  sc: 0,
+  kc: 0,
+  nc: 0,
+  fam: null,
+  s: false,
+  ovl: false,
+  del: null,
+  wk: null,
+}
+Received: serializes to the same string
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/findings/005-keyed-reconcile-identity/repro.test.ts:6:98)
+(fail) 04-stores.md: keyed reconcile preserves unchanged row identity [2.15ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [28.00ms]

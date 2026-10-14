@@ -1,0 +1,17 @@
+bun test v1.4.2 (744846f84)
+
+tracks/router/invocation.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+{
+  base: 3,
+  calls: 1,
+  errors: [ "Error: invoke expects a server function reference (or a wrapper that forwards its invocation channel). Per-call options apply at the transport; for a data layer's calls, use its per-call options instead.",
+    "Error: invoke expects a server function reference (or a wrapper that forwards its invocation channel). Per-call options apply at the transport; for a data layer's calls, use its per-call options instead.",
+    "Error: invoke expects a server function reference (or a wrapper that forwards its invocation channel). Per-call options apply at the transport; for a data layer's calls, use its per-call options instead."
+  ],
+}
+
+ 1 pass
+ 0 fail
+ 6 expect() calls
+Ran 1 test across 1 file. [41.00ms]

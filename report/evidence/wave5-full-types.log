@@ -1,0 +1,45 @@
+$ bun x tsc --noEmit
+findings/055-held-navigation-feedback/client.tsx(9,29): error TS7006: Parameter 'props' implicitly has an 'any' type.
+tracks/docs/compiler-addressability.test.ts(15,142): error TS7016: Could not find a declaration file for module '@solidjs/babel-plugin'. '/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/node_modules/@solidjs/babel-plugin/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/solidjs__babel-plugin` if it exists or add a new declaration (.d.ts) file containing `declare module '@solidjs/babel-plugin';`
+tracks/docs/frame-cases.tsx(4,3): error TS2305: Module '"@solidjs/web/frames/server"' has no exported member 'renderServerComponent'.
+tracks/docs/frame-cases.tsx(26,19): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/docs/frame-cases.tsx(27,24): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/docs/frame-cases.tsx(40,32): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/docs/frame-cases.tsx(42,20): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/docs/frame-cases.tsx(46,20): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/docs/frame-cases.tsx(61,32): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/docs/frame-cases.tsx(63,20): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/docs/frame-cases.tsx(67,20): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/docs/frame-cases.tsx(87,19): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/docs/frame-cases.tsx(88,19): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/docs/frame-cases.tsx(109,19): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/docs/frame-cases.tsx(110,33): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/docs/frame-cases.tsx(113,22): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/docs/frame-cases.tsx(123,45): error TS7006: Parameter 'p' implicitly has an 'any' type.
+tracks/docs/frame-cases.tsx(127,29): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/docs/frame-cases.tsx(171,27): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/docs/late-final-server.tsx(1,9): error TS2305: Module '"@solidjs/web/frames/server"' has no exported member 'renderToFrameStream'.
+tracks/docs/rpc-cases.ts(506,22): error TS2339: Property 'response' does not exist on type '{ answer: number; }'.
+tracks/docs/rpc-cases.ts(507,28): error TS2339: Property 'response' does not exist on type '{ answer: number; }'.
+tracks/docs/rpc-cases.ts(508,22): error TS2339: Property 'response' does not exist on type '{ answer: number; }'.
+tracks/docs/rpc-cases.ts(822,177): error TS2339: Property 'headers' does not exist on type 'never'.
+tracks/docs/rpc-cases.ts(822,234): error TS2339: Property 'text' does not exist on type 'never'.
+tracks/frames/binding-server.tsx(10,10): error TS2305: Module '"@solidjs/web/frames/server"' has no exported member 'renderServerComponent'.
+tracks/frames/server-diagnostics.tsx(45,3): error TS2305: Module '"@solidjs/web/frames/server"' has no exported member 'renderServerComponent'.
+tracks/frames/server-diagnostics.tsx(538,35): error TS7006: Parameter 'c' implicitly has an 'any' type.
+tracks/frames/server.tsx(26,3): error TS2305: Module '"@solidjs/web/frames/server"' has no exported member 'renderServerComponent'.
+tracks/frames/transport-contracts/client.ts(32,69): error TS2551: Property 'value' does not exist on type 'number'. Did you mean 'valueOf'?
+tracks/frames/transport-contracts/client.ts(32,91): error TS2339: Property 'response' does not exist on type 'number'.
+tracks/frames/transport-contracts/client.ts(32,128): error TS2339: Property 'response' does not exist on type 'number'.
+tracks/frames/transport-contracts/client.ts(32,161): error TS2339: Property 'response' does not exist on type 'number'.
+tracks/frames/transport-contracts/client.ts(32,216): error TS2339: Property 'response' does not exist on type 'number'.
+tracks/frames/transport-contracts/client.ts(32,277): error TS2339: Property 'status' does not exist on type 'never'.
+tracks/frames/transport-contracts/client.ts(32,299): error TS2339: Property 'headers' does not exist on type 'never'.
+tracks/frames/transport-contracts/client.ts(32,340): error TS2339: Property 'headers' does not exist on type 'never'.
+tracks/frames/transport-contracts/client.ts(32,394): error TS2339: Property 'status' does not exist on type 'never'.
+tracks/frames/transport-contracts/client.ts(32,422): error TS2339: Property 'text' does not exist on type 'never'.
+tracks/frames/transport-contracts/client.ts(32,450): error TS2339: Property 'headers' does not exist on type 'never'.
+tracks/frames/undeclared-source.tsx(4,9): error TS2305: Module '"@solidjs/web/frames/server"' has no exported member 'renderServerComponent'.
+tracks/transitions/wave5-client.tsx(25,146): error TS7006: Parameter 'props' implicitly has an 'any' type.
+error: script "check" exited with code 1

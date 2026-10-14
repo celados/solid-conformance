@@ -1,0 +1,38 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/binding.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"e3716454129f8438b65257c95db5c383622494ba","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"},"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":{"ref":"next","revision":"4a1685ec8f1ab045843b2ae590c7afe821f73d90","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"}}
+85 | import { renderServerComponent } from "@solidjs/web/frames/server";
+              ^
+error: No matching export in "../../.upstream/e3716454129f8438b65257c95db5c383622494ba/packages/web/frames/dist/server.dev.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/frames/binding-server.tsx:85:10
+(fail) RFC08 binding server reasons development [68.18ms]
+83 | import { renderServerComponent } from "@solidjs/web/frames/server";
+              ^
+error: No matching export in "../../.upstream/e3716454129f8438b65257c95db5c383622494ba/packages/web/frames/dist/server.observe.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/frames/binding-server.tsx:83:10
+(fail) RFC08 binding server reasons observe [106.73ms]
+83 | import { renderServerComponent } from "@solidjs/web/frames/server";
+              ^
+error: No matching export in "../../.upstream/e3716454129f8438b65257c95db5c383622494ba/packages/web/frames/dist/server.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/frames/binding-server.tsx:83:10
+(fail) RFC08 binding server reasons production [83.88ms]
+85 | import { renderServerComponent } from "@solidjs/web/frames/server";
+              ^
+error: No matching export in "../../.upstream/e3716454129f8438b65257c95db5c383622494ba/packages/web/frames/dist/server.dev.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/frames/binding-server.tsx:85:10
+(fail) RFC08 binding client shapes and orphan records development [355.14ms]
+83 | import { renderServerComponent } from "@solidjs/web/frames/server";
+              ^
+error: No matching export in "../../.upstream/e3716454129f8438b65257c95db5c383622494ba/packages/web/frames/dist/server.observe.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/frames/binding-server.tsx:83:10
+(fail) RFC08 binding client shapes and orphan records observe [325.97ms]
+83 | import { renderServerComponent } from "@solidjs/web/frames/server";
+              ^
+error: No matching export in "../../.upstream/e3716454129f8438b65257c95db5c383622494ba/packages/web/frames/dist/server.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/frames/binding-server.tsx:83:10
+(fail) RFC08 binding client shapes and orphan records production [198.90ms]
+
+ 0 pass
+ 6 fail
+Ran 6 tests across 1 file. [1.76s]

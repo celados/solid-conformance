@@ -1,0 +1,272 @@
+[
+  {
+    "target": "rc15",
+    "id": "012",
+    "path": "findings/012-attribution-audience-gate/repro.test.ts",
+    "mode": "observe",
+    "pid": 92388,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-observe/rc15-012-repro.test.ts.log"
+  },
+  {
+    "target": "rc15",
+    "id": "017",
+    "path": "findings/017-initial-render-error-record/renderrecord-repro.test.ts",
+    "mode": "observe",
+    "pid": 92390,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/rc15-017-renderrecord-repro.test.ts.log"
+  },
+  {
+    "target": "rc15",
+    "id": "017",
+    "path": "findings/017-initial-render-error-record/repro.test.ts",
+    "mode": "observe",
+    "pid": 92391,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/rc15-017-repro.test.ts.log"
+  },
+  {
+    "target": "rc15",
+    "id": "019",
+    "path": "findings/019-action-await-origin/repro.test.ts",
+    "mode": "observe",
+    "pid": 92393,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/rc15-019-repro.test.ts.log"
+  },
+  {
+    "target": "rc15",
+    "id": "020",
+    "path": "findings/020-observe-frame-corruption/repro.test.ts",
+    "mode": "observe",
+    "pid": 92397,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/rc15-020-repro.test.ts.log"
+  },
+  {
+    "target": "rc15",
+    "id": "021",
+    "path": "findings/021-recovery-boundary-outcome/repro.test.ts",
+    "mode": "observe",
+    "pid": 92525,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/rc15-021-repro.test.ts.log"
+  },
+  {
+    "target": "rc15",
+    "id": "025",
+    "path": "findings/025-async-fanout-classification/repro.test.ts",
+    "mode": "observe",
+    "pid": 92675,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/rc15-025-repro.test.ts.log"
+  },
+  {
+    "target": "rc15",
+    "id": "028",
+    "path": "findings/028-artifact-format-version/repro.test.ts",
+    "mode": "observe",
+    "pid": 92931,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/rc15-028-repro.test.ts.log"
+  },
+  {
+    "target": "rc15",
+    "id": "035",
+    "path": "findings/035-decoder-iterator-body-death/repro.test.ts",
+    "mode": "observe",
+    "pid": 92932,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-observe/rc15-035-repro.test.ts.log"
+  },
+  {
+    "target": "rc15",
+    "id": "035",
+    "path": "findings/035-decoder-iterator-body-death/eof.test.ts",
+    "mode": "observe",
+    "pid": 92933,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-observe/rc15-035-eof.test.ts.log"
+  },
+  {
+    "target": "rc15",
+    "id": "036",
+    "path": "findings/036-conditional-cache-format/repro.test.ts",
+    "mode": "observe",
+    "pid": 92934,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-observe/rc15-036-repro.test.ts.log"
+  },
+  {
+    "target": "rc15",
+    "id": "039",
+    "path": "findings/039-missing-resource-timing-fallback/repro.test.ts",
+    "mode": "observe",
+    "pid": 93071,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/rc15-039-repro.test.ts.log"
+  },
+  {
+    "target": "rc15",
+    "id": "049",
+    "path": "findings/049-document-live-channel-abort/repro.test.ts",
+    "mode": "observe",
+    "pid": 93491,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-observe/rc15-049-repro.test.ts.log"
+  },
+  {
+    "target": "rc15",
+    "id": "050",
+    "path": "findings/050-literal-handler-attribution/repro.test.ts",
+    "mode": "observe",
+    "pid": 93504,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/rc15-050-repro.test.ts.log"
+  },
+  {
+    "target": "rc15",
+    "id": "054",
+    "path": "findings/054-prearrived-recovery-wait/repro.test.ts",
+    "mode": "observe",
+    "pid": 94345,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/rc15-054-repro.test.ts.log"
+  },
+  {
+    "target": "head",
+    "id": "012",
+    "path": "findings/012-attribution-audience-gate/repro.test.ts",
+    "mode": "observe",
+    "pid": 95684,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-observe/head-012-repro.test.ts.log"
+  },
+  {
+    "target": "head",
+    "id": "017",
+    "path": "findings/017-initial-render-error-record/renderrecord-repro.test.ts",
+    "mode": "observe",
+    "pid": 95687,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/head-017-renderrecord-repro.test.ts.log"
+  },
+  {
+    "target": "head",
+    "id": "017",
+    "path": "findings/017-initial-render-error-record/repro.test.ts",
+    "mode": "observe",
+    "pid": 95688,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/head-017-repro.test.ts.log"
+  },
+  {
+    "target": "head",
+    "id": "019",
+    "path": "findings/019-action-await-origin/repro.test.ts",
+    "mode": "observe",
+    "pid": 95692,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/head-019-repro.test.ts.log"
+  },
+  {
+    "target": "head",
+    "id": "020",
+    "path": "findings/020-observe-frame-corruption/repro.test.ts",
+    "mode": "observe",
+    "pid": 95702,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/head-020-repro.test.ts.log"
+  },
+  {
+    "target": "head",
+    "id": "021",
+    "path": "findings/021-recovery-boundary-outcome/repro.test.ts",
+    "mode": "observe",
+    "pid": 95946,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/head-021-repro.test.ts.log"
+  },
+  {
+    "target": "head",
+    "id": "025",
+    "path": "findings/025-async-fanout-classification/repro.test.ts",
+    "mode": "observe",
+    "pid": 96361,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/head-025-repro.test.ts.log"
+  },
+  {
+    "target": "head",
+    "id": "028",
+    "path": "findings/028-artifact-format-version/repro.test.ts",
+    "mode": "observe",
+    "pid": 96557,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/head-028-repro.test.ts.log"
+  },
+  {
+    "target": "head",
+    "id": "035",
+    "path": "findings/035-decoder-iterator-body-death/repro.test.ts",
+    "mode": "observe",
+    "pid": 96561,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-observe/head-035-repro.test.ts.log"
+  },
+  {
+    "target": "head",
+    "id": "035",
+    "path": "findings/035-decoder-iterator-body-death/eof.test.ts",
+    "mode": "observe",
+    "pid": 96562,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-observe/head-035-eof.test.ts.log"
+  },
+  {
+    "target": "head",
+    "id": "036",
+    "path": "findings/036-conditional-cache-format/repro.test.ts",
+    "mode": "observe",
+    "pid": 96563,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-observe/head-036-repro.test.ts.log"
+  },
+  {
+    "target": "head",
+    "id": "039",
+    "path": "findings/039-missing-resource-timing-fallback/repro.test.ts",
+    "mode": "observe",
+    "pid": 96739,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/head-039-repro.test.ts.log"
+  },
+  {
+    "target": "head",
+    "id": "049",
+    "path": "findings/049-document-live-channel-abort/repro.test.ts",
+    "mode": "observe",
+    "pid": 96879,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-observe/head-049-repro.test.ts.log"
+  },
+  {
+    "target": "head",
+    "id": "050",
+    "path": "findings/050-literal-handler-attribution/repro.test.ts",
+    "mode": "observe",
+    "pid": 96883,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/head-050-repro.test.ts.log"
+  },
+  {
+    "target": "head",
+    "id": "054",
+    "path": "findings/054-prearrived-recovery-wait/repro.test.ts",
+    "mode": "observe",
+    "pid": 97030,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-observe/head-054-repro.test.ts.log"
+  }
+]

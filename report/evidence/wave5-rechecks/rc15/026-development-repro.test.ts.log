@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+
+findings/026-cookie-proto-key/repro.test.ts:
+1 | import { test, expect } from 'bun:test'
+2 | import { parseCookieHeader } from '@solidjs/web'
+3 | 
+4 | test('12-ssr-http.md: valid cookie names including __proto__ decode to their string value',()=>{
+5 |  const cookies=parseCookieHeader('__proto__=x')
+6 |  expect(Object.hasOwn(cookies,'__proto__')).toBe(true)
+                                                ^
+error: expect(received).toBe(expected)
+
+Expected: true
+Received: false
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/findings/026-cookie-proto-key/repro.test.ts:6:45)
+(fail) 12-ssr-http.md: valid cookie names including __proto__ decode to their string value [0.26ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [20.00ms]

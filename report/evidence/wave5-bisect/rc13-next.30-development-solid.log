@@ -1,0 +1,9 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc13","upstream":null,"buildMode":"development","solid":"2.0.0-rc.13","router":"2.0.0-next.30","routerHead":null}
+{"router":{"before":"waitingold","after":"new","pending":true,"fired":true,"url":"/"},"core":{"before":"waitingold","after":"new","pending":true,"fired":true},"coreMemo":{"before":"waitingold","after":"new","pending":true,"fired":true},"coreFn":{"before":"waitingold","after":"new","pending":true,"fired":true},"coreRouterShape":{"before":"waitingold","after":"new","pending":true,"fired":true},"mount":{"before":"01","after":"11","pending":true,"fired":true},"messages":[]}
+
+.scratch/probe.test.ts:
+
+ 1 pass
+ 0 fail
+Ran 1 test across 1 file. [17.56s]

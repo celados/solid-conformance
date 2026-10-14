@@ -1,0 +1,9 @@
+bun test v1.4.2 (744846f84)
+
+tracks/docs/compiler-addressability.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+
+ 4 pass
+ 0 fail
+ 60 expect() calls
+Ran 4 tests across 1 file. [586.00ms]

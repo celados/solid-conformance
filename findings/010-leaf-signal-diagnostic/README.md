@@ -21,3 +21,11 @@ bun test ./findings/010-leaf-signal-diagnostic/repro.test.ts
 缩减：只保留 root、onSettled、一个 plain signal 和捕获诊断的等待；没有 DOM、effect、异步 source 或写操作。复现显式打包 browser development exports，避免 Bun 默认使用 production signals 造成假阴性。production 不承诺此诊断，所以不做 production 红断言。
 
 去重：对 solidjs/solid、solidjs/solid-router、solidjs/solid-start 的 open 和 closed issues 搜索 `PRIMITIVE_IN_FORBIDDEN_SCOPE` 与 `onSettled createSignal`，均无结果；没有向上游写入。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Primitive-scope diagnostic wording only.

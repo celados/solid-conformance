@@ -1,0 +1,12 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/live-component-drop.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+[SSR_STREAM_ABANDONED] The response stream was abandoned mid-render (signal) with 0 fragment(s) still pending; the render was torn down.
+[SSR_STREAM_ABANDONED] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#ssr_stream_abandoned
+[SSR_STREAM_ABANDONED] The response stream was abandoned mid-render (signal) with 0 fragment(s) still pending; the render was torn down.
+
+ 3 pass
+ 0 fail
+ 27 expect() calls
+Ran 3 tests across 1 file. [41.10s]

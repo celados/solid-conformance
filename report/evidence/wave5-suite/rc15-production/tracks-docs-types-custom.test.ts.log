@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+tracks/docs/types-custom.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+4 | 
+5 | test('RFC 09: renderer-owned runtime declarations specialize JSX.Element through the published JSX generator',async()=>{
+6 |  const web=await realpath(resolve('node_modules/@solidjs/web'))
+7 |  const directory=resolve('.build/docs-custom-types')
+8 |  await Bun.write(directory+'/custom-element.d.ts','export type CustomElement = { readonly kind: "custom-renderer" };\n')
+9 |  await Bun.write(directory+'/jsx-properties.d.ts',Bun.file(web+'/jsx/jsx-properties.d.ts'))
+               ^
+ENOENT: no such file or directory, stat '/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/node_modules/@solidjs/web/jsx/jsx-properties.d.ts'
+    path: "/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/node_modules/@solidjs/web/jsx/jsx-properties.d.ts",
+ syscall: "stat",
+   errno: -2,
+    code: "ENOENT"
+
+      at async <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/docs/types-custom.test.ts:9:12)
+(fail) RFC 09: renderer-owned runtime declarations specialize JSX.Element through the published JSX generator [0.88ms]
+
+ 0 pass
+ 1 fail
+Ran 1 test across 1 file. [8.00ms]

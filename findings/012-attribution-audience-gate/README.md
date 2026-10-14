@@ -21,3 +21,11 @@ bun test ./findings/012-attribution-audience-gate/repro.test.ts
 缩减：去掉所有 listener、fold 查询、DOM、interaction、async、命名和额外 memo；剩下 root、signal、一个 memo 和一次 write。用独立子进程排除其他测试已导入 fold 的污染，并显式选择公开 browser 构建。
 
 排重：查询 Solid、Router、Start 的 open 和 closed issues，关键词 `attribution fold`、`history rerun`、`records only costs`。读过相关 [#2883](https://github.com/solidjs/solid/issues/2883) 的结构／打包审计及 [#3754](https://github.com/solidjs/solid/issues/3754) 的 interaction frame 议题；前者处理生产核心的 tree-shaking，后者处理事件归属，均不是 attribution 的无受众行为。搜索证据在 `dedupe.json`；没有向上游写入。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Attribution audience/cost tooling contract, no app malfunction.

@@ -1,0 +1,101 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"e3716454129f8438b65257c95db5c383622494ba","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"},"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":{"ref":"next","revision":"4a1685ec8f1ab045843b2ae590c7afe821f73d90","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"}}
+
+findings/047-derived-store-accessor-example/repro.test.ts:
+1299 |     setPendingError(e, n.values().next().value);
+1300 |   } else
+1301 |     clearStatus(e, t);
+1302 | }
+1303 | function notifyStatus(e, t, n, r) {
+1304 |     n = new StatusError(e, n);
+               ^
+error: items is not a function. (In 'items()', 'items' is an instance of ProxyObject)
+ source: {
+  id: undefined,
+  i: 0,
+  ye: [Function: isEqual],
+  Re: null,
+  D: [Object ...],
+  Be: 0,
+  ee: [Function],
+  Ae: undefined,
+  me: 0,
+  je: undefined,
+  we: [Circular],
+  p: null,
+  G: null,
+  pe: 1,
+  t: null,
+  Ye: null,
+  _parent: [Object ...],
+  ge: [Object ...],
+  Ke: [Circular],
+  Ve: null,
+  R: 64,
+  S: 2,
+  Ie: 0,
+  Oe: [Object ...],
+  qe: -1,
+  De: false,
+  m: [Object ...],
+},
+
+      at notifyStatus (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:1304:9)
+      at recompute (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:1459:19)
+      at setupComputedNode (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:1690:24)
+      at computed (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:1625:20)
+      at createProjectionInternal (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:3855:21)
+      at createStoreDerived (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:3868:48)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:3912:35)
+      at runWithOwner (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:1966:13)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/findings/047-derived-store-accessor-example/repro.test.ts:7:686)
+
+3908 | // findings/047-derived-store-accessor-example/module.ts
+3909 | function run(literal = false) {
+3910 |   return createRoot2((dispose) => {
+3911 |     try {
+3912 |       const [items] = createStore3(() => [1, 2], []);
+3913 |         draft.total = literal ? items().length : items.length;
+                                            ^
+TypeError: items is not a function. (In 'items()', 'items' is an instance of ProxyObject)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:3913:38)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:3795:10)
+      at storeSetter (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:3359:10)
+      at runDirect (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:2562:6)
+      at runProjectionComputed (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:3826:18)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:3858:26)
+      at recompute (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:1440:21)
+      at setupComputedNode (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:1690:24)
+      at computed (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:1625:20)
+      at createProjectionInternal (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/.build/finding047/module.js:3855:21)
+(fail) MIGRATION.md B462: a derived store is consumed as items() in the literal example [29.16ms]
+4 | 
+5 | test('MIGRATION.md B462: a derived store is consumed as items() in the literal example',async()=>{
+6 |  const packages=new Map<string,{path:string,exports:Record<string,any>}>();for(const name of ['solid-js','@solidjs/signals']){const path=await realpath(resolve('node_modules',name));packages.set(name,{path,exports:(await Bun.file(path+'/package.json').json()).exports})}
+7 |  const dir=resolve('.build/finding047');const build=await Bun.build({entrypoints:[resolve('findings/047-derived-store-accessor-example/module.ts')],outdir:dir,target:'bun',plugins:[{name:'actual-client-artifact',setup(builder){builder.onResolve({filter:/^(solid-js|@solidjs\/signals)$/},args=>{const pkg=packages.get(args.path)!,entry=pkg.exports['.'],browser=entry.browser??entry,selected=browser[process.env.BUILD_MODE??'development']??browser.default;return{path:resolve(pkg.path,typeof selected==='string'?selected:selected.import??selected.default)}})}}]});expect(build.success).toBe(true);const runtime=await import(dir+'/module.js');expect(runtime.run()).toBe(2);expect(runtime.run(true)).toBe(2)
+8 | })
+9 | test('MIGRATION.md B462: the literal derived-store usage compiles against public declarations',async()=>{const dir=resolve('.build/finding047/types');await Bun.write(dir+'/usage.ts',Bun.file('findings/047-derived-store-accessor-example/usage.ts.txt'));await Bun.write(dir+'/tsconfig.json',JSON.stringify({compilerOptions:{target:'ESNext',module:'Preserve',moduleResolution:'bundler',strict:true,noEmit:true,skipLibCheck:true,lib:['ESNext'],types:[]},files:[dir+'/usage.ts']}));const child=Bun.spawn(['bun','x','tsc','--project',dir+'/tsconfig.json'],{stdout:'pipe',stderr:'pipe'});const output=await new Response(child.stdout).text()+await new Response(child.stderr).text();expect({exitCode:await child.exited,output}).toEqual({exitCode:0,output:''})},30000)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "exitCode": 0,
+-   "output": "",
++   "exitCode": 1,
++   "output": 
++ ".build/finding047/types/usage.ts(3,47): error TS2349: This expression is not callable.
++   Type 'number[] & { readonly [$REFRESH]: any; }' has no call signatures.
++ "
++ ,
+  }
+
+- Expected  - 2
++ Received  + 6
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/findings/047-derived-store-accessor-example/repro.test.ts:9:720)
+(fail) MIGRATION.md B462: the literal derived-store usage compiles against public declarations [445.50ms]
+
+ 0 pass
+ 2 fail
+ 3 expect() calls
+Ran 2 tests across 1 file. [494.00ms]

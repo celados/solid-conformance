@@ -1,0 +1,37 @@
+bun test v1.4.2 (744846f84)
+
+tracks/router/postmount.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"e3716454129f8438b65257c95db5c383622494ba","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"},"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":{"ref":"next","revision":"4a1685ec8f1ab045843b2ae590c7afe821f73d90","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"}}
+false {
+  initial: "home",
+  ready: "ready",
+  phases: [ "home", "ready" ],
+  final: "lazy-ready",
+  events: [],
+}
+true {
+  initial: "home(self.$R=self.$R||{})[\"\"]=[];_$HY.r[\"links\"]=1;",
+  ready: "ready(self.$R=self.$R||{})[\"\"]=[];_$HY.r[\"links\"]=1;",
+  phases: [ "home(self.$R=self.$R||{})[\"\"]=[];_$HY.r[\"links\"]=1;", "ready(self.$R=self.$R||{})[\"\"]=[];_$HY.r[\"links\"]=1;" ],
+  final: "lazy-ready(self.$R=self.$R||{})[\"\"]=[];_$HY.r[\"links\"]=1;",
+  events: [],
+}
+3 | import {build} from '../../scripts/build'
+4 | import {resolve} from 'node:path'
+5 | import {rm} from 'node:fs/promises'
+6 | // 08 L127: post-mount real router navigation and lazy route pending reads run
+7 | // with the initial render/hydrate ASYNC_OUTSIDE_LOADING_BOUNDARY guard disabled.
+8 | test('post-mount router and lazy transitions remain outside initial-mount warning guard',async()=>{const dir=resolve('.build','postmount-'+process.pid);await build(dir,(process.env.BUILD_MODE??'development') as any,{client:['tracks/router/postmount-client.tsx'],server:['tracks/router/postmount-server.tsx']});const runtime=await import(dir+'/postmount-server.js');const server=Bun.serve({port:0,fetch:r=>{const url=new URL(r.url);return url.pathname.endsWith('.js')?new Response(Bun.file(dir+url.pathname),{headers:{'content-type':'text/javascript'}}):new Response((url.search.includes('hydrate')?runtime.html():'<div id="root"></div>')+'<script type="module" src="/postmount-client.js"></script>',{headers:{'content-type':'text/html'}})}});const browser=await chromium.launch({channel:'chrome',headless:true});try{for(const hydrate of [false,true]){const page=await browser.newPage();const errors:string[]=[];page.on('pageerror',e=>errors.push(String(e)));await page.goto(server.url+(hydrate?'?hydrate':''));await page.wai
+
+error: expect(received).toBe(expected)
+
+Expected: "home"
+Received: "home(self.$R=self.$R||{})[""]=[];_$HY.r["links"]=1;"
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/tracks/router/postmount.test.ts:8:1177)
+(fail) post-mount router and lazy transitions remain outside initial-mount warning guard [13104.13ms]
+
+ 0 pass
+ 1 fail
+ 7 expect() calls
+Ran 1 test across 1 file. [13.36s]

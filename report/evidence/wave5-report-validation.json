@@ -1,0 +1,28 @@
+{
+  "head": "e3716454129f8438b65257c95db5c383622494ba",
+  "fileable": [
+    "report/issues/16-docs-01-errata.md",
+    "report/issues/17-docs-02-errata.md",
+    "report/issues/18-docs-03-errata.md",
+    "report/issues/19-docs-04-errata.md",
+    "report/issues/20-docs-05-errata.md",
+    "report/issues/21-docs-06-errata.md",
+    "report/issues/26-docs-migration-errata.md",
+    "report/issues/28-held-navigation-feedback.md",
+    "report/issues/29-loading-lazy-hydration-order.md"
+  ],
+  "findings": [
+    "015",
+    "013",
+    "030",
+    "006",
+    "007",
+    "018",
+    "047",
+    "055",
+    "057"
+  ],
+  "pinnedObjects": 9,
+  "linkVerification": "local Git objects; remote links await orchestrator push",
+  "valid": true
+}

@@ -1,0 +1,38 @@
+bun test v1.4.2 (744846f84)
+
+tracks/docs/vite-performance.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+2 | import {createServer,resolveConfig} from 'vite'
+3 | import {resolve} from 'node:path'
+4 | import {mkdir,rm} from 'node:fs/promises'
+5 | // RFC 08 L1216: test the >= next.46 plugin snapshot the docs explicitly name, not the older npm next tag.
+6 | test('RFC 08 L1216: Vite dev injects tracks before the app; options pass through; build/preview/test opt out',async()=>{
+7 |  const manifest=await Bun.file('.upstream/vite-built.json').json(),pluginModule=await import(manifest.directory+'/dist/esm/index.mjs'),solid=pluginModule.default
+                                                                ^
+ENOENT: no such file or directory, open '.upstream/vite-built.json'
+    path: ".upstream/vite-built.json",
+ syscall: "open",
+   errno: -2,
+    code: "ENOENT"
+
+      at async <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/docs/vite-performance.test.ts:7:61)
+(fail) RFC 08 L1216: Vite dev injects tracks before the app; options pass through; build/preview/test opt out [0.58ms]
+19 |   for(const [command,mode,preview] of [['build','production',false],['serve','test',false],['serve','production',true]] as const){const config=await resolveConfig({root,configFile:false,plugins:solid({diagnostics:false}),mode,logLevel:'silent'},command,mode,undefined,preview);expect(config.plugins.some(p=>p.name==='solid:performance-tracks')).toBe(false);results.push({command,mode,preview})}
+20 |   await Bun.write('artifacts/vite-performance.json',JSON.stringify({manifest,results},null,2))
+21 |  }finally{await rm(root,{recursive:true,force:true})}
+22 | },60000)
+23 | test('08 L16: Vite carries component, binding and plain-module primitive names in dev/observe; explicit false and production omit them',async()=>{
+24 |  const manifest=await Bun.file('.upstream/vite-built.json').json(),solid=(await import(manifest.directory+'/dist/esm/index.mjs')).default
+                                                                 ^
+ENOENT: no such file or directory, open '.upstream/vite-built.json'
+    path: ".upstream/vite-built.json",
+ syscall: "open",
+   errno: -2,
+    code: "ENOENT"
+
+      at async <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/docs/vite-performance.test.ts:24:61)
+(fail) 08 L16: Vite carries component, binding and plain-module primitive names in dev/observe; explicit false and production omit them [0.85ms]
+
+ 0 pass
+ 2 fail
+Ran 2 tests across 1 file. [167.00ms]

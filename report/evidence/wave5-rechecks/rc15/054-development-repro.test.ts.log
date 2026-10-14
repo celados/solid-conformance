@@ -1,0 +1,26 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+
+findings/054-prearrived-recovery-wait/repro.test.ts:
+[SSR_RENDER_ERROR_CONTAINED] Render error in a <Loading> boundary — the fragment rejected and the client re-renders it: Error: server failure
+  in <NoHydration> › <Hydration> › <App> › <Loading> › <Child>
+[SSR_RENDER_ERROR_CONTAINED] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#ssr_render_error_contained
+43 |       ).toHaveLength(1);
+44 |       expect(
+45 |         await page.evaluate(
+46 |           () => (window as any).recoveryRepro.records[0].waitedMs,
+47 |         ),
+48 |       ).toBe(0);
+             ^
+error: expect(received).toBe(expected)
+
+Expected: 0
+Received: 100
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/findings/054-prearrived-recovery-wait/repro.test.ts:48:9)
+(fail) RFC08 L896: a rejection received before hydration has zero waitedMs [11755.10ms]
+
+ 0 pass
+ 1 fail
+ 4 expect() calls
+Ran 1 test across 1 file. [11.96s]

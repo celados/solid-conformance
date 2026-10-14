@@ -1,0 +1,103 @@
+bun test v1.4.2 (744846f84)
+
+tracks/docs/docs.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"e3716454129f8438b65257c95db5c383622494ba","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"},"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":{"ref":"next","revision":"4a1685ec8f1ab045843b2ae590c7afe821f73d90","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"}}
+RequestEvent is missing. This is most likely due to accessing `getRequestEvent` non-managed async scope in a partially polyfilled environment. Try moving it above all `await` calls.
+Doc cases: 478 [
+  {
+    "id": "05/transparent-ssr-ignored",
+    "file": "05-async-data.md",
+    "statement": "SSR allocates the same hydration slots whether a source declares transparent true or false.",
+    "error": "Error: Expected \"1000\", received \"0000\"",
+    "platform": "server"
+  },
+  {
+    "id": "12/cookie-proto-key",
+    "file": "12-ssr-http.md",
+    "statement": "Any valid cookie name round-trips, including __proto__.",
+    "error": "Error: Expected true, received false",
+    "platform": "server"
+  },
+  {
+    "id": "04/keyed-reconcile",
+    "file": "04-stores.md",
+    "statement": "reconcile preserves identity for unchanged entries.",
+    "error": "Error: Expected true, received false",
+    "platform": "client"
+  },
+  {
+    "id": "04/store-path",
+    "file": "04-stores.md",
+    "statement": "storePath supports indices, filters, ranges and a delete sentinel.",
+    "error": "TypeError: storePath2 is not a function",
+    "platform": "client"
+  },
+  {
+    "id": "05/loading-on-constant",
+    "file": "05-async-data.md",
+    "statement": "The value returned by on is never compared; only the notification matters.",
+    "error": "Error: Expected \"fallback\", received \"1\"",
+    "platform": "client"
+  },
+  {
+    "id": "05/loading-on-shared-pending",
+    "file": "05-async-data.md",
+    "statement": "An independent shared read or an action held through the data prevents fallback; ending an action before its data can show fallback with the committed frame.",
+    "error": "Error: Expected \"0atrue\", received \"1spinnertrue\"",
+    "platform": "client"
+  },
+  {
+    "id": "05/loading-on-frame-comments-first-ahead",
+    "file": "05-async-data.md",
+    "statement": "Loading on fallback commits with the held shell; comments arriving before the shell avoid fallback, children stay mounted, and latest(on) explicitly displays fallback ahead.",
+    "error": "Error: Expected \"1Bb\", received \"1Bspinner\"",
+    "platform": "client"
+  },
+  {
+    "id": "02/held-derive-external-write-store",
+    "file": "02-signals-derived-ownership.md",
+    "statement": "An external write joins a held derivation as prev rather than replacing its derived result; the revealed frame is derived from the changed input.",
+    "error": "Error: Expected \"103:103\", received \"105:105\"",
+    "platform": "client"
+  },
+  {
+    "id": "12/cookie-proto-key",
+    "file": "12-ssr-http.md",
+    "statement": "Any valid cookie name round-trips, including __proto__.",
+    "error": "Error: Expected true, received false",
+    "platform": "client"
+  },
+  {
+    "id": "02/pinned-derived-signal",
+    "file": "02-signals-derived-ownership.md",
+    "statement": "A local flag preserved by the derive keeps a manual value until the flag is cleared, including a same-update source change.",
+    "error": "Error: Expected {\"n\":3,\"pinned\":false}, received {\"n\":99,\"pinned\":false}",
+    "platform": "client"
+  },
+  {
+    "id": "06/refresh-staged-authority",
+    "file": "06-actions-optimistic.md",
+    "statement": "An action awaiting refresh receives authoritative staged data rather than its own optimistic override; until can read that staged truth without deadlock.",
+    "error": "Error: Expected 99, received 1",
+    "platform": "client"
+  }
+]
+32 | 			'06/affects-nested-record': /^Error: Expected true, received false$/,
+33 | 			'05/refresh-delivery': /did not settle within/,
+34 | 			'05/refresh-quiet': /did not settle within/,
+35 | 			'05/refresh-quiescence': /did not settle within/,
+36 | 		}
+37 | 		for (const result of results) if (result.error && known.has(result.id)) expect(result.error).toMatch(signatures[result.id]!)
+                                                                                                    ^
+error: expect(received).toMatch(expected)
+
+Expected substring or pattern: /^Error: Expected 2, received 99$/
+Received: "Error: Expected 99, received 1"
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/docs/docs.test.ts:37:96)
+(fail) RFC chapters: behavioral statements execute in the selected client/server artifacts [30437.67ms]
+
+ 0 pass
+ 1 fail
+ 11 expect() calls
+Ran 1 test across 1 file. [30.73s]

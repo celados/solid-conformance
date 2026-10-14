@@ -1,0 +1,11 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc13","upstream":null,"buildMode":"development","solid":"2.0.0-rc.13","router":"2.0.0-next.30","routerHead":null}
+
+tracks/transitions/held-ui.test.ts:
+killed 1 dangling process
+(fail) held UI: delayed feedback, nested mounts, reordered optimism and derived authority [180001.12ms]
+  ^ this test timed out after 180000ms.
+
+ 0 pass
+ 1 fail
+Ran 1 test across 1 file. [180.55s]

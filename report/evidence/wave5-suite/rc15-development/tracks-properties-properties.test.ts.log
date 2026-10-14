@@ -1,0 +1,33 @@
+bun test v1.4.2 (744846f84)
+
+tracks/properties/properties.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+Runtime ready: {"resolvedSolid":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/node_modules/solid-js","upstream":null,"solid":"2.0.0-rc.15","signals":"2.0.0-rc.15","compiler":"2.0.0-rc.15","label":"rc15","buildMode":"development"}
+Generated attempts: 25; browser runs: 168
+Generated attempts: 50; browser runs: 343
+Generated attempts: 75; browser runs: 496
+Generated attempts: 100; browser runs: 661
+{"seed":20261008,"generated":51,"browserRuns":722,"kinds":{"lazy":59,"errored":13,"effect":5,"for":8,"text":91,"action":8,"switch":10,"keyed-for":32,"promise":6,"group":7,"optimistic":25,"optimistic-store":8,"show":188,"store":12,"loading":8,"iterable":6},"failed":true}
+109 | 						return current === target % count ? wrap(kind, copy) : copy
+110 | 					}
+111 | 					const wrapped = transform(tree)
+112 | 					const order = sourceIds(wrapped)
+113 | 					expect(await run(wrapped, order, 'csr')).toBe(baseline)
+114 | 					expect(await run(wrapped, order, 'hydrate')).toBe(baseline)
+      ^
+error: expect(received).toBe(expected)
+
+Expected: "<span>0</span><span>0</span><span>1</span>"
+Received: "<span>0</span><span>1</span><span>0</span>"
+
+      at toBe (unknown:1:1)
+      at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/properties/properties.test.ts:114:51
+      at run (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/node_modules/fast-check/lib/fast-check.js:1217:30)
+      at asyncPropertyExecution (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/node_modules/fast-check/lib/fast-check.js:2564:29)
+      at processTicksAndRejections (unknown:7:39)
+(fail) generated trees preserve DOM, settle order, wrappers and iterator cleanup [435062.85ms]
+
+ 0 pass
+ 1 fail
+ 4392 expect() calls
+Ran 1 test across 1 file. [435.40s]

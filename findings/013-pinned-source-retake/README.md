@@ -21,3 +21,11 @@ bun test ./findings/013-pinned-source-retake/repro.test.ts
 缩减：无需 DOM、Loading、action、Promise、effect 或订阅器；只保留两个信号与两组同步写，第一组让 pinned 分支退订 source，第二组按文档同时清除标记和改变 source。
 
 去重：检查三个仓库 open 与 closed 的 pinned、derived signal dependency、writable memo 结果。相关 #3612 是异步 hold 期间外部 imperative write 覆盖 held derivation，已在 #3630 修复；本例无 hold、无 async，是条件依赖退订后文档示例丢失重新计算触发，与该根因不同。没有上游写入。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**fileable**: Documented pinned local-state recipe fails to resume server data.

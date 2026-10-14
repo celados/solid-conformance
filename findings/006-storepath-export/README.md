@@ -31,3 +31,11 @@ otherwise the docs must name the alternative package explicitly.
 Open/closed searches for storePath and storePath export across Solid, Router and
 Start found no exact export discrepancy. #3092 proposes a branded path API.
 Reduced to a single named import and use; no renderer execution or app is needed.
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**fileable**: Documented public migration helper fails to import in a browser app.

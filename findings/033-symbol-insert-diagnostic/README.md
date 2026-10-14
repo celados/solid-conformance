@@ -4,6 +4,8 @@ id: '033'
 status: confirmed
 versions:
   - HEAD 53ef0e69 development
+  - "rc.15 development"
+  - "HEAD e371645 development"
 area: diagnostics/SSR
 upstream: []
 found_by: docs-to-tests
@@ -23,3 +25,11 @@ BUILD_MODE=production bun test ./findings/033-symbol-insert-diagnostic/repro.tes
 ## 缩减与去重
 
 一个 `<div>` 的单 child hole，无其他文本、components、state、effects、async 或 hydration。object 是同路径正对照。三仓 open/closed 搜索 `symbol insert` 均无结果，现有 ledger 没有该诊断分支。查询与日志在 evidence/wave3-finding033-*；rc.13 比较由主线程统一执行。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Invalid SSR insert diagnostic; no valid app content.

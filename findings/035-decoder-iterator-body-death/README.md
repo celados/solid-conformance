@@ -1,6 +1,6 @@
 ---
 id: '035'
-status: confirmed
+status: fixed-upstream
 versions: ["HEAD 53ef0e69 with seroval 1.6.8: development", "HEAD 53ef0e69 with seroval 1.6.8: observe", "HEAD 53ef0e69 with seroval 1.6.8: production", "rc.13 development", "rc.13 production"]
 area: server-functions/serialization/async
 upstream: []
@@ -21,3 +21,13 @@ The repro uses public `registerServerReference`, `handleServerFunctionRequest` a
 Open and closed searches across solidjs/solid, solid-router and solid-start covered stream/abort/iterator, end-of-body, decoder/stream/end and `__SEROVAL_STREAM__`. Reviewed solid#3125 (server producer demand/teardown), #3244 (client response buffering and normal teardown), #3232 (unowned decoded promises), #3734 (SSR discovery non-convergence) and #3762 (TSRX semicolon parsing); none reports this decoder iterator classification failure. solid-start#2295 concerns missing Content-Type, not pending pulls. The rc.13 comparison is recorded by the subsequent Wave 3 verification paragraph and its raw baseline logs; the old pending note is superseded.
 
 rc.13 开发／生产独立对照仍红，原始结果：evidence/solid-wave3-033035-rc13.log、solid-wave3-036038-rc13.log、solid-wave3-034044-rc13-prod.log。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: passes (a zero-test tier is not applicable); production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+The original desired-behavior test passes in rc.15. Fix: [b749474](https://github.com/solidjs/solid/commit/b749474e7a2300c3cd64dca28edc610c7a2d031e), included in the rc.15 release. Original failing versions remain above as historical provenance.
+
+## Wave 5 filing bar
+
+**excluded-fixed**: Desired-behavior repro passes in the latest tested runtime; historical failing versions retained.

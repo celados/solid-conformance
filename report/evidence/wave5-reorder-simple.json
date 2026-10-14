@@ -1,0 +1,66 @@
+[
+  {
+    "kind": "show",
+    "outer": false,
+    "left": false,
+    "csr": "<span>3</span><span>4</span>",
+    "hydrate": "<span>3</span><span>4</span>",
+    "messages": []
+  },
+  {
+    "kind": "show",
+    "outer": false,
+    "left": true,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  },
+  {
+    "kind": "show",
+    "outer": true,
+    "left": false,
+    "csr": "<span>3</span><span>4</span>",
+    "hydrate": "<span>3</span><span>4</span>",
+    "messages": []
+  },
+  {
+    "kind": "show",
+    "outer": true,
+    "left": true,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  },
+  {
+    "kind": "group",
+    "outer": false,
+    "left": false,
+    "csr": "<span>3</span><span>4</span>",
+    "hydrate": "<span>3</span><span>4</span>",
+    "messages": []
+  },
+  {
+    "kind": "group",
+    "outer": false,
+    "left": true,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  },
+  {
+    "kind": "group",
+    "outer": true,
+    "left": false,
+    "csr": "<span>3</span><span>4</span>",
+    "hydrate": "<span>3</span><span>4</span>",
+    "messages": []
+  },
+  {
+    "kind": "group",
+    "outer": true,
+    "left": true,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "runtime": {
+    "target": "rc15",
+    "upstream": null,
+    "buildMode": "development",
+    "solid": "2.0.0-rc.15",
+    "router": "2.0.0-next.39",
+    "routerHead": null
+  },
+  "seed": 20261008,
+  "spine": 9,
+  "generated": 20,
+  "attempts": 29,
+  "browserRuns": 145,
+  "counts": {
+    "preload": 2,
+    "supersession": 3,
+    "action-failure": 5,
+    "action-success": 4,
+    "redirect": 3,
+    "live": 2,
+    "query-error": 3,
+    "form-success": 3,
+    "server-action": 4
+  },
+  "failed": false,
+  "counterexample": null,
+  "counterexamplePath": null,
+  "error": ""
+}

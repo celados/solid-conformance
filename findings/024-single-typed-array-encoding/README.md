@@ -27,3 +27,11 @@ One server reference returns its argument; the browser calls it with one nested 
 ## Dedupe
 
 Searched open and closed issues in solidjs/solid, solidjs/solid-router and solidjs/solid-start for `"typed array" "arguments"`; only solid #3235 matched. It concerns guarding failure channels inside Error carriers and non-enumerable result slots, not the default encoding of a lone argument. A further solid all-state `Uint8Array rich arguments` search matched nothing. No local finding covers this input-shape exception.
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Typed-array transport works; opt-in wording only.

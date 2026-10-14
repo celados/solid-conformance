@@ -1,0 +1,24 @@
+bun test v1.4.2 (744846f84)
+
+tracks/transport/transport.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"e3716454129f8438b65257c95db5c383622494ba","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"},"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":{"ref":"next","revision":"4a1685ec8f1ab045843b2ae590c7afe821f73d90","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"}}
+14 | 		expect(result.messages).toEqual([]);expect(result.serverErrors).toEqual([])
+15 | 		for(const s of [...result.stats,...result.serverStats])expect(s.opened).toBe(s.closed)
+16 | 		const trace=result.trace as unknown as {kind:string;dom:string;errors:number;opened:number;closed:number}[]
+17 | 		const last=trace.at(-2)!
+18 | 		const known = runtime.target==='head' && mode==='hydrate' && primitive!=='memo' && events[0]?.kind==='error'
+19 | 		if(known&&!process.env.STRICT_FINDINGS){expect(last.dom).toBe('<button>click</button><em>0</em><span>0</span>');expect(last.errors).toBe(0)}
+                                                                ^
+error: expect(received).toBe(expected)
+
+Expected: "<button>click</button><em>0</em><span>0</span>"
+Received: "<button>click</button><em>0</em><b>terminal-source-error</b>"
+
+      at run (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/tracks/transport/transport.test.ts:19:60)
+      at async <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/tracks/transport/transport.test.ts:36:173)
+(fail) real SSE: slow first value, peer drop/reconnect, request supersession, pending disposal and terminal errors [110036.37ms]
+
+ 0 pass
+ 1 fail
+ 429 expect() calls
+Ran 1 test across 1 file. [112.32s]

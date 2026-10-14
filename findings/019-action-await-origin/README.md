@@ -23,3 +23,11 @@ bun test ./findings/019-action-await-origin/repro.test.ts
 缩减：去掉 await 前写入、名称、DOM、listener、interaction、effect、store 和所有复杂 timing；仅保留一个 signal、一个依赖 memo、一次 async generator action 中的 await 后写入。去掉 await 后写入不会有 rerun，去掉 memo 无可检查记录，去掉 await 会得到 action origin。
 
 排重：三仓 open/closed 搜索 `attribution action async origin`、`"external" attribution` 并检查 Solid `attribution` 所有命中。读 #3754（事件分发的多个 listener frame），其问题是一个 DOM event 被分成多次 interaction，与 action 的 await continuation 不同；没有发现同一声明差异。查询记录见 `dedupe.json`，未向上游写入。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Post-await diagnostic origin metadata only.

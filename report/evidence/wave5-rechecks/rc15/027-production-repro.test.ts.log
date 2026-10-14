@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+
+findings/027-server-write-all-builds/repro.test.ts:
+10 |       server: ["findings/027-server-write-all-builds/server.ts"],
+11 |     });
+12 |     const module = await import(dir + "/server.js");
+13 |     const result = await module.run();
+14 |     expect(result.html).toContain("1");
+15 |     expect(result.count).toBe(1);
+                              ^
+error: expect(received).toBe(expected)
+
+Expected: 1
+Received: 0
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/findings/027-server-write-all-builds/repro.test.ts:15:26)
+(fail) RFC11 setter warning ships in every server build [20.28ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [31.00ms]

@@ -7,6 +7,10 @@ versions:
   - "rc.13 development"
   - HEAD 53ef0e69 development
   - HEAD 53ef0e69 production
+  - "rc.15 development"
+  - "rc.15 production"
+  - "HEAD e371645 development"
+  - "HEAD e371645 production"
 area: DOM/insert
 upstream: []
 found_by: docs-to-tests
@@ -28,3 +32,13 @@ BUILD_MODE=production bun test ./findings/034-mixed-insert-object/repro.test.ts
 只保留一个 `<div>`、一个相邻文本节点与一个 plain object，没有 state、effects、async、router、SSR 或 hydration。删掉文本后通过，single-hole 正对照保留。三仓 open/closed 搜索 `insertBefore object` 无结果；读取 solid#3734，其为 SSR async owner id 导致 discovery 不收敛，与本例的同步 DOM 数组归一化路径不同。查询与红日志在 evidence/wave3-finding034-*。rc.13 比较由主线程统一执行。
 
 rc.13 开发／生产独立对照仍红，原始结果：evidence/solid-wave3-033035-rc13.log、solid-wave3-036038-rc13.log、solid-wave3-034044-rc13-prod.log。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+The associated upstream issue was withdrawn for low real-world impact, not fixed. This repro remains in the conformance corpus and is excluded from the Wave 5 filing batch.
+
+## Wave 5 filing bar
+
+**held**: Withdrawn non-renderable object insertion/type bypass; do not refile.

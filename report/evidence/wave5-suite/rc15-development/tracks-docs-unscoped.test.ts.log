@@ -1,0 +1,14 @@
+bun test v1.4.2 (744846f84)
+
+tracks/docs/unscoped.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+[SSR_RENDER_ERROR_CONTAINED] Render error caught by <Errored>: Error: contained
+  in <HydratedNegatives> › <Errored> › <Failure>
+[SSR_RENDER_ERROR_CONTAINED] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#ssr_render_error_contained
+[SSR_RENDER_ERROR_CONTAINED] Render error caught by <Errored>: Error: contained
+  in <HydratedNegatives> › <Errored> › <Failure>
+
+ 1 pass
+ 0 fail
+ 22 expect() calls
+Ran 1 test across 1 file. [15.10s]

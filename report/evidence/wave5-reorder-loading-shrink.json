@@ -1,0 +1,98 @@
+[
+  {
+    "left": 0,
+    "right": 0,
+    "outer": 0,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  },
+  {
+    "left": 0,
+    "right": 0,
+    "outer": 1,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  },
+  {
+    "left": 0,
+    "right": 1,
+    "outer": 0,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  },
+  {
+    "left": 0,
+    "right": 1,
+    "outer": 1,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  },
+  {
+    "left": 0,
+    "right": 2,
+    "outer": 0,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  },
+  {
+    "left": 0,
+    "right": 2,
+    "outer": 1,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  },
+  {
+    "left": 1,
+    "right": 0,
+    "outer": 0,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  },
+  {
+    "left": 1,
+    "right": 0,
+    "outer": 1,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  },
+  {
+    "left": 1,
+    "right": 1,
+    "outer": 0,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  },
+  {
+    "left": 1,
+    "right": 1,
+    "outer": 1,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  },
+  {
+    "left": 1,
+    "right": 2,
+    "outer": 0,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  },
+  {
+    "left": 1,
+    "right": 2,
+    "outer": 1,
+    "csr": "<span>2</span><span>3</span><span>4</span>",
+    "hydrate": "<span>2</span><span>4</span><span>3</span>",
+    "messages": []
+  }
+]

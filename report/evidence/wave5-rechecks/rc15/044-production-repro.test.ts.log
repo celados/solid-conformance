@@ -1,0 +1,25 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+{
+  ssr: "<div _hk=1><button _hk=0>click</button></div>",
+  samples: [
+    {
+      count: 1,
+      nested: true,
+      text: "click",
+      issues: [],
+    }, {
+      count: 1,
+      nested: true,
+      text: "click",
+      issues: [],
+    }
+  ],
+}
+
+findings/044-literal-spread-hydration/repro.test.ts:
+
+ 1 pass
+ 0 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [13.93s]

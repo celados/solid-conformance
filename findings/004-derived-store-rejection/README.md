@@ -1,7 +1,7 @@
 ---
 type: Issue
 id: '004'
-status: confirmed
+status: fixed-upstream
 versions: [53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712]
 area: async/Loading
 upstream: [https://github.com/solidjs/solid/issues/2997, https://github.com/solidjs/solid/issues/3769]
@@ -54,3 +54,13 @@ as another finding because both shapes lose the rejection of a derived store's
 replacement flight while retaining its settled value. The real transport track
 keeps the store, projection and optimistic-store siblings and their raw trace;
 `STRICT_FINDINGS=1 bun test ./tracks/transport` rejects the recognized signature.
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: passes (a zero-test tier is not applicable); production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+The original desired-behavior test passes in rc.15. Fix: [a963ec1](https://github.com/solidjs/solid/commit/a963ec166e6b91f8be4548f2a79a6d273febafad), included in the rc.15 release. Original failing versions remain above as historical provenance.
+
+## Wave 5 filing bar
+
+**excluded-fixed**: Desired-behavior repro passes in the latest tested runtime; historical failing versions retained.

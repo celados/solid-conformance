@@ -27,3 +27,7 @@ This is the exact semantic family described in #3851, closed as fixed by [11e9fb
 ## Shrinking
 
 One signal, one held action, one outer binding, one Show on latest and one new Loading reading the ordinary accessor. No router, async source, props, type bypass, nested error boundary or timers in the program. The test's observation timer only lets the flush complete. Removing the outer binding hides the tearing; releasing the hold removes the intermediate discrepancy.
+
+## Wave 5 filing bar
+
+**held**: Duplicate of #3851 with compiled JSX repro; hold a repeated report.

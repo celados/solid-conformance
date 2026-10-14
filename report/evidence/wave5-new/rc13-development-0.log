@@ -1,0 +1,29 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc13","upstream":null,"buildMode":"development","solid":"2.0.0-rc.13","router":"2.0.0-next.30","routerHead":null}
+
+findings/055-held-navigation-feedback/repro.test.ts:
+
+findings/056-latest-mounted-boundary/repro.test.ts:
+ 6 |   await page.waitForTimeout(50)
+ 7 |   const before = await page.locator('#app').textContent()
+ 8 |   await page.evaluate(() => window.releaseMount())
+ 9 |   await page.waitForFunction(() => document.querySelector('i')?.textContent === '1')
+10 |   expect(messages).toEqual([])
+11 |   expect(before).toBe('save0pending')
+     ^
+error: expect(received).toBe(expected)
+
+Expected: "save0pending"
+Received: "save01"
+
+      at toBe (unknown:1:1)
+      at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/bisect/rc13/findings/056-latest-mounted-boundary/repro.test.ts:11:18
+      at withClientPage (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/bisect/rc13/harness/client-page.ts:22:17)
+      at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/bisect/rc13/findings/056-latest-mounted-boundary/repro.test.ts:4:8
+      at processTicksAndRejections (unknown:7:39)
+(fail) a latest-mounted Loading shows fallback beside the committed value during an action hold [12817.67ms]
+
+ 1 pass
+ 1 fail
+ 5 expect() calls
+Ran 2 tests across 2 files. [26.80s]

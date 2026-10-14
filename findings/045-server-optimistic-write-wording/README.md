@@ -7,6 +7,10 @@ versions:
   - "rc.13 development"
   - HEAD 53ef0e69 development
   - HEAD 53ef0e69 production
+  - "rc.15 development"
+  - "rc.15 production"
+  - "HEAD e371645 development"
+  - "HEAD e371645 production"
 area: docs/SSR/optimistic
 upstream: []
 found_by: docs-to-tests
@@ -28,3 +32,11 @@ BUILD_MODE=production bun test ./findings/045-server-optimistic-write-wording/re
 无 JSX、组件嵌套、effects、Loading、action、async 或浏览器；renderToString 中一个 setter updater 和一次 read。普通 signal 使用同一路径，证明 server render 在运行。独立 broader track 另外证实 store 更新 inert data、optimisticStore updater/no-op，组件均仅运行一次。三仓 open/closed 查询 `server optimistic setter` 无结果；现有027是deprecationwarning tier，不是optimistic数据落地措辞。日志和查询在 `evidence/wave3-finding045-*`；rc.13 由主线程统一比较。
 
 Wave 3 独立版本对照：rc.13 development、rc.13 production 仍红；原始运行日志见仓库 evidence/ 中对应的 rc13 日志（其中 new-baseline-production 同时运行 039/045/047/048）。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Intentionally invalid server optimistic write.

@@ -1,0 +1,9 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":{"ref":"next","revision":"4a1685ec8f1ab045843b2ae590c7afe821f73d90","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"}}
+{"router":{"before":"old","after":"new","pending":true,"fired":true,"url":"/"},"core":{"before":"waitingold","after":"new","pending":true,"fired":true},"mount":{"before":"01","after":"11","pending":true,"fired":true},"messages":[]}
+
+.scratch/probe.test.ts:
+
+ 1 pass
+ 0 fail
+Ran 1 test across 1 file. [14.31s]

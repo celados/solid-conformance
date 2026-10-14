@@ -29,3 +29,11 @@ BUILD_MODE=production bun test ./findings/047-derived-store-accessor-example/rep
 去重：solid、solid-router、solid-start 三仓 open/closed 搜索 derived store callable、createStore items length migration、MIGRATION derived store accessor 均无结果（dedupe.json）。它不是 018 的 nested refresh 参数类型缺失，亦不是 006 的 storePath 导出缺失。没有上游写入。
 
 Wave 3 独立版本对照：rc.13 development、rc.13 production 仍红；原始运行日志见仓库 evidence/ 中对应的 rc13 日志（其中 new-baseline-production 同时运行 039/045/047/048）。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**fileable**: Literal migration recipe fails TypeScript without any type bypass.

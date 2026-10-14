@@ -1,0 +1,24 @@
+bun test v1.4.2 (744846f84)
+
+tracks/docs/inventory.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+ 5 | test('RFC inventory: every entry has a stable source locator, explicit classification, and honest proof state',async()=>{
+ 6 |  const ids=new Set<string>()
+ 7 |  const source=join('.upstream',inventory.commit,'documentation/solid-2.0')
+ 8 |  for(const entry of inventory.statements){
+ 9 |   expect(ids.has(entry.id)).toBe(false);ids.add(entry.id)
+10 |   const text=await Bun.file(join(source,entry.file)).text()
+                                                          ^
+ENOENT: no such file or directory, open '.upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/documentation/solid-2.0/_template.md'
+    path: ".upstream/53ef0e69ea78bd6c7d88d5b82db2a13b8b85d712/documentation/solid-2.0/_template.md",
+ syscall: "open",
+   errno: -2,
+    code: "ENOENT"
+
+      at async <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/docs/inventory.test.ts:10:54)
+(fail) RFC inventory: every entry has a stable source locator, explicit classification, and honest proof state [0.76ms]
+
+ 1 pass
+ 1 fail
+ 1328 expect() calls
+Ran 2 tests across 1 file. [14.00ms]

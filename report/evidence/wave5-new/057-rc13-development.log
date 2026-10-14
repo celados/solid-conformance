@@ -1,0 +1,31 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc13","upstream":null,"buildMode":"development","solid":"2.0.0-rc.13","router":"2.0.0-next.30","routerHead":null}
+[{"hydration":false,"order":["A","B","C"],"messages":[]},{"hydration":true,"order":["A","C","B"],"messages":[]}]
+
+findings/057-loading-lazy-hydration-order/repro.test.ts:
+28 |     } finally {await page.close()}
+29 |    }
+30 |    console.log(JSON.stringify(results))
+31 |    expect(results.map(result=>result.messages)).toEqual([[],[]])
+32 |    expect(results[0]!.order).toEqual(['A','B','C'])
+33 |    expect(results[1]!.order).toEqual(['A','B','C'])
+                                  ^
+error: expect(received).toEqual(expected)
+
+@@ -2,4 +2,4 @@
+    "A",
+-   "B",
+    "C",
++   "B",
+  ]
+
+- Expected  - 1
++ Received  + 1
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/bisect/rc13/findings/057-loading-lazy-hydration-order/repro.test.ts:33:30)
+(fail) Loading preserves static and lazy child rendering order during hydration [12392.14ms]
+
+ 0 pass
+ 1 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [12.63s]

@@ -1,0 +1,51 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/strict-fill.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"e3716454129f8438b65257c95db5c383622494ba","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"},"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":{"ref":"next","revision":"4a1685ec8f1ab045843b2ae590c7afe821f73d90","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"}}
+binding true {
+  dev: true,
+  initial: "1",
+  text: "1",
+  calls: 1,
+  events: [
+    {
+      kind: "strict-read",
+      severity: "warn",
+      message: "[STRICT_READ_UNTRACKED] Reactive value \"fill-source\" read directly in the `row` binding-slot fill will not update. Move it into a tracking scope (JSX, a memo, or an effect's compute function).",
+      data: [Object ...],
+    }
+  ],
+}
+binding false {
+  dev: true,
+  initial: "1",
+  text: "2",
+  calls: 1,
+  events: [],
+}
+template true {
+  dev: true,
+  initial: "1",
+  text: "1",
+  calls: 1,
+  events: [
+    {
+      kind: "strict-read",
+      severity: "warn",
+      message: "[STRICT_READ_UNTRACKED] Reactive value \"fill-source\" read directly in the `comment` template-slot fill will not update. Move it into a tracking scope (JSX, a memo, or an effect's compute function).",
+      data: [Object ...],
+    }
+  ],
+}
+template false {
+  dev: true,
+  initial: "1",
+  text: "2",
+  calls: 1,
+  events: [],
+}
+
+ 1 pass
+ 0 fail
+ 22 expect() calls
+Ran 1 test across 1 file. [17.81s]

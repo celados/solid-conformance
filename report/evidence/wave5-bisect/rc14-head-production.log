@@ -1,0 +1,18 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc14","upstream":null,"buildMode":"production","solid":"2.0.0-rc.14","router":"2.0.0-next.39","routerHead":{"ref":"next","revision":"4a1685ec8f1ab045843b2ae590c7afe821f73d90","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"}}
+
+.scratch/probe.test.ts:
+2 | import { hasServerLinkState, registerElementClaim, setLinkClaim, delegateEvents, dispatch
+             ^
+error: No matching export in "node_modules/@solidjs/web/dist/web.js" for import "hasServerLinkState"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90/dist/index.js:2:10
+
+2 | sServerLinkState, registerElementClaim, setLinkClaim, delegateEvents, dispatchAsInteraction, isServer, getRequestEvent,
+                                                       ^
+error: No matching export in "node_modules/@solidjs/web/dist/web.js" for import "setLinkClaim"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90/dist/index.js:2:52
+(fail) wave5 exploration [99.29ms]
+
+ 0 pass
+ 1 fail
+Ran 1 test across 1 file. [657.00ms]

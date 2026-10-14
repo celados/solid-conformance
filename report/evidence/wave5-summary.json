@@ -1,0 +1,41 @@
+{
+  "solidRelease": "2.0.0-rc.15",
+  "solidHead": "e3716454129f8438b65257c95db5c383622494ba",
+  "routerRelease": "2.0.0-next.39",
+  "routerHead": "4a1685ec8f1ab045843b2ae590c7afe821f73d90",
+  "vitePlugin": "3.0.0-next.50",
+  "findings": 55,
+  "statusCounts": {
+    "fixed-upstream": 15,
+    "duplicate": 3,
+    "confirmed": 37
+  },
+  "newlyFixed": 12,
+  "newFindings": [
+    "055",
+    "056",
+    "057"
+  ],
+  "newConfirmed": [
+    "055",
+    "057"
+  ],
+  "newDuplicate": [
+    "056"
+  ],
+  "fileableDrafts": [
+    "29",
+    "28",
+    "20",
+    "19",
+    "21",
+    "26",
+    "18",
+    "17",
+    "16"
+  ],
+  "noUpstreamWrites": true,
+  "noPush": true,
+  "ownedBrowserCleanup": "wave5-process-cleanup.json",
+  "propertiesBudget": "wave5-properties-budget-summary.json"
+}

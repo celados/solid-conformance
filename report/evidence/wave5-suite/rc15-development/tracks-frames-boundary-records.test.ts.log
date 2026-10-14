@@ -1,0 +1,9 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/boundary-records.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+
+ 3 pass
+ 0 fail
+ 6 expect() calls
+Ran 3 tests across 1 file. [838.00ms]

@@ -1,0 +1,16 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/recovery.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+[SSR_RENDER_ERROR_CONTAINED] Render error in a <Loading> boundary — the fragment rejected and the client re-renders it: Error: server-only failure
+  in <NoHydration> › <Hydration> › <RecoveryApp> › <Loading> › <Content>
+[SSR_RENDER_ERROR_CONTAINED] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#ssr_render_error_contained
+[SSR_RENDER_ERROR_CONTAINED] Render error in a <Loading> boundary — the fragment rejected and the client re-renders it: Error: server-only failure
+  in <NoHydration> › <Hydration> › <RecoveryApp> › <Loading> › <Content>
+[SSR_RENDER_ERROR_CONTAINED] Render error in a <Loading> boundary — the fragment rejected and the client re-renders it: Error: server-only failure
+  in <NoHydration> › <Hydration> › <RecoveryApp> › <Loading> › <Content>
+
+ 3 pass
+ 0 fail
+ 58 expect() calls
+Ran 3 tests across 1 file. [45.61s]

@@ -21,3 +21,11 @@ bun test ./findings/015-untrack-owned-write/repro.test.ts
 缩减：一个 root、一个 signal 和 untrack 内的一个 setter。没有 effect、异步资源、Loading、DOM、SSR 或其他写入；保留 dispose 只用于测试资源清理。
 
 去重：在三个仓库的 open 与 closed issues 搜索 untrack ownedWrite 与 untrack owned scope，无结果。未向上游写入。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**fileable**: Documented untrack remedy fails in owned app scopes.

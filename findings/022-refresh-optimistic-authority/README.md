@@ -1,7 +1,7 @@
 ---
 type: Issue
 id: '022'
-status: confirmed
+status: fixed-upstream
 versions: [HEAD-53ef0e69-development, HEAD-53ef0e69-production]
 area: optimistic/action/async
 upstream: []
@@ -23,3 +23,13 @@ bun test ./findings/022-refresh-optimistic-authority/repro.test.ts
 去重：在 solid、solid-router、solid-start 的 open 与 closed issues 搜索 refresh optimistic override、refresh authority、refresh staged，无结果。没有上游写入。
 
 Wave 4a 独立 rc.13 补验：development 1 pass / 0 fail；production 1 pass / 0 fail。原始日志在 report/evidence/022-rc13-*-supplement.log；报告版本陈述以此为准。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: passes (a zero-test tier is not applicable); production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+The original desired-behavior test passes in rc.15. Fix: [c689a9a](https://github.com/solidjs/solid/commit/c689a9a4824f9dfd5eb820c02db3eb576b25c7f7), included in the rc.15 release. Original failing versions remain above as historical provenance.
+
+## Wave 5 filing bar
+
+**excluded-fixed**: Desired-behavior repro passes in the latest tested runtime; historical failing versions retained.

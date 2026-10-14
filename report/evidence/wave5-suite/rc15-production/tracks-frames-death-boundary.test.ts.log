@@ -1,0 +1,69 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/death-boundary.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+11712 |     start(c) {
+11713 |       if (buffering)
+11714 |         c.enqueue(new TextEncoder().encode(`:
+11715 | 
+11716 | `));
+11717 |         c.error(new Error("test-owned proxy death"));
+                        ^
+error: test-owned proxy death
+      at cut (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/.build/body-death-82710-development-false/server.js:11717:17)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/frames/death-boundary.test.ts:55:13)
+11712 |     start(c) {
+11713 |       if (buffering)
+11714 |         c.enqueue(new TextEncoder().encode(`:
+11715 | 
+11716 | `));
+11717 |         c.error(new Error("test-owned proxy death"));
+                        ^
+error: test-owned proxy death
+      at cut (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/.build/body-death-82710-development-true/server.js:11717:17)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/frames/death-boundary.test.ts:55:13)
+8120 |     start(c) {
+8121 |       if (buffering)
+8122 |         c.enqueue(new TextEncoder().encode(`:
+8123 | 
+8124 | `));
+8125 |         c.error(new Error("test-owned proxy death"));
+                       ^
+error: test-owned proxy death
+      at cut (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/.build/body-death-82710-observe-false/server.js:8125:17)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/frames/death-boundary.test.ts:55:13)
+8120 |     start(c) {
+8121 |       if (buffering)
+8122 |         c.enqueue(new TextEncoder().encode(`:
+8123 | 
+8124 | `));
+8125 |         c.error(new Error("test-owned proxy death"));
+                       ^
+error: test-owned proxy death
+      at cut (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/.build/body-death-82710-observe-true/server.js:8125:17)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/frames/death-boundary.test.ts:55:13)
+6139 |     start(c) {
+6140 |       if (buffering)
+6141 |         c.enqueue(new TextEncoder().encode(`:
+6142 | 
+6143 | `));
+6144 |         c.error(new Error("test-owned proxy death"));
+                       ^
+error: test-owned proxy death
+      at cut (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/.build/body-death-82710-production-false/server.js:6144:17)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/frames/death-boundary.test.ts:55:13)
+6139 |     start(c) {
+6140 |       if (buffering)
+6141 |         c.enqueue(new TextEncoder().encode(`:
+6142 | 
+6143 | `));
+6144 |         c.error(new Error("test-owned proxy death"));
+                       ^
+error: test-owned proxy death
+      at cut (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/.build/body-death-82710-production-true/server.js:6144:17)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/frames/death-boundary.test.ts:55:13)
+
+ 3 pass
+ 0 fail
+ 33 expect() calls
+Ran 3 tests across 1 file. [75.81s]

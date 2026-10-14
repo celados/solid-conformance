@@ -1,7 +1,7 @@
 ---
 type: finding
 id: '049'
-status: confirmed
+status: fixed-upstream
 versions:
   - "rc.13 production"
   - "rc.13 observe"
@@ -26,3 +26,13 @@ The repro contains one server component, one memo, one iterable yielding one val
 Open and closed issues in solidjs/solid, solidjs/solid-router and solidjs/solid-start were searched for `"Controller is already closed"`, `SSR abort stream close`, and `"live hole" abort`. Solid #3768 concerns a response-body cancel/pre-flush redirect that fails to stop rendering; this repro uses the existing signal abort and stops its generator, but the document live-hole channel subsequently closes twice. #035 in this suite is a client decoder pull left pending after body death, a different failure. The independent rc.13 comparison fails with the same uncaught close error in development, observe and production.
 
 Wave 3 独立版本对照：rc.13 development、rc.13 observe、rc.13 production 仍红；原始运行日志见仓库 evidence/ 中对应的 rc13 日志（其中 new-baseline-production 同时运行 039/045/047/048）。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: passes (a zero-test tier is not applicable); production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+The original desired-behavior test passes in rc.15. Fix: [469733e](https://github.com/solidjs/solid/commit/469733e1792cd91f6d34b6746811510a8a4c12e6), included in the rc.15 release. Original failing versions remain above as historical provenance.
+
+## Wave 5 filing bar
+
+**excluded-fixed**: Desired-behavior repro passes in the latest tested runtime; historical failing versions retained.

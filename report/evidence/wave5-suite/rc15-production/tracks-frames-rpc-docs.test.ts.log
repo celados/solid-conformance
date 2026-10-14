@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/rpc-docs.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+155 | import { renderServerComponent, asyncArg, frameTransformDirectResult, frameTransformResul
+               ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.dev.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/docs/frame-cases.tsx:155:10
+(fail) RFC10/11 public server contracts development [229.22ms]
+150 | import { renderServerComponent, asyncArg, frameTransformDirectResult, frameTransformResul
+               ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.observe.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/docs/frame-cases.tsx:150:10
+(fail) RFC10/11 public server contracts observe [240.02ms]
+150 | import { renderServerComponent, asyncArg, frameTransformDirectResult, frameTransformResul
+               ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/docs/frame-cases.tsx:150:10
+(fail) RFC10/11 public server contracts production [81.83ms]
+
+ 0 pass
+ 3 fail
+Ran 3 tests across 1 file. [765.00ms]

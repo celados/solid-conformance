@@ -21,3 +21,13 @@ bun test ./findings/026-cookie-proto-key/repro.test.ts
 缩减：一个 parseCookieHeader 调用与 own-key/value 断言，无 SSR、DOM、request scope 或 store；文档 track 另用 serializeCookie 生成输入验证 round-trip，并在 client/server 两端执行。
 
 去重：搜索三个仓库 open 与 closed 的 cookie __proto__、cookie prototype、parseCookieHeader。唯一邻近结果 [solid#3239](https://github.com/solidjs/solid/issues/3239) 讨论 flash cookie 属性与同名覆盖，已读正文；它不涉及普通对象特殊键丢值，机制不同。没有上游写入。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+The associated upstream issue was withdrawn for low real-world impact, not fixed. This repro remains in the conformance corpus and is excluded from the Wave 5 filing batch.
+
+## Wave 5 filing bar
+
+**held**: Withdrawn low-impact cookie-name edge; do not refile.

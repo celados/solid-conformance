@@ -5,6 +5,10 @@ status: confirmed
 versions:
   - HEAD 53ef0e69 development
   - HEAD 53ef0e69 observe
+  - "rc.15 development"
+  - "HEAD e371645 development"
+  - "rc.15 observe"
+  - "HEAD e371645 observe"
 area: diagnostics/async
 upstream: []
 found_by: docs-to-tests
@@ -27,3 +31,11 @@ BUILD_MODE=production bun test ./findings/025-async-fanout-classification/repro.
 从默认 250 subscribers、deferred Promise、多个 kind 的 broad case 缩到可配置 `fanOut: 1`、一个 async memo 和一个 reader。删掉 reader 后没有 subscriber，也不再有 fan-out finding；移除了第二个 reader、组件、DOM、Loading、用户事件与 user setter。reader 的 final value 与 rerun cause 是正常异步落地的正对照。
 
 分别在 solid、solid-router、solid-start 搜索 `HUGE_FAN_OUT`，不限定 state；router/start 无结果。读取 solid#3543、#3304、#3350 后排除：分别是 subscription leak、诊断建议引用缺失 API、heap walk 性能，均不涉及 async landing 的 `data.write` 分类。查询摘要在 evidence/wave3-finding025-dedupe.json。rc.13 比较由主线程统一切换依赖后执行，尚未声称其结果。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Diagnostic invalidation-classification metadata only.

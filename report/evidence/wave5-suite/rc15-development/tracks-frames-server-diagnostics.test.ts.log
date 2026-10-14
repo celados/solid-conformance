@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/server-diagnostics.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+244 | import { renderServerComponent, frameTransformResult } from "@solidjs/web/frames/server";
+               ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.dev.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/frames/server-diagnostics.tsx:244:10
+(fail) RFC08 server error roads and teardown fields development [38.52ms]
+230 | import { renderServerComponent, frameTransformResult } from "@solidjs/web/frames/server";
+               ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.observe.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/frames/server-diagnostics.tsx:230:10
+(fail) RFC08 server error roads and teardown fields observe [15.19ms]
+230 | import { renderServerComponent, frameTransformResult } from "@solidjs/web/frames/server";
+               ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/frames/server-diagnostics.tsx:230:10
+(fail) RFC08 server error roads and teardown fields production [24.24ms]
+
+ 0 pass
+ 3 fail
+Ran 3 tests across 1 file. [93.00ms]

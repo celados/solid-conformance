@@ -1,0 +1,698 @@
+{
+  "core": {
+    "ref": "next",
+    "revision": "e3716454129f8438b65257c95db5c383622494ba",
+    "directory": "/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"
+  },
+  "routerHead": {
+    "ref": "next",
+    "revision": "4a1685ec8f1ab045843b2ae590c7afe821f73d90",
+    "directory": "/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"
+  },
+  "results": [
+    {
+      "version": "rc10",
+      "router": "next.30",
+      "mode": "development",
+      "pid": 60730,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc10-next.30-development.log"
+    },
+    {
+      "version": "rc10",
+      "router": "next.30",
+      "mode": "production",
+      "pid": 60971,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc10-next.30-production.log"
+    },
+    {
+      "version": "rc10",
+      "router": "next.39",
+      "mode": "development",
+      "pid": 61125,
+      "exitCode": 1,
+      "probe": null,
+      "log": "report/evidence/wave5-bisect/rc10-next.39-development.log"
+    },
+    {
+      "version": "rc10",
+      "router": "next.39",
+      "mode": "production",
+      "pid": 61126,
+      "exitCode": 1,
+      "probe": null,
+      "log": "report/evidence/wave5-bisect/rc10-next.39-production.log"
+    },
+    {
+      "version": "rc10",
+      "router": "head",
+      "mode": "development",
+      "pid": 61127,
+      "exitCode": 1,
+      "probe": null,
+      "log": "report/evidence/wave5-bisect/rc10-head-development.log"
+    },
+    {
+      "version": "rc10",
+      "router": "head",
+      "mode": "production",
+      "pid": 61128,
+      "exitCode": 1,
+      "probe": null,
+      "log": "report/evidence/wave5-bisect/rc10-head-production.log"
+    },
+    {
+      "version": "rc13",
+      "router": "next.30",
+      "mode": "development",
+      "pid": 61130,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc13-next.30-development.log"
+    },
+    {
+      "version": "rc13",
+      "router": "next.30",
+      "mode": "production",
+      "pid": 61283,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc13-next.30-production.log"
+    },
+    {
+      "version": "rc13",
+      "router": "next.39",
+      "mode": "development",
+      "pid": 61745,
+      "exitCode": 1,
+      "probe": null,
+      "log": "report/evidence/wave5-bisect/rc13-next.39-development.log"
+    },
+    {
+      "version": "rc13",
+      "router": "next.39",
+      "mode": "production",
+      "pid": 61747,
+      "exitCode": 1,
+      "probe": null,
+      "log": "report/evidence/wave5-bisect/rc13-next.39-production.log"
+    },
+    {
+      "version": "rc13",
+      "router": "head",
+      "mode": "development",
+      "pid": 61748,
+      "exitCode": 1,
+      "probe": null,
+      "log": "report/evidence/wave5-bisect/rc13-head-development.log"
+    },
+    {
+      "version": "rc13",
+      "router": "head",
+      "mode": "production",
+      "pid": 61755,
+      "exitCode": 1,
+      "probe": null,
+      "log": "report/evidence/wave5-bisect/rc13-head-production.log"
+    },
+    {
+      "version": "rc14",
+      "router": "next.30",
+      "mode": "development",
+      "pid": 61771,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc14-next.30-development.log"
+    },
+    {
+      "version": "rc14",
+      "router": "next.30",
+      "mode": "production",
+      "pid": 61974,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc14-next.30-production.log"
+    },
+    {
+      "version": "rc14",
+      "router": "next.39",
+      "mode": "development",
+      "pid": 62526,
+      "exitCode": 1,
+      "probe": null,
+      "log": "report/evidence/wave5-bisect/rc14-next.39-development.log"
+    },
+    {
+      "version": "rc14",
+      "router": "next.39",
+      "mode": "production",
+      "pid": 62547,
+      "exitCode": 1,
+      "probe": null,
+      "log": "report/evidence/wave5-bisect/rc14-next.39-production.log"
+    },
+    {
+      "version": "rc14",
+      "router": "head",
+      "mode": "development",
+      "pid": 62566,
+      "exitCode": 1,
+      "probe": null,
+      "log": "report/evidence/wave5-bisect/rc14-head-development.log"
+    },
+    {
+      "version": "rc14",
+      "router": "head",
+      "mode": "production",
+      "pid": 62568,
+      "exitCode": 1,
+      "probe": null,
+      "log": "report/evidence/wave5-bisect/rc14-head-production.log"
+    },
+    {
+      "version": "rc15",
+      "router": "next.30",
+      "mode": "development",
+      "pid": 62580,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc15-next.30-development.log"
+    },
+    {
+      "version": "rc15",
+      "router": "next.30",
+      "mode": "production",
+      "pid": 62806,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc15-next.30-production.log"
+    },
+    {
+      "version": "rc15",
+      "router": "next.39",
+      "mode": "development",
+      "pid": 63027,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc15-next.39-development.log"
+    },
+    {
+      "version": "rc15",
+      "router": "next.39",
+      "mode": "production",
+      "pid": 63178,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc15-next.39-production.log"
+    },
+    {
+      "version": "rc15",
+      "router": "head",
+      "mode": "development",
+      "pid": 63655,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc15-head-development.log"
+    },
+    {
+      "version": "rc15",
+      "router": "head",
+      "mode": "production",
+      "pid": 64117,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc15-head-production.log"
+    },
+    {
+      "version": "head",
+      "router": "next.30",
+      "mode": "development",
+      "pid": 64491,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/head-next.30-development.log"
+    },
+    {
+      "version": "head",
+      "router": "next.30",
+      "mode": "production",
+      "pid": 64782,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/head-next.30-production.log"
+    },
+    {
+      "version": "head",
+      "router": "next.39",
+      "mode": "development",
+      "pid": 65099,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/head-next.39-development.log"
+    },
+    {
+      "version": "head",
+      "router": "next.39",
+      "mode": "production",
+      "pid": 65511,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/head-next.39-production.log"
+    },
+    {
+      "version": "head",
+      "router": "head",
+      "mode": "development",
+      "pid": 65785,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/head-head-development.log"
+    },
+    {
+      "version": "head",
+      "router": "head",
+      "mode": "production",
+      "pid": 65940,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/head-head-production.log"
+    }
+  ]
+}

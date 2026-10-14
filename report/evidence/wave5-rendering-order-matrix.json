@@ -1,0 +1,44 @@
+[
+  {
+    "version": "rc13",
+    "mode": "development",
+    "pid": 25462,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-new/057-rc13-development.log"
+  },
+  {
+    "version": "rc13",
+    "mode": "production",
+    "pid": 25539,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-new/057-rc13-production.log"
+  },
+  {
+    "version": "rc15",
+    "mode": "development",
+    "pid": 25612,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-new/057-rc15-development.log"
+  },
+  {
+    "version": "rc15",
+    "mode": "production",
+    "pid": 26096,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-new/057-rc15-production.log"
+  },
+  {
+    "version": "head",
+    "mode": "development",
+    "pid": 26176,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-new/057-head-development.log"
+  },
+  {
+    "version": "head",
+    "mode": "production",
+    "pid": 26263,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-new/057-head-production.log"
+  }
+]

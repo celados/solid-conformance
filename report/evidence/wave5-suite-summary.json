@@ -1,0 +1,86 @@
+[
+  {
+    "configuration": {
+      "target": "rc15",
+      "mode": "development",
+      "host": ".",
+      "seedOverride": 20261008,
+      "cases": 250,
+      "transitions": 100,
+      "router": 30,
+      "transport": 30
+    },
+    "expected": 93,
+    "completed": 93,
+    "failed": 26,
+    "pass": 124,
+    "fail": 42,
+    "timedOut": [
+      "tracks/transitions/transitions.test.ts"
+    ],
+    "receipt": "report/evidence/wave5-suite-rc15-development.json"
+  },
+  {
+    "configuration": {
+      "target": "head",
+      "mode": "development",
+      "host": ".scratch/head-host",
+      "cases": 200,
+      "transitions": 80,
+      "router": 20,
+      "transport": 20
+    },
+    "expected": 93,
+    "completed": 93,
+    "failed": 22,
+    "pass": 132,
+    "fail": 33,
+    "timedOut": [
+      "tracks/properties/properties.test.ts",
+      "tracks/transitions/transitions.test.ts"
+    ],
+    "receipt": "report/evidence/wave5-suite-head-development.json"
+  },
+  {
+    "configuration": {
+      "target": "rc15",
+      "mode": "production",
+      "host": ".scratch/rc15-production",
+      "cases": 200,
+      "transitions": 80,
+      "router": 20,
+      "transport": 20
+    },
+    "expected": 93,
+    "completed": 93,
+    "failed": 19,
+    "pass": 135,
+    "fail": 30,
+    "timedOut": [
+      "tracks/properties/properties.test.ts",
+      "tracks/transitions/transitions.test.ts"
+    ],
+    "receipt": "report/evidence/wave5-suite-rc15-production.json"
+  },
+  {
+    "configuration": {
+      "target": "head",
+      "mode": "production",
+      "host": ".scratch/head-production",
+      "cases": 200,
+      "transitions": 80,
+      "router": 20,
+      "transport": 20
+    },
+    "expected": 93,
+    "completed": 93,
+    "failed": 21,
+    "pass": 133,
+    "fail": 32,
+    "timedOut": [
+      "tracks/properties/properties.test.ts",
+      "tracks/transitions/transitions.test.ts"
+    ],
+    "receipt": "report/evidence/wave5-suite-head-production.json"
+  }
+]

@@ -1,0 +1,16 @@
+bun test v1.4.2 (744846f84)
+
+tracks/properties/properties.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+Runtime ready: {"resolvedSolid":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/node_modules/solid-js","upstream":null,"solid":"2.0.0-rc.15","signals":"2.0.0-rc.15","compiler":"2.0.0-rc.15","label":"rc15","buildMode":"production"}
+Generated attempts: 25; browser runs: 168
+Generated attempts: 50; browser runs: 349
+Generated attempts: 75; browser runs: 536
+killed 1 dangling process
+(fail) generated trees preserve DOM, settle order, wrappers and iterator cleanup [1200002.27ms]
+  ^ this test timed out after 1200000ms.
+
+ 0 pass
+ 1 fail
+ 3951 expect() calls
+Ran 1 test across 1 file. [1201.44s]

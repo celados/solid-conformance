@@ -1,0 +1,38 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/binding.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+85 | import { renderServerComponent } from "@solidjs/web/frames/server";
+              ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.dev.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/frames/binding-server.tsx:85:10
+(fail) RFC08 binding server reasons development [17.34ms]
+83 | import { renderServerComponent } from "@solidjs/web/frames/server";
+              ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.observe.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/frames/binding-server.tsx:83:10
+(fail) RFC08 binding server reasons observe [9.60ms]
+83 | import { renderServerComponent } from "@solidjs/web/frames/server";
+              ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/frames/binding-server.tsx:83:10
+(fail) RFC08 binding server reasons production [9.33ms]
+85 | import { renderServerComponent } from "@solidjs/web/frames/server";
+              ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.dev.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/frames/binding-server.tsx:85:10
+(fail) RFC08 binding client shapes and orphan records development [23.92ms]
+83 | import { renderServerComponent } from "@solidjs/web/frames/server";
+              ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.observe.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/frames/binding-server.tsx:83:10
+(fail) RFC08 binding client shapes and orphan records observe [18.80ms]
+83 | import { renderServerComponent } from "@solidjs/web/frames/server";
+              ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/frames/binding-server.tsx:83:10
+(fail) RFC08 binding client shapes and orphan records production [23.04ms]
+
+ 0 pass
+ 6 fail
+Ran 6 tests across 1 file. [292.00ms]

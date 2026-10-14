@@ -29,3 +29,11 @@ A public frame host applies three records: start, one HTML fragment with its end
 Searched open and closed issues in solidjs/solid, solidjs/solid-router, and solidjs/solid-start for `FRAME_MARKER_CORRUPTED`, `frame marker corruption`, and `observe slot markers`. Only the broad solid query matched #2830 (adjacent JSX expression DOM migration) and #2871 (SSR Reveal membership and fragment replacement); their reported mechanisms do not concern missing frame diagnostics in Observe. Existing local findings also contain no such case. The raw search summary and the two build results are retained beside this repro.
 
 Wave 4a 独立 rc.13 补验：development 1 pass / 0 fail；observe 0 pass / 1 fail。原始日志在 report/evidence/020-rc13-*-supplement.log；报告版本陈述以此为准。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: passes (a zero-test tier is not applicable); production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Malformed frame-marker diagnostics in observe; integration-only corruption path.

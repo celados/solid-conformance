@@ -29,3 +29,11 @@ BUILD_MODE=production bun test ./findings/052-transparent-ssr-slot/repro.test.ts
 去重：三仓 open/closed 搜索 transparent SSR hydration slot、transparent server serialization、transparent createMemo SSR；另宽搜 transparent 并核对 #3012 和 #3609。#3012 记录的是 rc.0 真实 hydration namespace 偏移与失活的 runtime 错误；#3609 是 null owner 时异常。本例无需 hydration，报告当前 HEAD 文档仍声称忽略 SSR 选项，属于新文档复现形状。搜索证据在 dedupe.json。没有上游写入。
 
 rc.13 对照：开发和生产都在同一断言失败，false 正控有 0=42，true 缺记录且 key 1000→0000。日志见 evidence/wave3-finding052-rc13*.log。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Internal SSR source-slot allocation; no hydration mismatch.

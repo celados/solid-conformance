@@ -1,0 +1,13 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/nested-live.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+(fail) RFC10 live claims its whole nested-async answer until every trace completes observe [30010.73ms]
+  ^ this test timed out after 30000ms.
+(fail) RFC10 live claims its whole nested-async answer until every trace completes production [30003.34ms]
+  ^ this test timed out after 30000ms.
+
+ 1 pass
+ 2 fail
+ 15 expect() calls
+Ran 3 tests across 1 file. [82.02s]

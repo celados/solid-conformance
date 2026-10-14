@@ -32,3 +32,7 @@ The hand-rolled transition, pending memo, callback-form `isPending`, plain async
 ## Shrinking
 
 Removed Delta styles, glow/spinner decoration, labels, wrappers, app providers and fake timers. Kept two routes, one unresolved lazy child Promise, one pending observer, one timer and one Show. The 300 ms threshold is not causal (0–40 ms generated delays also fail); it remains in the standalone repro to express the real-app contract. Replacing the route hold with a hand-rolled transition makes the indicator work; removing the timer avoids this delayed-display shape.
+
+## Wave 5 filing bar
+
+**fileable**: Ordinary delayed navigation indicator is absent under a held route.

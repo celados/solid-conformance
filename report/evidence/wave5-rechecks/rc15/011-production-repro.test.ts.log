@@ -1,0 +1,19 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+{
+  surface: "csr",
+  counters: [ "0", "1" ],
+  keys: [ null, null ],
+}
+{
+  surface: "hydrate",
+  counters: [ "0", "1" ],
+  keys: [ "sc-multisite-counter#0-0", "sc-multisite~2-counter#0-0" ],
+}
+
+findings/011-frame-multisite-hydration/repro.test.ts:
+
+ 1 pass
+ 0 fail
+ 4 expect() calls
+Ran 1 test across 1 file. [15.18s]

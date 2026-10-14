@@ -27,3 +27,11 @@ One Loading boundary reads a promise that rejects only on the server after its s
 ## Dedupe
 
 All-state searches in solidjs/solid, solidjs/solid-router and solidjs/solid-start used `recovery boundary outcome` and `"recovery" "records"`. The first matched nothing; broad solid hits #3136, #2997, #2883, #2761 and #3238 concern version-skew responses, missing error fallback, bundle size, throwing effects and invocation authorization. Reviewed #2997 specifically: it loses the fallback before shell flush, whereas this repro recovers correctly and disputes only a documented record enum. No matching local finding exists.
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Recovery record outcome naming only.

@@ -1,0 +1,186 @@
+[
+  {
+    "number": 3887,
+    "state": "closed",
+    "state_reason": "completed",
+    "title": "[2.0 next, regressed after rc.13] Replacement derived-store rejection never reaches Errored",
+    "comments": [
+      {
+        "body": "> Fixed on `next` in a963ec166e6b91f8be4548f2a79a6d273febafad (#3917).\n>\n> — *Grok via Cursor*",
+        "url": "https://github.com/solidjs/solid/issues/3887#issuecomment-6070678762"
+      }
+    ]
+  },
+  {
+    "number": 3888,
+    "state": "closed",
+    "state_reason": "completed",
+    "title": "[2.0 next, regressed after rc.13] Production refresh remains pending after a settled computation (production build)",
+    "comments": [
+      {
+        "body": "> Fixed on `next` in 5a26ebe3934c445d3c39d78b75cc4b0c233badec (#3914).\n>\n> — *Grok via Cursor*",
+        "url": "https://github.com/solidjs/solid/issues/3888#issuecomment-6070678272"
+      }
+    ]
+  },
+  {
+    "number": 3889,
+    "state": "closed",
+    "state_reason": "completed",
+    "title": "[2.0 rc.13 + next] Second mount of a shared server-component factory fails hydration",
+    "comments": [
+      {
+        "body": "> Fixed on `next` in 3173a14d7400877a13350928e3f4d257852640b1 (#3933).\n>\n> — *Grok via Cursor*",
+        "url": "https://github.com/solidjs/solid/issues/3889#issuecomment-6073320049"
+      }
+    ]
+  },
+  {
+    "number": 3890,
+    "state": "closed",
+    "state_reason": "completed",
+    "title": "[2.0 rc.13 + next] Open decoded iterators are missed when a response dies",
+    "comments": [
+      {
+        "body": "> Fixed on `next` in b749474e7a2300c3cd64dca28edc610c7a2d031e (#3911).\n>\n> — *Grok via Cursor*",
+        "url": "https://github.com/solidjs/solid/issues/3890#issuecomment-6070675675"
+      }
+    ]
+  },
+  {
+    "number": 3891,
+    "state": "closed",
+    "state_reason": "completed",
+    "title": "[2.0 next, regressed after rc.13] Production tree shaking removes store affects registration (production build)",
+    "comments": [
+      {
+        "body": "I started working on the PR",
+        "url": "https://github.com/solidjs/solid/issues/3891#issuecomment-6055873097"
+      },
+      {
+        "body": "> Fixed on `next` in ef1c297b3a5c10f26cfc659eea9ef3e78ec3c6d9 (#3915).\n>\n> — *Grok via Cursor*",
+        "url": "https://github.com/solidjs/solid/issues/3891#issuecomment-6070676101"
+      }
+    ]
+  },
+  {
+    "number": 3892,
+    "state": "closed",
+    "state_reason": "completed",
+    "title": "[2.0 next, regressed after rc.13] Loading on latest remains in fallback after a shared source settles",
+    "comments": [
+      {
+        "body": "> Fixed on `next` in 20db6a26aeb59a97e4968b6d1422e794b159f31a (#3938).\n>\n> — *Grok via Cursor*",
+        "url": "https://github.com/solidjs/solid/issues/3892#issuecomment-6073322573"
+      }
+    ]
+  },
+  {
+    "number": 3893,
+    "state": "closed",
+    "state_reason": "completed",
+    "title": "[2.0 rc.13 + next] Aborted document closes a live-hole channel twice",
+    "comments": [
+      {
+        "body": "> Fixed on `next` in 469733e1792cd91f6d34b6746811510a8a4c12e6 (#3918).\n>\n> — *Grok via Cursor*",
+        "url": "https://github.com/solidjs/solid/issues/3893#issuecomment-6070677726"
+      }
+    ]
+  },
+  {
+    "number": 3894,
+    "state": "closed",
+    "state_reason": "completed",
+    "title": "[2.0 rc.13 + next] Nested server region stays stale after refetch then argument change",
+    "comments": [
+      {
+        "body": "> Fixed on `next` in 5d75ed80bd24b83cf39873484862cacc6368f565 (#3930).\n>\n> — *Grok via Cursor*",
+        "url": "https://github.com/solidjs/solid/issues/3894#issuecomment-6070677227"
+      }
+    ]
+  },
+  {
+    "number": 3895,
+    "state": "closed",
+    "state_reason": "completed",
+    "title": "[2.0 next, regressed after rc.13] Awaited refresh returns the caller optimistic override",
+    "comments": [
+      {
+        "body": "> Fixed on `next` in c689a9a4824f9dfd5eb820c02db3eb576b25c7f7 (#3931).\n>\n> — *Grok via Cursor*",
+        "url": "https://github.com/solidjs/solid/issues/3895#issuecomment-6071210919"
+      }
+    ]
+  },
+  {
+    "number": 3896,
+    "state": "closed",
+    "state_reason": "completed",
+    "title": "[2.0 rc.13 + next] Synchronous lazy asset resolver failure aborts SSR",
+    "comments": [
+      {
+        "body": "Closing as low real-world impact: it needs an unusual construct or a type bypass that real apps are unlikely to hit. The standalone repro stays in https://github.com/celados/solid-conformance if it becomes useful later.",
+        "url": "https://github.com/solidjs/solid/issues/3896#issuecomment-6050230331"
+      }
+    ]
+  },
+  {
+    "number": 3897,
+    "state": "closed",
+    "state_reason": "completed",
+    "title": "[2.0 rc.13 + next] 304 format header overwrites cached GET representation",
+    "comments": [
+      {
+        "body": "> Fixed on `next` in a14c18b68f75138899829eb76d5661a8ead3af7c (#3929).\n>\n> — *Grok via Cursor*",
+        "url": "https://github.com/solidjs/solid/issues/3897#issuecomment-6070676619"
+      }
+    ]
+  },
+  {
+    "number": 3898,
+    "state": "closed",
+    "state_reason": "completed",
+    "title": "[2.0 next, regressed after rc.13] Async-generator action times out on its authoritative live echo",
+    "comments": [
+      {
+        "body": "> Fixed on `next` in 1c14992f3c763606302d098168fb5663045393e6 (#3937).\n>\n> — *Grok via Cursor*",
+        "url": "https://github.com/solidjs/solid/issues/3898#issuecomment-6073724580"
+      }
+    ]
+  },
+  {
+    "number": 3899,
+    "state": "closed",
+    "state_reason": "completed",
+    "title": "[2.0 rc.13 + next] Cookie parser loses the valid __proto__ cookie name",
+    "comments": [
+      {
+        "body": "Closing as low real-world impact: it needs an unusual construct or a type bypass that real apps are unlikely to hit. The standalone repro stays in https://github.com/celados/solid-conformance if it becomes useful later.",
+        "url": "https://github.com/solidjs/solid/issues/3899#issuecomment-6050231142"
+      }
+    ]
+  },
+  {
+    "number": 3900,
+    "state": "closed",
+    "state_reason": "completed",
+    "title": "[2.0 rc.13 + next] Unrenderable object beside text throws instead of being skipped",
+    "comments": [
+      {
+        "body": "Closing as low real-world impact: it needs an unusual construct or a type bypass that real apps are unlikely to hit. The standalone repro stays in https://github.com/celados/solid-conformance if it becomes useful later.",
+        "url": "https://github.com/solidjs/solid/issues/3900#issuecomment-6050231866"
+      }
+    ]
+  },
+  {
+    "number": 3901,
+    "state": "closed",
+    "state_reason": "completed",
+    "title": "[2.0 rc.13 + next] Literal spread children allocate hydration IDs in a different order",
+    "comments": [
+      {
+        "body": "Closing as low real-world impact: it needs an unusual construct or a type bypass that real apps are unlikely to hit. The standalone repro stays in https://github.com/celados/solid-conformance if it becomes useful later.",
+        "url": "https://github.com/solidjs/solid/issues/3901#issuecomment-6050232685"
+      }
+    ]
+  }
+]

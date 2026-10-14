@@ -1,0 +1,39 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"e3716454129f8438b65257c95db5c383622494ba","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"},"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":{"ref":"next","revision":"4a1685ec8f1ab045843b2ae590c7afe821f73d90","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"}}
+{
+  direct: {
+    value: 1,
+    warnings: 1,
+  },
+  helper: {
+    value: 1,
+    warnings: 1,
+  },
+}
+
+findings/023-returned-helper-diagnostic/repro.test.ts:
+17 |     await page.goto(server.url.toString())
+18 |     await page.waitForFunction(() => !!(window as any).result)
+19 |     const result = await page.evaluate(() => (window as any).result)
+20 |     console.log(result)
+21 |     expect(result.direct).toEqual({ value: 1, warnings: mode === 'development' ? 1 : 0 })
+22 |     expect(result.helper).toEqual({ value: 1, warnings: 0 })
+                               ^
+error: expect(received).toEqual(expected)
+
+@@ -2,3 +2,3 @@
+    "value": 1,
+-   "warnings": 0,
++   "warnings": 1,
+  }
+
+- Expected  - 1
++ Received  + 1
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/findings/023-returned-helper-diagnostic/repro.test.ts:22:27)
+(fail) 08:L359:2 helper returned without await is excluded from async-read warnings [13889.89ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [14.22s]

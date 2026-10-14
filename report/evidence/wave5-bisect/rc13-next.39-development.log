@@ -1,0 +1,28 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc13","upstream":null,"buildMode":"development","solid":"2.0.0-rc.13","router":"2.0.0-next.39","routerHead":null}
+
+.scratch/probe.test.ts:
+2 | import { hasServerLinkState, registerElementClaim, setLinkClaim, delegateEvents, dispatch
+             ^
+error: No matching export in "node_modules/@solidjs/web/dist/web.dev.js" for import "hasServerLinkState"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/bisect/rc13/node_modules/@solidjs/router/dist/index.js:2:10
+
+2 | sServerLinkState, registerElementClaim, setLinkClaim, delegateEvents, dispatchAsInteraction, isServer, getRequestEvent,
+                                                       ^
+error: No matching export in "node_modules/@solidjs/web/dist/web.dev.js" for import "setLinkClaim"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/bisect/rc13/node_modules/@solidjs/router/dist/index.js:2:52
+
+2 | entClaim, setLinkClaim, delegateEvents, dispatchAsInteraction, isServer, getRequestEvent, hasFlashCookie, clearFlashCook
+                                                                                     ^
+error: No matching export in "node_modules/@solidjs/web/dist/web.dev.js" for import "dispatchAsInteraction"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/bisect/rc13/node_modules/@solidjs/router/dist/index.js:2:82
+
+2 | teComponent as createComponent$1, memo, dynamicComponent, isServerFunction, getServerFunctionMetadata, getServerFunction
+                                                                                                                                                                                                                     ^
+error: No matching export in "node_modules/@solidjs/web/dist/web.dev.js" for import "dynamicComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/bisect/rc13/node_modules/@solidjs/router/dist/index.js:2:210
+(fail) wave5 exploration [15.62ms]
+
+ 0 pass
+ 1 fail
+Ran 1 test across 1 file. [200.00ms]

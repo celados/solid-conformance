@@ -1,0 +1,224 @@
+[
+  {
+    "version": "rc13",
+    "mode": "development",
+    "command": [
+      "bun",
+      "test",
+      "./findings/055-held-navigation-feedback/repro.test.ts",
+      "./findings/056-latest-mounted-boundary/repro.test.ts"
+    ],
+    "pid": 85453,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-new/rc13-development-0.log"
+  },
+  {
+    "version": "rc13",
+    "mode": "development",
+    "command": [
+      "bun",
+      "test",
+      "./tracks/transitions/held-ui.test.ts"
+    ],
+    "pid": 86047,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-new/rc13-development-1.log"
+  },
+  {
+    "version": "rc13",
+    "mode": "development",
+    "command": [
+      "bun",
+      "test",
+      "./tracks/properties/held-mount.test.ts"
+    ],
+    "pid": 91120,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-new/rc13-development-2.log"
+  },
+  {
+    "version": "rc13",
+    "mode": "production",
+    "command": [
+      "bun",
+      "test",
+      "./findings/055-held-navigation-feedback/repro.test.ts",
+      "./findings/056-latest-mounted-boundary/repro.test.ts"
+    ],
+    "pid": 91300,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-new/rc13-production-0.log"
+  },
+  {
+    "version": "rc13",
+    "mode": "production",
+    "command": [
+      "bun",
+      "test",
+      "./tracks/transitions/held-ui.test.ts"
+    ],
+    "pid": 91814,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-new/rc13-production-1.log"
+  },
+  {
+    "version": "rc13",
+    "mode": "production",
+    "command": [
+      "bun",
+      "test",
+      "./tracks/properties/held-mount.test.ts"
+    ],
+    "pid": 96470,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-new/rc13-production-2.log"
+  },
+  {
+    "version": "rc15",
+    "mode": "development",
+    "command": [
+      "bun",
+      "test",
+      "./findings/055-held-navigation-feedback/repro.test.ts",
+      "./findings/056-latest-mounted-boundary/repro.test.ts"
+    ],
+    "pid": 96762,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-new/rc15-development-0.log"
+  },
+  {
+    "version": "rc15",
+    "mode": "development",
+    "command": [
+      "bun",
+      "test",
+      "./tracks/transitions/held-ui.test.ts"
+    ],
+    "pid": 97117,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-new/rc15-development-1.log"
+  },
+  {
+    "version": "rc15",
+    "mode": "development",
+    "command": [
+      "bun",
+      "test",
+      "./tracks/properties/held-mount.test.ts"
+    ],
+    "pid": 97528,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-new/rc15-development-2.log"
+  },
+  {
+    "version": "rc15",
+    "mode": "production",
+    "command": [
+      "bun",
+      "test",
+      "./findings/055-held-navigation-feedback/repro.test.ts",
+      "./findings/056-latest-mounted-boundary/repro.test.ts"
+    ],
+    "pid": 97831,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-new/rc15-production-0.log"
+  },
+  {
+    "version": "rc15",
+    "mode": "production",
+    "command": [
+      "bun",
+      "test",
+      "./tracks/transitions/held-ui.test.ts"
+    ],
+    "pid": 98415,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-new/rc15-production-1.log"
+  },
+  {
+    "version": "rc15",
+    "mode": "production",
+    "command": [
+      "bun",
+      "test",
+      "./tracks/properties/held-mount.test.ts"
+    ],
+    "pid": 98941,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-new/rc15-production-2.log"
+  },
+  {
+    "version": "head",
+    "mode": "development",
+    "command": [
+      "bun",
+      "test",
+      "./findings/055-held-navigation-feedback/repro.test.ts",
+      "./findings/056-latest-mounted-boundary/repro.test.ts"
+    ],
+    "pid": 99271,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-new/head-development-0.log"
+  },
+  {
+    "version": "head",
+    "mode": "development",
+    "command": [
+      "bun",
+      "test",
+      "./tracks/transitions/held-ui.test.ts"
+    ],
+    "pid": 99856,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-new/head-development-1.log"
+  },
+  {
+    "version": "head",
+    "mode": "development",
+    "command": [
+      "bun",
+      "test",
+      "./tracks/properties/held-mount.test.ts"
+    ],
+    "pid": 360,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-new/head-development-2.log"
+  },
+  {
+    "version": "head",
+    "mode": "production",
+    "command": [
+      "bun",
+      "test",
+      "./findings/055-held-navigation-feedback/repro.test.ts",
+      "./findings/056-latest-mounted-boundary/repro.test.ts"
+    ],
+    "pid": 830,
+    "exitCode": 1,
+    "log": "report/evidence/wave5-new/head-production-0.log"
+  },
+  {
+    "version": "head",
+    "mode": "production",
+    "command": [
+      "bun",
+      "test",
+      "./tracks/transitions/held-ui.test.ts"
+    ],
+    "pid": 1314,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-new/head-production-1.log"
+  },
+  {
+    "version": "head",
+    "mode": "production",
+    "command": [
+      "bun",
+      "test",
+      "./tracks/properties/held-mount.test.ts"
+    ],
+    "pid": 1696,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-new/head-production-2.log"
+  }
+]

@@ -1,0 +1,79 @@
+{
+  "runtime": {
+    "resolvedSolid": "/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/node_modules/solid-js",
+    "upstream": null,
+    "solid": "2.0.0-rc.15",
+    "signals": "2.0.0-rc.15",
+    "compiler": "2.0.0-rc.15",
+    "label": "rc15",
+    "buildMode": "development"
+  },
+  "seed": 20261008,
+  "requested": 250,
+  "generated": 51,
+  "attemptsIncludingShrink": 108,
+  "browserRuns": 722,
+  "kinds": {
+    "lazy": 59,
+    "errored": 13,
+    "effect": 5,
+    "for": 8,
+    "text": 91,
+    "action": 8,
+    "switch": 10,
+    "keyed-for": 32,
+    "promise": 6,
+    "group": 7,
+    "optimistic": 25,
+    "optimistic-store": 8,
+    "show": 188,
+    "store": 12,
+    "loading": 8,
+    "iterable": 6
+  },
+  "failed": true,
+  "counterexample": [
+    {
+      "kind": "show",
+      "value": 1,
+      "children": [
+        {
+          "kind": "show",
+          "value": 1,
+          "children": [
+            {
+              "kind": "text",
+              "value": 0,
+              "children": []
+            }
+          ]
+        },
+        {
+          "kind": "show",
+          "value": 1,
+          "children": [
+            {
+              "kind": "show",
+              "value": 1,
+              "children": [
+                {
+                  "kind": "text",
+                  "value": 0,
+                  "children": []
+                },
+                {
+                  "kind": "lazy",
+                  "value": 1,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    17
+  ],
+  "counterexamplePath": "50:0:1:1:1:1:1:1:1:2:2:4:3:3:4:6:5",
+  "error": "Error: expect(received).toBe(expected)\n\nExpected: \"<span>0</span><span>0</span><span>1</span>\"\nReceived: \"<span>0</span><span>1</span><span>0</span>\"\n"
+}

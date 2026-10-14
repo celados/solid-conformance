@@ -36,3 +36,11 @@ Open/closed reconcile and reconcile identity searches covered all three reposito
 
 Two id-only rows, one captured reference and one keyed permutation. No async,
 component, extra fields or DOM is needed. One row cannot express a permutation.
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Known subscription-boundary identity design; no new app break.

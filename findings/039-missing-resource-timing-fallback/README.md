@@ -7,6 +7,10 @@ versions:
   - "rc.13 development"
   - HEAD 53ef0e69 development
   - HEAD 53ef0e69 observe
+  - "rc.15 development"
+  - "HEAD e371645 development"
+  - "rc.15 observe"
+  - "HEAD e371645 observe"
 area: diagnostics/performance
 upstream: []
 found_by: tracks/docs
@@ -25,3 +29,11 @@ bun test ./findings/039-missing-resource-timing-fallback/repro.test.ts
 三仓 open/closed 搜索和相关 issue 阅读在 dedupe.json：solid#3385/#2879/#2929/#3107 与 router#649/#616 分别涉及 SSR disposal/Reveal/affects/redirect、submission commit 和重复 runtime；均非资源计时缺失时的 span 放置。未写上游。
 
 Wave 3 独立版本对照：rc.13 development 仍红；原始运行日志见仓库 evidence/ 中对应的 rc13 日志（其中 new-baseline-production 同时运行 039/045/047/048）。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Performance-track fallback span omission only.

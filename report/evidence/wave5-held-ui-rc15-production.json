@@ -1,0 +1,1445 @@
+{
+  "runtime": {
+    "target": "rc15",
+    "upstream": null,
+    "buildMode": "production",
+    "solid": "2.0.0-rc.15",
+    "router": "2.0.0-next.39",
+    "routerHead": null
+  },
+  "seed": 20261008,
+  "known": {
+    "055": 18,
+    "056": 17
+  },
+  "observations": [
+    {
+      "scenario": {
+        "family": "refresh-derived",
+        "value": 3,
+        "nested": true,
+        "reverse": true,
+        "delay": 20
+      },
+      "result": {
+        "answer": 3,
+        "dom": "6"
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 1,
+        "nested": false,
+        "reverse": false,
+        "delay": 36
+      },
+      "result": {
+        "answer": 1,
+        "dom": "2"
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 4,
+        "nested": false,
+        "reverse": true,
+        "delay": 20
+      },
+      "result": {
+        "before": "saving1:0;2:4;",
+        "after": "2:4;1:0;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 8,
+        "nested": false,
+        "reverse": true,
+        "delay": 18
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 8,
+        "nested": false,
+        "reverse": true,
+        "delay": 35
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 4,
+        "nested": false,
+        "reverse": true,
+        "delay": 0
+      },
+      "result": {
+        "answer": 4,
+        "dom": "8"
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 9,
+        "nested": true,
+        "reverse": false,
+        "delay": 1
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "refresh-derived",
+        "value": 9,
+        "nested": false,
+        "reverse": false,
+        "delay": 37
+      },
+      "result": {
+        "answer": 9,
+        "dom": "18"
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 8,
+        "nested": true,
+        "reverse": false,
+        "delay": 37
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 2,
+        "nested": true,
+        "reverse": true,
+        "delay": 28
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 3,
+        "nested": true,
+        "reverse": true,
+        "delay": 21
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 2,
+        "nested": false,
+        "reverse": false,
+        "delay": 34
+      },
+      "result": {
+        "answer": 2,
+        "dom": "4"
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 2,
+        "nested": true,
+        "reverse": true,
+        "delay": 0
+      },
+      "result": {
+        "before": "02",
+        "after": "22",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 3,
+        "nested": false,
+        "reverse": false,
+        "delay": 12
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 4,
+        "nested": false,
+        "reverse": true,
+        "delay": 0
+      },
+      "result": {
+        "before": "saving1:0;2:4;",
+        "after": "2:4;1:0;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 4,
+        "nested": false,
+        "reverse": false,
+        "delay": 2
+      },
+      "result": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 2,
+        "nested": true,
+        "reverse": false,
+        "delay": 6
+      },
+      "result": {
+        "before": "02",
+        "after": "22",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 7,
+        "nested": false,
+        "reverse": false,
+        "delay": 3
+      },
+      "result": {
+        "answer": 7,
+        "dom": "14"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 4,
+        "nested": true,
+        "reverse": true,
+        "delay": 18
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 7,
+        "nested": false,
+        "reverse": true,
+        "delay": 5
+      },
+      "result": {
+        "before": "saving1:0;2:7;",
+        "after": "2:7;1:0;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 9,
+        "nested": false,
+        "reverse": true,
+        "delay": 4
+      },
+      "result": {
+        "answer": 9,
+        "dom": "18"
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 8,
+        "nested": true,
+        "reverse": false,
+        "delay": 36
+      },
+      "result": {
+        "before": "saving1:0;2:8;",
+        "after": "1:0;2:8;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 9,
+        "nested": true,
+        "reverse": false,
+        "delay": 9
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 2,
+        "nested": false,
+        "reverse": true,
+        "delay": 24
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 9,
+        "nested": false,
+        "reverse": false,
+        "delay": 22
+      },
+      "result": {
+        "before": "saving1:0;2:9;",
+        "after": "1:0;2:9;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 2,
+        "nested": true,
+        "reverse": true,
+        "delay": 12
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 4,
+        "nested": false,
+        "reverse": false,
+        "delay": 4
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 5,
+        "nested": false,
+        "reverse": false,
+        "delay": 0
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 2,
+        "nested": false,
+        "reverse": false,
+        "delay": 0
+      },
+      "result": {
+        "before": "02",
+        "after": "22",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "refresh-derived",
+        "value": 4,
+        "nested": true,
+        "reverse": true,
+        "delay": 40
+      },
+      "result": {
+        "answer": 4,
+        "dom": "8"
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 8,
+        "nested": false,
+        "reverse": true,
+        "delay": 6
+      },
+      "result": {
+        "before": "saving1:0;2:8;",
+        "after": "2:8;1:0;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 1,
+        "nested": false,
+        "reverse": false,
+        "delay": 7
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 2,
+        "nested": true,
+        "reverse": false,
+        "delay": 3
+      },
+      "result": {
+        "before": "02",
+        "after": "22",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 6,
+        "nested": false,
+        "reverse": false,
+        "delay": 30
+      },
+      "result": {
+        "before": "saving1:0;2:6;",
+        "after": "1:0;2:6;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 6,
+        "nested": false,
+        "reverse": true,
+        "delay": 38
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 4,
+        "nested": false,
+        "reverse": true,
+        "delay": 9
+      },
+      "result": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "refresh-derived",
+        "value": 2,
+        "nested": true,
+        "reverse": true,
+        "delay": 31
+      },
+      "result": {
+        "answer": 2,
+        "dom": "4"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 5,
+        "nested": false,
+        "reverse": false,
+        "delay": 40
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 8,
+        "nested": true,
+        "reverse": false,
+        "delay": 38
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 2,
+        "nested": true,
+        "reverse": true,
+        "delay": 8
+      },
+      "result": {
+        "before": "saving1:0;2:2;",
+        "after": "2:2;1:0;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 9,
+        "nested": true,
+        "reverse": false,
+        "delay": 5
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 4,
+        "nested": true,
+        "reverse": false,
+        "delay": 27
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 7,
+        "nested": false,
+        "reverse": false,
+        "delay": 5
+      },
+      "result": {
+        "answer": 7,
+        "dom": "14"
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 7,
+        "nested": true,
+        "reverse": false,
+        "delay": 18
+      },
+      "result": {
+        "before": "07",
+        "after": "77",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 4,
+        "nested": true,
+        "reverse": false,
+        "delay": 26
+      },
+      "result": {
+        "answer": 4,
+        "dom": "8"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 1,
+        "nested": true,
+        "reverse": true,
+        "delay": 2
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "refresh-derived",
+        "value": 4,
+        "nested": false,
+        "reverse": true,
+        "delay": 2
+      },
+      "result": {
+        "answer": 4,
+        "dom": "8"
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 1,
+        "nested": true,
+        "reverse": false,
+        "delay": 40
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 6,
+        "nested": false,
+        "reverse": true,
+        "delay": 0
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 3,
+        "nested": false,
+        "reverse": false,
+        "delay": 11
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 1,
+        "nested": false,
+        "reverse": true,
+        "delay": 0
+      },
+      "result": {
+        "before": "saving1:0;2:1;",
+        "after": "2:1;1:0;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 4,
+        "nested": false,
+        "reverse": false,
+        "delay": 23
+      },
+      "result": {
+        "answer": 4,
+        "dom": "8"
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 2,
+        "nested": true,
+        "reverse": false,
+        "delay": 12
+      },
+      "result": {
+        "before": "saving1:0;2:2;",
+        "after": "1:0;2:2;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 2,
+        "nested": false,
+        "reverse": true,
+        "delay": 5
+      },
+      "result": {
+        "answer": 2,
+        "dom": "4"
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 7,
+        "nested": false,
+        "reverse": false,
+        "delay": 34
+      },
+      "result": {
+        "answer": 7,
+        "dom": "14"
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 7,
+        "nested": true,
+        "reverse": false,
+        "delay": 29
+      },
+      "result": {
+        "before": "saving1:0;2:7;",
+        "after": "1:0;2:7;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 2,
+        "nested": true,
+        "reverse": false,
+        "delay": 25
+      },
+      "result": {
+        "answer": 2,
+        "dom": "4"
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 9,
+        "nested": true,
+        "reverse": true,
+        "delay": 38
+      },
+      "result": {
+        "before": "saving1:0;2:9;",
+        "after": "2:9;1:0;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 5,
+        "nested": false,
+        "reverse": false,
+        "delay": 37
+      },
+      "result": {
+        "before": "05",
+        "after": "55",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 6,
+        "nested": true,
+        "reverse": false,
+        "delay": 9
+      },
+      "result": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "refresh-derived",
+        "value": 5,
+        "nested": false,
+        "reverse": false,
+        "delay": 28
+      },
+      "result": {
+        "answer": 5,
+        "dom": "10"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 9,
+        "nested": false,
+        "reverse": false,
+        "delay": 1
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "refresh-derived",
+        "value": 8,
+        "nested": true,
+        "reverse": true,
+        "delay": 27
+      },
+      "result": {
+        "answer": 8,
+        "dom": "16"
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 8,
+        "nested": true,
+        "reverse": true,
+        "delay": 8
+      },
+      "result": {
+        "answer": 8,
+        "dom": "16"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 2,
+        "nested": false,
+        "reverse": true,
+        "delay": 5
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 3,
+        "nested": false,
+        "reverse": false,
+        "delay": 3
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 2,
+        "nested": false,
+        "reverse": false,
+        "delay": 0
+      },
+      "result": {
+        "before": "02",
+        "after": "22",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 8,
+        "nested": false,
+        "reverse": false,
+        "delay": 4
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 6,
+        "nested": true,
+        "reverse": false,
+        "delay": 2
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "refresh-derived",
+        "value": 3,
+        "nested": true,
+        "reverse": true,
+        "delay": 0
+      },
+      "result": {
+        "answer": 3,
+        "dom": "6"
+      }
+    },
+    {
+      "scenario": {
+        "family": "refresh-derived",
+        "value": 6,
+        "nested": false,
+        "reverse": true,
+        "delay": 1
+      },
+      "result": {
+        "answer": 6,
+        "dom": "12"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 3,
+        "nested": true,
+        "reverse": false,
+        "delay": 23
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 9,
+        "nested": false,
+        "reverse": true,
+        "delay": 0
+      },
+      "result": {
+        "before": "09",
+        "after": "99",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 3,
+        "nested": true,
+        "reverse": false,
+        "delay": 18
+      },
+      "result": {
+        "before": "saving1:0;2:3;",
+        "after": "1:0;2:3;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 4,
+        "nested": false,
+        "reverse": false,
+        "delay": 35
+      },
+      "result": {
+        "before": "04",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 6,
+        "nested": false,
+        "reverse": true,
+        "delay": 1
+      },
+      "result": {
+        "answer": 6,
+        "dom": "12"
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 3,
+        "nested": true,
+        "reverse": false,
+        "delay": 10
+      },
+      "result": {
+        "before": "saving1:0;2:3;",
+        "after": "1:0;2:3;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 4,
+        "nested": true,
+        "reverse": false,
+        "delay": 5
+      },
+      "result": {
+        "before": "saving1:0;2:4;",
+        "after": "1:0;2:4;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 5,
+        "nested": false,
+        "reverse": true,
+        "delay": 1
+      },
+      "result": {
+        "before": "05",
+        "after": "55",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 7,
+        "nested": false,
+        "reverse": false,
+        "delay": 30
+      },
+      "result": {
+        "answer": 7,
+        "dom": "14"
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 8,
+        "nested": true,
+        "reverse": true,
+        "delay": 5
+      },
+      "result": {
+        "answer": 8,
+        "dom": "16"
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 1,
+        "nested": false,
+        "reverse": false,
+        "delay": 18
+      },
+      "result": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 4,
+        "nested": true,
+        "reverse": false,
+        "delay": 0
+      },
+      "result": {
+        "answer": 4,
+        "dom": "8"
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 9,
+        "nested": true,
+        "reverse": false,
+        "delay": 5
+      },
+      "result": {
+        "before": "09",
+        "after": "99",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 7,
+        "nested": false,
+        "reverse": true,
+        "delay": 14
+      },
+      "result": {
+        "before": "07",
+        "after": "77",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 7,
+        "nested": true,
+        "reverse": true,
+        "delay": 40
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 2,
+        "nested": true,
+        "reverse": false,
+        "delay": 27
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "refresh-derived",
+        "value": 9,
+        "nested": false,
+        "reverse": false,
+        "delay": 29
+      },
+      "result": {
+        "answer": 9,
+        "dom": "18"
+      }
+    },
+    {
+      "scenario": {
+        "family": "refresh-derived",
+        "value": 2,
+        "nested": true,
+        "reverse": true,
+        "delay": 33
+      },
+      "result": {
+        "answer": 2,
+        "dom": "4"
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 4,
+        "nested": false,
+        "reverse": false,
+        "delay": 25
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "refresh-derived",
+        "value": 8,
+        "nested": false,
+        "reverse": false,
+        "delay": 37
+      },
+      "result": {
+        "answer": 8,
+        "dom": "16"
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 8,
+        "nested": false,
+        "reverse": false,
+        "delay": 27
+      },
+      "result": {
+        "answer": 8,
+        "dom": "16"
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 3,
+        "nested": true,
+        "reverse": true,
+        "delay": 12
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 6,
+        "nested": true,
+        "reverse": false,
+        "delay": 17
+      },
+      "result": {
+        "before": "06",
+        "after": "66",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 8,
+        "nested": false,
+        "reverse": true,
+        "delay": 1
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 7,
+        "nested": true,
+        "reverse": true,
+        "delay": 12
+      },
+      "result": {
+        "before": "saving1:0;2:7;",
+        "after": "2:7;1:0;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 7,
+        "nested": true,
+        "reverse": true,
+        "delay": 36
+      },
+      "result": {
+        "answer": 7,
+        "dom": "14"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 1,
+        "nested": true,
+        "reverse": false,
+        "delay": 1
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 1,
+        "nested": true,
+        "reverse": true,
+        "delay": 27
+      },
+      "result": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 9,
+        "nested": false,
+        "reverse": false,
+        "delay": 18
+      },
+      "result": {
+        "answer": 9,
+        "dom": "18"
+      }
+    }
+  ],
+  "failed": false,
+  "counterexample": null,
+  "counterexamplePath": null,
+  "error": ""
+}

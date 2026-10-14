@@ -1,0 +1,30 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/strict-fill.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+binding true {
+  dev: false,
+  initial: "",
+  text: "2",
+  calls: 1,
+  events: [],
+}
+3 | import {buildFrames} from './build'
+4 | import {resolve} from 'node:path'
+5 | import {rm} from 'node:fs/promises'
+6 | // 08 L330: binding/template fills execute once untracked with a named context;
+7 | // a getter returned from a binding fill preserves reactivity without the warning.
+8 | test('server component fill strict-read contexts and reactive controls',async()=>{const dir=resolve('.build','strict-fill-'+process.pid);await buildFrames(dir,(process.env.BUILD_MODE??'development') as any,{client:'tracks/frames/strict-fill-client.tsx',server:'tracks/frames/strict-fill-server.tsx'});const runtime=await import(dir+'/strict-fill-server.js');const server=Bun.serve({port:0,fetch:r=>{const path=new URL(r.url).pathname;return path.startsWith('/_server')?runtime.handle(r):path.endsWith('.js')?new Response(Bun.file(dir+path),{headers:{'content-type':'text/javascript'}}):new Response('<div id="root"></div><script type="module" src="/strict-fill-client.js"></script>',{headers:{'content-type':'text/html'}})}});const browser=await chromium.launch({channel:'chrome',headless:true});try{const page=await browser.newPage();await page.goto(server.url.toString());await page.waitForFunction(()=>!!(window as any).strictFill);for(const family of ['binding','template'])for(const direct of [true,false]){const r=awai
+
+error: expect(received).toBe(expected)
+
+Expected: "1"
+Received: ""
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/frames/strict-fill.test.ts:8:1170)
+(fail) server component fill strict-read contexts and reactive controls [11767.70ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [12.12s]

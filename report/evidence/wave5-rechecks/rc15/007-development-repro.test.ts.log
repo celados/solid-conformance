@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+
+findings/007-loading-on-accessor/repro.test.ts:
+1 | import {test,expect} from 'bun:test'
+2 | import {openHarness} from '../../harness/browser'
+3 | import {leaf} from '../../harness/tree'
+4 | test('05-async-data.md: zero-argument Loading on accessor is tracked',async()=>{
+5 | 	const h=await openHarness(undefined, true)
+6 | 	try{const result=await h.run({tree:leaf(),order:[],scenario:'finding:007'},'csr');expect(result.messages).toEqual([]);expect(result.dom).toBe('<b>fallback</b>')}finally{await h.close()}
+                                                                                                                                              ^
+error: expect(received).toBe(expected)
+
+Expected: "<b>fallback</b>"
+Received: "<span>1</span>"
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/findings/007-loading-on-accessor/repro.test.ts:6:139)
+(fail) 05-async-data.md: zero-argument Loading on accessor is tracked [8004.23ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [8.16s]

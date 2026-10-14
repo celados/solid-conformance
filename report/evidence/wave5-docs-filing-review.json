@@ -1,0 +1,90 @@
+{
+  "head": "e3716454129f8438b65257c95db5c383622494ba",
+  "pin": "f929e4fcc4f08a89c2f236e236fdfc6520cb123d",
+  "fileable": [
+    {
+      "draft": "16",
+      "id": "015",
+      "reason": "App code following the documented remedy cannot clear an owned-write diagnostic. Correct the documentation to recommend an imperative scope, onSettled, or ownedWrite."
+    },
+    {
+      "draft": "17",
+      "id": "013",
+      "reason": "This is a plausible unsaved/pinned local-state recipe. Read the source unconditionally before selecting the pinned result. The artificial additive-draft hold case 046 is excluded from this draft."
+    },
+    {
+      "draft": "18",
+      "id": "030",
+      "reason": "A copied app recipe fails to compile. The error arm belongs in the second-argument { effect, error } bundle. Hydration callback-count case 041 is excluded: its repro does not cause a second real request or incorrect UI."
+    },
+    {
+      "draft": "19",
+      "id": "006",
+      "reason": "An app copying the migration recipe cannot build. Either expose the promised helper and types or document its supported import."
+    },
+    {
+      "draft": "20",
+      "id": "007",
+      "reason": "App loading feedback is affected by the documented prop form. Correct the accessor claim/example or implement its promised unwrapping. Boundary-scope 048 and internal hydration-slot 052 are excluded."
+    },
+    {
+      "draft": "21",
+      "id": "018",
+      "reason": "Typed app code cannot issue the documented nested refresh. The failure is the type error itself, without casting the value to force a runtime path."
+    },
+    {
+      "draft": "26",
+      "id": "047",
+      "reason": "An ordinary agent/person copying the migration recipe hits this compile failure. Change items().length to items.length; the runtime type-bypass arm of the historical finding is not proposed for filing."
+    }
+  ],
+  "held": [
+    {
+      "draft": "17",
+      "id": "046",
+      "reason": "Artificial additive draft derivation; no ordinary app failure established."
+    },
+    {
+      "draft": "18",
+      "id": "041",
+      "reason": "Tracking invocation count without a repeated request or incorrect DOM."
+    },
+    {
+      "draft": "20",
+      "id": "048",
+      "reason": "Old committed value under a held plain signal; semantics/doc-scope question, unlike tearing in 056."
+    },
+    {
+      "draft": "20",
+      "id": "052",
+      "reason": "Internal SSR source-slot allocation, no app hydration mismatch."
+    },
+    {
+      "draft": "22",
+      "id": "045",
+      "reason": "Intentionally invalid server write."
+    },
+    {
+      "draft": "23",
+      "id": "024",
+      "reason": "Transport succeeds; rich-args opt-in wording only."
+    },
+    {
+      "draft": "24",
+      "ids": [
+        "027",
+        "038"
+      ],
+      "reason": "Diagnostics and integration lifecycle wording."
+    },
+    {
+      "draft": "25",
+      "id": "031",
+      "reason": "Integration-only invocation hook."
+    },
+    {
+      "draft": "27",
+      "reason": "Diagnostic/tooling bundle not demonstrated as an ordinary app failure."
+    }
+  ]
+}

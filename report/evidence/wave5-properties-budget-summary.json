@@ -1,0 +1,44 @@
+[
+  {
+    "target": "head",
+    "mode": "development",
+    "seed": 20261007,
+    "requested": 200,
+    "budgetMs": 1200000,
+    "timedOut": true,
+    "lastLoggedAttempt": 75,
+    "lastLoggedBrowserRuns": 536,
+    "log": "report/evidence/wave5-properties-head-development-seed07.log"
+  },
+  {
+    "target": "rc15",
+    "mode": "production",
+    "seed": 20261007,
+    "requested": 200,
+    "budgetMs": 1200000,
+    "timedOut": true,
+    "lastLoggedAttempt": 75,
+    "lastLoggedBrowserRuns": 536,
+    "log": "report/evidence/wave5-properties-rc15-production-seed07.log"
+  },
+  {
+    "target": "head",
+    "mode": "production",
+    "seed": 20261007,
+    "requested": 200,
+    "budgetMs": 1200000,
+    "timedOut": true,
+    "lastLoggedAttempt": 75,
+    "lastLoggedBrowserRuns": 536,
+    "log": "report/evidence/wave5-properties-head-production-seed07.log"
+  },
+  {
+    "target": "rc15",
+    "mode": "development",
+    "seed": 20261007,
+    "requested": 200,
+    "interruptedByService": true,
+    "lastLoggedAttempt": 100,
+    "log": "report/evidence/wave5-properties-rc15-development-seed07-interrupted.log"
+  }
+]

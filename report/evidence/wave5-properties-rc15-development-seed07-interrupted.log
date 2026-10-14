@@ -1,0 +1,12 @@
+$ bun test ./tracks/properties
+bun test v1.4.2 (744846f84)
+
+tracks/properties/held-mount.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+
+tracks/properties/properties.test.ts:
+Runtime ready: {"resolvedSolid":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/node_modules/solid-js","upstream":null,"solid":"2.0.0-rc.15","signals":"2.0.0-rc.15","compiler":"2.0.0-rc.15","label":"rc15","buildMode":"development"}
+Generated attempts: 25; browser runs: 168
+Generated attempts: 50; browser runs: 349
+Generated attempts: 75; browser runs: 536
+Generated attempts: 100; browser runs: 715

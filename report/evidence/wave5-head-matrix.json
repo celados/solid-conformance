@@ -1,0 +1,1161 @@
+{
+  "runtime": {
+    "target": "head",
+    "upstream": {
+      "ref": "next",
+      "revision": "e3716454129f8438b65257c95db5c383622494ba",
+      "directory": "/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"
+    },
+    "buildMode": "development",
+    "solid": "2.0.0-rc.15",
+    "router": "2.0.0-next.39",
+    "routerHead": {
+      "ref": "next",
+      "revision": "4a1685ec8f1ab045843b2ae590c7afe821f73d90",
+      "directory": "/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"
+    }
+  },
+  "findingCount": 54,
+  "results": [
+    {
+      "id": "001",
+      "path": "findings/001-streamed-store-keyed/repro.test.ts",
+      "mode": "development",
+      "pid": 70316,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/001-development-repro.test.ts.log"
+    },
+    {
+      "id": "002",
+      "path": "findings/002-iterable-discovery/repro.test.ts",
+      "mode": "development",
+      "pid": 70406,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/002-development-repro.test.ts.log"
+    },
+    {
+      "id": "003",
+      "path": "findings/003-tsrx-asi/repro.test.ts",
+      "mode": "development",
+      "pid": 70407,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/003-development-repro.test.ts.log"
+    },
+    {
+      "id": "004",
+      "path": "findings/004-derived-store-rejection/live-repro.test.ts",
+      "mode": "development",
+      "pid": 70408,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/004-development-live-repro.test.ts.log"
+    },
+    {
+      "id": "004",
+      "path": "findings/004-derived-store-rejection/repro.test.ts",
+      "mode": "development",
+      "pid": 70769,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/004-development-repro.test.ts.log"
+    },
+    {
+      "id": "005",
+      "path": "findings/005-keyed-reconcile-identity/repro.test.ts",
+      "mode": "development",
+      "pid": 70927,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/005-development-repro.test.ts.log"
+    },
+    {
+      "id": "006",
+      "path": "findings/006-storepath-export/repro.test.ts",
+      "mode": "development",
+      "pid": 70928,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/006-development-repro.test.ts.log"
+    },
+    {
+      "id": "007",
+      "path": "findings/007-loading-on-accessor/repro.test.ts",
+      "mode": "development",
+      "pid": 70929,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/007-development-repro.test.ts.log"
+    },
+    {
+      "id": "008",
+      "path": "findings/008-production-refresh/repro.test.ts",
+      "mode": "development",
+      "pid": 70999,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/008-development-repro.test.ts.log"
+    },
+    {
+      "id": "009",
+      "path": "findings/009-frame-nested-region-stale/repro.test.ts",
+      "mode": "development",
+      "pid": 71108,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/009-development-repro.test.ts.log"
+    },
+    {
+      "id": "010",
+      "path": "findings/010-leaf-signal-diagnostic/repro.test.ts",
+      "mode": "development",
+      "pid": 71272,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/010-development-repro.test.ts.log"
+    },
+    {
+      "id": "011",
+      "path": "findings/011-frame-multisite-hydration/repro.test.ts",
+      "mode": "development",
+      "pid": 71273,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/011-development-repro.test.ts.log"
+    },
+    {
+      "id": "012",
+      "path": "findings/012-attribution-audience-gate/repro.test.ts",
+      "mode": "development",
+      "pid": 71467,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/012-development-repro.test.ts.log"
+    },
+    {
+      "id": "013",
+      "path": "findings/013-pinned-source-retake/repro.test.ts",
+      "mode": "development",
+      "pid": 71469,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/013-development-repro.test.ts.log"
+    },
+    {
+      "id": "014",
+      "path": "findings/014-live-drop-completes/repro.test.ts",
+      "mode": "development",
+      "pid": 71470,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/014-development-repro.test.ts.log"
+    },
+    {
+      "id": "015",
+      "path": "findings/015-untrack-owned-write/repro.test.ts",
+      "mode": "development",
+      "pid": 71580,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/015-development-repro.test.ts.log"
+    },
+    {
+      "id": "016",
+      "path": "findings/016-production-store-affects/repro.test.ts",
+      "mode": "development",
+      "pid": 71582,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/016-development-repro.test.ts.log"
+    },
+    {
+      "id": "017",
+      "path": "findings/017-initial-render-error-record/renderrecord-repro.test.ts",
+      "mode": "development",
+      "pid": 71583,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/017-development-renderrecord-repro.test.ts.log"
+    },
+    {
+      "id": "017",
+      "path": "findings/017-initial-render-error-record/repro.test.ts",
+      "mode": "development",
+      "pid": 71587,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/017-development-repro.test.ts.log"
+    },
+    {
+      "id": "018",
+      "path": "findings/018-nested-refresh-types/repro.test.ts",
+      "mode": "development",
+      "pid": 71588,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/018-development-repro.test.ts.log"
+    },
+    {
+      "id": "019",
+      "path": "findings/019-action-await-origin/repro.test.ts",
+      "mode": "development",
+      "pid": 71600,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/019-development-repro.test.ts.log"
+    },
+    {
+      "id": "020",
+      "path": "findings/020-observe-frame-corruption/repro.test.ts",
+      "mode": "development",
+      "pid": 71602,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/020-development-repro.test.ts.log"
+    },
+    {
+      "id": "021",
+      "path": "findings/021-recovery-boundary-outcome/repro.test.ts",
+      "mode": "development",
+      "pid": 71759,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/021-development-repro.test.ts.log"
+    },
+    {
+      "id": "022",
+      "path": "findings/022-refresh-optimistic-authority/repro.test.ts",
+      "mode": "development",
+      "pid": 71901,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/022-development-repro.test.ts.log"
+    },
+    {
+      "id": "023",
+      "path": "findings/023-returned-helper-diagnostic/repro.test.ts",
+      "mode": "development",
+      "pid": 71902,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/023-development-repro.test.ts.log"
+    },
+    {
+      "id": "024",
+      "path": "findings/024-single-typed-array-encoding/repro.test.ts",
+      "mode": "development",
+      "pid": 72158,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/024-development-repro.test.ts.log"
+    },
+    {
+      "id": "025",
+      "path": "findings/025-async-fanout-classification/repro.test.ts",
+      "mode": "development",
+      "pid": 72325,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/025-development-repro.test.ts.log"
+    },
+    {
+      "id": "026",
+      "path": "findings/026-cookie-proto-key/repro.test.ts",
+      "mode": "development",
+      "pid": 72709,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/026-development-repro.test.ts.log"
+    },
+    {
+      "id": "027",
+      "path": "findings/027-server-write-all-builds/repro.test.ts",
+      "mode": "development",
+      "pid": 72714,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/027-development-repro.test.ts.log"
+    },
+    {
+      "id": "028",
+      "path": "findings/028-artifact-format-version/repro.test.ts",
+      "mode": "development",
+      "pid": 72721,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/028-development-repro.test.ts.log"
+    },
+    {
+      "id": "029",
+      "path": "findings/029-latest-loading-convergence/repro.test.ts",
+      "mode": "development",
+      "pid": 72729,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/029-development-repro.test.ts.log"
+    },
+    {
+      "id": "030",
+      "path": "findings/030-effect-error-signature/repro.test.ts",
+      "mode": "development",
+      "pid": 73109,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/030-development-repro.test.ts.log"
+    },
+    {
+      "id": "031",
+      "path": "findings/031-direct-error-hook-tier/repro.test.ts",
+      "mode": "development",
+      "pid": 73124,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/031-development-repro.test.ts.log"
+    },
+    {
+      "id": "032",
+      "path": "findings/032-sync-lazy-resolver/repro.test.ts",
+      "mode": "development",
+      "pid": 73197,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/032-development-repro.test.ts.log"
+    },
+    {
+      "id": "033",
+      "path": "findings/033-symbol-insert-diagnostic/repro.test.ts",
+      "mode": "development",
+      "pid": 73223,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/033-development-repro.test.ts.log"
+    },
+    {
+      "id": "034",
+      "path": "findings/034-mixed-insert-object/repro.test.ts",
+      "mode": "development",
+      "pid": 73237,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/034-development-repro.test.ts.log"
+    },
+    {
+      "id": "035",
+      "path": "findings/035-decoder-iterator-body-death/eof.test.ts",
+      "mode": "development",
+      "pid": 73574,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/035-development-eof.test.ts.log"
+    },
+    {
+      "id": "035",
+      "path": "findings/035-decoder-iterator-body-death/repro.test.ts",
+      "mode": "development",
+      "pid": 73575,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/035-development-repro.test.ts.log"
+    },
+    {
+      "id": "036",
+      "path": "findings/036-conditional-cache-format/repro.test.ts",
+      "mode": "development",
+      "pid": 73576,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/036-development-repro.test.ts.log"
+    },
+    {
+      "id": "038",
+      "path": "findings/038-frame-call-state-doc-reset/repro.test.ts",
+      "mode": "development",
+      "pid": 73749,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/038-development-repro.test.ts.log"
+    },
+    {
+      "id": "039",
+      "path": "findings/039-missing-resource-timing-fallback/repro.test.ts",
+      "mode": "development",
+      "pid": 73953,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/039-development-repro.test.ts.log"
+    },
+    {
+      "id": "040",
+      "path": "findings/040-initial-binding-console/repro.test.ts",
+      "mode": "development",
+      "pid": 74263,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/040-development-repro.test.ts.log"
+    },
+    {
+      "id": "041",
+      "path": "findings/041-dynamic-source-tracking/repro.test.ts",
+      "mode": "development",
+      "pid": 74741,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/041-development-repro.test.ts.log"
+    },
+    {
+      "id": "042",
+      "path": "findings/042-malformed-preload-crossorigin/repro.test.ts",
+      "mode": "development",
+      "pid": 75419,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/042-development-repro.test.ts.log"
+    },
+    {
+      "id": "044",
+      "path": "findings/044-literal-spread-hydration/repro.test.ts",
+      "mode": "development",
+      "pid": 75422,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/044-development-repro.test.ts.log"
+    },
+    {
+      "id": "045",
+      "path": "findings/045-server-optimistic-write-wording/repro.test.ts",
+      "mode": "development",
+      "pid": 75677,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/045-development-repro.test.ts.log"
+    },
+    {
+      "id": "046",
+      "path": "findings/046-held-derived-store-seed/repro.test.ts",
+      "mode": "development",
+      "pid": 75678,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/046-development-repro.test.ts.log"
+    },
+    {
+      "id": "047",
+      "path": "findings/047-derived-store-accessor-example/repro.test.ts",
+      "mode": "development",
+      "pid": 75679,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 2,
+      "log": "report/evidence/wave5-rechecks/head/047-development-repro.test.ts.log"
+    },
+    {
+      "id": "048",
+      "path": "findings/048-first-loading-held-signal/repro.test.ts",
+      "mode": "development",
+      "pid": 75699,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/048-development-repro.test.ts.log"
+    },
+    {
+      "id": "049",
+      "path": "findings/049-document-live-channel-abort/repro.test.ts",
+      "mode": "development",
+      "pid": 76180,
+      "exitCode": 0,
+      "pass": 3,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/049-development-repro.test.ts.log"
+    },
+    {
+      "id": "050",
+      "path": "findings/050-literal-handler-attribution/repro.test.ts",
+      "mode": "development",
+      "pid": 76215,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/050-development-repro.test.ts.log"
+    },
+    {
+      "id": "051",
+      "path": "findings/051-unnamed-attribution-owner-id/repro.test.ts",
+      "mode": "development",
+      "pid": 76435,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/051-development-repro.test.ts.log"
+    },
+    {
+      "id": "052",
+      "path": "findings/052-transparent-ssr-slot/repro.test.ts",
+      "mode": "development",
+      "pid": 76606,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/052-development-repro.test.ts.log"
+    },
+    {
+      "id": "053",
+      "path": "findings/053-await-send-until-context/repro.test.ts",
+      "mode": "development",
+      "pid": 76609,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/053-development-repro.test.ts.log"
+    },
+    {
+      "id": "054",
+      "path": "findings/054-prearrived-recovery-wait/repro.test.ts",
+      "mode": "development",
+      "pid": 76615,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/054-development-repro.test.ts.log"
+    },
+    {
+      "id": "055",
+      "path": "findings/055-held-navigation-feedback/repro.test.ts",
+      "mode": "development",
+      "pid": 77045,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/055-development-repro.test.ts.log"
+    },
+    {
+      "id": "056",
+      "path": "findings/056-latest-mounted-boundary/repro.test.ts",
+      "mode": "development",
+      "pid": 77212,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/056-development-repro.test.ts.log"
+    },
+    {
+      "id": "001",
+      "path": "findings/001-streamed-store-keyed/repro.test.ts",
+      "mode": "production",
+      "pid": 77408,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/001-production-repro.test.ts.log"
+    },
+    {
+      "id": "002",
+      "path": "findings/002-iterable-discovery/repro.test.ts",
+      "mode": "production",
+      "pid": 77809,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/002-production-repro.test.ts.log"
+    },
+    {
+      "id": "003",
+      "path": "findings/003-tsrx-asi/repro.test.ts",
+      "mode": "production",
+      "pid": 77814,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/003-production-repro.test.ts.log"
+    },
+    {
+      "id": "004",
+      "path": "findings/004-derived-store-rejection/live-repro.test.ts",
+      "mode": "production",
+      "pid": 77815,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/004-production-live-repro.test.ts.log"
+    },
+    {
+      "id": "004",
+      "path": "findings/004-derived-store-rejection/repro.test.ts",
+      "mode": "production",
+      "pid": 77955,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/004-production-repro.test.ts.log"
+    },
+    {
+      "id": "005",
+      "path": "findings/005-keyed-reconcile-identity/repro.test.ts",
+      "mode": "production",
+      "pid": 78046,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/005-production-repro.test.ts.log"
+    },
+    {
+      "id": "006",
+      "path": "findings/006-storepath-export/repro.test.ts",
+      "mode": "production",
+      "pid": 78048,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/006-production-repro.test.ts.log"
+    },
+    {
+      "id": "007",
+      "path": "findings/007-loading-on-accessor/repro.test.ts",
+      "mode": "production",
+      "pid": 78050,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/007-production-repro.test.ts.log"
+    },
+    {
+      "id": "008",
+      "path": "findings/008-production-refresh/repro.test.ts",
+      "mode": "production",
+      "pid": 78163,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/008-production-repro.test.ts.log"
+    },
+    {
+      "id": "009",
+      "path": "findings/009-frame-nested-region-stale/repro.test.ts",
+      "mode": "production",
+      "pid": 78289,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/009-production-repro.test.ts.log"
+    },
+    {
+      "id": "010",
+      "path": "findings/010-leaf-signal-diagnostic/repro.test.ts",
+      "mode": "production",
+      "pid": 78438,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/010-production-repro.test.ts.log"
+    },
+    {
+      "id": "011",
+      "path": "findings/011-frame-multisite-hydration/repro.test.ts",
+      "mode": "production",
+      "pid": 78439,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/011-production-repro.test.ts.log"
+    },
+    {
+      "id": "012",
+      "path": "findings/012-attribution-audience-gate/repro.test.ts",
+      "mode": "production",
+      "pid": 78569,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/012-production-repro.test.ts.log"
+    },
+    {
+      "id": "013",
+      "path": "findings/013-pinned-source-retake/repro.test.ts",
+      "mode": "production",
+      "pid": 78571,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/013-production-repro.test.ts.log"
+    },
+    {
+      "id": "014",
+      "path": "findings/014-live-drop-completes/repro.test.ts",
+      "mode": "production",
+      "pid": 78572,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/014-production-repro.test.ts.log"
+    },
+    {
+      "id": "015",
+      "path": "findings/015-untrack-owned-write/repro.test.ts",
+      "mode": "production",
+      "pid": 78929,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/015-production-repro.test.ts.log"
+    },
+    {
+      "id": "016",
+      "path": "findings/016-production-store-affects/repro.test.ts",
+      "mode": "production",
+      "pid": 78932,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/016-production-repro.test.ts.log"
+    },
+    {
+      "id": "017",
+      "path": "findings/017-initial-render-error-record/renderrecord-repro.test.ts",
+      "mode": "production",
+      "pid": 78935,
+      "exitCode": 0,
+      "pass": 0,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/017-production-renderrecord-repro.test.ts.log"
+    },
+    {
+      "id": "017",
+      "path": "findings/017-initial-render-error-record/repro.test.ts",
+      "mode": "production",
+      "pid": 78939,
+      "exitCode": 0,
+      "pass": 0,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/017-production-repro.test.ts.log"
+    },
+    {
+      "id": "018",
+      "path": "findings/018-nested-refresh-types/repro.test.ts",
+      "mode": "production",
+      "pid": 78943,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/018-production-repro.test.ts.log"
+    },
+    {
+      "id": "019",
+      "path": "findings/019-action-await-origin/repro.test.ts",
+      "mode": "production",
+      "pid": 78961,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/019-production-repro.test.ts.log"
+    },
+    {
+      "id": "020",
+      "path": "findings/020-observe-frame-corruption/repro.test.ts",
+      "mode": "production",
+      "pid": 78967,
+      "exitCode": 0,
+      "pass": 0,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/020-production-repro.test.ts.log"
+    },
+    {
+      "id": "021",
+      "path": "findings/021-recovery-boundary-outcome/repro.test.ts",
+      "mode": "production",
+      "pid": 78971,
+      "exitCode": 0,
+      "pass": 0,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/021-production-repro.test.ts.log"
+    },
+    {
+      "id": "022",
+      "path": "findings/022-refresh-optimistic-authority/repro.test.ts",
+      "mode": "production",
+      "pid": 78973,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/022-production-repro.test.ts.log"
+    },
+    {
+      "id": "023",
+      "path": "findings/023-returned-helper-diagnostic/repro.test.ts",
+      "mode": "production",
+      "pid": 78974,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/023-production-repro.test.ts.log"
+    },
+    {
+      "id": "024",
+      "path": "findings/024-single-typed-array-encoding/repro.test.ts",
+      "mode": "production",
+      "pid": 79276,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/024-production-repro.test.ts.log"
+    },
+    {
+      "id": "025",
+      "path": "findings/025-async-fanout-classification/repro.test.ts",
+      "mode": "production",
+      "pid": 79523,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/025-production-repro.test.ts.log"
+    },
+    {
+      "id": "026",
+      "path": "findings/026-cookie-proto-key/repro.test.ts",
+      "mode": "production",
+      "pid": 79645,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/026-production-repro.test.ts.log"
+    },
+    {
+      "id": "027",
+      "path": "findings/027-server-write-all-builds/repro.test.ts",
+      "mode": "production",
+      "pid": 79646,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/027-production-repro.test.ts.log"
+    },
+    {
+      "id": "028",
+      "path": "findings/028-artifact-format-version/repro.test.ts",
+      "mode": "production",
+      "pid": 79647,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/028-production-repro.test.ts.log"
+    },
+    {
+      "id": "029",
+      "path": "findings/029-latest-loading-convergence/repro.test.ts",
+      "mode": "production",
+      "pid": 79648,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/029-production-repro.test.ts.log"
+    },
+    {
+      "id": "030",
+      "path": "findings/030-effect-error-signature/repro.test.ts",
+      "mode": "production",
+      "pid": 80087,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/030-production-repro.test.ts.log"
+    },
+    {
+      "id": "031",
+      "path": "findings/031-direct-error-hook-tier/repro.test.ts",
+      "mode": "production",
+      "pid": 80092,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/031-production-repro.test.ts.log"
+    },
+    {
+      "id": "032",
+      "path": "findings/032-sync-lazy-resolver/repro.test.ts",
+      "mode": "production",
+      "pid": 80093,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/032-production-repro.test.ts.log"
+    },
+    {
+      "id": "033",
+      "path": "findings/033-symbol-insert-diagnostic/repro.test.ts",
+      "mode": "production",
+      "pid": 80094,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/033-production-repro.test.ts.log"
+    },
+    {
+      "id": "034",
+      "path": "findings/034-mixed-insert-object/repro.test.ts",
+      "mode": "production",
+      "pid": 80095,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/034-production-repro.test.ts.log"
+    },
+    {
+      "id": "035",
+      "path": "findings/035-decoder-iterator-body-death/eof.test.ts",
+      "mode": "production",
+      "pid": 80765,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/035-production-eof.test.ts.log"
+    },
+    {
+      "id": "035",
+      "path": "findings/035-decoder-iterator-body-death/repro.test.ts",
+      "mode": "production",
+      "pid": 80766,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/035-production-repro.test.ts.log"
+    },
+    {
+      "id": "036",
+      "path": "findings/036-conditional-cache-format/repro.test.ts",
+      "mode": "production",
+      "pid": 80767,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/036-production-repro.test.ts.log"
+    },
+    {
+      "id": "038",
+      "path": "findings/038-frame-call-state-doc-reset/repro.test.ts",
+      "mode": "production",
+      "pid": 80917,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/038-production-repro.test.ts.log"
+    },
+    {
+      "id": "039",
+      "path": "findings/039-missing-resource-timing-fallback/repro.test.ts",
+      "mode": "production",
+      "pid": 81025,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/039-production-repro.test.ts.log"
+    },
+    {
+      "id": "040",
+      "path": "findings/040-initial-binding-console/repro.test.ts",
+      "mode": "production",
+      "pid": 81166,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/040-production-repro.test.ts.log"
+    },
+    {
+      "id": "041",
+      "path": "findings/041-dynamic-source-tracking/repro.test.ts",
+      "mode": "production",
+      "pid": 81365,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/041-production-repro.test.ts.log"
+    },
+    {
+      "id": "042",
+      "path": "findings/042-malformed-preload-crossorigin/repro.test.ts",
+      "mode": "production",
+      "pid": 81544,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/042-production-repro.test.ts.log"
+    },
+    {
+      "id": "044",
+      "path": "findings/044-literal-spread-hydration/repro.test.ts",
+      "mode": "production",
+      "pid": 81545,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/044-production-repro.test.ts.log"
+    },
+    {
+      "id": "045",
+      "path": "findings/045-server-optimistic-write-wording/repro.test.ts",
+      "mode": "production",
+      "pid": 81755,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/045-production-repro.test.ts.log"
+    },
+    {
+      "id": "046",
+      "path": "findings/046-held-derived-store-seed/repro.test.ts",
+      "mode": "production",
+      "pid": 81758,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/046-production-repro.test.ts.log"
+    },
+    {
+      "id": "047",
+      "path": "findings/047-derived-store-accessor-example/repro.test.ts",
+      "mode": "production",
+      "pid": 81759,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 2,
+      "log": "report/evidence/wave5-rechecks/head/047-production-repro.test.ts.log"
+    },
+    {
+      "id": "048",
+      "path": "findings/048-first-loading-held-signal/repro.test.ts",
+      "mode": "production",
+      "pid": 81770,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/048-production-repro.test.ts.log"
+    },
+    {
+      "id": "049",
+      "path": "findings/049-document-live-channel-abort/repro.test.ts",
+      "mode": "production",
+      "pid": 81943,
+      "exitCode": 0,
+      "pass": 3,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/049-production-repro.test.ts.log"
+    },
+    {
+      "id": "050",
+      "path": "findings/050-literal-handler-attribution/repro.test.ts",
+      "mode": "production",
+      "pid": 81952,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/050-production-repro.test.ts.log"
+    },
+    {
+      "id": "051",
+      "path": "findings/051-unnamed-attribution-owner-id/repro.test.ts",
+      "mode": "production",
+      "pid": 82122,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/051-production-repro.test.ts.log"
+    },
+    {
+      "id": "052",
+      "path": "findings/052-transparent-ssr-slot/repro.test.ts",
+      "mode": "production",
+      "pid": 82284,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/052-production-repro.test.ts.log"
+    },
+    {
+      "id": "053",
+      "path": "findings/053-await-send-until-context/repro.test.ts",
+      "mode": "production",
+      "pid": 82285,
+      "exitCode": 0,
+      "pass": 1,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/053-production-repro.test.ts.log"
+    },
+    {
+      "id": "054",
+      "path": "findings/054-prearrived-recovery-wait/repro.test.ts",
+      "mode": "production",
+      "pid": 82293,
+      "exitCode": 0,
+      "pass": 0,
+      "fail": 0,
+      "log": "report/evidence/wave5-rechecks/head/054-production-repro.test.ts.log"
+    },
+    {
+      "id": "055",
+      "path": "findings/055-held-navigation-feedback/repro.test.ts",
+      "mode": "production",
+      "pid": 82308,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/055-production-repro.test.ts.log"
+    },
+    {
+      "id": "056",
+      "path": "findings/056-latest-mounted-boundary/repro.test.ts",
+      "mode": "production",
+      "pid": 82484,
+      "exitCode": 1,
+      "pass": 0,
+      "fail": 1,
+      "log": "report/evidence/wave5-rechecks/head/056-production-repro.test.ts.log"
+    }
+  ]
+}

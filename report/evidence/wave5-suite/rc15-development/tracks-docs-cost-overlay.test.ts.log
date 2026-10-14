@@ -1,0 +1,33 @@
+bun test v1.4.2 (744846f84)
+
+tracks/docs/cost-overlay.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+3 | import {build} from '../../scripts/build'
+4 | import {resolve} from 'node:path'
+5 | import {rm} from 'node:fs/promises'
+6 | // 08 L477/L1139: cost folding separates optimistic and held overlay work,
+7 | // ranks self-time/downstream cost and blames equality cutoffs only on plain runs.
+8 | test('cost tables preserve exact rerun sums and exclude overlay waste',async()=>{const dir=resolve('.build','cost-overlay-'+process.pid);await build(dir,(process.env.BUILD_MODE??'development') as any,{client:['tracks/docs/cost-overlay-client.ts'],server:[]});const server=Bun.serve({port:0,fetch:r=>new URL(r.url).pathname==='/cost-overlay-client.js'?new Response(Bun.file(dir+'/cost-overlay-client.js'),{headers:{'content-type':'text/javascript'}}):new Response('<script type="module" src="/cost-overlay-client.js"></script>',{headers:{'content-type':'text/html'}})});const browser=await chromium.launch({channel:'chrome',headless:true});try{const page=await browser.newPage();await page.goto(server.url.toString());await page.waitForFunction(()=>!!(window as any).results);const result=await page.evaluate(()=>(window as any).results);expect(result.length).toBe(8);expect(result.filter((r:any)=>r.error)).toEqual([])}finally{await browser.close();server.stop(true);await rm(dir,{recursive:true,force:true})}},30000)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ^
+error: expect(received).toEqual(expected)
+
+- []
++ [
++   {
++     "error": "Error: owners findings=[]",
++     "file": "08-dev-diagnostics.md",
++     "id": "08/cost-graph-series-leak-signatures",
++     "statement": "L433: Owners distinguish leaked roots, ownerless effects grow computations with flat owners, and subscriptions grow edges alone.",
++   },
++ ]
+
+- Expected  - 1
++ Received  + 8
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/docs/cost-overlay.test.ts:8:908)
+(fail) cost tables preserve exact rerun sums and exclude overlay waste [8844.12ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [8.99s]

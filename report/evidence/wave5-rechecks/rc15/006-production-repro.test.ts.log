@@ -1,0 +1,13 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+
+findings/006-storepath-export/repro.test.ts:
+3 | import { storePath } from 'solid-js'
+             ^
+error: No matching export in "node_modules/solid-js/dist/solid.js" for import "storePath"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/findings/006-storepath-export/module.ts:3:10
+(fail) 04-stores.md: storePath is exported from the browser core [17.00ms]
+
+ 0 pass
+ 1 fail
+Ran 1 test across 1 file. [33.00ms]

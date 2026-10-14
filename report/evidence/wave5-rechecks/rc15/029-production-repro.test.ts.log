@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+{
+  normal: {
+    initial: "11",
+    waiting: "11",
+    final: "22",
+    source: 2,
+  },
+  latest: {
+    initial: "11",
+    waiting: "A1",
+    final: "22",
+    source: 2,
+  },
+}
+
+findings/029-latest-loading-convergence/repro.test.ts:
+
+ 1 pass
+ 0 fail
+ 5 expect() calls
+Ran 1 test across 1 file. [14.30s]

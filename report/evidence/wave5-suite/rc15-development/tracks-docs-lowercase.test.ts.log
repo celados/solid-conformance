@@ -1,0 +1,75 @@
+bun test v1.4.2 (744846f84)
+
+tracks/docs/lowercase.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+compiled false {
+  count: 0,
+  attribute: "() => {\n    count++;\n  }",
+  events: [
+    {
+      kind: "render",
+      severity: "warn",
+      data: [Object ...],
+    }
+  ],
+}
+compiled true {
+  count: 0,
+  attribute: "() => {}",
+  events: [
+    {
+      kind: "render",
+      severity: "warn",
+      data: [Object ...],
+    }
+  ],
+}
+spread false {
+  count: 0,
+  attribute: "() => {\n    count++;\n  }",
+  events: [
+    {
+      kind: "render",
+      severity: "warn",
+      data: [Object ...],
+    }
+  ],
+}
+spread true {
+  count: 0,
+  attribute: "() => {}",
+  events: [
+    {
+      kind: "render",
+      severity: "warn",
+      data: [Object ...],
+    }
+  ],
+}
+assign false {
+  count: 0,
+  attribute: "() => {\n    count++;\n  }",
+  events: [
+    {
+      kind: "render",
+      severity: "warn",
+      data: [Object ...],
+    }
+  ],
+}
+assign true {
+  count: 0,
+  attribute: null,
+  events: [
+    {
+      kind: "render",
+      severity: "warn",
+      data: [Object ...],
+    }
+  ],
+}
+
+ 1 pass
+ 0 fail
+ 29 expect() calls
+Ran 1 test across 1 file. [13.21s]

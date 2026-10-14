@@ -38,3 +38,11 @@ bun test ./findings/017-initial-render-error-record/renderrecord-repro.test.ts
 ```
 
 Development and observe are red. Production explicitly skips because it has no observer. The broad boundary track retains its raw strict failure in its artifact and recognizes only this exact id/error pair; every other failure still fails that track. The runtime first-pass catch (`packages/web/src/server.ts`, near line 2977) reports then throws before the normal settle/teardown path, whereas the string renderer finalizes its error record in `finally`.
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Structured SSR error record omission; integration/tooling-only path.

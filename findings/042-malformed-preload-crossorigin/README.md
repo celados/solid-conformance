@@ -5,6 +5,8 @@ status: confirmed
 versions:
   - "rc.13 development"
   - HEAD 53ef0e69 development
+  - "rc.15 development"
+  - "HEAD e371645 development"
 area: diagnostics/SSR/head
 upstream: []
 found_by: docs-to-tests
@@ -26,3 +28,11 @@ BUILD_MODE=production bun test ./findings/042-malformed-preload-crossorigin/repr
 一个 lazy 页面注册一个 font preload；没有状态、actions、客户端或异步时序竞争。保留 missing 正控与合法字符串负控，避免误将 disabled 检测当失败。三仓 open/closed 搜索 `crossorigin preload` 均无结果，现有 findings 无同机制。证据在 `evidence/wave3-finding042-*`；rc.13 由主线程统一比较。
 
 Wave 3 独立版本对照：rc.13 development 仍红；原始运行日志见仓库 evidence/ 中对应的 rc13 日志（其中 new-baseline-production 同时运行 039/045/047/048）。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Malformed external preload manifest/type bypass.

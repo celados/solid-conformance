@@ -27,3 +27,11 @@ One plain signal and one setter execute in a synchronous string-render callback.
 ## Dedupe
 
 All-state `SERVER_WRITE` searches in solidjs/solid, solidjs/solid-router and solidjs/solid-start matched only solid #3064. Its server store replacement is ignored, whereas this signal write succeeds and only the warning tier contradicts the docs; the issue is the historical motivation linked in this same RFC paragraph. No local finding duplicates the production warning contract.
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: passes (a zero-test tier is not applicable); production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Production deprecation warning for invalid server setter; no valid app path.

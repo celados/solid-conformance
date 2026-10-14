@@ -6,6 +6,10 @@ status: confirmed
 versions:
   - 'HEAD 53ef0e69 (development and observe)'
   - 'rc.13 development'
+  - "rc.15 development"
+  - "HEAD e371645 development"
+  - "rc.15 observe"
+  - "HEAD e371645 observe"
 area: diagnostics/recovery
 upstream: []
 found_by: docs
@@ -26,3 +30,11 @@ bun test ./findings/054-prearrived-recovery-wait/repro.test.ts
 服务端先完整 await SSR 流，随后才返回静态 HTML。错误输出之后的尾部 marker、`DOMContentLoaded` 和微任务正控保证全部服务端脚本先于 hydration；另有最终 recovered DOM 与恰一条记录正控。缩减后只保留一个 Loading 和一个异步源，无 router、frame、请求重连或用户事件。
 
 2026-10-08 查询 solidjs/solid、solidjs/solid-router、solidjs/solid-start 的 open 与 closed issues：`recovery waitedMs`、`recovery hydration timing` 六次搜索均无结果。与 021 的 server outcome 枚举矛盾不同，这里检查已到达错误的客户端等待时钟。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Recovery-clock accounting only.

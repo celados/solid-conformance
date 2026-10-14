@@ -1,0 +1,38 @@
+bun test v1.4.2 (744846f84)
+
+tracks/docs/vite-components.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+2 | import {createServer,createBuilder} from 'vite'
+3 | import {chromium} from 'playwright'
+4 | import {resolve} from 'node:path'
+5 | import {mkdir,rm,cp} from 'node:fs/promises'
+6 | test('RFC11 L15: components:true generated entries wire real Vite dev SSR and Chrome hydration, with the same use-server compiler contract',async()=>{
+7 |  const manifest=await Bun.file('.upstream/vite-built.json').json(),solid=(await import(manifest.directory+'/dist/esm/index.mjs')).default
+                                                                ^
+ENOENT: no such file or directory, open '.upstream/vite-built.json'
+    path: ".upstream/vite-built.json",
+ syscall: "open",
+   errno: -2,
+    code: "ENOENT"
+
+      at async <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/docs/vite-components.test.ts:7:61)
+(fail) RFC11 L15: components:true generated entries wire real Vite dev SSR and Chrome hydration, with the same use-server compiler contract [1.00ms]
+10 |  const browser=await chromium.launch({channel:'chrome',headless:true})
+11 |  try{await server.listen();const address=server.httpServer!.address() as {port:number},url='http://127.0.0.1:'+address.port+'/';const debug:any={};for(const id of ['virtual:solid-ssr-entry-server.tsx','virtual:solid-ssr-entry-client.tsx','virtual:solid-ssr-document.tsx','virtual:solid-server-function-handler']){const loaded=await server.pluginContainer.load(id,{ssr:true});debug[id]=typeof loaded==='string'?loaded:loaded?.code};await Bun.write('artifacts/vite-components-code.json',JSON.stringify(debug,null,2));const response=await fetch(url,{headers:{accept:'text/html'},signal:AbortSignal.timeout(15000)}),html=await response.text();expect(response.status).toBe(200);await Bun.write('artifacts/vite-components-html.html',html);expect(html).toContain('server-only-marker-');const page=await browser.newPage(),messages:string[]=[];await page.route('**/favicon.ico',route=>route.fulfill({status:204}));page.on('pageerror',e=>messages.push(String(e)));page.on('console',m=>{if(m.type()==='error'||m.type()==='warning')mess
+12 | },90000)
+13 | 
+14 | test('RFC11 L15: components:true production generated handler renders and hydrates in Chrome',async()=>{
+15 |  const manifest=await Bun.file('.upstream/vite-built.json').json(),solid=(await import(manifest.directory+'/dist/esm/index.mjs')).default
+                                                                 ^
+ENOENT: no such file or directory, open '.upstream/vite-built.json'
+    path: ".upstream/vite-built.json",
+ syscall: "open",
+   errno: -2,
+    code: "ENOENT"
+
+      at async <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/tracks/docs/vite-components.test.ts:15:61)
+(fail) RFC11 L15: components:true production generated handler renders and hydrates in Chrome [1.64ms]
+
+ 0 pass
+ 2 fail
+Ran 2 tests across 1 file. [358.00ms]

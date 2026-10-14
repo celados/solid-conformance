@@ -1,0 +1,9 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+
+findings/017-initial-render-error-record/renderrecord-repro.test.ts:
+
+ 0 pass
+ 1 skip
+ 0 fail
+Ran 1 test across 1 file. [10.00ms]

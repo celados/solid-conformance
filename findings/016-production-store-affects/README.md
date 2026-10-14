@@ -1,7 +1,7 @@
 ---
 type: Issue
 id: '016'
-status: confirmed
+status: fixed-upstream
 versions: [HEAD-53ef0e69-production]
 area: optimistic/action/packaging
 upstream: ['https://github.com/solidjs/solid/issues/2887']
@@ -27,3 +27,13 @@ BUILD_MODE=production NO_TREE_SHAKE=1 bun test ./findings/016-production-store-a
 去重：搜索 solid、solid-router、solid-start 的 open 与 closed issues 的 affects production、affects store、storeMarks，相关 #2887 是 beta.18 的 first-statement mark witnessing/生命周期故障，已在 #2888 修复；它需要 live For 与后续 optimistic write，且没有生产 bundle 抛错。本例无需任何 reader，根因是注册模块被摇掉。没有上游写入。
 
 Wave 4a 独立 rc.13 补验：development 1 pass / 0 fail；production 1 pass / 0 fail。原始日志在 report/evidence/016-rc13-*-supplement.log；报告版本陈述以此为准。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: passes (a zero-test tier is not applicable); production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+The original desired-behavior test passes in rc.15. Fix: [ef1c297](https://github.com/solidjs/solid/commit/ef1c297b3a5c10f26cfc659eea9ef3e78ec3c6d9), included in the rc.15 release. Original failing versions remain above as historical provenance.
+
+## Wave 5 filing bar
+
+**excluded-fixed**: Desired-behavior repro passes in the latest tested runtime; historical failing versions retained.

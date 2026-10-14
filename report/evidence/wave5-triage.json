@@ -1,0 +1,387 @@
+[
+  {
+    "id": "001",
+    "status": "fixed-upstream",
+    "path": "findings/001-streamed-store-keyed/README.md",
+    "filing": "excluded-fixed",
+    "reason": "Desired-behavior repro passes in the latest tested runtime; historical failing versions retained."
+  },
+  {
+    "id": "002",
+    "status": "fixed-upstream",
+    "path": "findings/002-iterable-discovery/README.md",
+    "filing": "excluded-fixed",
+    "reason": "Desired-behavior repro passes in the latest tested runtime; historical failing versions retained."
+  },
+  {
+    "id": "003",
+    "status": "fixed-upstream",
+    "path": "findings/003-tsrx-asi/README.md",
+    "filing": "excluded-fixed",
+    "reason": "Desired-behavior repro passes in the latest tested runtime; historical failing versions retained."
+  },
+  {
+    "id": "004",
+    "status": "fixed-upstream",
+    "path": "findings/004-derived-store-rejection/README.md",
+    "filing": "excluded-fixed",
+    "reason": "Desired-behavior repro passes in the latest tested runtime; historical failing versions retained."
+  },
+  {
+    "id": "005",
+    "status": "duplicate",
+    "path": "findings/005-keyed-reconcile-identity/README.md",
+    "filing": "held",
+    "reason": "Known subscription-boundary identity design; no new app break."
+  },
+  {
+    "id": "006",
+    "status": "confirmed",
+    "path": "findings/006-storepath-export/README.md",
+    "filing": "fileable",
+    "reason": "Documented public migration helper fails to import in a browser app."
+  },
+  {
+    "id": "007",
+    "status": "confirmed",
+    "path": "findings/007-loading-on-accessor/README.md",
+    "filing": "fileable",
+    "reason": "Documented Loading prop prevents app fallback rearming."
+  },
+  {
+    "id": "008",
+    "status": "fixed-upstream",
+    "path": "findings/008-production-refresh/README.md",
+    "filing": "excluded-fixed",
+    "reason": "Desired-behavior repro passes in the latest tested runtime; historical failing versions retained."
+  },
+  {
+    "id": "009",
+    "status": "fixed-upstream",
+    "path": "findings/009-frame-nested-region-stale/README.md",
+    "filing": "excluded-fixed",
+    "reason": "Desired-behavior repro passes in the latest tested runtime; historical failing versions retained."
+  },
+  {
+    "id": "010",
+    "status": "confirmed",
+    "path": "findings/010-leaf-signal-diagnostic/README.md",
+    "filing": "held",
+    "reason": "Primitive-scope diagnostic wording only."
+  },
+  {
+    "id": "011",
+    "status": "fixed-upstream",
+    "path": "findings/011-frame-multisite-hydration/README.md",
+    "filing": "excluded-fixed",
+    "reason": "Desired-behavior repro passes in the latest tested runtime; historical failing versions retained."
+  },
+  {
+    "id": "012",
+    "status": "confirmed",
+    "path": "findings/012-attribution-audience-gate/README.md",
+    "filing": "held",
+    "reason": "Attribution audience/cost tooling contract, no app malfunction."
+  },
+  {
+    "id": "013",
+    "status": "confirmed",
+    "path": "findings/013-pinned-source-retake/README.md",
+    "filing": "fileable",
+    "reason": "Documented pinned local-state recipe fails to resume server data."
+  },
+  {
+    "id": "014",
+    "status": "fixed-upstream",
+    "path": "findings/014-live-drop-completes/README.md",
+    "filing": "excluded-fixed",
+    "reason": "Desired-behavior repro passes in the latest tested runtime; historical failing versions retained."
+  },
+  {
+    "id": "015",
+    "status": "confirmed",
+    "path": "findings/015-untrack-owned-write/README.md",
+    "filing": "fileable",
+    "reason": "Documented untrack remedy fails in owned app scopes."
+  },
+  {
+    "id": "016",
+    "status": "fixed-upstream",
+    "path": "findings/016-production-store-affects/README.md",
+    "filing": "excluded-fixed",
+    "reason": "Desired-behavior repro passes in the latest tested runtime; historical failing versions retained."
+  },
+  {
+    "id": "017",
+    "status": "confirmed",
+    "path": "findings/017-initial-render-error-record/README.md",
+    "filing": "held",
+    "reason": "Structured SSR error record omission; integration/tooling-only path."
+  },
+  {
+    "id": "018",
+    "status": "confirmed",
+    "path": "findings/018-nested-refresh-types/README.md",
+    "filing": "fileable",
+    "reason": "Documented nested store refresh fails public TypeScript."
+  },
+  {
+    "id": "019",
+    "status": "confirmed",
+    "path": "findings/019-action-await-origin/README.md",
+    "filing": "held",
+    "reason": "Post-await diagnostic origin metadata only."
+  },
+  {
+    "id": "020",
+    "status": "confirmed",
+    "path": "findings/020-observe-frame-corruption/README.md",
+    "filing": "held",
+    "reason": "Malformed frame-marker diagnostics in observe; integration-only corruption path."
+  },
+  {
+    "id": "021",
+    "status": "confirmed",
+    "path": "findings/021-recovery-boundary-outcome/README.md",
+    "filing": "held",
+    "reason": "Recovery record outcome naming only."
+  },
+  {
+    "id": "022",
+    "status": "fixed-upstream",
+    "path": "findings/022-refresh-optimistic-authority/README.md",
+    "filing": "excluded-fixed",
+    "reason": "Desired-behavior repro passes in the latest tested runtime; historical failing versions retained."
+  },
+  {
+    "id": "023",
+    "status": "confirmed",
+    "path": "findings/023-returned-helper-diagnostic/README.md",
+    "filing": "held",
+    "reason": "Warning-exclusion wording for a returned async helper; runtime warning is useful."
+  },
+  {
+    "id": "024",
+    "status": "confirmed",
+    "path": "findings/024-single-typed-array-encoding/README.md",
+    "filing": "held",
+    "reason": "Typed-array transport works; opt-in wording only."
+  },
+  {
+    "id": "025",
+    "status": "confirmed",
+    "path": "findings/025-async-fanout-classification/README.md",
+    "filing": "held",
+    "reason": "Diagnostic invalidation-classification metadata only."
+  },
+  {
+    "id": "026",
+    "status": "confirmed",
+    "path": "findings/026-cookie-proto-key/README.md",
+    "filing": "held",
+    "reason": "Withdrawn low-impact cookie-name edge; do not refile."
+  },
+  {
+    "id": "027",
+    "status": "confirmed",
+    "path": "findings/027-server-write-all-builds/README.md",
+    "filing": "held",
+    "reason": "Production deprecation warning for invalid server setter; no valid app path."
+  },
+  {
+    "id": "028",
+    "status": "confirmed",
+    "path": "findings/028-artifact-format-version/README.md",
+    "filing": "held",
+    "reason": "Artifact schema-version wording only."
+  },
+  {
+    "id": "029",
+    "status": "fixed-upstream",
+    "path": "findings/029-latest-loading-convergence/README.md",
+    "filing": "excluded-fixed",
+    "reason": "Desired-behavior repro passes in the latest tested runtime; historical failing versions retained."
+  },
+  {
+    "id": "030",
+    "status": "confirmed",
+    "path": "findings/030-effect-error-signature/README.md",
+    "filing": "fileable",
+    "reason": "Documented effect error signature fails public TypeScript."
+  },
+  {
+    "id": "031",
+    "status": "confirmed",
+    "path": "findings/031-direct-error-hook-tier/README.md",
+    "filing": "held",
+    "reason": "Direct invocation error-hook tier; integration-only."
+  },
+  {
+    "id": "032",
+    "status": "confirmed",
+    "path": "findings/032-sync-lazy-resolver/README.md",
+    "filing": "held",
+    "reason": "Withdrawn integration asset-resolver failure path; do not refile."
+  },
+  {
+    "id": "033",
+    "status": "confirmed",
+    "path": "findings/033-symbol-insert-diagnostic/README.md",
+    "filing": "held",
+    "reason": "Invalid SSR insert diagnostic; no valid app content."
+  },
+  {
+    "id": "034",
+    "status": "confirmed",
+    "path": "findings/034-mixed-insert-object/README.md",
+    "filing": "held",
+    "reason": "Withdrawn non-renderable object insertion/type bypass; do not refile."
+  },
+  {
+    "id": "035",
+    "status": "fixed-upstream",
+    "path": "findings/035-decoder-iterator-body-death/README.md",
+    "filing": "excluded-fixed",
+    "reason": "Desired-behavior repro passes in the latest tested runtime; historical failing versions retained."
+  },
+  {
+    "id": "036",
+    "status": "fixed-upstream",
+    "path": "findings/036-conditional-cache-format/README.md",
+    "filing": "excluded-fixed",
+    "reason": "Desired-behavior repro passes in the latest tested runtime; historical failing versions retained."
+  },
+  {
+    "id": "038",
+    "status": "confirmed",
+    "path": "findings/038-frame-call-state-doc-reset/README.md",
+    "filing": "held",
+    "reason": "Integration frame-call identity wording; no app-visible incorrect state."
+  },
+  {
+    "id": "039",
+    "status": "confirmed",
+    "path": "findings/039-missing-resource-timing-fallback/README.md",
+    "filing": "held",
+    "reason": "Performance-track fallback span omission only."
+  },
+  {
+    "id": "040",
+    "status": "confirmed",
+    "path": "findings/040-initial-binding-console/README.md",
+    "filing": "held",
+    "reason": "Diagnostic console element metadata only."
+  },
+  {
+    "id": "041",
+    "status": "confirmed",
+    "path": "findings/041-dynamic-source-tracking/README.md",
+    "filing": "held",
+    "reason": "Hydration tracking callback count; no duplicate request or bad DOM."
+  },
+  {
+    "id": "042",
+    "status": "confirmed",
+    "path": "findings/042-malformed-preload-crossorigin/README.md",
+    "filing": "held",
+    "reason": "Malformed external preload manifest/type bypass."
+  },
+  {
+    "id": "044",
+    "status": "confirmed",
+    "path": "findings/044-literal-spread-hydration/README.md",
+    "filing": "held",
+    "reason": "Withdrawn uncommon literal-spread shape; no new draft."
+  },
+  {
+    "id": "045",
+    "status": "confirmed",
+    "path": "findings/045-server-optimistic-write-wording/README.md",
+    "filing": "held",
+    "reason": "Intentionally invalid server optimistic write."
+  },
+  {
+    "id": "046",
+    "status": "confirmed",
+    "path": "findings/046-held-derived-store-seed/README.md",
+    "filing": "held",
+    "reason": "Artificial additive draft derivation; ordinary app failure not established."
+  },
+  {
+    "id": "047",
+    "status": "confirmed",
+    "path": "findings/047-derived-store-accessor-example/README.md",
+    "filing": "fileable",
+    "reason": "Literal migration recipe fails TypeScript without any type bypass."
+  },
+  {
+    "id": "048",
+    "status": "confirmed",
+    "path": "findings/048-first-loading-held-signal/README.md",
+    "filing": "held",
+    "reason": "Old committed value in a newly mounted plain-signal boundary; semantics wording, not tearing."
+  },
+  {
+    "id": "049",
+    "status": "fixed-upstream",
+    "path": "findings/049-document-live-channel-abort/README.md",
+    "filing": "excluded-fixed",
+    "reason": "Desired-behavior repro passes in the latest tested runtime; historical failing versions retained."
+  },
+  {
+    "id": "050",
+    "status": "duplicate",
+    "path": "findings/050-literal-handler-attribution/README.md",
+    "filing": "held",
+    "reason": "Known literal-handler attribution family."
+  },
+  {
+    "id": "051",
+    "status": "confirmed",
+    "path": "findings/051-unnamed-attribution-owner-id/README.md",
+    "filing": "held",
+    "reason": "Unnamed diagnostic labels only."
+  },
+  {
+    "id": "052",
+    "status": "confirmed",
+    "path": "findings/052-transparent-ssr-slot/README.md",
+    "filing": "held",
+    "reason": "Internal SSR source-slot allocation; no hydration mismatch."
+  },
+  {
+    "id": "053",
+    "status": "fixed-upstream",
+    "path": "findings/053-await-send-until-context/README.md",
+    "filing": "excluded-fixed",
+    "reason": "Desired-behavior repro passes in the latest tested runtime; historical failing versions retained."
+  },
+  {
+    "id": "054",
+    "status": "confirmed",
+    "path": "findings/054-prearrived-recovery-wait/README.md",
+    "filing": "held",
+    "reason": "Recovery-clock accounting only."
+  },
+  {
+    "id": "055",
+    "status": "confirmed",
+    "path": "findings/055-held-navigation-feedback/README.md",
+    "filing": "fileable",
+    "reason": "Ordinary delayed navigation indicator is absent under a held route."
+  },
+  {
+    "id": "056",
+    "status": "duplicate",
+    "path": "findings/056-latest-mounted-boundary/README.md",
+    "filing": "held",
+    "reason": "Duplicate of #3851 with compiled JSX repro; hold a repeated report."
+  },
+  {
+    "id": "057",
+    "status": "confirmed",
+    "path": "findings/057-loading-lazy-hydration-order/README.md",
+    "filing": "fileable",
+    "reason": "An ordinary typed SSR layout changes visible static/lazy child order during hydration."
+  }
+]

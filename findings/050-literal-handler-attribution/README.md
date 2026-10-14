@@ -6,6 +6,12 @@ versions:
   - rc.13 development
   - HEAD 53ef0e69 development
   - HEAD 53ef0e69 observe
+  - "rc.15 development"
+  - "rc.15 production"
+  - "HEAD e371645 development"
+  - "HEAD e371645 production"
+  - "rc.15 observe"
+  - "HEAD e371645 observe"
 area: diagnostics/attribution
 upstream:
   - https://github.com/solidjs/solid/issues/3754
@@ -27,3 +33,11 @@ bun test ./findings/050-literal-handler-attribution/repro.test.ts
 收缩至一个信号、一个订阅读取和两个按钮：literal 按钮保留红 oracle，accessor 按钮是同事件类型的正控。移除网络、actions、Loading、路由、异步 settle；生产构建没有 attribution 记录，不属于此 dev/observe 合同。
 
 rc.13 的独立 dev 对照同签名失败，原始日志见 evidence/wave3-finding050-rc13.log。production 不保留这个观测 API，记为不适用。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**held**: Known literal-handler attribution family.

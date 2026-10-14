@@ -1,0 +1,96 @@
+[
+  {
+    "runtime": "rc13",
+    "compiler": "rc14",
+    "pid": 73696,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-bisect/runtime-rc13-compiler-rc14.log",
+    "probe": {
+      "router": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      },
+      "core": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      },
+      "coreMemo": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      },
+      "coreFn": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      },
+      "coreRouterShape": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      },
+      "mount": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      },
+      "messages": []
+    }
+  },
+  {
+    "runtime": "rc14",
+    "compiler": "rc13",
+    "pid": 73934,
+    "exitCode": 0,
+    "log": "report/evidence/wave5-bisect/runtime-rc14-compiler-rc13.log",
+    "probe": {
+      "router": {
+        "before": "old",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      },
+      "core": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      },
+      "coreMemo": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      },
+      "coreFn": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      },
+      "coreRouterShape": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      },
+      "mount": {
+        "before": "01",
+        "after": "11",
+        "pending": true,
+        "fired": true
+      },
+      "messages": []
+    }
+  }
+]

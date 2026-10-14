@@ -1,7 +1,7 @@
 ---
 type: Issue
 id: '011'
-status: confirmed
+status: fixed-upstream
 versions:
   - HEAD 53ef0e69 development
   - HEAD 53ef0e69 production
@@ -28,3 +28,13 @@ BUILD_MODE=production bun test ./findings/011-frame-multisite-hydration/repro.te
 在 solid、solid-router、solid-start 搜索时没有限定 state，因此同时检查了 open/closed。读了 solid#3849、#3813 的 consistency 索引和 solid#2973：#2973 是 args-bearing address 与 wire-id 前缀不一致；本例没有参数仍失败。#3813/C18 的延迟 record 分类与本例已完整到达的两个挂载不同。完整查询摘要在 evidence/wave3-finding011-dedupe.json。
 
 Wave 4a 独立 rc.13 补验：development 0 pass / 1 fail；production 0 pass / 1 fail。原始日志在 report/evidence/011-rc13-*-supplement.log；报告版本陈述以此为准。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: passes (a zero-test tier is not applicable); production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+The original desired-behavior test passes in rc.15. Fix: [3173a14](https://github.com/solidjs/solid/commit/3173a14d7400877a13350928e3f4d257852640b1), included in the rc.15 release. Original failing versions remain above as historical provenance.
+
+## Wave 5 filing bar
+
+**excluded-fixed**: Desired-behavior repro passes in the latest tested runtime; historical failing versions retained.

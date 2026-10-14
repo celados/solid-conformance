@@ -21,3 +21,11 @@ bun test ./findings/030-effect-error-signature/repro.test.ts
 缩减：两行 TypeScript，仅 import 与三参数调用，无 store、async、DOM、owner 或 runtime 执行。测试要求合法文档用法编译成功，不将 TS2559 当预期成功；类型 fixture 不参与主项目编译。
 
 去重：三个仓库 open/closed 搜索 createEffect onError signature、createEffect error third argument、EffectOptions error callback，均无结果；详见 dedupe.json。没有上游写入。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**fileable**: Documented effect error signature fails public TypeScript.

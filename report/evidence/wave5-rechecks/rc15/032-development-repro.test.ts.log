@@ -1,0 +1,33 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+
+findings/032-sync-lazy-resolver/repro.test.ts:
+[LAZY_ASSET_UNMAPPED] lazy() asset resolution failed for "part.tsx": Error: resolver-failed
+  in <Part>
+[LAZY_ASSET_UNMAPPED] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#lazy_asset_unmapped
+10 |     client: [], server: ['findings/032-sync-lazy-resolver/server.tsx'],
+11 |   })
+12 |   try {
+13 |     const { sample } = await import(dir + '/server.js')
+14 |     expect(await sample(false)).toEqual({ rendered: true, error: null })
+15 |     expect(await sample(true)).toEqual({ rendered: true, error: null })
+                                    ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "error": null,
+-   "rendered": true,
++   "error": "resolver-failed",
++   "rendered": false,
+  }
+
+- Expected  - 2
++ Received  + 2
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/findings/032-sync-lazy-resolver/repro.test.ts:15:32)
+(fail) a failed lazy asset resolver preserves server component HTML [24.29ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [34.00ms]

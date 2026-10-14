@@ -1,0 +1,2892 @@
+{
+  "runtime": {
+    "target": "rc15",
+    "upstream": null,
+    "buildMode": "production",
+    "solid": "2.0.0-rc.15",
+    "router": "2.0.0-next.39",
+    "routerHead": null
+  },
+  "results": [
+    {
+      "id": "08/server-diagnostic-head-outside",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L686: outside-render ignored registrations outside any server render.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-write-categories",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Check (`warn`, dev only; once per process per `data.category`). A setter ran during a server render.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-write-inert-values",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L635: Server setters mutate inert data without re-rendering the component.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-client-source-outside-error",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L641: Server client-only pending reads without Loading throw in every tier and expose side:server alongside containment.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-waterfall-record-identity",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L653: Discovery and sequential passes identify the same boundary as its record, duration and component location.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-reveal-sync",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Check (`warn`, dev only). renderToString has no stream to coordinate reveal order on.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-waterfall",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Same thresholds: two waits (`passes: 3`) are info, structured-channel only; three or more earn the console warn.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-client-masked",
+      "file": "08-dev-diagnostics.md",
+      "statement": "A client-only read found on the first pass is the well-behaved case — the boundary hands off with the shell, nothing extra is paid, no finding.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-stream-abandoned",
+      "file": "08-dev-diagnostics.md",
+      "statement": "The response stream was abandoned mid-render; the render was torn down.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-subtree-abandoned",
+      "file": "08-dev-diagnostics.md",
+      "statement": "A failed fragment discarded its still-pending subtree.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-lazy-unmapped",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Check (`warn`, dev only). Client assets for a lazy() component could not be mapped.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-preload-descriptor",
+      "file": "08-dev-diagnostics.md",
+      "statement": "registerAsset(\"preload\") requires an as destination. (and the other field rules)",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-preload-all-fields",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L680: PRELOAD_DESCRIPTOR_INVALID names invalid fields and values; links drop or fields filter according to rule.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-lazy-resolution-metadata",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L674: resolution-failed carries module id and original resolver error; missing mapping never prevents server component markup.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-head-invalid",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Check (`warn`, dev only). The render could not honor a useHead registration.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-head-reasons",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L686: HEAD_TAG_INVALID supplies each reason and offending detail; ignored registrations leave valid HTML.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-dynamic-async",
+      "file": "08-dev-diagnostics.md",
+      "statement": "A source may stay async when it resolves to a server component or a serializable value (a tag name).",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-unscoped-hole",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Unscoped allocation alone is not the finding: a function hole with nothing scoped after it in its template lands on the same ids on both sides and stays silent.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-unrecognized-value",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L692: plain object and symbol insertions are skipped on both faces with type/value metadata.",
+      "platform": "server"
+    },
+    {
+      "id": "02/context-provider",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "The context itself is a component that takes a value prop and provides it to descendants.",
+      "platform": "server"
+    },
+    {
+      "id": "03/show-accessor",
+      "file": "03-control-flow.md",
+      "statement": "Non-keyed Show function children receive a narrowed accessor.",
+      "platform": "server"
+    },
+    {
+      "id": "03/show-keyed",
+      "file": "03-control-flow.md",
+      "statement": "Keyed Show function children receive the raw narrowed value.",
+      "platform": "server"
+    },
+    {
+      "id": "03/show-fallback",
+      "file": "03-control-flow.md",
+      "statement": "Show supports element children and a fallback.",
+      "platform": "server"
+    },
+    {
+      "id": "03/for-identity",
+      "file": "03-control-flow.md",
+      "statement": "Default keyed For receives a raw item and an index accessor.",
+      "platform": "server"
+    },
+    {
+      "id": "03/for-positional",
+      "file": "03-control-flow.md",
+      "statement": "For keyed false receives an item accessor and a plain index.",
+      "platform": "server"
+    },
+    {
+      "id": "03/for-custom",
+      "file": "03-control-flow.md",
+      "statement": "Custom-keyed For receives two accessors.",
+      "platform": "server"
+    },
+    {
+      "id": "03/for-empty",
+      "file": "03-control-flow.md",
+      "statement": "Empty For inputs render the fallback.",
+      "platform": "server"
+    },
+    {
+      "id": "03/repeat-offset",
+      "file": "03-control-flow.md",
+      "statement": "Repeat renders based on count and optional from; children receive a plain number.",
+      "platform": "server"
+    },
+    {
+      "id": "03/repeat-empty",
+      "file": "03-control-flow.md",
+      "statement": "Repeat renders fallback when count is zero.",
+      "platform": "server"
+    },
+    {
+      "id": "03/switch-first",
+      "file": "03-control-flow.md",
+      "statement": "Switch picks the first matching Match.",
+      "platform": "server"
+    },
+    {
+      "id": "03/switch-fallback",
+      "file": "03-control-flow.md",
+      "statement": "Switch supports a fallback.",
+      "platform": "server"
+    },
+    {
+      "id": "03/match-accessor",
+      "file": "03-control-flow.md",
+      "statement": "Non-keyed Match function children receive an accessor.",
+      "platform": "server"
+    },
+    {
+      "id": "03/match-keyed",
+      "file": "03-control-flow.md",
+      "statement": "Keyed Match function children receive the raw narrowed value.",
+      "platform": "server"
+    },
+    {
+      "id": "03/error-fallback",
+      "file": "03-control-flow.md",
+      "statement": "Errored supports a callback receiving an error accessor and reset.",
+      "platform": "server"
+    },
+    {
+      "id": "03/dynamic-tag",
+      "file": "03-control-flow.md",
+      "statement": "dynamic returns a stable component driven by a reactive source.",
+      "platform": "server"
+    },
+    {
+      "id": "03/client-only-ssr",
+      "file": "03-control-flow.md",
+      "statement": "clientOnly renders props.fallback on the server and never starts the import.",
+      "platform": "server"
+    },
+    {
+      "id": "05/client-source-ssr",
+      "file": "05-async-data.md",
+      "statement": "With ssrSource client the server compute never runs.",
+      "platform": "server"
+    },
+    {
+      "id": "05/declared-client-ssr",
+      "file": "05-async-data.md",
+      "statement": "With loadingValue the server renders the declared first paint.",
+      "platform": "server"
+    },
+    {
+      "id": "07/class-compose",
+      "file": "07-dom.md",
+      "statement": "class accepts string, object or array of strings and objects.",
+      "platform": "server"
+    },
+    {
+      "id": "07/boolean-attribute",
+      "file": "07-dom.md",
+      "statement": "Boolean literals add/remove the attribute; strings preserve true.",
+      "platform": "server"
+    },
+    {
+      "id": "12/sync-fallback",
+      "file": "12-ssr-http.md",
+      "statement": "renderToString is synchronous; async boundaries render their fallbacks.",
+      "platform": "server"
+    },
+    {
+      "id": "12/stream-thenable",
+      "file": "12-ssr-http.md",
+      "statement": "Awaiting renderToStream resolves with fully resolved HTML.",
+      "platform": "server"
+    },
+    {
+      "id": "12/stream-readable",
+      "file": "12-ssr-http.md",
+      "statement": "readable yields Uint8Array bytes suitable for a Response body.",
+      "platform": "server"
+    },
+    {
+      "id": "12/one-consumer",
+      "file": "12-ssr-http.md",
+      "statement": "Exactly one consumption surface may be used per render.",
+      "platform": "server"
+    },
+    {
+      "id": "12/hydration-script",
+      "file": "12-ssr-http.md",
+      "statement": "generateHydrationScript returns the bootstrap string with nonce.",
+      "platform": "server"
+    },
+    {
+      "id": "05/defer-stream",
+      "file": "05-async-data.md",
+      "statement": "deferStream true defers the SSR stream flush until the first value resolves.",
+      "platform": "server"
+    },
+    {
+      "id": "12/cookie-roundtrip",
+      "file": "12-ssr-http.md",
+      "statement": "Names and values travel percent-encoded and the parser decodes symmetrically.",
+      "platform": "server"
+    },
+    {
+      "id": "12/cookie-default-path",
+      "file": "12-ssr-http.md",
+      "statement": "path defaults to /, the only default.",
+      "platform": "server"
+    },
+    {
+      "id": "12/cookie-options",
+      "file": "12-ssr-http.md",
+      "statement": "domain/maxAge/expires/httpOnly/secure/sameSite are emitted exactly when given.",
+      "platform": "server"
+    },
+    {
+      "id": "12/cookie-delete",
+      "file": "12-ssr-http.md",
+      "statement": "Deleting is expiring: empty value plus Max-Age=0.",
+      "platform": "server"
+    },
+    {
+      "id": "12/fresh-events",
+      "file": "12-ssr-http.md",
+      "statement": "createRequestEvent builds request, locals and a fresh uncommitted response stub.",
+      "platform": "server"
+    },
+    {
+      "id": "12/event-init",
+      "file": "12-ssr-http.md",
+      "statement": "init spreads over defaults so a framework can extend the shape.",
+      "platform": "server"
+    },
+    {
+      "id": "12/request-scope",
+      "file": "12-ssr-http.md",
+      "statement": "getRequestEvent reads the current event anywhere under a request scope.",
+      "platform": "server"
+    },
+    {
+      "id": "12/head-retraction",
+      "file": "12-ssr-http.md",
+      "statement": "Each declaration snapshots the prior value and restores it when its owning scope is disposed.",
+      "platform": "server"
+    },
+    {
+      "id": "12/head-committed-noop",
+      "file": "12-ssr-http.md",
+      "statement": "Both declaration writes and retractions no-op once the head is committed.",
+      "platform": "server"
+    },
+    {
+      "id": "12/cookie-response-not-request",
+      "file": "12-ssr-http.md",
+      "statement": "A Set-Cookie appended in the same request does not read back.",
+      "platform": "server"
+    },
+    {
+      "id": "12/ssr-response-string",
+      "file": "12-ssr-http.md",
+      "statement": "String results return a Response synchronously and commit the stub.",
+      "platform": "server"
+    },
+    {
+      "id": "12/ssr-response-cookies",
+      "file": "12-ssr-http.md",
+      "statement": "Every materialized response carries Set-Cookie entry-by-entry.",
+      "platform": "server"
+    },
+    {
+      "id": "12/early-redirect",
+      "file": "12-ssr-http.md",
+      "statement": "Location before shell flush produces a real bodyless redirect with cookies.",
+      "platform": "server"
+    },
+    {
+      "id": "12/stream-response-head",
+      "file": "12-ssr-http.md",
+      "statement": "Stream results resolve at shell flush, with stub committed.",
+      "platform": "server"
+    },
+    {
+      "id": "12/aborted-before-shell",
+      "file": "12-ssr-http.md",
+      "statement": "A render aborted before flush resolves to bodyless 500 and never rejects.",
+      "platform": "server"
+    },
+    {
+      "id": "12/commit-other-status",
+      "file": "12-ssr-http.md",
+      "statement": "commitEventResponse never takes status from the stub.",
+      "platform": "server"
+    },
+    {
+      "id": "12/commit-other-precedence",
+      "file": "12-ssr-http.md",
+      "statement": "Response metadata wins; ordinary stub headers fill only gaps.",
+      "platform": "server"
+    },
+    {
+      "id": "12/commit-idempotent",
+      "file": "12-ssr-http.md",
+      "statement": "An already-committed stub passes the response through untouched.",
+      "platform": "server"
+    },
+    {
+      "id": "12/commit-cookies",
+      "file": "12-ssr-http.md",
+      "statement": "Stub cookies append beside response cookies entry-by-entry.",
+      "platform": "server"
+    },
+    {
+      "id": "12/trace-continuation",
+      "file": "12-ssr-http.md",
+      "statement": "getTraceContext continues a valid incoming traceparent and returns one object per request.",
+      "platform": "server"
+    },
+    {
+      "id": "12/trace-invalid",
+      "file": "12-ssr-http.md",
+      "statement": "Malformed all-zero ids are ignored and a new trace originates.",
+      "platform": "server"
+    },
+    {
+      "id": "12/trace-unsampled-wire",
+      "file": "12-ssr-http.md",
+      "statement": "An unsampled upstream trace stays off the browser wire.",
+      "platform": "server"
+    },
+    {
+      "id": "12/trace-sampled-wire",
+      "file": "12-ssr-http.md",
+      "statement": "Sampled trace entries are emitted as Server-Timing on commit.",
+      "platform": "server"
+    },
+    {
+      "id": "12/middleware-order",
+      "file": "12-ssr-http.md",
+      "statement": "next advances the chain, and outermost middleware unwinds before the wire.",
+      "platform": "server"
+    },
+    {
+      "id": "12/middleware-request",
+      "file": "12-ssr-http.md",
+      "statement": "next may substitute the Request downstream.",
+      "platform": "server"
+    },
+    {
+      "id": "10/direct-call",
+      "file": "10-server-functions.md",
+      "statement": "In-process SSR calls execute the original function directly with no HTTP loopback.",
+      "platform": "server"
+    },
+    {
+      "id": "10/reference-id",
+      "file": "10-server-functions.md",
+      "statement": "Both proxies carry id and url.",
+      "platform": "server"
+    },
+    {
+      "id": "10/reference-brand",
+      "file": "10-server-functions.md",
+      "statement": "isServerFunction reads the symbol-branded reference contract.",
+      "platform": "server"
+    },
+    {
+      "id": "10/reference-nonfunction",
+      "file": "10-server-functions.md",
+      "statement": "registerServerReference throws when handed a non-function.",
+      "platform": "server"
+    },
+    {
+      "id": "10/metadata-merge",
+      "file": "10-server-functions.md",
+      "statement": "withMeta returns the reference and shallow-merges later writes over earlier ones.",
+      "platform": "server"
+    },
+    {
+      "id": "10/get-metadata",
+      "file": "10-server-functions.md",
+      "statement": "GET composes with withMeta in either order.",
+      "platform": "server"
+    },
+    {
+      "id": "10/http-dispatch",
+      "file": "10-server-functions.md",
+      "statement": "The handler resolves id, decodes positional arguments and encodes the result.",
+      "platform": "server"
+    },
+    {
+      "id": "10/default-post",
+      "file": "10-server-functions.md",
+      "statement": "Undeclared references call over POST; GET requires declaration.",
+      "platform": "server"
+    },
+    {
+      "id": "10/get-read",
+      "file": "10-server-functions.md",
+      "statement": "GET declared references permit GET and HEAD without a body on HEAD.",
+      "platform": "server"
+    },
+    {
+      "id": "10/method-405",
+      "file": "10-server-functions.md",
+      "statement": "Other methods receive 405.",
+      "platform": "server"
+    },
+    {
+      "id": "10/unknown-reference",
+      "file": "10-server-functions.md",
+      "statement": "An unregistered well-formed address receives a labelled 404.",
+      "platform": "server"
+    },
+    {
+      "id": "10/no-store-default",
+      "file": "10-server-functions.md",
+      "statement": "Every response has Cache-Control no-store unless the function declares a policy.",
+      "platform": "server"
+    },
+    {
+      "id": "10/cache-opt-in",
+      "file": "10-server-functions.md",
+      "statement": "Cache headers flow through the handler response metadata.",
+      "platform": "server"
+    },
+    {
+      "id": "10/redirect-control",
+      "file": "10-server-functions.md",
+      "statement": "Thrown Response/envelope control flow is forwarded untouched.",
+      "platform": "server"
+    },
+    {
+      "id": "10/thrown-sanitization",
+      "file": "10-server-functions.md",
+      "statement": "Outside development plain thrown errors are replaced with a generic Error.",
+      "platform": "server"
+    },
+    {
+      "id": "10/per-call-event",
+      "file": "10-server-functions.md",
+      "statement": "Direct calls get a shallow copy of locals while nested values remain shared.",
+      "platform": "server"
+    },
+    {
+      "id": "10/invocation-context",
+      "file": "10-server-functions.md",
+      "statement": "getServerFunctionInvocation answers the current in-flight id.",
+      "platform": "server"
+    },
+    {
+      "id": "10/invoke-direct",
+      "file": "10-server-functions.md",
+      "statement": "Server invoke runs in-process; transport hints are no-ops.",
+      "platform": "server"
+    },
+    {
+      "id": "10/invoke-contract",
+      "file": "10-server-functions.md",
+      "statement": "Non-invocable wrappers produce a directed error.",
+      "platform": "server"
+    },
+    {
+      "id": "10/direct-invoke-abort",
+      "file": "10-server-functions.md",
+      "statement": "Server invoke signal rejects the caller while the in-process work runs to completion.",
+      "platform": "server"
+    },
+    {
+      "id": "10/invoke-refusals",
+      "file": "10-server-functions.md",
+      "statement": "invoke refuses raw RequestInit options with a pointer to their lifetime home.",
+      "platform": "server"
+    },
+    {
+      "id": "10/direct-wrap-invocation",
+      "file": "10-server-functions.md",
+      "statement": "Configured wrapInvocation wraps direct SSR calls inside their invocation identity.",
+      "platform": "server"
+    },
+    {
+      "id": "10/http-wrap-invocation",
+      "file": "10-server-functions.md",
+      "statement": "Per-handler wrapInvocation runs inside the request-event scope and may replace the result.",
+      "platform": "server"
+    },
+    {
+      "id": "10/transform-return-and-throw",
+      "file": "10-server-functions.md",
+      "statement": "transformResult observes both returned and thrown results before encoding.",
+      "platform": "server"
+    },
+    {
+      "id": "10/single-flight-sources",
+      "file": "10-server-functions.md",
+      "statement": "Single-flight collects source-keyed slices only for scripted calls with the request header.",
+      "platform": "server"
+    },
+    {
+      "id": "10/named-flight-sources",
+      "file": "10-server-functions.md",
+      "statement": "registerFlightDataSource named collectors are folded beside the unnamed hook.",
+      "platform": "server"
+    },
+    {
+      "id": "10/no-js-form",
+      "file": "10-server-functions.md",
+      "statement": "Bare action URLs dispatch FormData as a lone argument and invoke handleNoJS.",
+      "platform": "server"
+    },
+    {
+      "id": "10/no-js-get-form",
+      "file": "10-server-functions.md",
+      "statement": "Bare GET query fields which are not argument encoding become URLSearchParams.",
+      "platform": "server"
+    },
+    {
+      "id": "10/malformed-args",
+      "file": "10-server-functions.md",
+      "statement": "A reserved args query value which is not an argument array receives 400.",
+      "platform": "server"
+    },
+    {
+      "id": "10/reference-dev-name",
+      "file": "10-server-functions.md",
+      "statement": "Compiler-static dev name metadata seeds the channel and explicit metadata shallow-merges over it.",
+      "platform": "server"
+    },
+    {
+      "id": "10/removed-reference-properties",
+      "file": "10-server-functions.md",
+      "statement": "Client references no longer expose GET and withOptions compatibility properties.",
+      "platform": "server"
+    },
+    {
+      "id": "10/action-url-roundtrip",
+      "file": "10-server-functions.md",
+      "statement": "Action URLs preserve the function id and plain JSON bound arguments.",
+      "platform": "server"
+    },
+    {
+      "id": "10/get-data-url",
+      "file": "10-server-functions.md",
+      "statement": "serverFunctionUrl is the GET scripted data address, distinct from the form action url.",
+      "platform": "server"
+    },
+    {
+      "id": "10/no-js-bound-body",
+      "file": "10-server-functions.md",
+      "statement": "Leading bound args ride the action query while trailing FormData stays a natural body.",
+      "platform": "server"
+    },
+    {
+      "id": "10/request-event-create",
+      "file": "10-server-functions.md",
+      "statement": "createEvent receives a standards-shaped Request and controls locals in the invocation.",
+      "platform": "server"
+    },
+    {
+      "id": "10/raw-response",
+      "file": "10-server-functions.md",
+      "statement": "A raw Response tagged X-Content-Raw travels untouched.",
+      "platform": "server"
+    },
+    {
+      "id": "10/intentional-error-envelope",
+      "file": "10-server-functions.md",
+      "statement": "Thrown respond envelopes preserve status and intentional carried content in production.",
+      "platform": "server"
+    },
+    {
+      "id": "10/bare-404",
+      "file": "10-server-functions.md",
+      "statement": "A path not meaningful under the address scheme remains a bare 404, without skew marker.",
+      "platform": "server"
+    },
+    {
+      "id": "10/response-envelope-body",
+      "file": "10-server-functions.md",
+      "statement": "respond carries a real JSON Response body for unscripted consumers.",
+      "platform": "server"
+    },
+    {
+      "id": "10/redirect-masking",
+      "file": "10-server-functions.md",
+      "statement": "Scripted redirect statuses are masked to 200 and Location is replaced by an absolute redirect carrier.",
+      "platform": "server"
+    },
+    {
+      "id": "10/created-location",
+      "file": "10-server-functions.md",
+      "statement": "An authored Location on a non-redirect 201 response remains response data.",
+      "platform": "server"
+    },
+    {
+      "id": "10/rich-result-codec",
+      "file": "10-server-functions.md",
+      "statement": "Results always travel through the codec, independent of rich-argument opt-in.",
+      "platform": "server"
+    },
+    {
+      "id": "10/single-flight-after-transform",
+      "file": "10-server-functions.md",
+      "statement": "collectFlightData receives the transformed outcome with id, request, value, response and thrown fields.",
+      "platform": "server"
+    },
+    {
+      "id": "10/per-request-transform-override",
+      "file": "10-server-functions.md",
+      "statement": "Per-handler transformResult overrides server-wide configuration.",
+      "platform": "server"
+    },
+    {
+      "id": "10/nonfunction-metadata",
+      "file": "10-server-functions.md",
+      "statement": "getServerFunctionMetadata answers undefined for an unbranded function.",
+      "platform": "server"
+    },
+    {
+      "id": "10/invoke-options-no-residue",
+      "file": "10-server-functions.md",
+      "statement": "invoke applies transport hints to one call without changing the reference metadata.",
+      "platform": "server"
+    },
+    {
+      "id": "10/safe-error",
+      "file": "10-server-functions.md",
+      "statement": "markSafeError preserves intentional Error properties while its registered-symbol brand is non-enumerable.",
+      "platform": "server"
+    },
+    {
+      "id": "10/registry-public",
+      "file": "10-server-functions.md",
+      "statement": "Public integration registry lookup returns the registered original function.",
+      "platform": "server"
+    },
+    {
+      "id": "10/request-standard-shape",
+      "file": "10-server-functions.md",
+      "statement": "Body-size enforcement rebuilds a standards-only Request; the host restores platform data through locals.",
+      "platform": "server"
+    },
+    {
+      "id": "10/not-modified-forward",
+      "file": "10-server-functions.md",
+      "statement": "304 is not a followable redirect and forwards untouched on the scripted address.",
+      "platform": "server"
+    },
+    {
+      "id": "10/transform-direct-config",
+      "file": "10-server-functions.md",
+      "statement": "transformDirectResult decorates in-process SSR calls without the HTTP transform path.",
+      "platform": "server"
+    },
+    {
+      "id": "10/transform-flight-first-refusal",
+      "file": "10-server-functions.md",
+      "statement": "The transformFlightResult seam sees the folded outcome and may claim its Response.",
+      "platform": "server"
+    },
+    {
+      "id": "10/get-url-refusals",
+      "file": "10-server-functions.md",
+      "statement": "serverFunctionUrl refuses rich-codec arguments and URLs that would fall back to POST.",
+      "platform": "server"
+    },
+    {
+      "id": "10/live-data-url",
+      "file": "10-server-functions.md",
+      "statement": "live(GET(fn)) exposes its distinct live address while inner GET retains its data address.",
+      "platform": "server"
+    },
+    {
+      "id": "10/live-wire-framing",
+      "file": "10-server-functions.md",
+      "statement": "The live address is SSE with no-store and X-Accel-Buffering:no; data remains codec framing.",
+      "platform": "server"
+    },
+    {
+      "id": "10/live-digest-skip",
+      "file": "10-server-functions.md",
+      "statement": "Last-Event-ID digest suppresses only the matching first value, leaving subsequent values flowing.",
+      "platform": "server"
+    },
+    {
+      "id": "10/reload-scopes",
+      "file": "10-server-functions.md",
+      "statement": "reload returns no value and distinguishes host-default, named keys, explicit none and explicit all.",
+      "platform": "server"
+    },
+    {
+      "id": "10/live-inprocess-top-only-brand",
+      "file": "10-server-functions.md",
+      "statement": "In-process live brands only a top-level iterable/component, never nested bounded sources.",
+      "platform": "server"
+    },
+    {
+      "id": "10/live-nested-response-lifetime",
+      "file": "10-server-functions.md",
+      "statement": "A live value answer holds the response until both a nested promise and bounded iterator end.",
+      "platform": "server"
+    },
+    {
+      "id": "10/undeclared-promise-death",
+      "file": "10-server-functions.md",
+      "statement": "A dying undeclared response rejects a nested pending promise and never invokes the source again.",
+      "platform": "server"
+    },
+    {
+      "id": "10/codec-custom-public-edge",
+      "file": "10-server-functions.md",
+      "statement": "A plugin authored from public serialization entry round-trips custom data and its OpaqueReference replacement through matching codec options.",
+      "platform": "server"
+    },
+    {
+      "id": "10/wrapper-error-intent",
+      "file": "10-server-functions.md",
+      "statement": "wrapInvocation and transformResult error mappings pass safe/envelope intent but sanitize unbranded replacements.",
+      "platform": "server"
+    },
+    {
+      "id": "10/scripted-304-warning",
+      "file": "10-server-functions.md",
+      "statement": "Only dev warns for a scripted 304; ordinary 200 and unscripted 304 produce no such warning.",
+      "platform": "server"
+    },
+    {
+      "id": "03/client-only-preload",
+      "file": "03-control-flow.md",
+      "statement": "A compiler-supplied clientOnly module URL emits modulepreload before fallback without executing the importer or entering the hydration manifest.",
+      "platform": "server"
+    },
+    {
+      "id": "07/input-ssr-default",
+      "file": "07-dom.md",
+      "statement": "SSR uses defaultValue for initial form markup, and value when no defaultValue is provided.",
+      "platform": "server"
+    },
+    {
+      "id": "04/projection-async-propagation-escaped",
+      "file": "04-stores.md",
+      "statement": "A swallowed NotReadyError severs the only SSR projection retry channel; the client subscription graph still retries, while escaped readiness works in both builds.",
+      "platform": "server"
+    },
+    {
+      "id": "04/projection-async-propagation-swallowed",
+      "file": "04-stores.md",
+      "statement": "A swallowed NotReadyError severs the only SSR projection retry channel; the client subscription graph still retries, while escaped readiness works in both builds.",
+      "platform": "server"
+    },
+    {
+      "id": "05/transparent-ssr-ignored",
+      "file": "05-async-data.md",
+      "statement": "SSR allocates the same hydration slots whether a source declares transparent true or false.",
+      "error": "Error: Expected \"1000\", received \"0000\"",
+      "platform": "server"
+    },
+    {
+      "id": "12/cookie-proto-key",
+      "file": "12-ssr-http.md",
+      "statement": "Any valid cookie name round-trips, including __proto__.",
+      "error": "Error: Expected true, received false",
+      "platform": "server"
+    },
+    {
+      "id": "12/ssr-reset-static-model",
+      "file": "12-ssr-http.md",
+      "statement": "The public SSR Errored reset callback does not rerun a static failed branch; this records why the HTTP pre-commit recovery example has no executable public SSR path.",
+      "platform": "server"
+    },
+    {
+      "id": "12/event-outside-scope",
+      "file": "12-ssr-http.md",
+      "statement": "getRequestEvent returns undefined outside a request scope.",
+      "platform": "server"
+    },
+    {
+      "id": "12/cookie-expiry-serialization",
+      "file": "12-ssr-http.md",
+      "statement": "expires emits exactly the explicitly supplied date, and valid unusual cookie names round-trip.",
+      "platform": "server"
+    },
+    {
+      "id": "12/cookie-declaration-retraction",
+      "file": "12-ssr-http.md",
+      "statement": "httpHeader set-cookie snapshots and restores separate entries exactly rather than comma joining.",
+      "platform": "server"
+    },
+    {
+      "id": "12/cookie-scope-independent",
+      "file": "12-ssr-http.md",
+      "statement": "Native Headers cookie appends remain after a reactive owner is disposed and preserve separate entries.",
+      "platform": "server"
+    },
+    {
+      "id": "12/committed-header-mutation",
+      "file": "12-ssr-http.md",
+      "statement": "Every stub Headers mutator throws in dev or reports and no-ops in production after commit.",
+      "platform": "server"
+    },
+    {
+      "id": "12/committed-status-wire-frozen",
+      "file": "12-ssr-http.md",
+      "statement": "Committed outgoing response status and statusText cannot be changed through the mutable stub.",
+      "platform": "server"
+    },
+    {
+      "id": "12/redirect-status-selection",
+      "file": "12-ssr-http.md",
+      "statement": "getExpectedRedirectStatus preserves a redirect status and uses 302 for page statuses.",
+      "platform": "server"
+    },
+    {
+      "id": "12/stream-node-writable",
+      "file": "12-ssr-http.md",
+      "statement": "pipe accepts a real Node-style Writable and closes it only after the async render fragment lands.",
+      "platform": "server"
+    },
+    {
+      "id": "12/stream-pipe-to",
+      "file": "12-ssr-http.md",
+      "statement": "pipeTo writes to a web WritableStream and resolves only after render completion.",
+      "platform": "server"
+    },
+    {
+      "id": "12/chunk-transform",
+      "file": "12-ssr-http.md",
+      "statement": "createSSRResponse transformChunk rewrites every outgoing HTML chunk.",
+      "platform": "server"
+    },
+    {
+      "id": "12/ssr-head-defaults",
+      "file": "12-ssr-http.md",
+      "statement": "SSR defaults content type and folds stub head values over responseInit at the commit seam.",
+      "platform": "server"
+    },
+    {
+      "id": "12/late-redirect-script",
+      "file": "12-ssr-http.md",
+      "statement": "A post-flush Location on an integration-provided response stub is emitted as a nonce-bearing client redirect script.",
+      "platform": "server"
+    },
+    {
+      "id": "12/middleware-stream-unwind",
+      "file": "12-ssr-http.md",
+      "statement": "A streamed response remains unconsumed and mutable through outer middleware unwind, and middleware catches downstream errors.",
+      "platform": "server"
+    },
+    {
+      "id": "12/trace-verbatim-fields",
+      "file": "12-ssr-http.md",
+      "statement": "Trace context retains upstream tracestate and baggage verbatim, creates a fresh 16-hex span, and exposes the browser traceparent entry with that span.",
+      "platform": "server"
+    },
+    {
+      "id": "12/trace-malformed-future-origin",
+      "file": "12-ssr-http.md",
+      "statement": "Trace parsing accepts later versions as version00, ignores malformed version/length/allzero IDs, and originates random IDs with no parent or sampled decision.",
+      "platform": "server"
+    },
+    {
+      "id": "12/trace-render-owned-outside",
+      "file": "12-ssr-http.md",
+      "statement": "Outside both request and render trace is undefined; each requestless render owns a distinct context with stable repeated reads.",
+      "platform": "server"
+    },
+    {
+      "id": "05/bare-client-source-requires-loading",
+      "file": "05-async-data.md",
+      "statement": "A bare client source outside Loading is a server render error rather than a stream that waits forever.",
+      "platform": "server"
+    },
+    {
+      "id": "12/ambient-commit-event",
+      "file": "12-ssr-http.md",
+      "statement": "commitEventResponse uses the ambient event when its event argument is omitted.",
+      "platform": "server"
+    },
+    {
+      "id": "08/server-diagnostic-unrecognized-value",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L692: plain object and symbol insertions are skipped on both faces with type/value metadata.",
+      "platform": "client"
+    },
+    {
+      "id": "08/server-diagnostic-head-duplicate-client",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L686: Client head resolution diagnoses duplicate titles and keeps the last one.",
+      "platform": "client"
+    },
+    {
+      "id": "08/server-diagnostic-lowercase-event",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L708: compiled, spread and hydrated lowercase callback attributes stringify rather than bind; warn once per name.",
+      "platform": "client"
+    },
+    {
+      "id": "01/flush-reads",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "After calling a setter, reads continue to return the last committed value until the batch is flushed.",
+      "platform": "client"
+    },
+    {
+      "id": "01/microtask",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "Updates are applied on the next microtask by default.",
+      "platform": "client"
+    },
+    {
+      "id": "01/flush-callback",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "The callback's return value is preserved, and nested flush(fn) calls drain at each level.",
+      "platform": "client"
+    },
+    {
+      "id": "01/effects-order",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "Running all tracking halves of effects before any effect halves gives a clear dependency picture before side effects run.",
+      "platform": "client"
+    },
+    {
+      "id": "01/effect-prev-cleanup",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "The compute function receives prev as its argument (undefined on first run).",
+      "platform": "client"
+    },
+    {
+      "id": "01/effect-defer",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "Run on next change only (skip initial).",
+      "platform": "client"
+    },
+    {
+      "id": "01/lazy-memo",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "The lazy option defers the initial computation until the value is first read.",
+      "platform": "client"
+    },
+    {
+      "id": "01/eager-memo",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "Without lazy, memos compute eagerly on creation.",
+      "platform": "client"
+    },
+    {
+      "id": "01/render-effect",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "createRenderEffect runs during the render phase synchronously as DOM elements are created.",
+      "platform": "client"
+    },
+    {
+      "id": "01/settled-cleanup",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "onSettled replaces onMount: run logic when the current activity is settled.",
+      "platform": "client"
+    },
+    {
+      "id": "01/unobserved",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "An unobserved callback fires when the signal/memo loses all subscribers.",
+      "platform": "client"
+    },
+    {
+      "id": "02/owned-roots",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "A root created inside an existing owned scope is itself owned by that parent.",
+      "platform": "client"
+    },
+    {
+      "id": "02/cleanup-lifo",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "Within one owner later registrations run before earlier ones.",
+      "platform": "client"
+    },
+    {
+      "id": "02/detached-root",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "Detach explicitly with runWithOwner(null, ...).",
+      "platform": "client"
+    },
+    {
+      "id": "02/context-missing",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "useContext throws ContextNotFoundError at runtime if no Provider is mounted.",
+      "platform": "client"
+    },
+    {
+      "id": "02/context-default",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "useContext falls back to defaultValue outside any Provider.",
+      "platform": "client"
+    },
+    {
+      "id": "02/writable-derived",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "A write on its own never re-runs the function.",
+      "platform": "client"
+    },
+    {
+      "id": "02/derived-store",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "createStore(fn, seed) creates a derived store driven by mutation in fn(draft).",
+      "platform": "client"
+    },
+    {
+      "id": "04/draft-first",
+      "file": "04-stores.md",
+      "statement": "The primary store update form is a setter that receives a mutable draft.",
+      "platform": "client"
+    },
+    {
+      "id": "04/object-return",
+      "file": "04-stores.md",
+      "statement": "Returning a value performs a shallow replacement/diff.",
+      "platform": "client"
+    },
+    {
+      "id": "04/array-return",
+      "file": "04-stores.md",
+      "statement": "Returning a value performs a shallow replacement/diff.",
+      "platform": "client"
+    },
+    {
+      "id": "04/merge-undefined",
+      "file": "04-stores.md",
+      "statement": "undefined is a value, not missing.",
+      "platform": "client"
+    },
+    {
+      "id": "04/omit-view",
+      "file": "04-stores.md",
+      "statement": "Use omit to create a view without the listed keys.",
+      "platform": "client"
+    },
+    {
+      "id": "04/keyed-reconcile",
+      "file": "04-stores.md",
+      "statement": "reconcile preserves identity for unchanged entries.",
+      "error": "Error: Expected true, received false",
+      "platform": "client"
+    },
+    {
+      "id": "04/positional-reconcile",
+      "file": "04-stores.md",
+      "statement": "Pass null for positional matching.",
+      "platform": "client"
+    },
+    {
+      "id": "04/readonly-projection",
+      "file": "04-stores.md",
+      "statement": "createProjection returns only the store.",
+      "platform": "client"
+    },
+    {
+      "id": "04/projection-late-write",
+      "file": "04-stores.md",
+      "statement": "The draft stays valid until the next run or disposal.",
+      "platform": "client"
+    },
+    {
+      "id": "04/stale-draft",
+      "file": "04-stores.md",
+      "statement": "Writes through a superseded or disposed draft are dropped silently.",
+      "platform": "client"
+    },
+    {
+      "id": "04/shallow-references",
+      "file": "04-stores.md",
+      "statement": "Values under root keys are plain records replaced by reference.",
+      "platform": "client"
+    },
+    {
+      "id": "04/deep-snapshot",
+      "file": "04-stores.md",
+      "statement": "deep subscribes to every nested property and returns a plain snapshot.",
+      "platform": "client"
+    },
+    {
+      "id": "04/snapshot-untracked",
+      "file": "04-stores.md",
+      "statement": "snapshot produces a non-reactive plain value suitable for serialization.",
+      "platform": "client"
+    },
+    {
+      "id": "04/store-path",
+      "file": "04-stores.md",
+      "statement": "storePath supports indices, filters, ranges and a delete sentinel.",
+      "error": "TypeError: storePath2 is not a function",
+      "platform": "client"
+    },
+    {
+      "id": "05/promise-resolution",
+      "file": "05-async-data.md",
+      "statement": "Consumers read the accessor as usual if it is not ready the read follows Loading.",
+      "platform": "client"
+    },
+    {
+      "id": "05/iterable-values",
+      "file": "05-async-data.md",
+      "statement": "Computations can return AsyncIterables.",
+      "platform": "client"
+    },
+    {
+      "id": "05/loading-value",
+      "file": "05-async-data.md",
+      "statement": "The node is born committed with the declared value.",
+      "platform": "client"
+    },
+    {
+      "id": "05/seed-loading-value",
+      "file": "05-async-data.md",
+      "statement": "Store-family sources declare seedLoadingValue true.",
+      "platform": "client"
+    },
+    {
+      "id": "05/refresh-delivery",
+      "file": "05-async-data.md",
+      "statement": "Accessor targets resolve with the settled value.",
+      "platform": "client"
+    },
+    {
+      "id": "05/refresh-quiet",
+      "file": "05-async-data.md",
+      "statement": "A bare refresh is quiet: isPending stays false.",
+      "platform": "client"
+    },
+    {
+      "id": "05/refresh-quiescence",
+      "file": "05-async-data.md",
+      "statement": "If a second refresh supersedes this one mid-flight the promise waits for whatever finally lands.",
+      "platform": "client"
+    },
+    {
+      "id": "05/resolve-rejection",
+      "file": "05-async-data.md",
+      "statement": "Async errors propagate through the reactive graph.",
+      "platform": "client"
+    },
+    {
+      "id": "05/effect-error",
+      "file": "05-async-data.md",
+      "statement": "createEffect accepts an EffectBundle with effect and error handlers.",
+      "platform": "client"
+    },
+    {
+      "id": "06/action-return",
+      "file": "06-actions-optimistic.md",
+      "statement": "action wraps a generator and returns an async function.",
+      "platform": "client"
+    },
+    {
+      "id": "06/action-rejection",
+      "file": "06-actions-optimistic.md",
+      "statement": "Failure throws back at the yield point.",
+      "platform": "client"
+    },
+    {
+      "id": "06/overlay-signal-success",
+      "file": "06-actions-optimistic.md",
+      "statement": "Optimistic primitives reset to their source when the transition completes.",
+      "platform": "client"
+    },
+    {
+      "id": "06/overlay-signal-failure",
+      "file": "06-actions-optimistic.md",
+      "statement": "Optimistic primitives reset to their source when the transition completes.",
+      "platform": "client"
+    },
+    {
+      "id": "06/overlay-store-success",
+      "file": "06-actions-optimistic.md",
+      "statement": "Optimistic primitives reset to their source when the transition completes.",
+      "platform": "client"
+    },
+    {
+      "id": "06/overlay-store-failure",
+      "file": "06-actions-optimistic.md",
+      "statement": "Optimistic primitives reset to their source when the transition completes.",
+      "platform": "client"
+    },
+    {
+      "id": "06/until-truthy",
+      "file": "06-actions-optimistic.md",
+      "statement": "Falsy results keep waiting; until resolves the first truthy settle.",
+      "platform": "client"
+    },
+    {
+      "id": "06/until-timeout",
+      "file": "06-actions-optimistic.md",
+      "statement": "until rejects on timeout with TimeoutError.",
+      "platform": "client"
+    },
+    {
+      "id": "06/until-abort",
+      "file": "06-actions-optimistic.md",
+      "statement": "until rejects on signal abort with the signal reason.",
+      "platform": "client"
+    },
+    {
+      "id": "06/until-authority",
+      "file": "06-actions-optimistic.md",
+      "statement": "Your own tentative write can never satisfy your own ack.",
+      "platform": "client"
+    },
+    {
+      "id": "06/affects-readability",
+      "file": "06-actions-optimistic.md",
+      "statement": "Marked data reads pending while values themselves stay readable throughout.",
+      "platform": "client"
+    },
+    {
+      "id": "08/owned-write",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Writing inside owned scope throws in dev.",
+      "platform": "client"
+    },
+    {
+      "id": "08/owned-write-opt-in",
+      "file": "08-dev-diagnostics.md",
+      "statement": "ownedWrite is the narrow opt-in for internal state.",
+      "platform": "client"
+    },
+    {
+      "id": "02/context-provider",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "The context itself is a component that takes a value prop and provides it to descendants.",
+      "platform": "client"
+    },
+    {
+      "id": "03/show-accessor",
+      "file": "03-control-flow.md",
+      "statement": "Non-keyed Show function children receive a narrowed accessor.",
+      "platform": "client"
+    },
+    {
+      "id": "03/show-keyed",
+      "file": "03-control-flow.md",
+      "statement": "Keyed Show function children receive the raw narrowed value.",
+      "platform": "client"
+    },
+    {
+      "id": "03/show-fallback",
+      "file": "03-control-flow.md",
+      "statement": "Show supports element children and a fallback.",
+      "platform": "client"
+    },
+    {
+      "id": "03/for-identity",
+      "file": "03-control-flow.md",
+      "statement": "Default keyed For receives a raw item and an index accessor.",
+      "platform": "client"
+    },
+    {
+      "id": "03/for-positional",
+      "file": "03-control-flow.md",
+      "statement": "For keyed false receives an item accessor and a plain index.",
+      "platform": "client"
+    },
+    {
+      "id": "03/for-custom",
+      "file": "03-control-flow.md",
+      "statement": "Custom-keyed For receives two accessors.",
+      "platform": "client"
+    },
+    {
+      "id": "03/for-empty",
+      "file": "03-control-flow.md",
+      "statement": "Empty For inputs render the fallback.",
+      "platform": "client"
+    },
+    {
+      "id": "03/repeat-offset",
+      "file": "03-control-flow.md",
+      "statement": "Repeat renders based on count and optional from; children receive a plain number.",
+      "platform": "client"
+    },
+    {
+      "id": "03/repeat-empty",
+      "file": "03-control-flow.md",
+      "statement": "Repeat renders fallback when count is zero.",
+      "platform": "client"
+    },
+    {
+      "id": "03/switch-first",
+      "file": "03-control-flow.md",
+      "statement": "Switch picks the first matching Match.",
+      "platform": "client"
+    },
+    {
+      "id": "03/switch-fallback",
+      "file": "03-control-flow.md",
+      "statement": "Switch supports a fallback.",
+      "platform": "client"
+    },
+    {
+      "id": "03/match-accessor",
+      "file": "03-control-flow.md",
+      "statement": "Non-keyed Match function children receive an accessor.",
+      "platform": "client"
+    },
+    {
+      "id": "03/match-keyed",
+      "file": "03-control-flow.md",
+      "statement": "Keyed Match function children receive the raw narrowed value.",
+      "platform": "client"
+    },
+    {
+      "id": "03/error-fallback",
+      "file": "03-control-flow.md",
+      "statement": "Errored supports a callback receiving an error accessor and reset.",
+      "platform": "client"
+    },
+    {
+      "id": "03/dynamic-tag",
+      "file": "03-control-flow.md",
+      "statement": "dynamic returns a stable component driven by a reactive source.",
+      "platform": "client"
+    },
+    {
+      "id": "03/for-key-preservation",
+      "file": "03-control-flow.md",
+      "statement": "Custom keys preserve rows while either argument changes.",
+      "platform": "client"
+    },
+    {
+      "id": "03/for-slot-preservation",
+      "file": "03-control-flow.md",
+      "statement": "For keyed false reuses by index.",
+      "platform": "client"
+    },
+    {
+      "id": "03/error-once-reset",
+      "file": "03-control-flow.md",
+      "statement": "Once per error object: reset that recomputes the same failing node says nothing new.",
+      "platform": "client"
+    },
+    {
+      "id": "03/fallback-errors-parent",
+      "file": "03-control-flow.md",
+      "statement": "Errors in the fallback reach the parent boundary.",
+      "platform": "client"
+    },
+    {
+      "id": "05/loading-revalidation",
+      "file": "05-async-data.md",
+      "statement": "Once Loading has rendered content it keeps stale content during revalidation.",
+      "platform": "client"
+    },
+    {
+      "id": "05/loading-on-constant",
+      "file": "05-async-data.md",
+      "statement": "The value returned by on is never compared; only the notification matters.",
+      "error": "Error: Expected \"fallback\", received \"1\"",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-sequential",
+      "file": "03-control-flow.md",
+      "statement": "Reveal order sequential coordinates sibling Loading boundaries.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-together",
+      "file": "03-control-flow.md",
+      "statement": "Reveal order together coordinates sibling Loading boundaries.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-natural",
+      "file": "03-control-flow.md",
+      "statement": "Reveal order natural coordinates sibling Loading boundaries.",
+      "platform": "client"
+    },
+    {
+      "id": "03/client-only-once",
+      "file": "03-control-flow.md",
+      "statement": "The clientOnly importer is invoked at most once no matter how many instances render.",
+      "platform": "client"
+    },
+    {
+      "id": "07/events-once",
+      "file": "07-dom.md",
+      "statement": "Event handlers bind once; the binding expression is not reactive.",
+      "platform": "client"
+    },
+    {
+      "id": "07/ref-array",
+      "file": "07-dom.md",
+      "statement": "Ref arrays are flattened and called with the element.",
+      "platform": "client"
+    },
+    {
+      "id": "07/root-events-dispose",
+      "file": "07-dom.md",
+      "statement": "Delegated listeners are disposed when the render root is disposed.",
+      "platform": "client"
+    },
+    {
+      "id": "07/shadow-root",
+      "file": "07-dom.md",
+      "statement": "Rendering into a ShadowRoot attaches delegated listeners to that shadow root.",
+      "platform": "client"
+    },
+    {
+      "id": "07/portal-events",
+      "file": "07-dom.md",
+      "statement": "Portal registers outside-root mount points as additional listener containers.",
+      "platform": "client"
+    },
+    {
+      "id": "07/class-compose",
+      "file": "07-dom.md",
+      "statement": "class accepts string, object or array of strings and objects.",
+      "platform": "client"
+    },
+    {
+      "id": "07/boolean-attribute",
+      "file": "07-dom.md",
+      "statement": "Boolean literals add/remove the attribute; strings preserve true.",
+      "platform": "client"
+    },
+    {
+      "id": "12/cookie-roundtrip",
+      "file": "12-ssr-http.md",
+      "statement": "Names and values travel percent-encoded and the parser decodes symmetrically.",
+      "platform": "client"
+    },
+    {
+      "id": "12/cookie-default-path",
+      "file": "12-ssr-http.md",
+      "statement": "path defaults to /, the only default.",
+      "platform": "client"
+    },
+    {
+      "id": "12/cookie-options",
+      "file": "12-ssr-http.md",
+      "statement": "domain/maxAge/expires/httpOnly/secure/sameSite are emitted exactly when given.",
+      "platform": "client"
+    },
+    {
+      "id": "12/cookie-delete",
+      "file": "12-ssr-http.md",
+      "statement": "Deleting is expiring: empty value plus Max-Age=0.",
+      "platform": "client"
+    },
+    {
+      "id": "12/client-http-noop",
+      "file": "12-ssr-http.md",
+      "statement": "httpStatus and httpHeader are no-ops on the client.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-cleanup_in_forbidden_scope",
+      "file": "08-dev-diagnostics.md",
+      "statement": "CLEANUP_IN_FORBIDDEN_SCOPE: the documented trigger emits error; the repaired control does not emit that code.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-primitive_in_forbidden_scope",
+      "file": "08-dev-diagnostics.md",
+      "statement": "PRIMITIVE_IN_FORBIDDEN_SCOPE: the documented trigger emits error; the repaired control does not emit that code.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-pending_async_untracked_read",
+      "file": "08-dev-diagnostics.md",
+      "statement": "PENDING_ASYNC_UNTRACKED_READ: the documented trigger emits error; the repaired control does not emit that code.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-reactive_write_in_owned_scope",
+      "file": "08-dev-diagnostics.md",
+      "statement": "REACTIVE_WRITE_IN_OWNED_SCOPE: the documented trigger emits error; the repaired control does not emit that code.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-async_store_setter",
+      "file": "08-dev-diagnostics.md",
+      "statement": "ASYNC_STORE_SETTER: the documented trigger emits error; the repaired control does not emit that code.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-missing_effect_fn",
+      "file": "08-dev-diagnostics.md",
+      "statement": "MISSING_EFFECT_FN: the documented trigger emits error; the repaired control does not emit that code.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-invalid_refresh_target",
+      "file": "08-dev-diagnostics.md",
+      "statement": "INVALID_REFRESH_TARGET: the documented trigger emits error; the repaired control does not emit that code.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-invalid_affects_target",
+      "file": "08-dev-diagnostics.md",
+      "statement": "INVALID_AFFECTS_TARGET: the documented trigger emits error; the repaired control does not emit that code.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-action_called_in_owned_scope",
+      "file": "08-dev-diagnostics.md",
+      "statement": "ACTION_CALLED_IN_OWNED_SCOPE: the documented trigger emits error; the repaired control does not emit that code.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-no_owner_effect",
+      "file": "08-dev-diagnostics.md",
+      "statement": "NO_OWNER_EFFECT: the documented trigger emits warn; the repaired control does not emit that code.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-no_owner_cleanup",
+      "file": "08-dev-diagnostics.md",
+      "statement": "NO_OWNER_CLEANUP: the documented trigger emits warn; the repaired control does not emit that code.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-run_with_disposed_owner",
+      "file": "08-dev-diagnostics.md",
+      "statement": "RUN_WITH_DISPOSED_OWNER: the documented trigger emits warn; the repaired control does not emit that code.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-flush_in_effect_callback",
+      "file": "08-dev-diagnostics.md",
+      "statement": "FLUSH_IN_EFFECT_CALLBACK: the documented trigger emits warn; the repaired control does not emit that code.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-strict_read_untracked",
+      "file": "08-dev-diagnostics.md",
+      "statement": "STRICT_READ_UNTRACKED: the documented trigger emits warn; the repaired control does not emit that code.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-sync_node_received_async",
+      "file": "08-dev-diagnostics.md",
+      "statement": "SYNC_NODE_RECEIVED_ASYNC: the documented trigger emits error; the repaired control does not emit that code.",
+      "platform": "client"
+    },
+    {
+      "id": "08/exclude-include",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Diagnostics in an excluded owner subtree are suppressed; include overrides exclusion at the nearest marked ancestor.",
+      "platform": "client"
+    },
+    {
+      "id": "08/live-diagnostic-schema",
+      "file": "08-dev-diagnostics.md",
+      "statement": "RFC08 L735/L761/L765/L773–786: live subjects remain beside serializable diagnostics, owner paths are root-first, metadata is optional and guides share the code anchor.",
+      "platform": "client"
+    },
+    {
+      "id": "08/records-listener-lifecycle",
+      "file": "08-dev-diagnostics.md",
+      "statement": "records.observed checks active listeners; unsubscribe is idempotent and subscribers receive serializable records beside live handles.",
+      "platform": "client"
+    },
+    {
+      "id": "08/channel-capture",
+      "file": "08-dev-diagnostics.md",
+      "statement": "capture returns events in emission order; clear resets its array; stop unsubscribes; subscribe receives a live subject separately.",
+      "platform": "client"
+    },
+    {
+      "id": "08/channel-info-console",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Info events reach the structured channel only; warn emits console.warn, and events are monotonically sequenced.",
+      "platform": "client"
+    },
+    {
+      "id": "08/client-diagnostic-after-await",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Each computation warns once per signal or memo, and once per store (naming the first untracked property it reads, at any depth).",
+      "platform": "client"
+    },
+    {
+      "id": "08/client-diagnostic-after-await-known-misses",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L359: Deep synchronous stacks and an unowned read first in the same microtask window may hide a continuation; unrelated reads never invent a warning.",
+      "platform": "client"
+    },
+    {
+      "id": "08/client-diagnostic-loading-outside",
+      "file": "08-dev-diagnostics.md",
+      "statement": "The diagnostic fires once, at the change, and data.source names the source.",
+      "platform": "client"
+    },
+    {
+      "id": "08/client-diagnostic-loading-other-flight-race",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L137: an unrelated flight can hold the frame, but its settle order may still let this fallback win; no structural outside-hold diagnostic.",
+      "platform": "client"
+    },
+    {
+      "id": "08/client-diagnostic-loading-open-action-race",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L137: An unrelated open action can hold the frame; ending it before the inner flight permits fallback without a structural warning.",
+      "platform": "client"
+    },
+    {
+      "id": "08/client-diagnostic-pending-forbidden",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Warns that an async value read inside createTrackedEffect or onSettled will throw if it is ever pending, because these scopes cannot route not-ready reads through Loading.",
+      "platform": "client"
+    },
+    {
+      "id": "08/client-diagnostic-no-owner-boundary",
+      "file": "08-dev-diagnostics.md",
+      "statement": "A Loading or Errored boundary was created without a parent owner.",
+      "platform": "client"
+    },
+    {
+      "id": "08/client-diagnostic-settled-unowned",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Returning one is a dev-mode error (the cleanup is dropped in production); the out-of-band fire itself is fine for one-shot work.",
+      "platform": "client"
+    },
+    {
+      "id": "08/client-diagnostic-invalid-cleanup",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Effect, tracked effect, reaction, and onSettled callbacks must return either a cleanup function or undefined. Returning anything else throws.",
+      "platform": "client"
+    },
+    {
+      "id": "08/client-diagnostic-binding-address",
+      "file": "08-dev-diagnostics.md",
+      "statement": "A compiled binding effect reads as what it writes when sourceNames.bindings is on; a console diagnostic about it prints that element as a second argument.",
+      "platform": "client"
+    },
+    {
+      "id": "08/client-diagnostic-performance-records",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Rich mode performance.measure carries detail.devtools tooltips and properties; the spans use the underlying records own clocks.",
+      "platform": "client"
+    },
+    {
+      "id": "08/client-diagnostic-performance-holds",
+      "file": "08-dev-diagnostics.md",
+      "statement": "A second enablePerformanceTracks joins the instance and returns its own release; the instance is torn down when every release has been called.",
+      "platform": "client"
+    },
+    {
+      "id": "08/client-diagnostic-flush-forbidden",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Calling flush() from inside createTrackedEffect or onSettled would cause re-entrancy.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-collapsed-sequential",
+      "file": "03-control-flow.md",
+      "statement": "Collapsed only hides later fallbacks for sequential order; other orders ignore it.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-collapsed-together",
+      "file": "03-control-flow.md",
+      "statement": "Collapsed only hides later fallbacks for sequential order; other orders ignore it.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-collapsed-natural",
+      "file": "03-control-flow.md",
+      "statement": "Collapsed only hides later fallbacks for sequential order; other orders ignore it.",
+      "platform": "client"
+    },
+    {
+      "id": "03/repeat-store-granularity",
+      "file": "03-control-flow.md",
+      "statement": "Repeat indices stay stable while property reads on the store update individual content without list diffing.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-extra-boundary-loading",
+      "file": "03-control-flow.md",
+      "statement": "A nested Loading is not a direct group member; its wrapper is held by the outer Reveal, but its own pending content does not delay outer release.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-extra-boundary-errored",
+      "file": "03-control-flow.md",
+      "statement": "An Errored-wrapped Loading is not a direct group member and settles independently.",
+      "platform": "client"
+    },
+    {
+      "id": "05/transparent-csr-noop",
+      "file": "05-async-data.md",
+      "statement": "Outside hydration transparent does not affect readiness, revalidation or final DOM.",
+      "platform": "client"
+    },
+    {
+      "id": "05/pending-read-placement",
+      "file": "05-async-data.md",
+      "statement": "A pending expression that reads async data follows Loading on first load and shows inline pending on revalidation; a separate upstream signal read cannot infer the async subtree wait.",
+      "platform": "client"
+    },
+    {
+      "id": "05/undefined-loading-value",
+      "file": "05-async-data.md",
+      "statement": "An explicit undefined loadingValue is committed first paint and does not trip Loading or pending.",
+      "platform": "client"
+    },
+    {
+      "id": "03/client-error-owner-path",
+      "file": "03-control-flow.md",
+      "statement": "Client errors identify the named thrower chain separately from the boundary chain; production carries no owner labels.",
+      "platform": "client"
+    },
+    {
+      "id": "03/client-error-primitive-per-sight",
+      "file": "03-control-flow.md",
+      "statement": "Unlike object-identity dedupe, a primitive failure is reported at each new sight, including retry.",
+      "platform": "client"
+    },
+    {
+      "id": "03/client-error-root-overrides",
+      "file": "03-control-flow.md",
+      "statement": "A per-render root hook takes precedence over the ambient hook, and rendering without one falls back to ambient.",
+      "platform": "client"
+    },
+    {
+      "id": "03/client-root-hook-storage",
+      "file": "03-control-flow.md",
+      "statement": "render parks a supplied error hook on the root owner and adds no hook slot when none is supplied.",
+      "platform": "client"
+    },
+    {
+      "id": "07/portal-contained-listeners",
+      "file": "07-dom.md",
+      "statement": "An already-contained Portal mount receives no additional delegated listener; event declarations select event names while the root remains the physical listener target.",
+      "platform": "client"
+    },
+    {
+      "id": "03/client-error-unknown-thrower",
+      "file": "03-control-flow.md",
+      "statement": "A rejected source without an owner name falls back to the boundary owner path.",
+      "platform": "client"
+    },
+    {
+      "id": "05/loading-on-shared-sibling",
+      "file": "05-async-data.md",
+      "statement": "An independent shared read or an action held through the data prevents fallback; ending an action before its data can show fallback with the committed frame.",
+      "platform": "client"
+    },
+    {
+      "id": "05/loading-on-shared-pending",
+      "file": "05-async-data.md",
+      "statement": "An independent shared read or an action held through the data prevents fallback; ending an action before its data can show fallback with the committed frame.",
+      "error": "Error: Expected \"0atrue\", received \"1spinnertrue\"",
+      "platform": "client"
+    },
+    {
+      "id": "05/loading-on-shared-action-held",
+      "file": "05-async-data.md",
+      "statement": "An independent shared read or an action held through the data prevents fallback; ending an action before its data can show fallback with the committed frame.",
+      "platform": "client"
+    },
+    {
+      "id": "05/loading-on-shared-action-race",
+      "file": "05-async-data.md",
+      "statement": "An independent shared read or an action held through the data prevents fallback; ending an action before its data can show fallback with the committed frame.",
+      "platform": "client"
+    },
+    {
+      "id": "05/loading-on-frame-shell-first-normal",
+      "file": "05-async-data.md",
+      "statement": "Loading on fallback commits with the held shell; comments arriving before the shell avoid fallback, children stay mounted, and latest(on) explicitly displays fallback ahead.",
+      "platform": "client"
+    },
+    {
+      "id": "05/loading-on-frame-shell-first-ahead",
+      "file": "05-async-data.md",
+      "statement": "Loading on fallback commits with the held shell; comments arriving before the shell avoid fallback, children stay mounted, and latest(on) explicitly displays fallback ahead.",
+      "platform": "client"
+    },
+    {
+      "id": "05/loading-on-frame-comments-first-normal",
+      "file": "05-async-data.md",
+      "statement": "Loading on fallback commits with the held shell; comments arriving before the shell avoid fallback, children stay mounted, and latest(on) explicitly displays fallback ahead.",
+      "platform": "client"
+    },
+    {
+      "id": "05/loading-on-frame-comments-first-ahead",
+      "file": "05-async-data.md",
+      "statement": "Loading on fallback commits with the held shell; comments arriving before the shell avoid fallback, children stay mounted, and latest(on) explicitly displays fallback ahead.",
+      "error": "Error: Expected \"1Bb\", received \"1Bspinner\"",
+      "platform": "client"
+    },
+    {
+      "id": "03/error-fallback-frame-immediate",
+      "file": "03-control-flow.md",
+      "statement": "Errored fallback lands with the same changed frame: immediately without a hold, together with the new shell when a sibling async read holds the frame.",
+      "platform": "client"
+    },
+    {
+      "id": "03/error-fallback-frame-held",
+      "file": "03-control-flow.md",
+      "statement": "Errored fallback lands with the same changed frame: immediately without a hold, together with the new shell when a sibling async read holds the frame.",
+      "platform": "client"
+    },
+    {
+      "id": "05/loading-on-multiple-a",
+      "file": "05-async-data.md",
+      "statement": "Reading multiple dependencies in on re-enters fallback when either changes, preserving the child instance.",
+      "platform": "client"
+    },
+    {
+      "id": "05/loading-on-multiple-b",
+      "file": "05-async-data.md",
+      "statement": "Reading multiple dependencies in on re-enters fallback when either changes, preserving the child instance.",
+      "platform": "client"
+    },
+    {
+      "id": "02/held-derive-external-write-signal",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "An external write joins a held derivation as prev rather than replacing its derived result; the revealed frame is derived from the changed input.",
+      "platform": "client"
+    },
+    {
+      "id": "02/held-derive-external-write-store",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "An external write joins a held derivation as prev rather than replacing its derived result; the revealed frame is derived from the changed input.",
+      "error": "Error: Expected \"103:103\", received \"105:105\"",
+      "platform": "client"
+    },
+    {
+      "id": "05/latest-lane-lane",
+      "file": "05-async-data.md",
+      "statement": "latest escapes its transition but waits for the slowest rendered async in its own lane; plain-read and unrendered derivations do not hold that lane.",
+      "platform": "client"
+    },
+    {
+      "id": "05/latest-lane-plain",
+      "file": "05-async-data.md",
+      "statement": "latest escapes its transition but waits for the slowest rendered async in its own lane; plain-read and unrendered derivations do not hold that lane.",
+      "platform": "client"
+    },
+    {
+      "id": "05/latest-lane-unrendered",
+      "file": "05-async-data.md",
+      "statement": "latest escapes its transition but waits for the slowest rendered async in its own lane; plain-read and unrendered derivations do not hold that lane.",
+      "platform": "client"
+    },
+    {
+      "id": "03/errored-source-autoheal",
+      "file": "03-control-flow.md",
+      "statement": "Errored heals automatically when its throwing computation becomes valid; no global resetErrorBoundaries call is needed.",
+      "platform": "client"
+    },
+    {
+      "id": "03/client-only-import-start",
+      "file": "03-control-flow.md",
+      "statement": "clientOnly eagerly starts by default and lazy true starts exactly at its first render; pending modules show fallback without Loading.",
+      "platform": "client"
+    },
+    {
+      "id": "03/client-error-hook-return-ignored",
+      "file": "03-control-flow.md",
+      "statement": "A hook return cannot map client fallback errors, while throwing hooks log and leave the app functional.",
+      "platform": "client"
+    },
+    {
+      "id": "03/client-error-effect-arm",
+      "file": "03-control-flow.md",
+      "statement": "An effect onError arm handles its failure and does not notify the client boundary hook.",
+      "platform": "client"
+    },
+    {
+      "id": "03/dynamic-props-children-ref",
+      "file": "03-control-flow.md",
+      "statement": "A dynamic factory preserves reactive props, children, and normal refs when changing native tags.",
+      "platform": "client"
+    },
+    {
+      "id": "04/shallow-for-keyed-replacement",
+      "file": "04-stores.md",
+      "statement": "Shallow rows with custom keying reuse DOM for same-key replacements and dispose or create changed keys.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-matrix-sequential-sequential",
+      "file": "03-control-flow.md",
+      "statement": "A nested sequential Reveal is one composite slot under outer sequential; minimal readiness, parent holds and inner ordering follow the documented matrix.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-matrix-sequential-together",
+      "file": "03-control-flow.md",
+      "statement": "A nested together Reveal is one composite slot under outer sequential; minimal readiness, parent holds and inner ordering follow the documented matrix.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-matrix-sequential-natural",
+      "file": "03-control-flow.md",
+      "statement": "A nested natural Reveal is one composite slot under outer sequential; minimal readiness, parent holds and inner ordering follow the documented matrix.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-matrix-together-sequential",
+      "file": "03-control-flow.md",
+      "statement": "A nested sequential Reveal is one composite slot under outer together; minimal readiness, parent holds and inner ordering follow the documented matrix.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-matrix-together-together",
+      "file": "03-control-flow.md",
+      "statement": "A nested together Reveal is one composite slot under outer together; minimal readiness, parent holds and inner ordering follow the documented matrix.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-matrix-together-natural",
+      "file": "03-control-flow.md",
+      "statement": "A nested natural Reveal is one composite slot under outer together; minimal readiness, parent holds and inner ordering follow the documented matrix.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-matrix-natural-sequential",
+      "file": "03-control-flow.md",
+      "statement": "A nested sequential Reveal is one composite slot under outer natural; minimal readiness, parent holds and inner ordering follow the documented matrix.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-matrix-natural-together",
+      "file": "03-control-flow.md",
+      "statement": "A nested together Reveal is one composite slot under outer natural; minimal readiness, parent holds and inner ordering follow the documented matrix.",
+      "platform": "client"
+    },
+    {
+      "id": "03/reveal-matrix-natural-natural",
+      "file": "03-control-flow.md",
+      "statement": "A nested natural Reveal is one composite slot under outer natural; minimal readiness, parent holds and inner ordering follow the documented matrix.",
+      "platform": "client"
+    },
+    {
+      "id": "02/context-subtree",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "Context providers scope values to their descendants; nested providers override and outside siblings retain the default.",
+      "platform": "client"
+    },
+    {
+      "id": "01/dom-flush-boundary",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "Signal writes leave DOM and effect callbacks unchanged until flush, then update both before flush returns.",
+      "platform": "client"
+    },
+    {
+      "id": "07/other-renderer-lowercase",
+      "file": "07-dom.md",
+      "statement": "Spread, html and h keep lowercase on* names as literal attributes, matching JSX and SSR.",
+      "platform": "client"
+    },
+    {
+      "id": "07/remaining-form-properties",
+      "file": "07-dom.md",
+      "statement": "Select/option and audio/video maintain documented current and default state properties.",
+      "platform": "client"
+    },
+    {
+      "id": "07/xml-partial-namespace",
+      "file": "07-dom.md",
+      "statement": "An ambiguous XML partial receives its requested namespace when the author supplies xmlns.",
+      "platform": "client"
+    },
+    {
+      "id": "07/once-marker-reactivity",
+      "file": "07-dom.md",
+      "statement": "The old once JSX comment does not freeze a reactive expression.",
+      "platform": "client"
+    },
+    {
+      "id": "03/dynamic-wrapper-retained",
+      "file": "03-control-flow.md",
+      "statement": "The deprecated Dynamic JSX wrapper remains usable without a runtime warning.",
+      "platform": "client"
+    },
+    {
+      "id": "07/namespace-no-special-handling",
+      "file": "07-dom.md",
+      "statement": "Legacy class: and style: attributes receive no class-toggle or CSS-property special handling.",
+      "platform": "client"
+    },
+    {
+      "id": "07/attribute-lowercase",
+      "file": "07-dom.md",
+      "statement": "Built-in attributes are lowercase attributes, while dynamic values are applied reactively.",
+      "platform": "client"
+    },
+    {
+      "id": "07/native-property-defaults",
+      "file": "07-dom.md",
+      "statement": "Input values, checked state and their default values preserve the stateful DOM property semantics.",
+      "platform": "client"
+    },
+    {
+      "id": "07/svg-mathml-namespaces",
+      "file": "07-dom.md",
+      "statement": "Recognized SVG and MathML elements receive their platform namespaces.",
+      "platform": "client"
+    },
+    {
+      "id": "07/ref-unowned",
+      "file": "07-dom.md",
+      "statement": "Ref callbacks run without a reactive owner; directive setup is owned and cleanup belongs to the setup.",
+      "platform": "client"
+    },
+    {
+      "id": "07/ref-bare-variable",
+      "file": "07-dom.md",
+      "statement": "A single bare-variable ref is assigned; a variable contained in an array is an ordinary value and is never assigned.",
+      "platform": "client"
+    },
+    {
+      "id": "07/native-event-options",
+      "file": "07-dom.md",
+      "statement": "Ref callbacks may install native event listeners with once and capture options.",
+      "platform": "client"
+    },
+    {
+      "id": "07/nested-root-propagation",
+      "file": "07-dom.md",
+      "statement": "A nested root event stopPropagation prevents outer root handlers from observing the native event.",
+      "platform": "client"
+    },
+    {
+      "id": "07/reactive-class-style",
+      "file": "07-dom.md",
+      "statement": "Reactive class object composition and style objects update attributes in place.",
+      "platform": "client"
+    },
+    {
+      "id": "03/show-keyed-lifetime",
+      "file": "03-control-flow.md",
+      "statement": "Keyed Show remounts its branch when a truthy value identity changes; non-keyed Show preserves the branch.",
+      "platform": "client"
+    },
+    {
+      "id": "03/match-keyed-lifetime",
+      "file": "03-control-flow.md",
+      "statement": "The active non-keyed Match updates its narrowed accessor without remounting its child.",
+      "platform": "client"
+    },
+    {
+      "id": "03/dynamic-async-data-sync-components",
+      "file": "03-control-flow.md",
+      "statement": "A synchronous dynamic source may choose client components from async data; Loading handles the data readiness, then component refs and props behave normally.",
+      "platform": "client"
+    },
+    {
+      "id": "03/dynamic-wrapper-per-instance",
+      "file": "03-control-flow.md",
+      "statement": "Dynamic keeps component out of the native props bag and creates a separate dynamic memo for each wrapper instance.",
+      "platform": "client"
+    },
+    {
+      "id": "03/dynamic-stable-shared",
+      "file": "03-control-flow.md",
+      "statement": "A dynamic factory is a stable Component and shares its source evaluation across mounted instances.",
+      "platform": "client"
+    },
+    {
+      "id": "02/component-cleanup-order",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "Parent cleanup registered before children unwinds after them in dev and production.",
+      "platform": "client"
+    },
+    {
+      "id": "02/component-cleanup-late",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "A parent cleanup registered after a child runs before it in production and after it in development.",
+      "platform": "client"
+    },
+    {
+      "id": "04/projection-async-propagation-escaped",
+      "file": "04-stores.md",
+      "statement": "A swallowed NotReadyError severs the only SSR projection retry channel; the client subscription graph still retries, while escaped readiness works in both builds.",
+      "platform": "client"
+    },
+    {
+      "id": "04/projection-async-propagation-swallowed",
+      "file": "04-stores.md",
+      "statement": "A swallowed NotReadyError severs the only SSR projection retry channel; the client subscription graph still retries, while escaped readiness works in both builds.",
+      "platform": "client"
+    },
+    {
+      "id": "12/cookie-proto-key",
+      "file": "12-ssr-http.md",
+      "statement": "Any valid cookie name round-trips, including __proto__.",
+      "error": "Error: Expected true, received false",
+      "platform": "client"
+    },
+    {
+      "id": "12/client-request-scope-throws",
+      "file": "12-ssr-http.md",
+      "statement": "provideRequestEvent throws on the client where no request scope exists.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-prod-inert",
+      "file": "08-dev-diagnostics.md",
+      "statement": "The import is legal in every tier — the prod tier resolves an inert engine with the same surface.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-holds",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Each enable() is a hold and returns its release; the last release uninstalls; disable resets all holders.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-records-queries",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Re-run records contain serializable timings, causes and stable node ids; history is bounded oldest first; named queries return current dependencies.",
+      "platform": "client"
+    },
+    {
+      "id": "08/records-reentrant-listeners",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Delivery finishes over the listener array it started with; unsubscription mid-delivery cannot skip or double-call anyone.",
+      "platform": "client"
+    },
+    {
+      "id": "08/records-body-facet",
+      "file": "08-dev-diagnostics.md",
+      "statement": "A bodies subscription sets the emitter second gate; unsubscribe is idempotent and the ordinary gate remains for other listeners.",
+      "platform": "client"
+    },
+    {
+      "id": "08/records-outlive-engine",
+      "file": "08-dev-diagnostics.md",
+      "statement": "RFC 08 L801: record subscriptions survive engine disable and re-enable; throwing observers never affect computations or peer delivery.",
+      "platform": "client"
+    },
+    {
+      "id": "08/diagnostic-guide-owner-path",
+      "file": "08-dev-diagnostics.md",
+      "statement": "DEV.guideUrl builds a stable URL anchored by code; ownerPath is root first and unnamed ownerPath(null) is undefined.",
+      "platform": "client"
+    },
+    {
+      "id": "08/values-full",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Records govern user previews and element text at the source under values: full",
+      "platform": "client"
+    },
+    {
+      "id": "08/values-labels",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Records govern user previews and element text at the source under values: labels",
+      "platform": "client"
+    },
+    {
+      "id": "08/values-none",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Records govern user previews and element text at the source under values: none",
+      "platform": "client"
+    },
+    {
+      "id": "08/values-least-permissive",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Across holds the least permissive values level wins until its holder releases.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-hot_scope_reruns",
+      "file": "08-dev-diagnostics.md",
+      "statement": "HOT_SCOPE_RERUNS: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-wide_scope_deps",
+      "file": "08-dev-diagnostics.md",
+      "statement": "WIDE_SCOPE_DEPS: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-unstable_memo_output",
+      "file": "08-dev-diagnostics.md",
+      "statement": "UNSTABLE_MEMO_OUTPUT: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-huge_fan_out",
+      "file": "08-dev-diagnostics.md",
+      "statement": "HUGE_FAN_OUT: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-huge_fan_in",
+      "file": "08-dev-diagnostics.md",
+      "statement": "HUGE_FAN_IN: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-hot_scope_fanout",
+      "file": "08-dev-diagnostics.md",
+      "statement": "HOT_SCOPE_FANOUT: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-abandoned_flights",
+      "file": "08-dev-diagnostics.md",
+      "statement": "ABANDONED_FLIGHTS: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-hot_scope_time",
+      "file": "08-dev-diagnostics.md",
+      "statement": "HOT_SCOPE_TIME: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-wasted_recompute",
+      "file": "08-dev-diagnostics.md",
+      "statement": "WASTED_RECOMPUTE: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-effect_writes_own_source",
+      "file": "08-dev-diagnostics.md",
+      "statement": "EFFECT_WRITES_OWN_SOURCE: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-immutable_update_in_store",
+      "file": "08-dev-diagnostics.md",
+      "statement": "IMMUTABLE_UPDATE_IN_STORE: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-unstable_list_identity",
+      "file": "08-dev-diagnostics.md",
+      "statement": "UNSTABLE_LIST_IDENTITY: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-untracked_async_handler",
+      "file": "08-dev-diagnostics.md",
+      "statement": "UNTRACKED_ASYNC_HANDLER: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-silent_hold",
+      "file": "08-dev-diagnostics.md",
+      "statement": "SILENT_HOLD: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-long_hold",
+      "file": "08-dev-diagnostics.md",
+      "statement": "LONG_HOLD: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-stacked_holds",
+      "file": "08-dev-diagnostics.md",
+      "statement": "STACKED_HOLDS: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-optimistic_reverted",
+      "file": "08-dev-diagnostics.md",
+      "statement": "OPTIMISTIC_REVERTED: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/attribution-warning-async_waterfall",
+      "file": "08-dev-diagnostics.md",
+      "statement": "ASYNC_WATERFALL: the documented workload emits the code; repaired control and production do not.",
+      "platform": "client"
+    },
+    {
+      "id": "08/navigation-identity-and-redirect",
+      "file": "08-dev-diagnostics.md",
+      "statement": "The navigation ref is re-read at settle; redirects are destinations abandoned in order; origin joins records by identity.",
+      "platform": "client"
+    },
+    {
+      "id": "08/graph-initial-and-visits",
+      "file": "08-dev-diagnostics.md",
+      "statement": "Initial navigations emit graph records but do not count toward growth; graphSize walks live roots and graph edges.",
+      "platform": "client"
+    },
+    {
+      "id": "08/timeline-hold-navigation-interaction",
+      "file": "08-dev-diagnostics.md",
+      "statement": "RFC 08 L1121/L1123/L1162/L1184: timeline clocks, stable ids, bottom-up delivery and live identity joins.",
+      "platform": "client"
+    },
+    {
+      "id": "08/navigation-declaration-controls",
+      "file": "08-dev-diagnostics.md",
+      "statement": "RFC 08 L1169–1173: initial/no-write, explicit interaction beats ambient, params undefined, late refs and origins.",
+      "platform": "client"
+    },
+    {
+      "id": "08/navigation-superseded-contract",
+      "file": "08-dev-diagnostics.md",
+      "statement": "RFC08 L1160–1170/L1196: superseded requests, held final route, first-read from/at and late-read names, paths and params.",
+      "platform": "client"
+    },
+    {
+      "id": "08/interaction-action-navigation",
+      "file": "08-dev-diagnostics.md",
+      "statement": "RFC08 L1154/L1160/L1182: action steps preserve the invoking interaction across yields, including a declared navigation.",
+      "platform": "client"
+    },
+    {
+      "id": "08/excluded-owner-attribution",
+      "file": "08-dev-diagnostics.md",
+      "statement": "RFC 08 L1127–1129: excluded signals and store writes do not record; nearest include is watched; excluded-only interactions disappear.",
+      "platform": "client"
+    },
+    {
+      "id": "08/holder-option-merge",
+      "file": "08-dev-diagnostics.md",
+      "statement": "RFC08 C1044–1058: demand unions ignore holder order, thresholds merge sensitively, history takes the maximum, release withdraws options and every enable resets its window.",
+      "platform": "client"
+    },
+    {
+      "id": "08/default-log-enabled",
+      "file": "08-dev-diagnostics.md",
+      "statement": "RFC08 C1012: omitting log pretty-prints reruns by default; false retains no console entry.",
+      "platform": "client"
+    },
+    {
+      "id": "08/default-history-and-stacks",
+      "file": "08-dev-diagnostics.md",
+      "statement": "RFC08 C1013/C1014/L1137: default history holds 200 oldest-first reruns; write stacks are opt-in and contain source frames rather than values.",
+      "platform": "client"
+    },
+    {
+      "id": "08/interaction-exact-counts",
+      "file": "08-dev-diagnostics.md",
+      "statement": "RFC08 L1183: per-interaction runs and creations are exact counts, and runMs sums their self-time.",
+      "platform": "client"
+    },
+    {
+      "id": "08/hold-effect-action-origin",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L527: writes without a stamped input retain their effect/action origin on the opening hold.",
+      "platform": "client"
+    },
+    {
+      "id": "08/hold-disabled-options",
+      "file": "08-dev-diagnostics.md",
+      "statement": "C1021/C1022: holds false disables hold tracking; longHolds false suppresses long diagnosis while retaining acknowledged hold records.",
+      "platform": "client"
+    },
+    {
+      "id": "08/hold-default-thresholds",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L525/L531: silent default 100ms info/200ms warn, acknowledged long 500ms info/1000ms warn; a silent long hold reports only SILENT_HOLD.",
+      "platform": "client"
+    },
+    {
+      "id": "08/hold-acknowledgement-paths",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L525/L527: a companion counts through memo chains only when an effect reads it; hold records retain reader path, origins, blockers and write previews.",
+      "platform": "client"
+    },
+    {
+      "id": "08/hold-tail-and-feedback",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L533/L535/L1194: hold lifetime begins at first interaction, tail at last joined input; feedback folds exact waits and acknowledgements.",
+      "platform": "client"
+    },
+    {
+      "id": "08/abandoned-default-window",
+      "file": "08-dev-diagnostics.md",
+      "statement": "L549: three abandoned flights in a 1000ms per-source window warn once with source, count, interaction and live subject; false disables.",
+      "platform": "client"
+    },
+    {
+      "id": "08/stacked-contract",
+      "file": "08-dev-diagnostics.md",
+      "statement": "RFC08 L561: default three interactions warn once with hold metadata/live first write; false disables.",
+      "platform": "client"
+    },
+    {
+      "id": "08/optimistic-correction-contract",
+      "file": "08-dev-diagnostics.md",
+      "statement": "RFC08 L567: reverted/superseded, equals, disabled checks, preview truncation and live subject.",
+      "platform": "client"
+    },
+    {
+      "id": "01/lazy-dependencies",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "Lazy memos track dependencies normally once evaluated.",
+      "platform": "client"
+    },
+    {
+      "id": "01/lazy-disposal",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "A lazy memo is torn down when its last subscriber disappears and recomputed from scratch on its next read.",
+      "platform": "client"
+    },
+    {
+      "id": "01/eager-idle-cache",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "A non-lazy owned memo lives for its owner lifetime and keeps its cached value when unsubscribed.",
+      "platform": "client"
+    },
+    {
+      "id": "01/memo-previous",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "Memo compute receives the previous result and options are its second argument.",
+      "platform": "client"
+    },
+    {
+      "id": "01/back-half-untracked",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "Effect callbacks do not track reactive values read in the apply phase.",
+      "platform": "client"
+    },
+    {
+      "id": "01/tracked-effect-cleanup",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "A tracked effect returns a cleanup function, which runs before rerun and on disposal.",
+      "platform": "client"
+    },
+    {
+      "id": "01/render-effect-cleanup",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "Render effects accept split compute/apply handlers with cleanup on rerun and disposal.",
+      "platform": "client"
+    },
+    {
+      "id": "02/signal-function-value",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "To store a function as a value, wrap it in a function-returning initializer and updater.",
+      "platform": "client"
+    },
+    {
+      "id": "02/memo-equality",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "Default strict equality suppresses notifications; equals false allows identical outputs to notify.",
+      "platform": "client"
+    },
+    {
+      "id": "04/merge-reactive-getters",
+      "file": "04-stores.md",
+      "statement": "merge is a reactive view, later sources take precedence, and source getters remain reactive.",
+      "platform": "client"
+    },
+    {
+      "id": "04/omit-reactive-getters",
+      "file": "04-stores.md",
+      "statement": "omit is a reactive view preserving unexcluded getters.",
+      "platform": "client"
+    },
+    {
+      "id": "04/undefined-and-delete",
+      "file": "04-stores.md",
+      "statement": "Draft undefined stores a value; delete removes the property.",
+      "platform": "client"
+    },
+    {
+      "id": "04/promise-derived-store",
+      "file": "04-stores.md",
+      "statement": "A derived store compute can return a Promise and adopts its resulting record.",
+      "platform": "client"
+    },
+    {
+      "id": "02/derived-store-return",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "Derived createStore may return a record rather than mutate its seed.",
+      "platform": "client"
+    },
+    {
+      "id": "02/pinned-derived-signal",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "A local flag preserved by the derive keeps a manual value until the flag is cleared, including a same-update source change.",
+      "error": "Error: Expected {\"n\":3,\"pinned\":false}, received {\"n\":99,\"pinned\":false}",
+      "platform": "client"
+    },
+    {
+      "id": "02/pinned-derived-store",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "A derived store receives imperative writes as its next draft and can preserve local fields through source updates.",
+      "platform": "client"
+    },
+    {
+      "id": "02/derived-second-write",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "The second imperative write replaces the first and a write alone does not invoke the derive.",
+      "platform": "client"
+    },
+    {
+      "id": "04/property-granularity",
+      "file": "04-stores.md",
+      "statement": "Deep stores track individual properties rather than every sibling property.",
+      "platform": "client"
+    },
+    {
+      "id": "04/shallow-nested-no-notify",
+      "file": "04-stores.md",
+      "statement": "Mutating a plain record below a shallow boundary notifies no reactive reader; replacing its root slot does.",
+      "platform": "client"
+    },
+    {
+      "id": "04/shallow-enumeration",
+      "file": "04-stores.md",
+      "statement": "Shallow root membership, enumeration and array length remain reactive.",
+      "platform": "client"
+    },
+    {
+      "id": "04/shallow-identity-through-store",
+      "file": "04-stores.md",
+      "statement": "Records that pass through a shallow boundary stay plain through a later deep store.",
+      "platform": "client"
+    },
+    {
+      "id": "04/snapshot-structural-sharing",
+      "file": "04-stores.md",
+      "statement": "Snapshot returns plain copies where necessary while unchanged snapshots preserve reference identity.",
+      "platform": "client"
+    },
+    {
+      "id": "04/reconcile-function-key",
+      "file": "04-stores.md",
+      "statement": "reconcile accepts a key function and preserves subscribed row identities across reordering.",
+      "platform": "client"
+    },
+    {
+      "id": "01/imperative-write-boundaries",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "onSettled permits imperative signal writes without an owned-write opt-in.",
+      "platform": "client"
+    },
+    {
+      "id": "04/shallow-array-length",
+      "file": "04-stores.md",
+      "statement": "Shallow arrays keep root length reactive.",
+      "platform": "client"
+    },
+    {
+      "id": "04/shallow-rejects-deep",
+      "file": "04-stores.md",
+      "statement": "Ingesting a deep-tracked value through a shallow store throws in dev.",
+      "platform": "client"
+    },
+    {
+      "id": "04/shallow-projection",
+      "file": "04-stores.md",
+      "statement": "shallow is accepted by createProjection; its root slot replaces plain records.",
+      "platform": "client"
+    },
+    {
+      "id": "04/shallow-optimistic-overlay",
+      "file": "04-stores.md",
+      "statement": "A shallow optimistic replacement reverts to the untouched original record after failure.",
+      "platform": "client"
+    },
+    {
+      "id": "04/seed-loading-detached-draft",
+      "file": "04-stores.md",
+      "statement": "seedLoadingValue displays its seed while the first run writes a detached draft; that first draft stops writing through once its run lands.",
+      "platform": "client"
+    },
+    {
+      "id": "02/iterable-derived-store",
+      "file": "02-signals-derived-ownership.md",
+      "statement": "A derived store compute can return an async iterable and adopt successive records.",
+      "platform": "client"
+    },
+    {
+      "id": "05/resolve-owned-guard",
+      "file": "05-async-data.md",
+      "statement": "resolve cannot be called in a reactive tracking scope in development.",
+      "platform": "client"
+    },
+    {
+      "id": "06/async-generator-context",
+      "file": "06-actions-optimistic.md",
+      "statement": "An async generator action resumes the transition context after yield, preserving later optimistic writes through the hold.",
+      "platform": "client"
+    },
+    {
+      "id": "06/until-level-triggered",
+      "file": "06-actions-optimistic.md",
+      "statement": "until sees confirmation that is already present without a subscription/delivery race.",
+      "platform": "client"
+    },
+    {
+      "id": "06/until-predicate-error",
+      "file": "06-actions-optimistic.md",
+      "statement": "until rejects when the predicate throws.",
+      "platform": "client"
+    },
+    {
+      "id": "06/until-async-error",
+      "file": "06-actions-optimistic.md",
+      "statement": "until rejects when a source read by its predicate rejects.",
+      "platform": "client"
+    },
+    {
+      "id": "06/until-structural-authority",
+      "file": "06-actions-optimistic.md",
+      "statement": "Optimistic array length, membership and Object.keys cannot satisfy until; authoritative source updates can.",
+      "platform": "client"
+    },
+    {
+      "id": "06/affects-key-granularity",
+      "file": "06-actions-optimistic.md",
+      "statement": "affects(record,key) marks only that slot pending and keeps siblings readable and not pending.",
+      "platform": "client"
+    },
+    {
+      "id": "06/affects-nested-record",
+      "file": "06-actions-optimistic.md",
+      "statement": "affects(nested record) marks descendants pending but not siblings.",
+      "platform": "client"
+    },
+    {
+      "id": "01/unowned-memo-disposal",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "An unowned memo autodisposes when its last subscriber goes away and recomputes on its next read.",
+      "platform": "client"
+    },
+    {
+      "id": "04/projection-reconcile-key",
+      "file": "04-stores.md",
+      "statement": "A returned projection value is reconciled by options.key, preserving subscribed row proxies.",
+      "platform": "client"
+    },
+    {
+      "id": "04/projection-default-key",
+      "file": "04-stores.md",
+      "statement": "A returned projection value uses id as its default reconciliation key.",
+      "platform": "client"
+    },
+    {
+      "id": "04/shallow-reconcile-positional",
+      "file": "04-stores.md",
+      "statement": "A shallow boundary reconciles positionally and serves the incoming records by reference.",
+      "platform": "client"
+    },
+    {
+      "id": "06/refresh-store-delivery",
+      "file": "06-actions-optimistic.md",
+      "statement": "Refreshing a derived store delivers the same store node with fresh values.",
+      "platform": "client"
+    },
+    {
+      "id": "06/refresh-nested-node",
+      "file": "06-actions-optimistic.md",
+      "statement": "Refreshing a nested store node re-asks its entire derive family but delivers that same nested node.",
+      "platform": "client"
+    },
+    {
+      "id": "06/refresh-rejection",
+      "file": "06-actions-optimistic.md",
+      "statement": "A failed re-ask rejects the awaitable refresh result with its error.",
+      "platform": "client"
+    },
+    {
+      "id": "06/refresh-staged-authority",
+      "file": "06-actions-optimistic.md",
+      "statement": "An action awaiting refresh receives authoritative staged data rather than its own optimistic override; until can read that staged truth without deadlock.",
+      "error": "Error: Expected 99, received 1",
+      "platform": "client"
+    },
+    {
+      "id": "05/loading-value-pending-window",
+      "file": "05-async-data.md",
+      "statement": "loadingValue is committed and quiet on first flight; after the first real answer, input changes use ordinary pending state.",
+      "platform": "client"
+    },
+    {
+      "id": "06/until-staged-source",
+      "file": "06-actions-optimistic.md",
+      "statement": "until inside an action observes authoritative data staged by the action refresh while the action continues holding.",
+      "platform": "client"
+    },
+    {
+      "id": "01/render-effect-tearing",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "Render apply handlers observe intermediate states when flush is explicitly drained between writes.",
+      "platform": "client"
+    },
+    {
+      "id": "06/refresh-rejection-action",
+      "file": "06-actions-optimistic.md",
+      "statement": "A rejected refresh is thrown back at the generator yield and an uncaught error reverts optimistic overlays.",
+      "platform": "client"
+    },
+    {
+      "id": "06/refresh-rejection-compensate",
+      "file": "06-actions-optimistic.md",
+      "statement": "An action may catch a rejected refresh at its yield point and continue a compensating transition.",
+      "platform": "client"
+    },
+    {
+      "id": "05/latest",
+      "file": "05-async-data.md",
+      "statement": "latest reads the pending write ahead of a held transaction while the normal read remains committed.",
+      "platform": "client"
+    },
+    {
+      "id": "01/untrack-read",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "An untrack read does not register a dependency while ordinary reads remain tracked.",
+      "platform": "client"
+    },
+    {
+      "id": "04/projection-granularity",
+      "file": "04-stores.md",
+      "statement": "The selected-key projection notifies only old and new selected rows rather than all rows.",
+      "platform": "client"
+    },
+    {
+      "id": "05/latest-async-stale",
+      "file": "05-async-data.md",
+      "statement": "latest falls back to the committed result while a pending derived answer is unavailable, then reads the staged answer ahead of the held transaction.",
+      "platform": "client"
+    },
+    {
+      "id": "06/ignored-refresh-rejection",
+      "file": "06-actions-optimistic.md",
+      "statement": "Ignoring a failed awaitable refresh does not surface an unhandled rejection.",
+      "platform": "client"
+    },
+    {
+      "id": "06/resolve-own-overlay",
+      "file": "06-actions-optimistic.md",
+      "statement": "resolve reports an action own view, including its optimistic override, while until requires authoritative confirmation.",
+      "platform": "client"
+    },
+    {
+      "id": "06/affects-refresh-additive",
+      "file": "06-actions-optimistic.md",
+      "statement": "affects remains pending across an otherwise quiet refresh and through its action hold; a fresh answer does not clear the declaration early.",
+      "platform": "client"
+    },
+    {
+      "id": "01/flush-callback-no-microtask",
+      "file": "01-reactivity-batching-effects.md",
+      "statement": "flush(fn) drains callback writes without scheduling a normal microtask flush; an ordinary setter is the positive scheduler control.",
+      "platform": "client"
+    },
+    {
+      "id": "06/refresh-projection-delivery",
+      "file": "06-actions-optimistic.md",
+      "statement": "Refreshing a projection re-asks its derive and delivers the same node.",
+      "platform": "client"
+    },
+    {
+      "id": "06/optimistic-ack-before-live",
+      "file": "06-actions-optimistic.md",
+      "statement": "Without until, transport ack reverts the optimistic overlay before authoritative live data arrives.",
+      "platform": "client"
+    },
+    {
+      "id": "05/optimistic-dependency-notify-signal",
+      "file": "05-async-data.md",
+      "statement": "Optimistic writes notify memo/effect subscribers while the action is pending and after the overlay reverts.",
+      "platform": "client"
+    },
+    {
+      "id": "05/optimistic-dependency-notify-store",
+      "file": "05-async-data.md",
+      "statement": "Optimistic writes notify memo/effect subscribers while the action is pending and after the overlay reverts.",
+      "platform": "client"
+    },
+    {
+      "id": "05/concurrent-actions-settle-orders",
+      "file": "05-async-data.md",
+      "statement": "Two actions can be in flight over the same optimistic source; either settle order converges after both holds end.",
+      "platform": "client"
+    },
+    {
+      "id": "06/until-arrival-live",
+      "file": "06-actions-optimistic.md",
+      "statement": "until accepts authoritative live landings, other action commits beneath its hold, and the action own staged refetch; its own optimistic row never confirms it.",
+      "platform": "client"
+    },
+    {
+      "id": "06/until-arrival-other-action",
+      "file": "06-actions-optimistic.md",
+      "statement": "until accepts authoritative live landings, other action commits beneath its hold, and the action own staged refetch; its own optimistic row never confirms it.",
+      "platform": "client"
+    },
+    {
+      "id": "06/until-arrival-refetch",
+      "file": "06-actions-optimistic.md",
+      "statement": "until accepts authoritative live landings, other action commits beneath its hold, and the action own staged refetch; its own optimistic row never confirms it.",
+      "platform": "client"
+    },
+    {
+      "id": "05/optimistic-store-granular-refresh-race",
+      "file": "05-async-data.md",
+      "statement": "An optimistic store reconciles refresh data without notifying unchanged fields; superseded refresh arrivals cannot overwrite the final truth after the action overlay ends.",
+      "platform": "client"
+    },
+    {
+      "id": "06/await-fireforget-before-until",
+      "file": "06-actions-optimistic.md",
+      "statement": "The documented async-generator live-send recipe awaits fire-and-forget send and then holds until the authoritative echo, never its own optimistic row.",
+      "platform": "client"
+    }
+  ],
+  "messages": []
+}

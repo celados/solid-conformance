@@ -1,0 +1,33 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"e3716454129f8438b65257c95db5c383622494ba","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"},"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":{"ref":"next","revision":"4a1685ec8f1ab045843b2ae590c7afe821f73d90","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"}}
+
+findings/055-held-navigation-feedback/repro.test.ts:
+ 6 |   await page.waitForTimeout(400)
+ 7 |   const before = {status: await page.getByRole('status').count(), text: await page.locator('p').textContent(), url: await page.evaluate(() => window.navigationURL())}
+ 8 |   await page.evaluate(() => window.releaseNavigation())
+ 9 |   await page.getByText('new', {exact: true}).waitFor()
+10 |   expect(messages).toEqual([])
+11 |   expect(before).toEqual({status: 1, text: 'old', url: '/'})
+     ^
+error: expect(received).toEqual(expected)
+
+@@ -1,3 +1,3 @@
+  {
+-   "status": 1,
++   "status": 0,
+    "text": "old",
+
+- Expected  - 1
++ Received  + 1
+
+      at toEqual (unknown:1:1)
+      at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/findings/055-held-navigation-feedback/repro.test.ts:11:18
+      at withClientPage (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/harness/client-page.ts:22:17)
+      at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-host/findings/055-held-navigation-feedback/repro.test.ts:4:8
+      at processTicksAndRejections (unknown:7:39)
+(fail) a held navigation publishes delayed feedback before its route commits [13502.79ms]
+
+ 0 pass
+ 1 fail
+ 2 expect() calls
+Ran 1 test across 1 file. [13.80s]

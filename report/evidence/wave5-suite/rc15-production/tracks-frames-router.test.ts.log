@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/router.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+ 7 |  const mode=(process.env.BUILD_MODE??'development') as 'development'|'production';const dir=resolve('.build','routerframes-'+process.pid+'-'+mode)
+ 8 |  await buildFrames(dir,mode,{client:'tracks/frames/router-client.tsx',server:'tracks/frames/router-server.tsx'})
+ 9 |  const ssr=await import(dir+'/router-server.js') as typeof import('./router-server')
+10 |  const server=Bun.serve({port:0,hostname:'127.0.0.1',fetch:async request=>{const url=new URL(request.url);if(url.pathname.startsWith('/_server'))return ssr.handle(request);if(url.pathname.endsWith('.js'))return new Response(Bun.file(dir+url.pathname),{headers:{'content-type':'text/javascript'}});if(url.pathname==='/favicon.ico')return new Response(null,{status:204});if(url.searchParams.has('hydrate'))return new Response(ssr.documentStream().readable,{headers:{'content-type':'text/html'}});return new Response('<html><body><div id="root"></div><script type="module" src="/router-client.js"></script></body></html>',{headers:{'content-type':'text/html'}})}})
+11 |  const browser=await chromium.launch({channel:'chrome',headless:true});const receipt:any[]=[]
+12 |  try{for(const surface of ['csr','hydrate']){const page=await browser.newPage();const messages:string[]=[];page.on('pageerror',e=>messages.push(e.message));page.on('console',m=>{if(['warning','error'].includes(m.type()))messages.push(m.text())});await page.goto(server.url+(surface==='hydrate'?'?hydrate':''));await page.waitForFunction(()=>!!(window as any).routerFrames);const pause=()=>page.evaluate(()=>(window as any).routerFrames.pause());await pause();expect(await page.locator('h1').allTextContents()).toEqual(['story-1-v'+(surface==='csr'?0:1),'story-1-v'+(surface==='csr'?0:1)]);if(surface==='hydrate'){expect(await page.locator('[data-frame-link][data-active]').count()).toBe(process.env.EXPECT_FINDINGS==='1'?2:1);await page.locator('[data-counter]').nth(1).click();expect(await page.locator('[data-counter]').allTextContents()).toEqual(process.env.EXPECT_FINDINGS==='1'?['0','1']:['0','0']);receipt.push({surface,finding:'011',requests:await page.evaluate(()=>(window as any).routerFrames.requests),messages});a
+
+error: expect(received).toBe(expected)
+
+Expected: 1
+Received: 2
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/frames/router.test.ts:12:683)
+(fail) 11:L118 router claims/frame query preload, warm navigation, owner cleanup and multi-frame single-flight [19093.50ms]
+
+ 0 pass
+ 1 fail
+ 23 expect() calls
+Ran 1 test across 1 file. [19.64s]

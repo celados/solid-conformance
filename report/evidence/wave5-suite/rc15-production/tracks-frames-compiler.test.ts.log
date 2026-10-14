@@ -1,0 +1,9 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/compiler.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+
+ 3 pass
+ 0 fail
+ 16 expect() calls
+Ran 3 tests across 1 file. [23.00ms]

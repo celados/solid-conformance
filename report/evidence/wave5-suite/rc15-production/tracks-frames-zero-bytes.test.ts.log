@@ -1,0 +1,51 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/zero-bytes.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+ 5 | for(const mode of ["development","observe","production"] as BuildMode[])test("RFC11 opt-in frame bundle machinery "+mode,async()=>{
+ 6 |  const dir=resolve(".build","frames-zero-"+process.pid+"-"+mode);
+ 7 |  try{
+ 8 |   const code:Record<string,string>={};
+ 9 |   for(const variant of ["plain","bare","enabled"]){await build(dir+"/"+variant,mode,{server:[],client:["tracks/frames/zero-bytes/"+variant+".ts"]});code[variant]=(await Promise.all((await readdir(dir+"/"+variant)).filter(p=>p.endsWith(".js")).map(p=>Bun.file(dir+"/"+variant+"/"+p).text()))).join("\n")}
+10 |   for(const marker of ["frame:applied","installServerComponents"]){expect(code.plain!.includes(marker)).toBe(false);expect(code.bare!.includes(marker)).toBe(false);expect(code.enabled!.includes(marker)).toBe(true)}
+                                                                                                                                                             ^
+error: expect(received).toBe(expected)
+
+Expected: false
+Received: true
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/frames/zero-bytes.test.ts:10:153)
+(fail) RFC11 opt-in frame bundle machinery development [49.49ms]
+ 5 | for(const mode of ["development","observe","production"] as BuildMode[])test("RFC11 opt-in frame bundle machinery "+mode,async()=>{
+ 6 |  const dir=resolve(".build","frames-zero-"+process.pid+"-"+mode);
+ 7 |  try{
+ 8 |   const code:Record<string,string>={};
+ 9 |   for(const variant of ["plain","bare","enabled"]){await build(dir+"/"+variant,mode,{server:[],client:["tracks/frames/zero-bytes/"+variant+".ts"]});code[variant]=(await Promise.all((await readdir(dir+"/"+variant)).filter(p=>p.endsWith(".js")).map(p=>Bun.file(dir+"/"+variant+"/"+p).text()))).join("\n")}
+10 |   for(const marker of ["frame:applied","installServerComponents"]){expect(code.plain!.includes(marker)).toBe(false);expect(code.bare!.includes(marker)).toBe(false);expect(code.enabled!.includes(marker)).toBe(true)}
+                                                                                                                                                             ^
+error: expect(received).toBe(expected)
+
+Expected: false
+Received: true
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/frames/zero-bytes.test.ts:10:153)
+(fail) RFC11 opt-in frame bundle machinery observe [37.87ms]
+ 5 | for(const mode of ["development","observe","production"] as BuildMode[])test("RFC11 opt-in frame bundle machinery "+mode,async()=>{
+ 6 |  const dir=resolve(".build","frames-zero-"+process.pid+"-"+mode);
+ 7 |  try{
+ 8 |   const code:Record<string,string>={};
+ 9 |   for(const variant of ["plain","bare","enabled"]){await build(dir+"/"+variant,mode,{server:[],client:["tracks/frames/zero-bytes/"+variant+".ts"]});code[variant]=(await Promise.all((await readdir(dir+"/"+variant)).filter(p=>p.endsWith(".js")).map(p=>Bun.file(dir+"/"+variant+"/"+p).text()))).join("\n")}
+10 |   for(const marker of ["frame:applied","installServerComponents"]){expect(code.plain!.includes(marker)).toBe(false);expect(code.bare!.includes(marker)).toBe(false);expect(code.enabled!.includes(marker)).toBe(true)}
+                                                                                                                                                             ^
+error: expect(received).toBe(expected)
+
+Expected: false
+Received: true
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/frames/zero-bytes.test.ts:10:153)
+(fail) RFC11 opt-in frame bundle machinery production [74.97ms]
+
+ 0 pass
+ 3 fail
+ 6 expect() calls
+Ran 3 tests across 1 file. [176.00ms]

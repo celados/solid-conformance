@@ -1,0 +1,69 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/death-boundary.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"next","revision":"e3716454129f8438b65257c95db5c383622494ba","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"},"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":{"ref":"next","revision":"4a1685ec8f1ab045843b2ae590c7afe821f73d90","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"}}
+11721 |     start(c) {
+11722 |       if (buffering)
+11723 |         c.enqueue(new TextEncoder().encode(`:
+11724 | 
+11725 | `));
+11726 |         c.error(new Error("test-owned proxy death"));
+                        ^
+error: test-owned proxy death
+      at cut (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/.build/body-death-82891-development-false/server.js:11726:17)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/frames/death-boundary.test.ts:55:13)
+11721 |     start(c) {
+11722 |       if (buffering)
+11723 |         c.enqueue(new TextEncoder().encode(`:
+11724 | 
+11725 | `));
+11726 |         c.error(new Error("test-owned proxy death"));
+                        ^
+error: test-owned proxy death
+      at cut (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/.build/body-death-82891-development-true/server.js:11726:17)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/frames/death-boundary.test.ts:55:13)
+8120 |     start(c) {
+8121 |       if (buffering)
+8122 |         c.enqueue(new TextEncoder().encode(`:
+8123 | 
+8124 | `));
+8125 |         c.error(new Error("test-owned proxy death"));
+                       ^
+error: test-owned proxy death
+      at cut (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/.build/body-death-82891-observe-false/server.js:8125:17)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/frames/death-boundary.test.ts:55:13)
+8120 |     start(c) {
+8121 |       if (buffering)
+8122 |         c.enqueue(new TextEncoder().encode(`:
+8123 | 
+8124 | `));
+8125 |         c.error(new Error("test-owned proxy death"));
+                       ^
+error: test-owned proxy death
+      at cut (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/.build/body-death-82891-observe-true/server.js:8125:17)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/frames/death-boundary.test.ts:55:13)
+6139 |     start(c) {
+6140 |       if (buffering)
+6141 |         c.enqueue(new TextEncoder().encode(`:
+6142 | 
+6143 | `));
+6144 |         c.error(new Error("test-owned proxy death"));
+                       ^
+error: test-owned proxy death
+      at cut (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/.build/body-death-82891-production-false/server.js:6144:17)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/frames/death-boundary.test.ts:55:13)
+6139 |     start(c) {
+6140 |       if (buffering)
+6141 |         c.enqueue(new TextEncoder().encode(`:
+6142 | 
+6143 | `));
+6144 |         c.error(new Error("test-owned proxy death"));
+                       ^
+error: test-owned proxy death
+      at cut (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/.build/body-death-82891-production-true/server.js:6144:17)
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/head-production/tracks/frames/death-boundary.test.ts:55:13)
+
+ 3 pass
+ 0 fail
+ 33 expect() calls
+Ran 3 tests across 1 file. [75.96s]

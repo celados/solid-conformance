@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+
+tracks/frames/undeclared-source.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+13 | import { renderServerComponent, frameTransformDirectResult, frameTransformResult, ServerC
+              ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.dev.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/frames/undeclared-source.tsx:13:10
+(fail) RFC08 undeclared document source five-second check and live/frame exemptions development [48.87ms]
+13 | import { renderServerComponent, frameTransformDirectResult, frameTransformResult, ServerC
+              ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.observe.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/frames/undeclared-source.tsx:13:10
+(fail) RFC08 undeclared document source five-second check and live/frame exemptions observe [27.34ms]
+13 | import { renderServerComponent, frameTransformDirectResult, frameTransformResult, ServerC
+              ^
+error: No matching export in "node_modules/@solidjs/web/frames/dist/server.js" for import "renderServerComponent"
+    at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/rc15-production/tracks/frames/undeclared-source.tsx:13:10
+(fail) RFC08 undeclared document source five-second check and live/frame exemptions production [23.52ms]
+
+ 0 pass
+ 3 fail
+Ran 3 tests across 1 file. [137.00ms]

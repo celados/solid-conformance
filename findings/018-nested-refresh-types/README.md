@@ -21,3 +21,11 @@ bun test ./findings/018-nested-refresh-types/repro.test.ts
 缩减：只保留 import、一个带 nested record 的 function-form createStore，以及 refresh(store.row) 三行。类型 fixture 不执行任何程序，不加载 DOM，不需要 DOM library；不修改依赖声明、不使用 any。runtime 正控只用 @ts-expect-error 注明已知声明缺陷，独立复现依然要求合法 usage 编译成功，保持红。
 
 去重：在三个仓库的 open 与 closed issues 搜索 refresh nested types、Refreshable nested、refresh TypeScript，无结果。没有上游写入。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**fileable**: Documented nested store refresh fails public TypeScript.

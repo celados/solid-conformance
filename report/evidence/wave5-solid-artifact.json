@@ -1,0 +1,798 @@
+{
+  "core": {
+    "ref": "next",
+    "revision": "e3716454129f8438b65257c95db5c383622494ba",
+    "directory": "/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.upstream/e3716454129f8438b65257c95db5c383622494ba"
+  },
+  "head": {
+    "ref": "next",
+    "revision": "4a1685ec8f1ab045843b2ae590c7afe821f73d90",
+    "directory": "/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/.scratch/router/4a1685ec8f1ab045843b2ae590c7afe821f73d90"
+  },
+  "results": [
+    {
+      "version": "rc13",
+      "router": "next.30",
+      "mode": "development",
+      "artifact": "solid",
+      "pid": 68458,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc13-next.30-development-solid.log"
+    },
+    {
+      "version": "rc13",
+      "router": "next.30",
+      "mode": "production",
+      "artifact": "solid",
+      "pid": 68746,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc13-next.30-production-solid.log"
+    },
+    {
+      "version": "rc14",
+      "router": "next.30",
+      "mode": "development",
+      "artifact": "solid",
+      "pid": 69041,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc14-next.30-development-solid.log"
+    },
+    {
+      "version": "rc14",
+      "router": "next.30",
+      "mode": "production",
+      "artifact": "solid",
+      "pid": 69196,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc14-next.30-production-solid.log"
+    },
+    {
+      "version": "rc15",
+      "router": "next.30",
+      "mode": "development",
+      "artifact": "solid",
+      "pid": 69333,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc15-next.30-development-solid.log"
+    },
+    {
+      "version": "rc15",
+      "router": "next.30",
+      "mode": "production",
+      "artifact": "solid",
+      "pid": 69482,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc15-next.30-production-solid.log"
+    },
+    {
+      "version": "rc15",
+      "router": "next.39",
+      "mode": "development",
+      "artifact": "solid",
+      "pid": 69992,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc15-next.39-development-solid.log"
+    },
+    {
+      "version": "rc15",
+      "router": "next.39",
+      "mode": "production",
+      "artifact": "solid",
+      "pid": 70083,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc15-next.39-production-solid.log"
+    },
+    {
+      "version": "rc15",
+      "router": "head",
+      "mode": "development",
+      "artifact": "solid",
+      "pid": 70278,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc15-head-development-solid.log"
+    },
+    {
+      "version": "rc15",
+      "router": "head",
+      "mode": "production",
+      "artifact": "solid",
+      "pid": 70393,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/rc15-head-production-solid.log"
+    },
+    {
+      "version": "head",
+      "router": "next.30",
+      "mode": "development",
+      "artifact": "solid",
+      "pid": 70718,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/head-next.30-development-solid.log"
+    },
+    {
+      "version": "head",
+      "router": "next.30",
+      "mode": "production",
+      "artifact": "solid",
+      "pid": 70909,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/head-next.30-production-solid.log"
+    },
+    {
+      "version": "head",
+      "router": "next.39",
+      "mode": "development",
+      "artifact": "solid",
+      "pid": 70985,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/head-next.39-development-solid.log"
+    },
+    {
+      "version": "head",
+      "router": "next.39",
+      "mode": "production",
+      "artifact": "solid",
+      "pid": 71109,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/head-next.39-production-solid.log"
+    },
+    {
+      "version": "head",
+      "router": "head",
+      "mode": "development",
+      "artifact": "solid",
+      "pid": 71274,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/head-head-development-solid.log"
+    },
+    {
+      "version": "head",
+      "router": "head",
+      "mode": "production",
+      "artifact": "solid",
+      "pid": 71466,
+      "exitCode": 0,
+      "probe": {
+        "router": {
+          "before": "old",
+          "after": "new",
+          "pending": true,
+          "fired": true,
+          "url": "/"
+        },
+        "core": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreMemo": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreFn": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "coreRouterShape": {
+          "before": "waitingold",
+          "after": "new",
+          "pending": true,
+          "fired": true
+        },
+        "mount": {
+          "before": "01",
+          "after": "11",
+          "pending": true,
+          "fired": true
+        },
+        "messages": []
+      },
+      "log": "report/evidence/wave5-bisect/head-head-production-solid.log"
+    }
+  ]
+}

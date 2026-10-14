@@ -1,0 +1,23 @@
+bun test v1.4.2 (744846f84)
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"observe","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+
+findings/054-prearrived-recovery-wait/repro.test.ts:
+43 |       ).toHaveLength(1);
+44 |       expect(
+45 |         await page.evaluate(
+46 |           () => (window as any).recoveryRepro.records[0].waitedMs,
+47 |         ),
+48 |       ).toBe(0);
+             ^
+error: expect(received).toBe(expected)
+
+Expected: 0
+Received: 100
+
+      at <anonymous> (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/wave5/findings/054-prearrived-recovery-wait/repro.test.ts:48:9)
+(fail) RFC08 L896: a rejection received before hydration has zero waitedMs [14800.72ms]
+
+ 0 pass
+ 1 fail
+ 4 expect() calls
+Ran 1 test across 1 file. [15.11s]

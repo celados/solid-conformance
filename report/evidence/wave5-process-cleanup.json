@@ -1,0 +1,61 @@
+{
+  "method": "Explicit Chrome PIDs inspected with ps and lsof; ownership established by isolated wave5 cwd and matching test execution period. Recorded before individual SIGTERM calls. No name-based kill or computed kill list.",
+  "processes": [
+    {
+      "pid": 2592,
+      "started": "2026-10-14 15:35:26 JST",
+      "cwd": "wave5",
+      "profile": "playwright_chromiumdev_profile-1x5QZd"
+    },
+    {
+      "pid": 33345,
+      "started": "2026-10-14 16:03:16 JST",
+      "cwd": "wave5/.scratch/head-host",
+      "profile": "playwright_chromiumdev_profile-q7lGai"
+    },
+    {
+      "pid": 33376,
+      "started": "2026-10-14 16:03:19 JST",
+      "cwd": "wave5/.scratch/rc15-production",
+      "profile": "playwright_chromiumdev_profile-4tiR8C"
+    },
+    {
+      "pid": 33390,
+      "started": "2026-10-14 16:03:19 JST",
+      "cwd": "wave5/.scratch/head-production",
+      "profile": "playwright_chromiumdev_profile-3L0AzC"
+    },
+    {
+      "pid": 58446,
+      "started": "2026-10-14 14:55:41 JST",
+      "cwd": "wave5",
+      "profile": "playwright_chromiumdev_profile-eQkAHP"
+    },
+    {
+      "pid": 97458,
+      "started": "2026-10-14 15:30:44 JST",
+      "cwd": "wave5",
+      "profile": "playwright_chromiumdev_profile-GgtrUc"
+    },
+    {
+      "pid": 97590,
+      "started": "2026-10-14 15:30:56 JST",
+      "cwd": "wave5/.scratch/head-host",
+      "profile": "playwright_chromiumdev_profile-dCpA7C"
+    },
+    {
+      "pid": 98607,
+      "started": "2026-10-14 15:31:44 JST",
+      "cwd": "wave5/.scratch/rc15-production",
+      "profile": "playwright_chromiumdev_profile-He3Wnk"
+    },
+    {
+      "pid": 98798,
+      "started": "2026-10-14 15:31:55 JST",
+      "cwd": "wave5/.scratch/head-production",
+      "profile": "playwright_chromiumdev_profile-xsC7qk"
+    }
+  ],
+  "verifiedExited": true,
+  "verifiedAt": "2026-10-14T07:31:04.460Z"
+}

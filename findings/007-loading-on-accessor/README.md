@@ -32,3 +32,11 @@ TSX, so that fix does not apply. #3524 discusses the outside-hold restriction;
 this repro has one boundary and one consumer. Open/closed Loading on/accessor
 searches covered all three repositories. Reduced to one id, one memo, two requests
 and one Loading; the second request remains pending intentionally.
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: still fails; inspect retained assertion and controls; production: still fails; inspect retained assertion and controls. Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+## Wave 5 filing bar
+
+**fileable**: Documented Loading prop prevents app fallback rearming.

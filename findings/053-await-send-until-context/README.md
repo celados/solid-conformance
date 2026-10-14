@@ -1,7 +1,7 @@
 ---
 type: Issue
 id: '053'
-status: confirmed
+status: fixed-upstream
 versions: [HEAD-53ef0e69-development, HEAD-53ef0e69-production]
 area: documentation/action/optimistic/store
 upstream: []
@@ -27,3 +27,13 @@ BUILD_MODE=production bun test ./findings/053-await-send-until-context/repro.tes
 缩减：将 socket.send 的 fire-and-forget 返回值缩为 await 0，将 transport 缩为一个权威 signal 数组。保留 optimistic store、单个 clientId 属性、some 属性读取、async generator 和 until；去掉 DOM、Loading、router、UUID、text、server function、网络及 async iterable。去掉对象属性读取改为 number[] includes 或改为 optimistic boolean signal 后失败消失，因此它们不能替代必要的 store row 读取。
 
 去重：三仓 open/closed 搜索 async generator until after await、until optimistic array await、action await send until 与更宽的 until async。#3687 是 attribution 开启时 overlay 不回滚，本例没有 attribution、没有失败的服务调用；023 是 after-await diagnostic 排除列表，本例不依赖任何诊断。没有上游写入。
+
+## Wave 5 re-baseline
+
+Published comparator: Solid `2.0.0-rc.15`, Router `2.0.0-next.39`. Development: passes (a zero-test tier is not applicable); production: passes (a zero-test tier is not applicable). Raw results: [rc.15 matrix](../../report/evidence/wave5-rc15-matrix.json). HEAD at `e3716454129f8438b65257c95db5c383622494ba` is independently re-run in the [HEAD matrix](../../report/evidence/wave5-head-matrix.json); use its individual rows rather than assuming every red assertion is a runtime defect.
+
+The original desired-behavior test passes in rc.15. Fix: [1c14992](https://github.com/solidjs/solid/commit/1c14992f3c763606302d098168fb5663045393e6), included in the rc.15 release. Original failing versions remain above as historical provenance.
+
+## Wave 5 filing bar
+
+**excluded-fixed**: Desired-behavior repro passes in the latest tested runtime; historical failing versions retained.

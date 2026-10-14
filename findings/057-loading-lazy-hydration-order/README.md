@@ -33,4 +33,4 @@ Read-only searches for `lazy hydration order`, `Show hydration siblings`, `hydra
 
 ## Wave 5 filing bar
 
-**fileable**: ordinary typed SSR layout changes visible child order during hydration, in dev and production. Report to `solidjs/solid`; exact runtime site is not claimed.
+**fileable**: An ordinary typed SSR layout changes visible static/lazy child order during hydration.
