@@ -56,6 +56,6 @@ shrinking notes.
 - Solid 2 docs: `documentation/solid-2.0/` in solidjs/solid (branch `next`).
 - Known bug classes we already hit in production, all now fixed upstream:
   solidjs/solid#3764, #3734, #3687, #3338, #3762. Their siblings are likely.
-- Our field notes on Solid 2 behavior: `~/.claude/skills/solid2-celados/`
+- Our field notes on Solid 2 behavior: [Delta's Solid 2 guide](https://github.com/celados/delta/tree/main/docs/agents/solid2) (local: `projects/delta/docs/agents/solid2/`; start at its README)
   (`SKILL.md`, `references/*.md`) and Delta's `lib/solid/README.md`
   ("Known limitations") at `~/workspace/projects/delta/lib/solid/`.
