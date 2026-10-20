@@ -70,6 +70,9 @@ Conformance 变更为 [PR #1](https://github.com/celados/solid-conformance/pull/
 
 # 本地 patch 的交付边界
 
+候选产品变更：[Glaze PR #273](https://github.com/celados/glaze/pull/273)、
+[Delta PR #945](https://github.com/celados/delta/pull/945)，均为 draft。
+
 Glaze 与 Delta 都锁在 RC10，本轮不顺带升级 RC15。RC10 cleanup patch 由 Glaze 持有源差异和包管理器
 patch；Delta 在安装前需要同一补丁字节，不能依赖 Glaze 的 patchedDependencies 传递。
 两仓补丁 SHA256 均为 `169a9617d0c7b51f494e7a07e993907018a1de6a506f48ce15d9c5c8632fb693`。
@@ -80,6 +83,36 @@ Delta 的 package qualification test 在真实消费图中先红后绿，防止�
 
 移除条件是：选择新的精确上游版本后，不带本地 patch 的 058 及实际消费图均转绿，
 再删除包管理器 patch、消费方安装声明和对应临时说明。059/060 同理，不按 issue closed 单独判断。
+
+# 升级结论
+
+建议继续固定 RC15 的协调升级资格验证，收益主要来自已修复的 held Show、live source SSR 接管、
+rootHoles 以及新 plugin 的原生请求 nonce；这些收益不意味着可以删除全部适配。历史追溯新增了两个
+必须纳入门禁的风险：055 的修复未进入 RC15，056 在当前 HEAD 也未修。RC15 方案应明确是否回移植
+055 的上游修复，并保留 CSS/prebundle/cleanup 等未修问题的依赖 patch 与原始红例。
+
+本轮只把一个已验证的隐藏绕行移到依赖边界。注册期 ownedWrite、同步 written mirror、Slot/refs
+所有权和请求隔离仍有独立职责；不能把“恢复正规写法”理解为移除这些结构。
+
+# 产品侧验证
+
+- Glaze RC10 patch + 删除微任务绕行：headless 57 tests、Chrome 菜单删行 4 tests、生产 headless
+  13 tests、生产 SSR hydration 3 tests、Solid typecheck 与 root lint 通过。
+- 独立 packed Solid/vanilla 与 headless consumers 通过；Start consumer 的 prerender、streaming、
+  hydration 通过。完整 packed React consumer 为 157 pass / 2 fail；定向复跑 sidebar 通过，
+  TooltipRootProvider 仍为 closed 而预期 open。React 图中无 Solid 模块，但未跑原始 baseline，
+  不归因为既有故障，也不声称完整 consumer gate 绿色。
+- Delta installed graph 058 派生测试先红后绿。补齐本地 codegen 后，`check:changed` 全部通过，
+  包含 31/31 TypeScript 工程与受影响测试；Solid 为 19 files / 124 tests。dead-code 检查的六项
+  devDependency finding 均已被原配置抑制。首次 pre-codegen 检查另有一次 Engage timer 断言失败，
+  其单独重跑与最终完整 Solid tests 均通过，未作 baseline 归因。
+- Delta 当前仍消费 Glaze 0.24.2；这不是候选 Glaze 包与 Delta 的完整组合验收。产品 PR 保持 draft，
+  后续仍需协调包版本及消费端 gate。
+- Delta bindings 的真实生产浏览器 hydration 通过，包括现有 RC10 的负控。Whiteboard 本地生产
+  smoke 构建与水合成功，但 6 项登录态路由中 5 项失败：4 项缺少 aside/workspace，editor 的
+  本地素材请求被 CSP connect-src 阻止；仅 studio/new 通过。Glaze 0.24.2 的 sidebar 源码使用 div，
+  和 smoke 的 aside 合同不符；未跑无 patch 基线，
+  因此记录为未通过的产品门禁，不将其直接归因于 patch，也不修改 smoke 以消除失败。
 
 # 验证限制
 
