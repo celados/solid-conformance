@@ -10,6 +10,16 @@ found_by: Delta rc.15 evaluation / held-mount properties
 
 # Latest-mounted Loading tears beside committed state
 
+## Local source repair qualification
+
+An additional signals-only pin reproduces the exact tear with a child DOM render
+effect, instead of reading the value directly in the boundary's return expression.
+A small core-only candidate carries verdict-mount provenance through intermediate
+content computations. It passes this original compiled case in dev/production on
+RC15 and current HEAD, strict 80-case development property runs on both, and both
+signals suites. See [version-specific source patches and boundaries](../../report/patches/README.md).
+This is a local proposal, not an upstream-accepted repair. The default case stays red.
+
 ## 2026-10-20 current-HEAD recheck
 
 The original compiled test remains red on RC15 and current source-built Solid

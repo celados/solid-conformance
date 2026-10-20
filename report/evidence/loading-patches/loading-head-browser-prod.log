@@ -1,0 +1,10 @@
+bun test v1.4.2 (744846f84)
+
+findings/056-latest-mounted-boundary/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"2172a37687e92dd91758476423f08cb4a12bcb0c","revision":"2172a37687e92dd91758476423f08cb4a12bcb0c","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/.upstream/2172a37687e92dd91758476423f08cb4a12bcb0c"},"buildMode":"production","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+(pass) a latest-mounted Loading shows fallback beside the committed value during an action hold [10290.42ms]
+
+ 1 pass
+ 0 fail
+ 3 expect() calls
+Ran 1 test across 1 file. [10.44s]

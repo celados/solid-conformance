@@ -10,6 +10,14 @@ found_by: Delta rc.15 evaluation / held-UI properties
 
 # Held navigation loses delayed feedback
 
+## Local RC15 backport qualification
+
+The upstream fix is [#4065](https://github.com/solidjs/solid/pull/4065), merged as
+`0109a56991976d2d44696a415e2c58cbefe898ca`. Its three signals source changes apply
+unchanged to RC15 and turn this original test green in development and production.
+See the [source patch, suites and removal gate](../../report/patches/README.md).
+The default case remains unpatched; this is not a product dependency upgrade.
+
 ## 2026-10-20 current-HEAD recheck
 
 The original desired-behavior test now passes on source-built Solid

@@ -1,0 +1,208 @@
+diff --git a/packages/signals/src/boundaries.ts b/packages/signals/src/boundaries.ts
+index 5c6dcf612b..4ad0315079 100644
+--- a/packages/signals/src/boundaries.ts
++++ b/packages/signals/src/boundaries.ts
+@@ -443,16 +443,6 @@ function reportOutsideHold(b: Boundary): void {
+   }
+ }
+ 
+-/** The `on` pass is a verdict's: it probed itself (CONFIG_VERDICT), or it
+- * read a memo that did (#3528's `createMemo(() => isPending(m2))`) — its
+- * swap is display-ahead either way. */
+-function verdictDerived(c: Computed<any>): boolean {
+-  if (c._config & CONFIG_VERDICT) return true;
+-  for (let d = c._deps; d !== null; d = d._nextDep)
+-    if (d._dep._config & CONFIG_VERDICT) return true;
+-  return false;
+-}
+-
+ /** `on` changed after the mount: fresh again if anything under it is
+  * pending now; collecting for the rest of the flush either way. */
+ function arm(b: Boundary): void {
+@@ -476,12 +466,17 @@ function arm(b: Boundary): void {
+     return;
+   }
+   b._armed = true;
+-  // A verdict read in `on` (`isPending`) whose frame has no transaction
+-  // yet: the swap is still display-ahead — the frame gets one now (it lands
++  // A verdict read in `on` (`isPending`, or a memo of one — #3528's
++  // `createMemo(() => isPending(m2))`: the mark carries, core.ts `read`)
++  // whose frame has no transaction yet: the swap is still display-ahead — the frame gets one now (it lands
+   // at this very seam if nothing holds it), and the swap is its verdict
+   // lane's work, shown ahead of the frame's own runs (#3528).
+   let lane = passLane;
+-  if (lane === null && globalQueue._running && verdictDerived(getOwner() as Computed<any>)) {
++  if (
++    lane === null &&
++    globalQueue._running &&
++    (getOwner() as Computed<any>)._config & CONFIG_VERDICT
++  ) {
+     joinFuture(null);
+     lane = GlobalQueue._verdictLane!(flushTransaction!);
+   }
+diff --git a/packages/signals/src/core/constants.ts b/packages/signals/src/core/constants.ts
+index 18cac42f1c..8605118995 100644
+--- a/packages/signals/src/core/constants.ts
++++ b/packages/signals/src/core/constants.ts
+@@ -131,15 +131,17 @@ export const CONFIG_GUESS = 1 << 13;
+  * pending is a question for its next pass — the verdict changed — so the
+  * propagation re-derives it instead of marking it pending (as a kept-tail
+  * link does, A30). Set at the window, never cleared: a reader that stopped
+- * asking re-derives once and goes pending through its own read. */
+-export const CONFIG_VERDICT = 1 << 14;
++ * asking re-derives once and goes pending through its own read. The same
++ * bit as REACTIVE_PROBED: a pass's probe (or a read of a verdict memo,
++ * core.ts `read`) carries into the config at its end without a shift. */
++export const CONFIG_VERDICT = 1 << 15;
+ /** A dependency's status is a question for this node's pass, not a fact
+  * about its current one: the propagation re-derives it instead of marking
+  * it, for errors as for pending (as CONFIG_VERDICT). A boundary's output
+  * (show the content, or the fallback) and its `on` node (boundaries.ts); a
+  * promise over an expression (`resolve`/`until`, signals.ts: the pass reads
+  * the error and rejects, or re-asks a pending source). */
+-export const CONFIG_REDERIVE = 1 << 15;
++export const CONFIG_REDERIVE = 1 << 14;
+ /** The reader wants the truth, not the lane's guess (`until`, signals.ts):
+  * a read of displayed optimism serves the base the guess covers, makes the
+  * pass no lane's, and the truth landing wakes it even when it confirms the
+diff --git a/packages/signals/src/core/core.ts b/packages/signals/src/core/core.ts
+index 8bc1ccb82e..bbb0b1e728 100644
+--- a/packages/signals/src/core/core.ts
++++ b/packages/signals/src/core/core.ts
+@@ -472,9 +472,10 @@ export function recompute(el: Computed<any>, create: boolean = false): void {
+     // bookkeeping, and those marks are correctly discarded here.
+     missedWake = (el._flags & REACTIVE_MISSED_WAKE) !== 0;
+     joined = (el._flags & REACTIVE_JOINED) !== 0;
+-    // A verdict reader is one for as long as it probes: a pass that entered
+-    // no window (REACTIVE_PROBED) is an ordinary derivation again.
+-    if (!(el._flags & REACTIVE_PROBED)) el._config &= ~CONFIG_VERDICT;
++    // A verdict reader is one for as long as it probes, or reads a memo
++    // that does (`read`): a pass that did neither (REACTIVE_PROBED, the same
++    // bit) is an ordinary derivation again.
++    el._config = (el._config & ~CONFIG_VERDICT) | (el._flags & REACTIVE_PROBED);
+     // REACTIVE_DISPOSED survives too (#3621): the pass may have disposed its
+     // own owner (a memo calling its root's `dispose()`, a cleanup doing so
+     // #3601/#3606), and `disposeChildren` set the flag on this node
+@@ -1729,7 +1730,15 @@ export function read<T>(el: Signal<T> | Computed<T>): T {
+   if (c) {
+     if (tracking) {
+       link(el, c as Computed<any>);
+-      if ((owner as Computed<unknown>)._fn) pullComputed(owner, c as Computed<any>);
++      if ((owner as Computed<unknown>)._fn) {
++        pullComputed(owner, c as Computed<any>);
++        // F-6 (#4050): a memo over a verdict reader's value derives from a
++        // display-ahead read — a verdict reader from this pass's end, as if
++        // it probed inline: it reads held values as the screen and shows the
++        // verdict now. Not an effect: a render effect is a frame reader
++        // already, and a user effect's posture is its own reads'.
++        if (!(c as any)._type) (c as Computed<any>)._flags |= owner._config & CONFIG_VERDICT;
++      }
+     }
+     // L2, as in the fast block above (tracked or not). A node born into the
+     // future (uninitialized) has no committed value: every reader derives
+diff --git a/packages/signals/tests/verdict-memo-under-held-memo-4050.test.ts b/packages/signals/tests/verdict-memo-under-held-memo-4050.test.ts
+new file mode 100644
+index 0000000000..69425661c8
+--- /dev/null
++++ b/packages/signals/tests/verdict-memo-under-held-memo-4050.test.ts
+@@ -0,0 +1,100 @@
++// #4050 (U-10): a memo that reads a verdict memo (`isPending`/`latest`) is
++// itself a derivation of a display-ahead read (F-6): it shows the verdict now,
++// beside the held value it also reads (the screen's), exactly as it would with
++// the probe inline — and as a render effect reading the same two does (F-1: a
++// memo between is not a reason to wait). Before, it re-entered the hold with
++// its held source and the verdict waited for the landing: a Provider's
++// children memo over a router shell `[<Feedback/>, outlet]` never showed the
++// feedback.
++import { expect, it } from "vitest";
++import {
++  createMemo,
++  createRenderEffect,
++  createRoot,
++  createSignal,
++  flush,
++  isPending,
++  latest
++} from "../src/index.js";
++
++const tick = async () => {
++  for (let i = 0; i < 8; i++) await Promise.resolve();
++  flush();
++};
++
++const shapes: Record<
++  string,
++  (h: () => number, verdict: () => boolean, e: () => boolean) => () => [number, boolean]
++> = {
++  "render effect [h, V]": (h, verdict) => () => [h(), verdict()],
++  "memo [h, inline probe]": (h, _v, e) => createMemo(() => [h(), isPending(h) && latest(e)]),
++  "memo [h, V]": (h, verdict) => createMemo(() => [h(), verdict()]),
++  "memo over a memo [h, V]": (h, verdict) => {
++    const m = createMemo(() => [h(), verdict()] as [number, boolean]);
++    return createMemo(() => m());
++  }
++};
++
++for (const [name, shape] of Object.entries(shapes))
++  it(`${name}: the verdict shows beside the held value, then lands with it`, async () => {
++    const log: string[] = [];
++    const [route, setRoute] = createSignal(0);
++    let release!: () => void;
++    const h = createMemo(async () => {
++      const r = route();
++      if (r) await new Promise<void>(res => (release = res));
++      return r;
++    }) as () => number;
++    const [e, setE] = createSignal(false);
++    createRoot(() => {
++      const verdict = createMemo(() => isPending(h) && latest(e));
++      createRenderEffect(shape(h, verdict, e), v => void log.push(v.join(",")));
++    });
++    await tick();
++    setRoute(1);
++    flush();
++    await tick();
++    log.push("|");
++    setE(true);
++    flush();
++    await tick();
++    expect(log[log.length - 1]).toBe("0,true");
++    log.push("|");
++    setE(false);
++    release();
++    await tick();
++    expect(log[log.length - 1]).toBe("1,false");
++    expect(log).not.toContain("1,true");
++  });
++
++it("memo [V, h] reads the verdict first: shows it now too", async () => {
++  const log: string[] = [];
++  const [route, setRoute] = createSignal(0);
++  let release!: () => void;
++  const h = createMemo(async () => {
++    const r = route();
++    if (r) await new Promise<void>(res => (release = res));
++    return r;
++  }) as () => number;
++  const [e, setE] = createSignal(false);
++  createRoot(() => {
++    const verdict = createMemo(() => isPending(h) && latest(e));
++    const m = createMemo(() => {
++      const v = verdict();
++      return `${h()},${v}`;
++    });
++    createRenderEffect(m, v => void log.push(v));
++  });
++  await tick();
++  setRoute(1);
++  flush();
++  await tick();
++  setE(true);
++  flush();
++  await tick();
++  expect(log[log.length - 1]).toBe("0,true");
++  setE(false);
++  release();
++  await tick();
++  expect(log[log.length - 1]).toBe("1,false");
++});

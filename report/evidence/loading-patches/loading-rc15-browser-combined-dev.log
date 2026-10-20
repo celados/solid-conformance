@@ -1,0 +1,13 @@
+bun test v1.4.2 (744846f84)
+
+findings/055-held-navigation-feedback/repro.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+(pass) a held navigation publishes delayed feedback before its route commits [11349.29ms]
+
+findings/056-latest-mounted-boundary/repro.test.ts:
+(pass) a latest-mounted Loading shows fallback beside the committed value during an action hold [10952.52ms]
+
+ 2 pass
+ 0 fail
+ 6 expect() calls
+Ran 2 tests across 2 files. [22.46s]

@@ -86,6 +86,11 @@ Delta 的 package qualification test 在真实消费图中先红后绿，防止�
 
 # 升级结论
 
+后续用户问能否用小 patch 跨过两个 held-UI 风险：已完成 [055 上游回移植与 056 本地源码候选的验证](patches/README.md)。
+RC15 combined 在 dev/production 通过原始 055/056，signals 为 5215 passed；HEAD local 056 为
+5388 passed；两图各通过 80 组严格 development 属性场景。尚未生成发布包安装期 patch 或升级产品。
+这将两项风险变为可测试的本地 backport 方案；056 的上游确认与产品资格验收仍未完成。
+
 建议继续固定 RC15 的协调升级资格验证，收益主要来自已修复的 held Show、live source SSR 接管、
 rootHoles 以及新 plugin 的原生请求 nonce；这些收益不意味着可以删除全部适配。历史追溯新增了两个
 必须纳入门禁的风险：055 的修复未进入 RC15，056 在当前 HEAD 也未修。RC15 方案应明确是否回移植

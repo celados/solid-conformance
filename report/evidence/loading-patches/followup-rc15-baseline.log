@@ -1,0 +1,54 @@
+bun test v1.4.2 (744846f84)
+
+findings/055-held-navigation-feedback/repro.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+ 6 |   await page.waitForTimeout(400)
+ 7 |   const before = {status: await page.getByRole('status').count(), text: await page.locator('p').textContent(), url: await page.evaluate(() => window.navigationURL())}
+ 8 |   await page.evaluate(() => window.releaseNavigation())
+ 9 |   await page.getByText('new', {exact: true}).waitFor()
+10 |   expect(messages).toEqual([])
+11 |   expect(before).toEqual({status: 1, text: 'old', url: '/'})
+     ^
+error: expect(received).toEqual(expected)
+
+  {
+-   "status": 1,
++   "status": 0,
+    "text": "old",
+    "url": "/",
+  }
+
+- Expected  - 1
++ Received  + 1
+
+      at toEqual (unknown:1:1)
+      at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/findings/055-held-navigation-feedback/repro.test.ts:11:18
+      at withClientPage (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/harness/client-page.ts:23:30)
+      at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/findings/055-held-navigation-feedback/repro.test.ts:4:8
+      at processTicksAndRejections (unknown:7:39)
+(fail) a held navigation publishes delayed feedback before its route commits [10470.94ms]
+
+findings/056-latest-mounted-boundary/repro.test.ts:
+ 6 |   await page.waitForTimeout(50)
+ 7 |   const before = await page.locator('#app').textContent()
+ 8 |   await page.evaluate(() => window.releaseMount())
+ 9 |   await page.waitForFunction(() => document.querySelector('i')?.textContent === '1')
+10 |   expect(messages).toEqual([])
+11 |   expect(before).toBe('save0pending')
+     ^
+error: expect(received).toBe(expected)
+
+Expected: "save0pending"
+Received: "save01"
+
+      at toBe (unknown:1:1)
+      at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/findings/056-latest-mounted-boundary/repro.test.ts:11:18
+      at withClientPage (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/harness/client-page.ts:23:30)
+      at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/findings/056-latest-mounted-boundary/repro.test.ts:4:8
+      at processTicksAndRejections (unknown:7:39)
+(fail) a latest-mounted Loading shows fallback beside the committed value during an action hold [10352.54ms]
+
+ 0 pass
+ 2 fail
+ 4 expect() calls
+Ran 2 tests across 2 files. [20.98s]
