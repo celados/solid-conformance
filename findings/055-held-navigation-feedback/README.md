@@ -1,14 +1,31 @@
 ---
 type: Issue
 id: '055'
-status: confirmed
+status: fixed-upstream
 versions: [rc.14 development, rc.14 production, rc.15 development, rc.15 production, HEAD e371645 development, HEAD e371645 production]
 area: async/navigation/pending
-upstream: [https://github.com/solidjs/solid/issues/3884, https://github.com/solidjs/solid-router/issues/655]
+upstream: [https://github.com/solidjs/solid/issues/4050, https://github.com/solidjs/solid/issues/3884, https://github.com/solidjs/solid-router/issues/655]
 found_by: Delta rc.15 evaluation / held-UI properties
 ---
 
 # Held navigation loses delayed feedback
+
+## Local RC15 backport qualification
+
+The upstream fix is [#4065](https://github.com/solidjs/solid/pull/4065), merged as
+`0109a56991976d2d44696a415e2c58cbefe898ca`. Its three signals source changes apply
+unchanged to RC15 and turn this original test green in development and production.
+See the [source patch, suites and removal gate](../../report/patches/README.md).
+The default case remains unpatched; this is not a product dependency upgrade.
+
+## 2026-10-20 current-HEAD recheck
+
+The original desired-behavior test now passes on source-built Solid
+`2172a37687e92dd91758476423f08cb4a12bcb0c` with matching compiler and Router next.39;
+the identical fresh RC15 run still fails. [#4050](https://github.com/solidjs/solid/issues/4050)
+is closed, but its fix is not in RC15. [HEAD receipt](../../report/evidence/field-055-head.log),
+[RC15 receipt](../../report/evidence/field-existing-held-rc15.log).
+The previous sections describe the historical failing versions, not current HEAD.
 
 Expected: a 300 ms pending indicator appears while lazy route children remain unresolved, beside the old page at the old URL. Actual: routing is true and the timer fires, but the indicator stays absent until the navigation commits, when it is no longer needed.
 

@@ -1,0 +1,78 @@
+--- a/packages/signals/src/core/core.ts
++++ b/packages/signals/src/core/core.ts
+@@ -251,6 +251,10 @@
+   snapshotCaptureActive = false;
+ }
+ 
++// A verdict mount remains mainline through nested content computations. Preserve
++// its provenance until its descendants finish their first pass (#3851 DOM form).
++let verdictMount = false;
++
+ export function recompute(el: Computed<any>, create: boolean = false): void {
+   // §12d: any recompute can clean a marked subscriber — invalidate skips.
+   bumpNotifyEpoch();
+@@ -271,6 +275,10 @@
+   // Restored at the end, after this pass's staging and runs have been
+   // routed.
+   const prevLane = passLane;
++  const prevVerdictMount = verdictMount;
++  const fromVerdict =
++    create && (prevVerdictMount || !!(prevLane && prevLane._parent!._verdict === prevLane));
++  verdictMount = fromVerdict;
+   setPassLane(
+     (el._flags & REACTIVE_LANE_DIRTY ||
+       (el._config & (CONFIG_OVERRIDE | CONFIG_GUESS)) === CONFIG_OVERRIDE) &&
+@@ -492,6 +500,7 @@
+           REACTIVE_PROBE_UNANSWERED)) |
+       (create ? el._flags & REACTIVE_SNAPSHOT_STALE : 0);
+     context = oldcontext;
++    verdictMount = prevVerdictMount;
+     // A19 exc. 2: a pass that went pending on a `refresh()` re-asks the
+     // question already answered — quiet for the verdict; any other pending
+     // pass is a new question. Settled, there is nothing to classify.
+@@ -657,7 +666,7 @@
+           ? !(
+               (flushTransaction !== null || passTx !== null) &&
+               (joined ||
+-                (prevLane && el._flags & REACTIVE_STAGED_READ) ||
++                ((prevLane || fromVerdict) && el._flags & REACTIVE_STAGED_READ) ||
+                 (creatorPass(oldcontext)?._flags ?? 0) & REACTIVE_JOINED)
+             )
+           : isEffect && el._pendingValue === NOT_PENDING
+@@ -732,7 +741,7 @@
+   if (
+     create &&
+     lane === null &&
+-    (joined || (prevLane && el._flags & REACTIVE_STAGED_READ)) &&
++    (joined || ((prevLane || fromVerdict) && el._flags & REACTIVE_STAGED_READ)) &&
+     el._statusFlags & STATUS_PENDING
+   ) {
+     const t = flushTransaction ?? passTx;
+--- /dev/null
++++ b/packages/signals/tests/compiled-render-mount-3851.test.ts
+@@ -0,0 +1,25 @@
++import { expect, it } from "vitest";
++import { action, createLoadingBoundary, createMemo, createRenderEffect, createRoot, createSignal, flush, latest } from "../src/index.js";
++
++it("a verdict-mounted boundary collects the child DOM render effect", async () => {
++  const [x, setX] = createSignal(0);
++  let screen: unknown, slot: unknown, inner: unknown;
++  createRoot(() => {
++    createRenderEffect(x, v => { screen = v; });
++    const conditionValue = createMemo(() => latest(x) > 0);
++    const condition = createMemo(conditionValue, { equals: (a, b) => !a === !b, sync: true });
++    const view = createMemo(() => condition() ? createLoadingBoundary(() => {
++      createRenderEffect(x, v => { inner = v; });
++      return "node";
++    }, () => "pending") : "closed", { sync: true });
++    createRenderEffect(() => { const result = view(); return typeof result === "function" ? result() : result; }, v => { slot = v; });
++  });
++  flush();
++  let release!: () => void;
++  const done = action(function* () { setX(1); yield new Promise<void>(r => { release = r; }); })();
++  for (let i=0;i<3;i++) { await new Promise(r => setTimeout(r, 0)); flush(); }
++  const during = [screen, slot, inner];
++  release(); await done; flush();
++  expect(during).toEqual([0, "pending", undefined]);
++  expect([screen, slot, inner]).toEqual([1, "node", 1]);
++});

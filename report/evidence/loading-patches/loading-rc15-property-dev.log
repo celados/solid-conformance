@@ -1,0 +1,10 @@
+bun test v1.4.2 (744846f84)
+
+tracks/properties/held-mount.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+(pass) compiled Show child forms preserve boundary world and converge after held writes [16140.95ms]
+
+ 1 pass
+ 0 fail
+ 161 expect() calls
+Ran 1 test across 1 file. [16.29s]

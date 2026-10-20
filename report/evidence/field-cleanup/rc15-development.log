@@ -1,0 +1,62 @@
+bun test v1.4.2 (744846f84)
+
+findings/058-list-cleanup-write/repro.test.ts:
+Conformance target: {"target":"rc15","upstream":null,"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+{"control":"show","lifecycle":"settled","result":{"errors":[],"releases":1,"removed":0,"appended":1},"messages":[]}
+(pass) show: settled cleanup can release shared reactive state [11804.26ms]
+{"control":"for","lifecycle":"settled","result":{"errors":["Error: [REACTIVE_WRITE_IN_OWNED_SCOPE] Writing to reactive state inside an owned scope (component, computation) is not allowed. Move the write outside or set the `ownedWrite` option if this is intentional."],"releases":0,"removed":2,"appended":2},"messages":["[REACTIVITY_HALTED] An uncaught error halted the reactive system. No further updates will be processed. Handle errors with <Errored> or treat this as a crash.","[REACTIVE_WRITE_IN_OWNED_SCOPE] Writing to reactive state inside an owned scope (component, computation) is not allowed. Move the write outside or set the `ownedWrite` option if this is intentional.","[REACTIVITY_HALTED] Update ignored: the reactive system was halted by an earlier uncaught error.","[REACTIVE_WRITE_IN_OWNED_SCOPE] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#reactive_write_in_owned_scope","[REACTIVITY_HALTED] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#reactivity_halted"]}
+ 9 |         const result = await page.evaluate(async options => {
+10 |           const api = window as typeof window & { runCleanupProbe: (input: typeof options) => Promise<ProbeResult> }
+11 |           return api.runCleanupProbe(options)
+12 |         }, { control, lifecycle })
+13 |         console.log(JSON.stringify({ control, lifecycle, result, messages }))
+14 |         expect(result.errors).toEqual([])
+     ^
+error: expect(received).toEqual(expected)
+
+- []
++ [
++   "Error: [REACTIVE_WRITE_IN_OWNED_SCOPE] Writing to reactive state inside an owned scope (component, computation) is not allowed. Move the write outside or set the `ownedWrite` option if this is intentional.",
++ ]
+
+- Expected  - 1
++ Received  + 3
+
+      at toEqual (unknown:1:1)
+      at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/findings/058-list-cleanup-write/repro.test.ts:14:31
+      at withClientPage (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/harness/client-page.ts:23:30)
+      at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/findings/058-list-cleanup-write/repro.test.ts:8:13
+      at processTicksAndRejections (unknown:7:39)
+(fail) for: settled cleanup can release shared reactive state [11008.52ms]
+{"control":"show","lifecycle":"cleanup","result":{"errors":[],"releases":1,"removed":0,"appended":1},"messages":[]}
+(pass) show: cleanup cleanup can release shared reactive state [10284.17ms]
+{"control":"for","lifecycle":"cleanup","result":{"errors":["Error: [REACTIVE_WRITE_IN_OWNED_SCOPE] Writing to reactive state inside an owned scope (component, computation) is not allowed. Move the write outside or set the `ownedWrite` option if this is intentional."],"releases":0,"removed":2,"appended":2},"messages":["[REACTIVITY_HALTED] An uncaught error halted the reactive system. No further updates will be processed. Handle errors with <Errored> or treat this as a crash.","[REACTIVE_WRITE_IN_OWNED_SCOPE] Writing to reactive state inside an owned scope (component, computation) is not allowed. Move the write outside or set the `ownedWrite` option if this is intentional.","[REACTIVITY_HALTED] Update ignored: the reactive system was halted by an earlier uncaught error.","[REACTIVE_WRITE_IN_OWNED_SCOPE] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#reactive_write_in_owned_scope","[REACTIVITY_HALTED] repair guide: node_modules/solid-js/skills/reactivity-diagnostics/SKILL.md — https://github.com/solidjs/solid/blob/main/packages/solid/skills/reactivity-diagnostics/SKILL.md#reactivity_halted"]}
+ 9 |         const result = await page.evaluate(async options => {
+10 |           const api = window as typeof window & { runCleanupProbe: (input: typeof options) => Promise<ProbeResult> }
+11 |           return api.runCleanupProbe(options)
+12 |         }, { control, lifecycle })
+13 |         console.log(JSON.stringify({ control, lifecycle, result, messages }))
+14 |         expect(result.errors).toEqual([])
+     ^
+error: expect(received).toEqual(expected)
+
+- []
++ [
++   "Error: [REACTIVE_WRITE_IN_OWNED_SCOPE] Writing to reactive state inside an owned scope (component, computation) is not allowed. Move the write outside or set the `ownedWrite` option if this is intentional.",
++ ]
+
+- Expected  - 1
++ Received  + 3
+
+      at toEqual (unknown:1:1)
+      at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/findings/058-list-cleanup-write/repro.test.ts:14:31
+      at withClientPage (/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/harness/client-page.ts:23:30)
+      at /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/findings/058-list-cleanup-write/repro.test.ts:8:13
+      at processTicksAndRejections (unknown:7:39)
+(fail) for: cleanup cleanup can release shared reactive state [10237.56ms]
+(pass) For ownedWrite control can remove a row and continue updating [10338.37ms]
+
+ 3 pass
+ 2 fail
+ 14 expect() calls
+Ran 5 tests across 1 file. [54.28s]

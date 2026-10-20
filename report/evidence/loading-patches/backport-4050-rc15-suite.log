@@ -1,0 +1,9 @@
+
+ RUN  v4.1.6 /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/.scratch/loading-patch/rc15/packages/signals
+
+
+ Test Files  301 passed (301)
+      Tests  5214 passed | 20 expected fail | 2 skipped (5236)
+   Start at  11:32:35
+   Duration  8.96s (transform 4.77s, setup 0ms, import 24.50s, tests 29.92s, environment 245ms)
+

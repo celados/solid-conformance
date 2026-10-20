@@ -1,0 +1,84 @@
+{
+  "finding": "060",
+  "status": "duplicate",
+  "existingIssue": "https://github.com/solidjs/solid-vite-plugin/issues/428",
+  "existingFixPR": "https://github.com/solidjs/solid-vite-plugin/pull/430",
+  "runtimeHEAD": "2172a37687e92dd91758476423f08cb4a12bcb0c",
+  "pluginHEAD": "ec6b58d0c17290d6f474a9ed93bfa03d1dc9b8a0",
+  "published": {
+    "runtime": "2.0.0-rc.15",
+    "plugin": "3.0.0-next.50"
+  },
+  "vite": "8.3.3",
+  "browser": "system Chrome via Playwright channel chrome",
+  "mode": "plain Vite development SSR server functions components",
+  "matrix": [
+    {
+      "target": "rc15",
+      "configuration": "unpatched",
+      "desiredBehavior": "FAIL",
+      "testExitCode": 1,
+      "samePublicConfigure": false,
+      "settledValueType": "undefined",
+      "panelCount": 0,
+      "rpc": [
+        {
+          "status": 200,
+          "contentType": "application/x-frame-stream"
+        }
+      ],
+      "evidence": "field-prebundle-rc15-unpatched.json"
+    },
+    {
+      "target": "rc15",
+      "configuration": "include-client",
+      "desiredBehavior": "PASS",
+      "testExitCode": 0,
+      "samePublicConfigure": true,
+      "settledValueType": "function",
+      "panelCount": 1,
+      "rpc": [
+        {
+          "status": 200,
+          "contentType": "application/x-frame-stream"
+        }
+      ],
+      "evidence": "field-prebundle-rc15-include-client.json"
+    },
+    {
+      "target": "head",
+      "configuration": "unpatched",
+      "desiredBehavior": "FAIL",
+      "testExitCode": 1,
+      "samePublicConfigure": false,
+      "settledValueType": "undefined",
+      "panelCount": 0,
+      "rpc": [
+        {
+          "status": 200,
+          "contentType": "application/x-frame-stream"
+        }
+      ],
+      "evidence": "field-prebundle-head-unpatched.json"
+    },
+    {
+      "target": "head",
+      "configuration": "include-client",
+      "desiredBehavior": "PASS",
+      "testExitCode": 0,
+      "samePublicConfigure": true,
+      "settledValueType": "function",
+      "panelCount": 1,
+      "rpc": [
+        {
+          "status": 200,
+          "contentType": "application/x-frame-stream"
+        }
+      ],
+      "evidence": "field-prebundle-head-include-client.json"
+    }
+  ],
+  "strictTargetedTypecheck": "PASS",
+  "rootPackageLinksChanged": false,
+  "upstreamWrites": false
+}

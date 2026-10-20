@@ -1,0 +1,71 @@
+{
+  "solidHead": "2172a37687e92dd91758476423f08cb4a12bcb0c",
+  "published": "2.0.0-rc.15",
+  "browser": "system Google Chrome via channel chrome",
+  "runs": [
+    {
+      "target": "rc15",
+      "build": "development",
+      "patch": false,
+      "passed": 3,
+      "failed": 2,
+      "cases": 5,
+      "log": "field-cleanup/rc15-development.log"
+    },
+    {
+      "target": "head",
+      "build": "development",
+      "patch": false,
+      "passed": 3,
+      "failed": 2,
+      "cases": 5,
+      "log": "field-cleanup/head-development.log"
+    },
+    {
+      "target": "head",
+      "build": "production",
+      "patch": false,
+      "passed": 5,
+      "failed": 0,
+      "cases": 5,
+      "log": "field-cleanup/head-production.log"
+    },
+    {
+      "target": "head",
+      "build": "development",
+      "patch": true,
+      "passed": 7,
+      "failed": 0,
+      "cases": 7,
+      "log": "field-cleanup/head-patched-development.log"
+    }
+  ],
+  "sourcePatch": {
+    "scope": "owner.ts lifecycle callbacks run through runWithOwner(null, callback)",
+    "blanketWriteExemption": false,
+    "guardControls": [
+      "ordinary owned computation writes remain forbidden",
+      "nested computation inside cleanup remains forbidden"
+    ]
+  },
+  "upstreamSignalsSuite": {
+    "runner": "Node, Vitest 4.1.6",
+    "files": 323,
+    "passed": 5387,
+    "expectedFail": 3,
+    "skipped": 2,
+    "baselineExit": 0,
+    "patchedExit": 0,
+    "derivedRulesIndexRefreshed": true
+  },
+  "excludedInfrastructureRuns": [
+    "Unauthenticated GitHub API returned 403; revision metadata was fetched with gh and the same tarball was built.",
+    "An initial Vitest command ran from the wrong directory and was stopped via its own session. It is not conformance or patch evidence.",
+    "Direct Bun execution of the Node Vitest entry produced runner-specific diagnostic failures; the accepted baseline/patched comparison uses the identical Node entry and exact Vitest version."
+  ],
+  "limitations": [
+    "No release or production deployment",
+    "RC15 production not independently rerun for this finding",
+    "Original unpatched runs had five cases; two guard non-regression probes were added for patch acceptance"
+  ]
+}

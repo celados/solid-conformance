@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-20",
+  "solidRC15": "4937f0a2bfddd45a65738c189075aff577530073",
+  "solidHead": "2172a37687e92dd91758476423f08cb4a12bcb0c",
+  "headRefRechecked": true,
+  "upstream4050Fix": "0109a56991976d2d44696a415e2c58cbefe898ca",
+  "upstream3851State": "closed; compiled DOM regression reported, maintainer confirmation pending",
+  "patches": {
+    "3851-dom-mount-rc15.source.patch": "78e7616af39f0554bfa9e11904aad315326f6317f46c7c9e00f0d0d847a15116",
+    "4050-rc15.source.patch": "d399db3504ad87d03448049d0d7add809502e444e39ab782906e70b803c59d91",
+    "3851-dom-mount-head.source.patch": "c844bde290c98cc47d0d7693bd342936fff0557dffe4220a011b8a13a215e077"
+  },
+  "signalsGraphs": {
+    "head": "/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/.scratch/loading-patch/head/packages/signals",
+    "rc15": "/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/.scratch/loading-patch/rc15/packages/signals"
+  },
+  "sourcePatchArtifactReapplication": "clean; exact source equality with qualified snapshots",
+  "acceptance": {
+    "rc15With4050": {
+      "055": "dev and production pass",
+      "056": "development fails",
+      "files": 301,
+      "passed": 5214,
+      "expectedFail": 20,
+      "skipped": 2
+    },
+    "rc15Combined": {
+      "055": "dev and production pass",
+      "056": "dev and production pass",
+      "files": 302,
+      "passed": 5215,
+      "expectedFail": 20,
+      "skipped": 2,
+      "strictDevelopmentPropertyCases": 80
+    },
+    "headWith056": {
+      "055": "dev pass",
+      "056": "dev and production pass",
+      "files": 324,
+      "passed": 5388,
+      "expectedFail": 3,
+      "skipped": 2,
+      "strictDevelopmentPropertyCases": 80
+    },
+    "sourceBuildTypechecks": "head and rc15 pass"
+  },
+  "runner": "Node + Vitest 4.1.6; system Google Chrome channel chrome; seed 20261007",
+  "logs": [
+    "followup-head-baseline.log",
+    "followup-rc15-baseline.log",
+    "backport-4050-browser-dev.log",
+    "backport-4050-browser-prod.log",
+    "backport-4050-rc15-suite.log",
+    "loading-primitive-baseline.log",
+    "loading-primitive-patch1.log",
+    "loading-head-suite-patch1.log",
+    "loading-head-browser-dev.log",
+    "loading-head-browser-prod.log",
+    "loading-head-property-dev.log",
+    "loading-rc15-suite-combined.log",
+    "loading-rc15-browser-combined-dev.log",
+    "loading-rc15-browser-combined-prod.log",
+    "loading-rc15-property-dev.log"
+  ],
+  "exclusions": [
+    "An early invocation used Bun filters without ./ and found no tests.",
+    "An initial HEAD-to-RC15 contextual patch application partially rejected; that intermediate result is excluded. Final RC15 patch was reconstructed with version-specific context and separately qualified."
+  ],
+  "limits": [
+    "Source patches; no install-time published-package patch generated.",
+    "No product dependency upgrade, package publication or deployment.",
+    "No new SSR/streaming/hydration-specific 056 acceptance.",
+    "Upstream acceptance of local 056 repair is pending.",
+    "Pristine RC15 signals full suite not rerun in this follow-up; raw browser baseline rechecked."
+  ]
+}
