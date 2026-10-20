@@ -91,3 +91,15 @@ HEAD 只应用它对应的 3851 source patch。上述 patches 应在 snapshot �
 保留原始 desired-behavior case，默认不应用补丁。未来精确上游版本不带 patch 通过原始 case、严格
 属性测试及产品门禁后，删除对应安装声明、patch 与临时说明。055 的上游 commit 已存在，可以采用
 回移植；056 的源码候选不得因本地 suite 绿色就标记为 upstream-fixed。
+
+## Installed RC15 consumer graph
+
+The combined install-time signals repair passes original 055/056/058 in development
+(9 cases) and production (7 cases, 2 development-guard skips). The install-time Vite
+plugin repair passes original 059 (SSR and frame CSS) and 060 (one configured client)
+without client-import or optimizer-configuration workarounds. Both package patch hashes
+and observations are in [the receipt](../evidence/rc15-consumer-patches.json).
+
+These runs used isolated copies of the cases with root patch installation. The canonical
+cases still run unpatched and remain upstream deletion gates. Application qualification
+and library publication are separate from this conformance result.

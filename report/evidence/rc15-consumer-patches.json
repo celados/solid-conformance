@@ -1,0 +1,64 @@
+{
+  "recordedAt": "2026-10-20T04:42:35.518969+00:00",
+  "runtime": "2.0.0-rc.15",
+  "compiler": "2.0.0-rc.15",
+  "router": "2.0.0-next.40",
+  "plugin": "3.0.0-next.50",
+  "patches": {
+    "signals": {
+      "sha256": "c67cb85dcdc7a1967cc8c2265367464ca3d048cc6db9453cef6face7c0b336db"
+    },
+    "vite-plugin": {
+      "sha256": "1c40fa97dd79cf26b82e84785b609a23aa33cb43034a27fb73629f466f8c8095"
+    }
+  },
+  "method": "Original desired-behavior cases copied into an isolated fixture; only root package installation policy changed. Canonical default cases remain unpatched.",
+  "signals": {
+    "findings": [
+      "055",
+      "056",
+      "058"
+    ],
+    "development": {
+      "pass": 9,
+      "fail": 0
+    },
+    "production": {
+      "pass": 7,
+      "skip": 2,
+      "fail": 0
+    },
+    "skips": "Production omits the two development-only owned-write guard controls."
+  },
+  "css": {
+    "document": "rgb(255, 0, 0)",
+    "navigation": "rgb(255, 0, 0)",
+    "documentCount": 1,
+    "navigationCount": 1,
+    "errors": []
+  },
+  "prebundle": {
+    "before": {
+      "ready": true,
+      "settled": false,
+      "sameConfigure": true
+    },
+    "after": {
+      "ready": true,
+      "settled": true,
+      "sameConfigure": true,
+      "value": "function"
+    },
+    "panelCount": 1,
+    "panelText": [
+      "Server panel"
+    ],
+    "rpc": [
+      {
+        "status": 200,
+        "contentType": "application/x-frame-stream"
+      }
+    ],
+    "pageErrors": []
+  }
+}
