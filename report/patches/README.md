@@ -30,6 +30,8 @@ stock RC15 的原始 055 红；只回移植该修复后，055 在 development/pr
 JSX 复现。原始 primitive 测试已经通过，但嵌套 DOM render effect 的形状仍失败，RC15 与固定 HEAD
 均由真实 Chrome 观察到 `outer 0 + inner 1`，而期望是 `outer 0 + pending`。
 本轮已将新的 signals 红例、候选修复和完整矩阵[补充到原 issue](https://github.com/solidjs/solid/issues/3851#issuecomment-6282792628)，等待上游审查。
+随后按用户要求新开 [#4166](https://github.com/solidjs/solid/issues/4166)，单独追踪原修复遗漏的
+DOM render-effect 路径，避免后续审查依赖已关闭 issue 的可见性；#3851 保留为相关历史。
 
 新缩小后的 signals pin 不需要浏览器、compiler、Router 或 async data：Show 的两级条件 memo，
 加上 Loading 内容里的一项 `createRenderEffect`，即可复现同样的 tear。旧 pin 只在 boundary 的

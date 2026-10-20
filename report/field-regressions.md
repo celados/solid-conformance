@@ -17,6 +17,8 @@ status: filed-upstream-local-patches-under-review
 [prebundle 补充](https://github.com/solidjs/solid-vite-plugin/issues/428#issuecomment-6282379136)、
 [compiled Loading 补充](https://github.com/solidjs/solid/issues/3851#issuecomment-6282379876)。
 Conformance 变更为 [PR #1](https://github.com/celados/solid-conformance/pull/1)。
+compiled Loading 的未覆盖 DOM render-effect 路径随后独立提交为 [#4166](https://github.com/solidjs/solid/issues/4166)，
+关联已关闭 #3851；它是此路径的当前 upstream owner，早先“只补原 issue”的处置已被替代。
 
 本轮用户明确授权补 conformance case 并向上游提交；这次会话授权覆盖仓库默认的只读/不提交上游约束。
 保留其他会话的工作目录、已有 `.orchestration` 文件与根 checkout 的包链接。

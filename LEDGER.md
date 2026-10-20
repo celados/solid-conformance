@@ -11,9 +11,12 @@ description: rc.15、Solid/Router HEAD 的原始红测试、修复和 filing bar
 本次历史审计补充以下三项，独立固定 Solid HEAD `2172a37687e92dd91758476423f08cb4a12bcb0c`；
 不是下方 Wave 5 HEAD 的沿用。058 为新的 lifecycle finding，059/060 为已有上游问题的可执行重复形状。
 复现、对照、patch 验证及局限见 [field receipt](report/field-regressions.md)。
+056 的遗漏 DOM render-effect 路径已单独提交 [#4166](https://github.com/solidjs/solid/issues/4166)，
+关联已关闭 #3851；当前为 confirmed。下方 Wave 5 的 duplicate 分类保留为历史记录。
 
 | ID | 状态 | 说明 | RC15 | 固定 HEAD |
 | --- | --- | --- | --- | --- |
+| [056](findings/056-latest-mounted-boundary/README.md) | confirmed #4166 | #3851 原修复遗漏 DOM render-effect 路径；局部源码候选已验证 | 原始 case 红，patched dev/prod 绿 | 相同 |
 | [058](findings/058-list-cleanup-write/README.md) | confirmed | For 行 cleanup 继承列表 owned scope，开发模式停止响应 | dev 红；production guard 不启用 | dev 红；production 绿 |
 | [059](findings/059-server-component-css/README.md) | duplicate #456 | server-only CSS 在生产 SSR 和 frame navigation 缺失 | 两路径红，client import 对照绿 | 相同 |
 | [060](findings/060-server-functions-prebundle/README.md) | duplicate #428 | dev optimizer 产生双 server-functions 配置，合法 frame 丢失 | 红；child include 对照绿 | 相同，独立构建 plugin HEAD |
