@@ -110,7 +110,8 @@ rootHoles 以及新 plugin 的原生请求 nonce；这些收益不意味着可�
   后续仍需协调包版本及消费端 gate。
 - Delta bindings 的真实生产浏览器 hydration 通过，包括现有 RC10 的负控。Whiteboard 本地生产
   smoke 构建与水合成功，但 6 项登录态路由中 5 项失败：4 项缺少 aside/workspace，editor 的
-  本地素材请求被 CSP connect-src 阻止；仅 studio/new 通过。Glaze 0.24.2 的 sidebar 源码使用 div，
+  本地素材请求被 CSP connect-src/img-src 阻止；仅 studio/new 通过。后续 SSR diagnostics 的所有
+  guest/person route 通过，runner 已执行 finally 清理并退出。Glaze 0.24.2 的 sidebar 源码使用 div，
   和 smoke 的 aside 合同不符；未跑无 patch 基线，
   因此记录为未通过的产品门禁，不将其直接归因于 patch，也不修改 smoke 以消除失败。
 
