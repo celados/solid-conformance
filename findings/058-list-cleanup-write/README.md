@@ -8,11 +8,13 @@ description: >
   reactivity when For removes the row, including onSettled returned cleanup.
 versions: [2.0.0-rc.15, next-2172a37687e92dd91758476423f08cb4a12bcb0c]
 area: reactivity/lifecycle/disposal
-upstream: []
+upstream: [https://github.com/solidjs/solid/issues/4165]
 found_by: field-history-glaze-237
 ---
 
 # Expected and actual
+
+Filed as [solidjs/solid#4165](https://github.com/solidjs/solid/issues/4165).
 
 A row releasing shared reactive state on unmount should behave identically under Show and For.
 In development, For removal throws `REACTIVE_WRITE_IN_OWNED_SCOPE`, reports `REACTIVITY_HALTED`,

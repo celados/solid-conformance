@@ -7,10 +7,16 @@ description: >
 generated: { by: codex/gpt-6.1-sol, at: 2026-10-20 }
 solid_head: 2172a37687e92dd91758476423f08cb4a12bcb0c
 plugin_head: ec6b58d0c17290d6f474a9ed93bfa03d1dc9b8a0
-status: verified-local-upstream-filing
+status: filed-upstream-local-patches-under-review
 ---
 
 # 处置原则
+
+本轮上游回执：[新 issue #4165](https://github.com/solidjs/solid/issues/4165)、
+[CSS 补充](https://github.com/solidjs/solid-vite-plugin/issues/456#issuecomment-6282379465)、
+[prebundle 补充](https://github.com/solidjs/solid-vite-plugin/issues/428#issuecomment-6282379136)、
+[compiled Loading 补充](https://github.com/solidjs/solid/issues/3851#issuecomment-6282379876)。
+Conformance 变更为 [PR #1](https://github.com/celados/solid-conformance/pull/1)。
 
 本轮用户明确授权补 conformance case 并向上游提交；这次会话授权覆盖仓库默认的只读/不提交上游约束。
 保留其他会话的工作目录、已有 `.orchestration` 文件与根 checkout 的包链接。

@@ -10,6 +10,14 @@ found_by: Delta rc.15 evaluation / held-mount properties
 
 # Latest-mounted Loading tears beside committed state
 
+## 2026-10-20 current-HEAD recheck
+
+The original compiled test remains red on RC15 and current source-built Solid
+`2172a37687e92dd91758476423f08cb4a12bcb0c` with matching compiler. The intermediate
+state tears; final convergence is not the failing assertion. Evidence was added to
+[the existing issue](https://github.com/solidjs/solid/issues/3851#issuecomment-6282379876),
+with [HEAD](../../report/evidence/field-056-head.log) and [RC15](../../report/evidence/field-existing-held-rc15.log) receipts.
+
 Expected: the new Loading displays `pending` beside the outer committed 0 until the action releases. Actual: compiled JSX displays 1 inside the newly mounted boundary beside the outer 0, then both display 1 after release.
 
 ```sh
