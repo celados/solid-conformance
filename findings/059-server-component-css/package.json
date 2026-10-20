@@ -1,0 +1,11 @@
+{
+  "name": "solid-conformance-059-server-component-css",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "bun install --frozen-lockfile && bun test ./repro.test.ts"
+  },
+  "dependencies": {
+    "playwright-core": "1.64.1"
+  }
+}

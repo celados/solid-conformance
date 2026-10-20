@@ -6,6 +6,20 @@ description: rc.15、Solid/Router HEAD 的原始红测试、修复和 filing bar
 
 # Ledger
 
+## 2026-10-20 field regressions
+
+本次历史审计补充以下三项，独立固定 Solid HEAD `2172a37687e92dd91758476423f08cb4a12bcb0c`；
+不是下方 Wave 5 HEAD 的沿用。058 为新的 lifecycle finding，059/060 为已有上游问题的可执行重复形状。
+复现、对照、patch 验证及局限见 [field receipt](report/field-regressions.md)。
+
+| ID | 状态 | 说明 | RC15 | 固定 HEAD |
+| --- | --- | --- | --- | --- |
+| [058](findings/058-list-cleanup-write/README.md) | confirmed | For 行 cleanup 继承列表 owned scope，开发模式停止响应 | dev 红；production guard 不启用 | dev 红；production 绿 |
+| [059](findings/059-server-component-css/README.md) | duplicate #456 | server-only CSS 在生产 SSR 和 frame navigation 缺失 | 两路径红，client import 对照绿 | 相同 |
+| [060](findings/060-server-functions-prebundle/README.md) | duplicate #428 | dev optimizer 产生双 server-functions 配置，合法 frame 丢失 | 红；child include 对照绿 | 相同，独立构建 plugin HEAD |
+
+## Wave 5 historical matrix
+
 本轮 Solid HEAD `e3716454129f8438b65257c95db5c383622494ba`，Router HEAD `4a1685ec8f1ab045843b2ae590c7afe821f73d90`。原 52 项均复跑；12 个旧 confirmed 转为 fixed-upstream，另保留 001–003 的历史修复。新增 055 confirmed、056 duplicate（#3851 的编译 JSX 形状）。新增 057 为 rendering-order confirmed。共 55 项：15 fixed-upstream、37 confirmed、3 duplicate。编号 037、043 仍为撤回保留号。
 
 原始矩阵：[rc.15](report/evidence/wave5-rc15-matrix.json)、[HEAD](report/evidence/wave5-head-matrix.json)、[observe](report/evidence/wave5-observe-matrix.json)、[新案例](report/evidence/wave5-new-matrix.json)。红色包括文档/type/诊断合同断言，不一概等于可报告的 app runtime defect；逐项 [filing bar](report/TRIAGE.md)，批次 [FILING](report/FILING.md)。四个自行关闭 issue 仍只记录结果，未重新拟稿。

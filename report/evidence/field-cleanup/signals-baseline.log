@@ -1,0 +1,9 @@
+RULES-INDEX.md: 313 rules; src citations 58 ids (0 unresolved); tests 104 ids (12 unresolved)
+
+ RUN  v4.1.6 /Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/.upstream/2172a37687e92dd91758476423f08cb4a12bcb0c/packages/signals
+
+
+ Test Files  323 passed (323)
+      Tests  5387 passed | 3 expected fail | 2 skipped (5392)
+   Start at  10:41:34
+   Duration  15.03s (transform 9.97s, setup 0ms, import 52.73s, tests 39.78s, environment 474ms)

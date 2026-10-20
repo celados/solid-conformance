@@ -1,0 +1,20 @@
+bun test v1.4.2 (744846f84)
+
+findings/058-list-cleanup-write/repro.test.ts:
+Conformance target: {"target":"head","upstream":{"ref":"2172a37687e92dd91758476423f08cb4a12bcb0c","revision":"2172a37687e92dd91758476423f08cb4a12bcb0c","directory":"/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/.upstream/2172a37687e92dd91758476423f08cb4a12bcb0c"},"buildMode":"development","solid":"2.0.0-rc.15","router":"2.0.0-next.39","routerHead":null}
+{"control":"show","lifecycle":"settled","result":{"errors":[],"releases":1,"removed":0,"appended":1},"messages":[]}
+(pass) show: settled cleanup can release shared reactive state [10940.82ms]
+{"control":"for","lifecycle":"settled","result":{"errors":[],"releases":1,"removed":1,"appended":2},"messages":[]}
+(pass) for: settled cleanup can release shared reactive state [10901.75ms]
+{"control":"show","lifecycle":"cleanup","result":{"errors":[],"releases":1,"removed":0,"appended":1},"messages":[]}
+(pass) show: cleanup cleanup can release shared reactive state [10903.17ms]
+{"control":"for","lifecycle":"cleanup","result":{"errors":[],"releases":1,"removed":1,"appended":2},"messages":[]}
+(pass) for: cleanup cleanup can release shared reactive state [11238.02ms]
+(pass) For ownedWrite control can remove a row and continue updating [11510.91ms]
+(pass) owned computation writes remain forbidden (inside cleanup: false) [12353.15ms]
+(pass) owned computation writes remain forbidden (inside cleanup: true) [11592.21ms]
+
+ 7 pass
+ 0 fail
+ 24 expect() calls
+Ran 7 tests across 1 file. [79.61s]

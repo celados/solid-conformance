@@ -1,0 +1,48 @@
+{
+  "target": "head",
+  "versions": {
+    "runtime": "2172a37687e92dd91758476423f08cb4a12bcb0c",
+    "plugin": "ec6b58d0c17290d6f474a9ed93bfa03d1dc9b8a0",
+    "vite": "8.3.3"
+  },
+  "patched": false,
+  "serverPid": 53359,
+  "before": {
+    "ready": true,
+    "settled": false,
+    "sameConfigure": false
+  },
+  "after": {
+    "ready": true,
+    "settled": true,
+    "sameConfigure": false,
+    "value": "undefined"
+  },
+  "panelCount": 0,
+  "panelText": [],
+  "rpc": [
+    {
+      "status": 200,
+      "contentType": "application/x-frame-stream"
+    }
+  ],
+  "pageErrors": [],
+  "scripts": [
+    "/@vite/client",
+    "/@id/virtual:solid-ssr-entry-client.tsx",
+    "/node_modules/.vite/deps/@solidjs_web.js",
+    "/node_modules/.vite/deps/@solidjs_web_frames.js",
+    "/@id/virtual:solid-ssr-document.tsx",
+    "/src/App.tsx",
+    "/node_modules/vite/dist/client/env.mjs",
+    "/node_modules/.vite/deps/dev-shared-BzQR7-b5.js",
+    "/node_modules/.vite/deps/solid.dev-DDcXJ-kk.js",
+    "/node_modules/.vite/deps/internal-DmW4PE8b.js",
+    "/node_modules/.vite/deps/solid-js_refresh.js",
+    "/node_modules/.vite/deps/solid-js.js",
+    "/src/server.tsx",
+    "/@fs/Users/dio/workspace/projects/solid-conformance/.agents/worktrees/field-regressions/findings/060-server-functions-prebundle/.scratch/upstream/2172a37687e92dd91758476423f08cb4a12bcb0c/packages/web/server-functions/dist/client.dev.js",
+    "/node_modules/.vite/deps/@solidjs_web_server-functions.js",
+    "/src/client-probe.ts"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "target": "rc15",
+  "versions": {
+    "runtime": "2.0.0-rc.15",
+    "plugin": "3.0.0-next.50",
+    "vite": "8.3.3"
+  },
+  "patched": true,
+  "serverPid": 53358,
+  "before": {
+    "ready": true,
+    "settled": false,
+    "sameConfigure": true
+  },
+  "after": {
+    "ready": true,
+    "settled": true,
+    "sameConfigure": true,
+    "value": "function"
+  },
+  "panelCount": 1,
+  "panelText": [
+    "Server panel"
+  ],
+  "rpc": [
+    {
+      "status": 200,
+      "contentType": "application/x-frame-stream"
+    }
+  ],
+  "pageErrors": [],
+  "scripts": [
+    "/@vite/client",
+    "/@id/virtual:solid-ssr-entry-client.tsx",
+    "/node_modules/.vite/deps/@solidjs_web.js",
+    "/node_modules/.vite/deps/@solidjs_web_frames.js",
+    "/@id/virtual:solid-ssr-document.tsx",
+    "/src/App.tsx",
+    "/node_modules/vite/dist/client/env.mjs",
+    "/node_modules/.vite/deps/dev-shared-CqErc88L.js",
+    "/node_modules/.vite/deps/solid.dev-CeEPy86n.js",
+    "/node_modules/.vite/deps/internal-CUq5I1mk.js",
+    "/node_modules/.vite/deps/@solidjs_web_server-functions_client.js",
+    "/node_modules/.vite/deps/solid-js_refresh.js",
+    "/node_modules/.vite/deps/solid-js.js",
+    "/src/server.tsx",
+    "/node_modules/.vite/deps/@solidjs_web_server-functions.js",
+    "/src/client-probe.ts"
+  ]
+}
