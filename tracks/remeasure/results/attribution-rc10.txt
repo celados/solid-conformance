@@ -1,0 +1,7 @@
+{"test":"3687","version":"2.0.0-rc.10","attribution":false,"results":{"promise/direct/store":"a:false|false","promise/direct/signal":"a:false|false","promise/nested/store":"a:false|false","promise/nested/signal":"a:false|false","iterable/direct/store":"a:false|false","iterable/direct/signal":"a:false|false","iterable/nested/store":"a:false|false","iterable/nested/signal":"a:false|false"}}
+TypeError: undefined is not an object (evaluating 'this._host')
+(fail) #3687 rollback, attribution=true (solid-js 2.0.0-rc.10) [8.30ms]
+{"test":"cost-findings","version":"2.0.0-rc.10","attribution":false,"diagnostics":2,"byCode":{"WIDE_SCOPE_DEPS":2},"attributionKeys":null,"costTables":null,"reruns":null}
+{"test":"cost-findings","version":"2.0.0-rc.10","attribution":true,"diagnostics":2,"byCode":{"WIDE_SCOPE_DEPS":2},"attributionKeys":["reruns","costs","holds","feedback"],"costTables":{"scopes":1,"writes":1},"reruns":1}
+ 3 pass
+ 1 fail

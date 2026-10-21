@@ -1,0 +1,13 @@
+{
+  "name": "remeasure-rc16",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@solidjs/compiler": "2.0.0-rc.16",
+    "@solidjs/diagnostics": "2.0.0-rc.16",
+    "@solidjs/router": "^2.0.0-next.41",
+    "@solidjs/signals": "2.0.0-rc.16",
+    "@solidjs/web": "2.0.0-rc.16",
+    "solid-js": "2.0.0-rc.16"
+  }
+}

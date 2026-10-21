@@ -1,0 +1,6 @@
+{"test":"3687","version":"2.0.0-rc.13","attribution":false,"results":{"promise/direct/store":"a:false|false","promise/direct/signal":"a:false|false","promise/nested/store":"a:false|false","promise/nested/signal":"a:false|false","iterable/direct/store":"a:false|false","iterable/direct/signal":"a:false|false","iterable/nested/store":"a:false|false","iterable/nested/signal":"a:false|false"}}
+{"test":"3687","version":"2.0.0-rc.13","attribution":true,"results":{"promise/direct/store":"a:false|false","promise/direct/signal":"a:false|false","promise/nested/store":"a:false|false","promise/nested/signal":"a:false|false","iterable/direct/store":"a:false|false","iterable/direct/signal":"a:false|false","iterable/nested/store":"a:false|false","iterable/nested/signal":"a:false|false"}}
+{"test":"cost-findings","version":"2.0.0-rc.13","attribution":false,"diagnostics":0,"byCode":{},"attributionKeys":null,"costTables":null,"reruns":null}
+{"test":"cost-findings","version":"2.0.0-rc.13","attribution":true,"diagnostics":2,"byCode":{"WIDE_SCOPE_DEPS":2},"attributionKeys":["reruns","costs","holds","feedback"],"costTables":{"scopes":69,"writes":3},"reruns":140}
+ 4 pass
+ 0 fail

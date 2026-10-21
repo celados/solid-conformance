@@ -1,0 +1,21 @@
+# rc13 development
+{"shape":"hole","kind":"promise","how":"stream","result":"CONVERGED","calls":2,"ms":14}
+{"shape":"hole","kind":"iterable","how":"stream","result":"FAILED","calls":2603,"ms":15004,"error":"Error: TIMEOUT 15s","html":""}
+{"shape":"hole","kind":"query","how":"stream","result":"CONVERGED","calls":1,"ms":16}
+{"shape":"hole","kind":"liveQuery","how":"stream","result":"FAILED","calls":1,"ms":122,"error":"Error: <Loading> boundary discovery did not converge after 10001 passes — an async source produces a new pendi","html":""}
+{"shape":"show","kind":"promise","how":"stream","result":"CONVERGED","calls":3,"ms":16}
+{"shape":"show","kind":"iterable","how":"stream","result":"FAILED","calls":5166,"ms":15004,"error":"Error: TIMEOUT 15s","html":""}
+{"shape":"show","kind":"query","how":"stream","result":"CONVERGED","calls":1,"ms":15}
+{"shape":"show","kind":"liveQuery","how":"stream","result":"FAILED","calls":1,"ms":203,"error":"Error: <Loading> boundary discovery did not converge after 10001 passes — an async source produces a new pendi","html":""}
+{"shape":"for","kind":"promise","how":"stream","result":"CONVERGED","calls":3,"ms":14}
+{"shape":"for","kind":"iterable","how":"stream","result":"FAILED","calls":5270,"ms":15003,"error":"Error: TIMEOUT 15s","html":""}
+{"shape":"for","kind":"query","how":"stream","result":"CONVERGED","calls":1,"ms":15}
+{"shape":"for","kind":"liveQuery","how":"stream","result":"FAILED","calls":1,"ms":223,"error":"Error: <Loading> boundary discovery did not converge after 10001 passes — an async source produces a new pendi","html":""}
+{"shape":"fn-hole-lazy","kind":"promise","result":"HUNG (process killed after 40s, event loop starved)"}
+{"shape":"fn-hole-lazy","kind":"iterable","result":"HUNG (process killed after 40s, event loop starved)"}
+{"shape":"fn-hole-lazy","kind":"query","result":"HUNG (process killed after 40s, event loop starved)"}
+{"shape":"fn-hole-lazy","kind":"liveQuery","result":"HUNG (process killed after 40s, event loop starved)"}
+{"shape":"errored-retry","kind":"promise","how":"stream","result":"FAILED","calls":0,"ms":147,"error":"Error: <Loading> boundary discovery did not converge after 10001 passes — an async source produces a new pendi","html":"LATER<script>(self.$R=self.$R||{})[\"\"]=[];_$HY.r[\"$B\"]=($R[0]={0:$R[1]=($R[2]=($"}
+{"shape":"errored-retry","kind":"iterable","how":"stream","result":"FAILED","calls":0,"ms":146,"error":"Error: <Loading> boundary discovery did not converge after 10001 passes — an async source produces a new pendi","html":"LATER<script>(self.$R=self.$R||{})[\"\"]=[];_$HY.r[\"$B\"]=($R[0]={0:$R[1]=($R[2]=($"}
+{"shape":"errored-retry","kind":"query","how":"stream","result":"FAILED","calls":0,"ms":149,"error":"Error: <Loading> boundary discovery did not converge after 10001 passes — an async source produces a new pendi","html":"LATER<script>(self.$R=self.$R||{})[\"\"]=[];_$HY.r[\"$B\"]=($R[0]={\"000\":$R[1]=($R[2"}
+{"shape":"errored-retry","kind":"liveQuery","how":"stream","result":"FAILED","calls":0,"ms":136,"error":"Error: <Loading> boundary discovery did not converge after 10001 passes — an async source produces a new pendi","html":"LATER<script>(self.$R=self.$R||{})[\"\"]=[];_$HY.r[\"$B\"]=($R[0]={\"000\":$R[1]=($R[2"}

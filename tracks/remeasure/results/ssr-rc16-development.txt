@@ -1,0 +1,21 @@
+# rc16 development
+{"shape":"hole","kind":"promise","how":"stream","result":"CONVERGED","calls":2,"ms":16}
+{"shape":"hole","kind":"iterable","how":"stream","result":"CONVERGED","calls":2,"ms":16}
+{"shape":"hole","kind":"query","how":"stream","result":"CONVERGED","calls":1,"ms":16}
+{"shape":"hole","kind":"liveQuery","how":"stream","result":"CONVERGED","calls":1,"ms":16}
+{"shape":"show","kind":"promise","how":"stream","result":"CONVERGED","calls":2,"ms":15}
+{"shape":"show","kind":"iterable","how":"stream","result":"CONVERGED","calls":2,"ms":18}
+{"shape":"show","kind":"query","how":"stream","result":"CONVERGED","calls":1,"ms":17}
+{"shape":"show","kind":"liveQuery","how":"stream","result":"CONVERGED","calls":1,"ms":18}
+{"shape":"for","kind":"promise","how":"stream","result":"CONVERGED","calls":2,"ms":15}
+{"shape":"for","kind":"iterable","how":"stream","result":"CONVERGED","calls":2,"ms":16}
+{"shape":"for","kind":"query","how":"stream","result":"CONVERGED","calls":1,"ms":17}
+{"shape":"for","kind":"liveQuery","how":"stream","result":"CONVERGED","calls":1,"ms":17}
+{"shape":"fn-hole-lazy","kind":"promise","how":"stream","result":"CONVERGED","calls":1,"ms":31}
+{"shape":"fn-hole-lazy","kind":"iterable","how":"stream","result":"CONVERGED","calls":1,"ms":34}
+{"shape":"fn-hole-lazy","kind":"query","how":"stream","result":"CONVERGED","calls":1,"ms":31}
+{"shape":"fn-hole-lazy","kind":"liveQuery","how":"stream","result":"CONVERGED","calls":1,"ms":32}
+{"shape":"errored-retry","kind":"promise","how":"stream","result":"CONVERGED","calls":1,"ms":44}
+{"shape":"errored-retry","kind":"iterable","how":"stream","result":"CONVERGED","calls":1,"ms":42}
+{"shape":"errored-retry","kind":"query","how":"stream","result":"CONVERGED","calls":1,"ms":45}
+{"shape":"errored-retry","kind":"liveQuery","how":"stream","result":"CONVERGED","calls":1,"ms":43}
