@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "Preserve",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "jsxImportSource": "@solidjs/web",
+    "types": [
+      "bun"
+    ],
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "noUncheckedIndexedAccess": true
+  },
+  "include": [
+    "*.ts",
+    "*.tsx"
+  ],
+  "exclude": [
+    ".build",
+    "fixtures"
+  ]
+}

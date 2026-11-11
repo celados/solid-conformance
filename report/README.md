@@ -28,3 +28,7 @@ Final pinned reproduction links refer to local commit `44683a4dba3bd8d9f87c30e5c
 The original documentation inventory remains pinned to its original source SHA; it is an archival sentence-coverage corpus, not a claim that every rc.15 sentence has been exhaustively recatalogued. Current chapter claims used for filing were rechecked against HEAD docs and current release/runtime tests. The wide suite still includes obsolete experimental frame exports, old diagnostic metadata and changed async assertions. Its raw failures are reported separately from the minimal findings; a default-suite failure alone is not a finding.
 
 The tested unscoped hand-written `ssr()` hole is integration misuse under #3734 and is excluded. No compiled application shape was found. Bun/macOS/system Chrome evidence does not cover Node, Firefox, Safari, production deployment or a signed-in Delta user flow.
+
+## rc.21 control-flow follow-up
+
+[058 Show ref draft](issues/058-show-ref-optimistic-rollback.md) and [059 Match ref draft](issues/059-match-ref-optimistic-rollback.md) are separately reproduced in system Chrome; [the bounded matrix and player probe](probes/rc21-control-flow/README.md) document negative results and limitations. Neither isolates the original player spread error.

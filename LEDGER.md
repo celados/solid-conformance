@@ -69,3 +69,12 @@ description: rc.15、Solid/Router HEAD 的原始红测试、修复和 filing bar
 | [057](findings/057-loading-lazy-hydration-order/README.md) | confirmed | Hydration reverses static/lazy children after a sibling | 红 | 红 | 红 | 红 |
 
 默认宽测试的已知签名识别不改写 findings 的 desired-behavior 断言；fixed-upstream 的原红例如今自然通过。observe/dev-only/type 的生产零测试不是修复证据。文档库存仍引用历史固定 source SHA；本轮 filing 引用 HEAD 文档。没有上游写入，提交不 push。
+
+## rc.21 control-flow follow-up
+
+| ID | Status | Finding | rc.21 development |
+| --- | --- | --- | --- |
+| [058](findings/058-show-ref-optimistic-rollback/README.md) | confirmed | Show ref reads a stale accessor while an optimistic hide is restored | red |
+| [059](findings/059-match-ref-optimistic-rollback/README.md) | confirmed | Match ref reads a stale accessor while an optimistic hide is restored | red |
+
+[Probes and scope](report/probes/rc21-control-flow/README.md); [Show draft](report/issues/058-show-ref-optimistic-rollback.md); [Match draft](report/issues/059-match-ref-optimistic-rollback.md). These findings do not reproduce the player's spread path.
