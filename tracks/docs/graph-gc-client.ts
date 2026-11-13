@@ -8,5 +8,6 @@ const release=attribution.enable({graphGrowth:false})
  dropped:()=>{createRoot(()=>{const [read]=createSignal(1);createMemo(read)})},
  subscribed:()=>{const [read]=createSignal(1);retained=read;createRoot(d=>{stop=d;createEffect(read,()=>{})});flush()},
  cleanup:()=>{stop?.();stop=undefined;retained=undefined;release()},
+ retained:()=>retained!==undefined,
  supported:!!OBSERVE
 }

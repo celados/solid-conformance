@@ -12,7 +12,7 @@ const fn=createServerReference('transport');const pending=invoke(fn,{signal:Abor
 await Promise.resolve();await Promise.resolve();const before=sent.length;release();const value=await pending;
 current();const whole=await fn(2);const passthrough=whole instanceof Response;const envelope=passthrough?await decodeResponse(whole):null;
 let releaseEncoding!:()=>void;const encodingGate=new Promise<void>(r=>releaseEncoding=r);let encodingStarted=false;
-configureServerFunctionsClient({serializeArgs:async(args)=>{encodingStarted=true;await encodingGate;return 'fixture-rich-encoding'}});
+configureServerFunctionsClient({serializeArgs:async()=>{encodingStarted=true;await encodingGate;return 'fixture-rich-encoding'}});
 const encoding=fn(new Set([1]));for(let i=0;i<6;i++)await Promise.resolve();const encodingBefore=sent.length;releaseEncoding();await encoding;
 const liveCalls:any[]=[];let nextValue=0;
 configureServerFunctionsClient({prepareRequest:init=>init,fetch:async(address,init)=>{liveCalls.push({address:String(address),signal:init.signal,method:init.method,headers:[...new Headers(init.headers)]});return new Response(JSON.stringify(++nextValue),{headers:{'X-Server-Function-Format':'8'}})}});

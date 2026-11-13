@@ -1,0 +1,18 @@
+{
+	"$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json",
+	// Findings, evidence and report repros are standalone failing programs;
+	// upstream snapshots and build output are not ours.
+	"ignorePatterns": [
+		"findings/**",
+		"evidence/**",
+		"report/**",
+		".upstream/**",
+		".scratch/**",
+		".build/**",
+		"artifacts/**",
+	],
+	// Test files, fixtures and scripts are run by `bun test` and `bun run`.
+	"supportEntry": ["suite/*.ts", "scripts/*.ts", "tracks/**/*.ts", "tracks/**/*.tsx", "harness/preload.ts"],
+	// Local-only helper that renders .npmrc from the vault; not a dependency.
+	"ignoreBinaries": ["latch"],
+}

@@ -256,7 +256,7 @@ if (isServer) {
     async () => {
       const fn = reference(() => 7);
       const response = await server.handleServerFunctionRequest(request(fn.id), {
-        wrapInvocation: (run, context) => {
+        wrapInvocation: (_run, context) => {
           equal(context.direct, false);
           equal(server.getServerFunctionInvocation()?.id, fn.id);
           ok(getRequestEvent());

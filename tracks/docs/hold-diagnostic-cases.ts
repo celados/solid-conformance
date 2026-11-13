@@ -1,4 +1,4 @@
-import {createRoot,createSignal,createMemo,createOptimistic,action,affects,createRenderEffect,createEffect,isPending,latest,flush,OBSERVE} from 'solid-js'
+import {createRoot,createSignal,createMemo,createOptimistic,action,createRenderEffect,createEffect,isPending,latest,flush,OBSERVE} from 'solid-js'
 import {attribution,feedback} from 'solid-js/attribution'
 import {isDev,isServer} from '@solidjs/web'
 import {deferred,ticks} from '../../harness/timing'

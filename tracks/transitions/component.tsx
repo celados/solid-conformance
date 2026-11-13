@@ -6,7 +6,7 @@ import {
 	createSignal, createOptimistic, action, Show, Loading, Errored,
 	configureClientErrors, untrack,
 } from 'solid-js'
-import type { TransitionSpec, Trace, Operation } from '../../harness/transitions'
+import type { TransitionSpec, Trace } from '../../harness/transitions'
 import type { Tree } from '../../harness/tree'
 import { deferred, controlledIterable, ticks } from '../../harness/timing'
 

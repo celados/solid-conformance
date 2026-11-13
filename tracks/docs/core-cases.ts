@@ -2,13 +2,13 @@ import {
 	createRoot, createSignal, createMemo, createEffect, createRenderEffect, onCleanup, onSettled,
 	flush, untrack, runWithOwner, createContext, useContext, createStore, createProjection,
 	deep, snapshot, merge, omit, reconcile, action, createOptimistic, createOptimisticStore,
-	resolve, until, refresh, affects, isPending, latest,
+	resolve, until, refresh, affects, isPending,
 } from 'solid-js'
 import * as Solid from 'solid-js'
 const storePath = (Solid as unknown as { storePath: typeof import('@solidjs/signals').storePath }).storePath
 import { isDev } from '@solidjs/web'
 import { deferred, controlledIterable, ticks } from '../../harness/timing'
-import { equal, ok, throws, type DocCase } from './registry'
+import { equal, throws, type DocCase } from './registry'
 
 async function root<T>(setup: () => T, check: (state: T) => unknown | Promise<unknown>) {
 	let dispose!: () => void

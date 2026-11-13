@@ -23,11 +23,9 @@ for (const kind of [
     records.push({ event, live }),
   );
   const original = new Error("body-original");
-  let controller!: ReadableStreamDefaultController<Uint8Array>;
   const response = new Response(
     new ReadableStream<Uint8Array>({
       start(c) {
-        controller = c;
         c.enqueue(
           createChunk(
             JSON.stringify({ type: "start", id: "wire", version: 1 }),

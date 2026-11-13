@@ -1,4 +1,4 @@
-import { createRoot, createSignal, createMemo, createEffect, createRenderEffect, createStore, createOptimistic, action, mapArray, isPending, latest, OBSERVE, DEV, flush, getOwner, untrack } from 'solid-js'
+import { createRoot, createSignal, createMemo, createEffect, createRenderEffect, createStore, createOptimistic, action, mapArray, isPending, OBSERVE, DEV, flush, getOwner, untrack } from 'solid-js'
 import { attribution, costs, feedback, why, subscriptions, graphSize, formatRerun, formatOrigin, type AttributionOptions } from 'solid-js/attribution'
 import { isDev, isServer } from '@solidjs/web'
 import { equal, ok, type DocCase } from './registry'

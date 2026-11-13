@@ -163,7 +163,6 @@ import {
 import {
   frameTransformResult,
   frameTransformDirectResult,
-  ServerComponentPlugin,
 } from "@solidjs/web/frames/server";
 (globalThis as any)[RequestContext] ??= new AsyncLocalStorage();
 configureServerFunctionsServer({

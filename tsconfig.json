@@ -1,11 +1,14 @@
 {
-  "compilerOptions": {
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    "target": "ESNext", "module": "Preserve", "moduleResolution": "bundler",
-    "jsx": "preserve", "jsxImportSource": "@solidjs/web", "types": ["bun"],
-    "allowJs": true, "checkJs": false, "noEmit": true, "strict": true,
-    "skipLibCheck": true, "noUncheckedIndexedAccess": true
-  },
-  "include": ["harness", "scripts", "tracks", "findings"],
-  "exclude": ["node_modules", ".scratch", ".upstream", ".build"]
+	"extends": "@celados/harness/tsconfig/bun.json",
+	"compilerOptions": {
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"module": "Preserve",
+		"jsx": "preserve",
+		"jsxImportSource": "@solidjs/web",
+		"allowJs": true,
+		"checkJs": false,
+		"noUncheckedIndexedAccess": true
+	},
+	"include": ["harness", "scripts", "tracks", "findings", "*.ts"],
+	"exclude": ["node_modules", ".scratch", ".upstream", ".build"]
 }

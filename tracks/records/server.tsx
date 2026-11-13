@@ -1,7 +1,7 @@
 import * as frames from '../frames/server'
 import { OBSERVE, createMemo, Loading } from 'solid-js'
-import { renderToStream, renderToString, getRequestEvent, createRequestEvent, RequestContext } from '@solidjs/web'
-import { registerServerReference, createServerReference, configureServerFunctionsServer, handleServerFunctionRequest } from '@solidjs/web/server-functions/server'
+import { renderToStream, renderToString, createRequestEvent, RequestContext } from '@solidjs/web'
+import { registerServerReference, createServerReference, handleServerFunctionRequest } from '@solidjs/web/server-functions/server'
 const records:{type:string;event:any;live:any}[]=[]
 const offs=['invocation','render','boundary','request','frame','recovery'].map(type=>OBSERVE?.records.subscribe(type as any,(event,live:any)=>records.push({type,event,live:{request:!!live?.request,response:!!live?.response,args:live?.args,result:live?.result,error:live?.error?String(live.error):undefined}}),{bodies:true}))
 export const echo=createServerReference(registerServerReference('records-echo',async(value:unknown)=>{await new Promise(r=>setTimeout(r,5));return{value}}))

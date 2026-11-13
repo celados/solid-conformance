@@ -8,7 +8,7 @@ export async function traceCases(){
  for(const scenario of ['merge','replacement','throw','absent','no-request']){
   let calls=0,previous=0;const errors:unknown[]=[];const original=console.error;console.error=(...args)=>errors.push(args)
   const old=slot?.provide(()=>{previous++;return {traceId:'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}})
-  const release=slot?.provide(request=>{calls++;if(scenario==='throw')throw new Error('trace fixture');if(scenario==='absent')return undefined;return {traceId:'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',spanId:'cccccccccccccccc',parentId:'dddddddddddddddd',sampled:true,entries:{vendor:'vendor-entry'}}})
+  const release=slot?.provide(()=>{calls++;if(scenario==='throw')throw new Error('trace fixture');if(scenario==='absent')return undefined;return {traceId:'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',spanId:'cccccccccccccccc',parentId:'dddddddddddddddd',sampled:true,entries:{vendor:'vendor-entry'}}})
   try{
    if(scenario==='no-request'){
     const html=renderToString(()=> <span>{getTraceContext()?.traceId}</span>);cases.push({scenario,calls,previous,errors:errors.length,html});continue

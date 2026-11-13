@@ -6,3 +6,6 @@ node_modules/
 .build/
 artifacts/*
 !artifacts/.gitkeep
+.claude/worktrees/
+.agents/worktrees/
+.npmrc

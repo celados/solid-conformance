@@ -32,7 +32,7 @@ async function prepare(version: 'rc15' | 'head', work: string) {
 	const overrides = { ...dependencies }
 	if (version === 'head') {
 		const snapshot = resolve(directory, '.scratch/upstream', head, 'packages')
-		for (const [folder, name] of Object.entries(packageNames)) {
+		for (const [folder] of Object.entries(packageNames)) {
 			const destination = resolve(snapshot, folder)
 			if (!(await Bun.file(resolve(destination, 'package.json')).exists())) {
 				const source = resolve(repository, '.upstream', head, 'packages', folder)

@@ -1,8 +1,6 @@
 import { normalizedDOM } from './dom'
 import { render, hydrate, isDev } from '@solidjs/web'
 
-import type {} from './client-api'
-import type { Spec } from './tree'
 
 import { createCase } from './component'
 import { ticks } from './timing'

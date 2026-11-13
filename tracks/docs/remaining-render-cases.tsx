@@ -1,5 +1,5 @@
 import { ROOT_ERROR_HOOK } from '@solidjs/signals'
-import { createSignal, flush, getOwner, onCleanup, createComponent, createStore, For, Repeat, Reveal, Loading, createMemo, createEffect, createContext, useContext, Show, Switch, Match, Errored, configureClientErrors, createRenderEffect, createRoot, resolve, refresh, createProjection, isPending, action, latest, createOptimistic, OBSERVE, untrack } from 'solid-js'
+import { createSignal, flush, getOwner, onCleanup, createComponent, createStore, For, Repeat, Reveal, Loading, createMemo, createEffect, createContext, useContext, Show, Switch, Match, Errored, configureClientErrors, createProjection, isPending, action, latest, OBSERVE, untrack } from 'solid-js'
 import { render, renderToString, isServer, isDev, dynamic, Dynamic, clientOnly, renderToStream, Portal, delegateEvents } from '@solidjs/web'
 import { deferred, ticks } from '../../harness/timing'
 import { equal, ok, type DocCase } from './registry'

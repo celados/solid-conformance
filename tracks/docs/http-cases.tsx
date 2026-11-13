@@ -1,12 +1,11 @@
 import { createRoot } from 'solid-js'
 import {
-	isServer, createRequestEvent, getRequestEvent, createResponseStub, createSSRResponse, commitEventResponse,
-	renderToStream, renderToString, httpStatus, httpHeader, getTraceContext, composeMiddleware,
-	parseCookieHeader, serializeCookie, redirect, reload, respond,
+	isServer, createRequestEvent, getRequestEvent, createSSRResponse, commitEventResponse,
+	renderToStream, httpStatus, httpHeader, getTraceContext, composeMiddleware,
+	parseCookieHeader, serializeCookie, 
 } from '@solidjs/web'
 import { provideRequestEvent } from '@solidjs/web/storage'
-import { equal, ok, throws, type DocCase } from './registry'
-import { deferred } from '../../harness/timing'
+import { equal, ok, type DocCase } from './registry'
 const cases:DocCase[]=[]
 function doc(name:string,statement:string,run:DocCase['run']){cases.push({id:`12/${name}`,file:'12-ssr-http.md',statement,run})}
 function scope<T>(fn:()=>T,headers?:HeadersInit){const event=createRequestEvent(new Request('http://conformance.test/',{headers}));return provideRequestEvent(event,()=>fn())}

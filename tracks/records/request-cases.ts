@@ -1,6 +1,6 @@
 import { OBSERVE } from 'solid-js'
 import { attribution } from 'solid-js/attribution'
-import { createServerReference, configureServerFunctionsClient, withMeta } from '@solidjs/web/server-functions/client'
+import { createServerReference, configureServerFunctionsClient } from '@solidjs/web/server-functions/client'
 // RFC 08 L855/L869: public request/call records, controlled fetch rather than private emitter calls.
 export async function requestCases(){
  const rows:any[]=[]
@@ -19,7 +19,7 @@ export async function requestCases(){
   if(scenario==='listener-throw')extra=OBSERVE?.records.subscribe('request',()=>{throw new Error('listener fixture')})
   if(scenario==='duplicate-listener'){const callback=observer('duplicate');extra=OBSERVE?.records.subscribe('call',callback);duplicate=OBSERVE?.records.subscribe('call',callback,{bodies:true})}
   configureServerFunctionsClient({
-   fetch:(_address,init)=>{sends++;if(scenario==='fetch-throw')throw new Error('fetch fixture');if(scenario==='listener-unsubscribe')offRequest?.();if(scenario==='pending-row')return new Promise(r=>resolve=r);const response=Response.json(7,{headers:{"X-Server-Function-Format":"8"}});if(scenario==='uncloneable')response.clone=()=>{throw new Error('clone fixture')};return response},
+   fetch:(_address)=>{sends++;if(scenario==='fetch-throw')throw new Error('fetch fixture');if(scenario==='listener-unsubscribe')offRequest?.();if(scenario==='pending-row')return new Promise(r=>resolve=r);const response=Response.json(7,{headers:{"X-Server-Function-Format":"8"}});if(scenario==='uncloneable')response.clone=()=>{throw new Error('clone fixture')};return response},
    prepareRequest:async(init):Promise<RequestInit>=>{if(scenario==='prepare-throw')throw new Error('prepare fixture');if(scenario==='reconstruction-failed')return {...init,headers:{'invalid header':'tolerated by fake fetch'}};if(scenario==='origin-async-prepare')await Promise.resolve();return {...init,...(body?{body:body as BodyInit}:{}),headers:{...Object.fromEntries(new Headers(init.headers)),'x-records':'final'}}},
    responseHandler:scenario==='handler-claimed'?{handle:()=>9}:null as any,
    serializeArgs:scenario==='serialize-throw'?()=>{throw new Error('serialize fixture')}:undefined,

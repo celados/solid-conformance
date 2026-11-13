@@ -1,7 +1,6 @@
-import { createSignal, createMemo, createEffect, createRenderEffect, Show, Loading, flush, OBSERVE, getOwner, DEV } from 'solid-js'
+import { createSignal, createMemo, createEffect, createRenderEffect, Show, Loading, flush, OBSERVE, DEV } from 'solid-js'
 import { render } from '@solidjs/web'
 import { enablePerformanceTracks } from '@solidjs/web/performance-tracks'
-import { attribution } from 'solid-js/attribution'
 export async function performanceCases(){
  performance.clearMeasures();const tasks:string[]=[];const originalTask=(console as any).createTask
  ;(console as any).createTask=(name:string)=>{tasks.push(name);return typeof originalTask==='function'?originalTask.call(console,name):{run:(fn:()=>unknown)=>fn()}}

@@ -1,8 +1,6 @@
 import { AsyncLocalStorage } from "node:async_hooks";
-import { createMemo, onCleanup } from "solid-js";
 import {
   RequestContext,
-  getRequestEvent,
   createRequestEvent,
   renderToStream,
   NoHydration,

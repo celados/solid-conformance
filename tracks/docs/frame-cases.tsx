@@ -1,5 +1,5 @@
 import { isServer, renderToStream, renderToString } from "@solidjs/web";
-import { Loading, createMemo, Errored, createSignal, createStore, createOptimistic, createOptimisticStore } from "solid-js";
+import { Loading, createMemo, createSignal, createStore, createOptimistic, createOptimisticStore } from "solid-js";
 import {
   renderServerComponent,
   asyncArg,

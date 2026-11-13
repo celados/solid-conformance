@@ -409,7 +409,7 @@ doc(
   "An Error used as data rather than thrown preserves its authored properties without sanitization.",
   async () => {
     const original = new Error("authored-data");
-    const fn = createServerReference(
+    createServerReference(
       registerServerReference("error-as-data", () => original),
     );
     const result = await observed(async () => {
@@ -1221,7 +1221,7 @@ doc(
     const id = "wire-identical";
     let opened = 0,
       closed = 0;
-    const fn = GET(
+    GET(
       createServerReference(
         registerServerReference(id, () => ({
           pending: new Promise<number>((resolve) =>

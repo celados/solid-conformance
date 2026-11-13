@@ -12,7 +12,7 @@ export function documentedRouterTypes() {
   get(1); get.keyFor(1)
   // @ts-expect-error Query argument types follow the wrapped function.
   get('1')
-  const save = action(async (id: number, value: string) => value, 'typed-save')
+  const save = action(async (_id: number, value: string) => value, 'typed-save')
   const bound = save.with(1); bound('updated')
   // @ts-expect-error Bound action keeps the types of remaining arguments.
   bound(2)

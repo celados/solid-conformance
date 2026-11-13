@@ -1,9 +1,9 @@
 import {
 	createSignal, createMemo, createContext, useContext, Show, For, Switch, Match, Repeat,
-	Loading, Errored, Reveal, flush, untrack, configureClientErrors, createEffect,
+	Loading, Errored, Reveal, configureClientErrors,
 } from 'solid-js'
 import { render, renderToString, renderToStream, dynamic, clientOnly, isServer, isDev, Portal, generateHydrationScript } from '@solidjs/web'
-import { controlledIterable, deferred, ticks } from '../../harness/timing'
+import { deferred, ticks } from '../../harness/timing'
 import { equal, ok, throws, type DocCase } from './registry'
 
 const cases: DocCase[]=[]

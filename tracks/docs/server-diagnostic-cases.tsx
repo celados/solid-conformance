@@ -1,5 +1,5 @@
 import {OBSERVE,createSignal,createStore,createOptimistic,createOptimisticStore,createMemo,flush,Loading,Errored,Reveal,lazy} from 'solid-js'
-import {isServer,isDev,render,hydrate,renderToString,renderToStream,dynamic,useHead,type JSX} from '@solidjs/web'
+import {isServer,isDev,render,renderToString,renderToStream,dynamic,useHead,type JSX} from '@solidjs/web'
 import {equal,ok,type DocCase} from './registry'
 import {ticks,deferred} from '../../harness/timing'
 const cases: DocCase[] = []
