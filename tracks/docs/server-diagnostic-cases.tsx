@@ -1019,7 +1019,6 @@ if (!isServer)
 		'lowercase-event',
 		'L708: compiled, spread and hydrated lowercase callback attributes stringify rather than bind; warn once per name.',
 		async () => {
-			// @ts-expect-error Deliberate documented JavaScript-only lowercase JSX attribute misuse.
 			for (const [name, App] of [
 				[
 					'onclick',
@@ -1037,6 +1036,7 @@ if (!isServer)
 					'onmousedown',
 					() => (
 						<button
+							// @ts-expect-error Deliberate documented JavaScript-only lowercase JSX attribute misuse.
 							onmousedown={
 								(() => {
 									throw new Error('not an event')

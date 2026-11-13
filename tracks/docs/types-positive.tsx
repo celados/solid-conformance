@@ -232,9 +232,9 @@ const locatedDiagnostic: DiagnosticEvent = {
 	nodeName: 'count',
 	data: { value: 1 },
 }
-// @ts-expect-error Severity is the documented finite union.
 const forbiddenSeverity: DiagnosticEvent = {
 	...minimalDiagnostic,
+	// @ts-expect-error Severity is the documented finite union.
 	severity: 'fatal',
 }
 // @ts-expect-error A record does not contain its live subject.

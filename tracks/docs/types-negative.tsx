@@ -131,8 +131,8 @@ setStore(async (draft) => {
 import { OBSERVE } from 'solid-js'
 // @ts-expect-error unknown record name is not a documented record type
 OBSERVE!.records.subscribe('invented-conformance-record', () => {})
-// @ts-expect-error timing is numeric, not a string
 OBSERVE!.records.subscribe('call', (e) => {
+	// @ts-expect-error timing is numeric, not a string
 	const timing: string = e.durationMs
 	void timing
 })
