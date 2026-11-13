@@ -90,7 +90,7 @@ const close = render(
 		const first = performance
 			.getEntriesByType('resource')
 			.filter((e) => e.name.includes('/_server/')).length
-		await revalidate(read.keyFor(7))
+		revalidate(read.keyFor(7))
 		await ticks(25)
 		return {
 			postHasURL,

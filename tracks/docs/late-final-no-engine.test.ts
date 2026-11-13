@@ -59,7 +59,7 @@ test('08 late no engine bundle and declared frames', async () => {
 		expect(row.origin).toBe(mode === 'production' ? 'undefined' : 'function')
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 60000)

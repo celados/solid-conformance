@@ -63,7 +63,7 @@ test('weak root registry collects dropped roots and retains subscribed roots', a
 		)
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 30000)

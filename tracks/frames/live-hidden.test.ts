@@ -82,7 +82,7 @@ for (const mode of ['development', 'observe', 'production'] as BuildMode[])
 			} finally {
 				ssr.sendSecond()
 				await taskChrome.close()
-				server.stop(true)
+				await server.stop(true)
 				await rm(dir, { recursive: true, force: true })
 			}
 		},

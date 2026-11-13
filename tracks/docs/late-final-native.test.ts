@@ -203,7 +203,7 @@ test('08 L1220 native timeline labels colors clocks and all structured families'
 			expect(props(nav)).toHaveProperty(key)
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 60000)

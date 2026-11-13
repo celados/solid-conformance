@@ -282,6 +282,7 @@ doc(
 	() => {
 		function Bad() {
 			throw new Error('private-error')
+			// oxlint-disable-next-line no-unreachable -- the probe component throws on purpose; the unreachable return only keeps the JSX.Element return type
 			return <span />
 		}
 		return view(
@@ -442,6 +443,7 @@ if (!isServer) {
 			})
 			function Bad() {
 				throw error
+				// oxlint-disable-next-line no-unreachable -- the probe component throws on purpose; the unreachable return only keeps the JSX.Element return type
 				return <span />
 			}
 			await dom(
@@ -472,6 +474,7 @@ if (!isServer) {
 		async () => {
 			function Bad() {
 				throw new Error('child')
+				// oxlint-disable-next-line no-unreachable -- the probe component throws on purpose; the unreachable return only keeps the JSX.Element return type
 				return <span />
 			}
 			await dom(
@@ -480,6 +483,7 @@ if (!isServer) {
 						<Errored
 							fallback={(_e) => {
 								throw new Error('fallback')
+								// oxlint-disable-next-line no-unreachable -- the probe component throws on purpose; the unreachable return only keeps the JSX.Element return type
 								return <i />
 							}}
 						>

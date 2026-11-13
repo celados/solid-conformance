@@ -509,6 +509,7 @@ if (isServer) {
 		'Leading bound args ride the action query while trailing FormData stays a natural body.',
 		async () => {
 			const fn = reference(
+				// oxlint-disable-next-line typescript/restrict-plus-operands -- the probe concatenates the raw form entry to show how an uncoerced FormDataEntryValue arrives at the server fn
 				(id: number, form: FormData) => id + ':' + form.get('title'),
 			)
 			const url = server.serverFunctionActionUrl(fn, 3)

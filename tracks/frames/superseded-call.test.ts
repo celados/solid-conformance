@@ -81,7 +81,7 @@ for (const mode of ['development', 'observe', 'production'] as BuildMode[])
 				await page.evaluate(() => (window as any).superseded.close())
 			} finally {
 				await browser.close()
-				server.stop(true)
+				await server.stop(true)
 				await rm(dir, { recursive: true, force: true })
 			}
 		},

@@ -64,7 +64,7 @@ export async function withClientPage<T>(
 			await browser.close()
 		}
 	} finally {
-		server.stop(true)
+		await server.stop(true)
 		await rm(directory, { recursive: true, force: true })
 	}
 }

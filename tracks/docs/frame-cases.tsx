@@ -365,7 +365,7 @@ if (isServer) {
 					}
 					throws(() => {
 						if (second === 'pipe') pipe()
-						else if (second === 'pipeTo') pipeTo()
+						else if (second === 'pipeTo') void pipeTo()
 						else void render.readable
 					}, 'already consumed')
 					if (first !== 'pipeTo')

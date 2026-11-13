@@ -60,7 +60,7 @@ test('router noJS HTTP flash cookie seeds success and rejection then clears once
 		expect(mod.count()).toBe(2)
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 60000)

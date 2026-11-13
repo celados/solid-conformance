@@ -62,7 +62,7 @@ test('RFC08 L1125/L1181: trusted Chrome event timings join the dispatched intera
 		await page.evaluate(() => (window as any).inputHarness.close())
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 60000)

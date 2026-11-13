@@ -47,6 +47,7 @@ configureServerFunctionsClient({
 	prepareRequest: async (init) => {
 		hooks.push('replacement')
 		await gate
+		// oxlint-disable-next-line typescript/no-misused-spread -- mirrors the documented prepareRequest pattern (client.d.ts: `{ ...init.headers, Authorization }`); the transport hands the hook a plain header record, not a Headers instance
 		return { ...init, headers: { ...init.headers, 'X-Fixture': 'ready' } }
 	},
 })
@@ -128,6 +129,7 @@ let prepareLive = 0
 configureServerFunctionsClient({
 	prepareRequest: (init) => {
 		prepareLive++
+		// oxlint-disable-next-line typescript/no-misused-spread -- mirrors the documented prepareRequest pattern (client.d.ts: `{ ...init.headers, Authorization }`); the transport hands the hook a plain header record, not a Headers instance
 		return { ...init, headers: { ...init.headers, 'X-Live-Fixture': 'kept' } }
 	},
 })

@@ -72,7 +72,7 @@ test('05-async-data.md L245 / 10-server-functions.md L269: prepareRequest and ri
 				expect(messages).toEqual([])
 			} finally {
 				await page.close()
-				server.stop(true)
+				await server.stop(true)
 			}
 		}
 	} finally {

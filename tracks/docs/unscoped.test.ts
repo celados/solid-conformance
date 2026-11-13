@@ -60,7 +60,7 @@ test('unscoped thunk warnings expose server and hydrate permutation; call hole i
 			}
 			const page = await browser.newPage()
 			page.on('pageerror', (e) => console.log('pageerror', String(e)))
-			await page.goto(server.url + '?bad=' + bad + (solo ? '&solo=1' : ''))
+			await page.goto(server.url.href + '?bad=' + bad + (solo ? '&solo=1' : ''))
 			await page.waitForFunction(
 				() => !!(window as any).inspect,
 				{},
@@ -80,7 +80,7 @@ test('unscoped thunk warnings expose server and hydrate permutation; call hole i
 			await page.close()
 		}
 		const page = await browser.newPage()
-		await page.goto(server.url + '?negatives=1')
+		await page.goto(server.url.href + '?negatives=1')
 		await page.waitForFunction(() => !!(window as any).inspect)
 		for (const button of await page.getByRole('button').all())
 			await button.click()
@@ -92,7 +92,7 @@ test('unscoped thunk warnings expose server and hydrate permutation; call hole i
 		await page.close()
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 30000)

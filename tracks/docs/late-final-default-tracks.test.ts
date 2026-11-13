@@ -74,7 +74,7 @@ test('performance tracks defaults use tier posture, exact tiny-span floor and va
 		}
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 30000)

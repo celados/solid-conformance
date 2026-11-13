@@ -36,7 +36,7 @@ test('post-mount router and lazy transitions remain outside initial-mount warnin
 			const page = await browser.newPage()
 			const errors: string[] = []
 			page.on('pageerror', (e) => errors.push(String(e)))
-			await page.goto(server.url + (hydrate ? '?hydrate' : ''))
+			await page.goto(server.url.href + (hydrate ? '?hydrate' : ''))
 			await page.waitForFunction(() => !!(window as any).postmount)
 			const r = await page.evaluate(() => (window as any).postmount.run())
 			console.log(hydrate, r)
@@ -51,7 +51,7 @@ test('post-mount router and lazy transitions remain outside initial-mount warnin
 		}
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 30000)

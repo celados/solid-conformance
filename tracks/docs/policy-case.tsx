@@ -130,6 +130,7 @@ export function policyCase(spec: Spec) {
 					) as Promise<number>
 				if (kind === 'tracking-await')
 					return (async () => {
+						// oxlint-disable-next-line typescript/await-thenable -- await 0 deliberately crosses an await boundary so the later read is untracked
 						await 0
 						return (await fetch('/doc-policy-source')).json() as Promise<number>
 					})()

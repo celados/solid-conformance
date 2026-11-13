@@ -120,7 +120,7 @@ import * as oldUniversal from 'solid-js/universal'
 // @ts-expect-error The Solid 1 web subpath was removed.
 import * as oldWeb from 'solid-js/web'
 // @ts-expect-error The context itself is the provider; Provider was removed.
-createContext(0).Provider
+createContext(0).Provider // oxlint-disable-line no-unused-expressions -- bare property access is the type-level probe; ts-expect-error must stay on the line above
 // 08-dev-diagnostics.md: a store setter is a synchronous transaction, never an async callback.
 // @ts-expect-error Store setter callbacks may return the host record or void, not a Promise.
 setStore(async (draft) => {

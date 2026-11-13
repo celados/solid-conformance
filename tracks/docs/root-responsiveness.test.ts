@@ -36,7 +36,7 @@ test('RFC08: public responsiveness acknowledgement, initial Loading and derived 
 		expect(result.filter((r: any) => r.error)).toEqual([])
 	} finally {
 		await browser.close()
-		host.stop(true)
+		await host.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 60000)

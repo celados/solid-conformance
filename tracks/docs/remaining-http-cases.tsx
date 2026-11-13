@@ -56,6 +56,7 @@ if (isServer) {
 				function Bad() {
 					calls++
 					throw new Error('SSR static')
+					// oxlint-disable-next-line no-unreachable -- the probe component throws on purpose; the unreachable return only keeps the JSX.Element return type
 					return <span />
 				}
 				const html = renderToString(

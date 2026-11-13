@@ -34,7 +34,7 @@ test('08 late diagnostics native records fields and exclusion controls', async (
 		expect(result.filter((r: any) => r.error)).toEqual([])
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 30000)

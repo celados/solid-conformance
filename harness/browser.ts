@@ -101,7 +101,7 @@ export async function openHarness(
 	try {
 		browser = await chromium.launch({ channel: 'chrome', headless: true })
 	} catch (e) {
-		server.stop(true)
+		await server.stop(true)
 		throw e
 	}
 	let id = 0
@@ -180,7 +180,7 @@ export async function openHarness(
 		},
 		async close() {
 			await browser.close()
-			server.stop(true)
+			await server.stop(true)
 			await rm(directory, { recursive: true, force: true })
 		},
 	}

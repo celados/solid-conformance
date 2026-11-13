@@ -65,7 +65,7 @@ test('router metadata replaces GET property; action flight seeds cache and error
 		expect(mod.dataCounts()).toEqual({ reads: 1, generation: 1, key: r.key })
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 60000)

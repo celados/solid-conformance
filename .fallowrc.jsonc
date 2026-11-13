@@ -4,21 +4,25 @@
 	// upstream snapshots and build output are not ours.
 	"ignorePatterns": [
 		"findings/**",
-		"evidence/**",
+		".orchestration/**",
 		"report/**",
 		".upstream/**",
 		".scratch/**",
 		".build/**",
-		"artifacts/**",
 	],
-	// Test files, fixtures and scripts are run by `bun test` and `bun run`.
+	// The harness is imported through `import("../../harness/server")` and
+	// bundled by Bun.build at run time, which the static graph cannot follow.
+	"entry": ["harness/*.ts", "harness/*.tsx"],
+	// Test files, fixtures, scripts and the harness config run outside the package graph.
 	"supportEntry": [
 		"suite/*.ts",
 		"scripts/*.ts",
 		"tracks/**/*.ts",
 		"tracks/**/*.tsx",
-		"harness/preload.ts",
+		"harness.config.ts",
 	],
+	// Imported by the fixtures under findings/ (ignored above).
+	"ignoreDependencies": ["@solidjs/vite-plugin"],
 	// Local-only helper that renders .npmrc from the vault; not a dependency.
 	"ignoreBinaries": ["latch"],
 }

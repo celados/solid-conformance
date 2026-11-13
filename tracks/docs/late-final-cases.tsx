@@ -474,7 +474,7 @@ doc(
 			}
 			try {
 				if (kind === 'interaction')
-					OBSERVE.attribution.withInteraction(
+					void OBSERVE.attribution.withInteraction(
 						{ type: 'click', target: 'button#origin' },
 						call,
 					)
@@ -494,7 +494,7 @@ doc(
 						write = w
 						if (kind === 'effect')
 							createEffect(r, (n) => {
-								if (n) call()
+								if (n) void call()
 							})
 						else if (kind === 'navigation') createMemo(() => (r() ? call() : 0))
 						else {

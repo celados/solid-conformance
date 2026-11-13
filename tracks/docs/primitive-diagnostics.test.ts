@@ -47,7 +47,7 @@ test('08 diagnostics remaining primitive families and halt lifecycle in V8', asy
 		expect(results.length).toBe(81)
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 60000)

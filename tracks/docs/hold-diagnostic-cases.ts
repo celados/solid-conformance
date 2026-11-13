@@ -182,6 +182,7 @@ if (!isServer) {
 					flush()
 					await ticks(4)
 					gate.resolve(2)
+					// oxlint-disable-next-line typescript/await-thenable -- run() returns void for the effect kind and a promise for the action kind; one await covers both
 					await done
 					await ticks(8)
 					flush()

@@ -38,7 +38,7 @@ test('lowercase warning catches compiled spread assign across CSR and hydration'
 				const errors: string[] = []
 				page.on('pageerror', (e) => errors.push(String(e)))
 				await page.goto(
-					server.url + '?mode=' + mode + (hydrate ? '&hydrate' : ''),
+					server.url.href + '?mode=' + mode + (hydrate ? '&hydrate' : ''),
 				)
 				await page.waitForFunction(() => !!(window as any).lowercase)
 				await page.getByRole('button').click()
@@ -59,7 +59,7 @@ test('lowercase warning catches compiled spread assign across CSR and hydration'
 			}
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 30000)

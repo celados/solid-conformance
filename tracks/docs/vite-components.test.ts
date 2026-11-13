@@ -180,7 +180,7 @@ test('RFC11 L15: components:true production generated handler renders and hydrat
 			JSON.stringify({ manifest, files, html, errors }),
 		)
 	} finally {
-		host?.stop(true)
+		await host?.stop(true)
 		await browser.close()
 		await rm(root, { recursive: true, force: true })
 	}

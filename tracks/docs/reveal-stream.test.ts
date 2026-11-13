@@ -84,7 +84,7 @@ test('03-control-flow.md L346–348: streamed Reveal holds resolved templates un
 					expect(messages).toEqual([])
 				} finally {
 					await page.close()
-					server.stop(true)
+					await server.stop(true)
 				}
 			}
 		for (const order of ['sequential', 'natural']) {

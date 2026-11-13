@@ -48,7 +48,7 @@ const iterator = source[Symbol.asyncIterator]()
 ;(window as any).liveHooks = {
 	snapshot: () => ({ hooks, value, boxed, done, error }),
 }
-;(async () => {
+void (async () => {
 	try {
 		const first = await iterator.next()
 		const result = await first.value.later

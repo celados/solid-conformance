@@ -122,7 +122,7 @@ test('08 late HTTP frame identity and live artifact tables', async () => {
 		}
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		mod.stop()
 		await rm(dir, { recursive: true, force: true })
 	}

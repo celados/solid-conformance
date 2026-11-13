@@ -174,6 +174,7 @@ if (!isServer) {
 								async () => {
 									runs++
 									if (shape === 'unowned') await gate.promise
+									// oxlint-disable-next-line typescript/await-thenable -- awaiting a plain value (microtask turn, no promise) is the point: the memo must resume after an await without a tracked promise
 									else await null
 									return helper(shape === 'deep' ? 100 : 0)
 								},
@@ -383,6 +384,7 @@ if (!isServer) {
 						const gate = deferred<number>()
 						const close = root(() => {
 							const source = createMemo(() => (pending ? gate.promise : 1))
+							// oxlint-disable-next-line typescript/no-deprecated -- this probe observes the diagnostics of the deprecated createTrackedEffect itself, so it must call it
 							createTrackedEffect(() => {
 								try {
 									source()
@@ -498,6 +500,7 @@ if (!isServer) {
 								invalidate = set
 								const bad = () => invalid as any
 								if (kind === 'effect') createEffect(n, bad)
+								// oxlint-disable-next-line typescript/no-deprecated -- this probe observes the diagnostics of the deprecated createTrackedEffect itself, so it must call it
 								else if (kind === 'tracked') createTrackedEffect(bad)
 								else if (kind === 'settled') onSettled(bad)
 								else {
@@ -527,6 +530,7 @@ if (!isServer) {
 						cleaned++
 					}
 					if (kind === 'effect') createEffect(() => 1, callback)
+					// oxlint-disable-next-line typescript/no-deprecated -- this probe observes the diagnostics of the deprecated createTrackedEffect itself, so it must call it
 					else if (kind === 'tracked') createTrackedEffect(callback)
 					else if (kind === 'settled') onSettled(callback)
 					else {
@@ -705,6 +709,7 @@ if (!isServer) {
 						if (isDev) throws(flush, 'not reentrant')
 						else flush()
 					}
+					// oxlint-disable-next-line typescript/no-deprecated -- this probe observes the diagnostics of the deprecated createTrackedEffect itself, so it must call it
 					kind === 'tracked' ? createTrackedEffect(run) : onSettled(run)
 				})
 				try {

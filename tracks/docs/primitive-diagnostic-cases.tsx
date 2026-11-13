@@ -327,6 +327,7 @@ if (!isServer) {
 							caught = e
 						}
 					}
+					// oxlint-disable-next-line typescript/no-deprecated -- this probe observes the diagnostics of the deprecated createTrackedEffect itself, so it must call it
 					if (family === 'tracked') createTrackedEffect(body)
 					else onSettled(body)
 					flush()
@@ -356,6 +357,7 @@ if (!isServer) {
 								caught = e
 							}
 						}
+						// oxlint-disable-next-line typescript/no-deprecated -- this probe observes the diagnostics of the deprecated createTrackedEffect itself, so it must call it
 						scope === 'tracked' ? createTrackedEffect(body) : onSettled(body)
 						flush()
 					})
@@ -537,6 +539,7 @@ if (!isServer) {
 							caught = e
 						}
 					}
+					// oxlint-disable-next-line typescript/no-deprecated -- this probe observes the diagnostics of the deprecated createTrackedEffect itself, so it must call it
 					shape === 'tracked' ? createTrackedEffect(run) : onSettled(run)
 				})
 				flush()
@@ -558,7 +561,7 @@ if (!isServer) {
 						})
 						const invoke = () => {
 							try {
-								operation === 'action' ? run() : refresh(source)
+								operation === 'action' ? void run() : void refresh(source)
 							} catch (e) {
 								caught = e
 							}
@@ -833,6 +836,7 @@ if (!isServer) {
 						}
 					})
 				else
+					// oxlint-disable-next-line typescript/no-deprecated -- this probe observes the diagnostics of the deprecated createTrackedEffect itself, so it must call it
 					createTrackedEffect(() => {
 						read()
 						runs++
@@ -984,7 +988,7 @@ if (!isServer) {
 						output = createMemo(
 							() =>
 								new Custom((resolve) => {
-									gate.promise.then(() => resolve(read()))
+									void gate.promise.then(() => resolve(read()))
 								}),
 						)
 					} else if (shape === 'thenable')
@@ -992,7 +996,7 @@ if (!isServer) {
 							() =>
 								({
 									then(resolve: (v: number) => void) {
-										gate.promise.then(() => resolve(read()))
+										void gate.promise.then(() => resolve(read()))
 									},
 								}) as any,
 						)
@@ -1199,7 +1203,8 @@ if (!isServer) {
 					else
 						close = root(() => {
 							outer === 'tracked'
-								? createTrackedEffect(setup)
+								? // oxlint-disable-next-line typescript/no-deprecated -- this probe observes the diagnostics of the deprecated createTrackedEffect itself, so it must call it
+									createTrackedEffect(setup)
 								: onSettled(setup)
 						})
 					try {
@@ -1231,6 +1236,7 @@ if (!isServer) {
 					const run = () => {
 						seen.push(read())
 					}
+					// oxlint-disable-next-line typescript/no-deprecated -- this probe observes the diagnostics of the deprecated createTrackedEffect itself, so it must call it
 					scope === 'tracked' ? createTrackedEffect(run) : onSettled(run)
 				})
 				flush()

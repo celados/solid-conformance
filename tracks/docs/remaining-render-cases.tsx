@@ -384,6 +384,7 @@ if (!isServer) {
 			try {
 				function Bad() {
 					throw 7
+					// oxlint-disable-next-line no-unreachable -- the probe component throws on purpose; the unreachable return only keeps the JSX.Element return type
 					return <span />
 				}
 				await dom(
@@ -429,6 +430,7 @@ if (!isServer) {
 					document.body.append(element)
 					function Bad() {
 						throw new Error(perRoot ? 'local' : 'ambient')
+						// oxlint-disable-next-line no-unreachable -- the probe component throws on purpose; the unreachable return only keeps the JSX.Element return type
 						return <span />
 					}
 					const dispose = render(
@@ -1153,6 +1155,7 @@ if (!isServer) {
 				try {
 					function Bad() {
 						throw original
+						// oxlint-disable-next-line no-unreachable -- the probe component throws on purpose; the unreachable return only keeps the JSX.Element return type
 						return <span />
 					}
 					await dom(
@@ -1556,6 +1559,7 @@ if (!isServer) {
 		() =>
 			dom(
 				() => (
+					// oxlint-disable-next-line typescript/no-deprecated -- this case probes the legacy <Dynamic> component behaviour, so it must use it instead of dynamic()
 					<Dynamic component="button" id="legacy">
 						child
 					</Dynamic>
@@ -1951,7 +1955,9 @@ if (!isServer) {
 					}
 					return (
 						<>
+							{/* oxlint-disable-next-line typescript/no-deprecated -- this case probes the legacy <Dynamic> component behaviour, so it must use it instead of dynamic() */}
 							<Dynamic component={source()} title="a" />
+							{/* oxlint-disable-next-line typescript/no-deprecated -- this case probes the legacy <Dynamic> component behaviour, so it must use it instead of dynamic() */}
 							<Dynamic component={source()} title="b" />
 						</>
 					)

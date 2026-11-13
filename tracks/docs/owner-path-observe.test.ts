@@ -49,6 +49,6 @@ test('03-control-flow.md L165: explicitly named client thrower/boundary owner pa
 		expect(messages).toEqual([])
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 	}
 }, 30000)

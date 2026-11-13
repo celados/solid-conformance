@@ -102,7 +102,7 @@ test('RFC08 L1222: Server-Timing spans use native navigation and resource respon
 		}
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		module.stop()
 		await rm(dir, { recursive: true, force: true })
 	}

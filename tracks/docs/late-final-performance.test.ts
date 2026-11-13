@@ -50,7 +50,7 @@ test('08 late native tracks cost configuration positive and negative controls', 
 		}
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 60000)

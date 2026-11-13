@@ -47,7 +47,7 @@ test('RFC11 collapsed SSR slot later mounts from retained data with zero network
 				if (['warning', 'error'].includes(m.type())) messages.push(m.text())
 			})
 			page.on('pageerror', (e) => messages.push(e.message))
-			await page.goto(server.url + (hydrate ? '?hydrate' : ''))
+			await page.goto(server.url.href + (hydrate ? '?hydrate' : ''))
 			await page.locator('[data-expand]').waitFor()
 			expect(await page.locator('[data-server-only]').count()).toBe(0)
 			const count = await page.evaluate(
@@ -69,7 +69,7 @@ test('RFC11 collapsed SSR slot later mounts from retained data with zero network
 		}
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 30000)

@@ -41,7 +41,7 @@ configureServerFunctionsClient({
 			).nextHopProtocol,
 		}
 	} finally {
-		await Promise.all(iterators.map((i) => i.return?.()))
+		await Promise.all(iterators.map(async (i) => i.return?.()))
 		;(window as any).connectionSignals = signals.map((s) => s.aborted)
 	}
 }

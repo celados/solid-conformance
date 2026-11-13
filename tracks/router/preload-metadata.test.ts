@@ -60,7 +60,7 @@ test('RFC10 L186 metadata GET URL preloads once; navigation adopts cache; invali
 		expect(mod.dataCounts().reads).toBe(2)
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 60000)

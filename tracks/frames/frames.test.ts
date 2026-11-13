@@ -56,7 +56,9 @@ test('RFC 10/11 real HTTP references and frame CSR/document adoption/state/slots
 					messages.push(m.type() + ': ' + m.text())
 			})
 			page.on('pageerror', (e) => messages.push('pageerror: ' + e.message))
-			await page.goto(server.url + (surface === 'hydrate' ? '?hydrate' : ''))
+			await page.goto(
+				server.url.href + (surface === 'hydrate' ? '?hydrate' : ''),
+			)
 			await page.waitForFunction(() => !!(window as any).framesHarness)
 			await page.evaluate(() => (window as any).framesHarness.pause())
 			expect(await page.locator('h1').textContent()).toBe(
@@ -220,7 +222,7 @@ test('RFC 10/11 real HTTP references and frame CSR/document adoption/state/slots
 			JSON.stringify(receipt, null, 2),
 		)
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(directory, { recursive: true, force: true })
 	}
 }, 120000)

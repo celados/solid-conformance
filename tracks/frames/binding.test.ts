@@ -139,7 +139,7 @@ for (const variant of ['development', 'observe', 'production'] as BuildMode[])
 						expect(result.clicked).toBe(1)
 					} else if (shape !== 'tuple') expect(result.text).toBe('')
 				}
-				await page.goto(server.url + '?omit-record')
+				await page.goto(server.url.href + '?omit-record')
 				await page.waitForFunction(() => !!(window as any).binding)
 				const missing = await page.evaluate(() =>
 					(window as any).binding.run('valid'),
@@ -155,7 +155,7 @@ for (const variant of ['development', 'observe', 'production'] as BuildMode[])
 					expect(orphan[0].data.why).toBe('record')
 					expect(orphan[0].data.elements.length).toBe(1)
 				}
-				await page.goto(server.url + '?corrupt')
+				await page.goto(server.url.href + '?corrupt')
 				await page.waitForFunction(() => !!(window as any).binding)
 				const corrupted = await page.evaluate(() =>
 					(window as any).binding.run('corrupt'),
@@ -178,7 +178,7 @@ for (const variant of ['development', 'observe', 'production'] as BuildMode[])
 				)
 			} finally {
 				await browser.close()
-				server.stop(true)
+				await server.stop(true)
 				await rm(directory, { recursive: true, force: true })
 			}
 		},

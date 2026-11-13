@@ -45,6 +45,7 @@ export function stream(spec: Spec, signal?: AbortSignal, documentId?: string) {
 									</head>
 									<body>
 										<script
+											// oxlint-disable-next-line solid/no-innerhtml -- the spec is our own test data, serialized as JSON with `<` escaped so it cannot close the script element
 											innerHTML={`window.spec=${JSON.stringify(spec).replaceAll('<', '\\u003c')};window.mode="hydrate"`}
 										/>
 										<div id="root">

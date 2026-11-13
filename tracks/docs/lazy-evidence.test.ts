@@ -77,7 +77,7 @@ test('unmapped lazy assets still render and request the component late in Chrome
 	} finally {
 		gate.resolve()
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 30000)

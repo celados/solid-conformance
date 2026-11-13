@@ -46,7 +46,9 @@ export function createCase(spec: Spec) {
 			spec.order[0] === 1,
 		)
 		function Wrapped(props: { node: Tree }) {
-			const n = untrack(() => props.node)
+			return wrappedView(untrack(() => props.node))
+		}
+		function wrappedView(n: Tree): any {
 			if (!n.children.length) return <fixture.App />
 			return n.kind === 'loading' ? (
 				<Loading fallback={<i>pending</i>}>
@@ -105,7 +107,8 @@ export function createCase(spec: Spec) {
 			const stream = controlledIterable<number>()
 			streamMap.set(id, stream)
 			streams.push(stream)
-			sources.get(id)!.promise.then((value) => stream.push(value))
+			// The deferred is only ever resolved: nothing to catch.
+			void sources.get(id)!.promise.then((value) => stream.push(value))
 		}
 		node.children.forEach(prepare)
 	}
@@ -115,8 +118,12 @@ export function createCase(spec: Spec) {
 		return sources.get(id)!.promise
 	}
 	function Node(props: { node: Tree }): any {
-		const n = untrack(() => props.node),
-			id = ids.get(n)!
+		return nodeView(untrack(() => props.node))
+	}
+	// A case's tree is fixed: each node is read once, and what it renders is
+	// chosen by its kind, not by reactive state.
+	function nodeView(n: Tree): any {
+		const id = ids.get(n)!
 		const kids = () => n.children.map((node) => <Node node={node} />)
 		switch (n.kind) {
 			case 'text':
@@ -237,7 +244,8 @@ export function createCase(spec: Spec) {
 				if (!lazyLoads.has(id)) lazyLoads.set(id, deferred())
 				lazyLoads.get(id)!.resolve({ default: () => <span>{node.value}</span> })
 			} else {
-				promise(id)
+				// Registers the source for `id` before it is resolved below.
+				void promise(id)
 				sources.get(id)!.resolve(node?.value ?? 1)
 			}
 			await ticks(2)

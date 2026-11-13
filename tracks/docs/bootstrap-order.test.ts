@@ -111,7 +111,7 @@ test('12-ssr-http.md L31: hand-built document defers hydration until trailing re
 			} finally {
 				release()
 				await page.close()
-				server.stop(true)
+				await server.stop(true)
 			}
 		}
 	} finally {

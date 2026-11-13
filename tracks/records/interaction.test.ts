@@ -85,7 +85,7 @@ test('RFC08 L539–541: async handler default thresholds, rejection, write/actio
 		)
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 90000)

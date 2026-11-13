@@ -64,7 +64,7 @@ for (const variant of ['development', 'observe', 'production'] as BuildMode[])
 							await route.continue()
 						})
 					await page.goto(
-						server.url +
+						server.url.href +
 							'?delay=' +
 							Math.max(0, delay) +
 							(delay === -1 ? '&unobserved' : ''),
@@ -115,7 +115,7 @@ for (const variant of ['development', 'observe', 'production'] as BuildMode[])
 				)
 			} finally {
 				await browser.close()
-				server.stop(true)
+				await server.stop(true)
 				await rm(dir, { recursive: true, force: true })
 			}
 		},

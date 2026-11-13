@@ -422,7 +422,7 @@ test('RFC 08/10/11: runtime records separate serializable events from live invoc
 		}
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		serverModule.stop()
 		await rm(directory, { recursive: true, force: true })
 	}

@@ -101,7 +101,7 @@ for (const mode of ['development', 'observe', 'production'] as BuildMode[])
 			} finally {
 				ssr.releaseSlow()
 				await browser.close()
-				server.stop(true)
+				await server.stop(true)
 				await rm(dir, { recursive: true, force: true })
 			}
 		},

@@ -73,7 +73,7 @@ export async function serverCases() {
 		const result = sync(2)
 		await echo('private-argument')
 		try {
-			await failing()
+			failing()
 		} catch {}
 		const stream = streamReference() as AsyncIterable<number>
 		for await (const _ of stream) break

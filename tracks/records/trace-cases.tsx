@@ -169,7 +169,7 @@ export async function traceWireCases() {
 			},
 		}),
 	)
-	await provideRequestEvent(event, () => {
+	provideRequestEvent(event, () => {
 		event.response.headers.set(
 			'Server-Timing',
 			'app;dur=1, traceparent;desc="application"',

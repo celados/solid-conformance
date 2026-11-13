@@ -57,7 +57,7 @@ test('server component fill strict-read contexts and reactive controls', async (
 			}
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 30000)

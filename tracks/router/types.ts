@@ -19,15 +19,15 @@ export function documentedRouterTypes() {
 	// @ts-expect-error Required route parameters cannot be omitted.
 	Router.paths.users()
 	const get = query(async (id: number) => id, 'typed-users')
-	get(1)
+	void get(1)
 	get.keyFor(1)
 	// @ts-expect-error Query argument types follow the wrapped function.
-	get('1')
+	void get('1')
 	const save = action(async (_id: number, value: string) => value, 'typed-save')
 	const bound = save.with(1)
-	bound('updated')
+	void bound('updated')
 	// @ts-expect-error Bound action keeps the types of remaining arguments.
-	bound(2)
+	void bound(2)
 	// @ts-expect-error onSubmit receives the complete original argument tuple.
 	save.onSubmit((id: string) => {
 		void id

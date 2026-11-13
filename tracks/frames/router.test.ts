@@ -48,7 +48,9 @@ test('11:L118 router claims/frame query preload, warm navigation, owner cleanup 
 			page.on('console', (m) => {
 				if (['warning', 'error'].includes(m.type())) messages.push(m.text())
 			})
-			await page.goto(server.url + (surface === 'hydrate' ? '?hydrate' : ''))
+			await page.goto(
+				server.url.href + (surface === 'hydrate' ? '?hydrate' : ''),
+			)
 			await page.waitForFunction(() => !!(window as any).routerFrames)
 			const pause = () =>
 				page.evaluate(() => (window as any).routerFrames.pause())
@@ -181,7 +183,7 @@ test('11:L118 router claims/frame query preload, warm navigation, owner cleanup 
 			JSON.stringify(receipt, null, 2),
 		)
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 120000)

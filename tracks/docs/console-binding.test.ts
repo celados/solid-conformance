@@ -70,7 +70,7 @@ test('RFC08 L16–18: compiled JSX diagnostic reports point to their DOM binding
 		}
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 60000)

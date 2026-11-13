@@ -43,7 +43,7 @@ for (const mode of ['development', 'observe', 'production'] as BuildMode[])
 					const page = await browser.newPage()
 					const errors: string[] = []
 					page.on('pageerror', (e) => errors.push(e.message))
-					await page.goto(server.url + (buffer ? '?buffer' : ''))
+					await page.goto(server.url.href + (buffer ? '?buffer' : ''))
 					await page.waitForFunction(() => !!(window as any).deathBoundary)
 					for (let i = 0; i < 100 && !m.stats.chunks; i++)
 						await new Promise((r) => setTimeout(r, 10))
@@ -69,7 +69,7 @@ for (const mode of ['development', 'observe', 'production'] as BuildMode[])
 				} finally {
 					m.close()
 					await browser.close()
-					server.stop(true)
+					await server.stop(true)
 					await rm(dir, { recursive: true, force: true })
 				}
 			}

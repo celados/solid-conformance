@@ -348,7 +348,10 @@ for (const safe of [false, true]) {
 				equal(events[0]!.severity, 'error')
 				equal(events[0]!.data?.source, 'server-function')
 				ok(events[0]!.data?.error === original)
-				equal((events[0]!.data?.wire as Error).message, 'Internal Server Error')
+				equal(
+					(events[0]!.data?.wire as Error | undefined)?.message,
+					'Internal Server Error',
+				)
 			}
 			equal(
 				result.messages.some((m) => m.includes('SERVER_ERROR_SANITIZED')),
@@ -550,7 +553,10 @@ for (const road of [
 				equal(event.severity, 'info')
 				equal(event.data?.source, 'ssr')
 				ok(event.data?.error === original)
-				equal((event.data?.wire as Error).message, 'Internal Server Error')
+				equal(
+					(event.data?.wire as Error | undefined)?.message,
+					'Internal Server Error',
+				)
 			}
 		},
 	)
@@ -734,7 +740,7 @@ doc(
 		)
 		let trace: unknown, invocationEvent: any
 		try {
-			await scope.run(event, () => {
+			scope.run(event, () => {
 				trace = getTraceContext()
 				const fn = createServerReference(
 					registerServerReference('live-event-identity', (n: number) => {
@@ -1065,7 +1071,7 @@ doc(
 			{ createEvent: createRequestEvent },
 		)
 		equal(response.headers.getSetCookie(), expected)
-		await scope.run(createRequestEvent(requestFor('ssr')), () => {
+		scope.run(createRequestEvent(requestFor('ssr')), () => {
 			const html = renderToString(() => {
 				exchange()
 				return 'ssr'
@@ -1101,7 +1107,7 @@ doc(
 			baggage: 'private=upstream',
 		}
 		for (const mode of ['splice', 'onHead', 'headless'] as const) {
-			await scope.run(
+			scope.run(
 				createRequestEvent(new Request('http://localhost/trace', { headers })),
 				() => {
 					let head = ''
@@ -1172,7 +1178,7 @@ doc(
 		)
 		ok((await response.text()).includes('framed'))
 		ok(!response.headers.get('server-timing')!.includes('private=upstream'))
-		await scope.run(
+		scope.run(
 			createRequestEvent(new Request('http://localhost/redirect', { headers })),
 			() => {
 				const event = getRequestEvent()!
@@ -1286,7 +1292,7 @@ doc(
 					},
 				}),
 			)
-			await scope.run(event, () => {
+			scope.run(event, () => {
 				const trace = getTraceContext()!
 				equal(trace.traceId, '1234567890abcdef1234567890abcdef')
 				equal(trace.parentId, '1234567890abcdef')

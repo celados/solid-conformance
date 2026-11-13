@@ -207,6 +207,7 @@ doc(
 		await root(
 			() => {
 				const [read, write] = createSignal(0)
+				// oxlint-disable-next-line typescript/no-deprecated -- this probe observes the diagnostics of the deprecated createTrackedEffect itself, so it must call it
 				createTrackedEffect(() => {
 					const value = read()
 					seen.push('run' + value)
@@ -1727,7 +1728,7 @@ doc(
 				}
 				window.addEventListener('unhandledrejection', listener)
 				try {
-					refresh(s.read)
+					void refresh(s.read)
 					await ticks(4)
 					s.gates[1]!.reject(new Error('ignored'))
 					await ticks(8)
@@ -1790,7 +1791,7 @@ doc(
 				const hold = deferred<void>()
 				const save = action(function* () {
 					affects(read)
-					refresh(read)
+					void refresh(read)
 					yield hold.promise
 				})
 				return { read, gates, hold, save }
@@ -2041,7 +2042,7 @@ for (const route of ['live', 'other-action', 'refetch'] as const)
 							d.n = 9
 						})
 						if (route === 'refetch')
-							refresh(store).then(() => {
+							void refresh(store).then(() => {
 								delivered = true
 							})
 						yield until(() => store.n === 1)
@@ -2222,6 +2223,7 @@ doc(
 					setRows((d) => {
 						d.push({ clientId })
 					})
+					// oxlint-disable-next-line typescript/await-thenable -- the recipe under test awaits a fire-and-forget send() that returns void, as documented users write it
 					await socket.send({ clientId })
 					yield until(() => rows.some((row) => row.clientId === clientId), {
 						timeout: 100,

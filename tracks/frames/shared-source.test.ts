@@ -48,7 +48,7 @@ for (const mode of ['development', 'observe', 'production'] as BuildMode[])
 					expect(values).toEqual([17, 35])
 				} finally {
 					await browser.close()
-					server.stop(true)
+					await server.stop(true)
 				}
 			} finally {
 				await rm(dir, { recursive: true, force: true })

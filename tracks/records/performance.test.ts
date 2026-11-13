@@ -117,7 +117,7 @@ test('RFC 08 L1204–1226: native Chrome tracks, rich metadata, markers, tasks, 
 		}
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(directory, { recursive: true, force: true })
 	}
 }, 60000)

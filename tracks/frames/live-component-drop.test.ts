@@ -151,7 +151,7 @@ for (const mode of ['development', 'observe', 'production'] as BuildMode[])
 				m.push(99)
 				await browser.close()
 				proxy.stop(true)
-				server.stop(true)
+				await server.stop(true)
 				await rm(dir, { recursive: true, force: true })
 			}
 		},

@@ -70,7 +70,7 @@ for (const mode of ['development', 'observe', 'production'] as BuildMode[])
 				expect(requests).toHaveLength(1)
 			} finally {
 				await browser.close()
-				server.stop(true)
+				await server.stop(true)
 				await rm(dir, { recursive: true, force: true })
 			}
 		},

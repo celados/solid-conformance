@@ -35,7 +35,7 @@ test('router reload omitted keys revalidate both consumers; explicit [] retains 
 		})
 	} finally {
 		await browser.close()
-		server.stop(true)
+		await server.stop(true)
 		await rm(dir, { recursive: true, force: true })
 	}
 }, 30000)
