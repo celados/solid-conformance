@@ -1,75 +1,2173 @@
 import { ROOT_ERROR_HOOK } from '@solidjs/signals'
-import { createSignal, flush, getOwner, onCleanup, createComponent, createStore, For, Repeat, Reveal, Loading, createMemo, createEffect, createContext, useContext, Show, Switch, Match, Errored, configureClientErrors, createProjection, isPending, action, latest, OBSERVE, untrack } from 'solid-js'
-import { render, renderToString, isServer, isDev, dynamic, Dynamic, clientOnly, renderToStream, Portal, delegateEvents } from '@solidjs/web'
+import {
+	render,
+	renderToString,
+	isServer,
+	isDev,
+	dynamic,
+	Dynamic,
+	clientOnly,
+	renderToStream,
+	Portal,
+	delegateEvents,
+} from '@solidjs/web'
+import {
+	createSignal,
+	flush,
+	getOwner,
+	onCleanup,
+	createComponent,
+	createStore,
+	For,
+	Repeat,
+	Reveal,
+	Loading,
+	createMemo,
+	createEffect,
+	createContext,
+	useContext,
+	Show,
+	Switch,
+	Match,
+	Errored,
+	configureClientErrors,
+	createProjection,
+	isPending,
+	action,
+	latest,
+	OBSERVE,
+	untrack,
+} from 'solid-js'
+
 import { deferred, ticks } from '../../harness/timing'
 import { equal, ok, type DocCase } from './registry'
-const cases:DocCase[]=[]
-function doc(chapter:string,name:string,statement:string,run:DocCase['run']){const files:Record<string,string>={'01':'01-reactivity-batching-effects.md','02':'02-signals-derived-ownership.md','03':'03-control-flow.md','07':'07-dom.md','04':'04-stores.md','05':'05-async-data.md'};cases.push({id:chapter+'/'+name,file:files[chapter]!,statement,run})}
-async function dom(App:()=>any,check:(el:HTMLDivElement)=>unknown|Promise<unknown>){const el=document.createElement('div');document.body.append(el);let close=()=>{};try{close=render(App,el);await ticks(2);await check(el)}finally{close();el.remove();await ticks(2)}}
-if(!isServer){
- for(const order of ['sequential','together','natural'] as const)doc('03',`reveal-collapsed-${order}`,'Collapsed only hides later fallbacks for sequential order; other orders ignore it.',async()=>{const gates=[deferred<number>(),deferred<number>()];await dom(()=>{const a=createMemo(()=>gates[0]!.promise),b=createMemo(()=>gates[1]!.promise);return<Reveal order={order} collapsed><Loading fallback={<b>A</b>}><span>{a()}</span></Loading><Loading fallback={<b>B</b>}><span>{b()}</span></Loading></Reveal>},async el=>{equal(el.textContent,order==='sequential'?'A':'AB');gates[0]!.resolve(1);await ticks(4);equal(el.textContent,order==='together'?'AB':'1B');gates[1]!.resolve(2);await ticks(4);equal(el.textContent,'12')})})
- doc('03','repeat-store-granularity','Repeat indices stay stable while property reads on the store update individual content without list diffing.',async()=>{let set!:(fn:(draft:{n:number}[])=>void)=>void,mounted=0;await dom(()=>{const [rows,write]=createStore([{n:1},{n:2}]);set=write;return<Repeat count={2}>{index=>{mounted++;return<span>{rows[index]!.n}</span>}}</Repeat>},el=>{const nodes=[...el.children];equal(el.textContent,'12');set(d=>{d[0]!.n=3});flush();equal(el.textContent,'32');equal(mounted,2);equal(el.children[0],nodes[0]);equal(el.children[1],nodes[1])})})
- for(const boundary of ['loading','errored']as const)doc('03',`reveal-extra-boundary-${boundary}`,boundary==='loading'?'A nested Loading is not a direct group member; its wrapper is held by the outer Reveal, but its own pending content does not delay outer release.':'An Errored-wrapped Loading is not a direct group member and settles independently.',async()=>{for(const childFirst of [false,true]){const gates=[deferred<number>(),deferred<number>()];await dom(()=>{const a=createMemo(()=>gates[0]!.promise),b=createMemo(()=>gates[1]!.promise);return<Reveal order="together"><Loading fallback={<b>A</b>}><span>{a()}</span></Loading>{boundary==='loading'?<Loading fallback={<i>extra</i>}><Loading fallback={<b>B</b>}><span>{b()}</span></Loading></Loading>:<Errored fallback={<i>error</i>}><Loading fallback={<b>B</b>}><span>{b()}</span></Loading></Errored>}</Reveal>},async el=>{equal(el.textContent,boundary==='loading'?'Aextra':'AB');gates[childFirst?1:0]!.resolve(childFirst?1:0);await ticks(8);equal(el.textContent,childFirst?(boundary==='loading'?'Aextra':'A1'):'0B');gates[childFirst?0:1]!.resolve(childFirst?0:1);await ticks(8);equal(el.textContent,'01')})}})
- doc('05','transparent-csr-noop','Outside hydration transparent does not affect readiness, revalidation or final DOM.',async()=>{for(const transparent of [false,true]){const gate=deferred<number>();let write!:(v:number)=>void;await dom(()=>{const [source,setSource]=createSignal(0);write=setSource;const read=createMemo(()=>source()?gate.promise:0,{transparent});return<Loading fallback={<b>waiting</b>}><span>{read()}:{String(isPending(read))}</span></Loading>},async el=>{equal(el.textContent,'0:false');write(1);flush();await ticks(4);equal(el.textContent,'0:true');gate.resolve(7);await ticks(6);equal(el.textContent,'7:false')})}})
- doc('05','pending-read-placement','A pending expression that reads async data follows Loading on first load and shows inline pending on revalidation; a separate upstream signal read cannot infer the async subtree wait.',async()=>{const gates=[deferred<number>(),deferred<number>()];let write!:(n:number)=>void;await dom(()=>{const [id,setId]=createSignal(0);write=setId;const read=createMemo(()=>gates[id()]!.promise);return<><Loading fallback={<b>fallback</b>}><span>{read()}</span><i>{String(isPending(read))}</i></Loading><u>{String(isPending(id))}</u></>},async el=>{equal(el.textContent,'fallbackfalse');gates[0]!.resolve(7);await ticks(8);equal(el.textContent,'7falsefalse');write(1);flush();await ticks(4);equal(el.textContent,'7truetrue');gates[1]!.resolve(8);await ticks(8);equal(el.textContent,'8falsefalse')})})
- doc('05','undefined-loading-value','An explicit undefined loadingValue is committed first paint and does not trip Loading or pending.',async()=>{const gate=deferred<number>();await dom(()=>{const read=createMemo<number|undefined>(()=>gate.promise,{loadingValue:undefined});return<Loading fallback={<b>fallback</b>}><span>{read()===undefined?'declared':read()}</span><i>{String(isPending(read))}</i></Loading>},async el=>{equal(el.textContent,'declaredfalse');gate.resolve(7);await ticks(8);equal(el.textContent,'7false')})})
- doc('03','client-error-owner-path','Client errors identify the named thrower chain separately from the boundary chain; production carries no owner labels.',async()=>{let context:{ownerPath?:string[],boundaryPath?:string[]}|undefined;configureClientErrors({onError(_error,value){context=value}});const error=new Error('named');function Child(){const read=createMemo(()=>{throw error},{name:'Thrower'});return<span>{read()}</span>}function Parent(){return createComponent(Errored,{fallback:(_error)=> <b>caught</b>,get children(){return createComponent(Child,{},'Child')}},'Boundary')}try{await dom(()=>createComponent(Parent,{},'Parent'),el=>{equal(el.textContent,'caught');ok(context);if(isDev||OBSERVE){const owner=context!.ownerPath!,boundary=context!.boundaryPath!;equal(owner.includes('<Parent>'),true);equal(owner.includes('<Boundary>'),true);equal(owner.includes('<Child>'),true);equal(owner.includes('Thrower'),true);equal(boundary.includes('<Parent>'),true);equal(boundary.includes('<Boundary>'),true);equal(boundary.includes('<Child>'),false);equal(boundary.includes('Thrower'),false);ok(owner.indexOf('<Parent>')<owner.indexOf('<Boundary>')&&owner.indexOf('<Boundary>')<owner.indexOf('<Child>')&&owner.indexOf('<Child>')<owner.indexOf('Thrower'))}else{equal(context!.ownerPath,undefined);equal(context!.boundaryPath,undefined)}})}finally{configureClientErrors({})}})
- doc('03','client-error-primitive-per-sight','Unlike object-identity dedupe, a primitive failure is reported at each new sight, including retry.',async()=>{let reports=0,reset!:()=>void;configureClientErrors({onError(){reports++}});try{function Bad(){throw 7;return<span/>}await dom(()=><Errored fallback={(error,retry)=>{reset=retry;return<b>{String(error())}</b>}}><Bad/></Errored>,async el=>{equal(el.textContent,'7');equal(reports,1);reset();await ticks(4);equal(el.textContent,'7');equal(reports,2)})}finally{configureClientErrors({})}})
- doc('03','client-error-root-overrides','A per-render root hook takes precedence over the ambient hook, and rendering without one falls back to ambient.',async()=>{let ambient=0,local=0;configureClientErrors({onError(){ambient++}});try{for(const perRoot of [false,true]){const element=document.createElement('div');document.body.append(element);function Bad(){throw new Error(perRoot?'local':'ambient');return<span/>}const dispose=render(()=><Errored fallback={(_error)=><b>caught</b>}><Bad/></Errored>,element,undefined,perRoot?{onError(){local++}}:undefined);try{await ticks(4);equal(element.textContent,'caught');equal(ambient,1);equal(local,perRoot?1:0)}finally{dispose();element.remove()}}}finally{configureClientErrors({})}})
- doc('03','client-root-hook-storage','render parks a supplied error hook on the root owner and adds no hook slot when none is supplied.',async()=>{for(const supplied of [false,true]){let owner:ReturnType<typeof getOwner>;const hook=()=>{};const element=document.createElement('div');document.body.append(element);const dispose=render(()=>{owner=getOwner();return<span>root</span>},element,undefined,supplied?{onError:hook}:undefined);try{ok(owner!);equal(Object.hasOwn(owner!,ROOT_ERROR_HOOK),supplied);if(supplied)equal((owner!as unknown as Record<symbol,unknown>)[ROOT_ERROR_HOOK],hook)}finally{dispose();element.remove()}}})
- doc('07','portal-contained-listeners','An already-contained Portal mount receives no additional delegated listener; event declarations select event names while the root remains the physical listener target.',async()=>{const original=Element.prototype.addEventListener;const added:{element:Element,event:string}[]=[];Element.prototype.addEventListener=function(type:string,listener:EventListenerOrEventListenerObject,options?:boolean|AddEventListenerOptions){added.push({element:this,event:type});return original.call(this,type,listener,options)};let mount!:HTMLDivElement,open!:(n:boolean)=>void,hits=0;try{await dom(()=>{const [shown,setShown]=createSignal(false);open=setShown;return<><div ref={(node:HTMLDivElement)=>{mount=node}}/><Show when={shown()}><Portal mount={mount}><button onClick={()=>{hits++}}>go</button></Portal></Show></>},el=>{ok(el.contains(mount));open(true);flush();mount.querySelector('button')!.click();equal(hits,1);equal(added.filter(row=>row.event==='click'&&row.element===mount).length,0);equal(added.filter(row=>row.event==='click'&&row.element===el).length,1);delegateEvents(['click']);equal(added.filter(row=>row.event==='click'&&row.element===document.body).length,0);mount.querySelector('button')!.click();equal(hits,2)})}finally{Element.prototype.addEventListener=original}})
- doc('03','client-error-unknown-thrower','A rejected source without an owner name falls back to the boundary owner path.',async()=>{const gate=deferred<number>();let context:{ownerPath?:string[],boundaryPath?:string[]}|undefined;configureClientErrors({onError(_error,value){context=value}});try{await dom(()=>{const read=createMemo(()=>gate.promise,{name:''});return<Errored fallback={(_error)=><b>caught</b>}><Loading fallback={<i>pending</i>}><span>{read()}</span></Loading></Errored>},async el=>{equal(el.textContent,'pending');gate.reject(new Error('unnamed'));await ticks(8);equal(el.textContent,'caught');ok(context);equal(context!.ownerPath,context!.boundaryPath)})}finally{configureClientErrors({})}})
- for(const reader of ['sibling','pending','action-held','action-race']as const)doc('05','loading-on-shared-'+reader,'An independent shared read or an action held through the data prevents fallback; ending an action before its data can show fallback with the committed frame.',async()=>{const comments=deferred<string>(),ack=deferred<void>();let start!:()=>Promise<unknown>,write!:(n:number)=>void;const warnings:string[]=[];const previous=console.warn;console.warn=(...args)=>{warnings.push(args.map(String).join(' '))};try{await dom(()=>{const [id,setId]=createSignal(0);write=setId;const data=createMemo(()=>id()===0?'a':comments.promise);start=action(function*(){setId(1);yield reader==='action-held'?comments.promise:ack.promise});return<><header>{id()}</header><Loading on={id()} fallback={<b>spinner</b>}><span>{data()}</span></Loading>{reader==='sibling'?<Loading fallback={<u>outer</u>}><span>{data()}</span></Loading>:reader==='pending'?<i>{String(isPending(data))}</i>:null}</>},async el=>{equal(el.textContent,reader==='sibling'?'0aa':reader==='pending'?'0afalse':'0a');const done=reader.startsWith('action')?start():undefined;if(!done)write(1);flush();await ticks(6);equal(el.textContent,reader==='sibling'?'0aa':reader==='pending'?'0atrue':'0a');if(reader==='action-race'){ack.resolve();await done;await ticks(6);equal(el.textContent,'1spinner')}comments.resolve('b');await done;await ticks(8);equal(el.textContent,reader==='sibling'?'1bb':reader==='pending'?'1bfalse':'1b')})}finally{console.warn=previous}equal(warnings.length,isDev&&reader==='sibling'?1:0);for(const warning of warnings)ok(warning.includes('[LOADING_ON_OUTSIDE_HOLD]'))})
- for(const commentsFirst of [false,true])for(const ahead of [false,true])doc('05',`loading-on-frame-${commentsFirst?'comments-first':'shell-first'}-${ahead?'ahead':'normal'}`,'Loading on fallback commits with the held shell; comments arriving before the shell avoid fallback, children stay mounted, and latest(on) explicitly displays fallback ahead.',async()=>{const shell=deferred<string>(),comments=deferred<string>();let write!:(n:number)=>void,readComments!:()=>string,mounts=0;await dom(()=>{const [id,setId]=createSignal(0);write=setId;const product=createMemo(()=>id()===0?'A':shell.promise),messages=createMemo(()=>id()===0?'a':comments.promise);readComments=messages;function Comments(){mounts++;return<span>{messages()}</span>}return<><header>{id()}{product()}</header><Loading on={ahead?latest(id):id()} fallback={<b>spinner</b>}><Comments/></Loading></>},async el=>{equal(el.textContent,'0Aa');write(1);flush();await ticks(4);equal(el.textContent,ahead?'0Aspinner':'0Aa');if(commentsFirst){comments.resolve('b');await ticks(4);equal(el.textContent,ahead?'0Aspinner':'0Aa');shell.resolve('B');await ticks(8);equal(untrack(readComments),'b');if(ahead)for(let i=0;i<30;i++)await new Promise(resolve=>setTimeout(resolve,20));equal(el.textContent,'1Bb')}else{shell.resolve('B');await ticks(8);equal(el.textContent,'1Bspinner');comments.resolve('b');await ticks(8);equal(el.textContent,'1Bb')}equal(mounts,1)})})
- for(const held of [false,true])doc('03',`error-fallback-frame-${held?'held':'immediate'}`,'Errored fallback lands with the same changed frame: immediately without a hold, together with the new shell when a sibling async read holds the frame.',async()=>{const gate=deferred<string>();let write!:(n:number)=>void;await dom(()=>{const [id,setId]=createSignal(0);write=setId;const shell=createMemo(()=>id()===0?'A':held?gate.promise:'B');function Child(){const status=createMemo(()=>{if(id())throw new Error('new failure');return'ok'});return<span>{status()}</span>}return<><header>{id()}{shell()}</header><Errored fallback={(_error)=><b>error</b>}><Child/></Errored></>},async el=>{equal(el.textContent,'0Aok');write(1);flush();await ticks(4);equal(el.textContent,held?'0Aok':'1Berror');if(held){gate.resolve('B');await ticks(8);equal(el.textContent,'1Berror')}})})
- for(const property of ['a','b']as const)doc('05',`loading-on-multiple-${property}`,'Reading multiple dependencies in on re-enters fallback when either changes, preserving the child instance.',async()=>{const gate=deferred<string>();let setA!:(n:number)=>void,setB!:(n:number)=>void,mounts=0;await dom(()=>{const [a,writeA]=createSignal(0),[b,writeB]=createSignal(0);setA=writeA;setB=writeB;const read=createMemo(()=>a()+b()===0?'old':gate.promise);function Child(){mounts++;return<span>{read()}</span>}return<><header>{a()}{b()}</header><Loading on={[a(),b()]} fallback={<b>spinner</b>}><Child/></Loading></>},async el=>{equal(el.textContent,'00old');(property==='a'?setA:setB)(1);flush();await ticks(4);equal(el.textContent,property==='a'?'10spinner':'01spinner');gate.resolve('new');await ticks(8);equal(el.textContent,property==='a'?'10new':'01new');equal(mounts,1)})})
- for(const store of [false,true])doc('02',`held-derive-external-write-${store?'store':'signal'}`,'An external write joins a held derivation as prev rather than replacing its derived result; the revealed frame is derived from the changed input.',async()=>{const flights:{value:number,gate:ReturnType<typeof deferred<number>>}[]=[];let save!:()=>Promise<unknown>,mutate!:()=>void;await dom(()=>{const [input,setInput]=createSignal(1);let read:()=>number;if(store){const [state,setState]=createStore(d=>{d.n+=input()},{n:0});read=()=>state.n;mutate=()=>setState(d=>{d.n+=100})}else{const [value,setValue]=createSignal<number>((previous=0)=>previous+input());read=value;mutate=()=>{setValue(previous=>previous+100)}}const answer=createMemo(()=>{const value=read(),gate=deferred<number>();flights.push({value,gate});return gate.promise});save=action(function*(){setInput(2)});return<Loading fallback={<b>pending</b>}><span>{read()}:{answer()}</span></Loading>},async el=>{equal(flights.map(f=>f.value),[1]);flights[0]!.gate.resolve(1);await ticks(8);equal(el.textContent,'1:1');const done=save();done.catch(()=>{});await ticks(4);equal(el.textContent,'1:1');equal(flights.map(f=>f.value),[1,3]);mutate();flush();await ticks(4);if(!store)equal(flights.map(f=>f.value),[1,3,103]);equal(el.textContent,'1:1');for(const flight of flights.slice(1,-1))flight.gate.resolve(flight.value);await ticks(4);equal(el.textContent,'1:1');const newest=flights.at(-1)!;newest.gate.resolve(newest.value);await ticks(8);await done;equal(el.textContent,'103:103')})})
- for(const behavior of ['lane','plain','unrendered']as const)doc('05',`latest-lane-${behavior}`,'latest escapes its transition but waits for the slowest rendered async in its own lane; plain-read and unrendered derivations do not hold that lane.',async()=>{const a=deferred<string>(),b=deferred<string>(),hold=deferred<void>();let start!:()=>Promise<unknown>;await dom(()=>{const [id,setId]=createSignal(0);const first=createMemo(()=>{const n=behavior==='plain'?id():latest(id);return n?a.promise:'a'}),second=createMemo(()=>{const n=behavior==='plain'?id():latest(id);return n?b.promise:'b'});start=action(function*(){setId(1);yield hold.promise});return<><header>{id()}</header><strong>{latest(id)}</strong>{behavior==='unrendered'?null:<span>{first()}{second()}</span>}</>},async el=>{equal(el.textContent,behavior==='unrendered'?'00':'00ab');const done=start();await ticks(6);equal(el.textContent,behavior==='lane'?'00ab':behavior==='plain'?'01ab':'01');a.resolve('A');await ticks(6);equal(el.textContent,behavior==='lane'?'00ab':behavior==='plain'?'01ab':'01');b.resolve('B');await ticks(6);equal(el.textContent,behavior==='unrendered'?'01':behavior==='plain'?'01ab':'01AB');hold.resolve();await done;await ticks(6);equal(el.textContent,behavior==='unrendered'?'11':'11AB')})})
- doc('03','errored-source-autoheal','Errored heals automatically when its throwing computation becomes valid; no global resetErrorBoundaries call is needed.',async()=>{let write!:(n:number)=>void,reports=0;configureClientErrors({onError(){reports++}});try{await dom(()=>{const [value,setValue]=createSignal(0);write=setValue;function Child(){const read=createMemo(()=>{if(!value())throw new Error('not ready');return value()});return<span>{read()}</span>}return<Errored fallback={(_error)=><b>caught</b>}><Child/></Errored>},async el=>{equal(el.textContent,'caught');equal(reports,1);write(1);flush();await ticks(6);equal(el.textContent,'1');equal(reports,1);write(2);flush();equal(el.textContent,'2')})}finally{configureClientErrors({})}})
- doc('03','client-only-import-start','clientOnly eagerly starts by default and lazy true starts exactly at its first render; pending modules show fallback without Loading.',async()=>{for(const lazy of [false,true]){let imports=0;const gate=deferred<{default:()=>any}>();const Only=clientOnly(()=>{imports++;return gate.promise},{lazy});equal(imports,lazy?0:1);await dom(()=><><Only fallback={<b>waiting</b>}/><Only fallback={<i>waiting</i>}/></>,async el=>{equal(imports,1);equal(el.textContent,'waitingwaiting');gate.resolve({default:()=><span>loaded</span>});await ticks(4);equal(el.textContent,'loadedloaded')})}})
- doc('03','client-error-hook-return-ignored','A hook return cannot map client fallback errors, while throwing hooks log and leave the app functional.',async()=>{for(const throwing of [false,true]){let platform=0;const handler=()=>{platform++};window.addEventListener('error',handler);const original=new Error('original');const logged:unknown[]=[];const prior=console.error;console.error=(...args)=>{logged.push(args)};configureClientErrors({onError(){if(throwing)throw new Error('monitor');return new Error('replacement')}});try{function Bad(){throw original;return<span/>}await dom(()=><Errored fallback={error=><b>{(error() as Error).message}</b>}><Bad/></Errored>,el=>{equal(el.textContent,'original');equal(logged.length,throwing?1:0);equal(platform,0)})}finally{configureClientErrors({});console.error=prior;window.removeEventListener('error',handler)}}})
- doc('03','client-error-effect-arm','An effect onError arm handles its failure and does not notify the client boundary hook.',async()=>{let reports=0,handled=0;configureClientErrors({onError(){reports++}});try{await dom(()=>{createEffect(()=>{throw new Error('effect')},{effect:()=>{},error:()=>{handled++}});return<span>working</span>},el=>{equal(el.textContent,'working');equal(handled,1);equal(reports,0)})}finally{configureClientErrors({})}})
- doc('03','dynamic-props-children-ref','A dynamic factory preserves reactive props, children, and normal refs when changing native tags.',async()=>{let set!:(n:number)=>void,setTag!:(tag:string)=>void;const refs:Element[]=[];await dom(()=>{const [n,write]=createSignal(1),[tag,writeTag]=createSignal('article');set=write;setTag=writeTag;const Tag=dynamic(tag);return<Tag title={String(n())} ref={(el:Element)=>{refs.push(el)}}><span>{n()}</span></Tag>},el=>{equal(el.firstElementChild!.tagName,'ARTICLE');equal(refs[0],el.firstElementChild);set(2);flush();equal(el.firstElementChild!.getAttribute('title'),'2');equal(el.textContent,'2');setTag('section');flush();equal(el.firstElementChild!.tagName,'SECTION');equal(refs[1],el.firstElementChild);equal(el.textContent,'2')})})
-
- doc('04','shallow-for-keyed-replacement','Shallow rows with custom keying reuse DOM for same-key replacements and dispose or create changed keys.',async()=>{let set!:(fn:(draft:{id:number,n:number}[])=>void)=>void,created=0,disposed=0;await dom(()=>{const [rows,write]=createStore([{id:1,n:1},{id:2,n:2}],{shallow:true});set=write;return<For each={[...rows]} keyed={row=>row.id}>{row=>{created++;onCleanup(()=>{disposed++});return<span>{row().n}</span>}}</For>},el=>{const first=el.children[0];set(d=>{d[0]={id:1,n:3}});flush();equal(el.children[0],first);equal(el.textContent,'32');equal(created,2);set(d=>{d.splice(1,1,{id:3,n:4})});flush();equal(el.textContent,'34');equal(created,3);equal(disposed,1)})})
- for(const outer of ['sequential','together','natural'] as const)for(const inner of ['sequential','together','natural'] as const){
-  doc('03',`reveal-matrix-${outer}-${inner}`,`A nested ${inner} Reveal is one composite slot under outer ${outer}; minimal readiness, parent holds and inner ordering follow the documented matrix.`,async()=>{
-   for(const reversed of [false,true]){const gates=Array.from({length:4},()=>deferred<number>());await dom(()=>{const values=gates.map(gate=>createMemo(()=>gate.promise));const slot=(n:number)=><Loading fallback={<b>{'f'+n}</b>}><span>{values[n]!()}</span></Loading>;return<Reveal order={outer}>{slot(0)}<Reveal order={inner}>{slot(1)}{slot(2)}</Reveal>{slot(3)}</Reveal>},async el=>{
-    equal(el.textContent,'f0f1f2f3')
-    const land=async(n:number)=>{gates[n]!.resolve(n);await ticks(8)}
-    if(!reversed){await land(0);equal(el.textContent,outer==='together'?'f0f1f2f3':'0f1f2f3');await land(1);const inside=inner==='together'?'f1f2':'1f2';equal(el.textContent,outer==='together'?'f0f1f2f3':'0'+inside+'f3');await land(3);equal(el.textContent,outer==='together'?(inner==='together'?'f0f1f2f3':'01f23'):outer==='sequential'?'0'+inside+'f3':'0'+inside+'3');await land(2)}
-    else{await land(2);equal(el.textContent,outer==='natural'&&inner==='natural'?'f0f12f3':'f0f1f2f3');await land(1);equal(el.textContent,outer==='natural'?'f012f3':'f0f1f2f3');await land(0);equal(el.textContent,outer==='together'?'f0f1f2f3':'012f3');await land(3)}
-    equal(el.textContent,'0123')
-   })}
-  })
- }
- doc('02','context-subtree','Context providers scope values to their descendants; nested providers override and outside siblings retain the default.',()=>{const Context=createContext('default');function Read(){const value=useContext(Context);return<span>{value}</span>}return dom(()=><><Context value="outer"><Read/><Context value="inner"><Read/></Context></Context><Read/></>,el=>equal(el.textContent,'outerinnerdefault'))})
- doc('01','dom-flush-boundary','Signal writes leave DOM and effect callbacks unchanged until flush, then update both before flush returns.',async()=>{let write!:(v:number)=>void;const seen:number[]=[];await dom(()=>{const [read,set]=createSignal(0);write=set;createEffect(read,n=>{seen.push(n)});return<span>{read()}</span>},el=>{equal(el.textContent,'0');equal(seen,[0]);write(1);equal(el.textContent,'0');equal(seen,[0]);flush();equal(el.textContent,'1');equal(seen,[0,1])})})
- doc('07','other-renderer-lowercase','Spread, html and h keep lowercase on* names as literal attributes, matching JSX and SSR.',async()=>{const [{default:h},{default:html}]=await Promise.all([import('@solidjs/h'),import('@solidjs/html')]);await dom(()=><>{<button {...{onclick:'return false'} as any}>spread</button>}{h('button',{onclick:'return false'},'h')}{html`<button onclick="return false">html</button>`}</>,el=>{equal(el.children.length,3);for(const child of el.children)equal(child.getAttribute('onclick'),'return false')})})
- doc('07','remaining-form-properties','Select/option and audio/video maintain documented current and default state properties.',()=>dom(()=><><select value="b"><option value="a">A</option><option value="b">B</option></select><option value="x" selected={true} defaultSelected={false}/><audio muted={true} defaultMuted={false}/><video muted={true} defaultMuted={false}/></>,el=>{const select=el.children[0] as HTMLSelectElement,option=el.children[1] as HTMLOptionElement,audio=el.children[2] as HTMLAudioElement,video=el.children[3] as HTMLVideoElement;equal(select.value,'b');equal(option.value,'x');equal(option.selected,true);equal(option.defaultSelected,false);equal(audio.muted,true);equal(audio.defaultMuted,false);equal(video.muted,true);equal(video.defaultMuted,false)}))
- doc('07','xml-partial-namespace','An ambiguous XML partial receives its requested namespace when the author supplies xmlns.',()=>dom(()=><svg><a xmlns="http://www.w3.org/2000/svg"><text>link</text></a></svg>,el=>equal(el.querySelector('a')!.namespaceURI,'http://www.w3.org/2000/svg')))
- doc('07','once-marker-reactivity','The old once JSX comment does not freeze a reactive expression.',async()=>{let write!:(v:number)=>void;await dom(()=>{const[read,set]=createSignal(0);write=set;return<span>{/*@once*/read()}</span>},el=>{equal(el.textContent,'0');write(1);flush();equal(el.textContent,'1')})})
- doc('03','dynamic-wrapper-retained','The deprecated Dynamic JSX wrapper remains usable without a runtime warning.',()=>dom(()=><Dynamic component="button" id="legacy">child</Dynamic>,el=>{equal(el.textContent,'child');equal(el.querySelector('button')!.id,'legacy');equal(el.querySelector('button')!.hasAttribute('component'),false)}))
- doc('07','namespace-no-special-handling','Legacy class: and style: attributes receive no class-toggle or CSS-property special handling.',()=>dom(()=> <div {...{'class:active':true,'style:color':'red'} as any}/>,el=>{const div=el.firstElementChild as HTMLDivElement;equal(div.className,'');equal(div.style.color,'');equal(div.hasAttribute('class:active'),true);equal(div.getAttribute('style:color'),'red')}))
- doc('07','attribute-lowercase','Built-in attributes are lowercase attributes, while dynamic values are applied reactively.',async()=>{let write!:(v:string)=>void;await dom(()=>{const [value,set]=createSignal('a');write=set;return <div data-state={value()} tabindex={2}/>},el=>{const div=el.firstElementChild!;equal(div.getAttribute('tabindex'),'2');equal(div.getAttribute('data-state'),'a');write('b');flush();equal(div.getAttribute('data-state'),'b')})})
- doc('07','native-property-defaults','Input values, checked state and their default values preserve the stateful DOM property semantics.',()=>dom(()=><><input value="live" defaultValue="initial"/><input type="checkbox" checked={true} defaultChecked={false}/><textarea value="live" defaultValue="initial"/></>,el=>{const input=el.children[0] as HTMLInputElement,check=el.children[1] as HTMLInputElement,area=el.children[2] as HTMLTextAreaElement;equal(input.value,'live');equal(input.defaultValue,'initial');equal(check.checked,true);equal(check.defaultChecked,false);equal(area.value,'live');equal(area.defaultValue,'initial')}))
- doc('07','svg-mathml-namespaces','Recognized SVG and MathML elements receive their platform namespaces.',()=>dom(()=><><svg><circle cx="1"/></svg><math><mi>x</mi></math></>,el=>{equal(el.querySelector('circle')!.namespaceURI,'http://www.w3.org/2000/svg');equal(el.querySelector('mi')!.namespaceURI,'http://www.w3.org/1998/Math/MathML')}))
- doc('07','ref-unowned','Ref callbacks run without a reactive owner; directive setup is owned and cleanup belongs to the setup.',async()=>{let applied:ReturnType<typeof getOwner>|undefined,setup:ReturnType<typeof getOwner>|undefined,cleaned=false;await dom(()=>{function directive(){setup=getOwner();onCleanup(()=>{cleaned=true});return(el:HTMLElement)=>{applied=getOwner();el.dataset.applied='yes'}}return<div ref={directive()}/>},el=>{ok(setup);equal(applied,null);equal(el.firstElementChild!.getAttribute('data-applied'),'yes');equal(cleaned,false)});equal(cleaned,true)})
- doc('07','ref-bare-variable','A single bare-variable ref is assigned; a variable contained in an array is an ordinary value and is never assigned.',()=>{let single:HTMLDivElement|undefined,array:HTMLDivElement|undefined;return dom(()=><><div ref={single}/><div ref={[array]}/></>,el=>{equal(single,el.children[0]);equal(array,undefined)})})
- doc('07','native-event-options','Ref callbacks may install native event listeners with once and capture options.',()=>{let hits=0;return dom(()=><button ref={el=>el.addEventListener('click',()=>{hits++},{once:true,capture:true})}/>,el=>{const button=el.firstElementChild as HTMLButtonElement;button.click();button.click();equal(hits,1)})})
- doc('07','nested-root-propagation','A nested root event stopPropagation prevents outer root handlers from observing the native event.',async()=>{const hits:string[]=[];await dom(()=><div onClick={()=>{hits.push('outer')}}><section/></div>,el=>{const container=el.querySelector('section')!;const close=render(()=><button onClick={event=>{hits.push('inner');event.stopPropagation()}}>click</button>,container);try{container.querySelector('button')!.click();equal(hits,['inner'])}finally{close()}})})
- doc('07','reactive-class-style','Reactive class object composition and style objects update attributes in place.',async()=>{let write!:(v:boolean)=>void;await dom(()=>{const [active,set]=createSignal(false);write=set;return<div class={['base',{active:active()}]} style={{color:active()?'red':'blue'}}/>},el=>{const div=el.firstElementChild as HTMLDivElement;equal(div.className,'base');equal(div.style.color,'blue');write(true);flush();equal(div.className,'base active');equal(div.style.color,'red')})})
- doc('03','show-keyed-lifetime','Keyed Show remounts its branch when a truthy value identity changes; non-keyed Show preserves the branch.',async()=>{for(const keyed of [false,true]){let write!:(v:{n:number}|undefined)=>void,mounts=0,cleanups=0;function Child(){mounts++;onCleanup(()=>{cleanups++});return<span>child</span>}await dom(()=>{const [value,set]=createSignal<{n:number}|undefined>({n:1});write=set;return keyed?<Show when={value()} keyed>{_value=> <Child/>}</Show>:<Show when={value()}>{_value=> <Child/>}</Show>},el=>{const first=el.querySelector('span');write({n:2});flush();equal(mounts,keyed?2:1);equal(el.querySelector('span')===first,!keyed);write(undefined);flush();equal(cleanups,keyed?2:1);equal(el.querySelector('span'),null)})}})
- doc('03','match-keyed-lifetime','The active non-keyed Match updates its narrowed accessor without remounting its child.',async()=>{let write!:(v:{n:number})=>void,mounts=0;await dom(()=>{const [value,set]=createSignal({n:1});write=set;return<Switch><Match when={value()}>{v=>{mounts++;return<span>{v().n}</span>}}</Match></Switch>},el=>{const first=el.querySelector('span');write({n:2});flush();equal(el.textContent,'2');equal(mounts,1);equal(el.querySelector('span'),first)})})
- doc('03','dynamic-async-data-sync-components','A synchronous dynamic source may choose client components from async data; Loading handles the data readiness, then component refs and props behave normally.',async()=>{const gate=deferred<{editable:boolean}>();let write!:(value:{editable:boolean})=>void;let editors=0,viewers=0;function Editor(props:{value:string}){editors++;return<input value={props.value}/>};function Viewer(props:{value:string}){viewers++;return<span>{props.value}</span>};await dom(()=>{const [override,set]=createSignal<{editable:boolean}|undefined>(undefined);write=set;const page=createMemo(()=>override()??gate.promise);const Page=dynamic(()=>page().editable?Editor:Viewer);return<Loading fallback={<b>waiting</b>}><Page value="hello"/></Loading>},async el=>{equal(el.textContent,'waiting');equal(editors+viewers,0);gate.resolve({editable:true});await ticks(6);equal((el.firstElementChild as HTMLInputElement).value,'hello');equal(editors,1);write({editable:false});flush();equal(el.textContent,'hello');equal(viewers,1)})})
- doc('03','dynamic-wrapper-per-instance','Dynamic keeps component out of the native props bag and creates a separate dynamic memo for each wrapper instance.',async()=>{let runs=0;await dom(()=>{const source=()=>{runs++;return'button'};return<><Dynamic component={source()} title="a"/><Dynamic component={source()} title="b"/></>},el=>{equal(runs,2);equal(el.children.length,2);for(const node of el.children){equal(node.tagName,'BUTTON');equal(node.hasAttribute('component'),false)}equal(el.children[0]!.getAttribute('title'),'a');equal(el.children[1]!.getAttribute('title'),'b')})})
- doc('03','dynamic-stable-shared','A dynamic factory is a stable Component and shares its source evaluation across mounted instances.',async()=>{let write!:(v:boolean)=>void,runs=0;await dom(()=>{const [multiline,set]=createSignal(false);write=set;const Tag=dynamic(()=>{runs++;return multiline()?'textarea':'input'});return<><Tag/><Tag/></>},el=>{equal(el.querySelectorAll('input').length,2);equal(runs,1);write(true);flush();equal(el.querySelectorAll('textarea').length,2);equal(runs,2)})})
- doc('02','component-cleanup-order','Parent cleanup registered before children unwinds after them in dev and production.',async()=>{const seen:string[]=[];function Child(){onCleanup(()=>{seen.push('child')});return<span/>}function Parent(){onCleanup(()=>{seen.push('parent')});return<Child/>}await dom(()=><Parent/>,()=>{});equal(seen,['child','parent'])})
- doc('02','component-cleanup-late','A parent cleanup registered after a child runs before it in production and after it in development.',async()=>{const seen:string[]=[];function Child(){onCleanup(()=>{seen.push('child')});return<span/>}function Parent(){const child=<Child/>;onCleanup(()=>{seen.push('parent')});return child}await dom(()=><Parent/>,()=>{});equal(seen,isDev?['child','parent']:['parent','child'])})
+const cases: DocCase[] = []
+function doc(
+	chapter: string,
+	name: string,
+	statement: string,
+	run: DocCase['run'],
+) {
+	const files: Record<string, string> = {
+		'01': '01-reactivity-batching-effects.md',
+		'02': '02-signals-derived-ownership.md',
+		'03': '03-control-flow.md',
+		'07': '07-dom.md',
+		'04': '04-stores.md',
+		'05': '05-async-data.md',
+	}
+	cases.push({
+		id: chapter + '/' + name,
+		file: files[chapter]!,
+		statement,
+		run,
+	})
 }
-if(isServer){doc('03','client-only-preload','A compiler-supplied clientOnly module URL emits modulepreload before fallback without executing the importer or entering the hydration manifest.',()=>{let calls=0;const C=clientOnly(()=>{calls++;return Promise.resolve({default:()=> <span>client</span>})},undefined,'/Chart.tsx');const html=renderToString(()=> <html><head/><body><C fallback={<b>fallback</b>}/></body></html>,{manifest:{'/Chart.tsx':{file:'/Chart.js',isEntry:true}}});equal(calls,0);ok(html.includes('rel="modulepreload" href="/Chart.js"'));ok(html.indexOf('/Chart.js')<html.indexOf('fallback'));ok(!html.includes('>client</span>'))})}
-if(isServer){doc('07','input-ssr-default','SSR uses defaultValue for initial form markup, and value when no defaultValue is provided.',()=>{const html=renderToString(()=><><input value="live" defaultValue="initial"/><input value="live"/><textarea value="live" defaultValue="initial"/></>);ok(html.includes('value="initial"'));ok(html.includes('value="live"'));ok(html.includes('>initial</textarea>'))})}
-for(const swallowing of [false,true])doc('04',`projection-async-propagation-${swallowing?'swallowed':'escaped'}`,'A swallowed NotReadyError severs the only SSR projection retry channel; the client subscription graph still retries, while escaped readiness works in both builds.',async()=>{const gate=deferred<number>();function App(){const source=createMemo(()=>gate.promise);const view=createProjection<{n:number}>(draft=>{if(swallowing){try{draft.n=source()}catch{}}else draft.n=source()},{n:0});return<Loading fallback={<b>pending</b>}><span>{view.n}</span></Loading>}if(isServer){const output=renderToStream(App);await ticks(2);gate.resolve(7);const html=await output;ok(html.includes('>'+String(swallowing?0:7)+'</span>'))}else await dom(App,async el=>{equal(el.textContent,swallowing?'0':'pending');gate.resolve(7);await ticks(8);equal(el.textContent,'7')})})
-export const remainingRenderCases=cases
+async function dom(
+	App: () => any,
+	check: (el: HTMLDivElement) => unknown | Promise<unknown>,
+) {
+	const el = document.createElement('div')
+	document.body.append(el)
+	let close = () => {}
+	try {
+		close = render(App, el)
+		await ticks(2)
+		await check(el)
+	} finally {
+		close()
+		el.remove()
+		await ticks(2)
+	}
+}
+if (!isServer) {
+	for (const order of ['sequential', 'together', 'natural'] as const)
+		doc(
+			'03',
+			`reveal-collapsed-${order}`,
+			'Collapsed only hides later fallbacks for sequential order; other orders ignore it.',
+			async () => {
+				const gates = [deferred<number>(), deferred<number>()]
+				await dom(
+					() => {
+						const a = createMemo(() => gates[0]!.promise),
+							b = createMemo(() => gates[1]!.promise)
+						return (
+							<Reveal order={order} collapsed>
+								<Loading fallback={<b>A</b>}>
+									<span>{a()}</span>
+								</Loading>
+								<Loading fallback={<b>B</b>}>
+									<span>{b()}</span>
+								</Loading>
+							</Reveal>
+						)
+					},
+					async (el) => {
+						equal(el.textContent, order === 'sequential' ? 'A' : 'AB')
+						gates[0]!.resolve(1)
+						await ticks(4)
+						equal(el.textContent, order === 'together' ? 'AB' : '1B')
+						gates[1]!.resolve(2)
+						await ticks(4)
+						equal(el.textContent, '12')
+					},
+				)
+			},
+		)
+	doc(
+		'03',
+		'repeat-store-granularity',
+		'Repeat indices stay stable while property reads on the store update individual content without list diffing.',
+		async () => {
+			let set!: (fn: (draft: { n: number }[]) => void) => void,
+				mounted = 0
+			await dom(
+				() => {
+					const [rows, write] = createStore([{ n: 1 }, { n: 2 }])
+					set = write
+					return (
+						<Repeat count={2}>
+							{(index) => {
+								mounted++
+								return <span>{rows[index]!.n}</span>
+							}}
+						</Repeat>
+					)
+				},
+				(el) => {
+					const nodes = [...el.children]
+					equal(el.textContent, '12')
+					set((d) => {
+						d[0]!.n = 3
+					})
+					flush()
+					equal(el.textContent, '32')
+					equal(mounted, 2)
+					equal(el.children[0], nodes[0])
+					equal(el.children[1], nodes[1])
+				},
+			)
+		},
+	)
+	for (const boundary of ['loading', 'errored'] as const)
+		doc(
+			'03',
+			`reveal-extra-boundary-${boundary}`,
+			boundary === 'loading'
+				? 'A nested Loading is not a direct group member; its wrapper is held by the outer Reveal, but its own pending content does not delay outer release.'
+				: 'An Errored-wrapped Loading is not a direct group member and settles independently.',
+			async () => {
+				for (const childFirst of [false, true]) {
+					const gates = [deferred<number>(), deferred<number>()]
+					await dom(
+						() => {
+							const a = createMemo(() => gates[0]!.promise),
+								b = createMemo(() => gates[1]!.promise)
+							return (
+								<Reveal order="together">
+									<Loading fallback={<b>A</b>}>
+										<span>{a()}</span>
+									</Loading>
+									{boundary === 'loading' ? (
+										<Loading fallback={<i>extra</i>}>
+											<Loading fallback={<b>B</b>}>
+												<span>{b()}</span>
+											</Loading>
+										</Loading>
+									) : (
+										<Errored fallback={<i>error</i>}>
+											<Loading fallback={<b>B</b>}>
+												<span>{b()}</span>
+											</Loading>
+										</Errored>
+									)}
+								</Reveal>
+							)
+						},
+						async (el) => {
+							equal(el.textContent, boundary === 'loading' ? 'Aextra' : 'AB')
+							gates[childFirst ? 1 : 0]!.resolve(childFirst ? 1 : 0)
+							await ticks(8)
+							equal(
+								el.textContent,
+								childFirst ? (boundary === 'loading' ? 'Aextra' : 'A1') : '0B',
+							)
+							gates[childFirst ? 0 : 1]!.resolve(childFirst ? 0 : 1)
+							await ticks(8)
+							equal(el.textContent, '01')
+						},
+					)
+				}
+			},
+		)
+	doc(
+		'05',
+		'transparent-csr-noop',
+		'Outside hydration transparent does not affect readiness, revalidation or final DOM.',
+		async () => {
+			for (const transparent of [false, true]) {
+				const gate = deferred<number>()
+				let write!: (v: number) => void
+				await dom(
+					() => {
+						const [source, setSource] = createSignal(0)
+						write = setSource
+						const read = createMemo(() => (source() ? gate.promise : 0), {
+							transparent,
+						})
+						return (
+							<Loading fallback={<b>waiting</b>}>
+								<span>
+									{read()}:{String(isPending(read))}
+								</span>
+							</Loading>
+						)
+					},
+					async (el) => {
+						equal(el.textContent, '0:false')
+						write(1)
+						flush()
+						await ticks(4)
+						equal(el.textContent, '0:true')
+						gate.resolve(7)
+						await ticks(6)
+						equal(el.textContent, '7:false')
+					},
+				)
+			}
+		},
+	)
+	doc(
+		'05',
+		'pending-read-placement',
+		'A pending expression that reads async data follows Loading on first load and shows inline pending on revalidation; a separate upstream signal read cannot infer the async subtree wait.',
+		async () => {
+			const gates = [deferred<number>(), deferred<number>()]
+			let write!: (n: number) => void
+			await dom(
+				() => {
+					const [id, setId] = createSignal(0)
+					write = setId
+					const read = createMemo(() => gates[id()]!.promise)
+					return (
+						<>
+							<Loading fallback={<b>fallback</b>}>
+								<span>{read()}</span>
+								<i>{String(isPending(read))}</i>
+							</Loading>
+							<u>{String(isPending(id))}</u>
+						</>
+					)
+				},
+				async (el) => {
+					equal(el.textContent, 'fallbackfalse')
+					gates[0]!.resolve(7)
+					await ticks(8)
+					equal(el.textContent, '7falsefalse')
+					write(1)
+					flush()
+					await ticks(4)
+					equal(el.textContent, '7truetrue')
+					gates[1]!.resolve(8)
+					await ticks(8)
+					equal(el.textContent, '8falsefalse')
+				},
+			)
+		},
+	)
+	doc(
+		'05',
+		'undefined-loading-value',
+		'An explicit undefined loadingValue is committed first paint and does not trip Loading or pending.',
+		async () => {
+			const gate = deferred<number>()
+			await dom(
+				() => {
+					const read = createMemo<number | undefined>(() => gate.promise, {
+						loadingValue: undefined,
+					})
+					return (
+						<Loading fallback={<b>fallback</b>}>
+							<span>{read() === undefined ? 'declared' : read()}</span>
+							<i>{String(isPending(read))}</i>
+						</Loading>
+					)
+				},
+				async (el) => {
+					equal(el.textContent, 'declaredfalse')
+					gate.resolve(7)
+					await ticks(8)
+					equal(el.textContent, '7false')
+				},
+			)
+		},
+	)
+	doc(
+		'03',
+		'client-error-owner-path',
+		'Client errors identify the named thrower chain separately from the boundary chain; production carries no owner labels.',
+		async () => {
+			let context: { ownerPath?: string[]; boundaryPath?: string[] } | undefined
+			configureClientErrors({
+				onError(_error, value) {
+					context = value
+				},
+			})
+			const error = new Error('named')
+			function Child() {
+				const read = createMemo(
+					() => {
+						throw error
+					},
+					{ name: 'Thrower' },
+				)
+				return <span>{read()}</span>
+			}
+			function Parent() {
+				return createComponent(
+					Errored,
+					{
+						fallback: (_error) => <b>caught</b>,
+						get children() {
+							return createComponent(Child, {}, 'Child')
+						},
+					},
+					'Boundary',
+				)
+			}
+			try {
+				await dom(
+					() => createComponent(Parent, {}, 'Parent'),
+					(el) => {
+						equal(el.textContent, 'caught')
+						ok(context)
+						if (isDev || OBSERVE) {
+							const owner = context!.ownerPath!,
+								boundary = context!.boundaryPath!
+							equal(owner.includes('<Parent>'), true)
+							equal(owner.includes('<Boundary>'), true)
+							equal(owner.includes('<Child>'), true)
+							equal(owner.includes('Thrower'), true)
+							equal(boundary.includes('<Parent>'), true)
+							equal(boundary.includes('<Boundary>'), true)
+							equal(boundary.includes('<Child>'), false)
+							equal(boundary.includes('Thrower'), false)
+							ok(
+								owner.indexOf('<Parent>') < owner.indexOf('<Boundary>') &&
+									owner.indexOf('<Boundary>') < owner.indexOf('<Child>') &&
+									owner.indexOf('<Child>') < owner.indexOf('Thrower'),
+							)
+						} else {
+							equal(context!.ownerPath, undefined)
+							equal(context!.boundaryPath, undefined)
+						}
+					},
+				)
+			} finally {
+				configureClientErrors({})
+			}
+		},
+	)
+	doc(
+		'03',
+		'client-error-primitive-per-sight',
+		'Unlike object-identity dedupe, a primitive failure is reported at each new sight, including retry.',
+		async () => {
+			let reports = 0,
+				reset!: () => void
+			configureClientErrors({
+				onError() {
+					reports++
+				},
+			})
+			try {
+				function Bad() {
+					throw 7
+					return <span />
+				}
+				await dom(
+					() => (
+						<Errored
+							fallback={(error, retry) => {
+								reset = retry
+								return <b>{String(error())}</b>
+							}}
+						>
+							<Bad />
+						</Errored>
+					),
+					async (el) => {
+						equal(el.textContent, '7')
+						equal(reports, 1)
+						reset()
+						await ticks(4)
+						equal(el.textContent, '7')
+						equal(reports, 2)
+					},
+				)
+			} finally {
+				configureClientErrors({})
+			}
+		},
+	)
+	doc(
+		'03',
+		'client-error-root-overrides',
+		'A per-render root hook takes precedence over the ambient hook, and rendering without one falls back to ambient.',
+		async () => {
+			let ambient = 0,
+				local = 0
+			configureClientErrors({
+				onError() {
+					ambient++
+				},
+			})
+			try {
+				for (const perRoot of [false, true]) {
+					const element = document.createElement('div')
+					document.body.append(element)
+					function Bad() {
+						throw new Error(perRoot ? 'local' : 'ambient')
+						return <span />
+					}
+					const dispose = render(
+						() => (
+							<Errored fallback={(_error) => <b>caught</b>}>
+								<Bad />
+							</Errored>
+						),
+						element,
+						undefined,
+						perRoot
+							? {
+									onError() {
+										local++
+									},
+								}
+							: undefined,
+					)
+					try {
+						await ticks(4)
+						equal(element.textContent, 'caught')
+						equal(ambient, 1)
+						equal(local, perRoot ? 1 : 0)
+					} finally {
+						dispose()
+						element.remove()
+					}
+				}
+			} finally {
+				configureClientErrors({})
+			}
+		},
+	)
+	doc(
+		'03',
+		'client-root-hook-storage',
+		'render parks a supplied error hook on the root owner and adds no hook slot when none is supplied.',
+		async () => {
+			for (const supplied of [false, true]) {
+				let owner: ReturnType<typeof getOwner>
+				const hook = () => {}
+				const element = document.createElement('div')
+				document.body.append(element)
+				const dispose = render(
+					() => {
+						owner = getOwner()
+						return <span>root</span>
+					},
+					element,
+					undefined,
+					supplied ? { onError: hook } : undefined,
+				)
+				try {
+					ok(owner!)
+					equal(Object.hasOwn(owner!, ROOT_ERROR_HOOK), supplied)
+					if (supplied)
+						equal(
+							(owner! as unknown as Record<symbol, unknown>)[ROOT_ERROR_HOOK],
+							hook,
+						)
+				} finally {
+					dispose()
+					element.remove()
+				}
+			}
+		},
+	)
+	doc(
+		'07',
+		'portal-contained-listeners',
+		'An already-contained Portal mount receives no additional delegated listener; event declarations select event names while the root remains the physical listener target.',
+		async () => {
+			const original = Element.prototype.addEventListener
+			const added: { element: Element; event: string }[] = []
+			Element.prototype.addEventListener = function (
+				type: string,
+				listener: EventListenerOrEventListenerObject,
+				options?: boolean | AddEventListenerOptions,
+			) {
+				added.push({ element: this, event: type })
+				return original.call(this, type, listener, options)
+			}
+			let mount!: HTMLDivElement,
+				open!: (n: boolean) => void,
+				hits = 0
+			try {
+				await dom(
+					() => {
+						const [shown, setShown] = createSignal(false)
+						open = setShown
+						return (
+							<>
+								<div
+									ref={(node: HTMLDivElement) => {
+										mount = node
+									}}
+								/>
+								<Show when={shown()}>
+									<Portal mount={mount}>
+										<button
+											onClick={() => {
+												hits++
+											}}
+										>
+											go
+										</button>
+									</Portal>
+								</Show>
+							</>
+						)
+					},
+					(el) => {
+						ok(el.contains(mount))
+						open(true)
+						flush()
+						mount.querySelector('button')!.click()
+						equal(hits, 1)
+						equal(
+							added.filter(
+								(row) => row.event === 'click' && row.element === mount,
+							).length,
+							0,
+						)
+						equal(
+							added.filter((row) => row.event === 'click' && row.element === el)
+								.length,
+							1,
+						)
+						delegateEvents(['click'])
+						equal(
+							added.filter(
+								(row) => row.event === 'click' && row.element === document.body,
+							).length,
+							0,
+						)
+						mount.querySelector('button')!.click()
+						equal(hits, 2)
+					},
+				)
+			} finally {
+				Element.prototype.addEventListener = original
+			}
+		},
+	)
+	doc(
+		'03',
+		'client-error-unknown-thrower',
+		'A rejected source without an owner name falls back to the boundary owner path.',
+		async () => {
+			const gate = deferred<number>()
+			let context: { ownerPath?: string[]; boundaryPath?: string[] } | undefined
+			configureClientErrors({
+				onError(_error, value) {
+					context = value
+				},
+			})
+			try {
+				await dom(
+					() => {
+						const read = createMemo(() => gate.promise, { name: '' })
+						return (
+							<Errored fallback={(_error) => <b>caught</b>}>
+								<Loading fallback={<i>pending</i>}>
+									<span>{read()}</span>
+								</Loading>
+							</Errored>
+						)
+					},
+					async (el) => {
+						equal(el.textContent, 'pending')
+						gate.reject(new Error('unnamed'))
+						await ticks(8)
+						equal(el.textContent, 'caught')
+						ok(context)
+						equal(context!.ownerPath, context!.boundaryPath)
+					},
+				)
+			} finally {
+				configureClientErrors({})
+			}
+		},
+	)
+	for (const reader of [
+		'sibling',
+		'pending',
+		'action-held',
+		'action-race',
+	] as const)
+		doc(
+			'05',
+			'loading-on-shared-' + reader,
+			'An independent shared read or an action held through the data prevents fallback; ending an action before its data can show fallback with the committed frame.',
+			async () => {
+				const comments = deferred<string>(),
+					ack = deferred<void>()
+				let start!: () => Promise<unknown>, write!: (n: number) => void
+				const warnings: string[] = []
+				const previous = console.warn
+				console.warn = (...args) => {
+					warnings.push(args.map(String).join(' '))
+				}
+				try {
+					await dom(
+						() => {
+							const [id, setId] = createSignal(0)
+							write = setId
+							const data = createMemo(() =>
+								id() === 0 ? 'a' : comments.promise,
+							)
+							start = action(function* () {
+								setId(1)
+								yield reader === 'action-held' ? comments.promise : ack.promise
+							})
+							return (
+								<>
+									<header>{id()}</header>
+									<Loading on={id()} fallback={<b>spinner</b>}>
+										<span>{data()}</span>
+									</Loading>
+									{reader === 'sibling' ? (
+										<Loading fallback={<u>outer</u>}>
+											<span>{data()}</span>
+										</Loading>
+									) : reader === 'pending' ? (
+										<i>{String(isPending(data))}</i>
+									) : null}
+								</>
+							)
+						},
+						async (el) => {
+							equal(
+								el.textContent,
+								reader === 'sibling'
+									? '0aa'
+									: reader === 'pending'
+										? '0afalse'
+										: '0a',
+							)
+							const done = reader.startsWith('action') ? start() : undefined
+							if (!done) write(1)
+							flush()
+							await ticks(6)
+							equal(
+								el.textContent,
+								reader === 'sibling'
+									? '0aa'
+									: reader === 'pending'
+										? '0atrue'
+										: '0a',
+							)
+							if (reader === 'action-race') {
+								ack.resolve()
+								await done
+								await ticks(6)
+								equal(el.textContent, '1spinner')
+							}
+							comments.resolve('b')
+							await done
+							await ticks(8)
+							equal(
+								el.textContent,
+								reader === 'sibling'
+									? '1bb'
+									: reader === 'pending'
+										? '1bfalse'
+										: '1b',
+							)
+						},
+					)
+				} finally {
+					console.warn = previous
+				}
+				equal(warnings.length, isDev && reader === 'sibling' ? 1 : 0)
+				for (const warning of warnings)
+					ok(warning.includes('[LOADING_ON_OUTSIDE_HOLD]'))
+			},
+		)
+	for (const commentsFirst of [false, true])
+		for (const ahead of [false, true])
+			doc(
+				'05',
+				`loading-on-frame-${commentsFirst ? 'comments-first' : 'shell-first'}-${ahead ? 'ahead' : 'normal'}`,
+				'Loading on fallback commits with the held shell; comments arriving before the shell avoid fallback, children stay mounted, and latest(on) explicitly displays fallback ahead.',
+				async () => {
+					const shell = deferred<string>(),
+						comments = deferred<string>()
+					let write!: (n: number) => void,
+						readComments!: () => string,
+						mounts = 0
+					await dom(
+						() => {
+							const [id, setId] = createSignal(0)
+							write = setId
+							const product = createMemo(() =>
+									id() === 0 ? 'A' : shell.promise,
+								),
+								messages = createMemo(() =>
+									id() === 0 ? 'a' : comments.promise,
+								)
+							readComments = messages
+							function Comments() {
+								mounts++
+								return <span>{messages()}</span>
+							}
+							return (
+								<>
+									<header>
+										{id()}
+										{product()}
+									</header>
+									<Loading
+										on={ahead ? latest(id) : id()}
+										fallback={<b>spinner</b>}
+									>
+										<Comments />
+									</Loading>
+								</>
+							)
+						},
+						async (el) => {
+							equal(el.textContent, '0Aa')
+							write(1)
+							flush()
+							await ticks(4)
+							equal(el.textContent, ahead ? '0Aspinner' : '0Aa')
+							if (commentsFirst) {
+								comments.resolve('b')
+								await ticks(4)
+								equal(el.textContent, ahead ? '0Aspinner' : '0Aa')
+								shell.resolve('B')
+								await ticks(8)
+								equal(untrack(readComments), 'b')
+								if (ahead)
+									for (let i = 0; i < 30; i++)
+										await new Promise((resolve) => setTimeout(resolve, 20))
+								equal(el.textContent, '1Bb')
+							} else {
+								shell.resolve('B')
+								await ticks(8)
+								equal(el.textContent, '1Bspinner')
+								comments.resolve('b')
+								await ticks(8)
+								equal(el.textContent, '1Bb')
+							}
+							equal(mounts, 1)
+						},
+					)
+				},
+			)
+	for (const held of [false, true])
+		doc(
+			'03',
+			`error-fallback-frame-${held ? 'held' : 'immediate'}`,
+			'Errored fallback lands with the same changed frame: immediately without a hold, together with the new shell when a sibling async read holds the frame.',
+			async () => {
+				const gate = deferred<string>()
+				let write!: (n: number) => void
+				await dom(
+					() => {
+						const [id, setId] = createSignal(0)
+						write = setId
+						const shell = createMemo(() =>
+							id() === 0 ? 'A' : held ? gate.promise : 'B',
+						)
+						function Child() {
+							const status = createMemo(() => {
+								if (id()) throw new Error('new failure')
+								return 'ok'
+							})
+							return <span>{status()}</span>
+						}
+						return (
+							<>
+								<header>
+									{id()}
+									{shell()}
+								</header>
+								<Errored fallback={(_error) => <b>error</b>}>
+									<Child />
+								</Errored>
+							</>
+						)
+					},
+					async (el) => {
+						equal(el.textContent, '0Aok')
+						write(1)
+						flush()
+						await ticks(4)
+						equal(el.textContent, held ? '0Aok' : '1Berror')
+						if (held) {
+							gate.resolve('B')
+							await ticks(8)
+							equal(el.textContent, '1Berror')
+						}
+					},
+				)
+			},
+		)
+	for (const property of ['a', 'b'] as const)
+		doc(
+			'05',
+			`loading-on-multiple-${property}`,
+			'Reading multiple dependencies in on re-enters fallback when either changes, preserving the child instance.',
+			async () => {
+				const gate = deferred<string>()
+				let setA!: (n: number) => void,
+					setB!: (n: number) => void,
+					mounts = 0
+				await dom(
+					() => {
+						const [a, writeA] = createSignal(0),
+							[b, writeB] = createSignal(0)
+						setA = writeA
+						setB = writeB
+						const read = createMemo(() =>
+							a() + b() === 0 ? 'old' : gate.promise,
+						)
+						function Child() {
+							mounts++
+							return <span>{read()}</span>
+						}
+						return (
+							<>
+								<header>
+									{a()}
+									{b()}
+								</header>
+								<Loading on={[a(), b()]} fallback={<b>spinner</b>}>
+									<Child />
+								</Loading>
+							</>
+						)
+					},
+					async (el) => {
+						equal(el.textContent, '00old')
+						;(property === 'a' ? setA : setB)(1)
+						flush()
+						await ticks(4)
+						equal(el.textContent, property === 'a' ? '10spinner' : '01spinner')
+						gate.resolve('new')
+						await ticks(8)
+						equal(el.textContent, property === 'a' ? '10new' : '01new')
+						equal(mounts, 1)
+					},
+				)
+			},
+		)
+	for (const store of [false, true])
+		doc(
+			'02',
+			`held-derive-external-write-${store ? 'store' : 'signal'}`,
+			'An external write joins a held derivation as prev rather than replacing its derived result; the revealed frame is derived from the changed input.',
+			async () => {
+				const flights: {
+					value: number
+					gate: ReturnType<typeof deferred<number>>
+				}[] = []
+				let save!: () => Promise<unknown>, mutate!: () => void
+				await dom(
+					() => {
+						const [input, setInput] = createSignal(1)
+						let read: () => number
+						if (store) {
+							const [state, setState] = createStore(
+								(d) => {
+									d.n += input()
+								},
+								{ n: 0 },
+							)
+							read = () => state.n
+							mutate = () =>
+								setState((d) => {
+									d.n += 100
+								})
+						} else {
+							const [value, setValue] = createSignal<number>(
+								(previous = 0) => previous + input(),
+							)
+							read = value
+							mutate = () => {
+								setValue((previous) => previous + 100)
+							}
+						}
+						const answer = createMemo(() => {
+							const value = read(),
+								gate = deferred<number>()
+							flights.push({ value, gate })
+							return gate.promise
+						})
+						save = action(function* () {
+							setInput(2)
+						})
+						return (
+							<Loading fallback={<b>pending</b>}>
+								<span>
+									{read()}:{answer()}
+								</span>
+							</Loading>
+						)
+					},
+					async (el) => {
+						equal(
+							flights.map((f) => f.value),
+							[1],
+						)
+						flights[0]!.gate.resolve(1)
+						await ticks(8)
+						equal(el.textContent, '1:1')
+						const done = save()
+						done.catch(() => {})
+						await ticks(4)
+						equal(el.textContent, '1:1')
+						equal(
+							flights.map((f) => f.value),
+							[1, 3],
+						)
+						mutate()
+						flush()
+						await ticks(4)
+						if (!store)
+							equal(
+								flights.map((f) => f.value),
+								[1, 3, 103],
+							)
+						equal(el.textContent, '1:1')
+						for (const flight of flights.slice(1, -1))
+							flight.gate.resolve(flight.value)
+						await ticks(4)
+						equal(el.textContent, '1:1')
+						const newest = flights.at(-1)!
+						newest.gate.resolve(newest.value)
+						await ticks(8)
+						await done
+						equal(el.textContent, '103:103')
+					},
+				)
+			},
+		)
+	for (const behavior of ['lane', 'plain', 'unrendered'] as const)
+		doc(
+			'05',
+			`latest-lane-${behavior}`,
+			'latest escapes its transition but waits for the slowest rendered async in its own lane; plain-read and unrendered derivations do not hold that lane.',
+			async () => {
+				const a = deferred<string>(),
+					b = deferred<string>(),
+					hold = deferred<void>()
+				let start!: () => Promise<unknown>
+				await dom(
+					() => {
+						const [id, setId] = createSignal(0)
+						const first = createMemo(() => {
+								const n = behavior === 'plain' ? id() : latest(id)
+								return n ? a.promise : 'a'
+							}),
+							second = createMemo(() => {
+								const n = behavior === 'plain' ? id() : latest(id)
+								return n ? b.promise : 'b'
+							})
+						start = action(function* () {
+							setId(1)
+							yield hold.promise
+						})
+						return (
+							<>
+								<header>{id()}</header>
+								<strong>{latest(id)}</strong>
+								{behavior === 'unrendered' ? null : (
+									<span>
+										{first()}
+										{second()}
+									</span>
+								)}
+							</>
+						)
+					},
+					async (el) => {
+						equal(el.textContent, behavior === 'unrendered' ? '00' : '00ab')
+						const done = start()
+						await ticks(6)
+						equal(
+							el.textContent,
+							behavior === 'lane'
+								? '00ab'
+								: behavior === 'plain'
+									? '01ab'
+									: '01',
+						)
+						a.resolve('A')
+						await ticks(6)
+						equal(
+							el.textContent,
+							behavior === 'lane'
+								? '00ab'
+								: behavior === 'plain'
+									? '01ab'
+									: '01',
+						)
+						b.resolve('B')
+						await ticks(6)
+						equal(
+							el.textContent,
+							behavior === 'unrendered'
+								? '01'
+								: behavior === 'plain'
+									? '01ab'
+									: '01AB',
+						)
+						hold.resolve()
+						await done
+						await ticks(6)
+						equal(el.textContent, behavior === 'unrendered' ? '11' : '11AB')
+					},
+				)
+			},
+		)
+	doc(
+		'03',
+		'errored-source-autoheal',
+		'Errored heals automatically when its throwing computation becomes valid; no global resetErrorBoundaries call is needed.',
+		async () => {
+			let write!: (n: number) => void,
+				reports = 0
+			configureClientErrors({
+				onError() {
+					reports++
+				},
+			})
+			try {
+				await dom(
+					() => {
+						const [value, setValue] = createSignal(0)
+						write = setValue
+						function Child() {
+							const read = createMemo(() => {
+								if (!value()) throw new Error('not ready')
+								return value()
+							})
+							return <span>{read()}</span>
+						}
+						return (
+							<Errored fallback={(_error) => <b>caught</b>}>
+								<Child />
+							</Errored>
+						)
+					},
+					async (el) => {
+						equal(el.textContent, 'caught')
+						equal(reports, 1)
+						write(1)
+						flush()
+						await ticks(6)
+						equal(el.textContent, '1')
+						equal(reports, 1)
+						write(2)
+						flush()
+						equal(el.textContent, '2')
+					},
+				)
+			} finally {
+				configureClientErrors({})
+			}
+		},
+	)
+	doc(
+		'03',
+		'client-only-import-start',
+		'clientOnly eagerly starts by default and lazy true starts exactly at its first render; pending modules show fallback without Loading.',
+		async () => {
+			for (const lazy of [false, true]) {
+				let imports = 0
+				const gate = deferred<{ default: () => any }>()
+				const Only = clientOnly(
+					() => {
+						imports++
+						return gate.promise
+					},
+					{ lazy },
+				)
+				equal(imports, lazy ? 0 : 1)
+				await dom(
+					() => (
+						<>
+							<Only fallback={<b>waiting</b>} />
+							<Only fallback={<i>waiting</i>} />
+						</>
+					),
+					async (el) => {
+						equal(imports, 1)
+						equal(el.textContent, 'waitingwaiting')
+						gate.resolve({ default: () => <span>loaded</span> })
+						await ticks(4)
+						equal(el.textContent, 'loadedloaded')
+					},
+				)
+			}
+		},
+	)
+	doc(
+		'03',
+		'client-error-hook-return-ignored',
+		'A hook return cannot map client fallback errors, while throwing hooks log and leave the app functional.',
+		async () => {
+			for (const throwing of [false, true]) {
+				let platform = 0
+				const handler = () => {
+					platform++
+				}
+				window.addEventListener('error', handler)
+				const original = new Error('original')
+				const logged: unknown[] = []
+				const prior = console.error
+				console.error = (...args) => {
+					logged.push(args)
+				}
+				configureClientErrors({
+					onError() {
+						if (throwing) throw new Error('monitor')
+						return new Error('replacement')
+					},
+				})
+				try {
+					function Bad() {
+						throw original
+						return <span />
+					}
+					await dom(
+						() => (
+							<Errored
+								fallback={(error) => <b>{(error() as Error).message}</b>}
+							>
+								<Bad />
+							</Errored>
+						),
+						(el) => {
+							equal(el.textContent, 'original')
+							equal(logged.length, throwing ? 1 : 0)
+							equal(platform, 0)
+						},
+					)
+				} finally {
+					configureClientErrors({})
+					console.error = prior
+					window.removeEventListener('error', handler)
+				}
+			}
+		},
+	)
+	doc(
+		'03',
+		'client-error-effect-arm',
+		'An effect onError arm handles its failure and does not notify the client boundary hook.',
+		async () => {
+			let reports = 0,
+				handled = 0
+			configureClientErrors({
+				onError() {
+					reports++
+				},
+			})
+			try {
+				await dom(
+					() => {
+						createEffect(
+							() => {
+								throw new Error('effect')
+							},
+							{
+								effect: () => {},
+								error: () => {
+									handled++
+								},
+							},
+						)
+						return <span>working</span>
+					},
+					(el) => {
+						equal(el.textContent, 'working')
+						equal(handled, 1)
+						equal(reports, 0)
+					},
+				)
+			} finally {
+				configureClientErrors({})
+			}
+		},
+	)
+	doc(
+		'03',
+		'dynamic-props-children-ref',
+		'A dynamic factory preserves reactive props, children, and normal refs when changing native tags.',
+		async () => {
+			let set!: (n: number) => void, setTag!: (tag: string) => void
+			const refs: Element[] = []
+			await dom(
+				() => {
+					const [n, write] = createSignal(1),
+						[tag, writeTag] = createSignal('article')
+					set = write
+					setTag = writeTag
+					const Tag = dynamic(tag)
+					return (
+						<Tag
+							title={String(n())}
+							ref={(el: Element) => {
+								refs.push(el)
+							}}
+						>
+							<span>{n()}</span>
+						</Tag>
+					)
+				},
+				(el) => {
+					equal(el.firstElementChild!.tagName, 'ARTICLE')
+					equal(refs[0], el.firstElementChild)
+					set(2)
+					flush()
+					equal(el.firstElementChild!.getAttribute('title'), '2')
+					equal(el.textContent, '2')
+					setTag('section')
+					flush()
+					equal(el.firstElementChild!.tagName, 'SECTION')
+					equal(refs[1], el.firstElementChild)
+					equal(el.textContent, '2')
+				},
+			)
+		},
+	)
 
-if(isServer)doc('05','transparent-ssr-ignored','SSR allocates the same hydration slots whether a source declares transparent true or false.',async()=>{const html:string[]=[];for(const transparent of [false,true])html.push(await renderToStream(()=>{const read=createMemo(()=>Promise.resolve(42),{transparent});return<Loading fallback={<b>waiting</b>}><span>{read()}</span></Loading>}));const keys=html.map(output=>/_hk=([^ >]+)/.exec(output)?.[1]);equal(keys[0],'1000');equal(keys[1],keys[0])})
+	doc(
+		'04',
+		'shallow-for-keyed-replacement',
+		'Shallow rows with custom keying reuse DOM for same-key replacements and dispose or create changed keys.',
+		async () => {
+			let set!: (fn: (draft: { id: number; n: number }[]) => void) => void,
+				created = 0,
+				disposed = 0
+			await dom(
+				() => {
+					const [rows, write] = createStore(
+						[
+							{ id: 1, n: 1 },
+							{ id: 2, n: 2 },
+						],
+						{ shallow: true },
+					)
+					set = write
+					return (
+						<For each={[...rows]} keyed={(row) => row.id}>
+							{(row) => {
+								created++
+								onCleanup(() => {
+									disposed++
+								})
+								return <span>{row().n}</span>
+							}}
+						</For>
+					)
+				},
+				(el) => {
+					const first = el.children[0]
+					set((d) => {
+						d[0] = { id: 1, n: 3 }
+					})
+					flush()
+					equal(el.children[0], first)
+					equal(el.textContent, '32')
+					equal(created, 2)
+					set((d) => {
+						d.splice(1, 1, { id: 3, n: 4 })
+					})
+					flush()
+					equal(el.textContent, '34')
+					equal(created, 3)
+					equal(disposed, 1)
+				},
+			)
+		},
+	)
+	for (const outer of ['sequential', 'together', 'natural'] as const)
+		for (const inner of ['sequential', 'together', 'natural'] as const) {
+			doc(
+				'03',
+				`reveal-matrix-${outer}-${inner}`,
+				`A nested ${inner} Reveal is one composite slot under outer ${outer}; minimal readiness, parent holds and inner ordering follow the documented matrix.`,
+				async () => {
+					for (const reversed of [false, true]) {
+						const gates = Array.from({ length: 4 }, () => deferred<number>())
+						await dom(
+							() => {
+								const values = gates.map((gate) =>
+									createMemo(() => gate.promise),
+								)
+								const slot = (n: number) => (
+									<Loading fallback={<b>{'f' + n}</b>}>
+										<span>{values[n]!()}</span>
+									</Loading>
+								)
+								return (
+									<Reveal order={outer}>
+										{slot(0)}
+										<Reveal order={inner}>
+											{slot(1)}
+											{slot(2)}
+										</Reveal>
+										{slot(3)}
+									</Reveal>
+								)
+							},
+							async (el) => {
+								equal(el.textContent, 'f0f1f2f3')
+								const land = async (n: number) => {
+									gates[n]!.resolve(n)
+									await ticks(8)
+								}
+								if (!reversed) {
+									await land(0)
+									equal(
+										el.textContent,
+										outer === 'together' ? 'f0f1f2f3' : '0f1f2f3',
+									)
+									await land(1)
+									const inside = inner === 'together' ? 'f1f2' : '1f2'
+									equal(
+										el.textContent,
+										outer === 'together' ? 'f0f1f2f3' : '0' + inside + 'f3',
+									)
+									await land(3)
+									equal(
+										el.textContent,
+										outer === 'together'
+											? inner === 'together'
+												? 'f0f1f2f3'
+												: '01f23'
+											: outer === 'sequential'
+												? '0' + inside + 'f3'
+												: '0' + inside + '3',
+									)
+									await land(2)
+								} else {
+									await land(2)
+									equal(
+										el.textContent,
+										outer === 'natural' && inner === 'natural'
+											? 'f0f12f3'
+											: 'f0f1f2f3',
+									)
+									await land(1)
+									equal(
+										el.textContent,
+										outer === 'natural' ? 'f012f3' : 'f0f1f2f3',
+									)
+									await land(0)
+									equal(
+										el.textContent,
+										outer === 'together' ? 'f0f1f2f3' : '012f3',
+									)
+									await land(3)
+								}
+								equal(el.textContent, '0123')
+							},
+						)
+					}
+				},
+			)
+		}
+	doc(
+		'02',
+		'context-subtree',
+		'Context providers scope values to their descendants; nested providers override and outside siblings retain the default.',
+		() => {
+			const Context = createContext('default')
+			function Read() {
+				const value = useContext(Context)
+				return <span>{value}</span>
+			}
+			return dom(
+				() => (
+					<>
+						<Context value="outer">
+							<Read />
+							<Context value="inner">
+								<Read />
+							</Context>
+						</Context>
+						<Read />
+					</>
+				),
+				(el) => equal(el.textContent, 'outerinnerdefault'),
+			)
+		},
+	)
+	doc(
+		'01',
+		'dom-flush-boundary',
+		'Signal writes leave DOM and effect callbacks unchanged until flush, then update both before flush returns.',
+		async () => {
+			let write!: (v: number) => void
+			const seen: number[] = []
+			await dom(
+				() => {
+					const [read, set] = createSignal(0)
+					write = set
+					createEffect(read, (n) => {
+						seen.push(n)
+					})
+					return <span>{read()}</span>
+				},
+				(el) => {
+					equal(el.textContent, '0')
+					equal(seen, [0])
+					write(1)
+					equal(el.textContent, '0')
+					equal(seen, [0])
+					flush()
+					equal(el.textContent, '1')
+					equal(seen, [0, 1])
+				},
+			)
+		},
+	)
+	doc(
+		'07',
+		'other-renderer-lowercase',
+		'Spread, html and h keep lowercase on* names as literal attributes, matching JSX and SSR.',
+		async () => {
+			const [{ default: h }, { default: html }] = await Promise.all([
+				import('@solidjs/h'),
+				import('@solidjs/html'),
+			])
+			await dom(
+				() => (
+					<>
+						{<button {...({ onclick: 'return false' } as any)}>spread</button>}
+						{h('button', { onclick: 'return false' }, 'h')}
+						{html`<button onclick="return false">html</button>`}
+					</>
+				),
+				(el) => {
+					equal(el.children.length, 3)
+					for (const child of el.children)
+						equal(child.getAttribute('onclick'), 'return false')
+				},
+			)
+		},
+	)
+	doc(
+		'07',
+		'remaining-form-properties',
+		'Select/option and audio/video maintain documented current and default state properties.',
+		() =>
+			dom(
+				() => (
+					<>
+						<select value="b">
+							<option value="a">A</option>
+							<option value="b">B</option>
+						</select>
+						<option value="x" selected={true} defaultSelected={false} />
+						<audio muted={true} defaultMuted={false} />
+						<video muted={true} defaultMuted={false} />
+					</>
+				),
+				(el) => {
+					const select = el.children[0] as HTMLSelectElement,
+						option = el.children[1] as HTMLOptionElement,
+						audio = el.children[2] as HTMLAudioElement,
+						video = el.children[3] as HTMLVideoElement
+					equal(select.value, 'b')
+					equal(option.value, 'x')
+					equal(option.selected, true)
+					equal(option.defaultSelected, false)
+					equal(audio.muted, true)
+					equal(audio.defaultMuted, false)
+					equal(video.muted, true)
+					equal(video.defaultMuted, false)
+				},
+			),
+	)
+	doc(
+		'07',
+		'xml-partial-namespace',
+		'An ambiguous XML partial receives its requested namespace when the author supplies xmlns.',
+		() =>
+			dom(
+				() => (
+					<svg>
+						<a xmlns="http://www.w3.org/2000/svg">
+							<text>link</text>
+						</a>
+					</svg>
+				),
+				(el) =>
+					equal(
+						el.querySelector('a')!.namespaceURI,
+						'http://www.w3.org/2000/svg',
+					),
+			),
+	)
+	doc(
+		'07',
+		'once-marker-reactivity',
+		'The old once JSX comment does not freeze a reactive expression.',
+		async () => {
+			let write!: (v: number) => void
+			await dom(
+				() => {
+					const [read, set] = createSignal(0)
+					write = set
+					return <span>{/*@once*/ read()}</span>
+				},
+				(el) => {
+					equal(el.textContent, '0')
+					write(1)
+					flush()
+					equal(el.textContent, '1')
+				},
+			)
+		},
+	)
+	doc(
+		'03',
+		'dynamic-wrapper-retained',
+		'The deprecated Dynamic JSX wrapper remains usable without a runtime warning.',
+		() =>
+			dom(
+				() => (
+					<Dynamic component="button" id="legacy">
+						child
+					</Dynamic>
+				),
+				(el) => {
+					equal(el.textContent, 'child')
+					equal(el.querySelector('button')!.id, 'legacy')
+					equal(el.querySelector('button')!.hasAttribute('component'), false)
+				},
+			),
+	)
+	doc(
+		'07',
+		'namespace-no-special-handling',
+		'Legacy class: and style: attributes receive no class-toggle or CSS-property special handling.',
+		() =>
+			dom(
+				() => (
+					<div {...({ 'class:active': true, 'style:color': 'red' } as any)} />
+				),
+				(el) => {
+					const div = el.firstElementChild as HTMLDivElement
+					equal(div.className, '')
+					equal(div.style.color, '')
+					equal(div.hasAttribute('class:active'), true)
+					equal(div.getAttribute('style:color'), 'red')
+				},
+			),
+	)
+	doc(
+		'07',
+		'attribute-lowercase',
+		'Built-in attributes are lowercase attributes, while dynamic values are applied reactively.',
+		async () => {
+			let write!: (v: string) => void
+			await dom(
+				() => {
+					const [value, set] = createSignal('a')
+					write = set
+					return <div data-state={value()} tabindex={2} />
+				},
+				(el) => {
+					const div = el.firstElementChild!
+					equal(div.getAttribute('tabindex'), '2')
+					equal(div.getAttribute('data-state'), 'a')
+					write('b')
+					flush()
+					equal(div.getAttribute('data-state'), 'b')
+				},
+			)
+		},
+	)
+	doc(
+		'07',
+		'native-property-defaults',
+		'Input values, checked state and their default values preserve the stateful DOM property semantics.',
+		() =>
+			dom(
+				() => (
+					<>
+						<input value="live" defaultValue="initial" />
+						<input type="checkbox" checked={true} defaultChecked={false} />
+						<textarea value="live" defaultValue="initial" />
+					</>
+				),
+				(el) => {
+					const input = el.children[0] as HTMLInputElement,
+						check = el.children[1] as HTMLInputElement,
+						area = el.children[2] as HTMLTextAreaElement
+					equal(input.value, 'live')
+					equal(input.defaultValue, 'initial')
+					equal(check.checked, true)
+					equal(check.defaultChecked, false)
+					equal(area.value, 'live')
+					equal(area.defaultValue, 'initial')
+				},
+			),
+	)
+	doc(
+		'07',
+		'svg-mathml-namespaces',
+		'Recognized SVG and MathML elements receive their platform namespaces.',
+		() =>
+			dom(
+				() => (
+					<>
+						<svg>
+							<circle cx="1" />
+						</svg>
+						<math>
+							<mi>x</mi>
+						</math>
+					</>
+				),
+				(el) => {
+					equal(
+						el.querySelector('circle')!.namespaceURI,
+						'http://www.w3.org/2000/svg',
+					)
+					equal(
+						el.querySelector('mi')!.namespaceURI,
+						'http://www.w3.org/1998/Math/MathML',
+					)
+				},
+			),
+	)
+	doc(
+		'07',
+		'ref-unowned',
+		'Ref callbacks run without a reactive owner; directive setup is owned and cleanup belongs to the setup.',
+		async () => {
+			let applied: ReturnType<typeof getOwner> | undefined,
+				setup: ReturnType<typeof getOwner> | undefined,
+				cleaned = false
+			await dom(
+				() => {
+					function directive() {
+						setup = getOwner()
+						onCleanup(() => {
+							cleaned = true
+						})
+						return (el: HTMLElement) => {
+							applied = getOwner()
+							el.dataset.applied = 'yes'
+						}
+					}
+					return <div ref={directive()} />
+				},
+				(el) => {
+					ok(setup)
+					equal(applied, null)
+					equal(el.firstElementChild!.getAttribute('data-applied'), 'yes')
+					equal(cleaned, false)
+				},
+			)
+			equal(cleaned, true)
+		},
+	)
+	doc(
+		'07',
+		'ref-bare-variable',
+		'A single bare-variable ref is assigned; a variable contained in an array is an ordinary value and is never assigned.',
+		() => {
+			let single: HTMLDivElement | undefined, array: HTMLDivElement | undefined
+			return dom(
+				() => (
+					<>
+						<div ref={single} />
+						<div ref={[array]} />
+					</>
+				),
+				(el) => {
+					equal(single, el.children[0])
+					equal(array, undefined)
+				},
+			)
+		},
+	)
+	doc(
+		'07',
+		'native-event-options',
+		'Ref callbacks may install native event listeners with once and capture options.',
+		() => {
+			let hits = 0
+			return dom(
+				() => (
+					<button
+						ref={(el) =>
+							el.addEventListener(
+								'click',
+								() => {
+									hits++
+								},
+								{ once: true, capture: true },
+							)
+						}
+					/>
+				),
+				(el) => {
+					const button = el.firstElementChild as HTMLButtonElement
+					button.click()
+					button.click()
+					equal(hits, 1)
+				},
+			)
+		},
+	)
+	doc(
+		'07',
+		'nested-root-propagation',
+		'A nested root event stopPropagation prevents outer root handlers from observing the native event.',
+		async () => {
+			const hits: string[] = []
+			await dom(
+				() => (
+					<div
+						onClick={() => {
+							hits.push('outer')
+						}}
+					>
+						<section />
+					</div>
+				),
+				(el) => {
+					const container = el.querySelector('section')!
+					const close = render(
+						() => (
+							<button
+								onClick={(event) => {
+									hits.push('inner')
+									event.stopPropagation()
+								}}
+							>
+								click
+							</button>
+						),
+						container,
+					)
+					try {
+						container.querySelector('button')!.click()
+						equal(hits, ['inner'])
+					} finally {
+						close()
+					}
+				},
+			)
+		},
+	)
+	doc(
+		'07',
+		'reactive-class-style',
+		'Reactive class object composition and style objects update attributes in place.',
+		async () => {
+			let write!: (v: boolean) => void
+			await dom(
+				() => {
+					const [active, set] = createSignal(false)
+					write = set
+					return (
+						<div
+							class={['base', { active: active() }]}
+							style={{ color: active() ? 'red' : 'blue' }}
+						/>
+					)
+				},
+				(el) => {
+					const div = el.firstElementChild as HTMLDivElement
+					equal(div.className, 'base')
+					equal(div.style.color, 'blue')
+					write(true)
+					flush()
+					equal(div.className, 'base active')
+					equal(div.style.color, 'red')
+				},
+			)
+		},
+	)
+	doc(
+		'03',
+		'show-keyed-lifetime',
+		'Keyed Show remounts its branch when a truthy value identity changes; non-keyed Show preserves the branch.',
+		async () => {
+			for (const keyed of [false, true]) {
+				let write!: (v: { n: number } | undefined) => void,
+					mounts = 0,
+					cleanups = 0
+				function Child() {
+					mounts++
+					onCleanup(() => {
+						cleanups++
+					})
+					return <span>child</span>
+				}
+				await dom(
+					() => {
+						const [value, set] = createSignal<{ n: number } | undefined>({
+							n: 1,
+						})
+						write = set
+						return keyed ? (
+							<Show when={value()} keyed>
+								{(_value) => <Child />}
+							</Show>
+						) : (
+							<Show when={value()}>{(_value) => <Child />}</Show>
+						)
+					},
+					(el) => {
+						const first = el.querySelector('span')
+						write({ n: 2 })
+						flush()
+						equal(mounts, keyed ? 2 : 1)
+						equal(el.querySelector('span') === first, !keyed)
+						write(undefined)
+						flush()
+						equal(cleanups, keyed ? 2 : 1)
+						equal(el.querySelector('span'), null)
+					},
+				)
+			}
+		},
+	)
+	doc(
+		'03',
+		'match-keyed-lifetime',
+		'The active non-keyed Match updates its narrowed accessor without remounting its child.',
+		async () => {
+			let write!: (v: { n: number }) => void,
+				mounts = 0
+			await dom(
+				() => {
+					const [value, set] = createSignal({ n: 1 })
+					write = set
+					return (
+						<Switch>
+							<Match when={value()}>
+								{(v) => {
+									mounts++
+									return <span>{v().n}</span>
+								}}
+							</Match>
+						</Switch>
+					)
+				},
+				(el) => {
+					const first = el.querySelector('span')
+					write({ n: 2 })
+					flush()
+					equal(el.textContent, '2')
+					equal(mounts, 1)
+					equal(el.querySelector('span'), first)
+				},
+			)
+		},
+	)
+	doc(
+		'03',
+		'dynamic-async-data-sync-components',
+		'A synchronous dynamic source may choose client components from async data; Loading handles the data readiness, then component refs and props behave normally.',
+		async () => {
+			const gate = deferred<{ editable: boolean }>()
+			let write!: (value: { editable: boolean }) => void
+			let editors = 0,
+				viewers = 0
+			function Editor(props: { value: string }) {
+				editors++
+				return <input value={props.value} />
+			}
+			function Viewer(props: { value: string }) {
+				viewers++
+				return <span>{props.value}</span>
+			}
+			await dom(
+				() => {
+					const [override, set] = createSignal<
+						{ editable: boolean } | undefined
+					>(undefined)
+					write = set
+					const page = createMemo(() => override() ?? gate.promise)
+					const Page = dynamic(() => (page().editable ? Editor : Viewer))
+					return (
+						<Loading fallback={<b>waiting</b>}>
+							<Page value="hello" />
+						</Loading>
+					)
+				},
+				async (el) => {
+					equal(el.textContent, 'waiting')
+					equal(editors + viewers, 0)
+					gate.resolve({ editable: true })
+					await ticks(6)
+					equal((el.firstElementChild as HTMLInputElement).value, 'hello')
+					equal(editors, 1)
+					write({ editable: false })
+					flush()
+					equal(el.textContent, 'hello')
+					equal(viewers, 1)
+				},
+			)
+		},
+	)
+	doc(
+		'03',
+		'dynamic-wrapper-per-instance',
+		'Dynamic keeps component out of the native props bag and creates a separate dynamic memo for each wrapper instance.',
+		async () => {
+			let runs = 0
+			await dom(
+				() => {
+					const source = () => {
+						runs++
+						return 'button'
+					}
+					return (
+						<>
+							<Dynamic component={source()} title="a" />
+							<Dynamic component={source()} title="b" />
+						</>
+					)
+				},
+				(el) => {
+					equal(runs, 2)
+					equal(el.children.length, 2)
+					for (const node of el.children) {
+						equal(node.tagName, 'BUTTON')
+						equal(node.hasAttribute('component'), false)
+					}
+					equal(el.children[0]!.getAttribute('title'), 'a')
+					equal(el.children[1]!.getAttribute('title'), 'b')
+				},
+			)
+		},
+	)
+	doc(
+		'03',
+		'dynamic-stable-shared',
+		'A dynamic factory is a stable Component and shares its source evaluation across mounted instances.',
+		async () => {
+			let write!: (v: boolean) => void,
+				runs = 0
+			await dom(
+				() => {
+					const [multiline, set] = createSignal(false)
+					write = set
+					const Tag = dynamic(() => {
+						runs++
+						return multiline() ? 'textarea' : 'input'
+					})
+					return (
+						<>
+							<Tag />
+							<Tag />
+						</>
+					)
+				},
+				(el) => {
+					equal(el.querySelectorAll('input').length, 2)
+					equal(runs, 1)
+					write(true)
+					flush()
+					equal(el.querySelectorAll('textarea').length, 2)
+					equal(runs, 2)
+				},
+			)
+		},
+	)
+	doc(
+		'02',
+		'component-cleanup-order',
+		'Parent cleanup registered before children unwinds after them in dev and production.',
+		async () => {
+			const seen: string[] = []
+			function Child() {
+				onCleanup(() => {
+					seen.push('child')
+				})
+				return <span />
+			}
+			function Parent() {
+				onCleanup(() => {
+					seen.push('parent')
+				})
+				return <Child />
+			}
+			await dom(
+				() => <Parent />,
+				() => {},
+			)
+			equal(seen, ['child', 'parent'])
+		},
+	)
+	doc(
+		'02',
+		'component-cleanup-late',
+		'A parent cleanup registered after a child runs before it in production and after it in development.',
+		async () => {
+			const seen: string[] = []
+			function Child() {
+				onCleanup(() => {
+					seen.push('child')
+				})
+				return <span />
+			}
+			function Parent() {
+				const child = <Child />
+				onCleanup(() => {
+					seen.push('parent')
+				})
+				return child
+			}
+			await dom(
+				() => <Parent />,
+				() => {},
+			)
+			equal(seen, isDev ? ['child', 'parent'] : ['parent', 'child'])
+		},
+	)
+}
+if (isServer) {
+	doc(
+		'03',
+		'client-only-preload',
+		'A compiler-supplied clientOnly module URL emits modulepreload before fallback without executing the importer or entering the hydration manifest.',
+		() => {
+			let calls = 0
+			const C = clientOnly(
+				() => {
+					calls++
+					return Promise.resolve({ default: () => <span>client</span> })
+				},
+				undefined,
+				'/Chart.tsx',
+			)
+			const html = renderToString(
+				() => (
+					<html>
+						<head />
+						<body>
+							<C fallback={<b>fallback</b>} />
+						</body>
+					</html>
+				),
+				{ manifest: { '/Chart.tsx': { file: '/Chart.js', isEntry: true } } },
+			)
+			equal(calls, 0)
+			ok(html.includes('rel="modulepreload" href="/Chart.js"'))
+			ok(html.indexOf('/Chart.js') < html.indexOf('fallback'))
+			ok(!html.includes('>client</span>'))
+		},
+	)
+}
+if (isServer) {
+	doc(
+		'07',
+		'input-ssr-default',
+		'SSR uses defaultValue for initial form markup, and value when no defaultValue is provided.',
+		() => {
+			const html = renderToString(() => (
+				<>
+					<input value="live" defaultValue="initial" />
+					<input value="live" />
+					<textarea value="live" defaultValue="initial" />
+				</>
+			))
+			ok(html.includes('value="initial"'))
+			ok(html.includes('value="live"'))
+			ok(html.includes('>initial</textarea>'))
+		},
+	)
+}
+for (const swallowing of [false, true])
+	doc(
+		'04',
+		`projection-async-propagation-${swallowing ? 'swallowed' : 'escaped'}`,
+		'A swallowed NotReadyError severs the only SSR projection retry channel; the client subscription graph still retries, while escaped readiness works in both builds.',
+		async () => {
+			const gate = deferred<number>()
+			function App() {
+				const source = createMemo(() => gate.promise)
+				const view = createProjection<{ n: number }>(
+					(draft) => {
+						if (swallowing) {
+							try {
+								draft.n = source()
+							} catch {}
+						} else draft.n = source()
+					},
+					{ n: 0 },
+				)
+				return (
+					<Loading fallback={<b>pending</b>}>
+						<span>{view.n}</span>
+					</Loading>
+				)
+			}
+			if (isServer) {
+				const output = renderToStream(App)
+				await ticks(2)
+				gate.resolve(7)
+				const html = await output
+				ok(html.includes('>' + String(swallowing ? 0 : 7) + '</span>'))
+			} else
+				await dom(App, async (el) => {
+					equal(el.textContent, swallowing ? '0' : 'pending')
+					gate.resolve(7)
+					await ticks(8)
+					equal(el.textContent, '7')
+				})
+		},
+	)
+export const remainingRenderCases = cases
+
+if (isServer)
+	doc(
+		'05',
+		'transparent-ssr-ignored',
+		'SSR allocates the same hydration slots whether a source declares transparent true or false.',
+		async () => {
+			const html: string[] = []
+			for (const transparent of [false, true])
+				html.push(
+					await renderToStream(() => {
+						const read = createMemo(() => Promise.resolve(42), { transparent })
+						return (
+							<Loading fallback={<b>waiting</b>}>
+								<span>{read()}</span>
+							</Loading>
+						)
+					}),
+				)
+			const keys = html.map((output) => /_hk=([^ >]+)/.exec(output)?.[1])
+			equal(keys[0], '1000')
+			equal(keys[1], keys[0])
+		},
+	)

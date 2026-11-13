@@ -1,5 +1,3 @@
-import { liveStoreRejectionCase } from "../findings/004-derived-store-rejection/live-component"
-import { routerCase } from '../tracks/router/router-case'
 import { isServer } from '@solidjs/web'
 import {
 	Show,
@@ -22,25 +20,51 @@ import {
 import type { Spec, Tree } from './tree'
 
 import { storeKeyedCase } from '../findings/001-streamed-store-keyed/component'
+import { storeRejectionCase } from '../findings/004-derived-store-rejection/component'
+import { liveStoreRejectionCase } from '../findings/004-derived-store-rejection/live-component'
+import { loadingAccessorCase } from '../findings/007-loading-on-accessor/component'
+import { refreshCase } from '../findings/008-production-refresh/component'
+import { docsCase } from '../tracks/docs/cases'
+import { policyCase } from '../tracks/docs/policy-case'
 import { lazyCase } from '../tracks/regressions/lazy-case'
 import { liveCase } from '../tracks/regressions/live-case'
 import { optimisticCase } from '../tracks/regressions/optimistic-case'
-import { storeRejectionCase } from '../findings/004-derived-store-rejection/component'
-import { loadingAccessorCase } from '../findings/007-loading-on-accessor/component'
-import { refreshCase } from '../findings/008-production-refresh/component'
-import { transportCase } from '../tracks/transport/component'
-import { policyCase } from '../tracks/docs/policy-case'
-import { docsCase } from '../tracks/docs/cases'
+import { routerCase } from '../tracks/router/router-case'
 import { transitionCase } from '../tracks/transitions/component'
+import { transportCase } from '../tracks/transport/component'
 import { deferred, controlledIterable, ticks } from './timing'
 export function createCase(spec: Spec) {
 	if (spec.transport) return transportCase(spec.transport)
 	if (spec.scenario?.startsWith('router:')) {
-  let leaf=spec.tree;while(leaf.children.length)leaf=leaf.children[0]!
-  const fixture=routerCase(spec.scenario.slice(7) as import('../tracks/router/router-case').RouterScenario, leaf.value, spec.order[0] === 1)
-  function Wrapped(props:{node:Tree}){const n=untrack(()=>props.node);if(!n.children.length)return <fixture.App/>;return n.kind==='loading'?<Loading fallback={<i>pending</i>}><Wrapped node={n.children[0]!}/></Loading>:<Show when={true}><Wrapped node={n.children[0]!}/></Show>}
-  return {...fixture,App:spec.tree.children.length?()=> <Wrapped node={spec.tree}/>:fixture.App}
- }
+		let leaf = spec.tree
+		while (leaf.children.length) leaf = leaf.children[0]!
+		const fixture = routerCase(
+			spec.scenario.slice(
+				7,
+			) as import('../tracks/router/router-case').RouterScenario,
+			leaf.value,
+			spec.order[0] === 1,
+		)
+		function Wrapped(props: { node: Tree }) {
+			const n = untrack(() => props.node)
+			if (!n.children.length) return <fixture.App />
+			return n.kind === 'loading' ? (
+				<Loading fallback={<i>pending</i>}>
+					<Wrapped node={n.children[0]!} />
+				</Loading>
+			) : (
+				<Show when={true}>
+					<Wrapped node={n.children[0]!} />
+				</Show>
+			)
+		}
+		return {
+			...fixture,
+			App: spec.tree.children.length
+				? () => <Wrapped node={spec.tree} />
+				: fixture.App,
+		}
+	}
 	if (spec.scenario === 'finding:004-live') return liveStoreRejectionCase()
 	if (spec.scenario === 'finding:004') return storeRejectionCase()
 	if (spec.scenario === 'finding:007') return loadingAccessorCase()

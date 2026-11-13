@@ -1,30 +1,603 @@
-import { createMemo, Loading, Errored, createRoot } from 'solid-js'
-import { isServer, isDev, RequestContext, createRequestEvent, getRequestEvent, createResponseStub, renderToStream, renderToString, createSSRResponse, commitEventResponse, getExpectedRedirectStatus, parseCookieHeader, serializeCookie, httpHeader, httpStatus, composeMiddleware, getTraceContext } from '@solidjs/web'
+import {
+	isServer,
+	isDev,
+	RequestContext,
+	createRequestEvent,
+	getRequestEvent,
+	createResponseStub,
+	renderToStream,
+	renderToString,
+	createSSRResponse,
+	commitEventResponse,
+	getExpectedRedirectStatus,
+	parseCookieHeader,
+	serializeCookie,
+	httpHeader,
+	httpStatus,
+	composeMiddleware,
+	getTraceContext,
+} from '@solidjs/web'
 import { provideRequestEvent } from '@solidjs/web/storage'
-import { equal, ok, type DocCase } from './registry'
+import { createMemo, Loading, Errored, createRoot } from 'solid-js'
+
 import { deferred } from '../../harness/timing'
-const cases:DocCase[]=[]
-function doc(name:string,statement:string,run:DocCase['run'],file='12-ssr-http.md',chapter='12'){cases.push({id:chapter+'/'+name,file,statement,run})}
-doc('cookie-proto-key','Any valid cookie name round-trips, including __proto__.',()=>{const value=parseCookieHeader(serializeCookie('__proto__','x').split(';')[0]!);equal(Object.hasOwn(value,'__proto__'),true);equal(value['__proto__'],'x')})
-if(isServer){
- doc('ssr-reset-static-model','The public SSR Errored reset callback does not rerun a static failed branch; this records why the HTTP pre-commit recovery example has no executable public SSR path.',()=>{const event=createRequestEvent(new Request('https://conformance.test'));event.response.status=404;return provideRequestEvent(event,()=>{let retry!:()=>void,calls=0;function Bad(){calls++;throw new Error('SSR static');return<span/>};const html=renderToString(()=> <Errored fallback={(_error,reset)=>{retry=reset;httpStatus(500);return<b>caught</b>}}><Bad/></Errored>,{onError:()=>{}});ok(html.includes('caught'));equal(calls,1);equal(event.response.status,500);equal(event.response.committed,true);retry();equal(calls,1);equal(event.response.status,500);equal(event.response.committed,true)})})
- doc('event-outside-scope','getRequestEvent returns undefined outside a request scope.',()=>{const storage=(globalThis as unknown as Record<symbol,{exit<T>(callback:()=>T):T}>)[RequestContext]!;return storage.exit(()=>equal(getRequestEvent(),undefined))})
- doc('cookie-expiry-serialization','expires emits exactly the explicitly supplied date, and valid unusual cookie names round-trip.',()=>{const date=new Date('2030-01-01T00:00:00Z');ok(serializeCookie('a','b',{expires:date}).includes('Expires=Tue, 01 Jan 2030 00:00:00 GMT'));for(const name of ['constructor','name space','name;=']){const header=serializeCookie(name,'x');const parsed=parseCookieHeader(header.split(';')[0]!);equal(Object.hasOwn(parsed,name),true);equal(parsed[name],'x')}})
- doc('cookie-declaration-retraction','httpHeader set-cookie snapshots and restores separate entries exactly rather than comma joining.',()=>{const event=createRequestEvent(new Request('https://conformance.test'));event.response.headers.append('set-cookie','a=1; Expires=Tue, 01 Jan 2030 00:00:00 GMT');event.response.headers.append('set-cookie','b=2');provideRequestEvent(event,()=>{let dispose!:()=>void;createRoot(d=>{dispose=d;httpHeader('set-cookie','c=3')});equal(event.response.headers.getSetCookie(),['c=3']);dispose();equal(event.response.headers.getSetCookie(),['a=1; Expires=Tue, 01 Jan 2030 00:00:00 GMT','b=2'])})})
- doc('cookie-scope-independent','Native Headers cookie appends remain after a reactive owner is disposed and preserve separate entries.',()=>{const event=createRequestEvent(new Request('https://conformance.test'));provideRequestEvent(event,()=>{let dispose!:()=>void;createRoot(d=>{dispose=d;event.response.headers.append('set-cookie',serializeCookie('a','1'));event.response.headers.append('set-cookie',serializeCookie('b','2'))});dispose();equal(event.response.headers.getSetCookie().length,2)})})
- doc('committed-header-mutation','Every stub Headers mutator throws in dev or reports and no-ops in production after commit.',()=>{for(const operation of ['set','append','delete']as const){const stub=createResponseStub();stub.headers.set('x-test','original');const event=createRequestEvent(new Request('https://conformance.test'),{response:stub});commitEventResponse(new Response('body'),event);const logged:unknown[]=[];const prior=console.error;console.error=(...args)=>{logged.push(args)};let error:unknown;try{if(operation==='delete')stub.headers.delete('x-test');else stub.headers[operation]('x-test','changed')}catch(e){error=e}finally{console.error=prior}if(isDev)ok(error);else equal(logged.length,1);equal(stub.headers.get('x-test'),'original')}})
- doc('committed-status-wire-frozen','Committed outgoing response status and statusText cannot be changed through the mutable stub.',()=>{const stub=createResponseStub();stub.status=201;stub.statusText='Created';const event=createRequestEvent(new Request('https://conformance.test'),{response:stub});const response=commitEventResponse(new Response('body',{status:202,statusText:'Accepted'}),event);stub.status=500;stub.statusText='Broken';equal(response.status,202);equal(response.statusText,'Accepted');equal(stub.committed,true)})
- doc('redirect-status-selection','getExpectedRedirectStatus preserves a redirect status and uses 302 for page statuses.',()=>{for(const status of [301,302,303,307,308])equal(getExpectedRedirectStatus({...createResponseStub(),status}),status);for(const status of [200,404,500])equal(getExpectedRedirectStatus({...createResponseStub(),status}),302)})
- doc('stream-node-writable','pipe accepts a real Node-style Writable and closes it only after the async render fragment lands.',async()=>{const {Writable}=await import('node:stream');const gate=deferred<number>(),chunks:string[]=[];let ended=false;let finish!:()=>void;const completion=new Promise<void>(resolve=>{finish=resolve});const output=new Writable({write(chunk,_encoding,done){chunks.push(String(chunk));done()},final(done){ended=true;done();finish()}});const stream=renderToStream(()=>{const value=createMemo(()=>gate.promise);return<Loading fallback={<b>waiting</b>}><span>{value()}</span></Loading>});stream.pipe(output);equal(ended,false);gate.resolve(7);await completion;equal(ended,true);ok(chunks.join('').includes('>7</span>'))})
- doc('stream-pipe-to','pipeTo writes to a web WritableStream and resolves only after render completion.',async()=>{const gate=deferred<number>();function App(){const value=createMemo(()=>gate.promise);return<Loading fallback={<b>waiting</b>}><span>{value()}</span></Loading>}const chunks:(string|Uint8Array)[]=[];let closed=false;const output=new WritableStream<string|Uint8Array>({write(chunk){chunks.push(chunk)},close(){closed=true}});const stream=renderToStream(App);const done=stream.pipeTo(output);equal(closed,false);gate.resolve(7);await done;equal(closed,true);ok(chunks.map(chunk=>typeof chunk==='string'?chunk:new TextDecoder().decode(chunk)).join('').includes('>7</span>'))})
- doc('chunk-transform','createSSRResponse transformChunk rewrites every outgoing HTML chunk.',async()=>{const event=createRequestEvent(new Request('https://conformance.test'));await provideRequestEvent(event,async()=>{const response=await createSSRResponse(renderToStream(()=><span>original</span>),event,{transformChunk:chunk=>chunk.replace('original','changed')});ok((await response.text()).includes('>changed</span>'))})})
- doc('ssr-head-defaults','SSR defaults content type and folds stub head values over responseInit at the commit seam.',()=>{const event=createRequestEvent(new Request('https://conformance.test'));event.response.status=201;event.response.headers.set('x-value','stub');const response=createSSRResponse('body',event,{responseInit:{status:202,headers:{'x-value':'option'}}});equal(response.status,201);equal(response.headers.get('x-value'),'stub');equal(response.headers.get('content-type'),'text/html; charset=utf-8');equal(event.response.committed,true)})
- doc('late-redirect-script','A post-flush Location on an integration-provided response stub is emitted as a nonce-bearing client redirect script.',async()=>{const response={status:200,statusText:'OK',headers:new Headers(),committed:false};const event=createRequestEvent(new Request('https://conformance.test'),{response});const gate=deferred<number>();await provideRequestEvent(event,async()=>{function App(){const value=createMemo(()=>gate.promise);return<Loading fallback={<b>pending</b>}><span>{value()}</span></Loading>}const output=await createSSRResponse(renderToStream(App),event,{nonce:'test-nonce'});equal(response.committed,true);response.headers.set('location','/later');gate.resolve(7);const html=await output.text();ok(html.includes('window.location'));ok(html.includes('/later'));ok(html.includes('nonce="test-nonce"'))})})
- doc('middleware-stream-unwind','A streamed response remains unconsumed and mutable through outer middleware unwind, and middleware catches downstream errors.',async()=>{const event=createRequestEvent(new Request('https://conformance.test'));await provideRequestEvent(event,async()=>{const gate=deferred<number>();const run=composeMiddleware([async(_request,next)=>{const response=await next();equal(response.bodyUsed,false);response.headers.set('x-unwind','outer');return response}]);const response=await run(event.request,async()=>{function App(){const value=createMemo(()=>gate.promise);return<Loading fallback={<b>pending</b>}><span>{value()}</span></Loading>}return createSSRResponse(renderToStream(App),event)});equal(response.headers.get('x-unwind'),'outer');equal(response.bodyUsed,false);gate.resolve(7);ok((await response.text()).includes('>7</span>'));const catchErrors=composeMiddleware([async(_request,next)=>{try{return await next()}catch{return new Response('caught',{status:500})}}]);const failure=await catchErrors(event.request,()=>{throw new Error('downstream')});equal(failure.status,500);equal(await failure.text(),'caught')})})
- doc('trace-verbatim-fields','Trace context retains upstream tracestate and baggage verbatim, creates a fresh 16-hex span, and exposes the browser traceparent entry with that span.',()=>{const traceId='11111111111111111111111111111111',parentId='2222222222222222';const event=createRequestEvent(new Request('https://conformance.test',{headers:{traceparent:`00-${traceId}-${parentId}-01`,tracestate:'vendor=opaque',baggage:'key=url%20encoded'}}));provideRequestEvent(event,()=>{const trace=getTraceContext()!;equal(trace.traceId,traceId);equal(trace.parentId,parentId);ok(/^[0-9a-f]{16}$/.test(trace.spanId));ok(trace.spanId!=='0000000000000000'&&trace.spanId!==parentId);equal(trace.sampled,true);equal(trace.state,'vendor=opaque');equal(trace.baggage,'key=url%20encoded');equal(trace.entries.traceparent,`00-${traceId}-${trace.spanId}-01`);equal(getTraceContext(),trace)})})
- doc('trace-malformed-future-origin','Trace parsing accepts later versions as version00, ignores malformed version/length/allzero IDs, and originates random IDs with no parent or sampled decision.',()=>{const traceId='11111111111111111111111111111111',parentId='2222222222222222';const inputs=[undefined,`ff-${traceId}-${parentId}-01`,`00-00000000000000000000000000000000-${parentId}-01`,`00-${traceId}-0000000000000000-01`,`00-${traceId.slice(1)}-${parentId}-01`,`00-${traceId}-${parentId.slice(1)}-01`,`00-${traceId}-${parentId}-1`,`00-${'g'.repeat(32)}-${parentId}-01`];const origins:string[]=[];for(const input of inputs){const event=createRequestEvent(new Request('https://conformance.test',{headers:input?{traceparent:input}:{}}));provideRequestEvent(event,()=>{const trace=getTraceContext()!;ok(/^[0-9a-f]{32}$/.test(trace.traceId));ok(/^[0-9a-f]{16}$/.test(trace.spanId));ok(trace.traceId!==traceId&&trace.traceId!=='00000000000000000000000000000000');equal(trace.parentId,undefined);equal(trace.sampled,undefined);equal(trace.entries.traceparent,`00-${trace.traceId}-${trace.spanId}-00`);origins.push(trace.traceId)})}equal(new Set(origins).size,inputs.length);const future=createRequestEvent(new Request('https://conformance.test',{headers:{traceparent:`01-${traceId}-${parentId}-01`}}));provideRequestEvent(future,()=>{const trace=getTraceContext()!;equal(trace.traceId,traceId);equal(trace.parentId,parentId);equal(trace.sampled,true);equal(trace.entries.traceparent,`00-${traceId}-${trace.spanId}-01`)})})
- doc('trace-render-owned-outside','Outside both request and render trace is undefined; each requestless render owns a distinct context with stable repeated reads.',()=>{const storage=(globalThis as unknown as Record<symbol,{exit<T>(callback:()=>T):T}>)[RequestContext]!;storage.exit(()=>{equal(getTraceContext(),undefined);const ids:string[]=[];for(let index=0;index<2;index++){const html=renderToString(()=>{const trace=getTraceContext()!;ok(trace);equal(trace,getTraceContext());ids.push(trace.traceId);return<span>{trace.traceId}</span>});ok(html.includes(ids[index]!));ok(/^[0-9a-f]{32}$/.test(ids[index]!));equal(getTraceContext(),undefined)}ok(ids[0]!==ids[1])})})
- doc('bare-client-source-requires-loading','A bare client source outside Loading is a server render error rather than a stream that waits forever.',()=>{let computes=0;function Bare(){const value=createMemo(()=>{computes++;return 7},{ssrSource:'client'});return<span>{value()}</span>}let error:unknown;try{renderToString(Bare)}catch(e){error=e}ok(error);ok(String(error).includes('Loading'));equal(computes,0)},'05-async-data.md','05')
- doc('ambient-commit-event','commitEventResponse uses the ambient event when its event argument is omitted.',()=>{const event=createRequestEvent(new Request('https://conformance.test'));return provideRequestEvent(event,()=>{event.response.headers.set('x-ambient','yes');const response=commitEventResponse(new Response('body'));equal(response.headers.get('x-ambient'),'yes');equal(event.response.committed,true)})})
-}else doc('client-request-scope-throws','provideRequestEvent throws on the client where no request scope exists.',()=>{equal(getTraceContext(),undefined);let error:unknown;try{provideRequestEvent({request:new Request('https://conformance.test'),locals:{},response:{status:200,statusText:'OK',headers:new Headers(),committed:false}},()=>0)}catch(e){error=e}ok(error)})
-export const remainingHttpCases=cases
+import { equal, ok, type DocCase } from './registry'
+const cases: DocCase[] = []
+function doc(
+	name: string,
+	statement: string,
+	run: DocCase['run'],
+	file = '12-ssr-http.md',
+	chapter = '12',
+) {
+	cases.push({ id: chapter + '/' + name, file, statement, run })
+}
+doc(
+	'cookie-proto-key',
+	'Any valid cookie name round-trips, including __proto__.',
+	() => {
+		const value = parseCookieHeader(
+			serializeCookie('__proto__', 'x').split(';')[0]!,
+		)
+		equal(Object.hasOwn(value, '__proto__'), true)
+		equal(value['__proto__'], 'x')
+	},
+)
+if (isServer) {
+	doc(
+		'ssr-reset-static-model',
+		'The public SSR Errored reset callback does not rerun a static failed branch; this records why the HTTP pre-commit recovery example has no executable public SSR path.',
+		() => {
+			const event = createRequestEvent(new Request('https://conformance.test'))
+			event.response.status = 404
+			return provideRequestEvent(event, () => {
+				let retry!: () => void,
+					calls = 0
+				function Bad() {
+					calls++
+					throw new Error('SSR static')
+					return <span />
+				}
+				const html = renderToString(
+					() => (
+						<Errored
+							fallback={(_error, reset) => {
+								retry = reset
+								httpStatus(500)
+								return <b>caught</b>
+							}}
+						>
+							<Bad />
+						</Errored>
+					),
+					{ onError: () => {} },
+				)
+				ok(html.includes('caught'))
+				equal(calls, 1)
+				equal(event.response.status, 500)
+				equal(event.response.committed, true)
+				retry()
+				equal(calls, 1)
+				equal(event.response.status, 500)
+				equal(event.response.committed, true)
+			})
+		},
+	)
+	doc(
+		'event-outside-scope',
+		'getRequestEvent returns undefined outside a request scope.',
+		() => {
+			const storage = (
+				globalThis as unknown as Record<
+					symbol,
+					{ exit<T>(callback: () => T): T }
+				>
+			)[RequestContext]!
+			return storage.exit(() => equal(getRequestEvent(), undefined))
+		},
+	)
+	doc(
+		'cookie-expiry-serialization',
+		'expires emits exactly the explicitly supplied date, and valid unusual cookie names round-trip.',
+		() => {
+			const date = new Date('2030-01-01T00:00:00Z')
+			ok(
+				serializeCookie('a', 'b', { expires: date }).includes(
+					'Expires=Tue, 01 Jan 2030 00:00:00 GMT',
+				),
+			)
+			for (const name of ['constructor', 'name space', 'name;=']) {
+				const header = serializeCookie(name, 'x')
+				const parsed = parseCookieHeader(header.split(';')[0]!)
+				equal(Object.hasOwn(parsed, name), true)
+				equal(parsed[name], 'x')
+			}
+		},
+	)
+	doc(
+		'cookie-declaration-retraction',
+		'httpHeader set-cookie snapshots and restores separate entries exactly rather than comma joining.',
+		() => {
+			const event = createRequestEvent(new Request('https://conformance.test'))
+			event.response.headers.append(
+				'set-cookie',
+				'a=1; Expires=Tue, 01 Jan 2030 00:00:00 GMT',
+			)
+			event.response.headers.append('set-cookie', 'b=2')
+			provideRequestEvent(event, () => {
+				let dispose!: () => void
+				createRoot((d) => {
+					dispose = d
+					httpHeader('set-cookie', 'c=3')
+				})
+				equal(event.response.headers.getSetCookie(), ['c=3'])
+				dispose()
+				equal(event.response.headers.getSetCookie(), [
+					'a=1; Expires=Tue, 01 Jan 2030 00:00:00 GMT',
+					'b=2',
+				])
+			})
+		},
+	)
+	doc(
+		'cookie-scope-independent',
+		'Native Headers cookie appends remain after a reactive owner is disposed and preserve separate entries.',
+		() => {
+			const event = createRequestEvent(new Request('https://conformance.test'))
+			provideRequestEvent(event, () => {
+				let dispose!: () => void
+				createRoot((d) => {
+					dispose = d
+					event.response.headers.append('set-cookie', serializeCookie('a', '1'))
+					event.response.headers.append('set-cookie', serializeCookie('b', '2'))
+				})
+				dispose()
+				equal(event.response.headers.getSetCookie().length, 2)
+			})
+		},
+	)
+	doc(
+		'committed-header-mutation',
+		'Every stub Headers mutator throws in dev or reports and no-ops in production after commit.',
+		() => {
+			for (const operation of ['set', 'append', 'delete'] as const) {
+				const stub = createResponseStub()
+				stub.headers.set('x-test', 'original')
+				const event = createRequestEvent(
+					new Request('https://conformance.test'),
+					{ response: stub },
+				)
+				commitEventResponse(new Response('body'), event)
+				const logged: unknown[] = []
+				const prior = console.error
+				console.error = (...args) => {
+					logged.push(args)
+				}
+				let error: unknown
+				try {
+					if (operation === 'delete') stub.headers.delete('x-test')
+					else stub.headers[operation]('x-test', 'changed')
+				} catch (e) {
+					error = e
+				} finally {
+					console.error = prior
+				}
+				if (isDev) ok(error)
+				else equal(logged.length, 1)
+				equal(stub.headers.get('x-test'), 'original')
+			}
+		},
+	)
+	doc(
+		'committed-status-wire-frozen',
+		'Committed outgoing response status and statusText cannot be changed through the mutable stub.',
+		() => {
+			const stub = createResponseStub()
+			stub.status = 201
+			stub.statusText = 'Created'
+			const event = createRequestEvent(
+				new Request('https://conformance.test'),
+				{ response: stub },
+			)
+			const response = commitEventResponse(
+				new Response('body', { status: 202, statusText: 'Accepted' }),
+				event,
+			)
+			stub.status = 500
+			stub.statusText = 'Broken'
+			equal(response.status, 202)
+			equal(response.statusText, 'Accepted')
+			equal(stub.committed, true)
+		},
+	)
+	doc(
+		'redirect-status-selection',
+		'getExpectedRedirectStatus preserves a redirect status and uses 302 for page statuses.',
+		() => {
+			for (const status of [301, 302, 303, 307, 308])
+				equal(
+					getExpectedRedirectStatus({ ...createResponseStub(), status }),
+					status,
+				)
+			for (const status of [200, 404, 500])
+				equal(
+					getExpectedRedirectStatus({ ...createResponseStub(), status }),
+					302,
+				)
+		},
+	)
+	doc(
+		'stream-node-writable',
+		'pipe accepts a real Node-style Writable and closes it only after the async render fragment lands.',
+		async () => {
+			const { Writable } = await import('node:stream')
+			const gate = deferred<number>(),
+				chunks: string[] = []
+			let ended = false
+			let finish!: () => void
+			const completion = new Promise<void>((resolve) => {
+				finish = resolve
+			})
+			const output = new Writable({
+				write(chunk, _encoding, done) {
+					chunks.push(String(chunk))
+					done()
+				},
+				final(done) {
+					ended = true
+					done()
+					finish()
+				},
+			})
+			const stream = renderToStream(() => {
+				const value = createMemo(() => gate.promise)
+				return (
+					<Loading fallback={<b>waiting</b>}>
+						<span>{value()}</span>
+					</Loading>
+				)
+			})
+			stream.pipe(output)
+			equal(ended, false)
+			gate.resolve(7)
+			await completion
+			equal(ended, true)
+			ok(chunks.join('').includes('>7</span>'))
+		},
+	)
+	doc(
+		'stream-pipe-to',
+		'pipeTo writes to a web WritableStream and resolves only after render completion.',
+		async () => {
+			const gate = deferred<number>()
+			function App() {
+				const value = createMemo(() => gate.promise)
+				return (
+					<Loading fallback={<b>waiting</b>}>
+						<span>{value()}</span>
+					</Loading>
+				)
+			}
+			const chunks: (string | Uint8Array)[] = []
+			let closed = false
+			const output = new WritableStream<string | Uint8Array>({
+				write(chunk) {
+					chunks.push(chunk)
+				},
+				close() {
+					closed = true
+				},
+			})
+			const stream = renderToStream(App)
+			const done = stream.pipeTo(output)
+			equal(closed, false)
+			gate.resolve(7)
+			await done
+			equal(closed, true)
+			ok(
+				chunks
+					.map((chunk) =>
+						typeof chunk === 'string' ? chunk : new TextDecoder().decode(chunk),
+					)
+					.join('')
+					.includes('>7</span>'),
+			)
+		},
+	)
+	doc(
+		'chunk-transform',
+		'createSSRResponse transformChunk rewrites every outgoing HTML chunk.',
+		async () => {
+			const event = createRequestEvent(new Request('https://conformance.test'))
+			await provideRequestEvent(event, async () => {
+				const response = await createSSRResponse(
+					renderToStream(() => <span>original</span>),
+					event,
+					{ transformChunk: (chunk) => chunk.replace('original', 'changed') },
+				)
+				ok((await response.text()).includes('>changed</span>'))
+			})
+		},
+	)
+	doc(
+		'ssr-head-defaults',
+		'SSR defaults content type and folds stub head values over responseInit at the commit seam.',
+		() => {
+			const event = createRequestEvent(new Request('https://conformance.test'))
+			event.response.status = 201
+			event.response.headers.set('x-value', 'stub')
+			const response = createSSRResponse('body', event, {
+				responseInit: { status: 202, headers: { 'x-value': 'option' } },
+			})
+			equal(response.status, 201)
+			equal(response.headers.get('x-value'), 'stub')
+			equal(response.headers.get('content-type'), 'text/html; charset=utf-8')
+			equal(event.response.committed, true)
+		},
+	)
+	doc(
+		'late-redirect-script',
+		'A post-flush Location on an integration-provided response stub is emitted as a nonce-bearing client redirect script.',
+		async () => {
+			const response = {
+				status: 200,
+				statusText: 'OK',
+				headers: new Headers(),
+				committed: false,
+			}
+			const event = createRequestEvent(
+				new Request('https://conformance.test'),
+				{ response },
+			)
+			const gate = deferred<number>()
+			await provideRequestEvent(event, async () => {
+				function App() {
+					const value = createMemo(() => gate.promise)
+					return (
+						<Loading fallback={<b>pending</b>}>
+							<span>{value()}</span>
+						</Loading>
+					)
+				}
+				const output = await createSSRResponse(renderToStream(App), event, {
+					nonce: 'test-nonce',
+				})
+				equal(response.committed, true)
+				response.headers.set('location', '/later')
+				gate.resolve(7)
+				const html = await output.text()
+				ok(html.includes('window.location'))
+				ok(html.includes('/later'))
+				ok(html.includes('nonce="test-nonce"'))
+			})
+		},
+	)
+	doc(
+		'middleware-stream-unwind',
+		'A streamed response remains unconsumed and mutable through outer middleware unwind, and middleware catches downstream errors.',
+		async () => {
+			const event = createRequestEvent(new Request('https://conformance.test'))
+			await provideRequestEvent(event, async () => {
+				const gate = deferred<number>()
+				const run = composeMiddleware([
+					async (_request, next) => {
+						const response = await next()
+						equal(response.bodyUsed, false)
+						response.headers.set('x-unwind', 'outer')
+						return response
+					},
+				])
+				const response = await run(event.request, async () => {
+					function App() {
+						const value = createMemo(() => gate.promise)
+						return (
+							<Loading fallback={<b>pending</b>}>
+								<span>{value()}</span>
+							</Loading>
+						)
+					}
+					return createSSRResponse(renderToStream(App), event)
+				})
+				equal(response.headers.get('x-unwind'), 'outer')
+				equal(response.bodyUsed, false)
+				gate.resolve(7)
+				ok((await response.text()).includes('>7</span>'))
+				const catchErrors = composeMiddleware([
+					async (_request, next) => {
+						try {
+							return await next()
+						} catch {
+							return new Response('caught', { status: 500 })
+						}
+					},
+				])
+				const failure = await catchErrors(event.request, () => {
+					throw new Error('downstream')
+				})
+				equal(failure.status, 500)
+				equal(await failure.text(), 'caught')
+			})
+		},
+	)
+	doc(
+		'trace-verbatim-fields',
+		'Trace context retains upstream tracestate and baggage verbatim, creates a fresh 16-hex span, and exposes the browser traceparent entry with that span.',
+		() => {
+			const traceId = '11111111111111111111111111111111',
+				parentId = '2222222222222222'
+			const event = createRequestEvent(
+				new Request('https://conformance.test', {
+					headers: {
+						traceparent: `00-${traceId}-${parentId}-01`,
+						tracestate: 'vendor=opaque',
+						baggage: 'key=url%20encoded',
+					},
+				}),
+			)
+			provideRequestEvent(event, () => {
+				const trace = getTraceContext()!
+				equal(trace.traceId, traceId)
+				equal(trace.parentId, parentId)
+				ok(/^[0-9a-f]{16}$/.test(trace.spanId))
+				ok(trace.spanId !== '0000000000000000' && trace.spanId !== parentId)
+				equal(trace.sampled, true)
+				equal(trace.state, 'vendor=opaque')
+				equal(trace.baggage, 'key=url%20encoded')
+				equal(trace.entries.traceparent, `00-${traceId}-${trace.spanId}-01`)
+				equal(getTraceContext(), trace)
+			})
+		},
+	)
+	doc(
+		'trace-malformed-future-origin',
+		'Trace parsing accepts later versions as version00, ignores malformed version/length/allzero IDs, and originates random IDs with no parent or sampled decision.',
+		() => {
+			const traceId = '11111111111111111111111111111111',
+				parentId = '2222222222222222'
+			const inputs = [
+				undefined,
+				`ff-${traceId}-${parentId}-01`,
+				`00-00000000000000000000000000000000-${parentId}-01`,
+				`00-${traceId}-0000000000000000-01`,
+				`00-${traceId.slice(1)}-${parentId}-01`,
+				`00-${traceId}-${parentId.slice(1)}-01`,
+				`00-${traceId}-${parentId}-1`,
+				`00-${'g'.repeat(32)}-${parentId}-01`,
+			]
+			const origins: string[] = []
+			for (const input of inputs) {
+				const event = createRequestEvent(
+					new Request('https://conformance.test', {
+						headers: input ? { traceparent: input } : {},
+					}),
+				)
+				provideRequestEvent(event, () => {
+					const trace = getTraceContext()!
+					ok(/^[0-9a-f]{32}$/.test(trace.traceId))
+					ok(/^[0-9a-f]{16}$/.test(trace.spanId))
+					ok(
+						trace.traceId !== traceId &&
+							trace.traceId !== '00000000000000000000000000000000',
+					)
+					equal(trace.parentId, undefined)
+					equal(trace.sampled, undefined)
+					equal(
+						trace.entries.traceparent,
+						`00-${trace.traceId}-${trace.spanId}-00`,
+					)
+					origins.push(trace.traceId)
+				})
+			}
+			equal(new Set(origins).size, inputs.length)
+			const future = createRequestEvent(
+				new Request('https://conformance.test', {
+					headers: { traceparent: `01-${traceId}-${parentId}-01` },
+				}),
+			)
+			provideRequestEvent(future, () => {
+				const trace = getTraceContext()!
+				equal(trace.traceId, traceId)
+				equal(trace.parentId, parentId)
+				equal(trace.sampled, true)
+				equal(trace.entries.traceparent, `00-${traceId}-${trace.spanId}-01`)
+			})
+		},
+	)
+	doc(
+		'trace-render-owned-outside',
+		'Outside both request and render trace is undefined; each requestless render owns a distinct context with stable repeated reads.',
+		() => {
+			const storage = (
+				globalThis as unknown as Record<
+					symbol,
+					{ exit<T>(callback: () => T): T }
+				>
+			)[RequestContext]!
+			storage.exit(() => {
+				equal(getTraceContext(), undefined)
+				const ids: string[] = []
+				for (let index = 0; index < 2; index++) {
+					const html = renderToString(() => {
+						const trace = getTraceContext()!
+						ok(trace)
+						equal(trace, getTraceContext())
+						ids.push(trace.traceId)
+						return <span>{trace.traceId}</span>
+					})
+					ok(html.includes(ids[index]!))
+					ok(/^[0-9a-f]{32}$/.test(ids[index]!))
+					equal(getTraceContext(), undefined)
+				}
+				ok(ids[0] !== ids[1])
+			})
+		},
+	)
+	doc(
+		'bare-client-source-requires-loading',
+		'A bare client source outside Loading is a server render error rather than a stream that waits forever.',
+		() => {
+			let computes = 0
+			function Bare() {
+				const value = createMemo(
+					() => {
+						computes++
+						return 7
+					},
+					{ ssrSource: 'client' },
+				)
+				return <span>{value()}</span>
+			}
+			let error: unknown
+			try {
+				renderToString(Bare)
+			} catch (e) {
+				error = e
+			}
+			ok(error)
+			ok(String(error).includes('Loading'))
+			equal(computes, 0)
+		},
+		'05-async-data.md',
+		'05',
+	)
+	doc(
+		'ambient-commit-event',
+		'commitEventResponse uses the ambient event when its event argument is omitted.',
+		() => {
+			const event = createRequestEvent(new Request('https://conformance.test'))
+			return provideRequestEvent(event, () => {
+				event.response.headers.set('x-ambient', 'yes')
+				const response = commitEventResponse(new Response('body'))
+				equal(response.headers.get('x-ambient'), 'yes')
+				equal(event.response.committed, true)
+			})
+		},
+	)
+} else
+	doc(
+		'client-request-scope-throws',
+		'provideRequestEvent throws on the client where no request scope exists.',
+		() => {
+			equal(getTraceContext(), undefined)
+			let error: unknown
+			try {
+				provideRequestEvent(
+					{
+						request: new Request('https://conformance.test'),
+						locals: {},
+						response: {
+							status: 200,
+							statusText: 'OK',
+							headers: new Headers(),
+							committed: false,
+						},
+					},
+					() => 0,
+				)
+			} catch (e) {
+				error = e
+			}
+			ok(error)
+		},
+	)
+export const remainingHttpCases = cases

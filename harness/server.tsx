@@ -20,7 +20,9 @@ import {
 	renderToStream,
 	renderToString,
 	generateHydrationScript,
-	HydrationScript, NoHydration, Hydration,
+	HydrationScript,
+	NoHydration,
+	Hydration,
 } from '@solidjs/web'
 
 import type { Spec } from './tree'
@@ -32,14 +34,35 @@ export function stream(spec: Spec, signal?: AbortSignal, documentId?: string) {
 		() => {
 			const fixture = createCase(spec)
 			const errors: string[] = []
-			const App = documentId === undefined ? fixture.App : () => <NoHydration><html><head><HydrationScript /></head><body>
-				<script innerHTML={`window.spec=${JSON.stringify(spec).replaceAll('<', '\\u003c')};window.mode="hydrate"`} />
-				<div id="root"><Hydration id="app"><fixture.App /></Hydration></div><script type="module" async src="/client.js" />
-			</body></html></NoHydration>
+			const App =
+				documentId === undefined
+					? fixture.App
+					: () => (
+							<NoHydration>
+								<html>
+									<head>
+										<HydrationScript />
+									</head>
+									<body>
+										<script
+											innerHTML={`window.spec=${JSON.stringify(spec).replaceAll('<', '\\u003c')};window.mode="hydrate"`}
+										/>
+										<div id="root">
+											<Hydration id="app">
+												<fixture.App />
+											</Hydration>
+										</div>
+										<script type="module" async src="/client.js" />
+									</body>
+								</html>
+							</NoHydration>
+						)
 			const output = renderToStream(App, {
 				signal,
 				manifest: { 'harness/lazy-part.tsx': { file: 'lazy-part.js' } },
-				onError: (e) => { errors.push(String(e)) },
+				onError: (e) => {
+					errors.push(String(e))
+				},
 			})
 			return {
 				output,
@@ -64,6 +87,6 @@ export { iterableDiscoveryCase } from '../findings/002-iterable-discovery/compon
 
 export { isDev } from '@solidjs/web'
 export { runDocCases } from '../tracks/docs/cases'
-export {runRouterMatching} from '../tracks/router/matching'
+export { runRouterMatching } from '../tracks/router/matching'
 
-export {handleRouterRPC,releaseRouterRPC} from '../tracks/router/server-rpc'
+export { handleRouterRPC, releaseRouterRPC } from '../tracks/router/server-rpc'

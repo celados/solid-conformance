@@ -3,11 +3,19 @@
 import type { JSX } from 'solid-js'
 // @ts-expect-error Legacy JSXElement was removed in favor of Element.
 import type { JSXElement } from 'solid-js'
-// @ts-expect-error The old runtime import path was removed.
-import type { JSX as OldRuntime } from 'solid-js/jsx-runtime'
 // @ts-expect-error The old dev runtime import path was removed.
 import type { JSX as OldDevRuntime } from 'solid-js/jsx-dev-runtime'
-import { createEffect, createMemo, createSignal, createStore, useContext, createContext } from 'solid-js'
+// @ts-expect-error The old runtime import path was removed.
+import type { JSX as OldRuntime } from 'solid-js/jsx-runtime'
+
+import {
+	createEffect,
+	createMemo,
+	createSignal,
+	createStore,
+	useContext,
+	createContext,
+} from 'solid-js'
 // @ts-expect-error An effect requires separate compute and side-effect functions.
 createEffect(() => 1)
 const [count, setCount] = createSignal(0)
@@ -101,28 +109,33 @@ import { writeSignal } from 'solid-js'
 import { sharedConfig } from 'solid-js'
 // @ts-expect-error $DEVCOMP is not part of the Solid 2 public API.
 import { $DEVCOMP } from 'solid-js'
-// @ts-expect-error The Solid 1 web subpath was removed.
-import * as oldWeb from 'solid-js/web'
-// @ts-expect-error The Solid 1 store subpath was removed.
-import * as oldStore from 'solid-js/store'
 // @ts-expect-error The Solid 1 h subpath was removed.
 import * as oldH from 'solid-js/h'
 // @ts-expect-error The Solid 1 html subpath was removed.
 import * as oldHtml from 'solid-js/html'
+// @ts-expect-error The Solid 1 store subpath was removed.
+import * as oldStore from 'solid-js/store'
 // @ts-expect-error The Solid 1 universal subpath was removed.
 import * as oldUniversal from 'solid-js/universal'
+// @ts-expect-error The Solid 1 web subpath was removed.
+import * as oldWeb from 'solid-js/web'
 // @ts-expect-error The context itself is the provider; Provider was removed.
 createContext(0).Provider
 // 08-dev-diagnostics.md: a store setter is a synchronous transaction, never an async callback.
 // @ts-expect-error Store setter callbacks may return the host record or void, not a Promise.
-setStore(async draft => { draft.count = 2 })
+setStore(async (draft) => {
+	draft.count = 2
+})
 
 // RFC 08 record augmentation preserves known names and typed fields.
 import { OBSERVE } from 'solid-js'
 // @ts-expect-error unknown record name is not a documented record type
 OBSERVE!.records.subscribe('invented-conformance-record', () => {})
 // @ts-expect-error timing is numeric, not a string
-OBSERVE!.records.subscribe('call', e => { const timing: string = e.durationMs; void timing })
+OBSERVE!.records.subscribe('call', (e) => {
+	const timing: string = e.durationMs
+	void timing
+})
 
 // 07-dom.md: removed namespaces are not public JSX attributes.
 // @ts-expect-error attr: is not a special JSX namespace.

@@ -12,7 +12,13 @@
 		"artifacts/**",
 	],
 	// Test files, fixtures and scripts are run by `bun test` and `bun run`.
-	"supportEntry": ["suite/*.ts", "scripts/*.ts", "tracks/**/*.ts", "tracks/**/*.tsx", "harness/preload.ts"],
+	"supportEntry": [
+		"suite/*.ts",
+		"scripts/*.ts",
+		"tracks/**/*.ts",
+		"tracks/**/*.tsx",
+		"harness/preload.ts",
+	],
 	// Local-only helper that renders .npmrc from the vault; not a dependency.
 	"ignoreBinaries": ["latch"],
 }

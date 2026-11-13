@@ -1,1 +1,1 @@
-export {OpaqueReference} from "@solidjs/web/serialization";
+export { OpaqueReference } from '@solidjs/web/serialization'

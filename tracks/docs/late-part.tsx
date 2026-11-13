@@ -1,1 +1,3 @@
-export default function Part(){return <b>ready</b>}
+export default function Part() {
+	return <b>ready</b>
+}

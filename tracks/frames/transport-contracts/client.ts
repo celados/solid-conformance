@@ -1,33 +1,258 @@
-import {action} from "solid-js";
-import {respond,redirect,reload,isResponseEnvelope} from "@solidjs/web";
-import {configureServerFunctionsClient,createServerReference,subscribeFlightData,decodeResponse,invoke,GET,live,EventStreamReader,createEventChunk,EVENT_STREAM_HEARTBEAT,LAST_EVENT_ID_HEADER,isEventStream,positionDigest} from '@solidjs/web/server-functions/client';
-const sent:any[]=[];let release!:()=>void;const gate=new Promise<void>(r=>release=r);const hooks:string[]=[];
-const response=()=>new Response(JSON.stringify({value:7,data:{owned:{answer:9}}}),{headers:{'X-Server-Function-Format':'8','X-Single-Flight':'owned'}});
-configureServerFunctionsClient({endpoint:'/fixture',prepareRequest:async(init)=>{hooks.push('obsolete');return init},fetch:async(...passed:[string,RequestInit])=>{const [address,init]=passed;sent.push({address:String(address),headers:[...new Headers(init?.headers)],argc:passed.length,signal:!!init?.signal,priority:(init as any)?.priority,keepalive:init?.keepalive,body:init?.body});return response()}});
-configureServerFunctionsClient({prepareRequest:async(init)=>{hooks.push('replacement');await gate;return {...init,headers:{...init.headers,'X-Fixture':'ready'}}}});
-const events:any[]=[];
-const old=subscribeFlightData('owned',slice=>{events.push(['obsolete',slice])});
-const current=subscribeFlightData('owned',slice=>{events.push(['current',slice])});old();
-const fn=createServerReference('transport');const pending=invoke(fn,{signal:AbortSignal.any([new AbortController().signal,AbortSignal.timeout(10000)]),priority:'low',keepalive:true},1);
-await Promise.resolve();await Promise.resolve();const before=sent.length;release();const value=await pending;
-current();const whole=await fn(2);const passthrough=whole instanceof Response;const envelope=passthrough?await decodeResponse(whole):null;
-let releaseEncoding!:()=>void;const encodingGate=new Promise<void>(r=>releaseEncoding=r);let encodingStarted=false;
-configureServerFunctionsClient({serializeArgs:async()=>{encodingStarted=true;await encodingGate;return 'fixture-rich-encoding'}});
-const encoding=fn(new Set([1]));for(let i=0;i<6;i++)await Promise.resolve();const encodingBefore=sent.length;releaseEncoding();await encoding;
-const liveCalls:any[]=[];let nextValue=0;
-configureServerFunctionsClient({prepareRequest:init=>init,fetch:async(address,init)=>{liveCalls.push({address:String(address),signal:init.signal,method:init.method,headers:[...new Headers(init.headers)]});return new Response(JSON.stringify(++nextValue),{headers:{'X-Server-Function-Format':'8'}})}});
-const source=live(GET(createServerReference('standing')));const stream=source();const statuses:string[]=[];stream.onstatus=(status:string)=>statuses.push(status);
-const a=stream[Symbol.asyncIterator](),b=stream[Symbol.asyncIterator]();const av=await a.next(),bv=await b.next();await a.return!();await b.return!();
-const closed=liveCalls.map(c=>c.signal.aborted);const liveValues=[av.value,bv.value];
-const liveAddresses=liveCalls.map(c=>c.address);let prepareLive=0;
-configureServerFunctionsClient({prepareRequest:init=>{prepareLive++;return {...init,headers:{...init.headers,'X-Live-Fixture':'kept'}}}});
-const long=source('x'.repeat(10000))[Symbol.asyncIterator]();await long.next();await long.return!();const longLive={method:liveCalls[2].method,address:liveCalls[2].address,headers:liveCalls[2].headers,aborted:liveCalls[2].signal.aborted,prepareLive};
-const initialFailures:any[]=[];for(const status of [400,404,408,425,429,500]){let calls=0;configureServerFunctionsClient({fetch:async()=>{calls++;return new Response('peer failure',{status,headers:{'Retry-After':'0'}})}});const once=source()[Symbol.asyncIterator]();let failure:any;try{await once.next()}catch(e){failure=e}initialFailures.push({status,calls,errorStatus:failure?.status})}
-const wire:any={};const parts=[': heartbeat\r','\n\r\nid: digest\r\ndata: {"value":\r','\ndata: 17}\r\n\r\n'];
-const parser=new EventStreamReader(new ReadableStream({start(controller){for(const part of parts)controller.enqueue(new TextEncoder().encode(part));controller.close()}}),wire);
-const parsed=await parser.next(),ended=await parser.next();const framed=new TextDecoder().decode(createEventChunk('{"n":1}','frame-id'));const heartbeat=new TextDecoder().decode(EVENT_STREAM_HEARTBEAT);
-const wireHelpers={lastEventId:LAST_EVENT_ID_HEADER,request:isEventStream(new Request("http://localhost/",{headers:{"content-type":"text/event-stream; charset=utf-8"}})),response:isEventStream(new Response(null,{headers:{"content-type":"text/event-stream"}})),negative:isEventStream(new Response("1",{headers:{"content-type":"application/json"}})),equal:positionDigest({n:1})===positionDigest({n:1}),different:positionDigest(1)!==positionDigest(2),missing:positionDigest(undefined),unsafe:positionDigest(new Set([1])),digestType:typeof positionDigest(17)};
-const authored=await action(function*(){return respond(9,{status:201,headers:{'x-fixture':'client'},revalidate:'items'})})();
-const moved=await action(function*(){return redirect('/client-target',{revalidate:'session'})})();const refreshed=await action(function*(){return reload({revalidate:'todos'})})();
-const helpers={envelope:isResponseEnvelope(authored),value:authored.value,status:authored.response!.status,json:await authored.response!.json(),header:authored.response!.headers.get('x-fixture'),revalidate:authored.response!.headers.get('X-Revalidate'),redirect:{status:moved.status,location:moved.headers.get('location'),revalidate:moved.headers.get('X-Revalidate')},reload:{status:refreshed.status,text:await refreshed.text(),revalidate:refreshed.headers.get('X-Revalidate')}};
-(window as any).result={before,hooks,sent,value,events,passthrough,envelope,encodingStarted,encodingBefore,liveValues,statuses,closed,liveAddresses,longLive,initialFailures,parsed,ended,wireHelpers,position:wire.position,framed,heartbeat,helpers};
+import { respond, redirect, reload, isResponseEnvelope } from '@solidjs/web'
+import {
+	configureServerFunctionsClient,
+	createServerReference,
+	subscribeFlightData,
+	decodeResponse,
+	invoke,
+	GET,
+	live,
+	EventStreamReader,
+	createEventChunk,
+	EVENT_STREAM_HEARTBEAT,
+	LAST_EVENT_ID_HEADER,
+	isEventStream,
+	positionDigest,
+} from '@solidjs/web/server-functions/client'
+import { action } from 'solid-js'
+const sent: any[] = []
+let release!: () => void
+const gate = new Promise<void>((r) => (release = r))
+const hooks: string[] = []
+const response = () =>
+	new Response(JSON.stringify({ value: 7, data: { owned: { answer: 9 } } }), {
+		headers: { 'X-Server-Function-Format': '8', 'X-Single-Flight': 'owned' },
+	})
+configureServerFunctionsClient({
+	endpoint: '/fixture',
+	prepareRequest: async (init) => {
+		hooks.push('obsolete')
+		return init
+	},
+	fetch: async (...passed: [string, RequestInit]) => {
+		const [address, init] = passed
+		sent.push({
+			address: String(address),
+			headers: [...new Headers(init?.headers)],
+			argc: passed.length,
+			signal: !!init?.signal,
+			priority: (init as any)?.priority,
+			keepalive: init?.keepalive,
+			body: init?.body,
+		})
+		return response()
+	},
+})
+configureServerFunctionsClient({
+	prepareRequest: async (init) => {
+		hooks.push('replacement')
+		await gate
+		return { ...init, headers: { ...init.headers, 'X-Fixture': 'ready' } }
+	},
+})
+const events: any[] = []
+const old = subscribeFlightData('owned', (slice) => {
+	events.push(['obsolete', slice])
+})
+const current = subscribeFlightData('owned', (slice) => {
+	events.push(['current', slice])
+})
+old()
+const fn = createServerReference('transport')
+const pending = invoke(
+	fn,
+	{
+		signal: AbortSignal.any([
+			new AbortController().signal,
+			AbortSignal.timeout(10000),
+		]),
+		priority: 'low',
+		keepalive: true,
+	},
+	1,
+)
+await Promise.resolve()
+await Promise.resolve()
+const before = sent.length
+release()
+const value = await pending
+current()
+const whole = await fn(2)
+const passthrough = whole instanceof Response
+const envelope = passthrough ? await decodeResponse(whole) : null
+let releaseEncoding!: () => void
+const encodingGate = new Promise<void>((r) => (releaseEncoding = r))
+let encodingStarted = false
+configureServerFunctionsClient({
+	serializeArgs: async () => {
+		encodingStarted = true
+		await encodingGate
+		return 'fixture-rich-encoding'
+	},
+})
+const encoding = fn(new Set([1]))
+for (let i = 0; i < 6; i++) await Promise.resolve()
+const encodingBefore = sent.length
+releaseEncoding()
+await encoding
+const liveCalls: any[] = []
+let nextValue = 0
+configureServerFunctionsClient({
+	prepareRequest: (init) => init,
+	fetch: async (address, init) => {
+		liveCalls.push({
+			address: String(address),
+			signal: init.signal,
+			method: init.method,
+			headers: [...new Headers(init.headers)],
+		})
+		return new Response(JSON.stringify(++nextValue), {
+			headers: { 'X-Server-Function-Format': '8' },
+		})
+	},
+})
+const source = live(GET(createServerReference('standing')))
+const stream = source()
+const statuses: string[] = []
+stream.onstatus = (status: string) => statuses.push(status)
+const a = stream[Symbol.asyncIterator](),
+	b = stream[Symbol.asyncIterator]()
+const av = await a.next(),
+	bv = await b.next()
+await a.return!()
+await b.return!()
+const closed = liveCalls.map((c) => c.signal.aborted)
+const liveValues = [av.value, bv.value]
+const liveAddresses = liveCalls.map((c) => c.address)
+let prepareLive = 0
+configureServerFunctionsClient({
+	prepareRequest: (init) => {
+		prepareLive++
+		return { ...init, headers: { ...init.headers, 'X-Live-Fixture': 'kept' } }
+	},
+})
+const long = source('x'.repeat(10000))[Symbol.asyncIterator]()
+await long.next()
+await long.return!()
+const longLive = {
+	method: liveCalls[2].method,
+	address: liveCalls[2].address,
+	headers: liveCalls[2].headers,
+	aborted: liveCalls[2].signal.aborted,
+	prepareLive,
+}
+const initialFailures: any[] = []
+for (const status of [400, 404, 408, 425, 429, 500]) {
+	let calls = 0
+	configureServerFunctionsClient({
+		fetch: async () => {
+			calls++
+			return new Response('peer failure', {
+				status,
+				headers: { 'Retry-After': '0' },
+			})
+		},
+	})
+	const once = source()[Symbol.asyncIterator]()
+	let failure: any
+	try {
+		await once.next()
+	} catch (e) {
+		failure = e
+	}
+	initialFailures.push({ status, calls, errorStatus: failure?.status })
+}
+const wire: any = {}
+const parts = [
+	': heartbeat\r',
+	'\n\r\nid: digest\r\ndata: {"value":\r',
+	'\ndata: 17}\r\n\r\n',
+]
+const parser = new EventStreamReader(
+	new ReadableStream({
+		start(controller) {
+			for (const part of parts)
+				controller.enqueue(new TextEncoder().encode(part))
+			controller.close()
+		},
+	}),
+	wire,
+)
+const parsed = await parser.next(),
+	ended = await parser.next()
+const framed = new TextDecoder().decode(createEventChunk('{"n":1}', 'frame-id'))
+const heartbeat = new TextDecoder().decode(EVENT_STREAM_HEARTBEAT)
+const wireHelpers = {
+	lastEventId: LAST_EVENT_ID_HEADER,
+	request: isEventStream(
+		new Request('http://localhost/', {
+			headers: { 'content-type': 'text/event-stream; charset=utf-8' },
+		}),
+	),
+	response: isEventStream(
+		new Response(null, { headers: { 'content-type': 'text/event-stream' } }),
+	),
+	negative: isEventStream(
+		new Response('1', { headers: { 'content-type': 'application/json' } }),
+	),
+	equal: positionDigest({ n: 1 }) === positionDigest({ n: 1 }),
+	different: positionDigest(1) !== positionDigest(2),
+	missing: positionDigest(undefined),
+	unsafe: positionDigest(new Set([1])),
+	digestType: typeof positionDigest(17),
+}
+const authored = await action(function* () {
+	return respond(9, {
+		status: 201,
+		headers: { 'x-fixture': 'client' },
+		revalidate: 'items',
+	})
+})()
+const moved = await action(function* () {
+	return redirect('/client-target', { revalidate: 'session' })
+})()
+const refreshed = await action(function* () {
+	return reload({ revalidate: 'todos' })
+})()
+const helpers = {
+	envelope: isResponseEnvelope(authored),
+	value: authored.value,
+	status: authored.response!.status,
+	json: await authored.response!.json(),
+	header: authored.response!.headers.get('x-fixture'),
+	revalidate: authored.response!.headers.get('X-Revalidate'),
+	redirect: {
+		status: moved.status,
+		location: moved.headers.get('location'),
+		revalidate: moved.headers.get('X-Revalidate'),
+	},
+	reload: {
+		status: refreshed.status,
+		text: await refreshed.text(),
+		revalidate: refreshed.headers.get('X-Revalidate'),
+	},
+}
+;(window as any).result = {
+	before,
+	hooks,
+	sent,
+	value,
+	events,
+	passthrough,
+	envelope,
+	encodingStarted,
+	encodingBefore,
+	liveValues,
+	statuses,
+	closed,
+	liveAddresses,
+	longLive,
+	initialFailures,
+	parsed,
+	ended,
+	wireHelpers,
+	position: wire.position,
+	framed,
+	heartbeat,
+	helpers,
+}

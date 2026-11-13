@@ -16,7 +16,16 @@ function selectExport(
 		}
 }
 export type BuildMode = 'development' | 'production' | 'observe'
-export async function build(outdir = '.build', variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development', entries?: { client: string[]; server: string[]; serverComponents?: boolean; routerSource?: boolean }) {
+export async function build(
+	outdir = '.build',
+	variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development',
+	entries?: {
+		client: string[]
+		server: string[]
+		serverComponents?: boolean
+		routerSource?: boolean
+	},
+) {
 	const packages = new Map<
 		string,
 		{ directory: string; exports: Record<string, ExportValue> }
@@ -41,8 +50,9 @@ export async function build(outdir = '.build', variant: BuildMode = (process.env
 		])
 		const result = await Bun.build({
 			metafile: true,
-			entrypoints: entries?.[mode] ?? (
-				mode === 'client'
+			entrypoints:
+				entries?.[mode] ??
+				(mode === 'client'
 					? ['harness/client.tsx', 'harness/lazy-part.tsx']
 					: ['harness/server.tsx']),
 			outdir,
@@ -84,7 +94,9 @@ export async function build(outdir = '.build', variant: BuildMode = (process.env
 								generate: mode === 'client' ? 'dom' : 'ssr',
 								hydratable: true,
 								dev: variant === 'development',
-								...(entries?.serverComponents ? { serverComponents: true } : {}),
+								...(entries?.serverComponents
+									? { serverComponents: true }
+									: {}),
 							}).code,
 							loader: 'ts',
 						}))
@@ -94,7 +106,10 @@ export async function build(outdir = '.build', variant: BuildMode = (process.env
 		})
 		if (!result.success)
 			throw new AggregateError(result.logs, `Build failed: ${mode}`)
-		await Bun.write(resolve(outdir, `${mode}-metafile.json`), JSON.stringify(result.metafile, null, 2))
+		await Bun.write(
+			resolve(outdir, `${mode}-metafile.json`),
+			JSON.stringify(result.metafile, null, 2),
+		)
 	}
 }
 if (import.meta.main) await build()

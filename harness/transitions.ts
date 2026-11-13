@@ -13,4 +13,9 @@ export type TransitionSpec = {
 	primitive: 'memo' | 'store' | 'projection' | 'optimistic-store'
 	events: Operation[]
 }
-export type Trace = { operation: Operation | { kind: 'initial' }; dom: string; errors: string[]; actionErrors: number }
+export type Trace = {
+	operation: Operation | { kind: 'initial' }
+	dom: string
+	errors: string[]
+	actionErrors: number
+}

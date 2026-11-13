@@ -1,97 +1,2268 @@
-import { createRoot, createSignal, createMemo, createEffect, createRenderEffect, createTrackedEffect, createStore, flush, untrack, onCleanup, merge, omit, snapshot, resolve, onSettled, refresh, until, isPending, latest, affects, createOptimistic, runWithOwner, getOwner, createProjection, reconcile, action, createOptimisticStore } from 'solid-js'
-import { equal, type DocCase } from './registry'
 import { isDev } from '@solidjs/web'
+import {
+	createRoot,
+	createSignal,
+	createMemo,
+	createEffect,
+	createRenderEffect,
+	createTrackedEffect,
+	createStore,
+	flush,
+	untrack,
+	onCleanup,
+	merge,
+	omit,
+	snapshot,
+	resolve,
+	onSettled,
+	refresh,
+	until,
+	isPending,
+	latest,
+	affects,
+	createOptimistic,
+	runWithOwner,
+	getOwner,
+	createProjection,
+	reconcile,
+	action,
+	createOptimisticStore,
+} from 'solid-js'
+
 import { deferred, controlledIterable, ticks } from '../../harness/timing'
-const cases:DocCase[]=[]
-function doc(chapter:string,name:string,statement:string,run:DocCase['run']){const files:Record<string,string>={'01':'01-reactivity-batching-effects.md','02':'02-signals-derived-ownership.md','04':'04-stores.md','05':'05-async-data.md','06':'06-actions-optimistic.md'};cases.push({id:chapter+'/'+name,file:files[chapter]!,statement,run})}
-async function root<T>(setup:()=>T,check:(state:T)=>unknown|Promise<unknown>){let dispose!:()=>void;const state=createRoot(d=>{dispose=d;return setup()});try{await check(state)}finally{dispose();await ticks(2)}}
-doc('01','lazy-dependencies','Lazy memos track dependencies normally once evaluated.',()=>root(()=>{const [read,write]=createSignal(1);const memo=createMemo(()=>read()*2,{lazy:true});const seen:number[]=[];createEffect(memo,v=>{seen.push(v)});return {write,seen}},s=>{flush();s.write(2);flush();equal(s.seen,[2,4])}))
-doc('01','lazy-disposal','A lazy memo is torn down when its last subscriber disappears and recomputed from scratch on its next read.',()=>root(()=>{let runs=0,cleanups=0;const memo=createMemo(()=>{runs++;onCleanup(()=>{cleanups++});return runs},{lazy:true});let close!:()=>void;createRoot(d=>{close=d;createEffect(memo,()=>{})});return {memo,close,runs:()=>runs,cleanups:()=>cleanups}},s=>{flush();equal(s.runs(),1);s.close();equal(s.cleanups(),1);equal(untrack(s.memo),2)}))
-doc('01','eager-idle-cache','A non-lazy owned memo lives for its owner lifetime and keeps its cached value when unsubscribed.',()=>root(()=>{let runs=0;const memo=createMemo(()=>++runs);return {memo,runs:()=>runs}},s=>{equal(untrack(s.memo),1);equal(untrack(s.memo),1);equal(s.runs(),1)}))
-doc('01','memo-previous','Memo compute receives the previous result and options are its second argument.',()=>root(()=>{const [read,write]=createSignal(1);const seen:unknown[]=[];const memo=createMemo<number>((previous=0)=>{seen.push(previous);return previous+read()},{equals:false});createEffect(memo,()=>{});return {memo,write,seen}},s=>{flush();s.write(2);flush();equal(s.seen,[0,1]);equal(untrack(s.memo),3)}))
-doc('01','back-half-untracked','Effect callbacks do not track reactive values read in the apply phase.',()=>root(()=>{const [a,setA]=createSignal(1),[b,setB]=createSignal(2);const seen:number[]=[];createEffect(a,value=>{seen.push(value+untrack(b))});return {setA,setB,seen}},s=>{flush();s.setB(5);flush();equal(s.seen,[3]);s.setA(2);flush();equal(s.seen,[3,7])}))
-doc('01','tracked-effect-cleanup','A tracked effect returns a cleanup function, which runs before rerun and on disposal.',async()=>{const seen:string[]=[];await root(()=>{const [read,write]=createSignal(0);createTrackedEffect(()=>{const value=read();seen.push('run'+value);return()=>{seen.push('clean'+value)}});return write},write=>{flush();write(1);flush();equal(seen,['run0','clean0','run1'])});equal(seen,['run0','clean0','run1','clean1'])})
-doc('01','render-effect-cleanup','Render effects accept split compute/apply handlers with cleanup on rerun and disposal.',async()=>{const seen:string[]=[];await root(()=>{const [read,write]=createSignal(0);createRenderEffect(read,value=>{seen.push('run'+value);return()=>{seen.push('clean'+value)}});return write},write=>{equal(seen,['run0']);write(1);flush();equal(seen,['run0','clean0','run1'])});equal(seen,['run0','clean0','run1','clean1'])})
-doc('02','signal-function-value','To store a function as a value, wrap it in a function-returning initializer and updater.',()=>root(()=>{const fn=()=>1;const [read,write]=createSignal(()=>fn);return {fn,read,write}},s=>{equal(untrack(s.read),s.fn);const next=()=>2;s.write(()=>next);flush();equal(untrack(s.read),next)}))
-doc('02','memo-equality','Default strict equality suppresses notifications; equals false allows identical outputs to notify.',()=>root(()=>{const [read,write]=createSignal(0);const object={};const same=createMemo(()=>{read();return object});const always=createMemo(()=>{read();return object},{equals:false});const log:string[]=[];createEffect(same,()=>{log.push('same')});createEffect(always,()=>{log.push('always')});return {write,log}},s=>{flush();s.log.length=0;s.write(1);flush();equal(s.log,['always'])}))
-doc('04','merge-reactive-getters','merge is a reactive view, later sources take precedence, and source getters remain reactive.',()=>root(()=>{const [read,write]=createSignal(1);const v=merge({a:9,b:2},{get a(){return read()}});const seen:number[]=[];createEffect(()=>v.a,a=>{seen.push(a)});return {v,write,seen}},s=>{flush();equal(s.v.b,2);s.write(3);flush();equal(s.seen,[1,3])}))
-doc('04','omit-reactive-getters','omit is a reactive view preserving unexcluded getters.',()=>root(()=>{const [read,write]=createSignal(1);const v=omit({get a(){return read()},b:2},'b');const seen:number[]=[];createEffect(()=>v.a,a=>{seen.push(a)});return {v,write,seen}},s=>{flush();s.write(3);flush();equal(s.seen,[1,3]);equal('b' in s.v,false)}))
-doc('04','undefined-and-delete','Draft undefined stores a value; delete removes the property.',()=>root(()=>createStore<{a?:number,b?:number}>({a:1,b:2}),([store,set])=>{set(d=>{d.a=undefined;delete d.b});flush();equal(Object.keys(store),['a']);equal(snapshot(store),{a:undefined})}))
-doc('04','promise-derived-store','A derived store compute can return a Promise and adopts its resulting record.',()=>root(()=>{const [store]=createStore(()=>Promise.resolve({n:2}),{n:0});return store},async store=>{await resolve(()=>store.n);equal(snapshot(store),{n:2})}))
+import { equal, type DocCase } from './registry'
+const cases: DocCase[] = []
+function doc(
+	chapter: string,
+	name: string,
+	statement: string,
+	run: DocCase['run'],
+) {
+	const files: Record<string, string> = {
+		'01': '01-reactivity-batching-effects.md',
+		'02': '02-signals-derived-ownership.md',
+		'04': '04-stores.md',
+		'05': '05-async-data.md',
+		'06': '06-actions-optimistic.md',
+	}
+	cases.push({
+		id: chapter + '/' + name,
+		file: files[chapter]!,
+		statement,
+		run,
+	})
+}
+async function root<T>(
+	setup: () => T,
+	check: (state: T) => unknown | Promise<unknown>,
+) {
+	let dispose!: () => void
+	const state = createRoot((d) => {
+		dispose = d
+		return setup()
+	})
+	try {
+		await check(state)
+	} finally {
+		dispose()
+		await ticks(2)
+	}
+}
+doc(
+	'01',
+	'lazy-dependencies',
+	'Lazy memos track dependencies normally once evaluated.',
+	() =>
+		root(
+			() => {
+				const [read, write] = createSignal(1)
+				const memo = createMemo(() => read() * 2, { lazy: true })
+				const seen: number[] = []
+				createEffect(memo, (v) => {
+					seen.push(v)
+				})
+				return { write, seen }
+			},
+			(s) => {
+				flush()
+				s.write(2)
+				flush()
+				equal(s.seen, [2, 4])
+			},
+		),
+)
+doc(
+	'01',
+	'lazy-disposal',
+	'A lazy memo is torn down when its last subscriber disappears and recomputed from scratch on its next read.',
+	() =>
+		root(
+			() => {
+				let runs = 0,
+					cleanups = 0
+				const memo = createMemo(
+					() => {
+						runs++
+						onCleanup(() => {
+							cleanups++
+						})
+						return runs
+					},
+					{ lazy: true },
+				)
+				let close!: () => void
+				createRoot((d) => {
+					close = d
+					createEffect(memo, () => {})
+				})
+				return { memo, close, runs: () => runs, cleanups: () => cleanups }
+			},
+			(s) => {
+				flush()
+				equal(s.runs(), 1)
+				s.close()
+				equal(s.cleanups(), 1)
+				equal(untrack(s.memo), 2)
+			},
+		),
+)
+doc(
+	'01',
+	'eager-idle-cache',
+	'A non-lazy owned memo lives for its owner lifetime and keeps its cached value when unsubscribed.',
+	() =>
+		root(
+			() => {
+				let runs = 0
+				const memo = createMemo(() => ++runs)
+				return { memo, runs: () => runs }
+			},
+			(s) => {
+				equal(untrack(s.memo), 1)
+				equal(untrack(s.memo), 1)
+				equal(s.runs(), 1)
+			},
+		),
+)
+doc(
+	'01',
+	'memo-previous',
+	'Memo compute receives the previous result and options are its second argument.',
+	() =>
+		root(
+			() => {
+				const [read, write] = createSignal(1)
+				const seen: unknown[] = []
+				const memo = createMemo<number>(
+					(previous = 0) => {
+						seen.push(previous)
+						return previous + read()
+					},
+					{ equals: false },
+				)
+				createEffect(memo, () => {})
+				return { memo, write, seen }
+			},
+			(s) => {
+				flush()
+				s.write(2)
+				flush()
+				equal(s.seen, [0, 1])
+				equal(untrack(s.memo), 3)
+			},
+		),
+)
+doc(
+	'01',
+	'back-half-untracked',
+	'Effect callbacks do not track reactive values read in the apply phase.',
+	() =>
+		root(
+			() => {
+				const [a, setA] = createSignal(1),
+					[b, setB] = createSignal(2)
+				const seen: number[] = []
+				createEffect(a, (value) => {
+					seen.push(value + untrack(b))
+				})
+				return { setA, setB, seen }
+			},
+			(s) => {
+				flush()
+				s.setB(5)
+				flush()
+				equal(s.seen, [3])
+				s.setA(2)
+				flush()
+				equal(s.seen, [3, 7])
+			},
+		),
+)
+doc(
+	'01',
+	'tracked-effect-cleanup',
+	'A tracked effect returns a cleanup function, which runs before rerun and on disposal.',
+	async () => {
+		const seen: string[] = []
+		await root(
+			() => {
+				const [read, write] = createSignal(0)
+				createTrackedEffect(() => {
+					const value = read()
+					seen.push('run' + value)
+					return () => {
+						seen.push('clean' + value)
+					}
+				})
+				return write
+			},
+			(write) => {
+				flush()
+				write(1)
+				flush()
+				equal(seen, ['run0', 'clean0', 'run1'])
+			},
+		)
+		equal(seen, ['run0', 'clean0', 'run1', 'clean1'])
+	},
+)
+doc(
+	'01',
+	'render-effect-cleanup',
+	'Render effects accept split compute/apply handlers with cleanup on rerun and disposal.',
+	async () => {
+		const seen: string[] = []
+		await root(
+			() => {
+				const [read, write] = createSignal(0)
+				createRenderEffect(read, (value) => {
+					seen.push('run' + value)
+					return () => {
+						seen.push('clean' + value)
+					}
+				})
+				return write
+			},
+			(write) => {
+				equal(seen, ['run0'])
+				write(1)
+				flush()
+				equal(seen, ['run0', 'clean0', 'run1'])
+			},
+		)
+		equal(seen, ['run0', 'clean0', 'run1', 'clean1'])
+	},
+)
+doc(
+	'02',
+	'signal-function-value',
+	'To store a function as a value, wrap it in a function-returning initializer and updater.',
+	() =>
+		root(
+			() => {
+				const fn = () => 1
+				const [read, write] = createSignal(() => fn)
+				return { fn, read, write }
+			},
+			(s) => {
+				equal(untrack(s.read), s.fn)
+				const next = () => 2
+				s.write(() => next)
+				flush()
+				equal(untrack(s.read), next)
+			},
+		),
+)
+doc(
+	'02',
+	'memo-equality',
+	'Default strict equality suppresses notifications; equals false allows identical outputs to notify.',
+	() =>
+		root(
+			() => {
+				const [read, write] = createSignal(0)
+				const object = {}
+				const same = createMemo(() => {
+					read()
+					return object
+				})
+				const always = createMemo(
+					() => {
+						read()
+						return object
+					},
+					{ equals: false },
+				)
+				const log: string[] = []
+				createEffect(same, () => {
+					log.push('same')
+				})
+				createEffect(always, () => {
+					log.push('always')
+				})
+				return { write, log }
+			},
+			(s) => {
+				flush()
+				s.log.length = 0
+				s.write(1)
+				flush()
+				equal(s.log, ['always'])
+			},
+		),
+)
+doc(
+	'04',
+	'merge-reactive-getters',
+	'merge is a reactive view, later sources take precedence, and source getters remain reactive.',
+	() =>
+		root(
+			() => {
+				const [read, write] = createSignal(1)
+				const v = merge(
+					{ a: 9, b: 2 },
+					{
+						get a() {
+							return read()
+						},
+					},
+				)
+				const seen: number[] = []
+				createEffect(
+					() => v.a,
+					(a) => {
+						seen.push(a)
+					},
+				)
+				return { v, write, seen }
+			},
+			(s) => {
+				flush()
+				equal(s.v.b, 2)
+				s.write(3)
+				flush()
+				equal(s.seen, [1, 3])
+			},
+		),
+)
+doc(
+	'04',
+	'omit-reactive-getters',
+	'omit is a reactive view preserving unexcluded getters.',
+	() =>
+		root(
+			() => {
+				const [read, write] = createSignal(1)
+				const v = omit(
+					{
+						get a() {
+							return read()
+						},
+						b: 2,
+					},
+					'b',
+				)
+				const seen: number[] = []
+				createEffect(
+					() => v.a,
+					(a) => {
+						seen.push(a)
+					},
+				)
+				return { v, write, seen }
+			},
+			(s) => {
+				flush()
+				s.write(3)
+				flush()
+				equal(s.seen, [1, 3])
+				equal('b' in s.v, false)
+			},
+		),
+)
+doc(
+	'04',
+	'undefined-and-delete',
+	'Draft undefined stores a value; delete removes the property.',
+	() =>
+		root(
+			() => createStore<{ a?: number; b?: number }>({ a: 1, b: 2 }),
+			([store, set]) => {
+				set((d) => {
+					d.a = undefined
+					delete d.b
+				})
+				flush()
+				equal(Object.keys(store), ['a'])
+				equal(snapshot(store), { a: undefined })
+			},
+		),
+)
+doc(
+	'04',
+	'promise-derived-store',
+	'A derived store compute can return a Promise and adopts its resulting record.',
+	() =>
+		root(
+			() => {
+				const [store] = createStore(() => Promise.resolve({ n: 2 }), { n: 0 })
+				return store
+			},
+			async (store) => {
+				await resolve(() => store.n)
+				equal(snapshot(store), { n: 2 })
+			},
+		),
+)
 
-doc('02','derived-store-return','Derived createStore may return a record rather than mutate its seed.',()=>root(()=>{const [read,write]=createSignal(1);const pair=createStore(()=>({n:read()}),{n:0});return {pair,write}},s=>{equal(snapshot(s.pair[0]),{n:1});s.write(2);flush();equal(snapshot(s.pair[0]),{n:2})}))
-doc('02','pinned-derived-signal','A local flag preserved by the derive keeps a manual value until the flag is cleared, including a same-update source change.',()=>root(()=>{const [source,setSource]=createSignal(1);const [read,write]=createSignal<{n:number,pinned:boolean}>(previous=>previous?.pinned?previous:{n:source(),pinned:false});return {setSource,read,write}},s=>{s.write({n:99,pinned:true});s.setSource(2);flush();equal(untrack(s.read),{n:99,pinned:true});s.write({n:99,pinned:false});s.setSource(3);flush();equal(untrack(s.read),{n:3,pinned:false})}))
-doc('02','pinned-derived-store','A derived store receives imperative writes as its next draft and can preserve local fields through source updates.',()=>root(()=>{const [source,setSource]=createSignal(1);const [store,setStore]=createStore(d=>{const n=source();if(!d.pinned)d.n=n},{n:0,pinned:false});return {setSource,store,setStore}},s=>{s.setStore(d=>{d.n=99;d.pinned=true});s.setSource(2);flush();equal(snapshot(s.store),{n:99,pinned:true});s.setStore(d=>{d.pinned=false});s.setSource(3);flush();equal(snapshot(s.store),{n:3,pinned:false})}))
-doc('02','derived-second-write','The second imperative write replaces the first and a write alone does not invoke the derive.',()=>root(()=>{let runs=0;const [read,write]=createSignal(()=>{runs++;return 0});return {read,write,runs:()=>runs}},s=>{s.write(1);s.write(2);flush();equal(untrack(s.read),2);equal(s.runs(),1)}))
-doc('04','property-granularity','Deep stores track individual properties rather than every sibling property.',()=>root(()=>{const [store,set]=createStore({child:{a:1,b:2}});const seen:number[]=[];createEffect(()=>store.child.a,v=>{seen.push(v)});return {set,seen}},s=>{flush();s.set(d=>{d.child.b=3});flush();equal(s.seen,[1]);s.set(d=>{d.child.a=4});flush();equal(s.seen,[1,4])}))
-doc('04','shallow-nested-no-notify','Mutating a plain record below a shallow boundary notifies no reactive reader; replacing its root slot does.',()=>root(()=>{const [store,set]=createStore({row:{n:1}},{shallow:true});const seen:number[]=[];createEffect(()=>store.row.n,v=>{seen.push(v)});return {store,set,seen}},s=>{flush();s.store.row.n=2;flush();equal(s.seen,[1]);s.set(d=>{d.row={n:3}});flush();equal(s.seen,[1,3])}))
-doc('04','shallow-enumeration','Shallow root membership, enumeration and array length remain reactive.',()=>root(()=>{const [store,set]=createStore<{a?:{n:number},b?:{n:number}}>({a:{n:1}},{shallow:true});const seen:unknown[]=[];createEffect(()=>[Object.keys(store),'b' in store],v=>{seen.push(v)});return {set,seen}},s=>{flush();s.set(d=>{d.b={n:2}});flush();equal(s.seen,[[['a'],false],[['a','b'],true]])}))
-doc('04','shallow-identity-through-store','Records that pass through a shallow boundary stay plain through a later deep store.',()=>root(()=>{const record={n:1};const [shallow]=createStore({record},{shallow:true});const [deepStore]=createStore({record:shallow.record});return {record,shallow,deepStore}},s=>{equal(s.shallow.record===s.record,true);equal(s.deepStore.record===s.record,true)}))
-doc('04','snapshot-structural-sharing','Snapshot returns plain copies where necessary while unchanged snapshots preserve reference identity.',()=>root(()=>createStore({a:{n:1},b:{n:2}}),([store,set])=>{const before=snapshot(store);equal(snapshot(store)===before,true);set(d=>{d.a.n=3});flush();const after=snapshot(store);equal(after===before,false);equal(after.b===before.b,true);equal(after.a===before.a,false)}))
-doc('04','reconcile-function-key','reconcile accepts a key function and preserves subscribed row identities across reordering.',()=>root(()=>{const [store,set]=createStore([{key:'a',n:1},{key:'b',n:2}]);const row=store[0]!;createEffect(()=>store.map(x=>x.n),()=>{});return {store,set,row}},s=>{flush();s.set(d=>{reconcile([{key:'b',n:3},{key:'a',n:4}],row=>row.key)(d)});flush();equal(s.store[1]===s.row,true);equal(snapshot(s.store),[{key:'b',n:3},{key:'a',n:4}])}))
+doc(
+	'02',
+	'derived-store-return',
+	'Derived createStore may return a record rather than mutate its seed.',
+	() =>
+		root(
+			() => {
+				const [read, write] = createSignal(1)
+				const pair = createStore(() => ({ n: read() }), { n: 0 })
+				return { pair, write }
+			},
+			(s) => {
+				equal(snapshot(s.pair[0]), { n: 1 })
+				s.write(2)
+				flush()
+				equal(snapshot(s.pair[0]), { n: 2 })
+			},
+		),
+)
+doc(
+	'02',
+	'pinned-derived-signal',
+	'A local flag preserved by the derive keeps a manual value until the flag is cleared, including a same-update source change.',
+	() =>
+		root(
+			() => {
+				const [source, setSource] = createSignal(1)
+				const [read, write] = createSignal<{ n: number; pinned: boolean }>(
+					(previous) =>
+						previous?.pinned ? previous : { n: source(), pinned: false },
+				)
+				return { setSource, read, write }
+			},
+			(s) => {
+				s.write({ n: 99, pinned: true })
+				s.setSource(2)
+				flush()
+				equal(untrack(s.read), { n: 99, pinned: true })
+				s.write({ n: 99, pinned: false })
+				s.setSource(3)
+				flush()
+				equal(untrack(s.read), { n: 3, pinned: false })
+			},
+		),
+)
+doc(
+	'02',
+	'pinned-derived-store',
+	'A derived store receives imperative writes as its next draft and can preserve local fields through source updates.',
+	() =>
+		root(
+			() => {
+				const [source, setSource] = createSignal(1)
+				const [store, setStore] = createStore(
+					(d) => {
+						const n = source()
+						if (!d.pinned) d.n = n
+					},
+					{ n: 0, pinned: false },
+				)
+				return { setSource, store, setStore }
+			},
+			(s) => {
+				s.setStore((d) => {
+					d.n = 99
+					d.pinned = true
+				})
+				s.setSource(2)
+				flush()
+				equal(snapshot(s.store), { n: 99, pinned: true })
+				s.setStore((d) => {
+					d.pinned = false
+				})
+				s.setSource(3)
+				flush()
+				equal(snapshot(s.store), { n: 3, pinned: false })
+			},
+		),
+)
+doc(
+	'02',
+	'derived-second-write',
+	'The second imperative write replaces the first and a write alone does not invoke the derive.',
+	() =>
+		root(
+			() => {
+				let runs = 0
+				const [read, write] = createSignal(() => {
+					runs++
+					return 0
+				})
+				return { read, write, runs: () => runs }
+			},
+			(s) => {
+				s.write(1)
+				s.write(2)
+				flush()
+				equal(untrack(s.read), 2)
+				equal(s.runs(), 1)
+			},
+		),
+)
+doc(
+	'04',
+	'property-granularity',
+	'Deep stores track individual properties rather than every sibling property.',
+	() =>
+		root(
+			() => {
+				const [store, set] = createStore({ child: { a: 1, b: 2 } })
+				const seen: number[] = []
+				createEffect(
+					() => store.child.a,
+					(v) => {
+						seen.push(v)
+					},
+				)
+				return { set, seen }
+			},
+			(s) => {
+				flush()
+				s.set((d) => {
+					d.child.b = 3
+				})
+				flush()
+				equal(s.seen, [1])
+				s.set((d) => {
+					d.child.a = 4
+				})
+				flush()
+				equal(s.seen, [1, 4])
+			},
+		),
+)
+doc(
+	'04',
+	'shallow-nested-no-notify',
+	'Mutating a plain record below a shallow boundary notifies no reactive reader; replacing its root slot does.',
+	() =>
+		root(
+			() => {
+				const [store, set] = createStore({ row: { n: 1 } }, { shallow: true })
+				const seen: number[] = []
+				createEffect(
+					() => store.row.n,
+					(v) => {
+						seen.push(v)
+					},
+				)
+				return { store, set, seen }
+			},
+			(s) => {
+				flush()
+				s.store.row.n = 2
+				flush()
+				equal(s.seen, [1])
+				s.set((d) => {
+					d.row = { n: 3 }
+				})
+				flush()
+				equal(s.seen, [1, 3])
+			},
+		),
+)
+doc(
+	'04',
+	'shallow-enumeration',
+	'Shallow root membership, enumeration and array length remain reactive.',
+	() =>
+		root(
+			() => {
+				const [store, set] = createStore<{
+					a?: { n: number }
+					b?: { n: number }
+				}>({ a: { n: 1 } }, { shallow: true })
+				const seen: unknown[] = []
+				createEffect(
+					() => [Object.keys(store), 'b' in store],
+					(v) => {
+						seen.push(v)
+					},
+				)
+				return { set, seen }
+			},
+			(s) => {
+				flush()
+				s.set((d) => {
+					d.b = { n: 2 }
+				})
+				flush()
+				equal(s.seen, [
+					[['a'], false],
+					[['a', 'b'], true],
+				])
+			},
+		),
+)
+doc(
+	'04',
+	'shallow-identity-through-store',
+	'Records that pass through a shallow boundary stay plain through a later deep store.',
+	() =>
+		root(
+			() => {
+				const record = { n: 1 }
+				const [shallow] = createStore({ record }, { shallow: true })
+				const [deepStore] = createStore({ record: shallow.record })
+				return { record, shallow, deepStore }
+			},
+			(s) => {
+				equal(s.shallow.record === s.record, true)
+				equal(s.deepStore.record === s.record, true)
+			},
+		),
+)
+doc(
+	'04',
+	'snapshot-structural-sharing',
+	'Snapshot returns plain copies where necessary while unchanged snapshots preserve reference identity.',
+	() =>
+		root(
+			() => createStore({ a: { n: 1 }, b: { n: 2 } }),
+			([store, set]) => {
+				const before = snapshot(store)
+				equal(snapshot(store) === before, true)
+				set((d) => {
+					d.a.n = 3
+				})
+				flush()
+				const after = snapshot(store)
+				equal(after === before, false)
+				equal(after.b === before.b, true)
+				equal(after.a === before.a, false)
+			},
+		),
+)
+doc(
+	'04',
+	'reconcile-function-key',
+	'reconcile accepts a key function and preserves subscribed row identities across reordering.',
+	() =>
+		root(
+			() => {
+				const [store, set] = createStore([
+					{ key: 'a', n: 1 },
+					{ key: 'b', n: 2 },
+				])
+				const row = store[0]!
+				createEffect(
+					() => store.map((x) => x.n),
+					() => {},
+				)
+				return { store, set, row }
+			},
+			(s) => {
+				flush()
+				s.set((d) => {
+					reconcile(
+						[
+							{ key: 'b', n: 3 },
+							{ key: 'a', n: 4 },
+						],
+						(row) => row.key,
+					)(d)
+				})
+				flush()
+				equal(s.store[1] === s.row, true)
+				equal(snapshot(s.store), [
+					{ key: 'b', n: 3 },
+					{ key: 'a', n: 4 },
+				])
+			},
+		),
+)
 
-doc('01','imperative-write-boundaries','onSettled permits imperative signal writes without an owned-write opt-in.',()=>root(()=>{const [read,write]=createSignal(0);onSettled(()=>{write(1)});return {read,write}},async s=>{await ticks(4);equal(untrack(s.read),1);s.write(2);flush();equal(untrack(s.read),2)}))
+doc(
+	'01',
+	'imperative-write-boundaries',
+	'onSettled permits imperative signal writes without an owned-write opt-in.',
+	() =>
+		root(
+			() => {
+				const [read, write] = createSignal(0)
+				onSettled(() => {
+					write(1)
+				})
+				return { read, write }
+			},
+			async (s) => {
+				await ticks(4)
+				equal(untrack(s.read), 1)
+				s.write(2)
+				flush()
+				equal(untrack(s.read), 2)
+			},
+		),
+)
 
-doc('04','shallow-array-length','Shallow arrays keep root length reactive.',()=>root(()=>{const [store,set]=createStore([{n:1}],{shallow:true});const seen:number[]=[];createEffect(()=>store.length,n=>{seen.push(n)});return {set,seen}},s=>{flush();s.set(d=>{d.push({n:2})});flush();equal(s.seen,[1,2])}))
-doc('04','shallow-rejects-deep','Ingesting a deep-tracked value through a shallow store throws in dev.',()=>root(()=>{const row={n:1};const [deepStore]=createStore({row});void deepStore.row;return row},row=>{let error:unknown,dispose:(()=>void)|undefined;try{createRoot(d=>{dispose=d;createStore({row},{shallow:true})})}catch(e){error=e}finally{dispose?.()}if(isDev)equal(Boolean(error),true)}))
-doc('04','shallow-projection','shallow is accepted by createProjection; its root slot replaces plain records.',()=>root(()=>{const a={n:1},b={n:2};const [read,write]=createSignal(a);const store=createProjection(()=>({row:read()}),{row:a},{shallow:true});return {store,write,a,b}},s=>{equal(s.store.row===s.a,true);s.write(s.b);flush();equal(s.store.row===s.b,true)}))
-doc('04','shallow-optimistic-overlay','A shallow optimistic replacement reverts to the untouched original record after failure.',()=>root(()=>{const initial={n:1};const [store,set]=createOptimisticStore({row:initial},{shallow:true});const gate=deferred<void>();const save=action(function*(){set(d=>{d.row={n:2}});yield gate.promise});return {store,initial,gate,save}},async s=>{const done=s.save();done.catch(()=>{});flush();equal(s.store.row.n,2);equal(s.initial.n,1);s.gate.reject(new Error('save failed'));await done.catch(()=>{});await ticks(4);equal(s.store.row===s.initial,true);equal(s.store.row.n,1)}))
-doc('04','seed-loading-detached-draft','seedLoadingValue displays its seed while the first run writes a detached draft; that first draft stops writing through once its run lands.',()=>root(()=>{const gate=deferred<void>();let draft!:{n:number};const store=createProjection(async d=>{draft=d;await gate.promise;d.n=2},{n:1},{seedLoadingValue:true});return {gate,store,draft:()=>draft}},async s=>{equal(snapshot(s.store),{n:1});s.gate.resolve();await ticks(8);equal(snapshot(s.store),{n:2});s.draft().n=3;flush();equal(snapshot(s.store),{n:2})}))
-doc('02','iterable-derived-store','A derived store compute can return an async iterable and adopt successive records.',()=>root(()=>{const stream=controlledIterable<{n:number}>();const [store]=createStore(()=>stream.iterable,{n:0});return {stream,store}},async s=>{s.stream.push({n:1});await resolve(()=>s.store.n);equal(snapshot(s.store),{n:1});s.stream.push({n:2});await ticks(4);equal(snapshot(s.store),{n:2})}))
+doc(
+	'04',
+	'shallow-array-length',
+	'Shallow arrays keep root length reactive.',
+	() =>
+		root(
+			() => {
+				const [store, set] = createStore([{ n: 1 }], { shallow: true })
+				const seen: number[] = []
+				createEffect(
+					() => store.length,
+					(n) => {
+						seen.push(n)
+					},
+				)
+				return { set, seen }
+			},
+			(s) => {
+				flush()
+				s.set((d) => {
+					d.push({ n: 2 })
+				})
+				flush()
+				equal(s.seen, [1, 2])
+			},
+		),
+)
+doc(
+	'04',
+	'shallow-rejects-deep',
+	'Ingesting a deep-tracked value through a shallow store throws in dev.',
+	() =>
+		root(
+			() => {
+				const row = { n: 1 }
+				const [deepStore] = createStore({ row })
+				void deepStore.row
+				return row
+			},
+			(row) => {
+				let error: unknown, dispose: (() => void) | undefined
+				try {
+					createRoot((d) => {
+						dispose = d
+						createStore({ row }, { shallow: true })
+					})
+				} catch (e) {
+					error = e
+				} finally {
+					dispose?.()
+				}
+				if (isDev) equal(Boolean(error), true)
+			},
+		),
+)
+doc(
+	'04',
+	'shallow-projection',
+	'shallow is accepted by createProjection; its root slot replaces plain records.',
+	() =>
+		root(
+			() => {
+				const a = { n: 1 },
+					b = { n: 2 }
+				const [read, write] = createSignal(a)
+				const store = createProjection(
+					() => ({ row: read() }),
+					{ row: a },
+					{ shallow: true },
+				)
+				return { store, write, a, b }
+			},
+			(s) => {
+				equal(s.store.row === s.a, true)
+				s.write(s.b)
+				flush()
+				equal(s.store.row === s.b, true)
+			},
+		),
+)
+doc(
+	'04',
+	'shallow-optimistic-overlay',
+	'A shallow optimistic replacement reverts to the untouched original record after failure.',
+	() =>
+		root(
+			() => {
+				const initial = { n: 1 }
+				const [store, set] = createOptimisticStore(
+					{ row: initial },
+					{ shallow: true },
+				)
+				const gate = deferred<void>()
+				const save = action(function* () {
+					set((d) => {
+						d.row = { n: 2 }
+					})
+					yield gate.promise
+				})
+				return { store, initial, gate, save }
+			},
+			async (s) => {
+				const done = s.save()
+				done.catch(() => {})
+				flush()
+				equal(s.store.row.n, 2)
+				equal(s.initial.n, 1)
+				s.gate.reject(new Error('save failed'))
+				await done.catch(() => {})
+				await ticks(4)
+				equal(s.store.row === s.initial, true)
+				equal(s.store.row.n, 1)
+			},
+		),
+)
+doc(
+	'04',
+	'seed-loading-detached-draft',
+	'seedLoadingValue displays its seed while the first run writes a detached draft; that first draft stops writing through once its run lands.',
+	() =>
+		root(
+			() => {
+				const gate = deferred<void>()
+				let draft!: { n: number }
+				const store = createProjection(
+					async (d) => {
+						draft = d
+						await gate.promise
+						d.n = 2
+					},
+					{ n: 1 },
+					{ seedLoadingValue: true },
+				)
+				return { gate, store, draft: () => draft }
+			},
+			async (s) => {
+				equal(snapshot(s.store), { n: 1 })
+				s.gate.resolve()
+				await ticks(8)
+				equal(snapshot(s.store), { n: 2 })
+				s.draft().n = 3
+				flush()
+				equal(snapshot(s.store), { n: 2 })
+			},
+		),
+)
+doc(
+	'02',
+	'iterable-derived-store',
+	'A derived store compute can return an async iterable and adopt successive records.',
+	() =>
+		root(
+			() => {
+				const stream = controlledIterable<{ n: number }>()
+				const [store] = createStore(() => stream.iterable, { n: 0 })
+				return { stream, store }
+			},
+			async (s) => {
+				s.stream.push({ n: 1 })
+				await resolve(() => s.store.n)
+				equal(snapshot(s.store), { n: 1 })
+				s.stream.push({ n: 2 })
+				await ticks(4)
+				equal(snapshot(s.store), { n: 2 })
+			},
+		),
+)
 
-doc('05','resolve-owned-guard','resolve cannot be called in a reactive tracking scope in development.',()=>root(()=>{let caught:unknown;const value=createMemo(()=>{try{return resolve(()=>1)}catch(e){caught=e;return 0}});return {caught,value}},s=>{if(isDev){equal(Boolean(s.caught),true);equal(untrack(s.value),0)}}))
-doc('06','async-generator-context','An async generator action resumes the transition context after yield, preserving later optimistic writes through the hold.',()=>root(()=>{const [read,write]=createOptimistic(0);const start=deferred<void>(),hold=deferred<void>();const save=action(async function*(){await start.promise;yield;write(3);yield hold.promise;return 7});return {read,start,hold,save}},async s=>{const done=s.save();s.start.resolve();await ticks(8);equal(untrack(s.read),3);s.hold.resolve();equal(await done,7);await ticks(4);equal(untrack(s.read),0)}))
-doc('06','until-level-triggered','until sees confirmation that is already present without a subscription/delivery race.',()=>root(()=>createSignal({version:3}),async([read])=>{const result=await until(()=>read().version>=2&&read().version);equal(result,3)}))
-doc('06','until-predicate-error','until rejects when the predicate throws.',async()=>{const expected=new Error('predicate failed');let received:unknown;try{await until(()=>{throw expected})}catch(e){received=e}equal(received,expected)})
-doc('06','until-async-error','until rejects when a source read by its predicate rejects.',()=>root(()=>{const gate=deferred<boolean>();const read=createMemo(()=>gate.promise);return {gate,read}},async s=>{const done=until(s.read);done.catch(()=>{});const expected=new Error('source failed');s.gate.reject(expected);let error:unknown;try{await done}catch(e){error=e}equal(error,expected)}))
-doc('06','until-structural-authority','Optimistic array length, membership and Object.keys cannot satisfy until; authoritative source updates can.',()=>root(()=>{const [source,setSource]=createSignal<{items:{id:number}[],saved?:boolean}>({items:[]});const [store,set]=createOptimisticStore(()=>source(),{items:[]} as {items:{id:number}[],saved?:boolean});let confirmed=false;const seen:unknown[]=[];const save=action(function*(){set(d=>{d.items.push({id:7});d.saved=true});yield until(()=>{const truth=[store.items.length,'saved' in store,Object.keys(store)];seen.push(truth);return truth[0]===1&&truth[1]});confirmed=true});return {store,setSource,save,seen,confirmed:()=>confirmed}},async s=>{const done=s.save();await ticks(8);equal(s.store.items.length,1);equal(s.confirmed(),false);equal(s.seen[0],[0,false,['items']]);s.setSource({items:[{id:7}],saved:true});flush();await done;equal(s.confirmed(),true);equal(snapshot(s.store),{items:[{id:7}],saved:true})}))
-doc('06','affects-key-granularity','affects(record,key) marks only that slot pending and keeps siblings readable and not pending.',()=>root(()=>{const [store]=createStore({a:1,b:2});const gate=deferred<void>();const save=action(function*(){affects(store,'a');yield gate.promise});return {store,gate,save}},async s=>{const done=s.save();done.catch(()=>{});flush();equal(isPending(()=>s.store.a),true);equal(isPending(()=>s.store.b),false);equal(s.store.a,1);equal(s.store.b,2);s.gate.resolve();await done;await ticks(4);equal(isPending(()=>s.store.a),false)}))
-doc('06','affects-nested-record','affects(nested record) marks descendants pending but not siblings.',()=>root(()=>{const [store]=createStore({row:{n:1},sibling:{n:2}});const row=store.row;const gate=deferred<void>();const save=action(function*(){affects(row);yield gate.promise});return {store,row,gate,save}},async s=>{const done=s.save();done.catch(()=>{});flush();equal(isPending(()=>s.row.n),true);equal(isPending(()=>s.store.sibling.n),false);equal(s.row.n,1);s.gate.resolve();await done;await ticks(4);equal(isPending(()=>s.row.n),false)}))
+doc(
+	'05',
+	'resolve-owned-guard',
+	'resolve cannot be called in a reactive tracking scope in development.',
+	() =>
+		root(
+			() => {
+				let caught: unknown
+				const value = createMemo(() => {
+					try {
+						return resolve(() => 1)
+					} catch (e) {
+						caught = e
+						return 0
+					}
+				})
+				return { caught, value }
+			},
+			(s) => {
+				if (isDev) {
+					equal(Boolean(s.caught), true)
+					equal(untrack(s.value), 0)
+				}
+			},
+		),
+)
+doc(
+	'06',
+	'async-generator-context',
+	'An async generator action resumes the transition context after yield, preserving later optimistic writes through the hold.',
+	() =>
+		root(
+			() => {
+				const [read, write] = createOptimistic(0)
+				const start = deferred<void>(),
+					hold = deferred<void>()
+				const save = action(async function* () {
+					await start.promise
+					yield
+					write(3)
+					yield hold.promise
+					return 7
+				})
+				return { read, start, hold, save }
+			},
+			async (s) => {
+				const done = s.save()
+				s.start.resolve()
+				await ticks(8)
+				equal(untrack(s.read), 3)
+				s.hold.resolve()
+				equal(await done, 7)
+				await ticks(4)
+				equal(untrack(s.read), 0)
+			},
+		),
+)
+doc(
+	'06',
+	'until-level-triggered',
+	'until sees confirmation that is already present without a subscription/delivery race.',
+	() =>
+		root(
+			() => createSignal({ version: 3 }),
+			async ([read]) => {
+				const result = await until(() => read().version >= 2 && read().version)
+				equal(result, 3)
+			},
+		),
+)
+doc(
+	'06',
+	'until-predicate-error',
+	'until rejects when the predicate throws.',
+	async () => {
+		const expected = new Error('predicate failed')
+		let received: unknown
+		try {
+			await until(() => {
+				throw expected
+			})
+		} catch (e) {
+			received = e
+		}
+		equal(received, expected)
+	},
+)
+doc(
+	'06',
+	'until-async-error',
+	'until rejects when a source read by its predicate rejects.',
+	() =>
+		root(
+			() => {
+				const gate = deferred<boolean>()
+				const read = createMemo(() => gate.promise)
+				return { gate, read }
+			},
+			async (s) => {
+				const done = until(s.read)
+				done.catch(() => {})
+				const expected = new Error('source failed')
+				s.gate.reject(expected)
+				let error: unknown
+				try {
+					await done
+				} catch (e) {
+					error = e
+				}
+				equal(error, expected)
+			},
+		),
+)
+doc(
+	'06',
+	'until-structural-authority',
+	'Optimistic array length, membership and Object.keys cannot satisfy until; authoritative source updates can.',
+	() =>
+		root(
+			() => {
+				const [source, setSource] = createSignal<{
+					items: { id: number }[]
+					saved?: boolean
+				}>({ items: [] })
+				const [store, set] = createOptimisticStore(() => source(), {
+					items: [],
+				} as { items: { id: number }[]; saved?: boolean })
+				let confirmed = false
+				const seen: unknown[] = []
+				const save = action(function* () {
+					set((d) => {
+						d.items.push({ id: 7 })
+						d.saved = true
+					})
+					yield until(() => {
+						const truth = [
+							store.items.length,
+							'saved' in store,
+							Object.keys(store),
+						]
+						seen.push(truth)
+						return truth[0] === 1 && truth[1]
+					})
+					confirmed = true
+				})
+				return { store, setSource, save, seen, confirmed: () => confirmed }
+			},
+			async (s) => {
+				const done = s.save()
+				await ticks(8)
+				equal(s.store.items.length, 1)
+				equal(s.confirmed(), false)
+				equal(s.seen[0], [0, false, ['items']])
+				s.setSource({ items: [{ id: 7 }], saved: true })
+				flush()
+				await done
+				equal(s.confirmed(), true)
+				equal(snapshot(s.store), { items: [{ id: 7 }], saved: true })
+			},
+		),
+)
+doc(
+	'06',
+	'affects-key-granularity',
+	'affects(record,key) marks only that slot pending and keeps siblings readable and not pending.',
+	() =>
+		root(
+			() => {
+				const [store] = createStore({ a: 1, b: 2 })
+				const gate = deferred<void>()
+				const save = action(function* () {
+					affects(store, 'a')
+					yield gate.promise
+				})
+				return { store, gate, save }
+			},
+			async (s) => {
+				const done = s.save()
+				done.catch(() => {})
+				flush()
+				equal(
+					isPending(() => s.store.a),
+					true,
+				)
+				equal(
+					isPending(() => s.store.b),
+					false,
+				)
+				equal(s.store.a, 1)
+				equal(s.store.b, 2)
+				s.gate.resolve()
+				await done
+				await ticks(4)
+				equal(
+					isPending(() => s.store.a),
+					false,
+				)
+			},
+		),
+)
+doc(
+	'06',
+	'affects-nested-record',
+	'affects(nested record) marks descendants pending but not siblings.',
+	() =>
+		root(
+			() => {
+				const [store] = createStore({ row: { n: 1 }, sibling: { n: 2 } })
+				const row = store.row
+				const gate = deferred<void>()
+				const save = action(function* () {
+					affects(row)
+					yield gate.promise
+				})
+				return { store, row, gate, save }
+			},
+			async (s) => {
+				const done = s.save()
+				done.catch(() => {})
+				flush()
+				equal(
+					isPending(() => s.row.n),
+					true,
+				)
+				equal(
+					isPending(() => s.store.sibling.n),
+					false,
+				)
+				equal(s.row.n, 1)
+				s.gate.resolve()
+				await done
+				await ticks(4)
+				equal(
+					isPending(() => s.row.n),
+					false,
+				)
+			},
+		),
+)
 
-doc('01','unowned-memo-disposal','An unowned memo autodisposes when its last subscriber goes away and recomputes on its next read.',async()=>{let runs=0,cleanups=0;const memo=runWithOwner(null,()=>createMemo(()=>{runs++;onCleanup(()=>{cleanups++});return runs}));let close!:()=>void;createRoot(d=>{close=d;createEffect(memo,()=>{})});flush();equal(runs,1);close();equal(cleanups,1);equal(untrack(memo),2)})
-doc('04','projection-reconcile-key','A returned projection value is reconciled by options.key, preserving subscribed row proxies.',()=>root(()=>{const [read,write]=createSignal([{key:'a',n:1},{key:'b',n:2}]);const store=createProjection(()=>read(),[] as {key:string,n:number}[],{key:'key'});const row=store[0];createEffect(()=>store.map(x=>x.n),()=>{});return {store,write,row}},s=>{flush();s.write([{key:'b',n:3},{key:'a',n:4}]);flush();equal(s.store[1]===s.row,true);equal(snapshot(s.store),[{key:'b',n:3},{key:'a',n:4}])}))
-doc('04','projection-default-key','A returned projection value uses id as its default reconciliation key.',()=>root(()=>{const [read,write]=createSignal([{id:1,n:1},{id:2,n:2}]);const store=createProjection(()=>read(),[] as {id:number,n:number}[]);const row=store[0];createEffect(()=>store.map(x=>x.n),()=>{});return {store,write,row}},s=>{flush();s.write([{id:2,n:3},{id:1,n:4}]);flush();equal(s.store[1]===s.row,true);equal(snapshot(s.store),[{id:2,n:3},{id:1,n:4}])}))
-doc('04','shallow-reconcile-positional','A shallow boundary reconciles positionally and serves the incoming records by reference.',()=>root(()=>{const a={id:1,n:1},b={id:2,n:2};const [store,set]=createStore([a,b],{shallow:true});return {store,set,a,b}},s=>{s.set(d=>{reconcile([s.b,s.a],null)(d)});flush();equal(s.store[0]===s.b,true);equal(s.store[1]===s.a,true)}))
+doc(
+	'01',
+	'unowned-memo-disposal',
+	'An unowned memo autodisposes when its last subscriber goes away and recomputes on its next read.',
+	async () => {
+		let runs = 0,
+			cleanups = 0
+		const memo = runWithOwner(null, () =>
+			createMemo(() => {
+				runs++
+				onCleanup(() => {
+					cleanups++
+				})
+				return runs
+			}),
+		)
+		let close!: () => void
+		createRoot((d) => {
+			close = d
+			createEffect(memo, () => {})
+		})
+		flush()
+		equal(runs, 1)
+		close()
+		equal(cleanups, 1)
+		equal(untrack(memo), 2)
+	},
+)
+doc(
+	'04',
+	'projection-reconcile-key',
+	'A returned projection value is reconciled by options.key, preserving subscribed row proxies.',
+	() =>
+		root(
+			() => {
+				const [read, write] = createSignal([
+					{ key: 'a', n: 1 },
+					{ key: 'b', n: 2 },
+				])
+				const store = createProjection(
+					() => read(),
+					[] as { key: string; n: number }[],
+					{ key: 'key' },
+				)
+				const row = store[0]
+				createEffect(
+					() => store.map((x) => x.n),
+					() => {},
+				)
+				return { store, write, row }
+			},
+			(s) => {
+				flush()
+				s.write([
+					{ key: 'b', n: 3 },
+					{ key: 'a', n: 4 },
+				])
+				flush()
+				equal(s.store[1] === s.row, true)
+				equal(snapshot(s.store), [
+					{ key: 'b', n: 3 },
+					{ key: 'a', n: 4 },
+				])
+			},
+		),
+)
+doc(
+	'04',
+	'projection-default-key',
+	'A returned projection value uses id as its default reconciliation key.',
+	() =>
+		root(
+			() => {
+				const [read, write] = createSignal([
+					{ id: 1, n: 1 },
+					{ id: 2, n: 2 },
+				])
+				const store = createProjection(
+					() => read(),
+					[] as { id: number; n: number }[],
+				)
+				const row = store[0]
+				createEffect(
+					() => store.map((x) => x.n),
+					() => {},
+				)
+				return { store, write, row }
+			},
+			(s) => {
+				flush()
+				s.write([
+					{ id: 2, n: 3 },
+					{ id: 1, n: 4 },
+				])
+				flush()
+				equal(s.store[1] === s.row, true)
+				equal(snapshot(s.store), [
+					{ id: 2, n: 3 },
+					{ id: 1, n: 4 },
+				])
+			},
+		),
+)
+doc(
+	'04',
+	'shallow-reconcile-positional',
+	'A shallow boundary reconciles positionally and serves the incoming records by reference.',
+	() =>
+		root(
+			() => {
+				const a = { id: 1, n: 1 },
+					b = { id: 2, n: 2 }
+				const [store, set] = createStore([a, b], { shallow: true })
+				return { store, set, a, b }
+			},
+			(s) => {
+				s.set((d) => {
+					reconcile([s.b, s.a], null)(d)
+				})
+				flush()
+				equal(s.store[0] === s.b, true)
+				equal(s.store[1] === s.a, true)
+			},
+		),
+)
 
-doc('06','refresh-store-delivery','Refreshing a derived store delivers the same store node with fresh values.',()=>root(()=>{let value=1;const [store]=createStore(()=>({row:{n:value}}),{row:{n:0}});return {store,change:()=>{value=2}}},async s=>{s.change();const delivered=await refresh(s.store);equal(delivered,s.store);equal(s.store.row.n,2)}))
-doc('06','refresh-nested-node','Refreshing a nested store node re-asks its entire derive family but delivers that same nested node.',()=>root(()=>{let value=1;const [store]=createStore(()=>({row:{n:value},sibling:{n:value+10}}),{row:{n:0},sibling:{n:0}});const row=store.row;return {store,row,change:()=>{value=2}}},async s=>{s.change();// Public declarations reject the documented nested target; findings/018 retains the positive compiler repro.
-// @ts-expect-error Runtime supports this documented input despite its missing brand.
-const delivered=await refresh(s.row);equal(delivered,s.row);equal(s.row.n,2);equal(s.store.sibling.n,12)}))
-doc('06','refresh-rejection','A failed re-ask rejects the awaitable refresh result with its error.',()=>root(()=>{const gates=[deferred<number>(),deferred<number>()];let invocation=0;const read=createMemo(()=>gates[invocation++]!.promise);return {gates,read}},async s=>{s.gates[0]!.resolve(1);await resolve(s.read);const done=refresh(s.read);done.catch(()=>{});const expected=new Error('refresh failed');s.gates[1]!.reject(expected);let error:unknown;try{await done}catch(e){error=e}equal(error,expected)}))
+doc(
+	'06',
+	'refresh-store-delivery',
+	'Refreshing a derived store delivers the same store node with fresh values.',
+	() =>
+		root(
+			() => {
+				let value = 1
+				const [store] = createStore(() => ({ row: { n: value } }), {
+					row: { n: 0 },
+				})
+				return {
+					store,
+					change: () => {
+						value = 2
+					},
+				}
+			},
+			async (s) => {
+				s.change()
+				const delivered = await refresh(s.store)
+				equal(delivered, s.store)
+				equal(s.store.row.n, 2)
+			},
+		),
+)
+doc(
+	'06',
+	'refresh-nested-node',
+	'Refreshing a nested store node re-asks its entire derive family but delivers that same nested node.',
+	() =>
+		root(
+			() => {
+				let value = 1
+				const [store] = createStore(
+					() => ({ row: { n: value }, sibling: { n: value + 10 } }),
+					{ row: { n: 0 }, sibling: { n: 0 } },
+				)
+				const row = store.row
+				return {
+					store,
+					row,
+					change: () => {
+						value = 2
+					},
+				}
+			},
+			async (s) => {
+				s.change() // Public declarations reject the documented nested target; findings/018 retains the positive compiler repro.
+				// @ts-expect-error Runtime supports this documented input despite its missing brand.
+				const delivered = await refresh(s.row)
+				equal(delivered, s.row)
+				equal(s.row.n, 2)
+				equal(s.store.sibling.n, 12)
+			},
+		),
+)
+doc(
+	'06',
+	'refresh-rejection',
+	'A failed re-ask rejects the awaitable refresh result with its error.',
+	() =>
+		root(
+			() => {
+				const gates = [deferred<number>(), deferred<number>()]
+				let invocation = 0
+				const read = createMemo(() => gates[invocation++]!.promise)
+				return { gates, read }
+			},
+			async (s) => {
+				s.gates[0]!.resolve(1)
+				await resolve(s.read)
+				const done = refresh(s.read)
+				done.catch(() => {})
+				const expected = new Error('refresh failed')
+				s.gates[1]!.reject(expected)
+				let error: unknown
+				try {
+					await done
+				} catch (e) {
+					error = e
+				}
+				equal(error, expected)
+			},
+		),
+)
 
-doc('06','refresh-staged-authority','An action awaiting refresh receives authoritative staged data rather than its own optimistic override; until can read that staged truth without deadlock.',()=>root(()=>{const gates=[deferred<number>(),deferred<number>()];let calls=0;const [read,write]=createOptimistic(()=>gates[calls++]!.promise);const hold=deferred<void>();let delivered:unknown,confirmed=false;const save=action(function*(){write(99);delivered=yield refresh(read);yield until(()=>read()===2);confirmed=true;yield hold.promise});return {gates,read,save,hold,delivered:()=>delivered,confirmed:()=>confirmed}},async s=>{s.gates[0]!.resolve(1);await resolve(s.read);const done=s.save();done.catch(()=>{});await ticks(4);s.gates[1]!.resolve(2);await ticks(8);equal(s.delivered(),2);equal(s.confirmed(),true);equal(untrack(s.read),99);s.hold.resolve();await done;equal(untrack(s.read),2)}))
+doc(
+	'06',
+	'refresh-staged-authority',
+	'An action awaiting refresh receives authoritative staged data rather than its own optimistic override; until can read that staged truth without deadlock.',
+	() =>
+		root(
+			() => {
+				const gates = [deferred<number>(), deferred<number>()]
+				let calls = 0
+				const [read, write] = createOptimistic(() => gates[calls++]!.promise)
+				const hold = deferred<void>()
+				let delivered: unknown,
+					confirmed = false
+				const save = action(function* () {
+					write(99)
+					delivered = yield refresh(read)
+					yield until(() => read() === 2)
+					confirmed = true
+					yield hold.promise
+				})
+				return {
+					gates,
+					read,
+					save,
+					hold,
+					delivered: () => delivered,
+					confirmed: () => confirmed,
+				}
+			},
+			async (s) => {
+				s.gates[0]!.resolve(1)
+				await resolve(s.read)
+				const done = s.save()
+				done.catch(() => {})
+				await ticks(4)
+				s.gates[1]!.resolve(2)
+				await ticks(8)
+				equal(s.delivered(), 2)
+				equal(s.confirmed(), true)
+				equal(untrack(s.read), 99)
+				s.hold.resolve()
+				await done
+				equal(untrack(s.read), 2)
+			},
+		),
+)
 
-doc('05','loading-value-pending-window','loadingValue is committed and quiet on first flight; after the first real answer, input changes use ordinary pending state.',()=>root(()=>{const gates=[deferred<number>(),deferred<number>()];const [id,setId]=createSignal(0);const read=createMemo(()=>gates[id()]!.promise,{loadingValue:3});return {read,gates,setId}},async s=>{equal(untrack(s.read),3);equal(isPending(s.read),false);s.gates[0]!.resolve(7);await ticks(8);equal(untrack(s.read),7);s.setId(1);flush();equal(isPending(s.read),true);equal(untrack(s.read),7);s.gates[1]!.resolve(8);await ticks(8);equal(untrack(s.read),8);equal(isPending(s.read),false)}))
-doc('06','until-staged-source','until inside an action observes authoritative data staged by the action refresh while the action continues holding.',()=>root(()=>{const gates=[deferred<number>(),deferred<number>()];let calls=0;const read=createMemo(()=>gates[calls++]!.promise);const hold=deferred<void>();let confirmed=false,delivered=false;const save=action(function*(){yield refresh(read);delivered=true;yield until(()=>read()===2);confirmed=true;yield hold.promise});return {read,gates,save,hold,confirmed:()=>confirmed,delivered:()=>delivered}},async s=>{s.gates[0]!.resolve(1);await resolve(s.read);const done=s.save();done.catch(()=>{});await ticks(4);s.gates[1]!.resolve(2);await ticks(8);if(!s.delivered())throw new Error("Refresh completion stalled before until (finding008)");equal(s.confirmed(),true);s.hold.resolve();await done;equal(untrack(s.read),2)}))
-export const remainingCoreCases=cases
+doc(
+	'05',
+	'loading-value-pending-window',
+	'loadingValue is committed and quiet on first flight; after the first real answer, input changes use ordinary pending state.',
+	() =>
+		root(
+			() => {
+				const gates = [deferred<number>(), deferred<number>()]
+				const [id, setId] = createSignal(0)
+				const read = createMemo(() => gates[id()]!.promise, { loadingValue: 3 })
+				return { read, gates, setId }
+			},
+			async (s) => {
+				equal(untrack(s.read), 3)
+				equal(isPending(s.read), false)
+				s.gates[0]!.resolve(7)
+				await ticks(8)
+				equal(untrack(s.read), 7)
+				s.setId(1)
+				flush()
+				equal(isPending(s.read), true)
+				equal(untrack(s.read), 7)
+				s.gates[1]!.resolve(8)
+				await ticks(8)
+				equal(untrack(s.read), 8)
+				equal(isPending(s.read), false)
+			},
+		),
+)
+doc(
+	'06',
+	'until-staged-source',
+	'until inside an action observes authoritative data staged by the action refresh while the action continues holding.',
+	() =>
+		root(
+			() => {
+				const gates = [deferred<number>(), deferred<number>()]
+				let calls = 0
+				const read = createMemo(() => gates[calls++]!.promise)
+				const hold = deferred<void>()
+				let confirmed = false,
+					delivered = false
+				const save = action(function* () {
+					yield refresh(read)
+					delivered = true
+					yield until(() => read() === 2)
+					confirmed = true
+					yield hold.promise
+				})
+				return {
+					read,
+					gates,
+					save,
+					hold,
+					confirmed: () => confirmed,
+					delivered: () => delivered,
+				}
+			},
+			async (s) => {
+				s.gates[0]!.resolve(1)
+				await resolve(s.read)
+				const done = s.save()
+				done.catch(() => {})
+				await ticks(4)
+				s.gates[1]!.resolve(2)
+				await ticks(8)
+				if (!s.delivered())
+					throw new Error(
+						'Refresh completion stalled before until (finding008)',
+					)
+				equal(s.confirmed(), true)
+				s.hold.resolve()
+				await done
+				equal(untrack(s.read), 2)
+			},
+		),
+)
+export const remainingCoreCases = cases
 
-doc('01','render-effect-tearing','Render apply handlers observe intermediate states when flush is explicitly drained between writes.',()=>root(()=>{const [a,setA]=createSignal(0),[b,setB]=createSignal(0);const seen:string[]=[];createRenderEffect(()=>`${a()}:${b()}`,value=>{seen.push(value)});return {setA,setB,seen}},s=>{flush(()=>{s.setA(1);flush();equal(s.seen,['0:0','1:0']);s.setB(1);flush();equal(s.seen,['0:0','1:0','1:1'])})}))
-doc('06','refresh-rejection-action','A rejected refresh is thrown back at the generator yield and an uncaught error reverts optimistic overlays.',()=>root(()=>{const gates=[deferred<number>(),deferred<number>()];let calls=0;const read=createMemo(()=>gates[calls++]!.promise);const [overlay,write]=createOptimistic(0);let caught:unknown;const save=action(function*(){write(9);try{yield refresh(read)}catch(error){caught=error;throw error}});return {gates,read,overlay,save,caught:()=>caught}},async s=>{s.gates[0]!.resolve(1);await resolve(s.read);const done=s.save();done.catch(()=>{});await ticks(4);equal(untrack(s.overlay),9);const error=new Error('refresh failed');s.gates[1]!.reject(error);await ticks(8);equal(s.caught(),error);let thrown:unknown;try{await done}catch(e){thrown=e}equal(thrown,error);equal(untrack(s.overlay),0)}))
-doc('06','refresh-rejection-compensate','An action may catch a rejected refresh at its yield point and continue a compensating transition.',()=>root(()=>{const gates=[deferred<number>(),deferred<number>()];let calls=0;const read=createMemo(()=>gates[calls++]!.promise);const hold=deferred<void>();const [overlay,write]=createOptimistic(0);let caught=false;const save=action(function*(){write(9);try{yield refresh(read)}catch{caught=true;write(4)}yield hold.promise;return 7});return {gates,read,overlay,hold,save,caught:()=>caught}},async s=>{s.gates[0]!.resolve(1);await resolve(s.read);const done=s.save();done.catch(()=>{});await ticks(4);s.gates[1]!.reject(new Error('failed'));await ticks(8);equal(s.caught(),true);equal(untrack(s.overlay),4);s.hold.resolve();equal(await done,7);equal(untrack(s.overlay),0)}))
+doc(
+	'01',
+	'render-effect-tearing',
+	'Render apply handlers observe intermediate states when flush is explicitly drained between writes.',
+	() =>
+		root(
+			() => {
+				const [a, setA] = createSignal(0),
+					[b, setB] = createSignal(0)
+				const seen: string[] = []
+				createRenderEffect(
+					() => `${a()}:${b()}`,
+					(value) => {
+						seen.push(value)
+					},
+				)
+				return { setA, setB, seen }
+			},
+			(s) => {
+				flush(() => {
+					s.setA(1)
+					flush()
+					equal(s.seen, ['0:0', '1:0'])
+					s.setB(1)
+					flush()
+					equal(s.seen, ['0:0', '1:0', '1:1'])
+				})
+			},
+		),
+)
+doc(
+	'06',
+	'refresh-rejection-action',
+	'A rejected refresh is thrown back at the generator yield and an uncaught error reverts optimistic overlays.',
+	() =>
+		root(
+			() => {
+				const gates = [deferred<number>(), deferred<number>()]
+				let calls = 0
+				const read = createMemo(() => gates[calls++]!.promise)
+				const [overlay, write] = createOptimistic(0)
+				let caught: unknown
+				const save = action(function* () {
+					write(9)
+					try {
+						yield refresh(read)
+					} catch (error) {
+						caught = error
+						throw error
+					}
+				})
+				return { gates, read, overlay, save, caught: () => caught }
+			},
+			async (s) => {
+				s.gates[0]!.resolve(1)
+				await resolve(s.read)
+				const done = s.save()
+				done.catch(() => {})
+				await ticks(4)
+				equal(untrack(s.overlay), 9)
+				const error = new Error('refresh failed')
+				s.gates[1]!.reject(error)
+				await ticks(8)
+				equal(s.caught(), error)
+				let thrown: unknown
+				try {
+					await done
+				} catch (e) {
+					thrown = e
+				}
+				equal(thrown, error)
+				equal(untrack(s.overlay), 0)
+			},
+		),
+)
+doc(
+	'06',
+	'refresh-rejection-compensate',
+	'An action may catch a rejected refresh at its yield point and continue a compensating transition.',
+	() =>
+		root(
+			() => {
+				const gates = [deferred<number>(), deferred<number>()]
+				let calls = 0
+				const read = createMemo(() => gates[calls++]!.promise)
+				const hold = deferred<void>()
+				const [overlay, write] = createOptimistic(0)
+				let caught = false
+				const save = action(function* () {
+					write(9)
+					try {
+						yield refresh(read)
+					} catch {
+						caught = true
+						write(4)
+					}
+					yield hold.promise
+					return 7
+				})
+				return { gates, read, overlay, hold, save, caught: () => caught }
+			},
+			async (s) => {
+				s.gates[0]!.resolve(1)
+				await resolve(s.read)
+				const done = s.save()
+				done.catch(() => {})
+				await ticks(4)
+				s.gates[1]!.reject(new Error('failed'))
+				await ticks(8)
+				equal(s.caught(), true)
+				equal(untrack(s.overlay), 4)
+				s.hold.resolve()
+				equal(await done, 7)
+				equal(untrack(s.overlay), 0)
+			},
+		),
+)
 
-doc('05','latest','latest reads the pending write ahead of a held transaction while the normal read remains committed.',()=>root(()=>{const [read,write]=createSignal(1);const hold=deferred<void>();const save=action(function*(){write(2);yield hold.promise});return {read,hold,save}},async s=>{const done=s.save();await ticks(4);equal(untrack(s.read),1);equal(latest(s.read),2);s.hold.resolve();await done;equal(untrack(s.read),2)}))
-doc('01','untrack-read','An untrack read does not register a dependency while ordinary reads remain tracked.',()=>root(()=>{const [a,setA]=createSignal(1),[b,setB]=createSignal(1);const seen:number[]=[];createEffect(()=>a()+untrack(b),value=>{seen.push(value)});return {setA,setB,seen}},s=>{flush();s.setB(2);flush();equal(s.seen,[2]);s.setA(2);flush();equal(s.seen,[2,4])}))
-doc('04','projection-granularity','The selected-key projection notifies only old and new selected rows rather than all rows.',()=>root(()=>{const [read,write]=createSignal('a');const selected=createProjection<Record<string,boolean|string>>(draft=>{const id=read();draft[id]=true;if(draft._prev!=null)delete draft[draft._prev as string];draft._prev=id},{});const counts={a:0,b:0,c:0};for(const key of ['a','b','c']as const)createEffect(()=>selected[key],()=>{counts[key]++});return {write,selected,counts}},s=>{flush();equal(s.counts,{a:1,b:1,c:1});s.write('b');flush();equal(s.counts,{a:2,b:2,c:1});equal(snapshot(s.selected),{_prev:'b',b:true})}))
+doc(
+	'05',
+	'latest',
+	'latest reads the pending write ahead of a held transaction while the normal read remains committed.',
+	() =>
+		root(
+			() => {
+				const [read, write] = createSignal(1)
+				const hold = deferred<void>()
+				const save = action(function* () {
+					write(2)
+					yield hold.promise
+				})
+				return { read, hold, save }
+			},
+			async (s) => {
+				const done = s.save()
+				await ticks(4)
+				equal(untrack(s.read), 1)
+				equal(latest(s.read), 2)
+				s.hold.resolve()
+				await done
+				equal(untrack(s.read), 2)
+			},
+		),
+)
+doc(
+	'01',
+	'untrack-read',
+	'An untrack read does not register a dependency while ordinary reads remain tracked.',
+	() =>
+		root(
+			() => {
+				const [a, setA] = createSignal(1),
+					[b, setB] = createSignal(1)
+				const seen: number[] = []
+				createEffect(
+					() => a() + untrack(b),
+					(value) => {
+						seen.push(value)
+					},
+				)
+				return { setA, setB, seen }
+			},
+			(s) => {
+				flush()
+				s.setB(2)
+				flush()
+				equal(s.seen, [2])
+				s.setA(2)
+				flush()
+				equal(s.seen, [2, 4])
+			},
+		),
+)
+doc(
+	'04',
+	'projection-granularity',
+	'The selected-key projection notifies only old and new selected rows rather than all rows.',
+	() =>
+		root(
+			() => {
+				const [read, write] = createSignal('a')
+				const selected = createProjection<Record<string, boolean | string>>(
+					(draft) => {
+						const id = read()
+						draft[id] = true
+						if (draft._prev != null) delete draft[draft._prev as string]
+						draft._prev = id
+					},
+					{},
+				)
+				const counts = { a: 0, b: 0, c: 0 }
+				for (const key of ['a', 'b', 'c'] as const)
+					createEffect(
+						() => selected[key],
+						() => {
+							counts[key]++
+						},
+					)
+				return { write, selected, counts }
+			},
+			(s) => {
+				flush()
+				equal(s.counts, { a: 1, b: 1, c: 1 })
+				s.write('b')
+				flush()
+				equal(s.counts, { a: 2, b: 2, c: 1 })
+				equal(snapshot(s.selected), { _prev: 'b', b: true })
+			},
+		),
+)
 
-doc('05','latest-async-stale','latest falls back to the committed result while a pending derived answer is unavailable, then reads the staged answer ahead of the held transaction.',()=>root(()=>{const gates=[deferred<number>(),deferred<number>()];const [id,setId]=createSignal(0);const read=createMemo(()=>gates[id()]!.promise);const hold=deferred<void>();const save=action(function*(){setId(1);yield hold.promise});return {gates,read,hold,save}},async s=>{s.gates[0]!.resolve(7);await resolve(s.read);const done=s.save();await ticks(4);equal(latest(s.read),7);equal(untrack(s.read),7);s.gates[1]!.resolve(8);await ticks(8);equal(latest(s.read),8);equal(untrack(s.read),7);s.hold.resolve();await done;equal(untrack(s.read),8)}))
+doc(
+	'05',
+	'latest-async-stale',
+	'latest falls back to the committed result while a pending derived answer is unavailable, then reads the staged answer ahead of the held transaction.',
+	() =>
+		root(
+			() => {
+				const gates = [deferred<number>(), deferred<number>()]
+				const [id, setId] = createSignal(0)
+				const read = createMemo(() => gates[id()]!.promise)
+				const hold = deferred<void>()
+				const save = action(function* () {
+					setId(1)
+					yield hold.promise
+				})
+				return { gates, read, hold, save }
+			},
+			async (s) => {
+				s.gates[0]!.resolve(7)
+				await resolve(s.read)
+				const done = s.save()
+				await ticks(4)
+				equal(latest(s.read), 7)
+				equal(untrack(s.read), 7)
+				s.gates[1]!.resolve(8)
+				await ticks(8)
+				equal(latest(s.read), 8)
+				equal(untrack(s.read), 7)
+				s.hold.resolve()
+				await done
+				equal(untrack(s.read), 8)
+			},
+		),
+)
 
-doc('06','ignored-refresh-rejection','Ignoring a failed awaitable refresh does not surface an unhandled rejection.',()=>root(()=>{const gates=[deferred<number>(),deferred<number>()];let calls=0;const read=createMemo(()=>gates[calls++]!.promise);return {read,gates}},async s=>{s.gates[0]!.resolve(1);await resolve(s.read);const errors:unknown[]=[];const listener=(event:PromiseRejectionEvent)=>{errors.push(event.reason)};window.addEventListener('unhandledrejection',listener);try{refresh(s.read);await ticks(4);s.gates[1]!.reject(new Error('ignored'));await ticks(8);equal(errors,[])}finally{window.removeEventListener('unhandledrejection',listener)}}))
+doc(
+	'06',
+	'ignored-refresh-rejection',
+	'Ignoring a failed awaitable refresh does not surface an unhandled rejection.',
+	() =>
+		root(
+			() => {
+				const gates = [deferred<number>(), deferred<number>()]
+				let calls = 0
+				const read = createMemo(() => gates[calls++]!.promise)
+				return { read, gates }
+			},
+			async (s) => {
+				s.gates[0]!.resolve(1)
+				await resolve(s.read)
+				const errors: unknown[] = []
+				const listener = (event: PromiseRejectionEvent) => {
+					errors.push(event.reason)
+				}
+				window.addEventListener('unhandledrejection', listener)
+				try {
+					refresh(s.read)
+					await ticks(4)
+					s.gates[1]!.reject(new Error('ignored'))
+					await ticks(8)
+					equal(errors, [])
+				} finally {
+					window.removeEventListener('unhandledrejection', listener)
+				}
+			},
+		),
+)
 
-doc('06','resolve-own-overlay','resolve reports an action own view, including its optimistic override, while until requires authoritative confirmation.',()=>root(()=>{const [read,write]=createOptimistic(1);const hold=deferred<void>(),ready=deferred<void>();let observed:unknown;const save=action(function*(){write(9);yield ready.promise;observed=yield resolve(read);yield hold.promise});return {read,hold,ready,save,observed:()=>observed}},async s=>{const done=s.save();await ticks(4);equal(untrack(s.read),9);s.ready.resolve();await ticks(8);if(s.observed()!==9)throw new Error("resolve delivered "+String(s.observed())+" instead of own override 9");equal(untrack(s.read),9);s.hold.resolve();await done;equal(untrack(s.read),1)}))
-doc('06','affects-refresh-additive','affects remains pending across an otherwise quiet refresh and through its action hold; a fresh answer does not clear the declaration early.',()=>root(()=>{const gates=[deferred<number>(),deferred<number>()];let calls=0;const read=createMemo(()=>gates[calls++]!.promise);const hold=deferred<void>();const save=action(function*(){affects(read);refresh(read);yield hold.promise});return {read,gates,hold,save}},async s=>{s.gates[0]!.resolve(1);await resolve(s.read);const done=s.save();await ticks(4);equal(isPending(s.read),true);s.gates[1]!.resolve(2);await ticks(8);equal(isPending(s.read),true);s.hold.resolve();await done;await ticks(4);equal(isPending(s.read),false);equal(untrack(s.read),2)}))
+doc(
+	'06',
+	'resolve-own-overlay',
+	'resolve reports an action own view, including its optimistic override, while until requires authoritative confirmation.',
+	() =>
+		root(
+			() => {
+				const [read, write] = createOptimistic(1)
+				const hold = deferred<void>(),
+					ready = deferred<void>()
+				let observed: unknown
+				const save = action(function* () {
+					write(9)
+					yield ready.promise
+					observed = yield resolve(read)
+					yield hold.promise
+				})
+				return { read, hold, ready, save, observed: () => observed }
+			},
+			async (s) => {
+				const done = s.save()
+				await ticks(4)
+				equal(untrack(s.read), 9)
+				s.ready.resolve()
+				await ticks(8)
+				if (s.observed() !== 9)
+					throw new Error(
+						'resolve delivered ' +
+							String(s.observed()) +
+							' instead of own override 9',
+					)
+				equal(untrack(s.read), 9)
+				s.hold.resolve()
+				await done
+				equal(untrack(s.read), 1)
+			},
+		),
+)
+doc(
+	'06',
+	'affects-refresh-additive',
+	'affects remains pending across an otherwise quiet refresh and through its action hold; a fresh answer does not clear the declaration early.',
+	() =>
+		root(
+			() => {
+				const gates = [deferred<number>(), deferred<number>()]
+				let calls = 0
+				const read = createMemo(() => gates[calls++]!.promise)
+				const hold = deferred<void>()
+				const save = action(function* () {
+					affects(read)
+					refresh(read)
+					yield hold.promise
+				})
+				return { read, gates, hold, save }
+			},
+			async (s) => {
+				s.gates[0]!.resolve(1)
+				await resolve(s.read)
+				const done = s.save()
+				await ticks(4)
+				equal(isPending(s.read), true)
+				s.gates[1]!.resolve(2)
+				await ticks(8)
+				equal(isPending(s.read), true)
+				s.hold.resolve()
+				await done
+				await ticks(4)
+				equal(isPending(s.read), false)
+				equal(untrack(s.read), 2)
+			},
+		),
+)
 
-doc('01','flush-callback-no-microtask','flush(fn) drains callback writes without scheduling a normal microtask flush; an ordinary setter is the positive scheduler control.',()=>root(()=>createSignal(0),async([read,write])=>{flush();await ticks(4);let scheduled=0;const original=globalThis.queueMicrotask;globalThis.queueMicrotask=callback=>{scheduled++;original(callback)};try{flush(()=>{write(1)});equal(untrack(read),1);equal(scheduled,0);write(2);equal(scheduled,1);await ticks(2);equal(untrack(read),2)}finally{globalThis.queueMicrotask=original}}))
+doc(
+	'01',
+	'flush-callback-no-microtask',
+	'flush(fn) drains callback writes without scheduling a normal microtask flush; an ordinary setter is the positive scheduler control.',
+	() =>
+		root(
+			() => createSignal(0),
+			async ([read, write]) => {
+				flush()
+				await ticks(4)
+				let scheduled = 0
+				const original = globalThis.queueMicrotask
+				globalThis.queueMicrotask = (callback) => {
+					scheduled++
+					original(callback)
+				}
+				try {
+					flush(() => {
+						write(1)
+					})
+					equal(untrack(read), 1)
+					equal(scheduled, 0)
+					write(2)
+					equal(scheduled, 1)
+					await ticks(2)
+					equal(untrack(read), 2)
+				} finally {
+					globalThis.queueMicrotask = original
+				}
+			},
+		),
+)
 
-doc("06","refresh-projection-delivery","Refreshing a projection re-asks its derive and delivers the same node.",()=>root(()=>{let value=1;const projection=createProjection(()=>({n:value}),{n:0});return{projection,change:()=>{value=2}}},async s=>{s.change();equal(await refresh(s.projection),s.projection);equal(s.projection.n,2)}))
+doc(
+	'06',
+	'refresh-projection-delivery',
+	'Refreshing a projection re-asks its derive and delivers the same node.',
+	() =>
+		root(
+			() => {
+				let value = 1
+				const projection = createProjection(() => ({ n: value }), { n: 0 })
+				return {
+					projection,
+					change: () => {
+						value = 2
+					},
+				}
+			},
+			async (s) => {
+				s.change()
+				equal(await refresh(s.projection), s.projection)
+				equal(s.projection.n, 2)
+			},
+		),
+)
 
-doc('06','optimistic-ack-before-live','Without until, transport ack reverts the optimistic overlay before authoritative live data arrives.',()=>root(()=>{const [source,writeSource]=createSignal(0);const [read,write]=createOptimistic(source);const ack=deferred<void>();const save=action(function*(){write(1);yield ack.promise});return{source,read,writeSource,ack,save}},async s=>{const done=s.save();await ticks(4);equal(untrack(s.read),1);equal(untrack(s.source),0);s.ack.resolve();await done;equal(untrack(s.read),0);s.writeSource(1);flush();equal(untrack(s.read),1)}))
+doc(
+	'06',
+	'optimistic-ack-before-live',
+	'Without until, transport ack reverts the optimistic overlay before authoritative live data arrives.',
+	() =>
+		root(
+			() => {
+				const [source, writeSource] = createSignal(0)
+				const [read, write] = createOptimistic(source)
+				const ack = deferred<void>()
+				const save = action(function* () {
+					write(1)
+					yield ack.promise
+				})
+				return { source, read, writeSource, ack, save }
+			},
+			async (s) => {
+				const done = s.save()
+				await ticks(4)
+				equal(untrack(s.read), 1)
+				equal(untrack(s.source), 0)
+				s.ack.resolve()
+				await done
+				equal(untrack(s.read), 0)
+				s.writeSource(1)
+				flush()
+				equal(untrack(s.read), 1)
+			},
+		),
+)
 
-for(const store of [false,true])doc('05','optimistic-dependency-notify-'+(store?'store':'signal'),'Optimistic writes notify memo/effect subscribers while the action is pending and after the overlay reverts.',()=>root(()=>{const gate=deferred<void>(),seen:number[]=[];let read:()=>number,write:()=>void;if(store){const [state,set]=createOptimisticStore({n:0});read=()=>state.n;write=()=>set(d=>{d.n=1})}else{const [value,set]=createOptimistic(0);read=value;write=()=>{set(1)}}const derived=createMemo(()=>read()*2);createEffect(derived,value=>{seen.push(value)});const save=action(function*(){write();yield gate.promise});return{gate,seen,derived,save}},async s=>{flush();equal(s.seen,[0]);const done=s.save();await ticks(4);equal(untrack(s.derived),2);equal(s.seen,[0,2]);s.gate.resolve();await done;await ticks(4);equal(untrack(s.derived),0);equal(s.seen,[0,2,0])}))
+for (const store of [false, true])
+	doc(
+		'05',
+		'optimistic-dependency-notify-' + (store ? 'store' : 'signal'),
+		'Optimistic writes notify memo/effect subscribers while the action is pending and after the overlay reverts.',
+		() =>
+			root(
+				() => {
+					const gate = deferred<void>(),
+						seen: number[] = []
+					let read: () => number, write: () => void
+					if (store) {
+						const [state, set] = createOptimisticStore({ n: 0 })
+						read = () => state.n
+						write = () =>
+							set((d) => {
+								d.n = 1
+							})
+					} else {
+						const [value, set] = createOptimistic(0)
+						read = value
+						write = () => {
+							set(1)
+						}
+					}
+					const derived = createMemo(() => read() * 2)
+					createEffect(derived, (value) => {
+						seen.push(value)
+					})
+					const save = action(function* () {
+						write()
+						yield gate.promise
+					})
+					return { gate, seen, derived, save }
+				},
+				async (s) => {
+					flush()
+					equal(s.seen, [0])
+					const done = s.save()
+					await ticks(4)
+					equal(untrack(s.derived), 2)
+					equal(s.seen, [0, 2])
+					s.gate.resolve()
+					await done
+					await ticks(4)
+					equal(untrack(s.derived), 0)
+					equal(s.seen, [0, 2, 0])
+				},
+			),
+	)
 
-doc('05','concurrent-actions-settle-orders','Two actions can be in flight over the same optimistic source; either settle order converges after both holds end.',async()=>{for(const reversed of [false,true])await root(()=>{const [read,write]=createOptimistic(0),gates=[deferred<void>(),deferred<void>()];let entered=0,completed=0;const one=action(function*(){entered++;write(1);yield gates[0]!.promise;return'one'}),two=action(function*(){entered++;write(2);yield gates[1]!.promise;return'two'});return{read,gates,one,two,entered:()=>entered,completed:()=>completed,count:()=>{completed++}}},async s=>{const a=s.one().then(value=>{s.count();return value}),b=s.two().then(value=>{s.count();return value});await ticks(4);equal(s.entered(),2);equal(s.completed(),0);equal(untrack(s.read),2);s.gates[reversed?1:0]!.resolve();await ticks(4);s.gates[reversed?0:1]!.resolve();equal(await Promise.all([a,b]),['one','two']);equal(s.completed(),2);equal(untrack(s.read),0)})})
+doc(
+	'05',
+	'concurrent-actions-settle-orders',
+	'Two actions can be in flight over the same optimistic source; either settle order converges after both holds end.',
+	async () => {
+		for (const reversed of [false, true])
+			await root(
+				() => {
+					const [read, write] = createOptimistic(0),
+						gates = [deferred<void>(), deferred<void>()]
+					let entered = 0,
+						completed = 0
+					const one = action(function* () {
+							entered++
+							write(1)
+							yield gates[0]!.promise
+							return 'one'
+						}),
+						two = action(function* () {
+							entered++
+							write(2)
+							yield gates[1]!.promise
+							return 'two'
+						})
+					return {
+						read,
+						gates,
+						one,
+						two,
+						entered: () => entered,
+						completed: () => completed,
+						count: () => {
+							completed++
+						},
+					}
+				},
+				async (s) => {
+					const a = s.one().then((value) => {
+							s.count()
+							return value
+						}),
+						b = s.two().then((value) => {
+							s.count()
+							return value
+						})
+					await ticks(4)
+					equal(s.entered(), 2)
+					equal(s.completed(), 0)
+					equal(untrack(s.read), 2)
+					s.gates[reversed ? 1 : 0]!.resolve()
+					await ticks(4)
+					s.gates[reversed ? 0 : 1]!.resolve()
+					equal(await Promise.all([a, b]), ['one', 'two'])
+					equal(s.completed(), 2)
+					equal(untrack(s.read), 0)
+				},
+			)
+	},
+)
 
-for(const route of ['live','other-action','refetch']as const)doc('06','until-arrival-'+route,'until accepts authoritative live landings, other action commits beneath its hold, and the action own staged refetch; its own optimistic row never confirms it.',()=>root(()=>{const stream=controlledIterable<{n:number}>(),gates=[deferred<{n:number}>(),deferred<{n:number}>()],hold=deferred<void>();const [source,setSource]=createSignal({n:0});let calls=0,confirmed=false,delivered=false;const [store,set]=createOptimisticStore(()=>route==='live'?stream.iterable:route==='refetch'?gates[calls++]!.promise:source(),{n:0});const save=action(function*(){set(d=>{d.n=9});if(route==='refetch')refresh(store).then(()=>{delivered=true});yield until(()=>store.n===1);confirmed=true});const external=action(function*(){setSource({n:1});yield hold.promise});return{stream,gates,hold,store,save,external,confirmed:()=>confirmed,delivered:()=>delivered}},async s=>{if(route==='live')s.stream.push({n:0});if(route==='refetch')s.gates[0]!.resolve({n:0});await resolve(()=>s.store.n);const done=s.save();done.catch(()=>{});await ticks(6);equal(s.store.n,9);equal(s.confirmed(),false);if(route==='live')s.stream.push({n:1});else if(route==='refetch')s.gates[1]!.resolve({n:1});else{const committing=s.external();await ticks(4);s.hold.resolve();await committing}await ticks(8);if(route==='refetch'&&!s.delivered())throw new Error('Own staged refetch did not deliver (finding008)');equal(s.confirmed(),true);await done;equal(s.store.n,1)}))
+for (const route of ['live', 'other-action', 'refetch'] as const)
+	doc(
+		'06',
+		'until-arrival-' + route,
+		'until accepts authoritative live landings, other action commits beneath its hold, and the action own staged refetch; its own optimistic row never confirms it.',
+		() =>
+			root(
+				() => {
+					const stream = controlledIterable<{ n: number }>(),
+						gates = [deferred<{ n: number }>(), deferred<{ n: number }>()],
+						hold = deferred<void>()
+					const [source, setSource] = createSignal({ n: 0 })
+					let calls = 0,
+						confirmed = false,
+						delivered = false
+					const [store, set] = createOptimisticStore(
+						() =>
+							route === 'live'
+								? stream.iterable
+								: route === 'refetch'
+									? gates[calls++]!.promise
+									: source(),
+						{ n: 0 },
+					)
+					const save = action(function* () {
+						set((d) => {
+							d.n = 9
+						})
+						if (route === 'refetch')
+							refresh(store).then(() => {
+								delivered = true
+							})
+						yield until(() => store.n === 1)
+						confirmed = true
+					})
+					const external = action(function* () {
+						setSource({ n: 1 })
+						yield hold.promise
+					})
+					return {
+						stream,
+						gates,
+						hold,
+						store,
+						save,
+						external,
+						confirmed: () => confirmed,
+						delivered: () => delivered,
+					}
+				},
+				async (s) => {
+					if (route === 'live') s.stream.push({ n: 0 })
+					if (route === 'refetch') s.gates[0]!.resolve({ n: 0 })
+					await resolve(() => s.store.n)
+					const done = s.save()
+					done.catch(() => {})
+					await ticks(6)
+					equal(s.store.n, 9)
+					equal(s.confirmed(), false)
+					if (route === 'live') s.stream.push({ n: 1 })
+					else if (route === 'refetch') s.gates[1]!.resolve({ n: 1 })
+					else {
+						const committing = s.external()
+						await ticks(4)
+						s.hold.resolve()
+						await committing
+					}
+					await ticks(8)
+					if (route === 'refetch' && !s.delivered())
+						throw new Error('Own staged refetch did not deliver (finding008)')
+					equal(s.confirmed(), true)
+					await done
+					equal(s.store.n, 1)
+				},
+			),
+	)
 
-doc('05','optimistic-store-granular-refresh-race','An optimistic store reconciles refresh data without notifying unchanged fields; superseded refresh arrivals cannot overwrite the final truth after the action overlay ends.',()=>root(()=>{const gates=[deferred<{a:number,b:number}>(),deferred<{a:number,b:number}>(),deferred<{a:number,b:number}>()],hold=deferred<void>(),seenA:number[]=[],seenB:number[]=[];let calls=0,delivered=false;const [store,set]=createOptimisticStore(()=>gates[calls++]!.promise,{a:0,b:0}),owner=getOwner();const save=action(function*(){set(d=>{d.a=9});refresh(store).catch(()=>{});yield hold.promise});return{store,gates,hold,owner,seenA,seenB,save,landed:()=>delivered,refresh:()=>refresh(store).then(value=>{delivered=true;return value})}},async s=>{s.gates[0]!.resolve({a:1,b:1});await resolve(()=>s.store.a);runWithOwner(s.owner,()=>{createEffect(()=>s.store.a,n=>{s.seenA.push(n)});createEffect(()=>s.store.b,n=>{s.seenB.push(n)})});flush();equal(s.seenA,[1]);equal(s.seenB,[1]);let completed=false;const done=s.save().then(()=>{completed=true});done.catch(()=>{});await ticks(6);equal(s.store.a,9);equal(s.seenA,[1,9]);equal(s.seenB,[1]);const refreshed=s.refresh();refreshed.catch(()=>{});await ticks(4);s.gates[2]!.resolve({a:3,b:1});await ticks(8);s.gates[1]!.resolve({a:2,b:1});await ticks(4);equal(s.store.a,9);s.hold.resolve();await ticks(16);equal(completed,true);equal(snapshot(s.store),{a:3,b:1});equal(s.seenA,[1,9,3]);equal(s.seenB,[1]);equal(isPending(()=>s.store.a),false);equal(isPending(()=>s.store.b),false);if(!s.landed())throw new Error(isDev?'Development refresh completion missing after quiescence':'Quiescent optimistic store truth and action settled, but refresh completion did not deliver (finding008)');await done;await refreshed;await ticks(6);equal(snapshot(s.store),{a:3,b:1});equal(s.seenA,[1,9,3]);equal(s.seenB,[1])}))
+doc(
+	'05',
+	'optimistic-store-granular-refresh-race',
+	'An optimistic store reconciles refresh data without notifying unchanged fields; superseded refresh arrivals cannot overwrite the final truth after the action overlay ends.',
+	() =>
+		root(
+			() => {
+				const gates = [
+						deferred<{ a: number; b: number }>(),
+						deferred<{ a: number; b: number }>(),
+						deferred<{ a: number; b: number }>(),
+					],
+					hold = deferred<void>(),
+					seenA: number[] = [],
+					seenB: number[] = []
+				let calls = 0,
+					delivered = false
+				const [store, set] = createOptimisticStore(
+						() => gates[calls++]!.promise,
+						{ a: 0, b: 0 },
+					),
+					owner = getOwner()
+				const save = action(function* () {
+					set((d) => {
+						d.a = 9
+					})
+					refresh(store).catch(() => {})
+					yield hold.promise
+				})
+				return {
+					store,
+					gates,
+					hold,
+					owner,
+					seenA,
+					seenB,
+					save,
+					landed: () => delivered,
+					refresh: () =>
+						refresh(store).then((value) => {
+							delivered = true
+							return value
+						}),
+				}
+			},
+			async (s) => {
+				s.gates[0]!.resolve({ a: 1, b: 1 })
+				await resolve(() => s.store.a)
+				runWithOwner(s.owner, () => {
+					createEffect(
+						() => s.store.a,
+						(n) => {
+							s.seenA.push(n)
+						},
+					)
+					createEffect(
+						() => s.store.b,
+						(n) => {
+							s.seenB.push(n)
+						},
+					)
+				})
+				flush()
+				equal(s.seenA, [1])
+				equal(s.seenB, [1])
+				let completed = false
+				const done = s.save().then(() => {
+					completed = true
+				})
+				done.catch(() => {})
+				await ticks(6)
+				equal(s.store.a, 9)
+				equal(s.seenA, [1, 9])
+				equal(s.seenB, [1])
+				const refreshed = s.refresh()
+				refreshed.catch(() => {})
+				await ticks(4)
+				s.gates[2]!.resolve({ a: 3, b: 1 })
+				await ticks(8)
+				s.gates[1]!.resolve({ a: 2, b: 1 })
+				await ticks(4)
+				equal(s.store.a, 9)
+				s.hold.resolve()
+				await ticks(16)
+				equal(completed, true)
+				equal(snapshot(s.store), { a: 3, b: 1 })
+				equal(s.seenA, [1, 9, 3])
+				equal(s.seenB, [1])
+				equal(
+					isPending(() => s.store.a),
+					false,
+				)
+				equal(
+					isPending(() => s.store.b),
+					false,
+				)
+				if (!s.landed())
+					throw new Error(
+						isDev
+							? 'Development refresh completion missing after quiescence'
+							: 'Quiescent optimistic store truth and action settled, but refresh completion did not deliver (finding008)',
+					)
+				await done
+				await refreshed
+				await ticks(6)
+				equal(snapshot(s.store), { a: 3, b: 1 })
+				equal(s.seenA, [1, 9, 3])
+				equal(s.seenB, [1])
+			},
+		),
+)
 
-doc('06','await-fireforget-before-until','The documented async-generator live-send recipe awaits fire-and-forget send and then holds until the authoritative echo, never its own optimistic row.',()=>root(()=>{const [source,setSource]=createSignal<{clientId:string}[]>([]);const [rows,setRows]=createOptimisticStore(()=>source(),[]);const sent:string[]=[],socket={send(value:{clientId:string}){sent.push(value.clientId)}};let confirmed=false;const save=action(async function*(){const clientId='c1';setRows(d=>{d.push({clientId})});await socket.send({clientId});yield until(()=>rows.some(row=>row.clientId===clientId),{timeout:100});confirmed=true});return{rows,sent,source,setSource,save,confirmed:()=>confirmed}},async s=>{let failure:unknown;const done=s.save().catch(error=>{failure=error});await ticks(6);equal(s.sent,['c1']);equal(s.confirmed(),false);equal(s.rows.length,1);equal(untrack(s.source),[]);s.setSource([{clientId:'c1'}]);flush();await done;if(failure){equal(String(failure),'TimeoutError: Timed out waiting for condition');equal(untrack(s.source),[{clientId:'c1'}]);equal(snapshot(s.rows),[{clientId:'c1'}]);throw new Error('Authoritative echo did not complete the await-send until recipe (finding053)')}equal(s.confirmed(),true);equal(snapshot(s.rows),[{clientId:'c1'}])}))
+doc(
+	'06',
+	'await-fireforget-before-until',
+	'The documented async-generator live-send recipe awaits fire-and-forget send and then holds until the authoritative echo, never its own optimistic row.',
+	() =>
+		root(
+			() => {
+				const [source, setSource] = createSignal<{ clientId: string }[]>([])
+				const [rows, setRows] = createOptimisticStore(() => source(), [])
+				const sent: string[] = [],
+					socket = {
+						send(value: { clientId: string }) {
+							sent.push(value.clientId)
+						},
+					}
+				let confirmed = false
+				const save = action(async function* () {
+					const clientId = 'c1'
+					setRows((d) => {
+						d.push({ clientId })
+					})
+					await socket.send({ clientId })
+					yield until(() => rows.some((row) => row.clientId === clientId), {
+						timeout: 100,
+					})
+					confirmed = true
+				})
+				return {
+					rows,
+					sent,
+					source,
+					setSource,
+					save,
+					confirmed: () => confirmed,
+				}
+			},
+			async (s) => {
+				let failure: unknown
+				const done = s.save().catch((error) => {
+					failure = error
+				})
+				await ticks(6)
+				equal(s.sent, ['c1'])
+				equal(s.confirmed(), false)
+				equal(s.rows.length, 1)
+				equal(untrack(s.source), [])
+				s.setSource([{ clientId: 'c1' }])
+				flush()
+				await done
+				if (failure) {
+					equal(
+						String(failure),
+						'TimeoutError: Timed out waiting for condition',
+					)
+					equal(untrack(s.source), [{ clientId: 'c1' }])
+					equal(snapshot(s.rows), [{ clientId: 'c1' }])
+					throw new Error(
+						'Authoritative echo did not complete the await-send until recipe (finding053)',
+					)
+				}
+				equal(s.confirmed(), true)
+				equal(snapshot(s.rows), [{ clientId: 'c1' }])
+			},
+		),
+)

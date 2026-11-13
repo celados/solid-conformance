@@ -1,51 +1,1430 @@
-import {OBSERVE,createRoot,createComponent,createSignal,createStore,createOptimisticStore,createOptimistic,latest,isPending,createMemo,createEffect,createTrackedEffect,flush,untrack,getOwner,runWithOwner,onSettled,onCleanup,refresh,affects,action,Loading,For,Show,Switch,Match} from 'solid-js'
-import {isServer,isDev,render} from '@solidjs/web'
-import {resetErrorHalt} from '@solidjs/signals'
-import {equal,ok,type DocCase} from './registry'
-import {ticks,deferred} from '../../harness/timing'
-const cases:DocCase[]=[]
-function doc(id:string,run:DocCase['run']){cases.push({id:'08/primitive-'+id,file:'08-dev-diagnostics.md',statement:({'owned-write-scopes':'L35: Writing reactive state inside effect compute/memo/component throws; ownedWrite explicitly opts in.','async-setter-families':'L57: Store-family async setters commit synchronous writes then dev throws; later writes land on closed draft.','signal-promise-valid':'L57: A signal may legitimately hold a promise.','strict-read-contexts':'L307: Component signal/props/store top-level reads capture once without updating.','pending-forbidden-both':'L365: Pending reads in trackedEffect/onSettled throw rather than route Loading.','leaf-owner-families':'L199: Leaf scopes forbid computations; static signal exception is finding010.','sync-node-async-kinds':'L267: Sync nodes reject promises/thenables/async iterables in dev and hold their raw value in production.','affects-extra-key':'L279: Additional keys are not a path.','root-async-mount':'L105–107: Initial render defers root attach until uncaught async settles; existing shell stays meanwhile.','root-sync-mount':'L105: No-async render attaches synchronously.','halt-lifecycle':'L291: Uncaught render failure halts scheduler, emits once, reportError sees cause, first subsequent write is ignored.','strict-component-controls':'01:L45; 08:L307: signal/props/store component reads warn; untrack/memo/effect tracking controls remain quiet.','strict-flow-callback-controls':'01:L64: For/Show/Match callback top-level accessor reads do not track; memo/effect/untrack controls.','effect-backhalf-store-proxy':'01:L176;04:L215: Effect back-half store-proxy reads warn and never become dependencies.'} as Record<string,string>)[id]??id,run})}
-async function observe(run:()=>unknown|Promise<unknown>){const session=OBSERVE?.diagnostics.capture(),warn=console.warn,error=console.error;const printed:string[]=[];console.warn=console.error=(...args)=>printed.push(String(args[0]));try{await run();await ticks(3);return {events:[...(session?.events??[])],printed}}finally{session?.stop();console.warn=warn;console.error=error}}
-function root(fn:()=>void){let dispose!:()=>void;createRoot(d=>{dispose=d;fn()});return dispose}
-function code(result:Awaited<ReturnType<typeof observe>>,name:string,count:number){const found=result.events.filter(e=>e.code===name);equal(found.length,isDev?count:0);for(const event of found){const kinds:Record<string,string>={REACTIVE_WRITE_IN_OWNED_SCOPE:'write',ACTION_CALLED_IN_OWNED_SCOPE:'write',CLEANUP_IN_FORBIDDEN_SCOPE:'lifecycle',ASYNC_STORE_SETTER:'write',NO_OWNER_CLEANUP:'lifecycle',PENDING_ASYNC_UNTRACKED_READ:'async',STRICT_READ_UNTRACKED:'strict-read',PENDING_ASYNC_FORBIDDEN_SCOPE:'async',PRIMITIVE_IN_FORBIDDEN_SCOPE:'lifecycle',SYNC_NODE_RECEIVED_ASYNC:'lifecycle',INVALID_AFFECTS_TARGET:'write',ASYNC_OUTSIDE_LOADING_BOUNDARY:'async',REACTIVITY_HALTED:'error'};equal(event.kind,kinds[name]);equal(event.severity,['STRICT_READ_UNTRACKED','NO_OWNER_CLEANUP','PENDING_ASYNC_FORBIDDEN_SCOPE','ASYNC_OUTSIDE_LOADING_BOUNDARY'].includes(name)?'warn':'error')}}
-if(!isServer){
- doc('owned-write-scopes',async()=>{for(const scope of ['component','memo','effect'] as const){for(const intentional of [false,true]){let dispose!:()=>void,caught:unknown;const r=await observe(()=>{try{dispose=root(()=>{const[,write]=createSignal(0,{ownedWrite:intentional});const perform=()=>write(1);if(scope==='component')createComponent(()=>{perform();return null},{});else if(scope==='memo')untrack(createMemo(perform));else createEffect(perform,()=>{});flush()})}catch(e){caught=e}finally{dispose?.();resetErrorHalt()}});code(r,'REACTIVE_WRITE_IN_OWNED_SCOPE',intentional?0:1);if(scope!=='effect')equal(!!caught,isDev&&!intentional)}}})
- doc('async-setter-families',async()=>{for(const family of ['store','optimistic','derived'] as const){let read!:any,write!:any;const gate=deferred<void>();let completion!:Promise<void>,caught:unknown;const close=root(()=>{[read,write]=family==='store'?createStore({n:0}):family==='optimistic'?createOptimisticStore({n:0}):createStore(()=>({n:0}),{n:0})});try{const r=await observe(()=>{try{write((draft:any)=>{completion=(async()=>{draft.n=1;await gate.promise;draft.n=2})();return completion})}catch(e){caught=e}});code(r,'ASYNC_STORE_SETTER',1);equal(!!caught,isDev);flush();equal(untrack(()=>read.n),family==='optimistic'?0:1);gate.resolve();await completion;flush();equal(untrack(()=>read.n),family==='optimistic'?0:1)}finally{gate.resolve();close()}}})
- doc('store-transaction-once',async()=>{let close!:()=>void,write!:any;const seen:number[]=[];const result=await observe(()=>{close=root(()=>{const[state,set]=createStore({n:0});write=set;createEffect(()=>state.n,n=>{seen.push(n)});flush()});write((draft:any)=>{draft.n=1;draft.n=2;equal(seen,[0])});flush();equal(seen,[0,2]);close()});code(result,'ASYNC_STORE_SETTER',0)})
- doc('derived-async-compute-valid',async()=>{let state!:any;const close=root(()=>{[state]=createStore(async()=>({n:5}),{n:0})});try{const result=await observe(async()=>{await ticks(8);flush();equal(untrack(()=>state.n),5)});code(result,'ASYNC_STORE_SETTER',0)}finally{close()}})
- doc('signal-promise-valid',async()=>{const value=Promise.resolve(1);let read!:()=>unknown,write!:(v:unknown)=>void;const close=root(()=>{[read,write]=createSignal<unknown>(0)});try{const r=await observe(()=>{write(value);flush();equal(untrack(read),value)});code(r,'ASYNC_STORE_SETTER',0)}finally{close()}})
- doc('strict-read-contexts',async()=>{for(const shape of ['signal','store','props'] as const){let write!:()=>void,first=0,runs=0,dispose!:()=>void;const r=await observe(()=>{dispose=root(()=>{const [read,set]=createSignal(1);const [store,setStore]=createStore({n:1});write=()=>{set(2);setStore(d=>{d.n=2});flush()};function View(props:{n:number}){runs++;first=shape==='signal'?read():shape==='store'?store.n:props.n;return null}createComponent(View,{get n(){return read()}});flush()});write();equal(first,1);equal(runs,1);dispose()});code(r,'STRICT_READ_UNTRACKED',1)}})
- doc('pending-forbidden-both',async()=>{for(const family of ['tracked','settled'] as const){let caught:unknown,dispose!:()=>void;const r=await observe(()=>{dispose=root(()=>{const read=createMemo(()=>new Promise<number>(()=>{}));const body=()=>{try{read()}catch(e){caught=e}};if(family==='tracked')createTrackedEffect(body);else onSettled(body);flush()});dispose()});ok(caught);code(r,'PENDING_ASYNC_FORBIDDEN_SCOPE',1)}})
- doc('leaf-owner-families',async()=>{for(const scope of ['tracked','settled'] as const){for(const kind of ['signal','memo','effect'] as const){let caught:unknown,dispose!:()=>void;const r=await observe(()=>{dispose=root(()=>{const body=()=>{try{if(kind==='signal')createSignal(0);else if(kind==='memo')createMemo(()=>0);else createEffect(()=>0,()=>{})}catch(e){caught=e}};scope==='tracked'?createTrackedEffect(body):onSettled(body);flush()});dispose()});code(r,'PRIMITIVE_IN_FORBIDDEN_SCOPE',kind==='signal'?0:1);equal(!!caught,isDev&&kind!=='signal')}}})
- doc('sync-node-async-kinds',async()=>{for(const value of [Promise.resolve(1),{then(resolve:(v:number)=>void){resolve(2)}},{async *[Symbol.asyncIterator](){yield 3}}]){let read!:()=>unknown,caught:unknown,dispose!:()=>void;const r=await observe(()=>{try{dispose=root(()=>{read=createMemo<any>(()=>value as any,{sync:true});untrack(read)})}catch(e){caught=e}finally{dispose?.()}});code(r,'SYNC_NODE_RECEIVED_ASYNC',1);equal(!!caught,isDev);if(!isDev)equal(untrack(read),value)}})
- doc('affects-extra-key',async()=>{const close=root(()=>{});try{const r=await observe(()=>{let caught:unknown;try{(affects as any)({},'x','y')}catch(e){caught=e};equal(!!caught,isDev)});code(r,'INVALID_AFFECTS_TARGET',1)}finally{close()}})
- doc('pending-untracked-callback',async()=>{let close!:()=>void,caught:unknown;const result=await observe(()=>{close=root(()=>{const read=createMemo(()=>new Promise<number>(()=>{}));createEffect(()=>0,()=>{try{read()}catch(e){caught=e}})});flush();close()});ok(caught);code(result,'PENDING_ASYNC_UNTRACKED_READ',1)})
- doc('unowned-cleanup-never-runs',async()=>{let cleaned=0;const result=await observe(()=>{onCleanup(()=>{cleaned++});const close=root(()=>{});close();flush();equal(cleaned,0)});code(result,'NO_OWNER_CLEANUP',1)})
- doc('after-await-memo-source',async()=>{const gate=deferred<void>();let result!:()=>number,set!:(v:number)=>void,runs=0,close!:()=>void;const observed=await observe(async()=>{close=root(()=>{const [read,write]=createSignal(1);set=write;const memo=createMemo(read,{name:'after-await-memo'});result=createMemo(async()=>{runs++;await gate.promise;return memo()})});gate.resolve();await ticks(8);equal(untrack(result),1);set(2);flush();await ticks(4);equal(runs,1);equal(untrack(result),1);close()});equal(observed.events.filter(e=>e.code==='UNTRACKED_READ_AFTER_AWAIT').length,isDev?1:0)})
- doc('after-await-imperative-exclusions',async()=>{for(const shape of ['flush','cleanup','action'] as const){const gate=deferred<void>();let result!:()=>number,close!:()=>void,disposeChild!:()=>void;const observed=await observe(async()=>{close=root(()=>{const[read]=createSignal(1);const[driver,set]=createSignal(0);createEffect(driver,()=>{read()});createRoot(d=>{disposeChild=d;onCleanup(()=>{read()})});const run=action(function*(){return read()});result=createMemo(async()=>{await gate.promise;if(shape==='flush'){set(1);flush()}else if(shape==='cleanup')disposeChild();else await run();return 1})});await ticks(3);gate.resolve();await ticks(8);equal(untrack(result),1);close()});equal(observed.events.filter(e=>e.code==='UNTRACKED_READ_AFTER_AWAIT'),[])}})
- doc('cleanup-forbidden-both',async()=>{for(const shape of ['tracked','settled'] as const){let close!:()=>void,caught:unknown;const result=await observe(()=>{close=root(()=>{const run=()=>{try{onCleanup(()=>{})}catch(e){caught=e}};shape==='tracked'?createTrackedEffect(run):onSettled(run)});flush();close()});code(result,'CLEANUP_IN_FORBIDDEN_SCOPE',1);equal(!!caught,isDev)}})
- doc('owned-action-and-refresh',async()=>{for(const operation of ['action','refresh'] as const){for(const shape of ['component','memo'] as const){let close!:()=>void,caught:unknown;const result=await observe(()=>{close=root(()=>{const source=createMemo(()=>1);const run=action(function*(){return 1});const invoke=()=>{try{operation==='action'?run():refresh(source)}catch(e){caught=e};return 0};shape==='component'?createComponent(invoke,{}):untrack(createMemo(invoke))});close()});code(result,operation==='action'?'ACTION_CALLED_IN_OWNED_SCOPE':'REACTIVE_WRITE_IN_OWNED_SCOPE',1);equal(!!caught,isDev)}}})
- doc('pending-component-no-retry',async()=>{const gate=deferred<number>();let close!:()=>void,read!:()=>number,calls=0,caught=0;const result=await observe(async()=>{close=root(()=>{read=createMemo(()=>gate.promise);try{createComponent(()=>{calls++;const value=read();return <span>{value}</span>},{})}catch{caught++}});equal(caught,1);equal(calls,1);gate.resolve(7);await ticks(8);flush();equal(calls,1);equal(untrack(read),7);close()});code(result,'PENDING_ASYNC_UNTRACKED_READ',1)})
- doc('root-async-mount',async()=>{for(const wrapped of [false,true]){const gate=deferred<string>();const target=document.createElement('div');target.textContent='shell';document.body.appendChild(target);let dispose!:()=>void;const r=await observe(async()=>{dispose=render(()=>{const read=createMemo(()=>gate.promise);return wrapped?<Loading fallback='pending'><span>{read()}</span></Loading>:<span>{read()}</span>},target);equal(target.textContent,wrapped?'shellpending':'shell');gate.resolve('ready');await ticks(8);flush();equal(target.textContent,'shellready');dispose();target.remove()});code(r,'ASYNC_OUTSIDE_LOADING_BOUNDARY',wrapped?0:1)}})
- doc('postmount-async-no-root-warning',async()=>{const target=document.createElement('div');document.body.appendChild(target);const gate=deferred<number>();let write!:(n:number)=>void,dispose!:()=>void;const result=await observe(async()=>{dispose=render(()=>{const [id,set]=createSignal(0);write=set;const data=createMemo(()=>id()?gate.promise:0);return <span>{data()}</span>},target);equal(target.textContent,'0');write(1);flush();await ticks(3);equal(target.textContent,'0');gate.resolve(2);await ticks(8);flush();equal(target.textContent,'2');dispose();target.remove()});code(result,'ASYNC_OUTSIDE_LOADING_BOUNDARY',0)})
- doc('root-sync-mount',()=>{const target=document.createElement('div');const close=render(()=><span>synchronous</span>,target);equal(target.textContent,'synchronous');close()})
- doc('strict-component-controls',async()=>{for(const shape of ['signal','store','props'] as const){for(const mode of ['direct','untrack','memo','effect'] as const){let close!:()=>void,write!:()=>void,get!:()=>number;const result=await observe(()=>{close=root(()=>{const [read,set]=createSignal(1);const [store,setStore]=createStore({n:1});write=()=>{set(2);setStore(d=>{d.n=2});flush()};createComponent((props:{n:number})=>{const reader=()=>shape==='signal'?read():shape==='store'?store.n:props.n;if(mode==='direct'){const n=reader();get=()=>n}else if(mode==='untrack'){const n=untrack(reader);get=()=>n}else if(mode==='memo')get=createMemo(reader);else{let n=0;createEffect(reader,v=>{n=v});get=()=>n}return null},{get n(){return read()}});flush()});equal(untrack(get),1);write();equal(untrack(get),mode==='memo'||mode==='effect'?2:1);close()});code(result,'STRICT_READ_UNTRACKED',mode==='direct'?1:0)}}})
- doc('strict-flow-callback-controls',async()=>{for(const shape of ['for','show','match'] as const){for(const mode of ['direct','untrack','memo','effect'] as const){const target=document.createElement('div');document.body.appendChild(target);let write!:(n:number)=>void,dispose!:()=>void;const applied:number[]=[];const result=await observe(()=>{dispose=render(()=>{const [read,set]=createSignal(1);write=set;const fill=(reader:()=>number)=>{if(mode==='memo'){const v=createMemo(reader);return <span>{v()}</span>}if(mode==='effect'){createEffect(reader,n=>{applied.push(n)});return <span>effect</span>}const n=mode==='direct'?reader():untrack(reader);return <span>{n}</span>};return shape==='for'?<For each={[read()]} keyed={false}>{(item)=>fill(item)}</For>:shape==='show'?<Show when={read()}>{v=>fill(v)}</Show>:<Switch><Match when={read()}>{v=>fill(v)}</Match></Switch>},target);flush();equal(target.textContent,mode==='effect'?'effect':'1');write(2);flush();ok(target.textContent===(mode==='effect'?'effect':mode==='memo'?'2':'1'),shape+'/'+mode+': '+target.textContent);if(mode==='effect')equal(applied,[1,2]);dispose();target.remove()});equal(result.events.some(e=>e.code==='STRICT_READ_UNTRACKED'),isDev&&mode==='direct')}}})
- doc('effect-backhalf-store-proxy',async()=>{for(const intended of [false,true]){let dispose!:()=>void,setStore!:(v:number)=>void,runs=0,value=0;const result=await observe(()=>{dispose=root(()=>{const [state,write]=createStore({n:1});setStore=n=>write(d=>{d.n=n});createEffect(()=>0,()=>{runs++;value=intended?untrack(()=>state.n):state.n});flush()});equal(runs,1);equal(value,1);setStore(2);flush();equal(runs,1);equal(value,1);dispose()});code(result,'STRICT_READ_UNTRACKED',intended?0:1)}})
+import { resetErrorHalt } from '@solidjs/signals'
+import { isServer, isDev, render } from '@solidjs/web'
+import {
+	OBSERVE,
+	createRoot,
+	createComponent,
+	createSignal,
+	createStore,
+	createOptimisticStore,
+	createOptimistic,
+	latest,
+	isPending,
+	createMemo,
+	createEffect,
+	createTrackedEffect,
+	flush,
+	untrack,
+	getOwner,
+	runWithOwner,
+	onSettled,
+	onCleanup,
+	refresh,
+	affects,
+	action,
+	Loading,
+	For,
+	Show,
+	Switch,
+	Match,
+} from 'solid-js'
 
- doc('unowned-effect-lifetime',async()=>{for(const family of ['effect','tracked'] as const){let cleaned=0,runs=0;const [read,write]=createSignal(0);const result=await observe(()=>{if(family==='effect')createEffect(read,()=>{runs++;return()=>{cleaned++}});else createTrackedEffect(()=>{read();runs++});flush();equal(runs,1);const unrelated=root(()=>{});unrelated();write(1);flush();equal(runs,2);write(2);flush();equal(runs,3);equal(cleaned,family==='effect'?2:0)});const events=result.events.filter(e=>e.code==='NO_OWNER_EFFECT');equal(events.length,isDev?1:0);if(isDev){equal(events[0]!.kind,'lifecycle');equal(events[0]!.severity,'warn')}}})
- doc('flush-callback-drain',async()=>{let close!:()=>void,write!:(n:number)=>void;const seen:number[]=[];let inside:number|undefined;const result=await observe(()=>{close=root(()=>{const [input,set]=createSignal(0);write=set;const [copy,setCopy]=createSignal(0);createEffect(input,n=>{if(n){setCopy(n);flush();inside=seen.at(-1)}});createEffect(copy,n=>{seen.push(n)})});flush();equal(seen,[0]);write(1);flush();equal(inside,0);equal(seen,[0,1]);close()});const found=result.events.filter(e=>e.code==='FLUSH_IN_EFFECT_CALLBACK');equal(found.length,isDev?1:0);if(isDev){equal(found[0]!.kind,'lifecycle');equal(found[0]!.severity,'warn')}})
- doc('after-await-indirect-contexts',async()=>{for(const shape of ['helper','utility','then','all'] as const){const gate=deferred<void>();let readResult!:()=>number,close!:()=>void;const result=await observe(async()=>{close=root(()=>{const[read]=createSignal(1);const helper=()=>read();const utility=async()=>{await Promise.resolve();return read()};readResult=createMemo(async()=>{await gate.promise;if(shape==='helper')return helper();if(shape==='utility')return await utility();if(shape==='then')return await Promise.resolve().then(read);return (await Promise.all([Promise.resolve().then(read)]))[0]!})});gate.resolve();await ticks(10);equal(untrack(readResult),1);close()});const found=result.events.filter(e=>e.code==='UNTRACKED_READ_AFTER_AWAIT');equal(found.length,isDev?1:0);if(isDev){equal(found[0]!.kind,'async');equal(found[0]!.severity,'warn')}}})
- doc('flush-iteration-cap',async()=>{let close!:()=>void,write!:(v:number)=>void,runs=0,caught:unknown;await observe(()=>{close=root(()=>{const [read,set]=createSignal(0,{name:'bounded-loop'});write=set;createEffect(read,n=>{runs++;if(n>0&&n<100005)set(n+1)})});flush();write(1);try{flush()}catch(e){caught=e};close();resetErrorHalt();flush()});equal(!!caught,isDev);if(isDev){ok(String(caught).includes('Potential Infinite Loop Detected'));ok(String(caught).includes('bounded-loop'));ok(runs>=99998&&runs<=100002)}else equal(runs,100006)})
- doc('async-stack-exclusions',async()=>{for(const shape of ['iterable','subclass','thenable','returned'] as const){const gate=deferred<void>();let close!:()=>void,output!:()=>number;const result=await observe(async()=>{close=root(()=>{const [read]=createSignal(1);if(shape==='iterable')output=createMemo(async function*(){yield 0;await gate.promise;yield read()});else if(shape==='subclass'){class Custom extends Promise<number>{};output=createMemo(()=>new Custom(resolve=>{gate.promise.then(()=>resolve(read()))}))}else if(shape==='thenable')output=createMemo<any>(()=>({then(resolve:(v:number)=>void){gate.promise.then(()=>resolve(read()))}}) as any);else {async function load(){await gate.promise;return read()};output=createMemo(()=>load())};createEffect(output,()=>{})});flush();gate.resolve();await ticks(12);flush();equal(untrack(output),1);close()});equal(result.events.filter(e=>e.code==='UNTRACKED_READ_AFTER_AWAIT').length,isDev&&shape==='returned'?1:0)}})
- doc('disposed-owner-lifetime',async()=>{let owner!:ReturnType<typeof getOwner>;let stop!:()=>void;createRoot(d=>{stop=d;owner=getOwner()});stop();const [read,write]=createSignal(0);let runs=0,cleaned=0;const result=await observe(()=>{runWithOwner(owner,()=>{createEffect(read,()=>{runs++;return()=>{cleaned++}})});flush();equal(runs,1);stop();equal(cleaned,0);write(1);flush();equal(runs,2);equal(cleaned,1);stop();equal(cleaned,1)});const found=result.events.filter(e=>e.code==='RUN_WITH_DISPOSED_OWNER');equal(found.length,isDev?1:0);if(isDev){equal(found[0]!.kind,'owner');equal(found[0]!.severity,'warn')}})
- doc('refresh-target-shapes',async()=>{let source!:ReturnType<typeof createMemo<number>>,store!:ReturnType<typeof createStore<{n:number}>>[0],close!:()=>void;let calls=0;close=root(()=>{source=createMemo(()=>1);[store]=createStore(()=>({n:++calls}),{n:0})});try{for(const target of [()=>source(),()=>store.n,1,{}]){let caught:unknown;const result=await observe(()=>{try{(refresh as any)(target)}catch(e){caught=e}});equal(!!caught,isDev);if(isDev){const event=result.events.find(e=>e.code==='INVALID_REFRESH_TARGET');ok(event);equal(event!.kind,'write');equal(event!.severity,'error')}}const valid=await observe(async()=>{await refresh(source);await refresh(store);equal(untrack(()=>store.n),2)});equal(valid.events.filter(e=>e.code==='INVALID_REFRESH_TARGET'),[])}finally{close()}})
- doc('after-await-loading-states',async()=>{for(const pendingFirst of [true,false]){const first=deferred<number>(),next=deferred<number>(),resume=deferred<void>();let owner!:ReturnType<typeof getOwner>,source!:()=>number,answer!:()=>number,write!:(n:number)=>void,close!:()=>void;const result=await observe(async()=>{close=root(()=>{owner=getOwner();const[id,set]=createSignal(0);write=set;source=createMemo(()=>id()?next.promise:first.promise,{name:'refreshing'});try{source()}catch{}});try{if(!pendingFirst){first.resolve(1);await ticks(8);write(1);flush()};runWithOwner(owner,()=>{answer=createMemo(async()=>{await resume.promise;return source()},{name:'continuation'});try{answer()}catch{}});resume.resolve();await ticks(8);if(pendingFirst){let caught=false,error:unknown;try{answer()}catch(e){caught=true;error=e};equal(caught,true);if(isDev)ok(String(error).includes('Read of an unresolved async source after an `await`'),String(error))}else equal(untrack(answer),1)}finally{first.resolve(1);next.resolve(2);close()}});equal(result.events.filter(e=>e.code==='UNTRACKED_READ_AFTER_AWAIT').length,isDev&&!pendingFirst?1:0)}})
- doc('settled-cleanup-nested-scopes',async()=>{for(const outer of ['handler','tracked','settled'] as const)for(const cleanup of [false,true]){let started=0,cleaned=0,close=()=>{},thrown:unknown;const result=await observe(()=>{const setup=()=>onSettled(()=>{started++;return cleanup?()=>{cleaned++}:undefined});if(outer==='handler')setup();else close=root(()=>{outer==='tracked'?createTrackedEffect(setup):onSettled(setup)});try{flush()}catch(error){thrown=error};equal(started,1);equal(cleaned,0);close();equal(cleaned,0);equal(!!thrown,isDev&&cleanup)});equal(result.events.filter(e=>e.code==='SETTLED_CLEANUP_UNOWNED').length,isDev&&cleanup?1:0)}})
- doc('safe-leaf-signal-usage',async()=>{for(const scope of ['tracked','settled'] as const){let close!:()=>void,write!:(n:number)=>void;const seen:number[]=[];const result=await observe(()=>{close=root(()=>{const[read,set]=createSignal(1);write=set;const run=()=>{seen.push(read())};scope==='tracked'?createTrackedEffect(run):onSettled(run)});flush();equal(seen,[1]);write(2);flush();equal(seen,scope==='tracked'?[1,2]:[1]);close()});equal(result.events.filter(e=>e.code==='PRIMITIVE_IN_FORBIDDEN_SCOPE'),[])}})
- doc('derive-and-event-controls',async()=>{const target=document.createElement('div');let dispose!:()=>void;const result=await observe(()=>{dispose=render(()=>{const[read,write]=createSignal(1);const double=createMemo(()=>read()*2);return <><span>{double()}</span><small>{read()}</small><button onClick={()=>write(2)}>set</button></>},target);equal(target.textContent,'21set');target.querySelector('button')!.click();flush();equal(target.textContent,'42set');dispose()});equal(result.events.filter(e=>e.code==='REACTIVE_WRITE_IN_OWNED_SCOPE'),[])})
- doc('async-action-store-control',async()=>{let close!:()=>void,read!:()=>number,run!:()=>Promise<number>;const gate=deferred<void>();const result=await observe(async()=>{close=root(()=>{const[state,set]=createStore({n:0});read=()=>state.n;run=action(function*(){set(d=>{d.n=1});yield gate.promise;set(d=>{d.n=2});return 2})});try{const pending=run();await ticks(3);gate.resolve();equal(await pending,2);flush();equal(untrack(read),2)}finally{gate.resolve();close()}});equal(result.events.filter(e=>e.code==='ASYNC_STORE_SETTER'),[])})
- doc('loading-displayahead-controls',async()=>{for(const mode of ['latest','pending','optimistic'] as const){const gates=[deferred<number>(),deferred<number>()],target=document.createElement('div');let change!:(n:number)=>void,run!:()=>Promise<void>,dispose!:()=>void;const result=await observe(async()=>{dispose=render(()=>{const[id,set]=createSignal(0);change=set;const[guess,setGuess]=createOptimistic(0);const data=createMemo(()=>gates[id()]!.promise);run=action(function*(){setGuess(1);set(1);yield gates[1]!.promise});return <><Loading on={mode==='latest'?latest(id):mode==='pending'?isPending(data):guess()} fallback='A'><span>{data()}</span></Loading><Loading fallback='B'><b>{data()}</b></Loading></>},target);gates[0]!.resolve(1);await ticks(8);equal(target.textContent,'11');const pending=mode==='optimistic'?run():undefined;if(mode!=='optimistic')change(1);flush();await ticks(3);ok(target.textContent!.includes('A'),mode+' fallback did not display: '+target.textContent);gates[1]!.resolve(2);if(pending)await pending;await ticks(60);flush();ok(target.textContent!.endsWith('2'));dispose();target.remove()});equal(result.events.filter(e=>e.code==='LOADING_ON_OUTSIDE_HOLD'),[])}})
- doc('halt-lifecycle',async()=>{let write!:(v:number)=>void,dispose!:()=>void;const errors:unknown[]=[],host=globalThis as any,original=host.reportError;const target=document.createElement('div');document.body.appendChild(target);host.reportError=(e:unknown)=>errors.push(e);try{const r=await observe(async()=>{dispose=render(()=>{const [read,set]=createSignal(0);write=set;return <span>{(()=>{if(read())throw new Error('halt-test');return 0})()}</span>},target);equal(target.textContent,'0');write(1);try{flush()}catch{}await ticks(3);write(2);write(3);flush();equal(target.textContent,'0')});code(r,'REACTIVITY_HALTED',1);equal(r.printed.filter(v=>v.includes('[REACTIVITY_HALTED]')&&!v.includes('repair guide')&&!v.includes('Update ignored')).length,isDev?1:2);equal(r.printed.filter(v=>v.includes('Update ignored')).length,isDev?1:0);equal(errors.length,1);equal(String(errors[0]),'Error: halt-test')}finally{resetErrorHalt();dispose?.();target.remove();host.reportError=original}})
+import { ticks, deferred } from '../../harness/timing'
+import { equal, ok, type DocCase } from './registry'
+const cases: DocCase[] = []
+function doc(id: string, run: DocCase['run']) {
+	cases.push({
+		id: '08/primitive-' + id,
+		file: '08-dev-diagnostics.md',
+		statement:
+			(
+				{
+					'owned-write-scopes':
+						'L35: Writing reactive state inside effect compute/memo/component throws; ownedWrite explicitly opts in.',
+					'async-setter-families':
+						'L57: Store-family async setters commit synchronous writes then dev throws; later writes land on closed draft.',
+					'signal-promise-valid':
+						'L57: A signal may legitimately hold a promise.',
+					'strict-read-contexts':
+						'L307: Component signal/props/store top-level reads capture once without updating.',
+					'pending-forbidden-both':
+						'L365: Pending reads in trackedEffect/onSettled throw rather than route Loading.',
+					'leaf-owner-families':
+						'L199: Leaf scopes forbid computations; static signal exception is finding010.',
+					'sync-node-async-kinds':
+						'L267: Sync nodes reject promises/thenables/async iterables in dev and hold their raw value in production.',
+					'affects-extra-key': 'L279: Additional keys are not a path.',
+					'root-async-mount':
+						'L105–107: Initial render defers root attach until uncaught async settles; existing shell stays meanwhile.',
+					'root-sync-mount': 'L105: No-async render attaches synchronously.',
+					'halt-lifecycle':
+						'L291: Uncaught render failure halts scheduler, emits once, reportError sees cause, first subsequent write is ignored.',
+					'strict-component-controls':
+						'01:L45; 08:L307: signal/props/store component reads warn; untrack/memo/effect tracking controls remain quiet.',
+					'strict-flow-callback-controls':
+						'01:L64: For/Show/Match callback top-level accessor reads do not track; memo/effect/untrack controls.',
+					'effect-backhalf-store-proxy':
+						'01:L176;04:L215: Effect back-half store-proxy reads warn and never become dependencies.',
+				} as Record<string, string>
+			)[id] ?? id,
+		run,
+	})
 }
-export const primitiveDiagnosticCases=cases
+async function observe(run: () => unknown | Promise<unknown>) {
+	const session = OBSERVE?.diagnostics.capture(),
+		warn = console.warn,
+		error = console.error
+	const printed: string[] = []
+	console.warn = console.error = (...args) => printed.push(String(args[0]))
+	try {
+		await run()
+		await ticks(3)
+		return { events: [...(session?.events ?? [])], printed }
+	} finally {
+		session?.stop()
+		console.warn = warn
+		console.error = error
+	}
+}
+function root(fn: () => void) {
+	let dispose!: () => void
+	createRoot((d) => {
+		dispose = d
+		fn()
+	})
+	return dispose
+}
+function code(
+	result: Awaited<ReturnType<typeof observe>>,
+	name: string,
+	count: number,
+) {
+	const found = result.events.filter((e) => e.code === name)
+	equal(found.length, isDev ? count : 0)
+	for (const event of found) {
+		const kinds: Record<string, string> = {
+			REACTIVE_WRITE_IN_OWNED_SCOPE: 'write',
+			ACTION_CALLED_IN_OWNED_SCOPE: 'write',
+			CLEANUP_IN_FORBIDDEN_SCOPE: 'lifecycle',
+			ASYNC_STORE_SETTER: 'write',
+			NO_OWNER_CLEANUP: 'lifecycle',
+			PENDING_ASYNC_UNTRACKED_READ: 'async',
+			STRICT_READ_UNTRACKED: 'strict-read',
+			PENDING_ASYNC_FORBIDDEN_SCOPE: 'async',
+			PRIMITIVE_IN_FORBIDDEN_SCOPE: 'lifecycle',
+			SYNC_NODE_RECEIVED_ASYNC: 'lifecycle',
+			INVALID_AFFECTS_TARGET: 'write',
+			ASYNC_OUTSIDE_LOADING_BOUNDARY: 'async',
+			REACTIVITY_HALTED: 'error',
+		}
+		equal(event.kind, kinds[name])
+		equal(
+			event.severity,
+			[
+				'STRICT_READ_UNTRACKED',
+				'NO_OWNER_CLEANUP',
+				'PENDING_ASYNC_FORBIDDEN_SCOPE',
+				'ASYNC_OUTSIDE_LOADING_BOUNDARY',
+			].includes(name)
+				? 'warn'
+				: 'error',
+		)
+	}
+}
+if (!isServer) {
+	doc('owned-write-scopes', async () => {
+		for (const scope of ['component', 'memo', 'effect'] as const) {
+			for (const intentional of [false, true]) {
+				let dispose!: () => void, caught: unknown
+				const r = await observe(() => {
+					try {
+						dispose = root(() => {
+							const [, write] = createSignal(0, { ownedWrite: intentional })
+							const perform = () => write(1)
+							if (scope === 'component')
+								createComponent(() => {
+									perform()
+									return null
+								}, {})
+							else if (scope === 'memo') untrack(createMemo(perform))
+							else createEffect(perform, () => {})
+							flush()
+						})
+					} catch (e) {
+						caught = e
+					} finally {
+						dispose?.()
+						resetErrorHalt()
+					}
+				})
+				code(r, 'REACTIVE_WRITE_IN_OWNED_SCOPE', intentional ? 0 : 1)
+				if (scope !== 'effect') equal(!!caught, isDev && !intentional)
+			}
+		}
+	})
+	doc('async-setter-families', async () => {
+		for (const family of ['store', 'optimistic', 'derived'] as const) {
+			let read!: any, write!: any
+			const gate = deferred<void>()
+			let completion!: Promise<void>, caught: unknown
+			const close = root(() => {
+				;[read, write] =
+					family === 'store'
+						? createStore({ n: 0 })
+						: family === 'optimistic'
+							? createOptimisticStore({ n: 0 })
+							: createStore(() => ({ n: 0 }), { n: 0 })
+			})
+			try {
+				const r = await observe(() => {
+					try {
+						write((draft: any) => {
+							completion = (async () => {
+								draft.n = 1
+								await gate.promise
+								draft.n = 2
+							})()
+							return completion
+						})
+					} catch (e) {
+						caught = e
+					}
+				})
+				code(r, 'ASYNC_STORE_SETTER', 1)
+				equal(!!caught, isDev)
+				flush()
+				equal(
+					untrack(() => read.n),
+					family === 'optimistic' ? 0 : 1,
+				)
+				gate.resolve()
+				await completion
+				flush()
+				equal(
+					untrack(() => read.n),
+					family === 'optimistic' ? 0 : 1,
+				)
+			} finally {
+				gate.resolve()
+				close()
+			}
+		}
+	})
+	doc('store-transaction-once', async () => {
+		let close!: () => void, write!: any
+		const seen: number[] = []
+		const result = await observe(() => {
+			close = root(() => {
+				const [state, set] = createStore({ n: 0 })
+				write = set
+				createEffect(
+					() => state.n,
+					(n) => {
+						seen.push(n)
+					},
+				)
+				flush()
+			})
+			write((draft: any) => {
+				draft.n = 1
+				draft.n = 2
+				equal(seen, [0])
+			})
+			flush()
+			equal(seen, [0, 2])
+			close()
+		})
+		code(result, 'ASYNC_STORE_SETTER', 0)
+	})
+	doc('derived-async-compute-valid', async () => {
+		let state!: any
+		const close = root(() => {
+			;[state] = createStore(async () => ({ n: 5 }), { n: 0 })
+		})
+		try {
+			const result = await observe(async () => {
+				await ticks(8)
+				flush()
+				equal(
+					untrack(() => state.n),
+					5,
+				)
+			})
+			code(result, 'ASYNC_STORE_SETTER', 0)
+		} finally {
+			close()
+		}
+	})
+	doc('signal-promise-valid', async () => {
+		const value = Promise.resolve(1)
+		let read!: () => unknown, write!: (v: unknown) => void
+		const close = root(() => {
+			;[read, write] = createSignal<unknown>(0)
+		})
+		try {
+			const r = await observe(() => {
+				write(value)
+				flush()
+				equal(untrack(read), value)
+			})
+			code(r, 'ASYNC_STORE_SETTER', 0)
+		} finally {
+			close()
+		}
+	})
+	doc('strict-read-contexts', async () => {
+		for (const shape of ['signal', 'store', 'props'] as const) {
+			let write!: () => void,
+				first = 0,
+				runs = 0,
+				dispose!: () => void
+			const r = await observe(() => {
+				dispose = root(() => {
+					const [read, set] = createSignal(1)
+					const [store, setStore] = createStore({ n: 1 })
+					write = () => {
+						set(2)
+						setStore((d) => {
+							d.n = 2
+						})
+						flush()
+					}
+					function View(props: { n: number }) {
+						runs++
+						first =
+							shape === 'signal'
+								? read()
+								: shape === 'store'
+									? store.n
+									: props.n
+						return null
+					}
+					createComponent(View, {
+						get n() {
+							return read()
+						},
+					})
+					flush()
+				})
+				write()
+				equal(first, 1)
+				equal(runs, 1)
+				dispose()
+			})
+			code(r, 'STRICT_READ_UNTRACKED', 1)
+		}
+	})
+	doc('pending-forbidden-both', async () => {
+		for (const family of ['tracked', 'settled'] as const) {
+			let caught: unknown, dispose!: () => void
+			const r = await observe(() => {
+				dispose = root(() => {
+					const read = createMemo(() => new Promise<number>(() => {}))
+					const body = () => {
+						try {
+							read()
+						} catch (e) {
+							caught = e
+						}
+					}
+					if (family === 'tracked') createTrackedEffect(body)
+					else onSettled(body)
+					flush()
+				})
+				dispose()
+			})
+			ok(caught)
+			code(r, 'PENDING_ASYNC_FORBIDDEN_SCOPE', 1)
+		}
+	})
+	doc('leaf-owner-families', async () => {
+		for (const scope of ['tracked', 'settled'] as const) {
+			for (const kind of ['signal', 'memo', 'effect'] as const) {
+				let caught: unknown, dispose!: () => void
+				const r = await observe(() => {
+					dispose = root(() => {
+						const body = () => {
+							try {
+								if (kind === 'signal') createSignal(0)
+								else if (kind === 'memo') createMemo(() => 0)
+								else
+									createEffect(
+										() => 0,
+										() => {},
+									)
+							} catch (e) {
+								caught = e
+							}
+						}
+						scope === 'tracked' ? createTrackedEffect(body) : onSettled(body)
+						flush()
+					})
+					dispose()
+				})
+				code(r, 'PRIMITIVE_IN_FORBIDDEN_SCOPE', kind === 'signal' ? 0 : 1)
+				equal(!!caught, isDev && kind !== 'signal')
+			}
+		}
+	})
+	doc('sync-node-async-kinds', async () => {
+		for (const value of [
+			Promise.resolve(1),
+			{
+				then(resolve: (v: number) => void) {
+					resolve(2)
+				},
+			},
+			{
+				async *[Symbol.asyncIterator]() {
+					yield 3
+				},
+			},
+		]) {
+			let read!: () => unknown, caught: unknown, dispose!: () => void
+			const r = await observe(() => {
+				try {
+					dispose = root(() => {
+						read = createMemo<any>(() => value as any, { sync: true })
+						untrack(read)
+					})
+				} catch (e) {
+					caught = e
+				} finally {
+					dispose?.()
+				}
+			})
+			code(r, 'SYNC_NODE_RECEIVED_ASYNC', 1)
+			equal(!!caught, isDev)
+			if (!isDev) equal(untrack(read), value)
+		}
+	})
+	doc('affects-extra-key', async () => {
+		const close = root(() => {})
+		try {
+			const r = await observe(() => {
+				let caught: unknown
+				try {
+					;(affects as any)({}, 'x', 'y')
+				} catch (e) {
+					caught = e
+				}
+				equal(!!caught, isDev)
+			})
+			code(r, 'INVALID_AFFECTS_TARGET', 1)
+		} finally {
+			close()
+		}
+	})
+	doc('pending-untracked-callback', async () => {
+		let close!: () => void, caught: unknown
+		const result = await observe(() => {
+			close = root(() => {
+				const read = createMemo(() => new Promise<number>(() => {}))
+				createEffect(
+					() => 0,
+					() => {
+						try {
+							read()
+						} catch (e) {
+							caught = e
+						}
+					},
+				)
+			})
+			flush()
+			close()
+		})
+		ok(caught)
+		code(result, 'PENDING_ASYNC_UNTRACKED_READ', 1)
+	})
+	doc('unowned-cleanup-never-runs', async () => {
+		let cleaned = 0
+		const result = await observe(() => {
+			onCleanup(() => {
+				cleaned++
+			})
+			const close = root(() => {})
+			close()
+			flush()
+			equal(cleaned, 0)
+		})
+		code(result, 'NO_OWNER_CLEANUP', 1)
+	})
+	doc('after-await-memo-source', async () => {
+		const gate = deferred<void>()
+		let result!: () => number,
+			set!: (v: number) => void,
+			runs = 0,
+			close!: () => void
+		const observed = await observe(async () => {
+			close = root(() => {
+				const [read, write] = createSignal(1)
+				set = write
+				const memo = createMemo(read, { name: 'after-await-memo' })
+				result = createMemo(async () => {
+					runs++
+					await gate.promise
+					return memo()
+				})
+			})
+			gate.resolve()
+			await ticks(8)
+			equal(untrack(result), 1)
+			set(2)
+			flush()
+			await ticks(4)
+			equal(runs, 1)
+			equal(untrack(result), 1)
+			close()
+		})
+		equal(
+			observed.events.filter((e) => e.code === 'UNTRACKED_READ_AFTER_AWAIT')
+				.length,
+			isDev ? 1 : 0,
+		)
+	})
+	doc('after-await-imperative-exclusions', async () => {
+		for (const shape of ['flush', 'cleanup', 'action'] as const) {
+			const gate = deferred<void>()
+			let result!: () => number, close!: () => void, disposeChild!: () => void
+			const observed = await observe(async () => {
+				close = root(() => {
+					const [read] = createSignal(1)
+					const [driver, set] = createSignal(0)
+					createEffect(driver, () => {
+						read()
+					})
+					createRoot((d) => {
+						disposeChild = d
+						onCleanup(() => {
+							read()
+						})
+					})
+					const run = action(function* () {
+						return read()
+					})
+					result = createMemo(async () => {
+						await gate.promise
+						if (shape === 'flush') {
+							set(1)
+							flush()
+						} else if (shape === 'cleanup') disposeChild()
+						else await run()
+						return 1
+					})
+				})
+				await ticks(3)
+				gate.resolve()
+				await ticks(8)
+				equal(untrack(result), 1)
+				close()
+			})
+			equal(
+				observed.events.filter((e) => e.code === 'UNTRACKED_READ_AFTER_AWAIT'),
+				[],
+			)
+		}
+	})
+	doc('cleanup-forbidden-both', async () => {
+		for (const shape of ['tracked', 'settled'] as const) {
+			let close!: () => void, caught: unknown
+			const result = await observe(() => {
+				close = root(() => {
+					const run = () => {
+						try {
+							onCleanup(() => {})
+						} catch (e) {
+							caught = e
+						}
+					}
+					shape === 'tracked' ? createTrackedEffect(run) : onSettled(run)
+				})
+				flush()
+				close()
+			})
+			code(result, 'CLEANUP_IN_FORBIDDEN_SCOPE', 1)
+			equal(!!caught, isDev)
+		}
+	})
+	doc('owned-action-and-refresh', async () => {
+		for (const operation of ['action', 'refresh'] as const) {
+			for (const shape of ['component', 'memo'] as const) {
+				let close!: () => void, caught: unknown
+				const result = await observe(() => {
+					close = root(() => {
+						const source = createMemo(() => 1)
+						const run = action(function* () {
+							return 1
+						})
+						const invoke = () => {
+							try {
+								operation === 'action' ? run() : refresh(source)
+							} catch (e) {
+								caught = e
+							}
+							return 0
+						}
+						shape === 'component'
+							? createComponent(invoke, {})
+							: untrack(createMemo(invoke))
+					})
+					close()
+				})
+				code(
+					result,
+					operation === 'action'
+						? 'ACTION_CALLED_IN_OWNED_SCOPE'
+						: 'REACTIVE_WRITE_IN_OWNED_SCOPE',
+					1,
+				)
+				equal(!!caught, isDev)
+			}
+		}
+	})
+	doc('pending-component-no-retry', async () => {
+		const gate = deferred<number>()
+		let close!: () => void,
+			read!: () => number,
+			calls = 0,
+			caught = 0
+		const result = await observe(async () => {
+			close = root(() => {
+				read = createMemo(() => gate.promise)
+				try {
+					createComponent(() => {
+						calls++
+						const value = read()
+						return <span>{value}</span>
+					}, {})
+				} catch {
+					caught++
+				}
+			})
+			equal(caught, 1)
+			equal(calls, 1)
+			gate.resolve(7)
+			await ticks(8)
+			flush()
+			equal(calls, 1)
+			equal(untrack(read), 7)
+			close()
+		})
+		code(result, 'PENDING_ASYNC_UNTRACKED_READ', 1)
+	})
+	doc('root-async-mount', async () => {
+		for (const wrapped of [false, true]) {
+			const gate = deferred<string>()
+			const target = document.createElement('div')
+			target.textContent = 'shell'
+			document.body.appendChild(target)
+			let dispose!: () => void
+			const r = await observe(async () => {
+				dispose = render(() => {
+					const read = createMemo(() => gate.promise)
+					return wrapped ? (
+						<Loading fallback="pending">
+							<span>{read()}</span>
+						</Loading>
+					) : (
+						<span>{read()}</span>
+					)
+				}, target)
+				equal(target.textContent, wrapped ? 'shellpending' : 'shell')
+				gate.resolve('ready')
+				await ticks(8)
+				flush()
+				equal(target.textContent, 'shellready')
+				dispose()
+				target.remove()
+			})
+			code(r, 'ASYNC_OUTSIDE_LOADING_BOUNDARY', wrapped ? 0 : 1)
+		}
+	})
+	doc('postmount-async-no-root-warning', async () => {
+		const target = document.createElement('div')
+		document.body.appendChild(target)
+		const gate = deferred<number>()
+		let write!: (n: number) => void, dispose!: () => void
+		const result = await observe(async () => {
+			dispose = render(() => {
+				const [id, set] = createSignal(0)
+				write = set
+				const data = createMemo(() => (id() ? gate.promise : 0))
+				return <span>{data()}</span>
+			}, target)
+			equal(target.textContent, '0')
+			write(1)
+			flush()
+			await ticks(3)
+			equal(target.textContent, '0')
+			gate.resolve(2)
+			await ticks(8)
+			flush()
+			equal(target.textContent, '2')
+			dispose()
+			target.remove()
+		})
+		code(result, 'ASYNC_OUTSIDE_LOADING_BOUNDARY', 0)
+	})
+	doc('root-sync-mount', () => {
+		const target = document.createElement('div')
+		const close = render(() => <span>synchronous</span>, target)
+		equal(target.textContent, 'synchronous')
+		close()
+	})
+	doc('strict-component-controls', async () => {
+		for (const shape of ['signal', 'store', 'props'] as const) {
+			for (const mode of ['direct', 'untrack', 'memo', 'effect'] as const) {
+				let close!: () => void, write!: () => void, get!: () => number
+				const result = await observe(() => {
+					close = root(() => {
+						const [read, set] = createSignal(1)
+						const [store, setStore] = createStore({ n: 1 })
+						write = () => {
+							set(2)
+							setStore((d) => {
+								d.n = 2
+							})
+							flush()
+						}
+						createComponent(
+							(props: { n: number }) => {
+								const reader = () =>
+									shape === 'signal'
+										? read()
+										: shape === 'store'
+											? store.n
+											: props.n
+								if (mode === 'direct') {
+									const n = reader()
+									get = () => n
+								} else if (mode === 'untrack') {
+									const n = untrack(reader)
+									get = () => n
+								} else if (mode === 'memo') get = createMemo(reader)
+								else {
+									let n = 0
+									createEffect(reader, (v) => {
+										n = v
+									})
+									get = () => n
+								}
+								return null
+							},
+							{
+								get n() {
+									return read()
+								},
+							},
+						)
+						flush()
+					})
+					equal(untrack(get), 1)
+					write()
+					equal(untrack(get), mode === 'memo' || mode === 'effect' ? 2 : 1)
+					close()
+				})
+				code(result, 'STRICT_READ_UNTRACKED', mode === 'direct' ? 1 : 0)
+			}
+		}
+	})
+	doc('strict-flow-callback-controls', async () => {
+		for (const shape of ['for', 'show', 'match'] as const) {
+			for (const mode of ['direct', 'untrack', 'memo', 'effect'] as const) {
+				const target = document.createElement('div')
+				document.body.appendChild(target)
+				let write!: (n: number) => void, dispose!: () => void
+				const applied: number[] = []
+				const result = await observe(() => {
+					dispose = render(() => {
+						const [read, set] = createSignal(1)
+						write = set
+						const fill = (reader: () => number) => {
+							if (mode === 'memo') {
+								const v = createMemo(reader)
+								return <span>{v()}</span>
+							}
+							if (mode === 'effect') {
+								createEffect(reader, (n) => {
+									applied.push(n)
+								})
+								return <span>effect</span>
+							}
+							const n = mode === 'direct' ? reader() : untrack(reader)
+							return <span>{n}</span>
+						}
+						return shape === 'for' ? (
+							<For each={[read()]} keyed={false}>
+								{(item) => fill(item)}
+							</For>
+						) : shape === 'show' ? (
+							<Show when={read()}>{(v) => fill(v)}</Show>
+						) : (
+							<Switch>
+								<Match when={read()}>{(v) => fill(v)}</Match>
+							</Switch>
+						)
+					}, target)
+					flush()
+					equal(target.textContent, mode === 'effect' ? 'effect' : '1')
+					write(2)
+					flush()
+					ok(
+						target.textContent ===
+							(mode === 'effect' ? 'effect' : mode === 'memo' ? '2' : '1'),
+						shape + '/' + mode + ': ' + target.textContent,
+					)
+					if (mode === 'effect') equal(applied, [1, 2])
+					dispose()
+					target.remove()
+				})
+				equal(
+					result.events.some((e) => e.code === 'STRICT_READ_UNTRACKED'),
+					isDev && mode === 'direct',
+				)
+			}
+		}
+	})
+	doc('effect-backhalf-store-proxy', async () => {
+		for (const intended of [false, true]) {
+			let dispose!: () => void,
+				setStore!: (v: number) => void,
+				runs = 0,
+				value = 0
+			const result = await observe(() => {
+				dispose = root(() => {
+					const [state, write] = createStore({ n: 1 })
+					setStore = (n) =>
+						write((d) => {
+							d.n = n
+						})
+					createEffect(
+						() => 0,
+						() => {
+							runs++
+							value = intended ? untrack(() => state.n) : state.n
+						},
+					)
+					flush()
+				})
+				equal(runs, 1)
+				equal(value, 1)
+				setStore(2)
+				flush()
+				equal(runs, 1)
+				equal(value, 1)
+				dispose()
+			})
+			code(result, 'STRICT_READ_UNTRACKED', intended ? 0 : 1)
+		}
+	})
+
+	doc('unowned-effect-lifetime', async () => {
+		for (const family of ['effect', 'tracked'] as const) {
+			let cleaned = 0,
+				runs = 0
+			const [read, write] = createSignal(0)
+			const result = await observe(() => {
+				if (family === 'effect')
+					createEffect(read, () => {
+						runs++
+						return () => {
+							cleaned++
+						}
+					})
+				else
+					createTrackedEffect(() => {
+						read()
+						runs++
+					})
+				flush()
+				equal(runs, 1)
+				const unrelated = root(() => {})
+				unrelated()
+				write(1)
+				flush()
+				equal(runs, 2)
+				write(2)
+				flush()
+				equal(runs, 3)
+				equal(cleaned, family === 'effect' ? 2 : 0)
+			})
+			const events = result.events.filter((e) => e.code === 'NO_OWNER_EFFECT')
+			equal(events.length, isDev ? 1 : 0)
+			if (isDev) {
+				equal(events[0]!.kind, 'lifecycle')
+				equal(events[0]!.severity, 'warn')
+			}
+		}
+	})
+	doc('flush-callback-drain', async () => {
+		let close!: () => void, write!: (n: number) => void
+		const seen: number[] = []
+		let inside: number | undefined
+		const result = await observe(() => {
+			close = root(() => {
+				const [input, set] = createSignal(0)
+				write = set
+				const [copy, setCopy] = createSignal(0)
+				createEffect(input, (n) => {
+					if (n) {
+						setCopy(n)
+						flush()
+						inside = seen.at(-1)
+					}
+				})
+				createEffect(copy, (n) => {
+					seen.push(n)
+				})
+			})
+			flush()
+			equal(seen, [0])
+			write(1)
+			flush()
+			equal(inside, 0)
+			equal(seen, [0, 1])
+			close()
+		})
+		const found = result.events.filter(
+			(e) => e.code === 'FLUSH_IN_EFFECT_CALLBACK',
+		)
+		equal(found.length, isDev ? 1 : 0)
+		if (isDev) {
+			equal(found[0]!.kind, 'lifecycle')
+			equal(found[0]!.severity, 'warn')
+		}
+	})
+	doc('after-await-indirect-contexts', async () => {
+		for (const shape of ['helper', 'utility', 'then', 'all'] as const) {
+			const gate = deferred<void>()
+			let readResult!: () => number, close!: () => void
+			const result = await observe(async () => {
+				close = root(() => {
+					const [read] = createSignal(1)
+					const helper = () => read()
+					const utility = async () => {
+						await Promise.resolve()
+						return read()
+					}
+					readResult = createMemo(async () => {
+						await gate.promise
+						if (shape === 'helper') return helper()
+						if (shape === 'utility') return await utility()
+						if (shape === 'then') return await Promise.resolve().then(read)
+						return (await Promise.all([Promise.resolve().then(read)]))[0]!
+					})
+				})
+				gate.resolve()
+				await ticks(10)
+				equal(untrack(readResult), 1)
+				close()
+			})
+			const found = result.events.filter(
+				(e) => e.code === 'UNTRACKED_READ_AFTER_AWAIT',
+			)
+			equal(found.length, isDev ? 1 : 0)
+			if (isDev) {
+				equal(found[0]!.kind, 'async')
+				equal(found[0]!.severity, 'warn')
+			}
+		}
+	})
+	doc('flush-iteration-cap', async () => {
+		let close!: () => void,
+			write!: (v: number) => void,
+			runs = 0,
+			caught: unknown
+		await observe(() => {
+			close = root(() => {
+				const [read, set] = createSignal(0, { name: 'bounded-loop' })
+				write = set
+				createEffect(read, (n) => {
+					runs++
+					if (n > 0 && n < 100005) set(n + 1)
+				})
+			})
+			flush()
+			write(1)
+			try {
+				flush()
+			} catch (e) {
+				caught = e
+			}
+			close()
+			resetErrorHalt()
+			flush()
+		})
+		equal(!!caught, isDev)
+		if (isDev) {
+			ok(String(caught).includes('Potential Infinite Loop Detected'))
+			ok(String(caught).includes('bounded-loop'))
+			ok(runs >= 99998 && runs <= 100002)
+		} else equal(runs, 100006)
+	})
+	doc('async-stack-exclusions', async () => {
+		for (const shape of [
+			'iterable',
+			'subclass',
+			'thenable',
+			'returned',
+		] as const) {
+			const gate = deferred<void>()
+			let close!: () => void, output!: () => number
+			const result = await observe(async () => {
+				close = root(() => {
+					const [read] = createSignal(1)
+					if (shape === 'iterable')
+						output = createMemo(async function* () {
+							yield 0
+							await gate.promise
+							yield read()
+						})
+					else if (shape === 'subclass') {
+						class Custom extends Promise<number> {}
+						output = createMemo(
+							() =>
+								new Custom((resolve) => {
+									gate.promise.then(() => resolve(read()))
+								}),
+						)
+					} else if (shape === 'thenable')
+						output = createMemo<any>(
+							() =>
+								({
+									then(resolve: (v: number) => void) {
+										gate.promise.then(() => resolve(read()))
+									},
+								}) as any,
+						)
+					else {
+						async function load() {
+							await gate.promise
+							return read()
+						}
+						output = createMemo(() => load())
+					}
+					createEffect(output, () => {})
+				})
+				flush()
+				gate.resolve()
+				await ticks(12)
+				flush()
+				equal(untrack(output), 1)
+				close()
+			})
+			equal(
+				result.events.filter((e) => e.code === 'UNTRACKED_READ_AFTER_AWAIT')
+					.length,
+				isDev && shape === 'returned' ? 1 : 0,
+			)
+		}
+	})
+	doc('disposed-owner-lifetime', async () => {
+		let owner!: ReturnType<typeof getOwner>
+		let stop!: () => void
+		createRoot((d) => {
+			stop = d
+			owner = getOwner()
+		})
+		stop()
+		const [read, write] = createSignal(0)
+		let runs = 0,
+			cleaned = 0
+		const result = await observe(() => {
+			runWithOwner(owner, () => {
+				createEffect(read, () => {
+					runs++
+					return () => {
+						cleaned++
+					}
+				})
+			})
+			flush()
+			equal(runs, 1)
+			stop()
+			equal(cleaned, 0)
+			write(1)
+			flush()
+			equal(runs, 2)
+			equal(cleaned, 1)
+			stop()
+			equal(cleaned, 1)
+		})
+		const found = result.events.filter(
+			(e) => e.code === 'RUN_WITH_DISPOSED_OWNER',
+		)
+		equal(found.length, isDev ? 1 : 0)
+		if (isDev) {
+			equal(found[0]!.kind, 'owner')
+			equal(found[0]!.severity, 'warn')
+		}
+	})
+	doc('refresh-target-shapes', async () => {
+		let source!: ReturnType<typeof createMemo<number>>,
+			store!: ReturnType<typeof createStore<{ n: number }>>[0],
+			close!: () => void
+		let calls = 0
+		close = root(() => {
+			source = createMemo(() => 1)
+			;[store] = createStore(() => ({ n: ++calls }), { n: 0 })
+		})
+		try {
+			for (const target of [() => source(), () => store.n, 1, {}]) {
+				let caught: unknown
+				const result = await observe(() => {
+					try {
+						;(refresh as any)(target)
+					} catch (e) {
+						caught = e
+					}
+				})
+				equal(!!caught, isDev)
+				if (isDev) {
+					const event = result.events.find(
+						(e) => e.code === 'INVALID_REFRESH_TARGET',
+					)
+					ok(event)
+					equal(event!.kind, 'write')
+					equal(event!.severity, 'error')
+				}
+			}
+			const valid = await observe(async () => {
+				await refresh(source)
+				await refresh(store)
+				equal(
+					untrack(() => store.n),
+					2,
+				)
+			})
+			equal(
+				valid.events.filter((e) => e.code === 'INVALID_REFRESH_TARGET'),
+				[],
+			)
+		} finally {
+			close()
+		}
+	})
+	doc('after-await-loading-states', async () => {
+		for (const pendingFirst of [true, false]) {
+			const first = deferred<number>(),
+				next = deferred<number>(),
+				resume = deferred<void>()
+			let owner!: ReturnType<typeof getOwner>,
+				source!: () => number,
+				answer!: () => number,
+				write!: (n: number) => void,
+				close!: () => void
+			const result = await observe(async () => {
+				close = root(() => {
+					owner = getOwner()
+					const [id, set] = createSignal(0)
+					write = set
+					source = createMemo(() => (id() ? next.promise : first.promise), {
+						name: 'refreshing',
+					})
+					try {
+						source()
+					} catch {}
+				})
+				try {
+					if (!pendingFirst) {
+						first.resolve(1)
+						await ticks(8)
+						write(1)
+						flush()
+					}
+					runWithOwner(owner, () => {
+						answer = createMemo(
+							async () => {
+								await resume.promise
+								return source()
+							},
+							{ name: 'continuation' },
+						)
+						try {
+							answer()
+						} catch {}
+					})
+					resume.resolve()
+					await ticks(8)
+					if (pendingFirst) {
+						let caught = false,
+							error: unknown
+						try {
+							answer()
+						} catch (e) {
+							caught = true
+							error = e
+						}
+						equal(caught, true)
+						if (isDev)
+							ok(
+								String(error).includes(
+									'Read of an unresolved async source after an `await`',
+								),
+								String(error),
+							)
+					} else equal(untrack(answer), 1)
+				} finally {
+					first.resolve(1)
+					next.resolve(2)
+					close()
+				}
+			})
+			equal(
+				result.events.filter((e) => e.code === 'UNTRACKED_READ_AFTER_AWAIT')
+					.length,
+				isDev && !pendingFirst ? 1 : 0,
+			)
+		}
+	})
+	doc('settled-cleanup-nested-scopes', async () => {
+		for (const outer of ['handler', 'tracked', 'settled'] as const)
+			for (const cleanup of [false, true]) {
+				let started = 0,
+					cleaned = 0,
+					close = () => {},
+					thrown: unknown
+				const result = await observe(() => {
+					const setup = () =>
+						onSettled(() => {
+							started++
+							return cleanup
+								? () => {
+										cleaned++
+									}
+								: undefined
+						})
+					if (outer === 'handler') setup()
+					else
+						close = root(() => {
+							outer === 'tracked'
+								? createTrackedEffect(setup)
+								: onSettled(setup)
+						})
+					try {
+						flush()
+					} catch (error) {
+						thrown = error
+					}
+					equal(started, 1)
+					equal(cleaned, 0)
+					close()
+					equal(cleaned, 0)
+					equal(!!thrown, isDev && cleanup)
+				})
+				equal(
+					result.events.filter((e) => e.code === 'SETTLED_CLEANUP_UNOWNED')
+						.length,
+					isDev && cleanup ? 1 : 0,
+				)
+			}
+	})
+	doc('safe-leaf-signal-usage', async () => {
+		for (const scope of ['tracked', 'settled'] as const) {
+			let close!: () => void, write!: (n: number) => void
+			const seen: number[] = []
+			const result = await observe(() => {
+				close = root(() => {
+					const [read, set] = createSignal(1)
+					write = set
+					const run = () => {
+						seen.push(read())
+					}
+					scope === 'tracked' ? createTrackedEffect(run) : onSettled(run)
+				})
+				flush()
+				equal(seen, [1])
+				write(2)
+				flush()
+				equal(seen, scope === 'tracked' ? [1, 2] : [1])
+				close()
+			})
+			equal(
+				result.events.filter((e) => e.code === 'PRIMITIVE_IN_FORBIDDEN_SCOPE'),
+				[],
+			)
+		}
+	})
+	doc('derive-and-event-controls', async () => {
+		const target = document.createElement('div')
+		let dispose!: () => void
+		const result = await observe(() => {
+			dispose = render(() => {
+				const [read, write] = createSignal(1)
+				const double = createMemo(() => read() * 2)
+				return (
+					<>
+						<span>{double()}</span>
+						<small>{read()}</small>
+						<button onClick={() => write(2)}>set</button>
+					</>
+				)
+			}, target)
+			equal(target.textContent, '21set')
+			target.querySelector('button')!.click()
+			flush()
+			equal(target.textContent, '42set')
+			dispose()
+		})
+		equal(
+			result.events.filter((e) => e.code === 'REACTIVE_WRITE_IN_OWNED_SCOPE'),
+			[],
+		)
+	})
+	doc('async-action-store-control', async () => {
+		let close!: () => void, read!: () => number, run!: () => Promise<number>
+		const gate = deferred<void>()
+		const result = await observe(async () => {
+			close = root(() => {
+				const [state, set] = createStore({ n: 0 })
+				read = () => state.n
+				run = action(function* () {
+					set((d) => {
+						d.n = 1
+					})
+					yield gate.promise
+					set((d) => {
+						d.n = 2
+					})
+					return 2
+				})
+			})
+			try {
+				const pending = run()
+				await ticks(3)
+				gate.resolve()
+				equal(await pending, 2)
+				flush()
+				equal(untrack(read), 2)
+			} finally {
+				gate.resolve()
+				close()
+			}
+		})
+		equal(
+			result.events.filter((e) => e.code === 'ASYNC_STORE_SETTER'),
+			[],
+		)
+	})
+	doc('loading-displayahead-controls', async () => {
+		for (const mode of ['latest', 'pending', 'optimistic'] as const) {
+			const gates = [deferred<number>(), deferred<number>()],
+				target = document.createElement('div')
+			let change!: (n: number) => void,
+				run!: () => Promise<void>,
+				dispose!: () => void
+			const result = await observe(async () => {
+				dispose = render(() => {
+					const [id, set] = createSignal(0)
+					change = set
+					const [guess, setGuess] = createOptimistic(0)
+					const data = createMemo(() => gates[id()]!.promise)
+					run = action(function* () {
+						setGuess(1)
+						set(1)
+						yield gates[1]!.promise
+					})
+					return (
+						<>
+							<Loading
+								on={
+									mode === 'latest'
+										? latest(id)
+										: mode === 'pending'
+											? isPending(data)
+											: guess()
+								}
+								fallback="A"
+							>
+								<span>{data()}</span>
+							</Loading>
+							<Loading fallback="B">
+								<b>{data()}</b>
+							</Loading>
+						</>
+					)
+				}, target)
+				gates[0]!.resolve(1)
+				await ticks(8)
+				equal(target.textContent, '11')
+				const pending = mode === 'optimistic' ? run() : undefined
+				if (mode !== 'optimistic') change(1)
+				flush()
+				await ticks(3)
+				ok(
+					target.textContent!.includes('A'),
+					mode + ' fallback did not display: ' + target.textContent,
+				)
+				gates[1]!.resolve(2)
+				if (pending) await pending
+				await ticks(60)
+				flush()
+				ok(target.textContent!.endsWith('2'))
+				dispose()
+				target.remove()
+			})
+			equal(
+				result.events.filter((e) => e.code === 'LOADING_ON_OUTSIDE_HOLD'),
+				[],
+			)
+		}
+	})
+	doc('halt-lifecycle', async () => {
+		let write!: (v: number) => void, dispose!: () => void
+		const errors: unknown[] = [],
+			host = globalThis as any,
+			original = host.reportError
+		const target = document.createElement('div')
+		document.body.appendChild(target)
+		host.reportError = (e: unknown) => errors.push(e)
+		try {
+			const r = await observe(async () => {
+				dispose = render(() => {
+					const [read, set] = createSignal(0)
+					write = set
+					return (
+						<span>
+							{(() => {
+								if (read()) throw new Error('halt-test')
+								return 0
+							})()}
+						</span>
+					)
+				}, target)
+				equal(target.textContent, '0')
+				write(1)
+				try {
+					flush()
+				} catch {}
+				await ticks(3)
+				write(2)
+				write(3)
+				flush()
+				equal(target.textContent, '0')
+			})
+			code(r, 'REACTIVITY_HALTED', 1)
+			equal(
+				r.printed.filter(
+					(v) =>
+						v.includes('[REACTIVITY_HALTED]') &&
+						!v.includes('repair guide') &&
+						!v.includes('Update ignored'),
+				).length,
+				isDev ? 1 : 2,
+			)
+			equal(
+				r.printed.filter((v) => v.includes('Update ignored')).length,
+				isDev ? 1 : 0,
+			)
+			equal(errors.length, 1)
+			equal(String(errors[0]), 'Error: halt-test')
+		} finally {
+			resetErrorHalt()
+			dispose?.()
+			target.remove()
+			host.reportError = original
+		}
+	})
+}
+export const primitiveDiagnosticCases = cases

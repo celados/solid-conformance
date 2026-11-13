@@ -7,12 +7,20 @@ import type { Spec } from './tree'
 
 import { build, type BuildMode } from '../scripts/build'
 let buildId = 0
-export async function openHarness(variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development', csrOnly = false, extension?: { fetch: (request: Request) => Response | undefined | Promise<Response | undefined> }) {
+export async function openHarness(
+	variant: BuildMode = (process.env.BUILD_MODE as BuildMode) ?? 'development',
+	csrOnly = false,
+	extension?: {
+		fetch: (
+			request: Request,
+		) => Response | undefined | Promise<Response | undefined>
+	},
+) {
 	const directory = resolve('.build', `browser-${process.pid}-${buildId++}`)
 	await build(directory, variant)
-	const ssr = (csrOnly ? undefined : await import(
-		resolve(directory, 'server.js')
-	)) as typeof import('./server')
+	const ssr = (
+		csrOnly ? undefined : await import(resolve(directory, 'server.js'))
+	) as typeof import('./server')
 	const specs = new Map<string, Spec>()
 	const serverStats = new Map<string, { opened: number; closed: number }[]>()
 	const serverErrors = new Map<string, string[]>()
@@ -73,14 +81,16 @@ export async function openHarness(variant: BuildMode = (process.env.BUILD_MODE a
 								bytes: new TextEncoder().encode(chunk).byteLength,
 							})
 							controller.enqueue(new TextEncoder().encode(chunk))
-
 						},
 						end() {
 							controller.close()
 						},
 					})
 					pending.set(url.searchParams.get('id')!, run.settle)
-					if (!spec.scenario?.startsWith('live:') && spec.scenario !== 'minimal-store')
+					if (
+						!spec.scenario?.startsWith('live:') &&
+						spec.scenario !== 'minimal-store'
+					)
 						releases.set(url.searchParams.get('id')!, run.settle())
 				},
 			})
@@ -99,7 +109,8 @@ export async function openHarness(variant: BuildMode = (process.env.BUILD_MODE a
 		ssr,
 		variant,
 		async run(spec: Spec, mode: 'csr' | 'hydrate') {
-			if (csrOnly && mode !== 'csr') throw new Error('CSR-only harness cannot hydrate')
+			if (csrOnly && mode !== 'csr')
+				throw new Error('CSR-only harness cannot hydrate')
 			const key = String(id++)
 			specs.set(key, spec)
 			const page = await browser.newPage()

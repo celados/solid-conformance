@@ -1,14 +1,15 @@
-import { normalizedDOM } from './dom'
 import { render, hydrate, isDev } from '@solidjs/web'
 
-
 import { createCase } from './component'
+import { normalizedDOM } from './dom'
 import { ticks } from './timing'
 const fixture = createCase(window.spec)
 const events = [{ phase: 'module', at: performance.now() }]
 const dispose =
 	window.mode === 'hydrate'
-		? hydrate(fixture.App, document.getElementById('root')!, { renderId: 'app' })
+		? hydrate(fixture.App, document.getElementById('root')!, {
+				renderId: 'app',
+			})
 		: render(fixture.App, document.getElementById('root')!)
 events.push({ phase: 'mounted', at: performance.now() })
 if (window.mode === 'hydrate')
@@ -17,9 +18,15 @@ if (window.mode === 'hydrate')
 	)
 window.harness = {
 	events,
-	docs: 'docs' in fixture ? fixture.docs as import('../tracks/docs/registry').DocResult[] : [],
+	docs:
+		'docs' in fixture
+			? (fixture.docs as import('../tracks/docs/registry').DocResult[])
+			: [],
 	runtime: { isDev },
-	trace: 'trace' in fixture ? fixture.trace as import('./transitions').Trace[] : [],
+	trace:
+		'trace' in fixture
+			? (fixture.trace as import('./transitions').Trace[])
+			: [],
 	async settle() {
 		events.push({ phase: 'settle-start', at: performance.now() })
 		await fixture.settle()

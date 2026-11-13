@@ -1,3 +1,3 @@
-import {serverDiagnosticCases} from './server-diagnostic-cases'
-import {runCases} from './registry'
-export const run=()=>runCases(serverDiagnosticCases)
+import { runCases } from './registry'
+import { serverDiagnosticCases } from './server-diagnostic-cases'
+export const run = () => runCases(serverDiagnosticCases)

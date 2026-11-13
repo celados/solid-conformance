@@ -1,69 +1,652 @@
-import {createRoot,createSignal,createMemo,createOptimistic,action,createRenderEffect,createEffect,isPending,latest,flush,OBSERVE} from 'solid-js'
-import {attribution,feedback} from 'solid-js/attribution'
-import {isDev,isServer} from '@solidjs/web'
-import {deferred,ticks} from '../../harness/timing'
-import {observed} from './diagnostic-cases'
-import {equal,ok,type DocCase} from './registry'
-const cases:DocCase[]=[]
-async function hold(wait:number,ack:'none'|'pending'|'latest'|'memo-only'|'optimistic'|'unrelated'='none',long=true,tracking=true){
- const descriptor=Object.getOwnPropertyDescriptor(performance,'now'),native=performance.now.bind(performance);let clock=native()
- Object.defineProperty(performance,'now',{configurable:true,value:()=>clock})
- const release=attribution.enable({log:false,checks:false,graphGrowth:false,...(long?{}:{longHolds:false}),...(tracking?{}:{holds:false}),waterfalls:false,stackedHolds:false,abandonedFlights:false,fallbackFlashes:false,optimisticReverts:false})
- let dispose!:()=>void;const gate=deferred<number>(),records:any[]=[]
- const off=OBSERVE!.records.subscribe('hold',e=>records.push(e))
- try{
-  const result=await observed(async()=>{
-   const [write]=createRoot(d=>{dispose=d;const[r,w]=createSignal(0,{name:'page'});const data=createMemo(()=>r()?gate.promise:0,{name:'posts'});createRenderEffect(data,()=>{});const[guess,writeGuess]=createOptimistic(false,{name:'saving'});if(ack==='optimistic')createRenderEffect(guess,()=>{},{name:'saveIndicator'});const[other,writeOther]=createSignal(0);if(ack==='unrelated')createRenderEffect(other,()=>{},{name:'unrelatedPaint'});if(ack==='pending'){const companion=createMemo(()=>isPending(data));createEffect(companion,()=>{},{name:'spinner'})}if(ack==='latest')createEffect(()=>latest(data),()=>{},{name:'preview'});if(ack==='memo-only')createMemo(()=>isPending(data));flush();return[(v:number)=>{w(v);if(ack==='optimistic')writeGuess(true);if(ack==='unrelated')writeOther(1)}] as const})
-   OBSERVE!.attribution.withInteraction({type:'click',target:'button#next'},()=>OBSERVE!.attribution.withOrigin({kind:'navigation',name:'/posts/:id',to:'/posts/1',params:{id:'1'}},()=>write(1)))
-   flush();await ticks(4);clock+=wait;gate.resolve(2);await ticks(8);flush()
-  })
-  if(ack==='pending'||ack==='latest')equal(result.events.filter(e=>e.code==='OPTIMISTIC_REVERTED'),[])
-  return {events:result.events,record:records.at(-1),rows:feedback().sources}
- }finally{dispose();off();release();if(descriptor)Object.defineProperty(performance,'now',descriptor);else delete (performance as any).now}
-}
-function doc(id:string,statement:string,run:DocCase['run']){cases.push({id:'08/'+id,file:'08-dev-diagnostics.md',statement,run})}
-if(!isServer){
- doc('hold-effect-action-origin','L527: writes without a stamped input retain their effect/action origin on the opening hold.',async()=>{
-  if(!isDev)return
-  for(const kind of ['effect','action']as const){const release=attribution.enable({log:false,checks:false,holds:{infoMs:100000,warnMs:100000},waterfalls:false,abandonedFlights:false,stackedHolds:false});let dispose!:()=>void;const gate=deferred<number>(),records:any[]=[];const off=OBSERVE!.records.subscribe('hold',event=>records.push(event))
-   try{const run=createRoot(d=>{dispose=d;const[source,write]=createSignal(0,{name:'request'});const answer=createMemo(()=>source()?gate.promise:0,{name:'answer'});createRenderEffect(answer,()=>{});const[trigger,set]=createSignal(0);createEffect(trigger,v=>{if(v)write(1)},{name:'load-effect'});const save=action(function* loadAction(){write(1);yield gate.promise});flush();return kind==='effect'?()=>{set(1);flush()}:()=>save()});const done=run();flush();await ticks(4);gate.resolve(2);await done;await ticks(8);flush();ok(records.length>0);const held=records[0].heldWrites.find((w:any)=>w.name==='request');ok(held);equal(held.origin.kind,kind);equal(records[0].interaction,undefined);if(kind==='effect')equal(held.origin.name,'load-effect');equal(records[0].action,kind==='action')}
-   finally{dispose?.();off();release()}
-  }
- })
- doc('hold-disabled-options','C1021/C1022: holds false disables hold tracking; longHolds false suppresses long diagnosis while retaining acknowledged hold records.',async()=>{
-  if(!isDev)return
-  const disabled=await hold(1500,'none',true,false);equal(disabled.record,undefined);equal(disabled.rows,[]);equal(disabled.events.filter(e=>['SILENT_HOLD','LONG_HOLD'].includes(e.code)),[])
-  const longDisabled=await hold(1500,'pending',false);ok(longDisabled.record);equal(longDisabled.record.holdMs,1500);equal(longDisabled.record.silent,false);equal(longDisabled.events.filter(e=>['SILENT_HOLD','LONG_HOLD'].includes(e.code)),[])
- })
- doc('hold-default-thresholds','L525/L531: silent default 100ms info/200ms warn, acknowledged long 500ms info/1000ms warn; a silent long hold reports only SILENT_HOLD.',async()=>{
-  if(!isDev)return
-  for(const [duration,ack,code,severity] of [[99,'none',null,null],[100,'none','SILENT_HOLD','info'],[199,'none','SILENT_HOLD','info'],[200,'none','SILENT_HOLD','warn'],[499,'pending',null,null],[500,'pending','LONG_HOLD','info'],[1000,'pending','LONG_HOLD','warn'],[1000,'none','SILENT_HOLD','warn']] as const){const result=await hold(duration,ack);const events=result.events.filter(e=>['SILENT_HOLD','LONG_HOLD'].includes(e.code));equal({duration,ack,codes:events.map(e=>e.code)}, {duration,ack,codes:code?[code]:[]});if(code){equal(events[0]!.code,code);equal(events[0]!.kind,'responsiveness');equal(events[0]!.severity,severity)}equal(result.record.silent,ack==='none');equal(result.record.long,duration>=500);equal(result.record.holdMs,duration);equal(result.record.tailMs,duration);if(duration===1000&&ack==='none')equal((events[0]!.data as any).long,true)}
- })
- doc('hold-acknowledgement-paths','L525/L527: a companion counts through memo chains only when an effect reads it; hold records retain reader path, origins, blockers and write previews.',async()=>{
-  if(!isDev)return
-  for(const ack of ['none','memo-only','pending','latest','optimistic','unrelated'] as const){const result=await hold(250,ack),r=result.record;equal(r.silent,ack==='none'||ack==='memo-only'||ack==='unrelated');equal(r.origin.kind,'navigation');equal(r.origin.name,'/posts/:id');equal(r.interaction.kind,'interaction');equal(r.interaction.target,'button#next');ok(r.blockers.length>0,JSON.stringify(r));ok(r.heldWrites.length>0,JSON.stringify(r));if(ack==='unrelated')equal(r.paintedDuringHold,0);if(ack==='optimistic')ok(r.acknowledgements.some((a:any)=>a.kind==='optimistic'&&a.source==='saving'&&a.reader?.includes('saveIndicator')));if(ack==='pending'||ack==='latest'){ok(r.acknowledgements.some((a:any)=>a.kind===(ack==='pending'?'isPending':'latest')&&a.source==='posts'),JSON.stringify(r.acknowledgements));ok(r.acknowledgements.some((a:any)=>a.reader?.some((p:string)=>p=== (ack==='pending'?'spinner':'preview'))));ok(result.rows.some((row:any)=>row.acknowledgedBy.some((a:any)=>String(a.by).includes(ack==='pending'?'isPending':'latest'))))}}
- })
- doc('hold-tail-and-feedback','L533/L535/L1194: hold lifetime begins at first interaction, tail at last joined input; feedback folds exact waits and acknowledgements.',async()=>{
-  if(!isDev)return
-  const descriptor=Object.getOwnPropertyDescriptor(performance,'now');let clock=1000;Object.defineProperty(performance,'now',{configurable:true,value:()=>clock})
-  const release=attribution.enable({log:false,checks:false,graphGrowth:false,waterfalls:false,abandonedFlights:false,stackedHolds:false});let dispose!:()=>void;const a=deferred<number>(),b=deferred<number>();const records:any[]=[];const off=OBSERVE!.records.subscribe('hold',e=>records.push(e))
-  try{const [write]=createRoot(d=>{dispose=d;const[r,w]=createSignal(0,{name:'page'});const data=createMemo(()=>r()===0?0:r()===1?a.promise:b.promise,{name:'posts'});createRenderEffect(data,()=>{});createEffect(()=>isPending(data),()=>{},{name:'spinner'});flush();return[w] as const});OBSERVE!.attribution.withInteraction({type:'click',target:'button#next',at:clock-10},()=>write(1));flush();await ticks(4);clock+=300;OBSERVE!.attribution.withInteraction({type:'click',target:'button#next',at:clock},()=>write(2));flush();await ticks(4);clock+=700;b.resolve(2);await ticks(8);flush();a.resolve(1);await ticks(4);flush();equal(records.length,1);const event=records[0];equal(event.holdMs,1000);equal(event.tailMs,700);equal(event.at,1000);equal(event.long,true);equal(event.silent,false);const row=feedback().sources[0]!;equal(row.holds,1);equal(row.heldMs,1000);equal(row.worstMs,1000);equal(row.silent,0);equal(row.silentMs,0);equal(row.long,1);equal(row.longMs,700);equal(row.latestOnly,0);equal(row.actions,0);ok(row.sources.includes('posts'));ok(row.writes.includes('page'));ok(row.acknowledgedBy.some(a=>a.by==='isPending:posts'&&a.holds===1))}finally{dispose();off();release();if(descriptor)Object.defineProperty(performance,'now',descriptor);else delete(performance as any).now}
- })
- doc('abandoned-default-window','L549: three abandoned flights in a 1000ms per-source window warn once with source, count, interaction and live subject; false disables.',async()=>{
-  if(!isDev)return
-  const descriptor=Object.getOwnPropertyDescriptor(performance,'now');let clock=1000;Object.defineProperty(performance,'now',{configurable:true,value:()=>clock})
-  try{for(const enabled of [true,false]){const release=attribution.enable({log:false,checks:false,holds:false,graphGrowth:false,waterfalls:false,...(enabled?{}:{abandonedFlights:false})});let dispose!:()=>void;const subjects:any[]=[];const off=OBSERVE!.diagnostics.subscribe((e,s)=>{if(e.code==='ABANDONED_FLIGHTS')subjects.push(s)});try{const result=await observed(async()=>{const [write]=createRoot(d=>{dispose=d;const[r,w]=createSignal(0);createMemo(()=>r()?new Promise<number>(()=>{}):0,{name:'posts'});return[w] as const});for(let i=1;i<=5;i++){OBSERVE!.attribution.withInteraction({type:'keydown',target:'input#search'},()=>write(i));flush();await ticks(2)} });const events=result.events.filter(e=>e.code==='ABANDONED_FLIGHTS');equal(events.length,enabled?1:0);if(enabled){equal(events[0]!.severity,'warn');equal((events[0]!.data as any).source,'posts');equal((events[0]!.data as any).abandoned,3);equal((events[0]!.data as any).windowMs,1000);equal((events[0]!.data as any).interaction.target,'input#search');ok(subjects[0]);ok(feedback().flights.some(r=>r.abandoned>=3))}}finally{dispose();off();release()}}}finally{if(descriptor)Object.defineProperty(performance,'now',descriptor);else delete(performance as any).now}
- })
- doc('stacked-contract','RFC08 L561: default three interactions warn once with hold metadata/live first write; false disables.',async()=>{
-  if(!isDev)return
-  for(const enabled of [true,false]){const release=attribution.enable({log:false,checks:false,graphGrowth:false,holds:{infoMs:100000,warnMs:100000},longHolds:false,waterfalls:false,abandonedFlights:false,...(enabled?{}:{stackedHolds:false})});let dispose!:()=>void;const gate=deferred<number>(),subjects:any[]=[];const off=OBSERVE!.diagnostics.subscribe((event,node)=>{if(event.code==='STACKED_HOLDS')subjects.push(node)})
-  try{const result=await observed(async()=>{const[write]=createRoot(d=>{dispose=d;const[r,w]=createSignal(0,{name:'page'});const m=createMemo(()=>r()?gate.promise:0,{name:'posts'});createRenderEffect(m,()=>{});flush();return[w] as const});for(let n=1;n<=3;n++){OBSERVE!.attribution.withInteraction({type:'click',target:'button#next'},()=>OBSERVE!.attribution.withOrigin({kind:'navigation',name:'/posts/:id',to:'/posts/'+n,params:{id:String(n)}},()=>write(n)));flush();await ticks(2)}gate.resolve(3);await ticks(8);flush()});const found=result.events.filter(e=>e.code==='STACKED_HOLDS');equal(found.length,enabled?1:0);if(enabled){const e=found[0]!,data=e.data as any;equal(e.severity,'warn');equal(e.kind,'responsiveness');equal(data.interactions,3);ok(data.holdMs>=0);ok(data.blockers.length>0);ok(data.heldWrites.length>0);equal(data.interaction.target,'button#next');equal(data.navigation.name,'/posts/:id');ok(subjects[0])}}finally{dispose?.();off();release()}}
- })
- doc('optimistic-correction-contract','RFC08 L567: reverted/superseded, equals, disabled checks, preview truncation and live subject.',async()=>{
-  if(!isDev)return
-  for(const shape of ['reverted','superseded','equal','disabled','preview'] as const){const release=attribution.enable({log:false,checks:false,graphGrowth:false,holds:false,optimisticReverts:shape!=='disabled'});let dispose!:()=>void;const gate=deferred<void>(),subjects:any[]=[];const off=OBSERVE!.diagnostics.subscribe((e,node)=>{if(e.code==='OPTIMISTIC_REVERTED')subjects.push(node)})
-  try{const result=await observed(async()=>{const[run]=createRoot(d=>{dispose=d;const [truth,writeTruth]=createSignal({name:'idle'});const [shown,guess]=createOptimistic(()=>truth(),{name:'status',equals:(a,b)=>a.name===b.name});createRenderEffect(shown,()=>{},{name:'badge'});flush();const run=action(function*(){guess({name:shape==='preview'?'x'.repeat(90):'saved'});yield gate.promise;if(shape==='superseded')writeTruth({name:'different'});if(shape==='equal')writeTruth({name:'saved'})});return[run] as const});const done=run();flush();await ticks(4);gate.resolve();await done;await ticks(8);flush()});const found=result.events.filter(e=>e.code==='OPTIMISTIC_REVERTED');equal(found.length,shape==='equal'||shape==='disabled'?0:1);if(found.length){const e=found[0]!,data=e.data as any;equal(e.kind,'responsiveness');equal(e.severity,'info');equal(data.source,'status');equal(data.how,shape==='superseded'?'superseded':'reverted');equal(data.shown,'[Object]');equal(data.truth,'[Object]');ok(subjects[0]);ok(e.ownerPath?.some(p=>p==='status'))}}finally{dispose?.();off();release()}}
- })
+import { isDev, isServer } from '@solidjs/web'
+import {
+	createRoot,
+	createSignal,
+	createMemo,
+	createOptimistic,
+	action,
+	createRenderEffect,
+	createEffect,
+	isPending,
+	latest,
+	flush,
+	OBSERVE,
+} from 'solid-js'
+import { attribution, feedback } from 'solid-js/attribution'
 
+import { deferred, ticks } from '../../harness/timing'
+import { observed } from './diagnostic-cases'
+import { equal, ok, type DocCase } from './registry'
+const cases: DocCase[] = []
+async function hold(
+	wait: number,
+	ack:
+		| 'none'
+		| 'pending'
+		| 'latest'
+		| 'memo-only'
+		| 'optimistic'
+		| 'unrelated' = 'none',
+	long = true,
+	tracking = true,
+) {
+	const descriptor = Object.getOwnPropertyDescriptor(performance, 'now'),
+		native = performance.now.bind(performance)
+	let clock = native()
+	Object.defineProperty(performance, 'now', {
+		configurable: true,
+		value: () => clock,
+	})
+	const release = attribution.enable({
+		log: false,
+		checks: false,
+		graphGrowth: false,
+		...(long ? {} : { longHolds: false }),
+		...(tracking ? {} : { holds: false }),
+		waterfalls: false,
+		stackedHolds: false,
+		abandonedFlights: false,
+		fallbackFlashes: false,
+		optimisticReverts: false,
+	})
+	let dispose!: () => void
+	const gate = deferred<number>(),
+		records: any[] = []
+	const off = OBSERVE!.records.subscribe('hold', (e) => records.push(e))
+	try {
+		const result = await observed(async () => {
+			const [write] = createRoot((d) => {
+				dispose = d
+				const [r, w] = createSignal(0, { name: 'page' })
+				const data = createMemo(() => (r() ? gate.promise : 0), {
+					name: 'posts',
+				})
+				createRenderEffect(data, () => {})
+				const [guess, writeGuess] = createOptimistic(false, { name: 'saving' })
+				if (ack === 'optimistic')
+					createRenderEffect(guess, () => {}, { name: 'saveIndicator' })
+				const [other, writeOther] = createSignal(0)
+				if (ack === 'unrelated')
+					createRenderEffect(other, () => {}, { name: 'unrelatedPaint' })
+				if (ack === 'pending') {
+					const companion = createMemo(() => isPending(data))
+					createEffect(companion, () => {}, { name: 'spinner' })
+				}
+				if (ack === 'latest')
+					createEffect(
+						() => latest(data),
+						() => {},
+						{ name: 'preview' },
+					)
+				if (ack === 'memo-only') createMemo(() => isPending(data))
+				flush()
+				return [
+					(v: number) => {
+						w(v)
+						if (ack === 'optimistic') writeGuess(true)
+						if (ack === 'unrelated') writeOther(1)
+					},
+				] as const
+			})
+			OBSERVE!.attribution.withInteraction(
+				{ type: 'click', target: 'button#next' },
+				() =>
+					OBSERVE!.attribution.withOrigin(
+						{
+							kind: 'navigation',
+							name: '/posts/:id',
+							to: '/posts/1',
+							params: { id: '1' },
+						},
+						() => write(1),
+					),
+			)
+			flush()
+			await ticks(4)
+			clock += wait
+			gate.resolve(2)
+			await ticks(8)
+			flush()
+		})
+		if (ack === 'pending' || ack === 'latest')
+			equal(
+				result.events.filter((e) => e.code === 'OPTIMISTIC_REVERTED'),
+				[],
+			)
+		return {
+			events: result.events,
+			record: records.at(-1),
+			rows: feedback().sources,
+		}
+	} finally {
+		dispose()
+		off()
+		release()
+		if (descriptor) Object.defineProperty(performance, 'now', descriptor)
+		else delete (performance as any).now
+	}
 }
-export const holdDiagnosticCases=cases
+function doc(id: string, statement: string, run: DocCase['run']) {
+	cases.push({ id: '08/' + id, file: '08-dev-diagnostics.md', statement, run })
+}
+if (!isServer) {
+	doc(
+		'hold-effect-action-origin',
+		'L527: writes without a stamped input retain their effect/action origin on the opening hold.',
+		async () => {
+			if (!isDev) return
+			for (const kind of ['effect', 'action'] as const) {
+				const release = attribution.enable({
+					log: false,
+					checks: false,
+					holds: { infoMs: 100000, warnMs: 100000 },
+					waterfalls: false,
+					abandonedFlights: false,
+					stackedHolds: false,
+				})
+				let dispose!: () => void
+				const gate = deferred<number>(),
+					records: any[] = []
+				const off = OBSERVE!.records.subscribe('hold', (event) =>
+					records.push(event),
+				)
+				try {
+					const run = createRoot((d) => {
+						dispose = d
+						const [source, write] = createSignal(0, { name: 'request' })
+						const answer = createMemo(() => (source() ? gate.promise : 0), {
+							name: 'answer',
+						})
+						createRenderEffect(answer, () => {})
+						const [trigger, set] = createSignal(0)
+						createEffect(
+							trigger,
+							(v) => {
+								if (v) write(1)
+							},
+							{ name: 'load-effect' },
+						)
+						const save = action(function* loadAction() {
+							write(1)
+							yield gate.promise
+						})
+						flush()
+						return kind === 'effect'
+							? () => {
+									set(1)
+									flush()
+								}
+							: () => save()
+					})
+					const done = run()
+					flush()
+					await ticks(4)
+					gate.resolve(2)
+					await done
+					await ticks(8)
+					flush()
+					ok(records.length > 0)
+					const held = records[0].heldWrites.find(
+						(w: any) => w.name === 'request',
+					)
+					ok(held)
+					equal(held.origin.kind, kind)
+					equal(records[0].interaction, undefined)
+					if (kind === 'effect') equal(held.origin.name, 'load-effect')
+					equal(records[0].action, kind === 'action')
+				} finally {
+					dispose?.()
+					off()
+					release()
+				}
+			}
+		},
+	)
+	doc(
+		'hold-disabled-options',
+		'C1021/C1022: holds false disables hold tracking; longHolds false suppresses long diagnosis while retaining acknowledged hold records.',
+		async () => {
+			if (!isDev) return
+			const disabled = await hold(1500, 'none', true, false)
+			equal(disabled.record, undefined)
+			equal(disabled.rows, [])
+			equal(
+				disabled.events.filter((e) =>
+					['SILENT_HOLD', 'LONG_HOLD'].includes(e.code),
+				),
+				[],
+			)
+			const longDisabled = await hold(1500, 'pending', false)
+			ok(longDisabled.record)
+			equal(longDisabled.record.holdMs, 1500)
+			equal(longDisabled.record.silent, false)
+			equal(
+				longDisabled.events.filter((e) =>
+					['SILENT_HOLD', 'LONG_HOLD'].includes(e.code),
+				),
+				[],
+			)
+		},
+	)
+	doc(
+		'hold-default-thresholds',
+		'L525/L531: silent default 100ms info/200ms warn, acknowledged long 500ms info/1000ms warn; a silent long hold reports only SILENT_HOLD.',
+		async () => {
+			if (!isDev) return
+			for (const [duration, ack, code, severity] of [
+				[99, 'none', null, null],
+				[100, 'none', 'SILENT_HOLD', 'info'],
+				[199, 'none', 'SILENT_HOLD', 'info'],
+				[200, 'none', 'SILENT_HOLD', 'warn'],
+				[499, 'pending', null, null],
+				[500, 'pending', 'LONG_HOLD', 'info'],
+				[1000, 'pending', 'LONG_HOLD', 'warn'],
+				[1000, 'none', 'SILENT_HOLD', 'warn'],
+			] as const) {
+				const result = await hold(duration, ack)
+				const events = result.events.filter((e) =>
+					['SILENT_HOLD', 'LONG_HOLD'].includes(e.code),
+				)
+				equal(
+					{ duration, ack, codes: events.map((e) => e.code) },
+					{ duration, ack, codes: code ? [code] : [] },
+				)
+				if (code) {
+					equal(events[0]!.code, code)
+					equal(events[0]!.kind, 'responsiveness')
+					equal(events[0]!.severity, severity)
+				}
+				equal(result.record.silent, ack === 'none')
+				equal(result.record.long, duration >= 500)
+				equal(result.record.holdMs, duration)
+				equal(result.record.tailMs, duration)
+				if (duration === 1000 && ack === 'none')
+					equal((events[0]!.data as any).long, true)
+			}
+		},
+	)
+	doc(
+		'hold-acknowledgement-paths',
+		'L525/L527: a companion counts through memo chains only when an effect reads it; hold records retain reader path, origins, blockers and write previews.',
+		async () => {
+			if (!isDev) return
+			for (const ack of [
+				'none',
+				'memo-only',
+				'pending',
+				'latest',
+				'optimistic',
+				'unrelated',
+			] as const) {
+				const result = await hold(250, ack),
+					r = result.record
+				equal(
+					r.silent,
+					ack === 'none' || ack === 'memo-only' || ack === 'unrelated',
+				)
+				equal(r.origin.kind, 'navigation')
+				equal(r.origin.name, '/posts/:id')
+				equal(r.interaction.kind, 'interaction')
+				equal(r.interaction.target, 'button#next')
+				ok(r.blockers.length > 0, JSON.stringify(r))
+				ok(r.heldWrites.length > 0, JSON.stringify(r))
+				if (ack === 'unrelated') equal(r.paintedDuringHold, 0)
+				if (ack === 'optimistic')
+					ok(
+						r.acknowledgements.some(
+							(a: any) =>
+								a.kind === 'optimistic' &&
+								a.source === 'saving' &&
+								a.reader?.includes('saveIndicator'),
+						),
+					)
+				if (ack === 'pending' || ack === 'latest') {
+					ok(
+						r.acknowledgements.some(
+							(a: any) =>
+								a.kind === (ack === 'pending' ? 'isPending' : 'latest') &&
+								a.source === 'posts',
+						),
+						JSON.stringify(r.acknowledgements),
+					)
+					ok(
+						r.acknowledgements.some((a: any) =>
+							a.reader?.some(
+								(p: string) =>
+									p === (ack === 'pending' ? 'spinner' : 'preview'),
+							),
+						),
+					)
+					ok(
+						result.rows.some((row: any) =>
+							row.acknowledgedBy.some((a: any) =>
+								String(a.by).includes(
+									ack === 'pending' ? 'isPending' : 'latest',
+								),
+							),
+						),
+					)
+				}
+			}
+		},
+	)
+	doc(
+		'hold-tail-and-feedback',
+		'L533/L535/L1194: hold lifetime begins at first interaction, tail at last joined input; feedback folds exact waits and acknowledgements.',
+		async () => {
+			if (!isDev) return
+			const descriptor = Object.getOwnPropertyDescriptor(performance, 'now')
+			let clock = 1000
+			Object.defineProperty(performance, 'now', {
+				configurable: true,
+				value: () => clock,
+			})
+			const release = attribution.enable({
+				log: false,
+				checks: false,
+				graphGrowth: false,
+				waterfalls: false,
+				abandonedFlights: false,
+				stackedHolds: false,
+			})
+			let dispose!: () => void
+			const a = deferred<number>(),
+				b = deferred<number>()
+			const records: any[] = []
+			const off = OBSERVE!.records.subscribe('hold', (e) => records.push(e))
+			try {
+				const [write] = createRoot((d) => {
+					dispose = d
+					const [r, w] = createSignal(0, { name: 'page' })
+					const data = createMemo(
+						() => (r() === 0 ? 0 : r() === 1 ? a.promise : b.promise),
+						{ name: 'posts' },
+					)
+					createRenderEffect(data, () => {})
+					createEffect(
+						() => isPending(data),
+						() => {},
+						{ name: 'spinner' },
+					)
+					flush()
+					return [w] as const
+				})
+				OBSERVE!.attribution.withInteraction(
+					{ type: 'click', target: 'button#next', at: clock - 10 },
+					() => write(1),
+				)
+				flush()
+				await ticks(4)
+				clock += 300
+				OBSERVE!.attribution.withInteraction(
+					{ type: 'click', target: 'button#next', at: clock },
+					() => write(2),
+				)
+				flush()
+				await ticks(4)
+				clock += 700
+				b.resolve(2)
+				await ticks(8)
+				flush()
+				a.resolve(1)
+				await ticks(4)
+				flush()
+				equal(records.length, 1)
+				const event = records[0]
+				equal(event.holdMs, 1000)
+				equal(event.tailMs, 700)
+				equal(event.at, 1000)
+				equal(event.long, true)
+				equal(event.silent, false)
+				const row = feedback().sources[0]!
+				equal(row.holds, 1)
+				equal(row.heldMs, 1000)
+				equal(row.worstMs, 1000)
+				equal(row.silent, 0)
+				equal(row.silentMs, 0)
+				equal(row.long, 1)
+				equal(row.longMs, 700)
+				equal(row.latestOnly, 0)
+				equal(row.actions, 0)
+				ok(row.sources.includes('posts'))
+				ok(row.writes.includes('page'))
+				ok(
+					row.acknowledgedBy.some(
+						(a) => a.by === 'isPending:posts' && a.holds === 1,
+					),
+				)
+			} finally {
+				dispose()
+				off()
+				release()
+				if (descriptor) Object.defineProperty(performance, 'now', descriptor)
+				else delete (performance as any).now
+			}
+		},
+	)
+	doc(
+		'abandoned-default-window',
+		'L549: three abandoned flights in a 1000ms per-source window warn once with source, count, interaction and live subject; false disables.',
+		async () => {
+			if (!isDev) return
+			const descriptor = Object.getOwnPropertyDescriptor(performance, 'now')
+			let clock = 1000
+			Object.defineProperty(performance, 'now', {
+				configurable: true,
+				value: () => clock,
+			})
+			try {
+				for (const enabled of [true, false]) {
+					const release = attribution.enable({
+						log: false,
+						checks: false,
+						holds: false,
+						graphGrowth: false,
+						waterfalls: false,
+						...(enabled ? {} : { abandonedFlights: false }),
+					})
+					let dispose!: () => void
+					const subjects: any[] = []
+					const off = OBSERVE!.diagnostics.subscribe((e, s) => {
+						if (e.code === 'ABANDONED_FLIGHTS') subjects.push(s)
+					})
+					try {
+						const result = await observed(async () => {
+							const [write] = createRoot((d) => {
+								dispose = d
+								const [r, w] = createSignal(0)
+								createMemo(() => (r() ? new Promise<number>(() => {}) : 0), {
+									name: 'posts',
+								})
+								return [w] as const
+							})
+							for (let i = 1; i <= 5; i++) {
+								OBSERVE!.attribution.withInteraction(
+									{ type: 'keydown', target: 'input#search' },
+									() => write(i),
+								)
+								flush()
+								await ticks(2)
+							}
+						})
+						const events = result.events.filter(
+							(e) => e.code === 'ABANDONED_FLIGHTS',
+						)
+						equal(events.length, enabled ? 1 : 0)
+						if (enabled) {
+							equal(events[0]!.severity, 'warn')
+							equal((events[0]!.data as any).source, 'posts')
+							equal((events[0]!.data as any).abandoned, 3)
+							equal((events[0]!.data as any).windowMs, 1000)
+							equal((events[0]!.data as any).interaction.target, 'input#search')
+							ok(subjects[0])
+							ok(feedback().flights.some((r) => r.abandoned >= 3))
+						}
+					} finally {
+						dispose()
+						off()
+						release()
+					}
+				}
+			} finally {
+				if (descriptor) Object.defineProperty(performance, 'now', descriptor)
+				else delete (performance as any).now
+			}
+		},
+	)
+	doc(
+		'stacked-contract',
+		'RFC08 L561: default three interactions warn once with hold metadata/live first write; false disables.',
+		async () => {
+			if (!isDev) return
+			for (const enabled of [true, false]) {
+				const release = attribution.enable({
+					log: false,
+					checks: false,
+					graphGrowth: false,
+					holds: { infoMs: 100000, warnMs: 100000 },
+					longHolds: false,
+					waterfalls: false,
+					abandonedFlights: false,
+					...(enabled ? {} : { stackedHolds: false }),
+				})
+				let dispose!: () => void
+				const gate = deferred<number>(),
+					subjects: any[] = []
+				const off = OBSERVE!.diagnostics.subscribe((event, node) => {
+					if (event.code === 'STACKED_HOLDS') subjects.push(node)
+				})
+				try {
+					const result = await observed(async () => {
+						const [write] = createRoot((d) => {
+							dispose = d
+							const [r, w] = createSignal(0, { name: 'page' })
+							const m = createMemo(() => (r() ? gate.promise : 0), {
+								name: 'posts',
+							})
+							createRenderEffect(m, () => {})
+							flush()
+							return [w] as const
+						})
+						for (let n = 1; n <= 3; n++) {
+							OBSERVE!.attribution.withInteraction(
+								{ type: 'click', target: 'button#next' },
+								() =>
+									OBSERVE!.attribution.withOrigin(
+										{
+											kind: 'navigation',
+											name: '/posts/:id',
+											to: '/posts/' + n,
+											params: { id: String(n) },
+										},
+										() => write(n),
+									),
+							)
+							flush()
+							await ticks(2)
+						}
+						gate.resolve(3)
+						await ticks(8)
+						flush()
+					})
+					const found = result.events.filter((e) => e.code === 'STACKED_HOLDS')
+					equal(found.length, enabled ? 1 : 0)
+					if (enabled) {
+						const e = found[0]!,
+							data = e.data as any
+						equal(e.severity, 'warn')
+						equal(e.kind, 'responsiveness')
+						equal(data.interactions, 3)
+						ok(data.holdMs >= 0)
+						ok(data.blockers.length > 0)
+						ok(data.heldWrites.length > 0)
+						equal(data.interaction.target, 'button#next')
+						equal(data.navigation.name, '/posts/:id')
+						ok(subjects[0])
+					}
+				} finally {
+					dispose?.()
+					off()
+					release()
+				}
+			}
+		},
+	)
+	doc(
+		'optimistic-correction-contract',
+		'RFC08 L567: reverted/superseded, equals, disabled checks, preview truncation and live subject.',
+		async () => {
+			if (!isDev) return
+			for (const shape of [
+				'reverted',
+				'superseded',
+				'equal',
+				'disabled',
+				'preview',
+			] as const) {
+				const release = attribution.enable({
+					log: false,
+					checks: false,
+					graphGrowth: false,
+					holds: false,
+					optimisticReverts: shape !== 'disabled',
+				})
+				let dispose!: () => void
+				const gate = deferred<void>(),
+					subjects: any[] = []
+				const off = OBSERVE!.diagnostics.subscribe((e, node) => {
+					if (e.code === 'OPTIMISTIC_REVERTED') subjects.push(node)
+				})
+				try {
+					const result = await observed(async () => {
+						const [run] = createRoot((d) => {
+							dispose = d
+							const [truth, writeTruth] = createSignal({ name: 'idle' })
+							const [shown, guess] = createOptimistic(() => truth(), {
+								name: 'status',
+								equals: (a, b) => a.name === b.name,
+							})
+							createRenderEffect(shown, () => {}, { name: 'badge' })
+							flush()
+							const run = action(function* () {
+								guess({ name: shape === 'preview' ? 'x'.repeat(90) : 'saved' })
+								yield gate.promise
+								if (shape === 'superseded') writeTruth({ name: 'different' })
+								if (shape === 'equal') writeTruth({ name: 'saved' })
+							})
+							return [run] as const
+						})
+						const done = run()
+						flush()
+						await ticks(4)
+						gate.resolve()
+						await done
+						await ticks(8)
+						flush()
+					})
+					const found = result.events.filter(
+						(e) => e.code === 'OPTIMISTIC_REVERTED',
+					)
+					equal(found.length, shape === 'equal' || shape === 'disabled' ? 0 : 1)
+					if (found.length) {
+						const e = found[0]!,
+							data = e.data as any
+						equal(e.kind, 'responsiveness')
+						equal(e.severity, 'info')
+						equal(data.source, 'status')
+						equal(data.how, shape === 'superseded' ? 'superseded' : 'reverted')
+						equal(data.shown, '[Object]')
+						equal(data.truth, '[Object]')
+						ok(subjects[0])
+						ok(e.ownerPath?.some((p) => p === 'status'))
+					}
+				} finally {
+					dispose?.()
+					off()
+					release()
+				}
+			}
+		},
+	)
+}
+export const holdDiagnosticCases = cases

@@ -1,236 +1,232 @@
 [
-  {
-    "id": "12-ssr-http:L145:2",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-diagnostics.test.ts#08/server-road-sanitize-ssr-false"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L168:1",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L168:2",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-client-source-mapping",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-serialization-road"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L168:3",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-deferred-channel"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L168:4",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L168:5",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L168:6",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L168:7",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L169:1",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L169:2",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-throwing-hook"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L169:3",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L169:4",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-serialization-road"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L169:5",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-client-source-mapping"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L170:1",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L170:2",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-loading-repull-same-verdict"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L170:3",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-direct-observe-multi-road"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L171:1",
-    "status": "covered",
-    "coverage": [
-      "findings/031-direct-error-hook-tier/repro.test.ts",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-external-ambient-symbol"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L171:2",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-render-override",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L171:3",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-throwing-hook"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L171:4",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-no-hook-failed-console"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L171:5",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-no-hook-failed-console",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L172:1",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-stream-old-shape"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L172:2",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
-      "tracks/frames/server-hooks.test.ts#12/server-hook-throwing-hook"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L81:4",
-    "status": "covered",
-    "coverage": [
-      "08/server-road-live-request-event-identity"
-    ],
-    "reason": "nested direct-call RequestEvent !==parent，request和response分别===parent；live.event===bodygetRequestEvent。"
-  },
-  {
-    "id": "12-ssr-http:L244:1",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-diagnostics.test.ts#08/server-road-mutation-cookie-thrown-redirect"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L302:1",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-diagnostics.test.ts#08/server-road-mutation-cookie-thrown-redirect"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L335:3",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-diagnostics.test.ts#08/server-road-bare-event-trace-commit"
-    ]
-  },
-  {
-    "id": "12-ssr-http:C182:1",
-    "status": "covered",
-    "coverage": [
-      "tracks/frames/server-diagnostics.test.ts#08/server-road-server-function-forward-trace"
-    ]
-  },
-  {
-    "id": "12-ssr-http:L248:4",
-    "status": "covered",
-    "coverage": [
-      "08/server-road-cookie-exchange-three-domains"
-    ],
-    "reason": "同一public request Cookie parse+response Set-Cookie append helper在serverfn/SSR/middleware三domain运行：2entries保留、request仍previous、middlewareunwrap前stub未commit而handleredge commit。"
-  },
-  {
-    "id": "12-ssr-http:L203:1",
-    "status": "covered",
-    "coverage": [
-      "08/server-road-trace-every-response-face",
-      "tracks/records/trace.test.ts#RFC08 L801/L902 and RFC12 L201–205: pre-runtime subscriptions cross bundled copies; real response trace and metric gates"
-    ],
-    "reason": "sampled真实HTML </head>splice、headlesshost onHead、无onHead fragment仅header、publicframe RPC transform、preflush bodylessredirect均精确当前traceparent value；plainRPC在records.trace真实responseheader，三tier。"
-  }
+	{
+		"id": "12-ssr-http:L145:2",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-diagnostics.test.ts#08/server-road-sanitize-ssr-false"
+		]
+	},
+	{
+		"id": "12-ssr-http:L168:1",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once"
+		]
+	},
+	{
+		"id": "12-ssr-http:L168:2",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-client-source-mapping",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-serialization-road"
+		]
+	},
+	{
+		"id": "12-ssr-http:L168:3",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-rpc-deferred-channel"
+		]
+	},
+	{
+		"id": "12-ssr-http:L168:4",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once"
+		]
+	},
+	{
+		"id": "12-ssr-http:L168:5",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream"
+		]
+	},
+	{
+		"id": "12-ssr-http:L168:6",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once"
+		]
+	},
+	{
+		"id": "12-ssr-http:L168:7",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-request-failed-once",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
+		]
+	},
+	{
+		"id": "12-ssr-http:L169:1",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict"
+		]
+	},
+	{
+		"id": "12-ssr-http:L169:2",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-throwing-hook"
+		]
+	},
+	{
+		"id": "12-ssr-http:L169:3",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
+		]
+	},
+	{
+		"id": "12-ssr-http:L169:4",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-serialization-road"
+		]
+	},
+	{
+		"id": "12-ssr-http:L169:5",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-client-source-mapping"
+		]
+	},
+	{
+		"id": "12-ssr-http:L170:1",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-direct-first-verdict"
+		]
+	},
+	{
+		"id": "12-ssr-http:L170:2",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-loading-repull-same-verdict"
+		]
+	},
+	{
+		"id": "12-ssr-http:L170:3",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-direct-observe-multi-road"
+		]
+	},
+	{
+		"id": "12-ssr-http:L171:1",
+		"status": "covered",
+		"coverage": [
+			"findings/031-direct-error-hook-tier/repro.test.ts",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-external-ambient-symbol"
+		]
+	},
+	{
+		"id": "12-ssr-http:L171:2",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-render-override",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-rpc-per-request-map"
+		]
+	},
+	{
+		"id": "12-ssr-http:L171:3",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-throwing-hook"
+		]
+	},
+	{
+		"id": "12-ssr-http:L171:4",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-no-hook-failed-console"
+		]
+	},
+	{
+		"id": "12-ssr-http:L171:5",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-no-hook-failed-console",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-string",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-initial-failed-stream"
+		]
+	},
+	{
+		"id": "12-ssr-http:L172:1",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-stream-old-shape"
+		]
+	},
+	{
+		"id": "12-ssr-http:L172:2",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-hooks.test.ts#12/server-hook-fallback-mapping",
+			"tracks/frames/server-hooks.test.ts#12/server-hook-throwing-hook"
+		]
+	},
+	{
+		"id": "12-ssr-http:L81:4",
+		"status": "covered",
+		"coverage": ["08/server-road-live-request-event-identity"],
+		"reason": "nested direct-call RequestEvent !==parent，request和response分别===parent；live.event===bodygetRequestEvent。"
+	},
+	{
+		"id": "12-ssr-http:L244:1",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-diagnostics.test.ts#08/server-road-mutation-cookie-thrown-redirect"
+		]
+	},
+	{
+		"id": "12-ssr-http:L302:1",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-diagnostics.test.ts#08/server-road-mutation-cookie-thrown-redirect"
+		]
+	},
+	{
+		"id": "12-ssr-http:L335:3",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-diagnostics.test.ts#08/server-road-bare-event-trace-commit"
+		]
+	},
+	{
+		"id": "12-ssr-http:C182:1",
+		"status": "covered",
+		"coverage": [
+			"tracks/frames/server-diagnostics.test.ts#08/server-road-server-function-forward-trace"
+		]
+	},
+	{
+		"id": "12-ssr-http:L248:4",
+		"status": "covered",
+		"coverage": ["08/server-road-cookie-exchange-three-domains"],
+		"reason": "同一public request Cookie parse+response Set-Cookie append helper在serverfn/SSR/middleware三domain运行：2entries保留、request仍previous、middlewareunwrap前stub未commit而handleredge commit。"
+	},
+	{
+		"id": "12-ssr-http:L203:1",
+		"status": "covered",
+		"coverage": [
+			"08/server-road-trace-every-response-face",
+			"tracks/records/trace.test.ts#RFC08 L801/L902 and RFC12 L201–205: pre-runtime subscriptions cross bundled copies; real response trace and metric gates"
+		],
+		"reason": "sampled真实HTML </head>splice、headlesshost onHead、无onHead fragment仅header、publicframe RPC transform、preflush bodylessredirect均精确当前traceparent value；plainRPC在records.trace真实responseheader，三tier。"
+	}
 ]

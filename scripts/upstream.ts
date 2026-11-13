@@ -115,17 +115,47 @@ if (process.argv.includes('--link-built')) {
 		)
 		if (name === 'web') {
 			await run(['bun', 'scripts/copy-types.mjs'], cwd)
-			await run(['bun', 'x', '--no-install', 'tsc', '-p', 'performance-tracks/tsconfig.build.json'], cwd)
+			await run(
+				[
+					'bun',
+					'x',
+					'--no-install',
+					'tsc',
+					'-p',
+					'performance-tracks/tsconfig.build.json',
+				],
+				cwd,
+			)
 		}
 	}
 	const h = `${directory}/packages/h`
 	for (const destination of ['src', 'types']) {
 		await mkdir(`${h}/jsx-runtime/${destination}`, { recursive: true })
-		await Bun.write(`${h}/jsx-runtime/${destination}/jsx-properties.d.ts`, Bun.file(`${directory}/packages/web/jsx/jsx-properties.d.ts`))
-		await run(['bun', '../web/scripts/jsx-sync.mjs', '--input', '../web/jsx/jsx-h.d.ts', '--output', `./jsx-runtime/${destination}/jsx.d.ts`, '--element', 'SolidElement | Node | FunctionElement | ArrayElement', '--import', 'import type { Element as SolidElement } from "solid-js";'], h)
+		await Bun.write(
+			`${h}/jsx-runtime/${destination}/jsx-properties.d.ts`,
+			Bun.file(`${directory}/packages/web/jsx/jsx-properties.d.ts`),
+		)
+		await run(
+			[
+				'bun',
+				'../web/scripts/jsx-sync.mjs',
+				'--input',
+				'../web/jsx/jsx-h.d.ts',
+				'--output',
+				`./jsx-runtime/${destination}/jsx.d.ts`,
+				'--element',
+				'SolidElement | Node | FunctionElement | ArrayElement',
+				'--import',
+				'import type { Element as SolidElement } from "solid-js";',
+			],
+			h,
+		)
 	}
 	await run(['bun', 'x', '--no-install', 'tsc', '-p', 'tsconfig.json'], h)
-	await run(['bun', 'x', '--no-install', 'tsc', '-p', 'jsx-runtime/tsconfig.json'], h)
+	await run(
+		['bun', 'x', '--no-install', 'tsc', '-p', 'jsx-runtime/tsconfig.json'],
+		h,
+	)
 	await run(['bun', 'x', '--no-install', 'rollup', '-c'], h)
 	for (const name of ['html', 'universal']) {
 		const cwd = `${directory}/packages/${name}`

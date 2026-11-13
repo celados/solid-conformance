@@ -9,7 +9,10 @@ export function deferred<T>() {
 	return { promise, resolve, reject }
 }
 export function controlledIterable<T>() {
-	type Delivery = { kind: 'value'; value: T } | { kind: 'error'; error: unknown } | { kind: 'end' }
+	type Delivery =
+		| { kind: 'value'; value: T }
+		| { kind: 'error'; error: unknown }
+		| { kind: 'end' }
 	const history: Delivery[] = []
 	const listeners = new Set<() => void>()
 	const stats = { opened: 0, closed: 0 }
@@ -21,10 +24,14 @@ export function controlledIterable<T>() {
 		...{ [Symbol.for('solid.LiveSource')]: true },
 		[Symbol.asyncIterator]() {
 			stats.opened++
-			let cursor = 0, closed = false
+			let cursor = 0,
+				closed = false
 			let pending: ReturnType<typeof deferred<IteratorResult<T>>> | undefined
 			function close() {
-				if (!closed) { closed = true; stats.closed++ }
+				if (!closed) {
+					closed = true
+					stats.closed++
+				}
 				listeners.delete(wake)
 			}
 			function wake() {
@@ -33,30 +40,43 @@ export function controlledIterable<T>() {
 				pending = undefined
 				const item = history[cursor++]
 				if (closed || item?.kind === 'end') {
-					close(); waiter.resolve({ done: true, value: undefined })
+					close()
+					waiter.resolve({ done: true, value: undefined })
 				} else if (item?.kind === 'error') {
-					close(); waiter.reject(item.error)
-				} else if (item?.kind === 'value') waiter.resolve({ done: false, value: item.value })
+					close()
+					waiter.reject(item.error)
+				} else if (item?.kind === 'value')
+					waiter.resolve({ done: false, value: item.value })
 			}
 			listeners.add(wake)
 			return {
 				next() {
 					if (pending) throw new Error('Concurrent next() is unsupported')
 					const waiter = deferred<IteratorResult<T>>()
-					pending = waiter; wake(); return waiter.promise
+					pending = waiter
+					wake()
+					return waiter.promise
 				},
 				async return() {
-					close(); wake()
+					close()
+					wake()
 					return { done: true as const, value: undefined }
 				},
 			}
 		},
 	}
 	return {
-		iterable, stats,
-		push(value: T) { deliver({ kind: 'value', value }) },
-		fail(error: unknown) { deliver({ kind: 'error', error }) },
-		end() { deliver({ kind: 'end' }) },
+		iterable,
+		stats,
+		push(value: T) {
+			deliver({ kind: 'value', value })
+		},
+		fail(error: unknown) {
+			deliver({ kind: 'error', error })
+		},
+		end() {
+			deliver({ kind: 'end' })
+		},
 	}
 }
 export function permutations<T>(items: T[]): T[][] {
