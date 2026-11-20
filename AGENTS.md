@@ -27,9 +27,7 @@ part of Delta. Do not copy Delta code here; read it for context only.
   remove components, props, and timing until removing anything makes it pass.
 - **Spec vs implementation.** When the docs and the runtime disagree, record it;
   say which side you believe is wrong and why. Both are reportable.
-- **Toolchain:** bun / bunx (never npm or npx). Browser runs use the system
-  Google Chrome (Playwright `channel: 'chrome'`); never download Playwright
-  Chromium or Puppeteer browsers.
+- Toolchain: bun / bunx. Use Playwright Chrome for Testing (channel chromium).
 
 ## Layout
 

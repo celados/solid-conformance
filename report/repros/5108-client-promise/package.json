@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "repro": "bun build.mjs && bun build client-entry.mjs --target=browser --production --outfile=client.js && bun build server.mjs --target=node --production --outfile=ssr.mjs && bun ssr.mjs > index.html && bun run.mjs"
+  },
+  "dependencies": {
+    "@solidjs/compiler": "2.0.2",
+    "@solidjs/signals": "2.0.3",
+    "@solidjs/web": "2.0.3",
+    "playwright": "1.65.1",
+    "solid-js": "2.0.3"
+  }
+}

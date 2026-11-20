@@ -1,0 +1,304 @@
+{
+  "runtime": {
+    "target": "2.0.3",
+    "upstream": null,
+    "buildMode": "development",
+    "solid": "2.0.3",
+    "router": "2.0.1",
+    "routerHead": null
+  },
+  "seed": 20261008,
+  "known": {},
+  "observations": [
+    {
+      "scenario": {
+        "family": "refresh-derived",
+        "value": 3,
+        "nested": true,
+        "reverse": true,
+        "delay": 20
+      },
+      "result": {
+        "answer": 3,
+        "dom": "6"
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 1,
+        "nested": false,
+        "reverse": false,
+        "delay": 36
+      },
+      "result": {
+        "answer": 1,
+        "dom": "2"
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 4,
+        "nested": false,
+        "reverse": true,
+        "delay": 20
+      },
+      "result": {
+        "before": "saving1:0;2:4;",
+        "after": "2:4;1:0;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 8,
+        "nested": false,
+        "reverse": true,
+        "delay": 18
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 8,
+        "nested": false,
+        "reverse": true,
+        "delay": 35
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 4,
+        "nested": false,
+        "reverse": true,
+        "delay": 0
+      },
+      "result": {
+        "answer": 4,
+        "dom": "8"
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 9,
+        "nested": true,
+        "reverse": false,
+        "delay": 1
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "refresh-derived",
+        "value": 9,
+        "nested": false,
+        "reverse": false,
+        "delay": 37
+      },
+      "result": {
+        "answer": 9,
+        "dom": "18"
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 8,
+        "nested": true,
+        "reverse": false,
+        "delay": 37
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 2,
+        "nested": true,
+        "reverse": true,
+        "delay": 28
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 3,
+        "nested": true,
+        "reverse": true,
+        "delay": 21
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 2,
+        "nested": false,
+        "reverse": false,
+        "delay": 34
+      },
+      "result": {
+        "answer": 2,
+        "dom": "4"
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 2,
+        "nested": true,
+        "reverse": true,
+        "delay": 0
+      },
+      "result": {
+        "before": "0pending",
+        "after": "22",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "held-navigation",
+        "value": 3,
+        "nested": false,
+        "reverse": false,
+        "delay": 12
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true,
+        "url": "/"
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 4,
+        "nested": false,
+        "reverse": true,
+        "delay": 0
+      },
+      "result": {
+        "before": "saving1:0;2:4;",
+        "after": "2:4;1:0;"
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 4,
+        "nested": false,
+        "reverse": false,
+        "delay": 2
+      },
+      "result": {
+        "before": "0pending",
+        "after": "44",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "latest-mount",
+        "value": 2,
+        "nested": true,
+        "reverse": false,
+        "delay": 6
+      },
+      "result": {
+        "before": "0pending",
+        "after": "22",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "until-derived",
+        "value": 7,
+        "nested": false,
+        "reverse": false,
+        "delay": 3
+      },
+      "result": {
+        "answer": 7,
+        "dom": "14"
+      }
+    },
+    {
+      "scenario": {
+        "family": "core-feedback",
+        "value": 4,
+        "nested": true,
+        "reverse": true,
+        "delay": 18
+      },
+      "result": {
+        "before": "waitingold",
+        "after": "new",
+        "pending": true,
+        "fired": true
+      }
+    },
+    {
+      "scenario": {
+        "family": "optimistic-reorder",
+        "value": 7,
+        "nested": false,
+        "reverse": true,
+        "delay": 5
+      },
+      "result": {
+        "before": "saving1:0;2:7;",
+        "after": "2:7;1:0;"
+      }
+    }
+  ],
+  "failed": false,
+  "counterexample": null,
+  "counterexamplePath": null,
+  "error": ""
+}

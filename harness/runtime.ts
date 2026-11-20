@@ -4,10 +4,11 @@ export async function runtimeReceipt() {
 	const resolved = await realpath('node_modules/solid-js')
 	const head = resolved.includes('/.upstream/')
 	if ((process.env.TARGET ?? 'head') === 'head' && !head)
-		throw new Error('HEAD is the primary target. Run bun run upstream first; use TARGET=rc15 for the baseline.')
+		throw new Error('HEAD is the primary target. Run bun run upstream first; use TARGET=2.0.3 for the baseline.')
 	if (process.env.TARGET?.startsWith('rc') && head)
 		throw new Error('Baseline requested with HEAD linked. Run bun run upstream --restore.')
 	const version = (await Bun.file('node_modules/solid-js/package.json').json()).version
+	if (process.env.TARGET === "2.0.3" && (head || version !== "2.0.3")) throw new Error("Expected published Solid 2.0.3")
 	if (process.env.TARGET?.startsWith('rc') && version !== `2.0.0-${process.env.TARGET.replace('rc', 'rc.')}`)
 		throw new Error(`Requested ${process.env.TARGET}, installed ${version}`)
 	return {

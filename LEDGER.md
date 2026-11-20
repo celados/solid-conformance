@@ -78,3 +78,7 @@ description: rc.15、Solid/Router HEAD 的原始红测试、修复和 filing bar
 | [059](findings/059-match-ref-optimistic-rollback/README.md) | confirmed | Match ref reads a stale accessor while an optimistic hide is restored | red |
 
 [Probes and scope](report/probes/rc21-control-flow/README.md); [Show draft](report/issues/058-show-ref-optimistic-rollback.md); [Match draft](report/issues/059-match-ref-optimistic-rollback.md). These findings do not reproduce the player's spread path.
+
+## Wave 6
+
+[#5108](https://github.com/solidjs/solid/issues/5108) reproduced with a [simpler client-only read](report/repros/5108-client-promise/README.md) on 2.0.3 and main. [Wave 6 receipt](report/evidence/wave6/receipt.md).

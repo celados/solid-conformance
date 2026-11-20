@@ -51,7 +51,7 @@ if (process.argv.includes('--link-built')) {
 	await run(['bun', 'install', '--frozen-lockfile'])
 	await rm('.upstream/active.json', { force: true })
 } else {
-	const ref = process.env.UPSTREAM_REF ?? 'next'
+	const ref = process.env.UPSTREAM_REF ?? 'main'
 	const revisionResponse = await fetch(
 		`https://api.github.com/repos/solidjs/solid/commits/${encodeURIComponent(ref)}`,
 	)

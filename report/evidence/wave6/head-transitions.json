@@ -1,0 +1,17 @@
+{
+  "seed": 20261120,
+  "attempts": 24,
+  "browserRuns": 120,
+  "knownHits": {},
+  "counts": {
+    "supersede": 4,
+    "reject-before": 5,
+    "reject-after": 3,
+    "reconnect": 1,
+    "remount": 2,
+    "route-shared": 2,
+    "route-other": 3,
+    "action-failure": 4
+  },
+  "failed": false
+}

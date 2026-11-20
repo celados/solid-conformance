@@ -11,7 +11,7 @@ export async function withClientPage<T>(entry: string, run: (page: Page, message
   return path.endsWith('.js') ? new Response(Bun.file(directory + path), {headers: {'content-type': 'text/javascript'}}) : new Response(`<!doctype html><div id="app"></div><script type="module" src="/${entry.split("/").at(-1)!.replace(/\.tsx$/, ".js")}"></script>`, {headers: {'content-type': 'text/html'}})
  }})
  try {
-  const browser = await chromium.launch({channel: 'chrome', headless: true})
+  const browser = await chromium.launch({channel: 'chromium', headless: true})
   try {
    const page = await browser.newPage()
    page.setDefaultTimeout(10000)

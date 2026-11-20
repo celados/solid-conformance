@@ -1,18 +1,18 @@
 ---
 type: Reference
-title: Solid 2 conformance — Wave 5
-description: Bun、系统 Chrome、HEAD 优先的 CSR／流式 SSR／hydration 与文档契约测试。
+title: Solid 2 conformance
+description: Bun、Chrome for Testing、HEAD 优先的 CSR／流式 SSR／hydration 与文档契约测试。
 ---
 
 # Solid 2 conformance
 
-本项目只验证和记录差异，不修复框架，也不向上游写入。需要 Bun、系统 Google Chrome，以及上游 native compiler 构建要求的 Rust 工具链。
+本项目只验证和记录差异，不修复框架，也不向上游写入。需要 Bun、Playwright Chrome for Testing，以及上游 native compiler 构建要求的 Rust 工具链。
 
 ## 运行
 
 ```sh
 bun install --frozen-lockfile
-bun run upstream                    # 每轮刷新 next tarball，构建并链接 HEAD
+bun run upstream                    # 每轮刷新 main tarball，构建并链接 HEAD
 bun run router:upstream              # 构建并链接 Router HEAD
 bun run vite:upstream                # 构建文档所需的 Vite companion next 快照
 bun test                            # HEAD development；每文件一个独立、有时限的 Bun host
@@ -44,12 +44,12 @@ bun run upstream --build-only
 bun run upstream --link-built
 bun run upstream --restore
 bun run router:upstream --restore
-TARGET=rc15 bun test ./findings/004-derived-store-rejection/repro.test.ts
-TARGET=rc15 BUILD_MODE=production bun test ./findings/008-production-refresh/repro.test.ts
+TARGET=2.0.3 bun test ./findings/004-derived-store-rejection/repro.test.ts
+TARGET=2.0.3 BUILD_MODE=production bun test ./findings/008-production-refresh/repro.test.ts
 bun run upstream --link-built         # 对照结束后恢复 HEAD
 ```
 
-`solid-js`、`@solidjs/web`、signals、compiler、diagnostics 的发布基线通过 `bun add --exact` 固定为 rc.15。Router 没有 rc.15 版本，锁定其独立发布线 `2.0.0-next.39`。HEAD 脚本通过 Bun 调用 Rollup、TypeScript、NAPI，下载 tar 快照到 `.upstream/`，不修改上游 checkout。Router HEAD 通过 `bun run router:upstream` 构建 next tar 快照并链接，SHA 写入 `.upstream/router-built.json`。`--build-only` 仅构建，`--link-built` 链接已有快照，`--restore` 恢复发布包。
+`solid-js`、`@solidjs/web`、signals、compiler、diagnostics 的发布基线通过 `bun add --exact` 固定为 2.0.3（compiler 2.0.2）。Router 固定为 2.0.1。HEAD 脚本通过 Bun 调用 Rollup、TypeScript、NAPI，下载 tar 快照到 `.upstream/`，不修改上游 checkout。Router HEAD 通过 `bun run router:upstream` 构建 next tar 快照并链接，SHA 写入 `.upstream/router-built.json`。`--build-only` 仅构建，`--link-built` 链接已有快照，`--restore` 恢复发布包。
 
 ## 每项差异的单命令复现
 
@@ -65,7 +65,7 @@ BUILD_MODE=production bun test ./findings/008-production-refresh/repro.test.ts
 
 ## Harness 与轨道
 
-同一个 TSX AST 通过 native compiler 分别构建 DOM 和 SSR bundle。CSR 和 hydration 都使用 Playwright `channel: 'chrome'`；不下载浏览器。流式 hydration 的完整 document 由 Solid SSR 生成，使用 HydrationScript、NoHydration 和带 `app` renderId 的 Hydration 区域，让框架安排 payload 与 module 启动顺序。DOM 比较仅移除 hydration 标记、注释及传输 script/template，保留内容与业务属性。
+同一个 TSX AST 通过 native compiler 分别构建 DOM 和 SSR bundle。CSR 和 hydration 都使用 Playwright `channel: 'chromium'`；bunx playwright install --no-shell chromium。流式 hydration 的完整 document 由 Solid SSR 生成，使用 HydrationScript、NoHydration 和带 `app` renderId 的 Hydration 区域，让框架安排 payload 与 module 启动顺序。DOM 比较仅移除 hydration 标记、注释及传输 script/template，保留内容与业务属性。
 
 - `harness/timing.ts`：deferred promise、多订阅可控 iterable、reject/end/return、开关计数和 tick stepping。
 - `tracks/regressions`：五个历史 issue 家族；生产模式的 optimistic 矩阵只跑 attribution off，因为 OBSERVE 不在生产包中。
@@ -83,7 +83,7 @@ BUILD_MODE=production bun test ./findings/008-production-refresh/repro.test.ts
 
 [LEDGER.md](LEDGER.md) 给出每项差异、版本矩阵及单命令 repro；[Wave 2](evidence/wave2-receipt.md) 与 [Wave 3](evidence/wave3-receipt.md) 保留轮次证据。默认绿色表示没有未知错误；已经登记的原始红例没有改写成通过断言。
 
-HEAD 构建与 Vite 快照都保存在当前 checkout 的 git-ignored .upstream/，不依赖已经结束的 Wave 1／2 worktree。Vite plugin 独立 next 快照的 SHA 在 .upstream/vite-built.json；本轮也构建并测试 Router HEAD；源快照在 `.scratch/router/<SHA>`，不修改其他 checkout。系统 Chrome 的版本记录在运行时浏览器证据，既不下载内核也不替换用户的日常 Chrome profile。
+HEAD 构建与 Vite 快照都保存在当前 checkout 的 git-ignored .upstream/，不依赖已经结束的 Wave 1／2 worktree。Vite plugin 独立 next 快照的 SHA 在 .upstream/vite-built.json；本轮也构建并测试 Router HEAD；源快照在 `.scratch/router/<SHA>`，不修改其他 checkout。Chrome for Testing 的版本记录在运行时浏览器证据，使用 Playwright 管理的内核与独立 profile。
 
 按句测试不等于穷举所有树或所有 async 排列：每棵树使用全排列或有界采样，生成器与 shrinker 保留 seed／replay。Bun-only 下未实测 Node、workerd、Deno；HTTP/1.1 local wire 不代表 HTTP/2 carrier。不可到达的公开 SSR 恢复条件、缺少反事实基准的绝对成本保证和不可公开计数的内部零分配等，逐项列为 untestable，而不是算已覆盖。SolidStart 尚无可在本轮构建的 Solid 2 发布版；核心/Vite server functions/components 的实际公共 API 已独立测试。
 

@@ -89,7 +89,7 @@ export async function openHarness(variant: BuildMode = (process.env.BUILD_MODE a
 	})
 	let browser: Browser
 	try {
-		browser = await chromium.launch({ channel: 'chrome', headless: true })
+		browser = await chromium.launch({ channel: 'chromium', headless: true })
 	} catch (e) {
 		server.stop(true)
 		throw e
